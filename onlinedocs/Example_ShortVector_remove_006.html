@@ -1,0 +1,245 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example ShortVector remove 006</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example defines a Vector and uses the <b>remove</b> function to 
+
+
+
+
+
+
+                  non-destructively delete a value.
+
+
+
+
+
+                  If the value does not exist in the Vector then the same Vector is returned unchanged.
+
+
+
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Z  #(short| 11 12 )  )</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Removes the specified value and copies the result
+
+
+
+
+
+              to a new Vector.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq A (remove 11 Z))    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 234567&#62 </Returns></b></td></tr>
+</table><p><Note>Displays the modified Vector.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (display A)     </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(short| 12 ) </Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>remove</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_remove_008.html">BitVector remove 008</A></td>
+<td><A HREF="Example_Dictionary_remove_002.html">Dictionary remove 002</A></td>
+<td><A HREF="Example_Directory_remove_003.html">Directory remove 003</A></td>
+<td><A HREF="Example_Directory_vectorDelete_001.html">Directory vectorDelete 001</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_remove_005.html">IntVector remove 005</A></td>
+<td><A HREF="Example_Matrix_remove_005.html">Matrix remove 005</A></td>
+<td><A HREF="Example_NumMatrix_remove_008.html">NumMatrix remove 008</A></td>
+<td><A HREF="Example_NumVector_remove_006.html">NumVector remove 006</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_remove_007.html">ObjVector remove 007</A></td>
+<td><A HREF="Example_ShortVector_remove_006.html">ShortVector remove 006</A></td>
+<td><A HREF="Example_Structure_remove_001.html">Structure remove 001</A></td>
+<td><A HREF="Example_Vector_remove_004.html">Vector remove 004</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_remove_Builtin.html">remove</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_delete_Builtin.html">delete(Builtin)</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="ShortVector.html">ShortVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_ShortVector_append_008.html">ShortVector append 008</A></td>
+<td><A HREF="Example_ShortVector_apply_007.html">ShortVector apply 007</A></td>
+<td><A HREF="Example_ShortVector_binaryInsert_006.html">ShortVector binaryInsert 006</A></td>
+<td><A HREF="Example_ShortVector_binarySearch_007.html">ShortVector binarySearch 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_ShortVector_compare_016.html">ShortVector compare 016</A></td>
+<td><A HREF="Example_ShortVector_compareEQ_015.html">ShortVector compareEQ 015</A></td>
+<td><A HREF="Example_ShortVector_compareGE_015.html">ShortVector compareGE 015</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_compareGT_015.html">ShortVector compareGT 015</A></td>
+<td><A HREF="Example_ShortVector_compareLE_015.html">ShortVector compareLE 015</A></td>
+<td><A HREF="Example_ShortVector_compareLT_015.html">ShortVector compareLT 015</A></td>
+<td><A HREF="Example_ShortVector_compareNE_015.html">ShortVector compareNE 015</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_comparison_functions_015.html">ShortVector comparison functions 015</A></td>
+<td><A HREF="Example_ShortVector_copy_008.html">ShortVector copy 008</A></td>
+<td><A HREF="Example_ShortVector_delete_011.html">ShortVector delete 011</A></td>
+<td><A HREF="Example_ShortVector_insert_007.html">ShortVector insert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_inside_006.html">ShortVector inside 006</A></td>
+<td><A HREF="Example_ShortVector_isAtom_007.html">ShortVector isAtom 007</A></td>
+<td><A HREF="Example_ShortVector_isEqual_015.html">ShortVector isEqual 015</A></td>
+<td><A HREF="Example_ShortVector_isIdentical_014.html">ShortVector isIdentical 014</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_isObject_009.html">ShortVector isObject 009</A></td>
+<td><A HREF="Example_ShortVector_length_010.html">ShortVector length 010</A></td>
+<td><A HREF="Example_ShortVector_map_007.html">ShortVector map 007</A></td>
+<td><A HREF="Example_ShortVector_mapc_007.html">ShortVector mapc 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_member_006.html">ShortVector member 006</A></td>
+<td><A HREF="Example_ShortVector_new_011.html">ShortVector new 011</A></td>
+<td><A HREF="Example_ShortVector_ref_024.html">ShortVector ref 024</A></td>
+<td><A HREF="Example_ShortVector_remove_006.html">ShortVector remove 006</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_resize_008.html">ShortVector resize 008</A></td>
+<td><A HREF="Example_ShortVector_reverse_005.html">ShortVector reverse 005</A></td>
+<td><A HREF="Example_ShortVector_setCdr_008.html">ShortVector setCdr 008</A></td>
+<td><A HREF="Example_ShortVector_setq_021.html">ShortVector setq 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_sizeof_016.html">ShortVector sizeof 016</A></td>
+<td><A HREF="Example_ShortVector_sort_015.html">ShortVector sort 015</A></td>
+<td><A HREF="Example_ShortVector_type_018.html">ShortVector type 018</A></td>
+<td><A HREF="Example_ShortVector_uniqueInsert_007.html">ShortVector uniqueInsert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_vectorFill_005.html">ShortVector vectorFill 005</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

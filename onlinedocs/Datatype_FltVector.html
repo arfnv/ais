@@ -1,0 +1,168 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>FltVector</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>FltVector Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Visual Basic Comparison</font></a></li><li><a href="#S4"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S5"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>FltVector Overview</H4></FONT></P>
+        <p> A Float Vector <i>(FltVector)</i> is a Heap object containing zero or more IEEE 32 bit single precision real numbers.
+            <b>FltVectors</b> allow access to stored floats (small floating point) values using
+            an integer key.  A <b>FloatVector</b> is a data structure composed of an arbitrary 
+          number of Floats. Assuming there are n elements in a vector, the elements of the 
+          vector are accessed as elements 0 thru n-1. A <b>FloatVector</b> also has a tail in 
+            the same sense that a Pair has a tail.</p>
+            <p> This sets an FltVector of one value.
+</p>
+            <p>(setq X (new Vector:  float:  2 3.141592 2.16412))      </p>
+             <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>3.141592</td> </tr>
+               <tr><td>2.16412</td> </tr>
+           </table>    
+          <p>The <b>FltVector</b> is a dynamic data type: it can grow to containing new elements 
+             or contract as elements are deleted.    An element is accessed by an index from 0 
+             to n-1 where n is the number of elements in the <b>FltVector</b>.   When an element is added, 
+             it is appended to the end.</p> 
+          <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>3.141592</td> </tr>
+               <tr><td>2.16412</td> </tr>
+               <tr><td>0.41567</td> </tr>
+           </table> 
+           <p>Or we might sort the vector</p> 
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>0.41567</td> </tr>
+               <tr><td>2.16412</td> </tr>
+               <tr><td>3.141592</td> </tr>
+           </table> 
+           <p>Or we might delete a key by specify the index of the item to be deleted (2)</p> 
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+              <tr><td>0.41567</td> </tr>
+               <tr><td>2.16412</td> </tr>
+           </table>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The <b>FltVector</b> is a subtype of the Vector Data Type. The 
+            FltVector object is useful for storing floating point numbers.
+            The FltVector object is very fast 
+            and has minimum memory overhead due to the indexed access of its values.  If you 
+            require a random access strategy or a keyed access strategy see the Dictionary or 
+            Structure data types.  </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Visual Basic Comparison</H4></FONT></P>
+          <p>An Analytic Information Server <b>NumVector</b> is similar to the single dimensioned dynamic 
+            array in Visual Basic. The Visual Basic array is created at compile time (the Visual Basic 
+            Array still requires a "ReDim" to specify a dimension), whereas the Analytic Information Server 
+            structure is created, expanded, or contracted dynamically at run time. </p>
+          <p><b>Dim DayArray(50)</b></p>
+          <p>DayArray is an array of Variants with 51 elements indexed, from 0 thru 50.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Constant Form</H4></FONT></P>
+          <p>The <b>FltVector</b> native data type has a constant form. A <b>FltVector</b> constant is enclosed 
+             in brackets and preceded by the sharp symbol #(flt| ).  </p>
+          <p>For Example:</p>
+          <p><b>#(flt| 2.16412 3.141592)</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>FltVector</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The FltVector object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_FltVector_apply_005.html">Example_FltVector_apply_005</A></td>
+<td><A HREF="Example_FltVector_binaryInsert_004.html">Example_FltVector_binaryInsert_004</A></td>
+<td><A HREF="Example_FltVector_binarySearch_005.html">Example_FltVector_binarySearch_005</A></td>
+<td><A HREF="Example_FltVector_cdr_006.html">Example_FltVector_cdr_006</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_compareEQ_014.html">Example_FltVector_compareEQ_014</A></td>
+<td><A HREF="Example_FltVector_compareGE_014.html">Example_FltVector_compareGE_014</A></td>
+<td><A HREF="Example_FltVector_compareGT_014.html">Example_FltVector_compareGT_014</A></td>
+<td><A HREF="Example_FltVector_compareLE_014.html">Example_FltVector_compareLE_014</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_compareLT_014.html">Example_FltVector_compareLT_014</A></td>
+<td><A HREF="Example_FltVector_compareNE_014.html">Example_FltVector_compareNE_014</A></td>
+<td><A HREF="Example_FltVector_compare_014.html">Example_FltVector_compare_014</A></td>
+<td><A HREF="Example_FltVector_comparison_014.html">Example_FltVector_comparison_014</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_copy_006.html">Example_FltVector_copy_006</A></td>
+<td><A HREF="Example_FltVector_delete_009.html">Example_FltVector_delete_009</A></td>
+<td><A HREF="Example_FltVector_insert_005.html">Example_FltVector_insert_005</A></td>
+<td><A HREF="Example_FltVector_isAtom_005.html">Example_FltVector_isAtom_005</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_isEqual_013.html">Example_FltVector_isEqual_013</A></td>
+<td><A HREF="Example_FltVector_isFloatVector_001.html">Example_FltVector_isFloatVector_001</A></td>
+<td><A HREF="Example_FltVector_isIdentical_012.html">Example_FltVector_isIdentical_012</A></td>
+<td><A HREF="Example_FltVector_isObject_007.html">Example_FltVector_isObject_007</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_isType_016.html">Example_FltVector_isType_016</A></td>
+<td><A HREF="Example_FltVector_length_008.html">Example_FltVector_length_008</A></td>
+<td><A HREF="Example_FltVector_map_005.html">Example_FltVector_map_005</A></td>
+<td><A HREF="Example_FltVector_mapc_005.html">Example_FltVector_mapc_005</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_new_009.html">Example_FltVector_new_009</A></td>
+<td><A HREF="Example_FltVector_ref_022.html">Example_FltVector_ref_022</A></td>
+<td><A HREF="Example_FltVector_resize_006.html">Example_FltVector_resize_006</A></td>
+<td><A HREF="Example_FltVector_reverse_003.html">Example_FltVector_reverse_003</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_setCdr_006.html">Example_FltVector_setCdr_006</A></td>
+<td><A HREF="Example_FltVector_setLastCdr_006.html">Example_FltVector_setLastCdr_006</A></td>
+<td><A HREF="Example_FltVector_setq_019.html">Example_FltVector_setq_019</A></td>
+<td><A HREF="Example_FltVector_sizeof_014.html">Example_FltVector_sizeof_014</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_sort_013.html">Example_FltVector_sort_013</A></td>
+<td><A HREF="Example_FltVector_type_016.html">Example_FltVector_type_016</A></td>
+<td><A HREF="Example_FltVector_uniqueInsert_004.html">Example_FltVector_uniqueInsert_004</A></td>
+<td><A HREF="Example_FltVector_vectorFill_003.html">Example_FltVector_vectorFill_003</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

@@ -1,0 +1,322 @@
+ 
+<HTML>
+<HEAD>
+<TITLE>Scripts</TITLE> 
+
+<script language="JavaScript">
+// -------------------------------------------------------------------------------
+//                       Java Script Generic Functions                       
+//   Notes: These functions and global variables are needed for most pages   
+// -------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------
+// Summary:  Generic global variables for this page.
+// -------------------------------------------------------------------------------
+var i, j, gResult, empty, Lambdas;		// General miscellanious indices and results
+
+// -------------------------------------------------------------------------------
+// Summary:  Chop off the last iLen characters of a string.
+// Args:     iMsg:         The string to be right truncated.
+//           iLen:         The number of string characters to be right truncated.
+// Return:   result:       The result of right truncating the string.
+// -------------------------------------------------------------------------------
+function chop(iMsg, iLen) {
+	return iMsg.slice(0, iMsg.length - iLen);
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Decode all XML special characters in the specified string.
+// Args:     iMsg:         The string whose XML special characters are to be decoded.
+// Return:   result:       The string with its XML special characters decoded.
+// -------------------------------------------------------------------------------
+function decodeXml(iMsg) {
+	// Convert predefined entities, &lt;, &amp;, &gt;, &apos;, &quot;
+	var aRet = iMsg.replace(/&quot;/g, '"');
+	aRet = aRet.replace(/&lt;/g, "<");
+	aRet = aRet.replace(/&gt;/g, ">");
+	aRet = aRet.replace(/&apos;/g, "'");
+	// Do & last!
+	aRet = aRet.replace(/&amp;/g, "&");
+	return aRet;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Encodes the <, &, and " special XML characters in the specified string.
+// Args:     iMsg:         The string whose <, &, and " special XML characters are to be decoded.
+// Return:   result:       The string with its <, &, and " XML special characters decoded.
+// Note:     Encode all strings w/ special chars before including them in an XML doc.
+// -------------------------------------------------------------------------------
+function encodeXml(iMsg) {
+	// Do & first!
+	var aRet = iMsg.replace(/&/g, "&amp;");
+	aRet = aRet.replace(/</g, "&lt;");
+	aRet = aRet.replace(/"/g, "&quot;");
+	return aRet;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Converts a map into a list separated with iSep instances.
+// Args:     irMap:        The map into a string separated with iSep characters.
+//           iSep:         The separator characters.
+// Return:   result:       The string separated with iSep characters.
+// -------------------------------------------------------------------------------
+function map2String(irMap, iSep)
+{
+	var aE, aStg = "", aLen = 0;
+	for (aE in irMap) {
+		aStg += aE + "=" + irMap[aE].toString() + iSep;
+		++aLen;
+	}
+	aStg = "(" + aLen + ")  " + aStg;
+	return chop(aStg, iSep.length);
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Converts an AMP message to an XML document.
+// Args:     iAmp:         The AMP message to be converted into an XML document.
+//           iSep:         The AMP message separator characters.
+// Return:   result:       The final converted XML document.
+// -------------------------------------------------------------------------------
+function amp2Xml(iAmp, iSep) {
+	var arTkns = iAmp.split(iSep);
+	var aLgth = arTkns.length;
+	if (aLgth < 2)
+		return null;
+	var aXml = '<amp target="' + arTkns[0] +'" act="' + arTkns[1];
+	if (aLgth == 2)
+		aXml += '"/>';
+	else {
+		var aName;
+		aXml += '">';
+		for (var i = 2; i < arTkns.length; ++i) {
+			aName = arTkns[i++];
+			if (i >= arTkns.length || arTkns[i].length <= 0)
+				aXml += "<" + aName + "/>";
+			else {
+				aName += ">";
+				aXml += "<" + aName + encodeXml(arTkns[i]) + "</" + aName;
+			}
+		}
+		aXml += "</amp>";
+	}
+	return aXml;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Extracts an array of attributes from an XML tag.
+// Args:     iTag:         The XML tag to be converted into an array of attributes.
+// Return:   result:       The final converted array of attributes.
+// -------------------------------------------------------------------------------
+function extractAttribs(iTag)
+{
+	// Extract all attributes (name="value") in a tag
+	var arAttribs = new Object();
+	var arTriple, arRegExp = /(\w+)="(.*?)"/g;		// .*? means not-greedy
+	arRegExp.lastIndex = 0;			// Start at beginning
+	while ((arTriple = arRegExp.exec(iTag)) != null)
+		arAttribs[arTriple[1]] = arTriple[2];
+	return arAttribs;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Converts a simple XML doc into an associative array.
+// Args:     iXml:         The simple XML document to be converted into an associative array.
+// Return:   result:       The final converted associative array.
+// -------------------------------------------------------------------------------
+function xml2Map(iXml) {
+	var arElements = new Object();
+	var aRoot = iXml.match(/<[^>]+>/);
+	if (aRoot != null) {
+		var arAttribs = extractAttribs(aRoot);
+		arElements["target"] = arAttribs["target"];
+		arElements["act"] = arAttribs["act"];
+		var aBody = iXml.slice(iXml.indexOf(">") + 1);
+		// Extract child elements of the root element
+		if (aBody.length > 1) {
+			// Add child elements of the root. g required to increment lastIndex.
+			var arTriple, arRegExp = /<(\w+)>(.*?)<\/\1>/g;
+			var aValue;
+			while ((arTriple = arRegExp.exec(aBody)) != null)
+				arElements[arTriple[1]] = decodeXml(arTriple[2]);
+
+			// Add single tag child elements
+			arRegExp.lastIndex = 0;			// Start over
+			arRegExp = /<(\w+)\/>/g;
+			var arPair;
+			while ((arPair = arRegExp.exec(aBody)) != null)
+				arElements[arPair[1]] = "";
+		}
+	}
+	return arElements;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Send an XML document to AIS over the pipe.
+// Args:     iXml:         The XML document to be sent to AIS.
+// Return:   result:       The result returned from AIS.
+// Note:     If no port is connected, then establish a connection.
+// -------------------------------------------------------------------------------
+function sendToAis(iXml) {
+     var arSocket = document.Sock;
+     var aMore = true;
+     var aRcvd, aXml = "";
+     var bufLen = 8192;
+     var buffer, result;
+     if (arSocket.Connected !=  true) {
+		//arSocket.HostName = "127.0.0.1"
+		arSocket.HostName = window.location.hostname;
+		var aPort = window.location.port;
+		if (aPort == 0) aPort = 80;
+		arSocket.RemotePort = 8080;
+		arSocket.Blocking = true;
+		arSocket.Binary = true;
+		var aRet = arSocket.Connect();
+		if (aRet != 0) {
+			aRet = "sendToAis()-Unable to connect to " + arSocket.HostName;
+			alert(aRet);
+			return aRet;
+		}
+	}
+	iXml +=  String.fromCharCode(1);
+	arSocket.sendLen = iXml.length;
+	arSocket.sendData = iXml;
+	arSocket.RecvLen = bufLen;
+	while (aMore == true) {
+		aRcvd = arSocket.RecvData; 
+		aMore = (aRcvd.length == bufLen);
+		// ????????????????????????????????????????????????????????????????????????????
+         // Note: This may need to be recoded, suppose return is of the form <amp ... />
+		// ????????????????????????????????????????????????????????????????????????????
+		if ((aMore == false) && (aRcvd.length >= 6))
+			aMore = aRcvd.substring(aRcvd.length - 7, aRcvd.length - 1) != '</amp>';
+		aXml += aRcvd;
+	}
+	// Convert returned XML document into an associative array.
+	return xml2Map(aXml);
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Submit an AMP expression to AIS.
+// Args:     iAmp:         The AMP expression to be sent to AIS.
+// Return:   result:       The result returned from AIS.
+// Note:     If no port is connected, then establish a connection.
+// -------------------------------------------------------------------------------
+function submitAmp(iAmp) {
+	var aXml = amp2Xml(iAmp, '|');
+	var arElements = sendToAis(aXml);
+	return map2String(arElements, ' | ');
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Evaluate the AMP expression in the AIS engine, and
+//           then show the results in an alert box.
+// Args:     ampmsg:       The source AMP expression to be evaluated.
+// Return:   result:       The result of evaluating the expression.
+// -------------------------------------------------------------------------------
+function showAmp(ampmsg) {
+	var aVer = Number(ScriptEngineMajorVersion() + "." + ScriptEngineMinorVersion())
+	if (aVer < 5.5)
+		alert("Internet Explorer version 5.5, or later, is required");
+	else {
+		var aResult = submitAmp(ampmsg);
+		aResult = "AIS returns: " + aResult;
+		alert(aResult);
+		// The result is not always shown correctly even inside PRE??
+		document.write("<PRE>" + aResult + "</PRE>");
+		// Result1.value = aResult;
+	}
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Evaluate the command expression in the SmartBase engine.
+// Note:     If no engine is connected, connect
+// Args:     command:      The source expression to be evaluated.
+// Return:   result:       The result of evaluating the expression.
+// -------------------------------------------------------------------------------
+function Evals(command) {
+    var Socket = document.Sock;
+    var bufLen = 8192;
+    if (Socket.Connected !=  true) {
+       Socket.HostName = window.location.hostname;
+       var port = window.location.port;
+       if (port == 0) port = 80;
+       Socket.RemotePort = 8080;
+       Socket.Blocking = true;
+       var result = Socket.Connect();
+       if (result != 0) {
+          alert("Unable to connect to host");
+          return ("Unable to connect to host");
+       }
+    }
+    var buffer, result;
+    var cmd = '<amp target="deepGreen" act="xmlSocketEvals"><cmd>' + encodeXml(command) + '</cmd></amp>' + String.fromCharCode(1);
+    Socket.sendLen = cmd.length;
+    Socket.sendData = cmd;
+    Socket.RecvLen = bufLen;
+    var more = true;
+    buffer = "";
+    while (more == true) {
+      result = Socket.RecvData;
+      more = (result.length == bufLen);
+      if ((more == false) && (result.length >= 6)) more =
+      result.substring(result.length - 7, result.length - 1) != '</amp>';
+      buffer += result;
+    }
+    // Extract just the result information from the returned string
+    buffer = buffer.slice(buffer.indexOf("<result>") + 8,buffer.lastIndexOf("</result>"))
+    return (buffer);
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Evaluate the Lisp expression in the AIS engine, and
+//           then show the results in an alert box.
+// Args:     command:      The source expression to be evaluated.
+// Return:   result:       The result of evaluating the expression.
+// -------------------------------------------------------------------------------
+function showEvals(command) {
+	var aVer = Number(ScriptEngineMajorVersion() + "." + ScriptEngineMinorVersion())
+	if (aVer < 5.5)
+		alert("Internet Explorer version 5.5, or later, is required");
+	else {
+		var aResult = Evals(command);
+		aResult = "Evals returns: " + aResult;
+		alert(aResult);
+		// The result is not always shown correctly even inside PRE??
+		document.write("<PRE>" + aResult + "</PRE>");
+	}
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Startup the the SmartBase engine and the Deep Green application.
+// Note:     If no engine is present, load this Script window into top.opener.
+// Args:     none:
+// Return:   result:       Always true.
+// -------------------------------------------------------------------------------
+function Startup() {
+	var result;   
+	top.opener = self;
+}
+
+// -------------------------------------------------------------------------------
+// A do nothing function for trapping unwanted events.
+// -------------------------------------------------------------------------------
+function deadEnd(form) {
+	 // Return false so that IE50 will not continue with the button's action.
+	 // Note: false will halt this operation (that's standard Java).
+    return false;
+}
+</script>
+</HEAD>
+<BODY onload="Startup();">
+
+<object 
+	ID="Sock"
+	classid="CLSID:33101C03-75C3-11CF-A8A0-444553540000"
+	width=1
+	height=1>
+</object>
+
+</BODY>
+</HTML>
+
+

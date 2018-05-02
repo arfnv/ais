@@ -1,0 +1,1468 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Runtime Environment</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SEnvironment Overview"><FONT SIZE=2>Environment Overview</font></a></li><li><a href="#SClass Methods"><FONT SIZE=2>Class Methods</font></a></li><li><a href="#SMath Lambda"><FONT SIZE=2>Math Lambda</font></a></li><li><a href="#SRules Lambda Overview"><FONT SIZE=2>Rules Lambda Overview</font></a></li><li><a href="#SrulesLib.apply"><FONT SIZE=2>rulesLib.apply</font></a></li><li><a href="#SrulesLib.assert"><FONT SIZE=2>rulesLib.assert</font></a></li><li><a href="#SrulesLib.clear"><FONT SIZE=2>rulesLib.clear</font></a></li><li><a href="#SrulesLib.length"><FONT SIZE=2>rulesLib.length</font></a></li><li><a href="#SrulesLib.new"><FONT SIZE=2>rulesLib.new</font></a></li><li><a href="#SrulesLib.ref"><FONT SIZE=2>rulesLib.ref</font></a></li><li><a href="#SrulesLib.set"><FONT SIZE=2>rulesLib.set</font></a></li><li><a href="#SrulesLib.unassert"><FONT SIZE=2>rulesLib.unassert</font></a></li>
+</UL>
+
+<P><H2><A NAME="SEnvironment Overview"></A>Environment Overview</H2></P>	
+           <div class="h2section" id="Environment Overview">
+		    <p>Compiling the javaScript Lambda automatically creates the javaScript
+		    runtime environment. The javaScript runtime environment consists of a number
+		    of global Lambdas, functions, string and text class methods.</p>
+		    <p>The JavaScript runtime environment contains a number of string and text <b>Class
+		    Methods</b> which are useful in JavaScript programming. Compiling the
+		    javaScript compiler automatically creates these string and text class
+		    methods.</p>
+		    <p>The <b>Math</b> Lambda is a global Lambda containing a number of
+		    mathematical constants and functions useful in JavaScript programming.
+		    Compiling the javaScript compiler automatically creates the Math Lambda. The
+		    Math Lambda is an important element of the JavaScript runtime environment.</p>
+		    <p>The <b>rulesLib</b> is a global Lambda providing a tiny rule-based
+		    forward production engine useful in JavaScript programming. Compiling the
+		    javaScript compiler automatically creates the rulesLib. The rulesLib is
+		    an important element of the JavaScript runtime environment.</p>
+            </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SClass Methods"></A>Class Methods</H2></P>
+           <div class="h2section" id="Class Methods">
+		    <p>The JavaScript runtime environment contains a number of string and text <b>Class
+		    Methods</b> which are useful in JavaScript programming. Compiling the
+		    javaScript compiler automatically creates these string and text class
+		    methods.</p>
+		    <table>
+			<colgroup><col><col style="font-style:italic"><col></colgroup>
+		      <tr>
+		        <th><i>String</i>:charAt(self n)</th>
+		        <td>Function</td>
+		        <td>Returns the character at index n.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:indexOf(self text)</th>
+		        <td>Function</td>
+		        <td>Returns the index of the first occurrence of text in self.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:lastIndexOf(self text)</th>
+		        <td>Function</td>
+		        <td>Returns the index of the last occurrence of text in self.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:length(self)</th>
+		        <td>Function</td>
+		        <td>Return the number of characters in the string.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:split(self text)</th>
+		        <td>Function</td>
+		        <td>Returns an array of substrings all split at text.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:substring(self n m)</th>
+		        <td>Function</td>
+		        <td>Returns substring from character n to one before character m.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:toLowerCase(self)</th>
+		        <td>Function</td>
+		        <td>Returns string in lower case.</td>
+		      </tr>
+		      <tr>
+		        <th><i>String</i>:toUpperCase(self)</th>
+		        <td>Function</td>
+		        <td>Returns string in upper case.</td>
+		      </tr>
+		    </table>
+          </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMath Lambda"></A>Math Lambda</H2></P>
+             <div class="h2section" id="Math Lambda">
+			<p>The <b>Math</b> Lambda is a global Lambda containing a number of
+		    mathematical constants and functions useful in JavaScript programming.
+		    Compiling the javaScript compiler automatically creates the Math Lambda. The
+		    Math Lambda is an important element of the JavaScript runtime environment.</p>
+		    <table>
+			<colgroup><col><col style="font-style:italic"><col></colgroup>
+		      <tr>
+		        <th>Math</th>
+		        <td>Lambda</td>
+		        <td>JavaScript runtime Math constants and functions</td>
+		      </tr>
+		      <tr>
+		        <th>Math.E</th>
+		        <td>Constant</td>
+		        <td>Base of natural logarithms (2.718...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.LN2</th>
+		        <td>Constant</td>
+		        <td>Natural logarithm of 2 (0.693...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.LN10</th>
+		        <td>Constant</td>
+		        <td>Natural logarithm of 10 (2.302...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.LOG2E</th>
+		        <td>Constant</td>
+		        <td>Base 2 logarithm of e (1.442...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.LOG10E</th>
+		        <td>Constant</td>
+		        <td>Base 10 logarithm of e (0.434...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.PI</th>
+		        <td>Constant</td>
+		        <td>Ratio of circumference to diameter (3.141...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.SQRT1_2</th>
+		        <td>Constant</td>
+		        <td>Square root of one half (0.707...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.SQRT2</th>
+		        <td>Constant</td>
+		        <td>Square root of two (1.414...)</td>
+		      </tr>
+		      <tr>
+		        <th>Math.exp(x)</th>
+		        <td>Function</td>
+		        <td>Returns E raised to the power of a single argument.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.floor(x)</th>
+		        <td>Function</td>
+		        <td>Rounds down to next integer for one argument.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.log(x)</th>
+		        <td>Function</td>
+		        <td>Returns the natural logarithm for one argument.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.max(x,y)</th>
+		        <td>Function</td>
+		        <td>Returns the maximum of two arguments.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.min(x,y)</th>
+		        <td>Function</td>
+		        <td>Returns the minimum of two arguments.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.pow(x,p)</th>
+		        <td>Function</td>
+		        <td>Returns x raised to the power of p.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.random(x)</th>
+		        <td>Function</td>
+		        <td>Returns a random number between zero and one.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.round(x)</th>
+		        <td>Function</td>
+		        <td>Rounds to the closest integer.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.sin(x)</th>
+		        <td>Function</td>
+		        <td>Returns sine of a single argument.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.sqrt(x)</th>
+		        <td>Function</td>
+		        <td>Returns square root of a single argument.</td>
+		      </tr>
+		      <tr>
+		        <th>Math.tan(x)</th>
+		        <td>Function</td>
+		        <td>Returns tangent of a single argument.</td>
+		      </tr>
+		    </table>
+          </div>
+	<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRules Lambda Overview"></A>Rules Lambda Overview</H2></P>
+             <div class="h2section" id="Rules Lambda Overview">
+			<p>The <b>rulesLib</b> is a global Lambda providing a tiny rule-based
+		    forward production engine useful in JavaScript programming. Compiling the
+		    javaScript compiler automatically creates the rulesLib. The rulesLib is
+		    an important element of the JavaScript runtime environment.</p>
+		    <p>The <b>rulesLib</b> is needed by the JavaScript compiler to identify
+		    patterns during the code optimization phase of compilation. The JavaScript
+		    programmer may also use the rulesLib in applications where a small set of
+		    complex list modifying rules are required. The rulesLib is not meant to be
+		    applied in applications with a large rule base.</p>
+		    <p>The <b>rulesLib</b> creates, maintains, and applies a Dictionary of <b>IF
+		    -&gt; THEN</b> list substitution rules for transforming a list and all its
+		    sub lists into a new list. Anywhere a sub list matches one of the IF rules,
+		    the THEN rule is substituted in place of the original sub list. The Lambda
+		    supports wild card substitution rules, indefinite arity pattern matching,
+		    forward chaining, user defined recognition functions, user defined
+		    substitution functions, and single or multiple pass substitution rule
+		    application.</p>
+		    <p>The rulesLib can be used for semantic analysis, algebraic reduction,
+		    parse tree optimization, theorem proving, and a host of other applications.
+		    The Lambda operates with its rule base stored in RAM memory; and, is
+		    therefore, not useful for problems requiring huge rule bases.</p>
+		    <p>The rulesLib supports a simple rule Language of <b>IF -&gt; THEN</b>
+		    list substitution rules for transforming a list and all its sub lists into a
+		    new list. The IF - &gt; THEN rules are all entered via the assert function.
+		    This Lambda accepts and saves a set of transformation rules in its internal
+		    rules dictionary. Each rule is entered, by the programmer, in two parts --
+		    an IF form followed by a THEN form.</p>
+		    <p>&nbsp;</p>
+		    <p>An example might be:</p>
+			<blockquote>
+		    <pre>(rulesLib.assert '(x + y)  '(addi x y))</pre>
+			</blockquote>
+		    <p>We may then apply the above rules against an input list as follows:</p>
+			<blockquote>
+		    <pre>(rulesLib.apply  '(x + y)) <i>...Returns...</i>  '(addi x y)</pre>
+			</blockquote>
+		    <h3>Constant Rules</h3>
+		    <p>The simplest rule form is the constant pattern. Both the IF and the THEN
+		    forms are constant patterns, containing no wild cards, or other special
+		    characters.<br>
+		    An example might be:</p>
+		    <pre><b>(rulesLib.assert '(x + y)  '(Add x to y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(x + y))</b> <i>...Returns...</i>  <b>'(Add x to y)</b></pre>
+		    <p>Whenever an exact match occurs with the IF pattern, the THEN pattern is
+		    substituted in the output list.</p>
+		    <h3>Wild Cards</h3>
+		    <p>This Lambda supports wild card variables to make rule definitions more
+		    flexible for the programmer. An example of wild card rule variables is as
+		    follows:</p>
+		    <pre><b>(rulesLib.assert '($X + $Y)  '(addi $X $Y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + 10))</b> <i>...Returns...</i>  <b>'(addi m 10)</b></pre>
+		    <p>The rules and wild card variables operate on sub lists as well as the
+		    whole list as follows:</p>
+		    <pre><b>(rulesLib.apply '((m + 10) + 20))</b> <i>...Returns...</i>  <b>'(addi (addi m 10) 20)</b></pre>
+		    <h3>Lambda Rules</h3>
+		    <p>This Lambda supports named lambda rule definitions which allow more
+		    flexible actions to be taken by the programmer during the recognition phase
+		    and also during the production phase. Some examples of named lambda rule
+		    definitions is as follows:</p>
+		    <pre><b>(rulesLib.assert $FOLD:(lambda(op x y) vars:(f) (setq f (getGlobalValue (symbol op))) (f x y)))</b></pre>
+		    <pre><b>(rulesLib.assert $NUM:(lambda(x) (if (isNumber x) x)))</b></pre>
+		    <pre><b>(rulesLib.assert $OP:(lambda(x) vars:((d #{+ addi - subi * muli / divi})) (if (isMember x d) d[x])))</b></pre>
+		    <pre><b>(rulesLib.assert '(&lt;$X=$NUM&gt; &lt;$Y=$OP&gt; &lt;$Z=$NUM&gt;) '(&lt;$FOLD&gt; $Y $X $Z))</b></pre>
+		    <pre><b>(rulesLib.assert '($X &lt;$Y=$OP&gt; $Z) '($Y $X $Z))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + 10))</b> <i>...Returns...</i> <b>'(addi m 10)</b></pre>
+		    <pre><b>(rulesLib.apply '(5 + 10))</b> <i>...Returns...</i> <b>15</b></pre>
+		    <h3>Append Output Rules</h3>
+		    <p>Using the built in &lt;$&gt; function in a THEN rule causes the
+		    appendList function to be applied to the result as follows:</p>
+		    <pre><b>(rulesLib.assert '($X + $Y) '(&lt;$&gt; + $X $Y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '((5 6 7) + (10 20)))</b> <i>...Returns...</i> <b>'(+ 5 6 7 10 20)</b></pre>
+		    <h3>Rule Precedence</h3>
+		    <p>This Lambda supports multiple rule definitions up to the limits of
+		    available memory. Rules asserted first have precedence over rules asserted
+		    later as follows:</p>
+		    <pre><b>(rulesLib.assert $OP:(lambda(x)
+		
+		&nbsp;&nbsp;&nbsp; vars:((d #{+ addi - subi * muli / divi}))
+		
+		&nbsp;&nbsp;&nbsp; (if (isMember x d) d[x])))</b></pre>
+		    <pre><b>(rulesLib.assert '($X &lt;$Y=$OP&gt; $Z) '($Y $X $Z))</b></pre>
+		    <pre><b>(rulesLib.assert '(addi $X $X) '(muli $X 2))</b></pre>
+		    <pre><b>(rulesLib.assert '(addi $X 0) '$X)</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + m))</b> <i>...Returns...</i> <b>'(addi m m)</b></pre>
+		    <h3>Single Pass Mode</h3>
+		    <p>This Lambda supports single pass mode, during rule application, as
+		    follows:</p>
+		    <pre><b>(setq rulesLib.singlePass true)</b></pre>
+		    <pre><b>(rulesLib.assert '($X + $Y) '(+ $X  $Y))</b></pre>
+		    <pre><b>(rulesLib.assert '(+ $X $X) '(* $X  2))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + m))</b> <i>...Returns...</i> <b>'(+ m m)</b></pre>
+		    <p>The second rule, converting (+ m m) into (* 2 m), was never fired,
+		    because the rulesLib was set to single pass mode.</p>
+		    <h3>Asterisk Wild Card Rules</h3>
+		    <p>This Lambda supports asterisk wild card rules anywhere within lists, as
+		    follows:</p>
+		    <pre><b>(rulesLib.assert '(min ($X*)) '(&lt;$FN&gt; min $X))</b></pre>
+		    <pre><b>(rulesLib.assert '($X* min)   '(&lt;$FN&gt; min $X))</b></pre>
+		    <pre><b>(rulesLib.assert $FN:(lambda(fn x) (append (list fn) x)))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply  '(min (2 3)))</b> <i>...Returns...</i> <b>'(min 2 3)</b></pre>
+		    <pre><b>(rulesLib.apply  '((2 3 4) min))</b> <i>...Returns...</i> <b>'(min 2 3 4)</b></pre>
+		    <h3>Append List Function</h3>
+		    <p>The builtin appendList function allows multiple arguments to be append
+		    together to form a list. The appendList function is builtin and may be used
+		    in any IF-&gt;THEN rule by double quoting the THEN form as follows:</p>
+		    <pre><b>(rulesLib.assert '(min ($X $Y)) ''(min $X $Y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply  '(min (2 3) (4 5 6)))</b> <i>...Returns...</i> <b>'(min 2 3 4 5 6)</b></pre>
+            </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.apply"></A>rulesLib.apply</H2></P>
+            <div class="h2section" id="rulesLib.apply">
+		    <p>The <b>apply</b> function applies the IF -&gt; THEN rules in the Lambda's
+		    rule base to the specified input list. The result of apply is a new list
+		    with all of the IF patterns substituted with THEN patterns.</p>
+		    <p>Type: Function</p>
+		    <p>Syntax</p>
+		    <pre>(rulesLib.apply  aList)</pre>
+		    <p>Arguments</p>
+		    <hr>
+		    <table>
+			<colgroup><col class=arguments><col class=explanation></colgroup>
+		      <tr>
+		        <th>Arguments</th>
+		        <th>Explanation</th>
+		      </tr>
+		      <tr>
+		        <th>aList</th>
+		        <td>An input list to be modified according to
+		          the IF -&gt; THEN rules asserted in the rulesLib's rule base.</td>
+		      </tr>
+		      <tr>
+		        <th>RETURN</th>
+		        <td>The output list after modification by the
+		          IF -&gt; THEN rules asserted in the rulesLib's rule base.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <p>When To Use</p>
+		    <p>The <b>apply</b> function performs the actual forward chaining pattern
+		    substitution provided by the rulesLib. Use the apply function when all
+		    rules have been asserted, and an input list is ready for pattern
+		    substitution.</p>
+		    <p>Example</p>
+		    <p>An input list will contain algebraic expressions. By asserting a few
+		    simple rules, the rulesLib can perform symbolic algebra, reducing the
+		    input list to its simplest algebraic form as follows:</p>
+		    <table>
+			<colgroup><col width="70%"><col width="30%"></colgroup>
+		      <tr>
+		        <td>
+		          <pre>(setq x (new rulesLib))</pre>
+		        </td>
+		        <td></td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '($X + 0) '$X)</pre>
+		        </td>
+		        <td>;; [0] Adding zero does nothing.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '(0 + $X) '$X)</pre>
+		        </td>
+		        <td>;; [1] Adding zero does nothing.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '($X - 0) '$X)</pre>
+		        </td>
+		        <td>;; [2] Subtracting zero does nothing.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '(0 - $X) '$X)</pre>
+		        </td>
+		        <td>;; [3] Subtracting zero does nothing.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '($X * 0) 0)</pre>
+		        </td>
+		        <td>;; [4] Multiplying by zero destroys.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '(0 * $X) 0)</pre>
+		        </td>
+		        <td>;; [5] Multiplying by zero destroys.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '($X / 1) '$X)</pre>
+		        </td>
+		        <td>;; [6] Dividing by one does nothing.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '($X / $X) 1)</pre>
+		        </td>
+		        <td>;; [7] Dividing by itself leaves one.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.assert '($X - $X) 0)</pre>
+		        </td>
+		        <td>;; [8] Subtracting itself leaves nothing.</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.apply '(x - (x + 0)))</pre>
+		        </td>
+		        <td>;; Returns&nbsp;&nbsp;&nbsp;&nbsp; 0</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.apply '((x + y) / (x + y)))</pre>
+		        </td>
+		        <td>;; Returns&nbsp;&nbsp;&nbsp;&nbsp; 1</td>
+		      </tr>
+		      <tr>
+		        <td>
+		          <pre>(x.apply '(x - (y + 0)))</pre>
+		        </td>
+		        <td>;; Returns&nbsp;&nbsp;&nbsp;&nbsp; '(x - y)</td>
+		      </tr>
+		    </table>
+		    <p>Notes &amp; Hints</p>
+		    <p>The <b>apply</b> function performs its substitutions using forward rule
+		    chaining:</p>
+		    <pre>(x.apply '(x - (x + 0)))</pre>
+		    <p><b>First</b>, fires rule [0], the Adding Zero rule, to produce:&nbsp;&nbsp;&nbsp;<b>'(x
+		    - x)</b></p>
+		    <p><b>Next</b>, fires rule [8], the Subtracting Itself rule, to produce:&nbsp;&nbsp;&nbsp;<b>0</b></p>
+		    <p><b>Hint:</b> Setting the rulesLib to verbose mode, will cause a print
+		    out of each rule firing as it happens (see the set function for verbose).</p>
+          </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.assert"></A>rulesLib.assert</H2></P>
+                 <div class="h2section" id="rulesLib.assert">
+				<h3>Overview</h3>
+			    <p>The <b>assert</b> function enters IF
+			    -&gt; THEN rules into the Lambda's rule base. Rules defined first have
+			    precedence over rules defined later. The result of <b>assert</b>
+			    is a new IF -&gt; THEN rule has been added to the Lambda's rule base.</p>
+			    <h3>Type</h3>
+			    <p><b>Function</b></p>
+			    <h3>Syntax</h3>
+			    <p><b>(rulesLib.assert&nbsp;
+			    IFform&nbsp; THENform)
+			    
+			    </b></p>
+			    <p><b>(rulesLib.assert&nbsp;
+			    $FUNCName:LAMBDAform)
+			    
+			    </b></p>
+			    <h3>Arguments</h3>
+			    <hr>
+			    <table>
+			      <tr>
+			        <th align="CENTER" width="20%">Arguments</th>
+			        <th align="LEFT" width="80%">Explanation</th>
+			      </tr>
+			      <tr>
+			        <th align="CENTER" width="20%"><b>IFform
+			          
+			          </b></th>
+			        <td>The&nbsp; IF
+			          pattern of the rule being defined. A more detailed description of&nbsp;
+			          IF rule formats is described in the <b>Overview</b><b>
+			          </b>section.</td>
+			      </tr>
+			      <tr>
+			        <th align="CENTER" width="20%"><b>THENform
+			          
+			          </b></th>
+			        <td>The&nbsp; THEN
+			          pattern of the rule being defined. A more detailed description of&nbsp;
+			          THEN rule formats is described in the <b>Overview</b><b>
+			          </b>section.</td>
+			      </tr>
+			      <tr>
+			        <th align="CENTER" width="20%">RETURN</th>
+			        <td>true or an error message</td>
+			      </tr>
+			    </table>
+			    <hr>
+			    <table>
+			      <tr>
+			        <th align="CENTER" width="20%">Arguments</th>
+			        <th align="LEFT" width="80%">Explanation</th>
+			      </tr>
+			      <tr>
+			        <th align="CENTER" width="20%"><b>$FUNCName
+			          
+			          </b></th>
+			        <td>The&nbsp; $
+			          function name of the user function being defined. A more detailed
+			          description of&nbsp; $ function
+			          name formats is described in the <b>Overview</b><b>
+			          </b>section.</td>
+			      </tr>
+			      <tr>
+			        <th align="CENTER" width="20%"><b>LAMBDAform
+			          
+			          </b></th>
+			        <td>The&nbsp; Lambda
+			          value of the user function being defined. A more detailed description
+			          of&nbsp; lambda value formats
+			          is described in the <b>Overview</b><b>
+			          </b>section.</td>
+			      </tr>
+			      <tr>
+			        <th align="CENTER" width="20%">RETURN</th>
+			        <td>true or an error message</td>
+			      </tr>
+			    </table>
+			    <hr>
+			    <h3><u>When To Use</u></h3>
+			    <p>The <b>assert</b> function performs
+			    the actual rule definition to the rulesLib. Use the <b>assert</b>
+			    function to define all rules before using the apply function to perform
+			    pattern substitution.</p>
+			    <h3><u>Example1</u></h3>
+			    <p>A simple English-like database query language is
+			    developed. By asserting a number of simple rules, the rulesLib can perform
+			    natural language database update and query as follows:</p>
+			    <p><b>(setq x (new
+			    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    
+			    </b></p>
+			    <p><b>;; Define
+			    simple database structures.&nbsp; 
+			    
+			    </b></p>
+			    <p><b>(define Child
+			    (new Dictionary:))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Create Child database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    
+			    </b></p>
+			    <p><b>(define
+			    Parent (new Dictionary:))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Create Parent database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    
+			    </b></p>
+			    <p><b>(define
+			    Gender (new Dictionary:))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Create Gender database
+			    
+			    </b></p>
+			    <p><b>;; Define
+			    database update and query functions.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    
+			    </b></p>
+			    <p><b>(x.assert $ADDMOM:(lambda(mom
+			    child) 
+			    
+			    </b></p>
+			    <p><b>(if
+			    (isVoid Child[mom]) 
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Child[mom] (new Vector: 1 child))
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Child[mom][(length Child[mom])] child))
+			    
+			    </b></p>
+			    <p><b>(if
+			    (isVoid Parent[mom]) 
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Parent[mom] (new Vector: 1 child))
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Parent[mom][(length Parent[mom])] child))
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Gender[mom] 'female)
+			    
+			    </b></p>
+			    <p><b>'ok))
+			    
+			    </b></p>
+			    <p><b>(x.assert $ADDDAD:(lambda(dad
+			    child) 
+			    
+			    </b></p>
+			    <p><b>(if
+			    (isVoid Child[dad]) 
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Child[dad] (new Vector: 1 child))
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Child[dad][(length Child[dad])] child))
+			    
+			    </b></p>
+			    <p><b>(if
+			    (isVoid Parent[dad]) 
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Parent[dad] (new Vector: 1 child))
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Parent[dad][(length Parent[dad])] child))
+			    
+			    </b></p>
+			    <p><b>(setq
+			    Gender[dad] 'male)
+			    
+			    </b></p>
+			    <p><b>'ok))
+			    
+			    </b></p>
+			    <p><b>(x.assert $ASKMOM:(lambda(mom
+			    child) 
+			    
+			    </b></p>
+			    <p><b>(and
+			    (isMember child Child[mom]) 
+			    
+			    </b></p>
+			    <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    (= Gender[mom] 'female))))
+			    
+			    </b></p>
+			    <p><b>(x.assert $ASKDAD:(lambda(dad
+			    child) 
+			    
+			    </b></p>
+			    <p><b>(and
+			    (isMember child Child[dad]) 
+			    
+			    </b></p>
+			    <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    (= Gender[dad] 'male))))
+			    
+			    </b></p>
+			    <p><b>(x.assert $GETPARENTS:(lambda(child)
+			    Parent[child]))
+			    
+			    </b></p>
+			    <p><b>(x.assert $GETCHILDREN:(lambda(parent)
+			    Child[parent]))
+			    
+			    </b></p>
+			    <p><b>(x.assert $ASKGENDER:(lambda(person
+			    gender) (= Gender[person] gender)))
+			    
+			    </b></p>
+			    <p><b>(x.assert $IN:lambda(x
+			    y) (isMember x y))) 
+			    
+			    </b></p>
+			    <p><b>;; Define
+			    database Boolean logic rules.
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(true and true)&nbsp; true)&nbsp;
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Logical and rule
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '($X and false)&nbsp; false)&nbsp;
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Logical and rule
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(false and $X)&nbsp; false)&nbsp;
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Logical and rule
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(false or false)&nbsp; false)&nbsp;
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Logical or rule
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '($X or true)&nbsp; true)&nbsp;
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Logical or rule
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(true or $X)&nbsp; true)&nbsp;
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ;; Logical or rule
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Is $X one of $Y ?)&nbsp; '(&lt;$IN&gt;
+			    $X $Y))&nbsp; ;; Logical meber of a
+			    set rule
+			    
+			    </b></p>
+			    <p><b>;; Define
+			    database natural language rules.
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '($M is the mother of $C)&nbsp; '(&lt;$ADDMOM&gt;&nbsp;
+			    $M&nbsp; $C))&nbsp;
+			    ;; Add mothers to database
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '($D is the father of $C)&nbsp; '(&lt;$ADDDAD&gt;&nbsp;
+			    $D&nbsp; $C))&nbsp;
+			    ;; Add fathers to database
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Is $D the father of $C ?)&nbsp; '(&lt;$ASKDAD&gt;&nbsp;
+			    $D&nbsp; $C))&nbsp;
+			    ;; Query Parents database
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Is $M the mother of $C ?)&nbsp; '(&lt;$ASKMOM&gt;&nbsp;
+			    $M&nbsp; $C))&nbsp;
+			    ;; Query Parents database
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Who are the parents of $C ?)&nbsp; '(&lt;$GETPARENTS&gt;&nbsp;
+			    $C))
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Who are the children of $P ?)&nbsp; '(&lt;$GETCHILDREN&gt;&nbsp;
+			    $P))
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Is $P $X ?)&nbsp; '(&lt;$ASKGENDER&gt;&nbsp;
+			    $P&nbsp; $X))
+			    
+			    </b></p>
+			    <p><b>;; Use
+			    forward rule chaining to define complex logical relationships
+			    
+			    </b></p>
+			    <p><b>(x.assert
+			    '(Is $G the grandmother of $C ?)&nbsp; 
+			    
+			    </b></p>
+			    <p><b>'(($G
+			    is one of (Who are the parents of $C)) and (Is $G female ?)))
+			    
+			    </b></p>
+			    <p><b>;; Start
+			    updating and questioning the database.
+			    
+			    </b></p>
+			    <p><b>(x.apply
+			    '(Mary is the mother of John))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ok 
+			    
+			    </b></p>
+			    <p><b>(x.apply
+			    '(Sally is the mother of Bill))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ok 
+			    
+			    </b></p>
+			    <p><b>(x.apply
+			    '(John is the father of Jane))&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ok 
+			    
+			    </b></p>
+			    <p><b>(x.apply
+			    '(Jack is the father of John))&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    ok 
+			    
+			    </b></p>
+			    <p><b>(x.apply '(Is
+			    Sally female ?))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    true
+			    
+			    </b></p>
+			    <p><b>(x.apply '(Is
+			    Mary the grandmother of Jane ?))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    true 
+			    
+			    </b></p>
+			    <p><b>(x.apply
+			    '(Who are the parents of John ?))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    #(Jack&nbsp; Mary) 
+			    
+			    </b></p>
+			    <h3><u>Notes &amp; Hints</u></h3>
+			    <p>The English-like imperatives update the database, and the interrogatives
+			    query the database. The <b>assert</b>
+			    function for the Grandmother rule assumes the use of forward rule chaining.
+			    The <b>THEN</b> side of the rule is
+			    substituted into the list, and forward rule chaining will reduce the
+			    resulting complex expression to <b>true</b>
+			    if and only if the original query is true.</p>
+                </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.clear"></A>rulesLib.clear</H2></P>
+           <div class="h2section" id="rulesLib.clear">
+			<h3>Overview</h3>
+		    <p>The <b>clear</b> function resets the
+		    Lambda. The previously asserted rules are cleared, and the Lambda is made
+		    ready for new rule assertions.</p>
+		    <h3>Type</h3>
+		    <p><b>Function</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>(clear&nbsp; rulesLib)</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">rulesLib</th>
+		        <td>The rulesLib which is to be cleared.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>true</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>clear</b> function when
+		    the Lambda is to be reset, and a new set of rules are to be asserted.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>Clearing the Lambda resets all of the rules. The Lambda
+		    is then ready for new rules to be asserted. In this example, the second
+		    apply returns the original input list because all the rules have been erased
+		    with the clear function.</p>
+		    <p><b>(setq x (new
+		    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X + 0) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [0] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert '(0
+		    + $X) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [1] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X - $X) 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [2] Subtracting itself leaves nothing.
+		    
+		    </b></p>
+		    <p><b>(x.apply '(x
+		    - (x + 0)))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    0 
+		    
+		    </b></p>
+		    <p><b>(clear x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b></b>Returns<b>
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true
+		    
+		    
+		    </b></p>
+		    <p><b>(x.apply '(x
+		    - (x + 0)))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    '(x - (x + 0))</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>clear</b> function resets the
+		    current rule base, and allows a new set of rules are to be asserted.</p>
+           </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.length"></A>rulesLib.length</H2></P>
+             <div class="h2section" id="rulesLib.length">
+			<h3>Overview</h3>
+		    <p>The <b>length</b> function returns
+		    the number of rules currently asserted to the Lambda.</p>
+		    <h3>Type</h3>
+		    <p><b>Function</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>(length rulesLib)</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>rulesLib
+		          
+		          </b></th>
+		        <td>The rulesLib whose length is to be
+		          determined.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The number of rules currently in the
+		          Lambda's rule base.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>length</b> function to
+		    determine the number of rules currently asserted to the Lambda.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>The <b>length</b>
+		    function, shown here, returns the number of rules currently in the Lambda's
+		    rule base (see the <b>assert</b>
+		    function).</p>
+		    <p><b>(setq x (new
+		    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X + 0) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [0] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert '(0
+		    + $X) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [1] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X - $X) 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [2] Subtracting itself leaves nothing.
+		    
+		    </b></p>
+		    <p><b>(length x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    3</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>length</b> function returns
+		    the number of rules currently asserted to the Lambda.</p>
+            </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.new"></A>rulesLib.new</H2></P>
+            <div class="h2section" id="rulesLib.new">
+			<h3>Overview</h3>
+		    <p>The <b>new</b> function creates a
+		    new rulesLib from an existing rulesLib. The newly created rulesLib
+		    inherits all of the properties of the original Lambda, is a new individual,
+		    and is completely separate from the original Lambda. Rules asserted to the
+		    new Lambda do not effect the original Lambda and vice versa.</p>
+		    <h3>Type</h3>
+		    <p><b>Function</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>(new&nbsp; rulesLib)</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>rulesLib
+		          
+		          </b></th>
+		        <td>The original rulesLib to be copied.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>A new individual rulesLib with its own
+		          identity.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>new</b> function when a
+		    rulesLib is to be created. New creates a genetic copy of the original
+		    Lambda, with its own separate existence and its own separate identity. New is
+		    usually the first function used in employing a rulesLib.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>Creating a new individual rulesLib is usually the
+		    first step in employing a rulesLib to solve a problem. Once created, the
+		    new rulesLib may have its own rules asserted, and may be applied to
+		    solving pattern matching problems.</p>
+		    <p><b>(setq x (new
+		    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X + 0) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [0] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert '(0
+		    + $X) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [1] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X - $X) 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [2] Subtracting itself leaves nothing.
+		    
+		    </b></p>
+		    <p><b>(x.apply '(x
+		    - (x + 0)))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    0</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>new</b> function creates a
+		    new rulesLib. New creates a genetic copy of the original Lambda, with its
+		    own separate existence and its own separate identity. New is usually the
+		    first function used in employing a rulesLib. Each new rulesLib can hold
+		    a distinct rule base. Multiple ruleLambdas can be used to manage separate
+		    rule bases, such as one rulesLib for precedence rules and a second
+		    rulesLib for normal arithmetic rules.</p>
+            </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.ref"></A>rulesLib.ref</H2></P>
+            <div class="h2section" id="rulesLib.ref">
+			<h3>Overview</h3>
+		    <p>The <b>ref</b> function allows
+		    access to the Lambda's internal structures and memory. The internal
+		    structures, which can be accessed, include all of the member functions
+		    listed in this chapter, plus a number of important option switches such as: <b>failureValue</b>;
+		    <b>maxPasses</b>; <b>singlePass</b>;
+		    and <b>verbose</b>. Any IF -&gt; THEN
+		    rule in the Lambda's memory can be accessed with an integer key. The rule is
+		    returned as a List containing the IFform followed by the THENform. Finally,
+		    any rule in the Lambda's memory can be accessed using its IFform as a key.</p>
+		    <h3>Type</h3>
+		    <p><b>Function</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>(ref&nbsp;
+		    rulesLib&nbsp; memberName)&nbsp;
+		    </b><i style="mso-bidi-font-style: normal">also</i><b>&nbsp;
+		    </b><b>&nbsp;
+		    </b><b>rulesLib.memberName
+		    
+		    </b></p>
+		    <p><b>(ref&nbsp;
+		    rulesLib&nbsp; integer)&nbsp;
+		    </b><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><i style="mso-bidi-font-style: normal">also</i><b>&nbsp;
+		    </b><b>&nbsp;
+		    </b><b>rulesLib[integer]
+		    
+		    </b></p>
+		    <p><b>(ref&nbsp;
+		    rulesLib&nbsp; IFform) &nbsp;</b><i style="mso-bidi-font-style: normal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    also</i><b>&nbsp;
+		    </b><b>&nbsp;
+		    </b><b>rulesLib[IFform]
+		    
+		    </b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>rulesLib
+		          
+		          </b></th>
+		        <td>The rulesLib whose internals are to be
+		          accessed.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>memberName
+		          
+		          </b></th>
+		        <td>The name of a member in the Lambda's
+		          internal structure. These include the member functions listed in this
+		          chapter including: <b>apply</b>, <b>assert</b>;
+		          and the Lambda's internal option switches including: <b>failureValue</b>,
+		          <b>maxPasses</b>, <b>singlePass</b>,
+		          and <b>verbose</b>.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The value of the specified internal
+		          structure. For member functions, such as <b>apply</b>
+		          and <b>assert</b>, the internal
+		          member function is returned for invocation. For <b>failureValue</b>,
+		          the essoteric symbol used to indicate rule failure is returned. For <b>maxPasses</b>,
+		          the integer value of the maximum allowed number of passes in multiple
+		          pass mode is returned.&nbsp; For
+		          <b>singlePass</b>, true indicates
+		          single pass mode is on and false otherwise.&nbsp;
+		          For <b>verbose</b>, true
+		          indicates verbose mode is on and false otherwise.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>rulesLib
+		          
+		          </b></th>
+		        <td>The rulesLib whose internals are to be
+		          accessed.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>integer
+		          
+		          </b></th>
+		        <td>The nth rule, in the Lambda's memory, is
+		          accessed. The integer must be zero or greater and less then the length
+		          of the Lambda (see the <b>length</b>
+		          function).</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The previously asserted rule is returned as
+		          a List containing first the IFform followed by the THENform.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>rulesLib
+		          
+		          </b></th>
+		        <td>The rulesLib whose internals are to be
+		          accessed.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">IFform</th>
+		        <td>The IFform of a previously asserted rule in
+		          the Lambda's memory.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The THENform of a previously asserted rule,
+		          in the Lambda's memory, is returned.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>ref</b> function to
+		    access the Lambda's internal structures and memory.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>The dot syntactical form of the <b>ref</b>
+		    function is used here to assert and apply rules to the Lambda. Since the
+		    member function references are at the head of a List, as soon as they are
+		    returned Lisp invokes them. Next the 2<sup>nd</sup> rule is returned, using
+		    the indexed access feature of the <b>ref</b>
+		    function. Finally, the THENform of the 1<sup>st</sup> rule is returned using
+		    its IFform as a key.</p>
+		    <p><b>(setq x (new
+		    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X + 0) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [0] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert '(0
+		    + $X) '$X)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [1] Adding zero does nothing.
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X - $X) 0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ;; [2] Subtracting itself leaves nothing.
+		    
+		    </b></p>
+		    <p><b>(x.apply '(x
+		    - (x + 0)))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    0 
+		    
+		    </b></p>
+		    <p><b>x[2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    '(($X - $X) 0) 
+		    
+		    </b></p>
+		    <p><b>x['(0 + $X)]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    '$X 
+		    
+		    </b></p>
+		    <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><i style="mso-bidi-font-style: normal">also</i><b>
+		    
+		    </b></p>
+		    <p><b>((ref x
+		    'apply) '(x - (x + 0)))&nbsp;&nbsp; </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b></b><b>0
+		    
+		    
+		    </b></p>
+		    <p><b>(ref x 2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    '(($X - $X) 0) 
+		    
+		    </b></p>
+		    <p><b>(ref x '(0 +
+		    $X))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    '$X</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>An often used syntactical shorthand <b>ref</b>
+		    function are the . (dot) operator and the [] operator.&nbsp;</p>
+		    <p><b>(x.apply '(x
+		    - (x + 0)))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><i style="mso-bidi-font-style: normal">is the same as</i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    ((ref x 'apply) '(x - (x + 0)))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <p><b>x[2]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b>&nbsp;
+		    </b><i style="mso-bidi-font-style: normal">is the same as</i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (ref x 2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <p><b>x['(0 + $X)]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><i style="mso-bidi-font-style: normal">is the same as</i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (ref x '(0 + $X))</b></p>
+		    <p>&nbsp;</p>
+           </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.set"></A>rulesLib.set</H2></P>
+            <div class="h2section" id="rulesLib.set">
+		    <h3>Overview</h3>
+		    <p>The <b>set</b> function allows
+		    updates to the Lambda's internal structures and memory. The internal
+		    structures, which can be updated, include a number of important option
+		    switches such as: <b>failureValue</b>; <b>maxPasses</b>;
+		    <b>singlePass</b>; and <b>verbose</b>.</p>
+		    <h3>Type</h3>
+		    <p><b>Function</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>(set&nbsp; rulesLib&nbsp;
+		    memberName&nbsp; newValue)</b></p>
+		    <p><b>(setq&nbsp;
+		    rulesLib.memberName&nbsp; newValue)
+		    
+		    </b></p>
+		    <p><b>(setq&nbsp;
+		    rulesLib[memberName:] newValue)
+		    
+		    </b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>rulesLib</b></th>
+		        <td>The Lambda whose internal memory is to be
+		          updated.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">memberName</th>
+		        <td>The name of a member in the Lambda's
+		          internal structure. These include the Lambda's internal option
+		          switches: <b>&nbsp;failureValue</b>,
+		          <b>maxPasses</b>, <b>singlePass</b>,
+		          and <b>verbose</b>.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>newValue
+		          
+		          </b></th>
+		        <td>The new setting for the Lambda's internal
+		          structure.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The new value of the specified internal
+		          structure.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>set</b> function to
+		    update the Lambda's internal option switches.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>The dot syntactical form of the <b>set</b>
+		    function is used here to assert and apply rules to the Lambda. Since the
+		    member function references are at the head of a List, as soon as they are
+		    returned Lisp invokes them.</p>
+		    <p><b>(setq x (new
+		    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X + 0)&nbsp; 0)
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X - $X)&nbsp; 0)
+		    
+		    </b></p>
+		    <p><b>;; Multiple
+		    pass mode forward chains until no further substitution is possible
+		    
+		    </b></p>
+		    <p><b>(x.apply '(m
+		    - (m + 0)))</b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Returns<b>&nbsp;
+		    0
+		    
+		    </b></p>
+		    <p><b>;; Single
+		    pass mode halts after the first substitution
+		    
+		    </b></p>
+		    <p><b>(setq
+		    x.singlePass true)</b>
+		    
+		    </p>
+		    <p><b>(x.apply '(m
+		    - (m + 0)))</b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Returns<b>&nbsp;
+		    '(m - m)
+		    
+		    </b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>An often used syntactical shorthand <b>set</b>
+		    function are the . (dot) operator and the [] operator.&nbsp;</p>
+		    <p><b>(setq
+		    x.verbose true)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b></b><i style="mso-bidi-font-style: normal">is
+		    the same as</i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (set (ref x 'verbose) true)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <p><b>(setq
+		    x[verbose:] false)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b></b><i style="mso-bidi-font-style: normal">is
+		    the same as</i><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (set (ref x 'verbose) false)
+		    
+		    </b></p>
+		    <p><b>Note:&nbsp;&nbsp;
+		    </b>See the section on the Lambda Communication Language (ACL) for
+		    this Lambda to understand the meaning of the internal option switches: <b>failureValue</b>,
+		    <b>maxPasses</b>, <b>singlePass</b>,
+		    and <b>verbose</b>.</p>
+             </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrulesLib.unassert"></A>rulesLib.unassert</H2></P>
+            <div class="h2section" id="rulesLib.unassert">
+			<h3>Overview</h3>
+		    <p>The <b>unassert</b> function deletes
+		    IF -&gt; THEN rules from the Lambda's rule base. The result of <b>unassert</b>
+		    is a previously asserted IF -&gt; THEN rule is deleted from the Lambda's
+		    memory.</p>
+		    <h3>Type</h3>
+		    <p><b>Function</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>(rulesLib.unassert&nbsp; IFform)</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>IFform
+		          
+		          </b></th>
+		        <td>The&nbsp; IF
+		          pattern of the rule being deleted. A more detailed description of&nbsp;
+		          IF rule formats is described in the <b>Overview</b><b>
+		          </b>section.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>true or an error message</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>unassert</b> function to
+		    delete a previously defined rule from the ruleLambda's rule base.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>This simple example demonstrates the effect of
+		    deleting a rule from the Lambda's memory.</p>
+		    <p><b>(setq x (new
+		    rulesLib))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(x.assert
+		    '($X + 0)&nbsp; 0)
+		    
+		    </b></p>
+		    <p><b>(x.apply '(m
+		    - (m + 0)))</b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Returns<b>&nbsp;
+		    '(m - m)<u>
+		    
+		    </u></b></p>
+		    <p><b>(x.assert
+		    '($X - $X)&nbsp; 0)
+		    
+		    </b></p>
+		    <p><b>(x.apply '(m
+		    - (m + 0)))</b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Returns<b>&nbsp;
+		    0
+		    
+		    </b></p>
+		    <p><b>(x.unassert&nbsp;
+		    '($X - $X))</b>
+		    
+		    </p>
+		    <p><b>(x.apply '(m
+		    - (m + 0)))</b>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Returns<b>&nbsp;
+		    '(m - m)<u>
+		    
+		    </u></b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>unassert</b> function
+		    performs rule deletion from the rulesLib. Use the <b>unassert</b>
+		    function to delete a previously defined rule from the Lambda's memory.</p>
+            </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

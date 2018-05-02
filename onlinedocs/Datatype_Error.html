@@ -1,0 +1,98 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Error</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Error Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Object or Heap Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Error Overview</H4></FONT></P>
+		 <p class=MsoBodyText>Analytic Information Server has a heap or object data type named Error to distinguish errors 
+		 from other data types.  The Error is a container which may hold  text and is case-sensitive, may include 
+		 blanks but not special characters, may be up to 32767 characters in length, and <b>must</b>  begin and end 
+		 with an exclamation mark <b>(!)</b>.</p>   
+		  <p class=MsoBodyText>The Error type does not behave like the other Analytic Information Server types. If an 
+		  Error value is reference, the function referencing the Error value immediately terminates and calls the 
+		  <b>onError</b> function which displays the Error value. Therefore, the <b>setq</b> function will not work, 
+		  (nor will the <b>ref</b> function).  It is not possible to compare Error  values nor is it possible to 
+		  add methods to the Error type.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The Error native data type is ideal for returning text describing an error condition.  
+          Having  the Error data type eliminates the need to overload other data types to handle error conditions. </p>          
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+          <p>An Error constant may hold  text and is case-sensitive, may include blanks but not special 
+          characters, may be up to 12 characters in length, and <b>must</b> begin and end with an exclamation mark <b>(!)</b>.   
+          Some examples:</p>     
+          <p><b>!bad argument!  </b></p> 
+          <p><b>!illegal syntax! </b></p>  
+          <p><b>!out of memory!</b></p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Object or Heap Data Type</H4></FONT></P>
+          <p>The <b>Error</b> Data Type is an example of an AIS Object Data Type. </p>
+		  <p>The Analytic Information Server Object Types are stored in the <b>Heap</b> and are
+          managed by the <b>Heap manager</b>. The <b>Analytic Information Server Heap manager</b> 
+          supports object resizing, garbage collection, and anti-fragmentation algorithms so 
+          that the user may concentrate on the analysis and modeling of data rather than on 
+          memory management. Without exception, all of the <b>Object types</b> are identified 
+          by an <b>object id</b>. The <b>object id</b>  identifies a block of memory, managed by 
+          the <b>Analytic Information Server memory manager</b>, in which the Object's data is stored.</p>
+          <p>The Analytic Information Server Heap Object and Native Data types can be saved and 
+          loaded to and from persistent (disk file) storage at any time. Words with immediate 
+          data are saved on disk in fixed length records equal to the size of the Word. Words 
+          with Heap object references are saved in fixed length records, which are automatically 
+          expanded to include the contents of the Heap object, and any objects referenced by 
+          the Heap object, etc. This feature is called <b>Object Closure Management</b> and is 
+          automatic with every Analytic Information Server database save.</p>
+	      <p>Analytic Information Server Words may be loaded from any database repository record at 
+          any time. If the data in the record is immediate, the database load fills the Word with 
+          the immediate data. If the data in the record is an <b>object closure</b>, the database
+          load fills the Word with a <b>Heap object reference</b>, and all of the objects in the 
+          record are loaded back into the <b>Heap</b>  with the same referential relationships 
+          they had when they were saved in the repository.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Error object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Error_errorTrap_001.html">Example_Error_errorTrap_001</A></td>
+<td><A HREF="Example_Error_error_001.html">Example_Error_error_001</A></td>
+<td><A HREF="Example_Error_isError_001.html">Example_Error_isError_001</A></td>
+<td><A HREF="Example_Error_isIdentical_007.html">Example_Error_isIdentical_007</A></td>
+</tr><tr>
+<td><A HREF="Example_Error_onError_001.html">Example_Error_onError_001</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

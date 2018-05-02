@@ -1,0 +1,390 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Text</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Text Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>Handling of Immediate Text versus  Heap or Object Data</font></a></li><li><a href="#S3"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S4"><FONT SIZE=2>Text Constants</font></a></li><li><a href="#S5"><FONT SIZE=2>Native Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Text Overview</H4></FONT></P>
+		 <p class=MsoBodyText>Analytic Information Server supports the Text Native data type.  
+		 The Text data type is an immediate string of from zero to nine 8 bit ASCII data items followed by 
+         a null (0) value. (Note: inside a Word only, Text values are stored in the 80 bit 
+         immediate area of the Word). </p>   	 
+         <p>The Analytic Information Server Lisp compiler, Lisp, optimizes Strings for maximum 
+         performance. String constants containing less than 15 characters are assigned as a Text
+         data type. All Text data can be used as arguments to any of the String functions (append, 
+         downcase left, mid, upcase, etc.) The most critical difference between String and Text 
+         is that a String is an object that is stored on the heap and is managed by the Heap
+          manager and Text is immediate data that is copied on the stack , and behaves just like
+          numbers, dates, time, etc. </p> 
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>Handling of Immediate Text versus  Heap or Object Data</H4></FONT></P>
+		<p class=MsoBodyText>Most of the time, the transition from Text
+		to String or String to Text is transparent, however, the user must be aware of
+		the radical difference between the handling of immediate data and Heap
+		data.  There are special "gotchas" that
+		occur because of the differences in handling of Text and String types.  </p>
+		<p class=MsoBodyText>There is a notion of destructive and
+		non-destructive functions.  A certain
+		class of functions performs an operation on the data itself and another group
+		of functions performs the operation on the data, which is loaded on the
+		stack.  The <b style='mso-bidi-font-weight:
+		normal'>append</b> function is an example of a non-destructive function:</p>
+		<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+		 border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+		 <tr>
+		  <td width=264 valign=top style='width:2.2in;border:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(setq  greetings
+		  "HELLO")</b></p>
+		  </td>
+		  <td width=98 valign=top style='width:58.5pt;border:solid windowtext .5pt;
+		  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border:solid windowtext .5pt;
+		  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(setq
+		  greetings (new String: "HELLO") )</b></p>
+		  </td>
+		  <td width=105 valign=top style='width:63.0pt;border:solid windowtext .5pt;
+		  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=MsoBodyText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td width=264 valign=top style='width:2.2in;border:solid windowtext .5pt;
+		  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(type
+		  greetings)</b></p>
+		  </td>
+		  <td width=98 valign=top style='width:58.5pt;border-top:none;border-left:none;
+		  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>Text</b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(type
+		  greetings)</b></p>
+		  </td>
+		  <td width=105 valign=top style='width:63.0pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>String</b></p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td width=264 valign=top style='width:2.2in;border:solid windowtext .5pt;
+		  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(append
+		  greetings " WORLD")</b></p>
+		  </td>
+		  <td width=98 valign=top style='width:58.5pt;border-top:none;border-left:none;
+		  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(append
+		  greetings " WORLD")</b></p>
+		  </td>
+		  <td width=105 valign=top style='width:63.0pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td width=264 valign=top style='width:2.2in;border:solid windowtext .5pt;
+		  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(writeln
+		  greetings)</b></p>
+		  </td>
+		  <td width=98 valign=top style='width:58.5pt;border-top:none;border-left:none;
+		  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>"HELLO"</b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		  <td width=105 valign=top style='width:63.0pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>"HELLO"</b></p>
+		  </td>
+		 </tr>
+		</table>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>downcase</b>
+		function is an example of a destructive function:</p>
+		<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+		 border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+		 <tr>
+		  <td width=242 valign=top style='width:144.9pt;border:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(setq  greetings
+		  "HELLO")</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border:solid windowtext .5pt;
+		  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border:solid windowtext .5pt;
+		  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(setq
+		  greetings (new String: "HELLO") )</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border:solid windowtext .5pt;
+		  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=MsoBodyText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td width=242 valign=top style='width:144.9pt;border:solid windowtext .5pt;
+		  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(type
+		  greetings)</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>Text</b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(type
+		  greetings)</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>String</b></p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td width=242 valign=top style='width:144.9pt;border:solid windowtext .5pt;
+		  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(downcase
+		  greetings)</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(downcase
+		  greetings)</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td width=242 valign=top style='width:144.9pt;border:solid windowtext .5pt;
+		  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>(writeln
+		  greetings)</b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>"HELLO"</b></p>
+		  </td>
+		  <td width=323 valign=top style='width:193.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText>&nbsp;<b  style='mso-bidi-font-weight:normal'></b></p>
+		  </td>
+		  <td width=113 valign=top style='width:67.5pt;border-top:none;border-left:
+		  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+		  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+		  padding:0in 5.4pt 0in 5.4pt'>
+		  <p class=TableText><b style='mso-bidi-font-weight:normal'>"hello"</b></p>
+		  </td>
+		 </tr>
+		</table>
+		<p class=MsoBodyText>Note that for a String object,  the <b style='mso-bidi-font-weight:normal'>downcase</b>
+		function converts the contents to lowercase and replaces the old contents with
+		the lowercase version.  The Text data
+		type is not "destroyed" because a reference to a Text item is just like a
+		reference to other immediate native types (Void, Boolean, Number) causes the
+		immediate value to be loaded on the stack and any modification remains on the
+		stack unless explicitly saved.  For
+		example:</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(setq
+		aNum 1)              </b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(add1
+		aNum)                            ;</b>Performs
+		the operation on the Stack<b style='mso-bidi-font-weight:normal'> </b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(writeln
+		aNum)                         ;</b>Prints<b style='mso-bidi-font-weight:normal'> 1</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(setq
+		aNum (add1 aNum))        ;</b>Performs the
+		operation on the Stack<b style='mso-bidi-font-weight:normal'> </b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(writeln
+		aNum)                         ;</b>Prints<b style='mso-bidi-font-weight:normal'> 2</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>When to Use</H4></FONT></P>
+          <p>The Text Native data type  is used for is hold string constants containing less 
+           than 15 characters </p>          
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Text Constants</H4></FONT></P>
+			<p class=MsoBodyText>Analytic Information Server supports three
+			forms for text constants: Double Quotes, Braces, and Quoted Left Brace.</p>
+			<p class=MsoBodyText>&nbsp;</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><u>Double
+			Quotes</u></b>: The double quote character ( <b style='mso-bidi-font-weight:
+			normal'>&quot; </b>) is used as a way of indicating text constants.  Analytic Information Server string constants
+			are case-sensitive, may include blanks, special characters, but not imbedded
+			double quote characters.</p>
+			<p class=MsoBodyText style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>            &quot;John Doe&quot;</b></p>
+			<p class=MsoBodyText>The backslash character ( <b style='mso-bidi-font-weight:normal'>\ </b>) is used as a way of accepting any
+			character as alphabetic within a text constant and in other special
+			situations.</p>
+			<p class=MsoBodyText style='mso-list:skip'>&nbsp;</p>
+			<p class=MsoBodyText style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>&quot;Text \&quot;  &quot;</b></p>
+			<p class=MsoBodyText style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><u>Braces</u></b>:
+			The brace character ( <b style='mso-bidi-font-weight:normal'>{ </b>) is used as
+			a way of indicating text constants.
+			The text constant ends with a matching closing brace character ( <b style='mso-bidi-font-weight:normal'>} </b>). Such Analytic Information Server
+			string constants are case-sensitive, may include blanks, special characters,
+			imbedded double quote characters, may include imbedded brace characters, and
+			terminate with the first matching left brace character.</p>
+			<p class=MsoBodyText style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>            {John Doe}</b></p>
+			<p class=MsoBodyText style='mso-list:skip'>&nbsp;</p>
+			<p class=MsoBodyText>&nbsp;</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><u>Quoted
+			Left Brace</u></b>: The quote character ( <b style='mso-bidi-font-weight:normal'>'</b>
+			) followed immediately by the left brace character ( <b style='mso-bidi-font-weight:
+			normal'>{ </b>) is used as a way of indicating trailing text constants.  The text constant ends with the end of the
+			input source. Such Analytic Information Server text constants are do not examine
+			the content of the text constant. The trailing text constant begins with
+			the <b style='mso-bidi-font-weight:normal'>'{</b> special character pair, and
+			terminates with the end of the input source.</p>
+			<p class=MsoBodyText style='mso-list:skip'>&nbsp;</p>
+			<p class=MsoBodyText style='mso-list:skip'><b style='mso-bidi-font-weight:normal'>setq
+			_x '{Text here</b></p>
+			<p class=MsoBodyText>&nbsp;</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:  This form is used by Visual Basic or C++ to
+			send long text commands (with arbitrary contents) to Analytic Information Server.</p>      
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Native Data Type</H4></FONT></P>
+          <p>The <b>Text</b> Data Type is an example of an AIS Native Data Type. </p>
+          <p> Analytic Information Server stores all of its Native Data Types in Virtual Machine Containers.  
+          All containers are stored in memory. Containers provide the basic storage mechanism for modeling 
+          data of all types. Containers provide these fundamental characteristics:      </p>
+          <p>  Ability to hold any type of data (including code) at any time.</p>     
+          <p>  Ability to know what type of data is contained.</p>  
+          <p>  Ability to be stored, retrieved and evaluated by the system.</p>  
+          <p>   Ability to handle type conversion, and memory management automatically.</p>   
+          <p> Containers come in two sizes, Large and Small. Small containers are six bytes in length, 
+          and large containers are ten bytes in length. Large containers can store larger amounts of data 
+          immediately and place less of a burden on the Heap manager. Small containers require less immediate space, 
+          but place more of a burden on the Heap manager.    </p>        
+          <p>  Large containers can store the following data types immediately and does not require the services of the Heap manager:</p>  
+         <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>                                      
+          <p>  Small containers can store the following data types immediately without placing additional burden on the Heap manager:</p>
+          <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>
+          <p>  Analytic Information Server containers can be saved and loaded to and from persistent (database) 
+          storage at any time. Containers with immediate data are saved on disk in fixed length records equal 
+          to the size of the container. Containers with Heap object references are saved in fixed length records, 
+          which are automatically expanded to include the contents of the Heap object, and any objects referenced 
+          by the Heap object, etc. This feature is called Object Closure Management and is automatic with every 
+          Analytic Information Server container database save. Analytic Information Server containers may be loaded 
+          from any database repository record at any time. If the data in the record is immediate, the database 
+          load fills the container with the immediate data. If the data in the record is an object closure, the 
+          database load fills the container with a Heap object reference, and all of the objects in the record 
+          are loaded back into the Heap with the same referential relationships they had when they were saved.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The String functions also work with the Text Data Type. See the String Data Type examples.</p> 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

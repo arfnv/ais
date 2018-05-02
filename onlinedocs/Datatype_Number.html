@@ -1,0 +1,265 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Number</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Number Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Number Subtypes</font></a></li><li><a href="#S4"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S5"><FONT SIZE=2>Native Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Number Overview</H4></FONT></P>
+         <p class=MsoBodyText>Analytic supports the <b>Number</b> data type for representing various numeric values.  
+         The Number data type has three subtypes: Integer, Money, and Percent.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The Number Native data type is a suitable container for numeric values.  
+          Several mathematical functions are provided by Analytic Information Server that perform several 
+          common computations.</p>          
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Number Subtypes</H4></FONT></P>
+        <p><b>Integer    </b></p>
+        <p class=MsoBodyText>The Integer Native Data Type are containers
+        for whole numbers only. An Integer is a 32 bit integer value. The constant
+        form for Integers are simple the number:</p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>34        -34 </b></p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><u>&nbsp;</u></b></p>
+        <p><b>Money       </b>     </p>
+        <p class=MsoBodyText>The Money Data Type are containers for
+        monetary values.  Money is an IEEE double precision real number representing U.S. currency values. Money constants can be
+        written as signed whole numbers or signed fractions starting with the $
+        symbol.   Normal arithmetic can be
+        performed on the Money Data Type.</p>
+        <p class=MsoBodyText>&nbsp;</p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>$-4.56               $1845               $345.89            $-192745           </b></p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+        <p><b>Percent               </b></p>
+        <p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>The
+        Percent Data Type are containers for
+        percentage values. Percent constants can be written as signed whole
+        numbers or signed fractions ending with the % symbol. </p>
+        <p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>&nbsp;</p>
+        <p class=MsoBodyText style='line-height:117%;page-break-after:avoid'><b style='mso-bidi-font-weight:normal'>2%                   -34%                .02%                1.28%</b></p>
+        <p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>&nbsp;</p>
+        <p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>Terminating
+        a numeric constant with the percent operator has the effect of dividing the
+        constant by 100.</p>      
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Constant Form</H4></FONT></P>
+        <p class=MsoBodyText>The Number Data and all of its subtypes have
+        constant forms.  The Number Data type
+        can be represented by scientific notation such as:</p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>1.2e8
+                       -4.567e-34</b></p>
+        <p class=MsoBodyText>&nbsp;</p>
+        <p class=MsoBodyText>or as a real number:</p>
+        <p class=MsoBodyText>&nbsp;</p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>-345.8907         3.141592</b></p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+        <p class=MsoBodyText>or as a whole number:</p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>34        -34 </b></p>
+        <p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><u>&nbsp;</u></b></p>  
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Native Data Type</H4></FONT></P>
+          <p>The <b>Number</b> Data Type is an example of an AIS Native Data Type. </p>
+          <p> Analytic Information Server stores all of its Native Data Types in Virtual Machine Containers.  
+          All containers are stored in memory. Containers provide the basic storage mechanism for modeling 
+          data of all types. Containers provide these fundamental characteristics:      </p>
+          <p>  Ability to hold any type of data (including code) at any time.</p>     
+          <p>  Ability to know what type of data is contained.</p>  
+          <p>  Ability to be stored, retrieved and evaluated by the system.</p>  
+          <p>   Ability to handle type conversion, and memory management automatically.</p>   
+          <p> Containers come in two sizes, Large and Small. Small containers are six bytes in length, 
+          and large containers are ten bytes in length. Large containers can store larger amounts of data 
+          immediately and place less of a burden on the Heap manager. Small containers require less immediate space, 
+          but place more of a burden on the Heap manager.    </p>        
+          <p>  Large containers can store the following data types immediately and does not require the services of the Heap manager:</p>  
+          <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>                             
+          <p>  Small containers can store the following data types immediately without placing additional burden on the Heap manager:</p>  
+          <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>           
+          <p>  Analytic Information Server containers can be saved and loaded to and from persistent (database) 
+          storage at any time. Containers with immediate data are saved on disk in fixed length records equal 
+          to the size of the container. Containers with Heap object references are saved in fixed length records, 
+          which are automatically expanded to include the contents of the Heap object, and any objects referenced 
+          by the Heap object, etc. This feature is called Object Closure Management and is automatic with every 
+          Analytic Information Server container database save. Analytic Information Server containers may be loaded 
+          from any database repository record at any time. If the data in the record is immediate, the database 
+          load fills the container with the immediate data. If the data in the record is an object closure, the 
+          database load fills the container with a Heap object reference, and all of the objects in the record 
+          are loaded back into the Heap with the same referential relationships they had when they were saved.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Number object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Number_ isEven_001.html">Example_Number_ isEven_001</A></td>
+<td><A HREF="Example_Number_ isExact_001.html">Example_Number_ isExact_001</A></td>
+<td><A HREF="Example_Number_(sym)add_001.html">Example_Number_(sym)add_001</A></td>
+<td><A HREF="Example_Number_(sym)div_001.html">Example_Number_(sym)div_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_(sym)mul_001.html">Example_Number_(sym)mul_001</A></td>
+<td><A HREF="Example_Number_(sym)sub_001.html">Example_Number_(sym)sub_001</A></td>
+<td><A HREF="Example_Number_abs_001.html">Example_Number_abs_001</A></td>
+<td><A HREF="Example_Number_add1_001.html">Example_Number_add1_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_addi_001.html">Example_Number_addi_001</A></td>
+<td><A HREF="Example_Number_asin_001.html">Example_Number_asin_001</A></td>
+<td><A HREF="Example_Number_atan_001.html">Example_Number_atan_001</A></td>
+<td><A HREF="Example_Number_avg_001.html">Example_Number_avg_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_compareEQ_011.html">Example_Number_compareEQ_011</A></td>
+<td><A HREF="Example_Number_compareGE_011.html">Example_Number_compareGE_011</A></td>
+<td><A HREF="Example_Number_compareGT_011.html">Example_Number_compareGT_011</A></td>
+<td><A HREF="Example_Number_compareLE_011.html">Example_Number_compareLE_011</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_compareLT_011.html">Example_Number_compareLT_011</A></td>
+<td><A HREF="Example_Number_compareNE_011.html">Example_Number_compareNE_011</A></td>
+<td><A HREF="Example_Number_compare_001.html">Example_Number_compare_001</A></td>
+<td><A HREF="Example_Number_compare_011.html">Example_Number_compare_011</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_comparison_010.html">Example_Number_comparison_010</A></td>
+<td><A HREF="Example_Number_cos_001.html">Example_Number_cos_001</A></td>
+<td><A HREF="Example_Number_cosh_001.html">Example_Number_cosh_001</A></td>
+<td><A HREF="Example_Number_deg_001.html">Example_Number_deg_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_divi_001.html">Example_Number_divi_001</A></td>
+<td><A HREF="Example_Number_exp_001.html">Example_Number_exp_001</A></td>
+<td><A HREF="Example_Number_expt_001.html">Example_Number_expt_001</A></td>
+<td><A HREF="Example_Number_fact_001.html">Example_Number_fact_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_floor_001.html">Example_Number_floor_001</A></td>
+<td><A HREF="Example_Number_fraction_001.html">Example_Number_fraction_001</A></td>
+<td><A HREF="Example_Number_isEqual_009.html">Example_Number_isEqual_009</A></td>
+<td><A HREF="Example_Number_isEven_001.html">Example_Number_isEven_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isExact_001.html">Example_Number_isExact_001</A></td>
+<td><A HREF="Example_Number_isIdentical_009.html">Example_Number_isIdentical_009</A></td>
+<td><A HREF="Example_Number_isInexact_001.html">Example_Number_isInexact_001</A></td>
+<td><A HREF="Example_Number_isMoney_001.html">Example_Number_isMoney_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isNegative_001.html">Example_Number_isNegative_001</A></td>
+<td><A HREF="Example_Number_isNull_001.html">Example_Number_isNull_001</A></td>
+<td><A HREF="Example_Number_isNumber_001.html">Example_Number_isNumber_001</A></td>
+<td><A HREF="Example_Number_isOdd_001.html">Example_Number_isOdd_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isPositive_001.html">Example_Number_isPositive_001</A></td>
+<td><A HREF="Example_Number_isType_013.html">Example_Number_isType_013</A></td>
+<td><A HREF="Example_Number_isZero_001.html">Example_Number_isZero_001</A></td>
+<td><A HREF="Example_Number_kurtosis_001.html">Example_Number_kurtosis_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_log10_001.html">Example_Number_log10_001</A></td>
+<td><A HREF="Example_Number_log2_001.html">Example_Number_log2_001</A></td>
+<td><A HREF="Example_Number_log_001.html">Example_Number_log_001</A></td>
+<td><A HREF="Example_Number_logbase_001.html">Example_Number_logbase_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_max_001.html">Example_Number_max_001</A></td>
+<td><A HREF="Example_Number_median_001.html">Example_Number_median_001</A></td>
+<td><A HREF="Example_Number_min_001.html">Example_Number_min_001</A></td>
+<td><A HREF="Example_Number_mod_001.html">Example_Number_mod_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_modi_001.html">Example_Number_modi_001</A></td>
+<td><A HREF="Example_Number_muli_001.html">Example_Number_muli_001</A></td>
+<td><A HREF="Example_Number_nadd_001.html">Example_Number_nadd_001</A></td>
+<td><A HREF="Example_Number_ncompareGE_001.html">Example_Number_ncompareGE_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_ncompareGT_001.html">Example_Number_ncompareGT_001</A></td>
+<td><A HREF="Example_Number_ncompareLE_001.html">Example_Number_ncompareLE_001</A></td>
+<td><A HREF="Example_Number_ncompareLT_001.html">Example_Number_ncompareLT_001</A></td>
+<td><A HREF="Example_Number_ndiv_001.html">Example_Number_ndiv_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_nmod_001.html">Example_Number_nmod_001</A></td>
+<td><A HREF="Example_Number_nmul_001.html">Example_Number_nmul_001</A></td>
+<td><A HREF="Example_Number_nsub_001.html">Example_Number_nsub_001</A></td>
+<td><A HREF="Example_Number_number_001.html">Example_Number_number_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_pi_001.html">Example_Number_pi_001</A></td>
+<td><A HREF="Example_Number_product_001.html">Example_Number_product_001</A></td>
+<td><A HREF="Example_Number_rad_001.html">Example_Number_rad_001</A></td>
+<td><A HREF="Example_Number_random_001.html">Example_Number_random_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_randomize_001.html">Example_Number_randomize_001</A></td>
+<td><A HREF="Example_Number_range_001.html">Example_Number_range_001</A></td>
+<td><A HREF="Example_Number_ref_019.html">Example_Number_ref_019</A></td>
+<td><A HREF="Example_Number_round_001.html">Example_Number_round_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_setq_018.html">Example_Number_setq_018</A></td>
+<td><A HREF="Example_Number_sign_001.html">Example_Number_sign_001</A></td>
+<td><A HREF="Example_Number_sin_001.html">Example_Number_sin_001</A></td>
+<td><A HREF="Example_Number_sinh_001.html">Example_Number_sinh_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_sizeof_011.html">Example_Number_sizeof_011</A></td>
+<td><A HREF="Example_Number_skew_001.html">Example_Number_skew_001</A></td>
+<td><A HREF="Example_Number_sqrt_001.html">Example_Number_sqrt_001</A></td>
+<td><A HREF="Example_Number_srandom_001.html">Example_Number_srandom_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_stdev_001.html">Example_Number_stdev_001</A></td>
+<td><A HREF="Example_Number_stdevp_001.html">Example_Number_stdevp_001</A></td>
+<td><A HREF="Example_Number_sub1_001.html">Example_Number_sub1_001</A></td>
+<td><A HREF="Example_Number_subi_001.html">Example_Number_subi_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_sumsqr_001.html">Example_Number_sumsqr_001</A></td>
+<td><A HREF="Example_Number_tan_001.html">Example_Number_tan_001</A></td>
+<td><A HREF="Example_Number_tanh_001.html">Example_Number_tanh_001</A></td>
+<td><A HREF="Example_Number_type_013.html">Example_Number_type_013</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_var_001.html">Example_Number_var_001</A></td>
+<td><A HREF="Example_Number_varp_001.html">Example_Number_varp_001</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

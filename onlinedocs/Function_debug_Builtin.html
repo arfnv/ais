@@ -1,0 +1,590 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>debug</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+	     <p>The <b>debug</b> function provides browser oriented debugging features for Lambdas 
+          running on the <b>DRM</b> (<b>D</b>ynamic typed <b>R</b>egister <b>M</b>achine) Virtual 
+          Machine. Lambdas running on native code or on other virtual machines cannot be debugged 
+          with this function.  More information on the <b>DRM Virtual Machine</b> can be found in 
+          the Virtual Machine Chapter.</p>
+
+          <P>The <b>debug</b> function provides commands for setting the Smartbase engine switches and debugger trace settings.</P>
+			
+		  <P>Commands and arguments to the "debug" function:</P>
+		
+          <UL>	
+			<LI><B>(debug compileoff:)</B>	Sets the Smartbase "compile" function NOT to generate debug information.</LI>
+			<LI><B>(debug compileon:)</B>		Sets the Smartbase "compile" function to generate debug information.</LI>
+			<LI><B>(debug erroroff:)</B>		Turns off the gTP->DebugErrorON switch.</LI>
+			<LI><B>(debug erroron:)</B>		Turns on the gTP->DebugErrorON switch.</LI>
+			<LI><B>(debug get:)</B>		Returns a Structure with the following attributes:</LI>
+                                     <UL>	
+										<LI><B>JitON:</B> value of Smartbase engine DebugJitON switch (true|false)</LI>	
+										<LI><B>TraceON:</B> value of Smartbase engine DebugTraceON switch (true|false)</LI>	
+										<LI><B>TraceSuspended:</B> value of Smartbase engine DebugSuspended switch (true|false)</LI>	
+										<LI><B>ErrorON:</B> value of Smartbase engine DebugErrorON switch (true|false)</LI>
+										<LI><B>Lambda:</B> value of Smartbase engine DebugTraceLambda (Lambda Object|*|!)</LI>
+										<LI><B>CodeL:</B> value of Smartbase engine DebugTraceCodeL (number|*|!)</LI>
+										<LI><B>Recursion:</B> value of Smartbase engine DebugTraceRecursion (number|*|!)</LI>
+										<LI><B>Compile:</B> value of Smartbase engine GenerateDebugInfo switch (true|false)</LI>
+										<LI><B>Changed:</B> value of Smartbase engine EngineStateChanged switch (true|false)</LI>
+                                     </UL>	
+			<LI><B>(debug jitoff:)</B>			Turns off the gTP->DebugJitON switch.</LI>
+			<LI><B>(debug jiton:)</B>			Turns on the gTP->DebugJitON switch.</LI>
+			<LI><B>(debug command)</B>			Sets the current instruction trace rules using the command string which is parsed as follows:</LI>
+                                     <UL>	
+			                           <LI> command = "Lambda:CodeL:Recursion"</LI>
+			                           <LI> <I>where</I>Lambda = (name | * | !)</LI>
+			                           <LI> <I>where</I> CodeL = (number | * | !)</LI>
+			                           <LI> <I>where</I> Recursion = (number | * | !)</LI>
+									   <LI>Some examples follow:</LI>
+                                          <UL>
+										     <LI>"!" sets Smartbase engine swiches as follows: DebugTraceLambda=!, DebugTraceCodeL=!, DebugTraceRecursion=!</LI>		
+										     <LI>"*" sets Smartbase engine swiches as follows: DebugTraceLambda=*, DebugTraceCodeL=*, DebugTraceRecursion=*</LI>		
+										     <LI>"name:*:*" sets Smartbase engine swiches as follows: DebugTraceLambda=(eval name), DebugTraceCodeL=*, DebugTraceRecursion=*</LI>		
+										     <LI>"*:45:*" sets Smartbase engine swiches as follows: DebugTraceLambda=*, DebugTraceCodeL=45, DebugTraceRecursion=*</LI>		
+										     <LI>"*:*:3" sets Smartbase engine swiches as follows: DebugTraceLambda=*, DebugTraceCodeL=45, DebugTraceRecursion=3</LI>		
+										     <LI>"name:52:5" sets Smartbase engine swiches as follows: DebugTraceLambda=(eval name), DebugTraceCodeL=52, DebugTraceRecursion=5</LI>
+			                              </UL>
+                                     </UL>	
+          </UL>	
+          
+	  	 <P>The Smartbase engine has two major execution settings: JitON and JitOFF. In JitON mode, the
+			Just-In-Time compiler generates actual machine register code for extremely fast execution.
+			In JitOFF mode, the Virtual Machine Emulator is turned on allowing debugger tracing of instructions.</P>
+			
+		 <P>In JitOFF mode, the Smartbase engine allows tracing of VM Emulated instructions IF AND ONLY IF the
+			instructions have been executed as a result of the debugEval function. For example, the following code</P>
+			
+						<P><B>(debugEval "(foo testing:)")</B></P>
+			
+		 <P>will evaluate the phrase "(foo testing:)" with VM instruction tracing on under the following rules and
+			guidelines.</P>
+			
+		 <P><B>JitON Rule:</B></P>		
+         <P>If the Smartbase engine JIT is ON, then debugEval will evaluate the specified expression WITHOUT	
+			instruction tracing. Instruction tracing is ONLY available with JitOFF.</P>
+			
+		 <P><B>Trace Rule:</B></P>		
+         <P>Once inside the debugEval function, with JitOFF, instruction execution will proceed normally until
+							the current debug trace settings requests a trace break. A trace break is always requested under
+							the following trace rules:</P>
+                            <UL>				
+								<LI><B>DebugTraceLambda Setting:</B></LI>
+                                   <UL>
+								    <LI>DebugTraceLambda = #&#60current Lambda&#62		   A trace break is requested IFF the Trace-CodeL-Setting requests.</LI>	
+								    <LI>DebugTraceLambda = *							A trace break is requested IFF the Trace-CodeL-Setting requests.</LI>	
+								    <LI>DebugTraceLambda = !							A trace break is NEVER requested.</LI>	
+			                       </UL>
+								<LI><B>DebugTraceCodeL Setting:</B></LI>								
+                                   <UL>
+								    <LI>DebugTraceCodeL = current IP					A trace break is requested IFF the Trace-Recursion-Setting requests.</LI>	
+								    <LI>DebugTraceCodeL = *							A trace break is requested IFF the Trace-Recursion-Setting requests.</LI>	
+								    <LI>DebugTraceCodeL = !							A trace break is NEVER requested.</LI>	
+			                       </UL>
+								<LI><B>DebugTraceRecursion Setting:</B></LI>								
+                                   <UL>
+								    <LI>DebugRecursionCount = DebugTraceRecursion		    A trace break is requested.</LI>	
+								    <LI>DebugDebugTraceRecursion = *						A trace break is requested.</LI>	
+								    <LI>DebugDebugTraceRecursion = ! 						A trace break is NEVER requested.</LI>	
+			                       </UL>
+                            </UL>	
+		 <P><B>Break Rule:</B></P>		
+         <P>Once inside the debugEval function, with JitOFF, if a trace break is requested, by the above trace
+			rules, then the VM Emulator calls the "debugDetective" function, which has been supplied by the user.
+			As soon as the debugDetective function returns control (or if debugDetective is VOID), the VM Emulator
+			continues instruction evaluation normally, subject to the above trace rules.</P>
+			
+		 <P><B>debugDetective:</B></P>		
+         <P>The user supplied debugDetective, in combination with the debugEval function, provide an enhancement to
+			the standard Lisp debugging method, which is to insert writeln instructions at strategic locations in the code.
+			Before the debugDectective function is called, the VM Emulator sets the gTP->DebugSuspended switch to ON
+			so that instuction tracing is inactive until the debugDetective function returns control to the VM Emulator.</P>
+			
+		 <P>The activities of the debugDetective can include the traditional Lisp writeln instructions or they can be as 
+			complex and creative as the user supplied debugDetective function can manage.</P>
+			
+		 <P>Once the debugDetective function returns control to the VM Emulator, instruction tracing continues in the
+			normal manner until the debugEval function retiurns control. Instruction tracing is ONLY active while
+			inside the debugEval function when JitOFF is true.</P>
+			
+			
+		 <P>The debugDetective function is called under three circumstances as follows:</P>
+			
+		 <P>;; Called by the debug & debugEval functions when the engine state is changed.</P>
+		 <P><B>(debugDetective)</B></P>	
+			
+		 <P>;; Called by the VM Emulator when a trace break has been requested.</P>
+		 <P><B>(debugDetective Lambda CodeL Recursion Rv Av Tv Pv Cv Sv Iv void)</B></P>	
+			
+		 <P>;; Called by the VM Emulator when an error has occured.</P>
+		 <P><B>(debugDetective Lambda CodeL Recursion Rv Av Tv Pv Cv Sv Iv errMsg)</B></P>	
+
+        </Overview>
+
+<p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+
+	        <p>The <b>debug</b> function also operates in cooperation with the <b>debugEval</b>, <b>debugDetective</b>, and <b>disassemble</b> functions.  
+	        For correct operation, the target AIS Lambda must have been compiled with <b>(debug compileon:)</b> 
+             so that debug info is generated by the compiler. 
+            The <b>disassemble</b> command will display the source for any Lambda compiled with <b>(debug compileon:)</b>. 
+	        The <b>000045:</b> displacements, shown in these source lines, are those generated from the <b>disassemble</b> command,
+             and represent the closest VM assembler displacement to the start of the specified source line</p>
+	        
+		</Usage>
+
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>(debug command) ;; Set or get Smartbase engine debug settings</Expression>
+	</b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>command</b></td><td><FONT COLOR=blue><i>String|Symbol</i></FONT></td>
+<td>The String or Symbol command specifying the action to be taken</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>The result of the requested action</Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_Lambda.html">Lambda</A></td>
+<td><A HREF="Datatype_Boolean.html">Boolean</A></td>
+<td><A HREF="Datatype_Symbol.html">Symbol</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_(sym)add1_Builtin.html">&#43&#43</A></td>
+<td><A HREF="Function_(sym)addValue_Builtin.html">&#43&#61</A></td>
+<td><A HREF="Function_(sym)divValue_Builtin.html">&#47&#61</A></td>
+<td><A HREF="Function_(sym)mulValue_Builtin.html">&#42&#61</A></td>
+</tr><tr>
+<td><A HREF="Function_(sym)sub1_Builtin.html">&#45&#45</A></td>
+<td><A HREF="Function_(sym)subValue_Builtin.html">&#45&#61</A></td>
+<td><A HREF="Function_abortTransaction_Builtin.html">abortTransaction</A></td>
+<td><A HREF="Function_append_Builtin.html">append</A></td>
+</tr><tr>
+<td><A HREF="Function_apply_Builtin.html">apply</A></td>
+<td><A HREF="Function_argCount_Builtin.html">argCount</A></td>
+<td><A HREF="Function_argFetch_Builtin.html">argFetch</A></td>
+<td><A HREF="Function_attachLibrarian_Builtin.html">attachLibrarian</A></td>
+</tr><tr>
+<td><A HREF="Function_badd_Builtin.html">badd</A></td>
+<td><A HREF="Function_balance_Builtin.html">balance</A></td>
+<td><A HREF="Function_bcompareEQ_Builtin.html">bcompareEQ</A></td>
+<td><A HREF="Function_bcompareGE_Builtin.html">bcompareGE</A></td>
+</tr><tr>
+<td><A HREF="Function_bcompareGT_Builtin.html">bcompareGT</A></td>
+<td><A HREF="Function_bcompareLE_Builtin.html">bcompareLE</A></td>
+<td><A HREF="Function_bcompareLT_Builtin.html">bcompareLT</A></td>
+<td><A HREF="Function_bcompareNE_Builtin.html">bcompareNE</A></td>
+</tr><tr>
+<td><A HREF="Function_bdiv_Builtin.html">bdiv</A></td>
+<td><A HREF="Function_beginTransaction_Builtin.html">beginTransaction</A></td>
+<td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td>
+<td><A HREF="Function_binaryNand_Builtin.html">binaryNand</A></td>
+</tr><tr>
+<td><A HREF="Function_binaryNor_Builtin.html">binaryNor</A></td>
+<td><A HREF="Function_binaryNot_Builtin.html">binaryNot</A></td>
+<td><A HREF="Function_binaryNxor_Builtin.html">binaryNxor</A></td>
+<td><A HREF="Function_binarySearch_Builtin.html">binarySearch</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseAnd_Builtin.html">bitwiseAnd</A></td>
+<td><A HREF="Function_bitwiseNand_Builtin.html">bitwiseNand</A></td>
+<td><A HREF="Function_bitwiseNor_Builtin.html">bitwiseNor</A></td>
+<td><A HREF="Function_bitwiseNot_Builtin.html">bitwiseNot</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseNxor_Builtin.html">bitwiseNxor</A></td>
+<td><A HREF="Function_bitwiseOr_Builtin.html">bitwiseOr</A></td>
+<td><A HREF="Function_bitwiseShiftLeft_Builtin.html">bitwiseShiftLeft</A></td>
+<td><A HREF="Function_bitwiseShiftRight_Builtin.html">bitwiseShiftRight</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseXor_Builtin.html">bitwiseXor</A></td>
+<td><A HREF="Function_bmod_Builtin.html">bmod</A></td>
+<td><A HREF="Function_bmul_Builtin.html">bmul</A></td>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+</tr><tr>
+<td><A HREF="Function_callcc_Builtin.html">callcc</A></td>
+<td><A HREF="Function_ccompareEQ_Builtin.html">ccompareEQ</A></td>
+<td><A HREF="Function_ccompareGE_Builtin.html">ccompareGE</A></td>
+<td><A HREF="Function_ccompareGT_Builtin.html">ccompareGT</A></td>
+</tr><tr>
+<td><A HREF="Function_ccompareLE_Builtin.html">ccompareLE</A></td>
+<td><A HREF="Function_ccompareLT_Builtin.html">ccompareLT</A></td>
+<td><A HREF="Function_ccompareNE_Builtin.html">ccompareNE</A></td>
+<td><A HREF="Function_cdr_Builtin.html">cdr</A></td>
+</tr><tr>
+<td><A HREF="Function_character_Builtin.html">character</A></td>
+<td><A HREF="Function_checkPointTransaction_Builtin.html">checkPointTransaction</A></td>
+<td><A HREF="Function_class_Builtin.html">class</A></td>
+<td><A HREF="Function_clear_Builtin.html">clear</A></td>
+</tr><tr>
+<td><A HREF="Function_commitTransaction_Builtin.html">commitTransaction</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+</tr><tr>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+</tr><tr>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+<td><A HREF="Function_compile_Builtin.html">compile</A></td>
+<td><A HREF="Function_compress_Builtin.html">compress</A></td>
+<td><A HREF="Function_cons_Builtin.html">cons</A></td>
+</tr><tr>
+<td><A HREF="Function_copy_Builtin.html">copy</A></td>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+<td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td>
+<td><A HREF="Function_debug_Builtin.html">debug</A></td>
+</tr><tr>
+<td><A HREF="Function_defchild_Builtin.html">defchild</A></td>
+<td><A HREF="Function_defclass_Builtin.html">defclass</A></td>
+<td><A HREF="Function_define(macro)_Builtin.html">define(macro)</A></td>
+<td><A HREF="Function_define_Builtin.html">define</A></td>
+</tr><tr>
+<td><A HREF="Function_defmacro_Builtin.html">defmacro</A></td>
+<td><A HREF="Function_defmethod_Builtin.html">defmethod</A></td>
+<td><A HREF="Function_deforphan_Builtin.html">deforphan</A></td>
+<td><A HREF="Function_defriend_Builtin.html">defriend</A></td>
+</tr><tr>
+<td><A HREF="Function_defun_Builtin.html">defun</A></td>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+<td><A HREF="Function_detachLibrarian_Builtin.html">detachLibrarian</A></td>
+<td><A HREF="Function_dimension_Builtin.html">dimension</A></td>
+</tr><tr>
+<td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+<td><A HREF="Function_downcase_Builtin.html">downcase</A></td>
+<td><A HREF="Function_encode_Builtin.html">encode</A></td>
+</tr><tr>
+<td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+</tr><tr>
+<td><A HREF="Function_fdisplay_Builtin.html">fdisplay</A></td>
+<td><A HREF="Function_fileClose_Builtin.html">fileClose</A></td>
+<td><A HREF="Function_fileDir_Builtin.html">fileDir</A></td>
+<td><A HREF="Function_fileDisplay_Builtin.html">fileDisplay</A></td>
+</tr><tr>
+<td><A HREF="Function_fileErase_Builtin.html">fileErase</A></td>
+<td><A HREF="Function_fileOpen_Builtin.html">fileOpen</A></td>
+<td><A HREF="Function_fileRead_Builtin.html">fileRead</A></td>
+<td><A HREF="Function_fileWrite_Builtin.html">fileWrite</A></td>
+</tr><tr>
+<td><A HREF="Function_filewriteln_Builtin.html">filewriteln</A></td>
+<td><A HREF="Function_findBlock_Builtin.html">findBlock</A></td>
+<td><A HREF="Function_gc_Builtin.html">gc</A></td>
+<td><A HREF="Function_getGlobalValue_Builtin.html">getGlobalValue</A></td>
+</tr><tr>
+<td><A HREF="Function_getSymbolTable_Builtin.html">getSymbolTable</A></td>
+<td><A HREF="Function_globalBinding_Builtin.html">globalBinding</A></td>
+<td><A HREF="Function_icompareEQ_Builtin.html">icompareEQ</A></td>
+<td><A HREF="Function_icompareGE_Builtin.html">icompareGE</A></td>
+</tr><tr>
+<td><A HREF="Function_icompareGT_Builtin.html">icompareGT</A></td>
+<td><A HREF="Function_icompareLE_Builtin.html">icompareLE</A></td>
+<td><A HREF="Function_icompareLT_Builtin.html">icompareLT</A></td>
+<td><A HREF="Function_icompareNE_Builtin.html">icompareNE</A></td>
+</tr><tr>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert</A></td>
+<td><A HREF="Function_inside_Builtin.html">inside</A></td>
+</tr><tr>
+<td><A HREF="Function_inspect_Builtin.html">inspect</A></td>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td>
+<td><A HREF="Function_isBound_Builtin.html">isBound</A></td>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td>
+<td><A HREF="Function_isCharAlphabetic_Builtin.html">isCharAlphabetic</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharAlphanumeric_Builtin.html">isCharAlphanumeric</A></td>
+<td><A HREF="Function_isCharLowercase_Builtin.html">isCharLowercase</A></td>
+<td><A HREF="Function_isCharName_Builtin.html">isCharName</A></td>
+<td><A HREF="Function_isCharNumeric_Builtin.html">isCharNumeric</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharUppercase_Builtin.html">isCharUppercase</A></td>
+<td><A HREF="Function_isCharWhitespace_Builtin.html">isCharWhitespace</A></td>
+<td><A HREF="Function_isChar_Builtin.html">isChar</A></td>
+<td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td>
+</tr><tr>
+<td><A HREF="Function_isClass_Builtin.html">isClass</A></td>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+<td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td>
+</tr><tr>
+<td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+<td><A HREF="Function_isEven_Builtin.html">isEven</A></td>
+</tr><tr>
+<td><A HREF="Function_isExact_Builtin.html">isExact</A></td>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+<td><A HREF="Function_isImmediate_Builtin.html">isImmediate</A></td>
+</tr><tr>
+<td><A HREF="Function_isInexact_Builtin.html">isInexact</A></td>
+<td><A HREF="Function_isInside_Builtin.html">isInside</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+</tr><tr>
+<td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td>
+<td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember</A></td>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+</tr><tr>
+<td><A HREF="Function_isNegative_Builtin.html">isNegative</A></td>
+<td><A HREF="Function_isNull_Builtin.html">isNull</A></td>
+<td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+<td><A HREF="Function_isOdd_Builtin.html">isOdd</A></td>
+</tr><tr>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td>
+<td><A HREF="Function_isPositive_Builtin.html">isPositive</A></td>
+<td><A HREF="Function_isString_Builtin.html">isString</A></td>
+</tr><tr>
+<td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td>
+<td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td>
+<td><A HREF="Function_isText_Builtin.html">isText</A></td>
+<td><A HREF="Function_isTransaction_Builtin.html">isTransaction</A></td>
+</tr><tr>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+<td><A HREF="Function_isVector_Builtin.html">isVector</A></td>
+<td><A HREF="Function_isZero_Builtin.html">isZero</A></td>
+<td><A HREF="Function_lambda_Builtin.html">lambda</A></td>
+</tr><tr>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+<td><A HREF="Function_lisp_Builtin.html">lisp</A></td>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+<td><A HREF="Function_loadWorkspace_Builtin.html">loadWorkspace</A></td>
+</tr><tr>
+<td><A HREF="Function_lock_Builtin.html">lock</A></td>
+<td><A HREF="Function_logConsole_Builtin.html">logConsole</A></td>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeLambda_Builtin.html">makeLambda</A></td>
+</tr><tr>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_makeQuotedSymbol_Builtin.html">makeQuotedSymbol</A></td>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+<td><A HREF="Function_methodsOf_Builtin.html">methodsOf</A></td>
+</tr><tr>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+<td><A HREF="Function_morph_Builtin.html">morph</A></td>
+<td><A HREF="Function_myself_Builtin.html">myself</A></td>
+<td><A HREF="Function_ncompareEQ_Builtin.html">ncompareEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_ncompareGE_Builtin.html">ncompareGE</A></td>
+<td><A HREF="Function_ncompareGT_Builtin.html">ncompareGT</A></td>
+<td><A HREF="Function_ncompareLE_Builtin.html">ncompareLE</A></td>
+<td><A HREF="Function_ncompareLT_Builtin.html">ncompareLT</A></td>
+</tr><tr>
+<td><A HREF="Function_ncompareNE_Builtin.html">ncompareNE</A></td>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+<td><A HREF="Function_offset_Builtin.html">offset</A></td>
+</tr><tr>
+<td><A HREF="Function_onError_Builtin.html">onError</A></td>
+<td><A HREF="Function_openLog_Builtin.html">openLog</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+<td><A HREF="Function_parent_Builtin.html">parent</A></td>
+</tr><tr>
+<td><A HREF="Function_parse_Builtin.html">parse</A></td>
+<td><A HREF="Function_pointer_Builtin.html">pointer</A></td>
+<td><A HREF="Function_proplist_Builtin.html">proplist</A></td>
+<td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td>
+</tr><tr>
+<td><A HREF="Function_putprop_Builtin.html">putprop</A></td>
+<td><A HREF="Function_qt_Builtin.html">qt</A></td>
+<td><A HREF="Function_quit_Builtin.html">quit</A></td>
+<td><A HREF="Function_refLibrarian_Builtin.html">refLibrarian</A></td>
+</tr><tr>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_remProp_Builtin.html">remProp</A></td>
+<td><A HREF="Function_remove_Builtin.html">remove</A></td>
+<td><A HREF="Function_rename_Builtin.html">rename</A></td>
+</tr><tr>
+<td><A HREF="Function_reset_Builtin.html">reset</A></td>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+<td><A HREF="Function_saveRepository_Builtin.html">saveRepository</A></td>
+<td><A HREF="Function_saveWorkspace_Builtin.html">saveWorkspace</A></td>
+</tr><tr>
+<td><A HREF="Function_send_Builtin.html">send</A></td>
+<td><A HREF="Function_setBlock_Builtin.html">setBlock</A></td>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+<td><A HREF="Function_set_Builtin.html">set</A></td>
+<td><A HREF="Function_setf_Builtin.html">setf</A></td>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+</tr><tr>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+<td><A HREF="Function_sql_Builtin.html">sql</A></td>
+<td><A HREF="Function_stringCiEQ_Builtin.html">stringCiEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_stringCiGE_Builtin.html">stringCiGE</A></td>
+<td><A HREF="Function_stringCiGT_Builtin.html">stringCiGT</A></td>
+<td><A HREF="Function_stringCiLE_Builtin.html">stringCiLE</A></td>
+<td><A HREF="Function_stringCiLT_Builtin.html">stringCiLT</A></td>
+</tr><tr>
+<td><A HREF="Function_stringCiNE_Builtin.html">stringCiNE</A></td>
+<td><A HREF="Function_string_Builtin.html">string</A></td>
+<td><A HREF="Function_substringCiEQ_Builtin.html">substringCiEQ</A></td>
+<td><A HREF="Function_substringCiGE_Builtin.html">substringCiGE</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiGT_Builtin.html">substringCiGT</A></td>
+<td><A HREF="Function_substringCiLE_Builtin.html">substringCiLE</A></td>
+<td><A HREF="Function_substringCiLT_Builtin.html">substringCiLT</A></td>
+<td><A HREF="Function_substringCiNE_Builtin.html">substringCiNE</A></td>
+</tr><tr>
+<td><A HREF="Function_substringEQ_Builtin.html">substringEQ</A></td>
+<td><A HREF="Function_substringGE_Builtin.html">substringGE</A></td>
+<td><A HREF="Function_substringGT_Builtin.html">substringGT</A></td>
+<td><A HREF="Function_substringLE_Builtin.html">substringLE</A></td>
+</tr><tr>
+<td><A HREF="Function_substringLT_Builtin.html">substringLT</A></td>
+<td><A HREF="Function_substringNE_Builtin.html">substringNE</A></td>
+<td><A HREF="Function_super_Builtin.html">super</A></td>
+<td><A HREF="Function_svmRegression_Builtin.html">svmRegression</A></td>
+</tr><tr>
+<td><A HREF="Function_symbolToTypeCode_Builtin.html">symbolToTypeCode</A></td>
+<td><A HREF="Function_symbol_Builtin.html">symbol</A></td>
+<td><A HREF="Function_systemCheck_Builtin.html">systemCheck</A></td>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+</tr><tr>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td>
+<td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td>
+<td><A HREF="Function_version_Builtin.html">version</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+</tr><tr>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

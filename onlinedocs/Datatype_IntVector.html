@@ -1,0 +1,183 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>IntVector</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>IntVector Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Visual Basic Comparison</font></a></li><li><a href="#S4"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S5"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>IntVector Overview</H4></FONT></P>
+        <p> An <b>Integer Vector</b> <i>(IntVector)</i> is a Heap object containing zero or more 32 bit integer values.<b>IntVectors</b> allow access to stored integer values using an integer key. 
+         An integer vector is a data structure composed of an arbitrary number of integers. 
+        Assuming there are n elements in a vector, the elements of the vector are accessed 
+        as elements 0 thru n-1. An <b>IntVector</b> also has a tail in the same sense that a 
+       Pair has a tail.</p>
+            <p> This sets an IntVector of four integer values.
+</p>
+            <p>(setq X (new Vector:  integer:  4  5 2 11 6)) </p>
+             <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>5</td> </tr>
+               <tr><td>2</td> </tr>
+               <tr><td>11</td> </tr>
+               <tr><td>6</td> </tr>
+           </table>    
+          <p>The <b>IntVector</b> is a dynamic data type: it can grow to containing new elements 
+             or contract as elements are deleted.    An element is accessed by an index from 0 
+             to n-1 where n is the number of elements in the <b>IntVector</b>.   When an element is added, 
+             it is appended to the end.</p> 
+          <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>5</td> </tr>
+               <tr><td>2</td> </tr>
+               <tr><td>11</td> </tr>
+               <tr><td>6</td> </tr>
+               <tr><td>4</td> </tr>
+           </table> 
+           <p>Or we might sort the vector</p> 
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>2</td> </tr>
+               <tr><td>4</td> </tr>
+               <tr><td>5</td> </tr>
+               <tr><td>6</td> </tr>
+               <tr><td>11</td> </tr>
+           </table> 
+           <p>Or we might delete a key by specify the index of the item to be deleted (2)</p> 
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>2</td> </tr>
+               <tr><td>4</td> </tr>             
+               <tr><td>6</td> </tr>
+               <tr><td>11</td> </tr>
+           </table>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The <b>IntVector</b> is a subtype of the Vector Data Type. The 
+            IntVector object is useful for storing integers.
+            The IntVector object is very fast 
+            and has minimum memory overhead due to the indexed access of its values.  If you 
+            require a random access strategy or a keyed access strategy see the Dictionary or 
+            Structure data types.  </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Visual Basic Comparison</H4></FONT></P>
+          <p>An Analytic Information Server <b>IntVector</b> is similar to the single dimensioned dynamic 
+            array in Visual Basic. The Visual Basic array is created at compile time (the Visual Basic 
+            Array still requires a "ReDim" to specify a dimension), whereas the Analytic Information Server 
+            structure is created, expanded, or contracted dynamically at run time. </p>
+          <p><b>Dim DayArray(50)</b></p>
+          <p>DayArray is an array of Variants with 51 elements indexed, from 0 thru 50.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Constant Form</H4></FONT></P>
+          <p>The <b>IntVector</b> native data type has a constant form. A <b>IntVector</b> constant is enclosed 
+             in brackets and preceded by the sharp symbol #(int| ).  </p>
+          <p>For Example:</p>
+          <p><b>#(int| 0  1  2  3  4  5  6  7  8  9)</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>IntVector</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The IntVector object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_IntVector_append_007.html">Example_IntVector_append_007</A></td>
+<td><A HREF="Example_IntVector_apply_006.html">Example_IntVector_apply_006</A></td>
+<td><A HREF="Example_IntVector_binaryInsert_005.html">Example_IntVector_binaryInsert_005</A></td>
+<td><A HREF="Example_IntVector_binarySearch_006.html">Example_IntVector_binarySearch_006</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_cdr_007.html">Example_IntVector_cdr_007</A></td>
+<td><A HREF="Example_IntVector_compareEQ_014.html">Example_IntVector_compareEQ_014</A></td>
+<td><A HREF="Example_IntVector_compareGE_014.html">Example_IntVector_compareGE_014</A></td>
+<td><A HREF="Example_IntVector_compareGT_014.html">Example_IntVector_compareGT_014</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_compareLE_014.html">Example_IntVector_compareLE_014</A></td>
+<td><A HREF="Example_IntVector_compareLT_014.html">Example_IntVector_compareLT_014</A></td>
+<td><A HREF="Example_IntVector_compareNE_014.html">Example_IntVector_compareNE_014</A></td>
+<td><A HREF="Example_IntVector_compare_015.html">Example_IntVector_compare_015</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_comparison_014.html">Example_IntVector_comparison_014</A></td>
+<td><A HREF="Example_IntVector_copy_007.html">Example_IntVector_copy_007</A></td>
+<td><A HREF="Example_IntVector_delete_010.html">Example_IntVector_delete_010</A></td>
+<td><A HREF="Example_IntVector_insert_006.html">Example_IntVector_insert_006</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_inside_005.html">Example_IntVector_inside_005</A></td>
+<td><A HREF="Example_IntVector_isAtom_006.html">Example_IntVector_isAtom_006</A></td>
+<td><A HREF="Example_IntVector_isEqual_014.html">Example_IntVector_isEqual_014</A></td>
+<td><A HREF="Example_IntVector_isIdentical_013.html">Example_IntVector_isIdentical_013</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_isInside_005.html">Example_IntVector_isInside_005</A></td>
+<td><A HREF="Example_IntVector_isIntegerVector_001.html">Example_IntVector_isIntegerVector_001</A></td>
+<td><A HREF="Example_IntVector_isMember_005.html">Example_IntVector_isMember_005</A></td>
+<td><A HREF="Example_IntVector_isObject_008.html">Example_IntVector_isObject_008</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_isType_017.html">Example_IntVector_isType_017</A></td>
+<td><A HREF="Example_IntVector_length_009.html">Example_IntVector_length_009</A></td>
+<td><A HREF="Example_IntVector_map_006.html">Example_IntVector_map_006</A></td>
+<td><A HREF="Example_IntVector_mapc_006.html">Example_IntVector_mapc_006</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_member_005.html">Example_IntVector_member_005</A></td>
+<td><A HREF="Example_IntVector_new_010.html">Example_IntVector_new_010</A></td>
+<td><A HREF="Example_IntVector_ref_023.html">Example_IntVector_ref_023</A></td>
+<td><A HREF="Example_IntVector_remove_005.html">Example_IntVector_remove_005</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_resize_007.html">Example_IntVector_resize_007</A></td>
+<td><A HREF="Example_IntVector_reverse_004.html">Example_IntVector_reverse_004</A></td>
+<td><A HREF="Example_IntVector_setCdr_007.html">Example_IntVector_setCdr_007</A></td>
+<td><A HREF="Example_IntVector_setLastCdr_007.html">Example_IntVector_setLastCdr_007</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_setq_020.html">Example_IntVector_setq_020</A></td>
+<td><A HREF="Example_IntVector_sizeof_015.html">Example_IntVector_sizeof_015</A></td>
+<td><A HREF="Example_IntVector_sort_014.html">Example_IntVector_sort_014</A></td>
+<td><A HREF="Example_IntVector_type_017.html">Example_IntVector_type_017</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_uniqueInsert_005.html">Example_IntVector_uniqueInsert_005</A></td>
+<td><A HREF="Example_IntVector_vectorFill_004.html">Example_IntVector_vectorFill_004</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

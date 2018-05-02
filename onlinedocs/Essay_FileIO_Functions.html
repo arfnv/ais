@@ -1,0 +1,106 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>FileIO Functions</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SObject Closure"><FONT SIZE=2>Object Closure</font></a></li><li><a href="#SFileIO Variables"><FONT SIZE=2>FileIO Variables</font></a></li><li><a href="#S_path"><FONT SIZE=2>_path</font></a></li><li><a href="#Snil"><FONT SIZE=2>nil</font></a></li><li><a href="#SFileIO Functions"><FONT SIZE=2>FileIO Functions</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>
+            <div class="h2section" id="Overview">
+            <P>The Analytic Information Server engine supports a number of data file and console
+            i/o functions. Data files are managed similarly across all host operating systems, 
+            so Lambdas need not concern themselves with differences in local operating systems.</P>
+            <P>Data files are viewed as named, byte address spaces up to 2 gigabytes per file.
+            Each individual byte in a data file is addressable, and may be read or written. 
+            Writing to a data file automatically increases its size. Analytic Information Server
+            supports the storage and retrieval of object closures, within data files, at any byte 
+            location. Managing the structure within a data file is entirely the responsibility of 
+            the assigned Lambda.     
+            </P>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SObject Closure"></A>Object Closure</H2></P>
+            <div class="h2section" id="Object Closure">
+            <P> Analytic Information Server supports the storage and retrieval of <b>object closures</b>, 
+            within data files, at any byte location. An <b>object closure</b> record contains the 
+            original object saved, together with all the objects it reaches. (See Object Closure 
+            record for Smith below). Before an object is saved to a data file, it is transformed 
+            into an object closure byte stream.</P>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFileIO Variables"></A>FileIO Variables</H2></P>        
+            <div class="h2section" id="FileIO Variables">
+            <P> The sections which follow, describe all of the global variables which 
+          operate upon or are specifically related to the data file and console i/o. </P> 
+           </div>
+         <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_path"></A>_path</H2></P>
+            <div class="h2section" id="_path">
+            <p>The global variable, <b>_path</b>, is reserved by the system to hold the
+            directory and path name of the current working directory. The <b>_path</b>
+            variable is set to the empty string &quot;&quot; at system startup. It is
+            the programmers responsibility to initialize the <b>_path</b> variable. When
+            the <b>_path</b> variable is referenced, the text contents of the <b>_path</b>
+            variable are automatically attached to the beginning of database archive
+            file named in the <b>new</b> function. The contents of the<b> _path</b>
+            variable are also automatically prepended to the file names in both the <b>new
+            ObjectRepository:</b> function and the <b>fileOpen</b> function.</p>
+            <h3>Type: Variable</h3>
+            <h3>When To Use</h3>
+            <p>The <b>_path</b> is a global variable used to hold a path name string
+            assigned by the programmer. If the <b>_path</b> variable is something other
+            than a null string, the <b>_path</b> variable string will be prepended to
+            the filename specified in the <b>new</b> function.</p>
+            <h3>&nbsp;</h3>
+            <h3>Example1</h3>
+            <pre>(setq _path "C:\\Abase\\";)
+        (display _path) ; Returns "C:\\Abase\\"
+        (new ObjectRepository:"myarchive.odb"))
+        The database archive file name is now "C:\Abase\myarchive.odb"</pre>
+            <h3>Example2</h3>
+            <pre>(setq _path "d:\\test\\")
+        (new ObjectRepository: "myarchive.odb"))
+        The database archive file name is now
+        "d:\test\myarchive.odb"</pre>
+          </div>
+         <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snil"></A>nil</H2></P>
+         <div class="h2section" id="nil">         
+            <p>The <b>nil</b> variable returns the value <b>#void</b>.<br>
+            Type: Variable</p>
+            <h3>When To Use</h3>
+            <p>The <b>nil</b> variable can be used whenever it is necessary to clear a
+            variable.</p>
+            <h3>Example1</h3>
+            <pre>(setq x 45) 
+        (display x) ; Returns 45 
+        (setq x nil) 
+        (display x) ; Returns #void</pre>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFileIO Functions"></A>FileIO Functions</H2></P>
+        <div class="h2section" id="FileIO Functions">
+        <P> Here is a list of the links to the AIS built-in Math Functions with their
+           corresponding examples.</P>
+            <P>
+            <table width="100%"><tr>
+</table></tr>
+
+            </P>  
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

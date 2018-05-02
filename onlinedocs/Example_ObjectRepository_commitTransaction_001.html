@@ -1,0 +1,242 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example ObjectRepository commitTransaction  001</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description><p> The <b>commitTransaction</b> saves the values that are set 
+                 after the <b>beginTransaction</b> function.</p>
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Specify name of ObjectRepository  </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor (new ObjectRepository: "myarchive.odb")) </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 123456&#62</Returns></b></td></tr>
+</table><p><Note>Initialize ObjectRepository with a key & value pair. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor["one"] "Hello world")</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>gor["one"]  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>Hello World</Returns></b></td></tr>
+</table><p><Note>A new transaction is opened.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(beginTransaction gor)</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>true</Returns></b></td></tr>
+</table><p><Note>The new value after the transaction was opened. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor["one"] "Goodbye world")  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>gor["one"]</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>Goodbye world</Returns></b></td></tr>
+</table><p><Note>Make all transactions starting from the beginTransaction persistent. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(commitTransaction gor)  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>true</Returns></b></td></tr>
+</table><p><Note>The new value of the Repository after the beginTransaction command. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>gor["one"]</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>Hello World</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>After the <b>commitTransaction</b>, the set of "one" to "Goodbye world" is
+          accepted and we no longer see the ObjectRepository as it was just prior to the 
+          <b>beginTransaction</b>. </p></Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>commitTransaction </b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_ObjectRepository_commitTransaction__001.html">ObjectRepository commitTransaction  001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_commitTransaction _Builtin.html">commitTransaction </A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_abortTransaction_Builtin.html">abortTransaction(Builtin)</A></td>
+<td><A HREF="Function_beginTransaction_Builtin.html">beginTransaction(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="ObjectRepository.html">ObjectRepository</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_ObjectRepository_abortTransaction_001.html">ObjectRepository abortTransaction 001</A></td>
+<td><A HREF="Example_ObjectRepository_attachLibrarian_001.html">ObjectRepository attachLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_beginTransaction_001.html">ObjectRepository beginTransaction 001</A></td>
+<td><A HREF="Example_ObjectRepository_checkPointTransaction_001.html">ObjectRepository checkPointTransaction 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_clear_002.html">ObjectRepository clear 002</A></td>
+<td><A HREF="Example_ObjectRepository_commitTransaction__001.html">ObjectRepository commitTransaction  001</A></td>
+<td><A HREF="Example_ObjectRepository_compare_021.html">ObjectRepository compare 021</A></td>
+<td><A HREF="Example_ObjectRepository_compare_022.html">ObjectRepository compare 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareEQ_021.html">ObjectRepository compareEQ 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareEQ_022.html">ObjectRepository compareEQ 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_021.html">ObjectRepository compareGE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_022.html">ObjectRepository compareGE 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareGT_021.html">ObjectRepository compareGT 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGT_022.html">ObjectRepository compareGT 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_021.html">ObjectRepository compareLE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_022.html">ObjectRepository compareLE 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareLT_021.html">ObjectRepository compareLT 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLT_022.html">ObjectRepository compareLT 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_021.html">ObjectRepository compareNE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_022.html">ObjectRepository compareNE 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_comparison_021.html">ObjectRepository comparison 021</A></td>
+<td><A HREF="Example_ObjectRepository_comparison_022.html">ObjectRepository comparison 022</A></td>
+<td><A HREF="Example_ObjectRepository_delete_013.html">ObjectRepository delete 013</A></td>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">ObjectRepository detachLibrarian 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_exportTab_001.html">ObjectRepository exportTab 001</A></td>
+<td><A HREF="Example_ObjectRepository_importTab_001.html">ObjectRepository importTab 001</A></td>
+<td><A HREF="Example_ObjectRepository_inspect_002.html">ObjectRepository inspect 002</A></td>
+<td><A HREF="Example_ObjectRepository_isIdentical_019.html">ObjectRepository isIdentical 019</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_isImmediate_001.html">ObjectRepository isImmediate 001</A></td>
+<td><A HREF="Example_ObjectRepository_length_016.html">ObjectRepository length 016</A></td>
+<td><A HREF="Example_ObjectRepository_loadRepository_001.html">ObjectRepository loadRepository 001</A></td>
+<td><A HREF="Example_ObjectRepository_new_014.html">ObjectRepository new 014</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_030.html">ObjectRepository ref 030</A></td>
+<td><A HREF="Example_ObjectRepository_ref_031.html">ObjectRepository ref 031</A></td>
+<td><A HREF="Example_ObjectRepository_ref_032.html">ObjectRepository ref 032</A></td>
+<td><A HREF="Example_ObjectRepository_ref_033.html">ObjectRepository ref 033</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_034.html">ObjectRepository ref 034</A></td>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">ObjectRepository refLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_rename_001.html">ObjectRepository rename 001</A></td>
+<td><A HREF="Example_ObjectRepository_saveImmediate_001.html">ObjectRepository saveImmediate 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_saveRepository_001.html">ObjectRepository saveRepository 001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_001.html">ObjectRepository setf 001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_002.html">ObjectRepository setf 002</A></td>
+<td><A HREF="Example_ObjectRepository_setq_027.html">ObjectRepository setq 027</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_sizeof_027.html">ObjectRepository sizeof 027</A></td>
+<td><A HREF="Example_ObjectRepository_type_024.html">ObjectRepository type 024</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

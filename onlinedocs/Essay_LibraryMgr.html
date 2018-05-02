@@ -1,0 +1,641 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>libraryMgr Functions</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SlibraryMgr Overview"><FONT SIZE=2>libraryMgr Overview</font></a></li><li><a href="#SlibraryMgr"><FONT SIZE=2>libraryMgr</font></a></li><li><a href="#SaddFunctionLibrary"><FONT SIZE=2>addFunctionLibrary</font></a></li><li><a href="#SaddSourceLibrary"><FONT SIZE=2>addSourceLibrary</font></a></li><li><a href="#Scheckin"><FONT SIZE=2>checkin</font></a></li><li><a href="#Scheckout"><FONT SIZE=2>checkout</font></a></li><li><a href="#ScheckStatus"><FONT SIZE=2>checkStatus</font></a></li><li><a href="#ScheckoutStrip"><FONT SIZE=2>checkoutStrip</font></a></li><li><a href="#ScompileAll"><FONT SIZE=2>compileAll</font></a></li><li><a href="#ScompileFocusedLibrary"><FONT SIZE=2>compileFocusedLibrary</font></a></li><li><a href="#SdropLibrary"><FONT SIZE=2>dropLibrary</font></a></li><li><a href="#SeraseSource"><FONT SIZE=2>eraseSource</font></a></li><li><a href="#SexportDirectory"><FONT SIZE=2>exportDirectory</font></a></li><li><a href="#SexportArchive"><FONT SIZE=2>exportArchive</font></a></li><li><a href="#SgetChildNames"><FONT SIZE=2>getChildNames</font></a></li><li><a href="#SgetLibraryCount"><FONT SIZE=2>getLibraryCount</font></a></li><li><a href="#SgetLibraryNames"><FONT SIZE=2>getLibraryNames</font></a></li><li><a href="#SgetFocus"><FONT SIZE=2>getFocus</font></a></li><li><a href="#SgetFocusIndex"><FONT SIZE=2>getFocusIndex</font></a></li><li><a href="#SgetKeys"><FONT SIZE=2>getKeys</font></a></li><li><a href="#ShtmlPageServer"><FONT SIZE=2>htmlPageServer</font></a></li><li><a href="#SimportArchive"><FONT SIZE=2>importArchive</font></a></li><li><a href="#Sinspect"><FONT SIZE=2>inspect</font></a></li><li><a href="#SprettyGlobals"><FONT SIZE=2>prettyGlobals</font></a></li><li><a href="#SprettyString"><FONT SIZE=2>prettyString</font></a></li><li><a href="#SremoveDelimiters"><FONT SIZE=2>removeDelimiters</font></a></li><li><a href="#SshowGlobals"><FONT SIZE=2>showGlobals</font></a></li><li><a href="#SsetFocus"><FONT SIZE=2>setFocus</font></a></li><li><a href="#SsetLambdaBindings"><FONT SIZE=2>setLambdaBindings</font></a></li><li><a href="#StabbedNameList"><FONT SIZE=2>tabbedNameList</font></a></li>
+</UL>
+
+<P><H2><A NAME="SlibraryMgr Overview"></A>libraryMgr Overview</H2></P>		
+		    <div class="h2section" id="libraryMgr Overview">
+			<P>The <b>libraryMgr</b> is a tiny make facility (<i>analogous to Linux make and MSWindows nmake</i>).
+			   LibraryMgr arbitrarily groups source files into <b>libraries</b>. 
+			   In libraryMgr, source libraries are stored in two different types of library file cabinets.<br>
+			   Function Libraries are stored in a central Object Repository with a source archive file as backup.<br>
+			   Source Libraries are stored in a central Host OS folder (<i>Directory</i>) with a source archive file as backup.<br>
+			   The libraryMgr manages all source code stored in the Libraries. 
+			   This includes checking source in and out of the library file cabinets, importing, exporting, and deleting source from each Library.</P>
+			<P><b>Note:</b> Libraries are compiled (<i>made</i>) in the order they were registered.</p> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SlibraryMgr"></A>libraryMgr</H2></P>		
+		    <div class="h2section" id="libraryMgr">
+			<P>The <B>libraryMgr</B> function initializes the libraryMgr make facility, 
+			   and also initializes the libraryMgr static storage facility <i>_libraryMgr</i>.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddFunctionLibrary"></A>addFunctionLibrary</H2></P>		
+		    <div class="h2section" id="addFunctionLibrary">
+			<P>The <B>addFunctionLibrary</B> function registers a new <i>Library file cabinet</i> to the libraryMgr.</p>
+			<BR>
+			<P>This function library will be stored in a repository and will have an archive source file for backup.</p>
+			<BR><P><B>Type:</B> Function</P>
+			<TABLE>
+			<tr VALIGN=TOP><th>Syntax:</th><td>(libraryMgr.addFunctionLibrary libraryName repositoryName folderName archiveFileName autoSearchFlag compileFlag fileSuffix)</td></tr>
+			<tr VALIGN=TOP><th>libraryName</th><td>The name of the library</td></tr>
+			<tr VALIGN=TOP><th>repositoryName</th><td>The name of the library repository (<i>must be "" for source libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>folderName</th><td>The name of the library folder (<i>must be present even for function libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>archiveFileName</th><td>The name of the library archive source file (<i>must be "" for function libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>autoSearchFlag</th><td>If true, the library is included in all checkout searches</td></tr>
+			<tr VALIGN=TOP><th>compileFlag</th><td>If true, the library is automatically compiled upon registration</td></tr>
+			<tr VALIGN=TOP><th>fileSuffix</th><td>The file suffix for all source files in the library (<i>must be present for ALL libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>Returns</th><td>true</td></tr>
+			</TABLE>
+			<BR>
+			<p>Excerpted from the <i>Tutorial_OnlineDoc</i> project, the following example demonstrates how a project make setup is registered to libraryMgr.</p>
+			<p>Notice that some of the Libraries are stored in repositories (<i>addFunctionLibrary</i>) and others are stored as folders (<i>addSourceLibrary</i>).</p>
+			<code>
+;; *****************<BR>
+;; RegisterLibraries<BR>
+;; *****************<BR>
+;; Register Lambda cabinets for use in ARC<BR>
+(writeln "Compiling Function Libraries used in AisRefGuide Tutorial")<BR>
+;; RadIde<BR>
+;; Arguments are ==>   			libraryName    repositoryName                           folderName                           archiveFileName                          autoSearchFlag  compileFlag  fileSuffix)<BR> 
+(libraryMgr.addFunctionLibrary  precompiler:   (append _path "/Binary/Precompiler.db")  (append _path "/Source/Precompiler") (append _path "/Source/Precompiler.sl")  true            false        "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  libraryMgr:    (append _path "/Binary/LibraryMgr.db")   (append _path "/Source/LibraryMgr")  (append _path "/Source/LibraryMgr.sl")   true            false        "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  ideMgr:        (append _path "/Binary/IdeMgr.db")       (append _path "/Source/IdeMgr")      (append _path "/Source/IdeMgr.sl")       true            false        "sl"      )<BR> 
+ <BR>
+;; AisRadIde<BR>
+(libraryMgr.addFunctionLibrary  aisRefGuide:   (append _path "/Binary/AisRefGuide.db")  (append _path "/Source/AisRefGuide") (append _path "/Source/AisRefGuide.sl")  true            true         "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  porter:        (append _path "/Binary/Porter.db")       (append _path "/Source/Porter")      (append _path "/Source/Porter.sl")       true            true         "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  xml:           (append _path "/Binary/Xml.db")          (append _path "/Source/Xml")         (append _path "/Source/Xml.sl")          true            true         "sl"      )<BR> 
+<BR>
+;; Core<BR>
+(libraryMgr.addSourceLibrary    CoreContent:   ""                                       (append _path "/CoreContent")        ""								          false           false         "xml"    )<BR>
+(libraryMgr.addSourceLibrary    Foundry:	   ""                                       (append _path "/Foundry")            ""								          false           false         "xml"    )<BR>
+(libraryMgr.addSourceLibrary    Templates:	   ""                                       (append _path "/Templates")          ""								          false           false         "html"   )<BR>
+(libraryMgr.addSourceLibrary    HtmlOutput:	   ""                                       (append _path "/wwwroot")            ""								          false           false         "html"   )<BR>
+<BR>
+;; Working Views<BR>
+(libraryMgr.addSourceLibrary    ImageContent:  ""                                       (append _path "/Foundry")            ""								          false           false         "gif"    )<BR>
+(libraryMgr.addSourceLibrary    ImageOutput:   ""                                       (append _path "/wwwroot")            ""								          false           false         "gif"    )<BR>
+(libraryMgr.addSourceLibrary    HtmlTemplates: ""                                       (append _path "/Foundry")            ""								          false           false         "html"   )<BR>
+			</code>
+		    </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddSourceLibrary"></A>addSourceLibrary</H2></P>		
+		    <div class="h2section" id="addSourceLibrary">
+			<P>The <B>addSourceLibrary</B> function registers a new <i>Library file cabinet</i> to the libraryMgr.</p>
+			<BR>
+			<P>This source library will be stored as individual source files in a host OS folder (<i>Directory</i>) and will have an archive source file for backup.</p>
+			<BR><P><B>Type:</B> Function</P>
+			<TABLE>
+			<tr VALIGN=TOP><th>Syntax:</th><td>(libraryMgr.addSourceLibrary libraryName repositoryName folderName archiveFileName autoSearchFlag compileFlag fileSuffix)</td></tr>
+			<tr VALIGN=TOP><th>libraryName</th><td>The name of the library</td></tr>
+			<tr VALIGN=TOP><th>repositoryName</th><td>The name of the library repository (<i>must be "" for source libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>folderName</th><td>The name of the library folder (<i>must be present even for function libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>archiveFileName</th><td>The name of the library archive source file (<i>must be "" for function libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>autoSearchFlag</th><td>If true, the library is included in all checkout searches</td></tr>
+			<tr VALIGN=TOP><th>compileFlag</th><td>If true, the library is automatically compiled upon registration</td></tr>
+			<tr VALIGN=TOP><th>fileSuffix</th><td>The file suffix for all source files in the library (<i>must be present for ALL libraries</i>)</td></tr>
+			<tr VALIGN=TOP><th>Returns</th><td>true</td></tr>
+			</TABLE>
+			<BR>
+			<p>Excerpted from the <i>Tutorial_OnlineDoc</i> project, the following example demonstrates how a project make setup is registered to libraryMgr.</p>
+			<p>Notice that some of the Libraries are stored in repositories (<i>addFunctionLibrary</i>) and others are stored as folders (<i>addSourceLibrary</i>).</p>
+			<code>
+;; *****************<BR>
+;; RegisterLibraries<BR>
+;; *****************<BR>
+;; Register Lambda cabinets for use in ARC<BR>
+(writeln "Compiling Function Libraries used in AisRefGuide Tutorial")<BR>
+;; RadIde<BR>
+;; Arguments are ==>   			libraryName    repositoryName                           folderName                           archiveFileName                          autoSearchFlag  compileFlag  fileSuffix)<BR> 
+(libraryMgr.addFunctionLibrary  precompiler:   (append _path "/Binary/Precompiler.db")  (append _path "/Source/Precompiler") (append _path "/Source/Precompiler.sl")  true            false        "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  libraryMgr:    (append _path "/Binary/LibraryMgr.db")   (append _path "/Source/LibraryMgr")  (append _path "/Source/LibraryMgr.sl")   true            false        "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  ideMgr:        (append _path "/Binary/IdeMgr.db")       (append _path "/Source/IdeMgr")      (append _path "/Source/IdeMgr.sl")       true            false        "sl"      )<BR> 
+ <BR>
+;; AisRadIde<BR>
+(libraryMgr.addFunctionLibrary  aisRefGuide:   (append _path "/Binary/AisRefGuide.db")  (append _path "/Source/AisRefGuide") (append _path "/Source/AisRefGuide.sl")  true            true         "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  porter:        (append _path "/Binary/Porter.db")       (append _path "/Source/Porter")      (append _path "/Source/Porter.sl")       true            true         "sl"      )<BR> 
+(libraryMgr.addFunctionLibrary  xml:           (append _path "/Binary/Xml.db")          (append _path "/Source/Xml")         (append _path "/Source/Xml.sl")          true            true         "sl"      )<BR> 
+<BR>
+;; Core<BR>
+(libraryMgr.addSourceLibrary    CoreContent:   ""                                       (append _path "/CoreContent")        ""								          false           false         "xml"    )<BR>
+(libraryMgr.addSourceLibrary    Foundry:	   ""                                       (append _path "/Foundry")            ""								          false           false         "xml"    )<BR>
+(libraryMgr.addSourceLibrary    Templates:	   ""                                       (append _path "/Templates")          ""								          false           false         "html"   )<BR>
+(libraryMgr.addSourceLibrary    HtmlOutput:	   ""                                       (append _path "/wwwroot")            ""								          false           false         "html"   )<BR>
+<BR>
+;; Working Views<BR>
+(libraryMgr.addSourceLibrary    ImageContent:  ""                                       (append _path "/Foundry")            ""								          false           false         "gif"    )<BR>
+(libraryMgr.addSourceLibrary    ImageOutput:   ""                                       (append _path "/wwwroot")            ""								          false           false         "gif"    )<BR>
+(libraryMgr.addSourceLibrary    HtmlTemplates: ""                                       (append _path "/Foundry")            ""								          false           false         "html"   )<BR>
+			</code>
+		    </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scheckin"></A>checkin</H2></P>		
+		    <div class="h2section" id="checkin">
+			<P>The <B>checkin</B> function stores the specified Lambda source into the file cabinet 
+			   under the specified Lambda name.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkin  LambdaName  LambdaSource)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda in the file cabinet currently in focus.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaScript</B></TD>
+			<TD>The source string for the Lambda.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+			<BR>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkin  cabinetName  LambdaName  LambdaSource)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>cabinetName</B></TD>
+			<TD>The name of the file cabinet the Lambda is to be checked into.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda in the specified file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaScript</B></TD>
+			<TD>The source string for the Lambda.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scheckout"></A>checkout</H2></P>		
+		    <div class="h2section" id="checkout">
+			<P>The <B>checkout</B> function returns the Lambda source stored, in the file cabinet, under the specified Lambda name.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkout  LambdaName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The source string for the Lambda.</TD>
+			</TR>
+			</TABLE>
+			<BR>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkout  cabinetName LambdaName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>cabinetName</B></TD>
+			<TD>The name of the extent in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The source string for the Lambda.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Cabinet Search:</B></P>
+			<P>For all File Cabinets, during checkout operations without a cabinet name argument, the libraryMgr will not search 
+			   file cabinet extents whose names begin with the "~" character. This prevents the  
+			   needless automatic searching of unwarrented file cabinets during checkout.</P> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScheckStatus"></A>checkStatus</H2></P>		
+		    <div class="h2section" id="checkStatus">
+			<P>The <B>checkStatus</B> function returns the current import/export synchronization status for a cabinet.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkStatus cabinetName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>cabinetName</B></TD>
+			<TD>The name of the cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>Tab delimited string of the cabinet's current import/export synchronization status.</TD>
+			</TR>
+			</TABLE>
+			<BR>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScheckoutStrip"></A>checkoutStrip</H2></P>		
+		    <div class="h2section" id="checkoutStrip">
+			<P>The <B>checkoutStrip</B> function returns the Lambda source stored, in the file cabinet, under the specified Lambda name,<BR>
+			   with any ;#text headers stripped away, and
+			   with the the first and last lines, which must be #if 0 and #endif, stripped away.
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkoutStrip  LambdaName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The source string for the Lambda.</TD>
+			</TR>
+			</TABLE>
+			<BR>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.checkoutStrip  cabinetName LambdaName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>cabinetName</B></TD>
+			<TD>The name of the extent in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The source string for the Lambda.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Cabinet Search:</B></P>
+			<P>For all File Cabinets, during checkoutStrip operations without a cabinet name argument, the libraryMgr will not search 
+			   file cabinet extents whose names begin with the "~" character. This prevents the  
+			   needless automatic searching of unwarrented file cabinets during checkout.</P> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScompileAll"></A>compileAll</H2></P>		
+		    <div class="h2section" id="compileAll">
+			<P>The <B>compileAll</B> function compiles and loads every Lambda in the currently focused file cabinet. The compiled Lambdas are loaded into RAM memory.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.compileAll loadSwitch)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>loadSwitchs</B></TD>
+			<TD>Always recompile (<B>true</B>), load only do not recompile (<B>false</B>)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScompileFocusedLibrary"></A>compileFocusedLibrary</H2></P>		
+		    <div class="h2section" id="compileFocusedLibrary">
+			 <P>The <B>compileFocusedLibrary</B> function compiles the source in the currently focused library.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.compileFocusedLibrary  alwaysCompileSW)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>alwaysCompileSW</B></TD>
+			<TD>If true, the source library is always compiled even if its <i>autoCompileFlag</i> is false.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true (if there is no error)</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropLibrary"></A>dropLibrary</H2></P>		
+		    <div class="h2section" id="dropLibrary">
+			<P>The <B>dropLibrary</B> function unregisters a file cabinet extent from the libraryMgr.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.dropLibrary  libraryName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>extentName</B></TD>
+			<TD>The name of the library file cabinet extent.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SeraseSource"></A>eraseSource</H2></P>		
+		    <div class="h2section" id="eraseSource">
+			<P>The <B>eraseSource</B> function deletes the specified Lambda from the file cabinet.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.eraseSource  LambdaName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Lambda to be erased from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The source code for the Lambda which has been erased.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SexportDirectory"></A>exportDirectory</H2></P>		
+		    <div class="h2section" id="exportDirectory">
+			  <P>The <B>exportDirectory</B> function exports all cabinet Lambdas into the specified directory.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.exportDirectory directory LambdaName <L>saveInfoFlag</L>)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>directory</B></TD>
+			<TD>The new directory that would contain all source files for the exported cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>Specific Lambda to be exported as a source file on the given directory(currently not used).</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>saveInfoFlag</B></TD>
+			<TD>(Optional) If set to "true", it will save the exported cabinet information to the object repository.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SexportArchive"></A>exportArchive</H2></P>		
+		    <div class="h2section" id="exportArchive">
+			 <P>The <B>exportArchive</B> function exports the specified Library from its file cabinet to the specified ASCII archive source file.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.exportArchive libraryName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>LambdaName</B></TD>
+			<TD>The name of the Library whose source code is to be exported.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetChildNames"></A>getChildNames</H2></P>		
+		    <div class="h2section" id="getChildNames">
+			<P>The <B>getChildNames</B> function returns a vector of all Lambda's names stored in the file cabinet.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.getChildNames)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A tab delimited string of all the Lambda's names stored in the file cabinet</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetLibraryCount"></A>getLibraryCount</H2></P>		
+		    <div class="h2section" id="getLibraryCount">
+			<P>The <B>getLibraryCount</B> function returns the number of file cabinet extents currently registered to the Lambda.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.getLibraryCount)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The number of file cabinet extents currently registered to the Lambda.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetLibraryNames"></A>getLibraryNames</H2></P>		
+		    <div class="h2section" id="getLibraryNames">
+			<P>The <B>getLibraryNames</B> function returns a vector containing file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.getLibraryNames)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A vector containing file cabinet extent names.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFocus"></A>getFocus</H2></P>		
+		    <div class="h2section" id="getFocus">
+			<P>The <B>getFocus</B> function returns the name of the file cabinet extent which is currently in focus.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.getFocus)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The name of the extent now in focus.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFocusIndex"></A>getFocusIndex</H2></P>		
+		    <div class="h2section" id="getFocusIndex">
+			<P>The <B>getFocusIndex</B> function returns the index of the file cabinet extent which is currently in focus.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.getFocusIndex)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The index of the extent now in focus.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetKeys"></A>getKeys</H2></P>		
+		    <div class="h2section" id="getKeys">
+			<P>The <B>getKeys</B> function returns a vector of all Library source names stored in the file cabinet.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.getKeys)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A tab delimited string of all the Library source file names stored in the file cabinet</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ShtmlPageServer"></A>htmlPageServer</H2></P>		
+		    <div class="h2section" id="htmlPageServer">
+			<P>The <B>htmlPageServer</B> function routes a message, from an html page, to an html server Lambda (see the <B>htmlPageRegistry</B> property).<BR>
+			<BR><B>Type:</B> Function</p>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.htmlPageServer  pageName  pageParms)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>pageName</B></TD>
+			<TD>The name of the page where the message originated.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The parameter structure associated with this message.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The URL name of the html page created as a response.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SimportArchive"></A>importArchive</H2></P>		
+		    <div class="h2section" id="importArchive">
+			  <P>The <B>importArchive</B> function imports the specified Lambda library archive source file into the file cabinet. 
+			     The specified Lambda library file should have been created by a previous <B>exportArchive</B> command.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.importSource  fileName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>fileName</B></TD>
+			<TD>The path and file name of the Lambda library text file to be imported into the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sinspect"></A>inspect</H2></P>		
+		    <div class="h2section" id="inspect">
+			 <P>The <B>inspect</B> function returns a tab delimited string of statistics from the workspace. The single argument specifies the type of workspace inspection desired.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(parseLib.apply  theType)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>theType</B></TD>
+			<TD>The type of workspace inspection desired. A value of   <B>Lambdas:</B> returns a tab delimited string of Lambda names in the file cabinet. A value of   <B>globals:</B> returns a tab delimited string of global variables and their current values. A value of <B> stats:</B> returns a tab delimited string showing the current workspace memory and object usage.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A tab delimited string of workspace statistics.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SprettyGlobals"></A>prettyGlobals</H2></P>		
+		    <div class="h2section" id="prettyGlobals">
+			<P>The <B>prettyGlobals</B> function returns a tab delimited string containing global variables and their current contents. The <B>prettyGlobals</B> function allows the client to browse the current workspace using the libraryMgr.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.prettyGlobals  showCFuncs showLocked)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>showCFuncs</B></TD>
+			<TD>A value of 1 if C functions are to be displayed, 0 if they are not.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>showLocked</B></TD>
+			<TD>A value of 1 if locked globals are to be displayed, 0 if they are not.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A tab delimited string of global variable names along with their current contents. Each entry has the following format:  globalName = value</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SprettyString"></A>prettyString</H2></P>		
+		    <div class="h2section" id="prettyString">
+			<P>The <B>prettyString</B> converts the specified object into a delimited string using the specified delimiters.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.prettyString  anObj midDel endDel <i>lineNoSW</i>)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>anObj</B></TD>
+			<TD>An object to be converted into a delimited string.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>midDel</B></TD>
+			<TD>The delimited to place between the key and the value when converting a Structure or Dictionary object.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>endDel</B></TD>
+			<TD>The delimited to place at the end of every entry (usually carriage return line feed).</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>lineNoSw</B></TD>
+			<TD>(Optional) If the line number switch is present and true then line numbers will prefix each vector element.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A delimited string representing the contents of the input object.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SremoveDelimiters"></A>removeDelimiters</H2></P>		
+		    <div class="h2section" id="removeDelimiters">
+			<P>The <B>removeDelimiters</B> function removes all carriage returns, line feeds, and tabs from the string.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.removeDelimiters  aString)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>aString</B></TD>
+			<TD>The string whose delimiters are to be removed.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A sting with the delimiters removed.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SshowGlobals"></A>showGlobals</H2></P>		
+		    <div class="h2section" id="showGlobals">
+			<P>The <B>showGlobals</B> function produces a report that shows globals accessed by a specified agency.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.showGlobals rootLambda)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>rootLambda</B></TD>
+			<TD>The name of a Lambda in memory.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true </TD>
+			</TR>
+			</TABLE>
+			<p>This function shows globals except the following:</p>
+			<ul type="circle">
+				<li>Global Lambdas</li>
+				<li>Functions</li>
+				<li>_ais</li>
+				<li>_eol</li>
+				<li>_dataMineExtents</li>
+				<li>_path</li>
+				<li>end</li>
+			</ul>
+			<p>Use this function to check your Lambdas for unwanted global references.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetFocus"></A>setFocus</H2></P>		
+		    <div class="h2section" id="setFocus">
+			<P>The <B>setFocus</B> function sets the specified extent to be the current file cabinet.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.setFocus extentName)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>extentName</B></TD>
+			<TD>The name of the file cabinet extent to be made the focused file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>The repository extent now in focus.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetLambdaBindings"></A>setLambdaBindings</H2></P>		
+		    <div class="h2section" id="setLambdaBindings">
+			 <P>The <B>setLambdaBindings</B> function binds all of the <i>unbound</i> Lambdas <i>assigned to global symbols</i>
+			with the global symbol name in the Lambda.In.Bindings element of the Lambda. All unbound child Lambdas
+			are also bound in their childLambda.In.Bindings elements.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.setLambdaBindings)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="StabbedNameList"></A>tabbedNameList</H2></P>		
+		    <div class="h2section" id="tabbedNameList">
+			<P>The <B>tabbedNameList</B> function returns a tab delimited string containing the names of all child Lambdas stored in the file cabinet.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B><U>Syntax:</U></B></TD>
+			<TD>(libraryMgr.tabbedNameList)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>A tab delimited string of all child Lambdas stored in the file cabinet.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

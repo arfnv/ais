@@ -1,0 +1,143 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>ObjectRepository</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Object Repository Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Object Repository Overview</H4></FONT></P>
+		 <p class=MsoBodyText>An <b>Object Repository</b> is a Heap object containing zero or more bindings. Each binding is composed of an AIS 
+		  Word data value and followed by an object reference key, allowing ObjectRepository values to be 
+		  referenced and modified by object key. The <b>ObjectRepository</b> values are NOT stored in memory; instead, 
+		  they are stored on disk. (Note: ObjectRepository key values are NOT restricted to Symbol objects, and may be 
+		  references to any AIS heap object). </p>  	
+		  <p> An Object Repository may be created with the following syntax:</p>
+		  <p>	(setq gor (new ObjectRepository: "myarchive.odb"))</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The <b>ObjectRepository</b> data type is used to save any object closure of any size and complexity. </p>          
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+          <p>The <b>Object Repository</b>  Native data type is a container that holds
+            a Word data value and an object reference key. It has no constanct form, but its contents may be
+            modified or deleted using <i>Object Repository Transactions</i>.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>ObjectRepository</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The ObjectRepository object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_ObjectRepository_abortTransaction_001.html">Example_ObjectRepository_abortTransaction_001</A></td>
+<td><A HREF="Example_ObjectRepository_attachLibrarian_001.html">Example_ObjectRepository_attachLibrarian_001</A></td>
+<td><A HREF="Example_ObjectRepository_beginTransaction_001.html">Example_ObjectRepository_beginTransaction_001</A></td>
+<td><A HREF="Example_ObjectRepository_checkPointTransaction_001.html">Example_ObjectRepository_checkPointTransaction_001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_clear_002.html">Example_ObjectRepository_clear_002</A></td>
+<td><A HREF="Example_ObjectRepository_commitTransaction_001.html">Example_ObjectRepository_commitTransaction_001</A></td>
+<td><A HREF="Example_ObjectRepository_compareEQ_021.html">Example_ObjectRepository_compareEQ_021</A></td>
+<td><A HREF="Example_ObjectRepository_compareEQ_022.html">Example_ObjectRepository_compareEQ_022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareGE_021.html">Example_ObjectRepository_compareGE_021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_022.html">Example_ObjectRepository_compareGE_022</A></td>
+<td><A HREF="Example_ObjectRepository_compareGT_021.html">Example_ObjectRepository_compareGT_021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGT_022.html">Example_ObjectRepository_compareGT_022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareLE_021.html">Example_ObjectRepository_compareLE_021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_022.html">Example_ObjectRepository_compareLE_022</A></td>
+<td><A HREF="Example_ObjectRepository_compareLT_021.html">Example_ObjectRepository_compareLT_021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLT_022.html">Example_ObjectRepository_compareLT_022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareNE_021.html">Example_ObjectRepository_compareNE_021</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_022.html">Example_ObjectRepository_compareNE_022</A></td>
+<td><A HREF="Example_ObjectRepository_compare_021.html">Example_ObjectRepository_compare_021</A></td>
+<td><A HREF="Example_ObjectRepository_compare_022.html">Example_ObjectRepository_compare_022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_comparison_021.html">Example_ObjectRepository_comparison_021</A></td>
+<td><A HREF="Example_ObjectRepository_comparison_022.html">Example_ObjectRepository_comparison_022</A></td>
+<td><A HREF="Example_ObjectRepository_delete_013.html">Example_ObjectRepository_delete_013</A></td>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">Example_ObjectRepository_detachLibrarian_001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_exportTab_001.html">Example_ObjectRepository_exportTab_001</A></td>
+<td><A HREF="Example_ObjectRepository_importTab_001.html">Example_ObjectRepository_importTab_001</A></td>
+<td><A HREF="Example_ObjectRepository_inspect_002.html">Example_ObjectRepository_inspect_002</A></td>
+<td><A HREF="Example_ObjectRepository_isIdentical_019.html">Example_ObjectRepository_isIdentical_019</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_isImmediate_001.html">Example_ObjectRepository_isImmediate_001</A></td>
+<td><A HREF="Example_ObjectRepository_isType_021.html">Example_ObjectRepository_isType_021</A></td>
+<td><A HREF="Example_ObjectRepository_length_016.html">Example_ObjectRepository_length_016</A></td>
+<td><A HREF="Example_ObjectRepository_loadRepository_001.html">Example_ObjectRepository_loadRepository_001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_new_014.html">Example_ObjectRepository_new_014</A></td>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">Example_ObjectRepository_refLibrarian_001</A></td>
+<td><A HREF="Example_ObjectRepository_ref_030.html">Example_ObjectRepository_ref_030</A></td>
+<td><A HREF="Example_ObjectRepository_ref_031.html">Example_ObjectRepository_ref_031</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_032.html">Example_ObjectRepository_ref_032</A></td>
+<td><A HREF="Example_ObjectRepository_ref_033.html">Example_ObjectRepository_ref_033</A></td>
+<td><A HREF="Example_ObjectRepository_ref_034.html">Example_ObjectRepository_ref_034</A></td>
+<td><A HREF="Example_ObjectRepository_rename_001.html">Example_ObjectRepository_rename_001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_saveImmediate_001.html">Example_ObjectRepository_saveImmediate_001</A></td>
+<td><A HREF="Example_ObjectRepository_saveRepository_001.html">Example_ObjectRepository_saveRepository_001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_001.html">Example_ObjectRepository_setf_001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_002.html">Example_ObjectRepository_setf_002</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_setq_027.html">Example_ObjectRepository_setq_027</A></td>
+<td><A HREF="Example_ObjectRepository_sizeof_027.html">Example_ObjectRepository_sizeof_027</A></td>
+<td><A HREF="Example_ObjectRepository_type_024.html">Example_ObjectRepository_type_024</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

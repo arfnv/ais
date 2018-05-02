@@ -1,0 +1,582 @@
+
+<HTML>
+<HEAD><TITLE>AIS VM Instruction Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>vmsetdickey</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#KEYWORDS"><FONT SIZE=2>Keyword Links</FONT></A></LI>
+<LI><A HREF="#INSTYPE"><FONT SIZE=2>Instruction Type</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#VMI"><FONT SIZE=2>Virtual Machine Instructions</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black><Description>                                                  
+		<p>When evaluated, this vm instruction assigns the <b>source</b> 
+		word into the <b>target</b> word. The target word must contain a 
+		Dictionary Object. The source, index, and target arguments are 
+		mandatory. The source argument word must contain an indexable value. 
+		After the operation, both the Stack Pointer and the Instruction 
+		Pointer are promoted. The operation of this vm instruction is 
+		expressed in the following C expression:
+        </p>	
+        <ul><li><b>  (word:Dictionary)target[(int)index] = (word)source;</b></li></ul>
+    </Description>
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=red><table border=0 cellspacing=5 cellpadding=5>
+<tr><td><b><Expression>  (vmsetdickey index source target) </Expression></b></td></tr>
+</table><br><hr align=left color="#000000" width=50% size="1">
+<tr><td align=center><table border=0 cellspacing=5 cellpadding=5>
+<tr><td width=20%><FONT COLOR="#0000FF"><b>Name</b></FONT></td>
+                                           <td width=20%><FONT COLOR="#0000FF"><b>Format</b></FONT></td>
+                                           <td><FONT COLOR="#0000FF"><b>AIS Types</b></FONT></td></tr> 
+<tr><td><b>index</b></td><td>regoffset</td><td>integer</td></tr>
+<tr><td><b>source</b></td><td>regoffset</td><td>word</td></tr>
+<tr><td><b>target</b></td><td>regoffset</td><td>(word:Dictionary)</td></tr>
+</table></td></tr></table><br>
+<hr align=left color="#000000" width=50% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+s
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="KEYWORDS"></A>Keyword Links</H4></FONT>
+<P>
+Here are a number of links to this instruction by related keywords.
+</P>
+<P>
+<font color=red>[...under construction ]</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INSTYPE"></A>Instruction Type</H4></FONT>
+<P>
+Here are a number of links to this instructions of this same type.
+</P>
+<P>
+<font color=red><table width="100%"><tr>
+<td><A HREF="VMInstruction_vmadd.html">vmadd</A></td>
+<td><A HREF="VMInstruction_vmaddi.html">vmaddi</A></td>
+<td><A HREF="VMInstruction_vmaddn.html">vmaddn</A></td>
+<td><A HREF="VMInstruction_vmand.html">vmand</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmapply.html">vmapply</A></td>
+<td><A HREF="VMInstruction_vmargcount.html">vmargcount</A></td>
+<td><A HREF="VMInstruction_vmargfetch.html">vmargfetch</A></td>
+<td><A HREF="VMInstruction_vmcadd.html">vmcadd</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmcall.html">vmcall</A></td>
+<td><A HREF="VMInstruction_vmcallarg.html">vmcallarg</A></td>
+<td><A HREF="VMInstruction_vmcdiv.html">vmcdiv</A></td>
+<td><A HREF="VMInstruction_vmcmul.html">vmcmul</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmcsub.html">vmcsub</A></td>
+<td><A HREF="VMInstruction_vmdebugger.html">vmdebugger</A></td>
+<td><A HREF="VMInstruction_vmdiv.html">vmdiv</A></td>
+<td><A HREF="VMInstruction_vmdivi.html">vmdivi</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmdivn.html">vmdivn</A></td>
+<td><A HREF="VMInstruction_vmdivr.html">vmdivr</A></td>
+<td><A HREF="VMInstruction_vmdivri.html">vmdivri</A></td>
+<td><A HREF="VMInstruction_vmiadd.html">vmiadd</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmiand.html">vmiand</A></td>
+<td><A HREF="VMInstruction_vmiandb.html">vmiandb</A></td>
+<td><A HREF="VMInstruction_vmidiv.html">vmidiv</A></td>
+<td><A HREF="VMInstruction_vmidivr.html">vmidivr</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmimul.html">vmimul</A></td>
+<td><A HREF="VMInstruction_vmior.html">vmior</A></td>
+<td><A HREF="VMInstruction_vmiorb.html">vmiorb</A></td>
+<td><A HREF="VMInstruction_vmisub.html">vmisub</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmixor.html">vmixor</A></td>
+<td><A HREF="VMInstruction_vmixorb.html">vmixorb</A></td>
+<td><A HREF="VMInstruction_vmjump.html">vmjump</A></td>
+<td><A HREF="VMInstruction_vmjumpcc.html">vmjumpcc</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmmove.html">vmmove</A></td>
+<td><A HREF="VMInstruction_vmmovei.html">vmmovei</A></td>
+<td><A HREF="VMInstruction_vmmoven.html">vmmoven</A></td>
+<td><A HREF="VMInstruction_vmmul.html">vmmul</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmmuli.html">vmmuli</A></td>
+<td><A HREF="VMInstruction_vmmuln.html">vmmuln</A></td>
+<td><A HREF="VMInstruction_vmnadd.html">vmnadd</A></td>
+<td><A HREF="VMInstruction_vmndiv.html">vmndiv</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmndivr.html">vmndivr</A></td>
+<td><A HREF="VMInstruction_vmnmul.html">vmnmul</A></td>
+<td><A HREF="VMInstruction_vmnop.html">vmnop</A></td>
+<td><A HREF="VMInstruction_vmnsub.html">vmnsub</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmonerror.html">vmonerror</A></td>
+<td><A HREF="VMInstruction_vmopt.html">vmopt</A></td>
+<td><A HREF="VMInstruction_vmor.html">vmor</A></td>
+<td><A HREF="VMInstruction_vmpop.html">vmpop</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmpush.html">vmpush</A></td>
+<td><A HREF="VMInstruction_vmref.html">vmref</A></td>
+<td><A HREF="VMInstruction_vmrefbitvector.html">vmrefbitvector</A></td>
+<td><A HREF="VMInstruction_vmrefbytevector.html">vmrefbytevector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefdickey.html">vmrefdickey</A></td>
+<td><A HREF="VMInstruction_vmrefdicvalue.html">vmrefdicvalue</A></td>
+<td><A HREF="VMInstruction_vmrefdirkey.html">vmrefdirkey</A></td>
+<td><A HREF="VMInstruction_vmrefdirvalue.html">vmrefdirvalue</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmreffltvector.html">vmreffltvector</A></td>
+<td><A HREF="VMInstruction_vmrefintvector.html">vmrefintvector</A></td>
+<td><A HREF="VMInstruction_vmreflongvector.html">vmreflongvector</A></td>
+<td><A HREF="VMInstruction_vmrefmatrix.html">vmrefmatrix</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefnummatrix.html">vmrefnummatrix</A></td>
+<td><A HREF="VMInstruction_vmrefnumvector.html">vmrefnumvector</A></td>
+<td><A HREF="VMInstruction_vmrefobjvector.html">vmrefobjvector</A></td>
+<td><A HREF="VMInstruction_vmrefpcdvector.html">vmrefpcdvector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefshortvector.html">vmrefshortvector</A></td>
+<td><A HREF="VMInstruction_vmrefstring.html">vmrefstring</A></td>
+<td><A HREF="VMInstruction_vmrefstrkey.html">vmrefstrkey</A></td>
+<td><A HREF="VMInstruction_vmrefstrvalue.html">vmrefstrvalue</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefsymbol.html">vmrefsymbol</A></td>
+<td><A HREF="VMInstruction_vmreftext.html">vmreftext</A></td>
+<td><A HREF="VMInstruction_vmrefvector.html">vmrefvector</A></td>
+<td><A HREF="VMInstruction_vmreturn.html">vmreturn</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmself.html">vmself</A></td>
+<td><A HREF="VMInstruction_vmsend.html">vmsend</A></td>
+<td><A HREF="VMInstruction_vmset.html">vmset</A></td>
+<td><A HREF="VMInstruction_vmsetbitvector.html">vmsetbitvector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetbytevector.html">vmsetbytevector</A></td>
+<td><A HREF="VMInstruction_vmsetdickey.html">vmsetdickey</A></td>
+<td><A HREF="VMInstruction_vmsetdicvalue.html">vmsetdicvalue</A></td>
+<td><A HREF="VMInstruction_vmsetdirkey.html">vmsetdirkey</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetdirvalue.html">vmsetdirvalue</A></td>
+<td><A HREF="VMInstruction_vmsetfltvector.html">vmsetfltvector</A></td>
+<td><A HREF="VMInstruction_vmsetintvector.html">vmsetintvector</A></td>
+<td><A HREF="VMInstruction_vmsetlongvector.html">vmsetlongvector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetmatrix.html">vmsetmatrix</A></td>
+<td><A HREF="VMInstruction_vmsetnummatrix.html">vmsetnummatrix</A></td>
+<td><A HREF="VMInstruction_vmsetnumvector.html">vmsetnumvector</A></td>
+<td><A HREF="VMInstruction_vmsetobjvector.html">vmsetobjvector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetpcdvector.html">vmsetpcdvector</A></td>
+<td><A HREF="VMInstruction_vmsetshortvector.html">vmsetshortvector</A></td>
+<td><A HREF="VMInstruction_vmsetstring.html">vmsetstring</A></td>
+<td><A HREF="VMInstruction_vmsetstrkey.html">vmsetstrkey</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetstrvalue.html">vmsetstrvalue</A></td>
+<td><A HREF="VMInstruction_vmsetvector.html">vmsetvector</A></td>
+<td><A HREF="VMInstruction_vmshl.html">vmshl</A></td>
+<td><A HREF="VMInstruction_vmshr.html">vmshr</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsmovei.html">vmsmovei</A></td>
+<td><A HREF="VMInstruction_vmsub.html">vmsub</A></td>
+<td><A HREF="VMInstruction_vmsubi.html">vmsubi</A></td>
+<td><A HREF="VMInstruction_vmsubn.html">vmsubn</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmtestescape.html">vmtestescape</A></td>
+<td><A HREF="VMInstruction_vmxor.html">vmxor</A></td>
+</tr>
+</table>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+Here are a number of links which are related to this instructions .
+</P>
+<P>
+<font color=black><table width="100%"><tr>
+<td><A HREF="VMInstruction_vmadd.html">vmadd</A></td>
+<td><A HREF="VMInstruction_vmaddi.html">vmaddi</A></td>
+<td><A HREF="VMInstruction_vmand.html">vmand</A></td>
+<td><A HREF="VMInstruction_vmapply.html">vmapply</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmargcount.html">vmargcount</A></td>
+<td><A HREF="VMInstruction_vmargfetch.html">vmargfetch</A></td>
+<td><A HREF="VMInstruction_vmcadd.html">vmcadd</A></td>
+<td><A HREF="VMInstruction_vmcall.html">vmcall</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmcallarg.html">vmcallarg</A></td>
+<td><A HREF="VMInstruction_vmcdiv.html">vmcdiv</A></td>
+<td><A HREF="VMInstruction_vmcmul.html">vmcmul</A></td>
+<td><A HREF="VMInstruction_vmcsub.html">vmcsub</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmdebugger.html">vmdebugger</A></td>
+<td><A HREF="VMInstruction_vmdiv.html">vmdiv</A></td>
+<td><A HREF="VMInstruction_vmdivi.html">vmdivi</A></td>
+<td><A HREF="VMInstruction_vmdivr.html">vmdivr</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmdivri.html">vmdivri</A></td>
+<td><A HREF="VMInstruction_vmiadd.html">vmiadd</A></td>
+<td><A HREF="VMInstruction_vmiand.html">vmiand</A></td>
+<td><A HREF="VMInstruction_vmiandb.html">vmiandb</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmidiv.html">vmidiv</A></td>
+<td><A HREF="VMInstruction_vmidivr.html">vmidivr</A></td>
+<td><A HREF="VMInstruction_vmimul.html">vmimul</A></td>
+<td><A HREF="VMInstruction_vmior.html">vmior</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmiorb.html">vmiorb</A></td>
+<td><A HREF="VMInstruction_vmisub.html">vmisub</A></td>
+<td><A HREF="VMInstruction_vmixor.html">vmixor</A></td>
+<td><A HREF="VMInstruction_vmixorb.html">vmixorb</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmjump.html">vmjump</A></td>
+<td><A HREF="VMInstruction_vmjumpcc.html">vmjumpcc</A></td>
+<td><A HREF="VMInstruction_vmmove.html">vmmove</A></td>
+<td><A HREF="VMInstruction_vmmovei.html">vmmovei</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmmoven.html">vmmoven</A></td>
+<td><A HREF="VMInstruction_vmmul.html">vmmul</A></td>
+<td><A HREF="VMInstruction_vmmuli.html">vmmuli</A></td>
+<td><A HREF="VMInstruction_vmnatAddInteger.html">vmnatAddInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatAndInteger.html">vmnatAndInteger</A></td>
+<td><A HREF="VMInstruction_vmnatDivInteger.html">vmnatDivInteger</A></td>
+<td><A HREF="VMInstruction_vmnatDivrInteger.html">vmnatDivrInteger</A></td>
+<td><A HREF="VMInstruction_vmnatJumpCCInteger.html">vmnatJumpCCInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatLoadInteger.html">vmnatLoadInteger</A></td>
+<td><A HREF="VMInstruction_vmnatLoadLong.html">vmnatLoadLong</A></td>
+<td><A HREF="VMInstruction_vmnatLoadShort.html">vmnatLoadShort</A></td>
+<td><A HREF="VMInstruction_vmnatMulInteger.html">vmnatMulInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatOrInteger.html">vmnatOrInteger</A></td>
+<td><A HREF="VMInstruction_vmnatSaveCharacter.html">vmnatSaveCharacter</A></td>
+<td><A HREF="VMInstruction_vmnatSaveFloat.html">vmnatSaveFloat</A></td>
+<td><A HREF="VMInstruction_vmnatSaveInteger.html">vmnatSaveInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatSaveLong.html">vmnatSaveLong</A></td>
+<td><A HREF="VMInstruction_vmnatSaveNumber.html">vmnatSaveNumber</A></td>
+<td><A HREF="VMInstruction_vmnatSaveObject.html">vmnatSaveObject</A></td>
+<td><A HREF="VMInstruction_vmnatSaveShort.html">vmnatSaveShort</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatShlInteger.html">vmnatShlInteger</A></td>
+<td><A HREF="VMInstruction_vmnatShrInteger.html">vmnatShrInteger</A></td>
+<td><A HREF="VMInstruction_vmnatSubInteger.html">vmnatSubInteger</A></td>
+<td><A HREF="VMInstruction_vmnatXorInteger.html">vmnatXorInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmonerror.html">vmonerror</A></td>
+<td><A HREF="VMInstruction_vmopt.html">vmopt</A></td>
+<td><A HREF="VMInstruction_vmor.html">vmor</A></td>
+<td><A HREF="VMInstruction_vmpop.html">vmpop</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmpush.html">vmpush</A></td>
+<td><A HREF="VMInstruction_vmref.html">vmref</A></td>
+<td><A HREF="VMInstruction_vmrefbitvector.html">vmrefbitvector</A></td>
+<td><A HREF="VMInstruction_vmrefbytevector.html">vmrefbytevector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefdickey.html">vmrefdickey</A></td>
+<td><A HREF="VMInstruction_vmrefdicvalue.html">vmrefdicvalue</A></td>
+<td><A HREF="VMInstruction_vmrefdirkey.html">vmrefdirkey</A></td>
+<td><A HREF="VMInstruction_vmrefdirvalue.html">vmrefdirvalue</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmreffltvector.html">vmreffltvector</A></td>
+<td><A HREF="VMInstruction_vmrefintvector.html">vmrefintvector</A></td>
+<td><A HREF="VMInstruction_vmreflongvector.html">vmreflongvector</A></td>
+<td><A HREF="VMInstruction_vmrefmatrix.html">vmrefmatrix</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefnummatrix.html">vmrefnummatrix</A></td>
+<td><A HREF="VMInstruction_vmrefnumvector.html">vmrefnumvector</A></td>
+<td><A HREF="VMInstruction_vmrefobjvector.html">vmrefobjvector</A></td>
+<td><A HREF="VMInstruction_vmrefpcdvector.html">vmrefpcdvector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefshortvector.html">vmrefshortvector</A></td>
+<td><A HREF="VMInstruction_vmrefstring.html">vmrefstring</A></td>
+<td><A HREF="VMInstruction_vmrefstrkey.html">vmrefstrkey</A></td>
+<td><A HREF="VMInstruction_vmrefstrvalue.html">vmrefstrvalue</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmrefsymbol.html">vmrefsymbol</A></td>
+<td><A HREF="VMInstruction_vmreftext.html">vmreftext</A></td>
+<td><A HREF="VMInstruction_vmrefvector.html">vmrefvector</A></td>
+<td><A HREF="VMInstruction_vmregAddImmediate.html">vmregAddImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregAddInteger.html">vmregAddInteger</A></td>
+<td><A HREF="VMInstruction_vmregAddPointer.html">vmregAddPointer</A></td>
+<td><A HREF="VMInstruction_vmregAndImmediate.html">vmregAndImmediate</A></td>
+<td><A HREF="VMInstruction_vmregAndInteger.html">vmregAndInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregDivImmediate.html">vmregDivImmediate</A></td>
+<td><A HREF="VMInstruction_vmregDivInteger.html">vmregDivInteger</A></td>
+<td><A HREF="VMInstruction_vmregDivrImmediate.html">vmregDivrImmediate</A></td>
+<td><A HREF="VMInstruction_vmregDivrInteger.html">vmregDivrInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregIncPointer.html">vmregIncPointer</A></td>
+<td><A HREF="VMInstruction_vmregInteger.html">vmregInteger</A></td>
+<td><A HREF="VMInstruction_vmregJump.html">vmregJump</A></td>
+<td><A HREF="VMInstruction_vmregJumpCCImmediate.html">vmregJumpCCImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregJumpCCInteger.html">vmregJumpCCInteger</A></td>
+<td><A HREF="VMInstruction_vmregLoadAddress.html">vmregLoadAddress</A></td>
+<td><A HREF="VMInstruction_vmregLoadDclType.html">vmregLoadDclType</A></td>
+<td><A HREF="VMInstruction_vmregLoadInteger.html">vmregLoadInteger</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregLoadJmpPointer.html">vmregLoadJmpPointer</A></td>
+<td><A HREF="VMInstruction_vmregLoadTail.html">vmregLoadTail</A></td>
+<td><A HREF="VMInstruction_vmregLoadType.html">vmregLoadType</A></td>
+<td><A HREF="VMInstruction_vmregMoveImmediate.html">vmregMoveImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregMoveInteger.html">vmregMoveInteger</A></td>
+<td><A HREF="VMInstruction_vmregMulImmediate.html">vmregMulImmediate</A></td>
+<td><A HREF="VMInstruction_vmregMulInteger.html">vmregMulInteger</A></td>
+<td><A HREF="VMInstruction_vmregObjLength.html">vmregObjLength</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregObjPointer.html">vmregObjPointer</A></td>
+<td><A HREF="VMInstruction_vmregOrImmediate.html">vmregOrImmediate</A></td>
+<td><A HREF="VMInstruction_vmregOrInteger.html">vmregOrInteger</A></td>
+<td><A HREF="VMInstruction_vmregRefCharacter.html">vmregRefCharacter</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregRefFloat.html">vmregRefFloat</A></td>
+<td><A HREF="VMInstruction_vmregRefInteger.html">vmregRefInteger</A></td>
+<td><A HREF="VMInstruction_vmregRefLong.html">vmregRefLong</A></td>
+<td><A HREF="VMInstruction_vmregRefNumber.html">vmregRefNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregRefShort.html">vmregRefShort</A></td>
+<td><A HREF="VMInstruction_vmregRefWord.html">vmregRefWord</A></td>
+<td><A HREF="VMInstruction_vmregRefXCharacter.html">vmregRefXCharacter</A></td>
+<td><A HREF="VMInstruction_vmregRefXFloat.html">vmregRefXFloat</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregRefXInteger.html">vmregRefXInteger</A></td>
+<td><A HREF="VMInstruction_vmregRefXLong.html">vmregRefXLong</A></td>
+<td><A HREF="VMInstruction_vmregRefXNumber.html">vmregRefXNumber</A></td>
+<td><A HREF="VMInstruction_vmregRefXShort.html">vmregRefXShort</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregRefXWord.html">vmregRefXWord</A></td>
+<td><A HREF="VMInstruction_vmregRunInHarware.html">vmregRunInHarware</A></td>
+<td><A HREF="VMInstruction_vmregSaveDeclType.html">vmregSaveDeclType</A></td>
+<td><A HREF="VMInstruction_vmregSaveDeclTypeImmediate.html">vmregSaveDeclTypeImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSaveInteger.html">vmregSaveInteger</A></td>
+<td><A HREF="VMInstruction_vmregSaveNumber.html">vmregSaveNumber</A></td>
+<td><A HREF="VMInstruction_vmregSaveTail.html">vmregSaveTail</A></td>
+<td><A HREF="VMInstruction_vmregSaveTailImmediate.html">vmregSaveTailImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetCharImmediate.html">vmregSetCharImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetCharacter.html">vmregSetCharacter</A></td>
+<td><A HREF="VMInstruction_vmregSetFloat.html">vmregSetFloat</A></td>
+<td><A HREF="VMInstruction_vmregSetIntImmediate.html">vmregSetIntImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetInteger.html">vmregSetInteger</A></td>
+<td><A HREF="VMInstruction_vmregSetLong.html">vmregSetLong</A></td>
+<td><A HREF="VMInstruction_vmregSetLongImmediate.html">vmregSetLongImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetShort.html">vmregSetShort</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetShortImmediate.html">vmregSetShortImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetWord.html">vmregSetWord</A></td>
+<td><A HREF="VMInstruction_vmregSetXCharImmediate.html">vmregSetXCharImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetXCharacter.html">vmregSetXCharacter</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetXFloat.html">vmregSetXFloat</A></td>
+<td><A HREF="VMInstruction_vmregSetXIntImmediate.html">vmregSetXIntImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetXInteger.html">vmregSetXInteger</A></td>
+<td><A HREF="VMInstruction_vmregSetXLong.html">vmregSetXLong</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetXLongImmediate.html">vmregSetXLongImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetXNumber.html">vmregSetXNumber</A></td>
+<td><A HREF="VMInstruction_vmregSetXShort.html">vmregSetXShort</A></td>
+<td><A HREF="VMInstruction_vmregSetXShortImmediate.html">vmregSetXShortImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetXWord.html">vmregSetXWord</A></td>
+<td><A HREF="VMInstruction_vmregShlImmediate.html">vmregShlImmediate</A></td>
+<td><A HREF="VMInstruction_vmregShlInteger.html">vmregShlInteger</A></td>
+<td><A HREF="VMInstruction_vmregShrImmediate.html">vmregShrImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregShrInteger.html">vmregShrInteger</A></td>
+<td><A HREF="VMInstruction_vmregStringCompare.html">vmregStringCompare</A></td>
+<td><A HREF="VMInstruction_vmregStringiCompare.html">vmregStringiCompare</A></td>
+<td><A HREF="VMInstruction_vmregSubImmediate.html">vmregSubImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSubInteger.html">vmregSubInteger</A></td>
+<td><A HREF="VMInstruction_vmregSubNumber.html">vmregSubNumber</A></td>
+<td><A HREF="VMInstruction_vmregSubPointer.html">vmregSubPointer</A></td>
+<td><A HREF="VMInstruction_vmregXorImmediate.html">vmregXorImmediate</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregXorInteger.html">vmregXorInteger</A></td>
+<td><A HREF="VMInstruction_vmregmoven.html">vmregmoven</A></td>
+<td><A HREF="VMInstruction_vmreturn.html">vmreturn</A></td>
+<td><A HREF="VMInstruction_vmself.html">vmself</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsend.html">vmsend</A></td>
+<td><A HREF="VMInstruction_vmset.html">vmset</A></td>
+<td><A HREF="VMInstruction_vmsetbitvector.html">vmsetbitvector</A></td>
+<td><A HREF="VMInstruction_vmsetbytevector.html">vmsetbytevector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetdickey.html">vmsetdickey</A></td>
+<td><A HREF="VMInstruction_vmsetdicvalue.html">vmsetdicvalue</A></td>
+<td><A HREF="VMInstruction_vmsetdirkey.html">vmsetdirkey</A></td>
+<td><A HREF="VMInstruction_vmsetdirvalue.html">vmsetdirvalue</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetfltvector.html">vmsetfltvector</A></td>
+<td><A HREF="VMInstruction_vmsetintvector.html">vmsetintvector</A></td>
+<td><A HREF="VMInstruction_vmsetlongvector.html">vmsetlongvector</A></td>
+<td><A HREF="VMInstruction_vmsetmatrix.html">vmsetmatrix</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetnummatrix.html">vmsetnummatrix</A></td>
+<td><A HREF="VMInstruction_vmsetnumvector.html">vmsetnumvector</A></td>
+<td><A HREF="VMInstruction_vmsetobjvector.html">vmsetobjvector</A></td>
+<td><A HREF="VMInstruction_vmsetpcdvector.html">vmsetpcdvector</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetshortvector.html">vmsetshortvector</A></td>
+<td><A HREF="VMInstruction_vmsetstring.html">vmsetstring</A></td>
+<td><A HREF="VMInstruction_vmsetstrkey.html">vmsetstrkey</A></td>
+<td><A HREF="VMInstruction_vmsetstrvalue.html">vmsetstrvalue</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsetvector.html">vmsetvector</A></td>
+<td><A HREF="VMInstruction_vmshl.html">vmshl</A></td>
+<td><A HREF="VMInstruction_vmshr.html">vmshr</A></td>
+<td><A HREF="VMInstruction_vmsmovei.html">vmsmovei</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsub.html">vmsub</A></td>
+<td><A HREF="VMInstruction_vmsubi.html">vmsubi</A></td>
+<td><A HREF="VMInstruction_vmvecBinary.html">vmvecBinary</A></td>
+<td><A HREF="VMInstruction_vmvecInitialize.html">vmvecInitialize</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecNumScalar.html">vmvecNumScalar</A></td>
+<td><A HREF="VMInstruction_vmvecNumVector.html">vmvecNumVector</A></td>
+<td><A HREF="VMInstruction_vmvecPop.html">vmvecPop</A></td>
+<td><A HREF="VMInstruction_vmvecPush.html">vmvecPush</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecSetIncrements.html">vmvecSetIncrements</A></td>
+<td><A HREF="VMInstruction_vmvecSetPointers.html">vmvecSetPointers</A></td>
+<td><A HREF="VMInstruction_vmvecSwapCC.html">vmvecSwapCC</A></td>
+<td><A HREF="VMInstruction_vmvecUnary.html">vmvecUnary</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmxor.html">vmxor</A></td>
+</tr>
+</table>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="VMI"></A>Virtual Machine Instructions</H4></FONT>
+<P>
+AIS Lambdas are designed to be write-once-run-anywhere executable objects. 
+This is accomplished via the virtual machine concept of software Lambda execution. 
+Lambda virtual machines are designed to be mapped onto the actual host microchip at the server location, 
+providing faithful Lambda execution wherever the Lambda may travel on the Internet. 
+There are currently several virtual machines operating within Analytic Information Server. 
+The DRM virtual machine uses a Dynamically typed Register Machine model to provide portable Lambda execution 
+from high level dynamically typed instructions all the way to super fast microchip-level register execution. 
+The DRM virtual machine runs in emulation mode during the testing and debug phases of Lambda development, 
+and there is an AIS Lambda debugger available for Lambdas running on this virtual machine. 
+During the final release phases of Lambda development, DRM virtual machine Lambdas are automatically converted 
+to the NATIVE virtual machine on the host computer, using the just-in-time compiler. 
+The NATIVE virtual machine is a faithful machine language translation of the execution rules in the DRM virtual machine 
+onto the actual host microchip at the server location. 
+NATIVE virtual machine execution runs at microchip-level execution speeds.
+</P>
+
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

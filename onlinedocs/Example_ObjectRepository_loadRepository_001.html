@@ -1,0 +1,334 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example ObjectRepository loadRepository 001</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example shows the <b>loadRepository</b> function load the defined
+                  Object Repository into RAM memory.
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor (new ObjectRepository: "myarchive.odb"))      </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 197815&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor["one"] "Hello World")      </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 197815&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor["two"] "Goodbye World")      </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 197815&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>gor["one"]  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>Hello World</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>gor["two"]  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>Goodbye World</Returns></b></td></tr>
+</table><p><Note>The contents of the Object Repository are cleared.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq memGor (loadRepository gor))  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Directory 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>memGor["one"]  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>Hello World</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>memGor["two"]  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>Goodbye World</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>After the <b>loadRepository</b> is executed, the entire contents of the 
+          repository have been loaded off the disk and stored in memory. The Directory in memGor
+            contains each retrieval key and its associated loaded object. </p>
+        </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>loadRepository</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_ObjectRepository_loadRepository_001.html">ObjectRepository loadRepository 001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_loadRepository_Builtin.html">loadRepository</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_saveRepository_Builtin.html">saveRepository(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="ObjectRepository.html">ObjectRepository</A></td>
+<td><A HREF="Directory.html">Directory</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+<td><A HREF="Example_Directory_cdr_004.html">Directory cdr 004</A></td>
+<td><A HREF="Example_Directory_compare_005.html">Directory compare 005</A></td>
+<td><A HREF="Example_Directory_compareEQ_005.html">Directory compareEQ 005</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_compareGE_005.html">Directory compareGE 005</A></td>
+<td><A HREF="Example_Directory_compareGT_005.html">Directory compareGT 005</A></td>
+<td><A HREF="Example_Directory_compareLE_005.html">Directory compareLE 005</A></td>
+<td><A HREF="Example_Directory_compareLT_005.html">Directory compareLT 005</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_compareNE_005.html">Directory compareNE 005</A></td>
+<td><A HREF="Example_Directory_comparison_functions_005.html">Directory comparison functions 005</A></td>
+<td><A HREF="Example_Directory_copy_003.html">Directory copy 003</A></td>
+<td><A HREF="Example_Directory_count_003.html">Directory count 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_delete_005.html">Directory delete 005</A></td>
+<td><A HREF="Example_Directory_delete_006.html">Directory delete 006</A></td>
+<td><A HREF="Example_Directory_insert_003.html">Directory insert 003</A></td>
+<td><A HREF="Example_Directory_inside_003.html">Directory inside 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_isAtom_003.html">Directory isAtom 003</A></td>
+<td><A HREF="Example_Directory_isBound_003.html">Directory isBound 003</A></td>
+<td><A HREF="Example_Directory_isDirectory_001.html">Directory isDirectory 001</A></td>
+<td><A HREF="Example_Directory_isEqual_003.html">Directory isEqual 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_isIdentical_003.html">Directory isIdentical 003</A></td>
+<td><A HREF="Example_Directory_isObject_005.html">Directory isObject 005</A></td>
+<td><A HREF="Example_Directory_isType_007.html">Directory isType 007</A></td>
+<td><A HREF="Example_Directory_length_006.html">Directory length 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_map_003.html">Directory map 003</A></td>
+<td><A HREF="Example_Directory_mapc_003.html">Directory mapc 003</A></td>
+<td><A HREF="Example_Directory_member_002.html">Directory member 002</A></td>
+<td><A HREF="Example_Directory_member_003.html">Directory member 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_new_005.html">Directory new 005</A></td>
+<td><A HREF="Example_Directory_new_006.html">Directory new 006</A></td>
+<td><A HREF="Example_Directory_objectToDirectory_001.html">Directory objectToDirectory 001</A></td>
+<td><A HREF="Example_Directory_objectToDirectory_002.html">Directory objectToDirectory 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_objectToDirectory_003.html">Directory objectToDirectory 003</A></td>
+<td><A HREF="Example_Directory_objectToDirectory_004.html">Directory objectToDirectory 004</A></td>
+<td><A HREF="Example_Directory_ref_010.html">Directory ref 010</A></td>
+<td><A HREF="Example_Directory_ref_011.html">Directory ref 011</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_ref_012.html">Directory ref 012</A></td>
+<td><A HREF="Example_Directory_refAttributes_003.html">Directory refAttributes 003</A></td>
+<td><A HREF="Example_Directory_refValues_003.html">Directory refValues 003</A></td>
+<td><A HREF="Example_Directory_remove_003.html">Directory remove 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_resize_003.html">Directory resize 003</A></td>
+<td><A HREF="Example_Directory_setAttributes_003.html">Directory setAttributes 003</A></td>
+<td><A HREF="Example_Directory_setCdr_003.html">Directory setCdr 003</A></td>
+<td><A HREF="Example_Directory_setq_010.html">Directory setq 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_setq_011.html">Directory setq 011</A></td>
+<td><A HREF="Example_Directory_sizeof_005.html">Directory sizeof 005</A></td>
+<td><A HREF="Example_Directory_sort_007.html">Directory sort 007</A></td>
+<td><A HREF="Example_Directory_sort_008.html">Directory sort 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_sort_009.html">Directory sort 009</A></td>
+<td><A HREF="Example_Directory_type_008.html">Directory type 008</A></td>
+<td><A HREF="Example_Directory_vectorDelete_001.html">Directory vectorDelete 001</A></td>
+<td><A HREF="Example_ObjectRepository_abortTransaction_001.html">ObjectRepository abortTransaction 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_attachLibrarian_001.html">ObjectRepository attachLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_beginTransaction_001.html">ObjectRepository beginTransaction 001</A></td>
+<td><A HREF="Example_ObjectRepository_checkPointTransaction_001.html">ObjectRepository checkPointTransaction 001</A></td>
+<td><A HREF="Example_ObjectRepository_clear_002.html">ObjectRepository clear 002</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_commitTransaction__001.html">ObjectRepository commitTransaction  001</A></td>
+<td><A HREF="Example_ObjectRepository_compare_021.html">ObjectRepository compare 021</A></td>
+<td><A HREF="Example_ObjectRepository_compare_022.html">ObjectRepository compare 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareEQ_021.html">ObjectRepository compareEQ 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareEQ_022.html">ObjectRepository compareEQ 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_021.html">ObjectRepository compareGE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_022.html">ObjectRepository compareGE 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareGT_021.html">ObjectRepository compareGT 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareGT_022.html">ObjectRepository compareGT 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_021.html">ObjectRepository compareLE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_022.html">ObjectRepository compareLE 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareLT_021.html">ObjectRepository compareLT 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareLT_022.html">ObjectRepository compareLT 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_021.html">ObjectRepository compareNE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_022.html">ObjectRepository compareNE 022</A></td>
+<td><A HREF="Example_ObjectRepository_comparison_021.html">ObjectRepository comparison 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_comparison_022.html">ObjectRepository comparison 022</A></td>
+<td><A HREF="Example_ObjectRepository_delete_013.html">ObjectRepository delete 013</A></td>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">ObjectRepository detachLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_exportTab_001.html">ObjectRepository exportTab 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_importTab_001.html">ObjectRepository importTab 001</A></td>
+<td><A HREF="Example_ObjectRepository_inspect_002.html">ObjectRepository inspect 002</A></td>
+<td><A HREF="Example_ObjectRepository_isIdentical_019.html">ObjectRepository isIdentical 019</A></td>
+<td><A HREF="Example_ObjectRepository_isImmediate_001.html">ObjectRepository isImmediate 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_length_016.html">ObjectRepository length 016</A></td>
+<td><A HREF="Example_ObjectRepository_loadRepository_001.html">ObjectRepository loadRepository 001</A></td>
+<td><A HREF="Example_ObjectRepository_new_014.html">ObjectRepository new 014</A></td>
+<td><A HREF="Example_ObjectRepository_ref_030.html">ObjectRepository ref 030</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_031.html">ObjectRepository ref 031</A></td>
+<td><A HREF="Example_ObjectRepository_ref_032.html">ObjectRepository ref 032</A></td>
+<td><A HREF="Example_ObjectRepository_ref_033.html">ObjectRepository ref 033</A></td>
+<td><A HREF="Example_ObjectRepository_ref_034.html">ObjectRepository ref 034</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">ObjectRepository refLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_rename_001.html">ObjectRepository rename 001</A></td>
+<td><A HREF="Example_ObjectRepository_saveImmediate_001.html">ObjectRepository saveImmediate 001</A></td>
+<td><A HREF="Example_ObjectRepository_saveRepository_001.html">ObjectRepository saveRepository 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_setf_001.html">ObjectRepository setf 001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_002.html">ObjectRepository setf 002</A></td>
+<td><A HREF="Example_ObjectRepository_setq_027.html">ObjectRepository setq 027</A></td>
+<td><A HREF="Example_ObjectRepository_sizeof_027.html">ObjectRepository sizeof 027</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_type_024.html">ObjectRepository type 024</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_parse_001.html">String parse 001</A></td>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,226 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Brick isIdentical 020</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example uses the <b>isEqual</b> function to compare the
+                 results of the <b>copy</b> and <b>setq</b> functions.
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define nameList  (new Brick: 2 Name:Object:3))</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>The copied brick has a different Object ID than the original brick.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(copy nameList)      </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 234567&#62 </Returns></b></td></tr>
+</table><p><Note>The copied Brick has a different Object ID than the original Brick.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(isIdentical #&#60Record 123456&#62  #&#60Record 234567&#62 )      </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>false</Returns></b></td></tr>
+</table><p><Note>The isEqual function returns true with Records created with the setq function.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq nameList nameList2 )</sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 345678&#62  </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(isIdentical nameList nameList2 )      </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>true</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>isIdentical</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_isIdentical_017.html">BitVector isIdentical 017</A></td>
+<td><A HREF="Example_Boolean_isIdentical_007.html">Boolean isIdentical 007</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Brick isIdentical 020</A></td>
+<td><A HREF="Example_Character_isIdentical_008.html">Character isIdentical 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_isIdentical_010.html">Date isIdentical 010</A></td>
+<td><A HREF="Example_Dictionary_isIdentical_002.html">Dictionary isIdentical 002</A></td>
+<td><A HREF="Example_Directory_isIdentical_003.html">Directory isIdentical 003</A></td>
+<td><A HREF="Example_Error_isIdentical_007.html">Error isIdentical 007</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_isIdentical_012.html">FltVector isIdentical 012</A></td>
+<td><A HREF="Example_Function_isIdentical_011.html">Function isIdentical 011</A></td>
+<td><A HREF="Example_IntVector_isIdentical_013.html">IntVector isIdentical 013</A></td>
+<td><A HREF="Example_List_isIdentical_018.html">List isIdentical 018</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_isIdentical_005.html">Matrix isIdentical 005</A></td>
+<td><A HREF="Example_NumMatrix_isIdentical_020.html">NumMatrix isIdentical 020</A></td>
+<td><A HREF="Example_NumVector_isIdentical_014.html">NumVector isIdentical 014</A></td>
+<td><A HREF="Example_Number_isIdentical_009.html">Number isIdentical 009</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_isIdentical_015.html">ObjVector isIdentical 015</A></td>
+<td><A HREF="Example_ObjectRepository_isIdentical_019.html">ObjectRepository isIdentical 019</A></td>
+<td><A HREF="Example_Pair_isIdentical_017.html">Pair isIdentical 017</A></td>
+<td><A HREF="Example_PcodeVector_isIdentical_016.html">PcodeVector isIdentical 016</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_isIdentical_014.html">ShortVector isIdentical 014</A></td>
+<td><A HREF="Example_Structure_isIdentical_001.html">Structure isIdentical 001</A></td>
+<td><A HREF="Example_Vector_isIdentical_004.html">Vector isIdentical 004</A></td>
+<td><A HREF="Example_Void_isIdentical_006.html">Void isIdentical 006</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ(Builtin)</A></td>
+<td><A HREF="Function_comparison_Builtin.html">comparison(Builtin)</A></td>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Brick.html">Brick</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Brick compare 019</A></td>
+<td><A HREF="Example_Brick_compareEQ_019.html">Brick compareEQ 019</A></td>
+<td><A HREF="Example_Brick_compareGT_019.html">Brick compareGT 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_compareLE_019.html">Brick compareLE 019</A></td>
+<td><A HREF="Example_Brick_compareLT_019.html">Brick compareLT 019</A></td>
+<td><A HREF="Example_Brick_compareNE_019.html">Brick compareNE 019</A></td>
+<td><A HREF="Example_Brick_comparison_019.html">Brick comparison 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_copy_012.html">Brick copy 012</A></td>
+<td><A HREF="Example_Brick_isAtom_011.html">Brick isAtom 011</A></td>
+<td><A HREF="Example_Brick_isEqual_018.html">Brick isEqual 018</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Brick isIdentical 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_isObject_014.html">Brick isObject 014</A></td>
+<td><A HREF="Example_Brick_isType_022.html">Brick isType 022</A></td>
+<td><A HREF="Example_Brick_length_017.html">Brick length 017</A></td>
+<td><A HREF="Example_Brick_new_015.html">Brick new 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_ref_036.html">Brick ref 036</A></td>
+<td><A HREF="Example_Brick_setCdr_014.html">Brick setCdr 014</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_sizeof_029.html">Brick sizeof 029</A></td>
+<td><A HREF="Example_Brick_type_026.html">Brick type 026</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

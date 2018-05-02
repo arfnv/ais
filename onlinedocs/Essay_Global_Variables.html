@@ -1,0 +1,84 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Global Variables</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S_path"><FONT SIZE=2>_path</font></a></li>
+</UL>
+
+<P><H2><A NAME="S_path"></A>_path</H2></P>        
+            <div class="h2section" id="_path">
+            <p>Overview</p>
+            <p>The  global variable, <b>_path</b>,  is reserved by the system to hold the directory and  path name
+             of the current working directory. The <b>_path</b> variable is set  to the  empty string "" at 
+             system startup.  It is the programmer??s responsibility to initialize the <b>_path</b> variable. 
+             When the <b>_path</b> variable is referenced, the text contents of the <b>_path</b> variable are automatically 
+             attached to the beginning of  database archive file named in the new function.
+            </p>
+            <!-- Type and Syntax Template -->
+            <p><u><b>Type:</b></u></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p><font color='black'>Global Variable</font></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><u><b>When To Use</b></u></p>
+            <p> 
+            The <b>_path</b> is a global variable use to hold a path name string assigned by the programmer.   
+            If the <b>_path</b> variable is something other than a null string, the <b>_path</b> variable string will be 
+            prepended to the filename specified in the new function
+            </P>
+             <!-- Code Eaxmples Template -->
+            <p></p>
+            <p><u><b>Example 1</b></u></p>
+            <p></p>
+            <p>     
+              <table>    
+              <tr>    
+              <th align=left width=300>(setq _path  "")</th>
+              <td>;;Reset the _path variable</td>
+            </tr>
+            <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "myarchive.odb"</td>
+            </tr>    
+           </table>
+           </p>
+            <p></p>
+            <p><u><b>Example 2</b></u></p>
+            <p></p>
+            <p>&nbsp;&nbsp;&nbsp;
+              <table>
+              <tr>    
+                <th align=left width=300>(setq _path  "d:\\test\\")</th>
+                <td>;; Set the _path variable to "d:\test"</td>
+            </tr>   
+              <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "d:\test\myarchive.odb"</td>
+            </tr>   
+              </table>
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><u><b>Notes &amp; Hints</b></u></p>
+            <p>[...under construction...]</P>     
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

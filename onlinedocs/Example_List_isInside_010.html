@@ -1,0 +1,302 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example List isInside 010</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example uses the <b>isInside</b> function to search for a String Object in the List.
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note> The first Pair is defined.
+    </Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><sc>(define Fruits  '("peach" "apple" "orange" "mango" ) )      </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns> #&#60Pair 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><sc>(isInside "mango" Fruits)         </sc> </Expression></td>
+<td width=30% align=left> Returns: <b><Returns>true</Returns> </b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><sc>(isInside "banana" Fruits)       </sc> </Expression></td>
+<td width=30% align=left> Returns: <b><Returns>false</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>isInside</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_isInside_008.html">BitVector isInside 008</A></td>
+<td><A HREF="Example_Dictionary_isInside_002.html">Dictionary isInside 002</A></td>
+<td><A HREF="Example_Directory_isInside_003.html">Directory isInside 003</A></td>
+<td><A HREF="Example_IntVector_isInside_005.html">IntVector isInside 005</A></td>
+</tr><tr>
+<td><A HREF="Example_List_isInside_010.html">List isInside 010</A></td>
+<td><A HREF="Example_Matrix_isInside_005.html">Matrix isInside 005</A></td>
+<td><A HREF="Example_NumMatrix_isInside_011.html">NumMatrix isInside 011</A></td>
+<td><A HREF="Example_NumVector_isInside_006.html">NumVector isInside 006</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_isInside_007.html">ObjVector isInside 007</A></td>
+<td><A HREF="Example_Pair_isInside_009.html">Pair isInside 009</A></td>
+<td><A HREF="Example_Pair_isMember_008.html">Pair isMember 008</A></td>
+<td><A HREF="Example_ShortVector_isInside_006.html">ShortVector isInside 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_isInside_001.html">Structure isInside 001</A></td>
+<td><A HREF="Example_Vector_isInside_004.html">Vector isInside 004</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_isInside_Builtin.html">isInside</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_member_Builtin.html">member(Builtin)</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember(Builtin)</A></td>
+<td><A HREF="Function_member_Builtin.html">member(Builtin)</A></td>
+<td><A HREF="Function_inside_Builtin.html">inside(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Pair.html">Pair</A></td>
+<td><A HREF="List.html">List</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_isAtom_010.html">BitVector isAtom 010</A></td>
+<td><A HREF="Example_Dictionary_isAtom_002.html">Dictionary isAtom 002</A></td>
+<td><A HREF="Example_Directory_isAtom_003.html">Directory isAtom 003</A></td>
+<td><A HREF="Example_FltVector_isAtom_005.html">FltVector isAtom 005</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_isAtom_006.html">IntVector isAtom 006</A></td>
+<td><A HREF="Example_List_associate_001.html">List associate 001</A></td>
+<td><A HREF="Example_List_c..r_001.html">List c..r 001</A></td>
+<td><A HREF="Example_List_c..r_002.html">List c..r 002</A></td>
+</tr><tr>
+<td><A HREF="Example_List_car_001.html">List car 001</A></td>
+<td><A HREF="Example_List_cdr_009.html">List cdr 009</A></td>
+<td><A HREF="Example_List_compare_020.html">List compare 020</A></td>
+<td><A HREF="Example_List_compareEQ_020.html">List compareEQ 020</A></td>
+</tr><tr>
+<td><A HREF="Example_List_compareGE_020.html">List compareGE 020</A></td>
+<td><A HREF="Example_List_compareGT_020.html">List compareGT 020</A></td>
+<td><A HREF="Example_List_compareLE_020.html">List compareLE 020</A></td>
+<td><A HREF="Example_List_compareLT_020.html">List compareLT 020</A></td>
+</tr><tr>
+<td><A HREF="Example_List_compareNE_020.html">List compareNE 020</A></td>
+<td><A HREF="Example_List_comparison_020.html">List comparison 020</A></td>
+<td><A HREF="Example_List_compile_002.html">List compile 002</A></td>
+<td><A HREF="Example_List_copy_010.html">List copy 010</A></td>
+</tr><tr>
+<td><A HREF="Example_List_count_007.html">List count 007</A></td>
+<td><A HREF="Example_List_count_008.html">List count 008</A></td>
+<td><A HREF="Example_List_eval_002.html">List eval 002</A></td>
+<td><A HREF="Example_List_eval_003.html">List eval 003</A></td>
+</tr><tr>
+<td><A HREF="Example_List_inside_008.html">List inside 008</A></td>
+<td><A HREF="Example_List_isAtom_011.html">List isAtom 011</A></td>
+<td><A HREF="Example_List_isEqual_019.html">List isEqual 019</A></td>
+<td><A HREF="Example_List_isIdentical_018.html">List isIdentical 018</A></td>
+</tr><tr>
+<td><A HREF="Example_List_isInside_010.html">List isInside 010</A></td>
+<td><A HREF="Example_List_isMember_009.html">List isMember 009</A></td>
+<td><A HREF="Example_List_isObject_015.html">List isObject 015</A></td>
+<td><A HREF="Example_List_isPair_002.html">List isPair 002</A></td>
+</tr><tr>
+<td><A HREF="Example_List_last_001.html">List last 001</A></td>
+<td><A HREF="Example_List_length_015.html">List length 015</A></td>
+<td><A HREF="Example_List_list_001.html">List list 001</A></td>
+<td><A HREF="Example_List_makeQuotedList_001.html">List makeQuotedList 001</A></td>
+</tr><tr>
+<td><A HREF="Example_List_mapc_009.html">List mapc 009</A></td>
+<td><A HREF="Example_List_member_009.html">List member 009</A></td>
+<td><A HREF="Example_List_morph_001.html">List morph 001</A></td>
+<td><A HREF="Example_List_morph_002.html">List morph 002</A></td>
+</tr><tr>
+<td><A HREF="Example_List_objectToList_001.html">List objectToList 001</A></td>
+<td><A HREF="Example_List_quote_001.html">List quote 001</A></td>
+<td><A HREF="Example_List_quote_002.html">List quote 002</A></td>
+<td><A HREF="Example_List_quote_003.html">List quote 003</A></td>
+</tr><tr>
+<td><A HREF="Example_List_ref_028.html">List ref 028</A></td>
+<td><A HREF="Example_List_reverse_003.html">List reverse 003</A></td>
+<td><A HREF="Example_List_setCar_002.html">List setCar 002</A></td>
+<td><A HREF="Example_List_setCdr_011.html">List setCdr 011</A></td>
+</tr><tr>
+<td><A HREF="Example_List_setLastCdr_011.html">List setLastCdr 011</A></td>
+<td><A HREF="Example_List_setq_025.html">List setq 025</A></td>
+<td><A HREF="Example_List_setq_026.html">List setq 026</A></td>
+<td><A HREF="Example_List_sizeof_022.html">List sizeof 022</A></td>
+</tr><tr>
+<td><A HREF="Example_List_sort_018.html">List sort 018</A></td>
+<td><A HREF="Example_List_sort_019.html">List sort 019</A></td>
+<td><A HREF="Example_Matrix_isAtom_005.html">Matrix isAtom 005</A></td>
+<td><A HREF="Example_NumMatrix_isAtom_012.html">NumMatrix isAtom 012</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_isAtom_007.html">NumVector isAtom 007</A></td>
+<td><A HREF="Example_ObjVector_isAtom_008.html">ObjVector isAtom 008</A></td>
+<td><A HREF="Example_ObjectRepository_isType_022.html">ObjectRepository isType 022</A></td>
+<td><A HREF="Example_Pair_append_011.html">Pair append 011</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_apply_009.html">Pair apply 009</A></td>
+<td><A HREF="Example_Pair_apply_010.html">Pair apply 010</A></td>
+<td><A HREF="Example_Pair_associate_001.html">Pair associate 001</A></td>
+<td><A HREF="Example_Pair_car_001.html">Pair car 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_compare_019.html">Pair compare 019</A></td>
+<td><A HREF="Example_Pair_compareEQ_019.html">Pair compareEQ 019</A></td>
+<td><A HREF="Example_Pair_compareGE_019.html">Pair compareGE 019</A></td>
+<td><A HREF="Example_Pair_compareGT_019.html">Pair compareGT 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_compareLE_019.html">Pair compareLE 019</A></td>
+<td><A HREF="Example_Pair_compareLT_019.html">Pair compareLT 019</A></td>
+<td><A HREF="Example_Pair_compareNE_019.html">Pair compareNE 019</A></td>
+<td><A HREF="Example_Pair_comparison_019.html">Pair comparison 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_cons_001.html">Pair cons 001</A></td>
+<td><A HREF="Example_Pair_copy_009.html">Pair copy 009</A></td>
+<td><A HREF="Example_Pair_count_006.html">Pair count 006</A></td>
+<td><A HREF="Example_Pair_isAtom_010.html">Pair isAtom 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_isEqual_018.html">Pair isEqual 018</A></td>
+<td><A HREF="Example_Pair_isIdentical_017.html">Pair isIdentical 017</A></td>
+<td><A HREF="Example_Pair_isInside_009.html">Pair isInside 009</A></td>
+<td><A HREF="Example_Pair_isMember_008.html">Pair isMember 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_isObject_014.html">Pair isObject 014</A></td>
+<td><A HREF="Example_Pair_isPair_001.html">Pair isPair 001</A></td>
+<td><A HREF="Example_Pair_isType_021.html">Pair isType 021</A></td>
+<td><A HREF="Example_Pair_length_014.html">Pair length 014</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_map_008.html">Pair map 008</A></td>
+<td><A HREF="Example_Pair_mapc_008.html">Pair mapc 008</A></td>
+<td><A HREF="Example_Pair_pair_001.html">Pair pair 001</A></td>
+<td><A HREF="Example_Pair_setCar_001.html">Pair setCar 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_sizeof_021.html">Pair sizeof 021</A></td>
+<td><A HREF="Example_Pair_type_023.html">Pair type 023</A></td>
+<td><A HREF="Example_PcodeVector_isAtom_009.html">PcodeVector isAtom 009</A></td>
+<td><A HREF="Example_ShortVector_isAtom_007.html">ShortVector isAtom 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_isAtom_001.html">Structure isAtom 001</A></td>
+<td><A HREF="Example_Vector_isAtom_004.html">Vector isAtom 004</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

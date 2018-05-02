@@ -1,0 +1,76 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>RefGuide Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SOntologies"><FONT SIZE=2>Ontologies</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Overview">
+		    <p>The Analytic Information Server Reference Guide Document Manager agect acts as a semi-intelligent document 
+		     manager Lambda which is able to generate cross referenced and cross indexed 
+             HTML documents in the specified input(Foundry) and output folder(wwwroot).</p>
+            <p> The following are the list of folders in RefGuide: </p>
+            <p><b>Foundry: </b> This is the specified input folder.  This folder contains the files the user needs
+		     to generate the HTML Documents.  The file contents of the Foundry folder are evaluated
+		     by the program aisRefGuide to generate the output. </p>
+		    <p><b>wwwroot: </b> This folder contains the output of the aisRefGuide program. The ouput are
+		     cross referenced and cross indexed HTML Documents. These ouput files
+		     are saved in the output folder wwwroot.   </p>    
+		     <p><b>CoreContent: </b> This contains all the input files needed to generated the AIS Documentation. </p>   
+		     <p><b>Templates: </b> This  contains the Templates for the output HTML Pages. Each 
+		     <a href="#Ontologies">Ontology Object</a> has a different Template.</p>    
+		     <p><b>Bin: </b>   The aisRefGuide Database file is store in this folder. </p>
+		     <p><b>Source: </b> This contains the aisRefGuide source code saved as an  LambdaBase file (*.sl).</p>
+		      
+		      <p>To generate the AIS Documentation, copy and paste all the files in CoreContent and Templates to
+		      the Foundry folder.  These files in the Foundry folder will be the files evaluated by aisRefGuide.</p>
+		    		     
+		    </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SOntologies"></A>Ontologies</H2></P>
+		    <div class="h2section" id="Ontologies">  
+		    An <a name="Ontologies">ontology</a> is a description of the concepts and relationships that can exist for an Lambda or a community of Lambdas.  
+		    The aisRefGuide main Lambda and its other child Lambdas operate on a defined set of Ontology Objects.  These Ontology Objects
+		    specify a specific knowledge grouping used in AIS.  These knowledge groupings represented as Ontology Objects (or Ontologies)
+		    are as follows:
+
+		           <p><b>Document Ontologies:</b>   These contain a list of Essay Ontologies.  A Document Ontology defines
+		                  the structure of an AIS Document.     </p>       
+		              <p> See an example of a  <a href="Essay_RefGuide_Ontology_Examples.html#SDocument Ontology" > Document Ontology</a>.   </p>   
+		           <p><b>Essay Ontologies:</b> These contain paragraphs, tables and images that relate to a 
+		                  specifiec topic not classfied by any other Ontology.      </p>            
+		              <p>  See an example of an <a href="Essay_RefGuide_Ontology_Examples.html#SEssay Ontology" >Essay Ontology</a>.  </p>   
+		           <p><b>Datatype Ontologies:</b> These have informatation on the different Datatypes used in
+		                  AIS programming. </p>     
+		               <p>See an example of a  <a href="Essay_RefGuide_Ontology_Examples.html#SDatatype Ontology" >  Datatype Ontology</a>.  </p>    
+		           <p><b>Function Ontologies: </b> These contain information on AIS Functions.  Function Information mainly
+		                        includes Syntax and Usage.   </p>
+		                <p>  See an example of a <a href="Essay_RefGuide_Ontology_Examples.html#SFunction Ontology" > Function Ontology</a>.  </p> 
+                   <p><b>Example Ontologies:</b> These represent Source Code Examples  to illustrate AIS Functions.  </p>
+		               <p>  See an example of an <a href="Essay_RefGuide_Ontology_Examples.html#SExample Ontology" > Example Ontology</a>.  </p>     
+		          <p><b>VMInstruction: </b> These contain information in AIS Virtual Machine Instructions. Like Function
+		                       Ontologies,  VMInstruction Ontologies mainly include Syntax and Usage.  </p>  
+		               <p>  See an example of a <a href="Essay_RefGuide_Ontology_Examples.html#SVMInstruction Ontology" >  VMInstruction Ontology </a>.  </p>
+		         <p><b>Note:</b>  Ontology attributes represented in XML are used to cross reference and cross index AIS Ontologies. </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

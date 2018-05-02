@@ -1,0 +1,803 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>ContextClient Lambda Functions</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#ScloseContext"><FONT SIZE=2>closeContext</font></a></li><li><a href="#ScloseSession"><FONT SIZE=2>closeSession</font></a></li><li><a href="#Seval"><FONT SIZE=2>eval</font></a></li><li><a href="#SevalAmp"><FONT SIZE=2>evalAmp</font></a></li><li><a href="#SgetCurrentContexts"><FONT SIZE=2>getCurrentContexts</font></a></li><li><a href="#SgetSubscriptions"><FONT SIZE=2>getSubscriptions</font></a></li><li><a href="#SisContextOpen"><FONT SIZE=2>isContextOpen</font></a></li><li><a href="#Slogoff"><FONT SIZE=2>logoff</font></a></li><li><a href="#Slogon"><FONT SIZE=2>logon</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Snotify"><FONT SIZE=2>notify</font></a></li><li><a href="#SnotifyRegister"><FONT SIZE=2>notifyRegister</font></a></li><li><a href="#SopenConnection"><FONT SIZE=2>openConnection</font></a></li><li><a href="#SopenContext"><FONT SIZE=2>openContext</font></a></li><li><a href="#SopenSession"><FONT SIZE=2>openSession</font></a></li><li><a href="#SsetSubscriptions"><FONT SIZE=2>setSubscriptions</font></a></li>
+</UL>
+
+<P><H2><A NAME="ScloseContext"></A>closeContext</H2></P>		
+		    <div class="h2section" id="closeContext">
+		  <p>Overview</p>
+			<p>Use closeContext to close a context on the AIS server that the contextClient instance
+			is connected to.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.closeContext &quot;mycontext&quot;) ; close a context called mycontext
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>The context name.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the
+				Local Context request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScloseSession"></A>closeSession</H2></P>		
+		    <div class="h2section" id="closeSession">
+		    <p>Overview</p>
+			<p>Use closeSession to close the current session on the AIS server.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.closeSession) ; close the current session
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the
+				Local Context request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Seval"></A>eval</H2></P>		
+		    <div class="h2section" id="eval">
+		   <p>Overview</p>
+			<p>Use eval to evaluate a Lisp expression in the remote context session.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextclient.eval &quot;(+ 1 1)&quot;)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>Expression</th>
+			    <td>String</td>
+			    <td>The lisp expression to evaluate.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local Context
+				request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: String representation of value returned from evaluation of expression.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SevalAmp"></A>evalAmp</H2></P>		
+		    <div class="h2section" id="evalAmp">
+		    <p>Overview</p>
+			<p>Use evalAmp to evaluate an Lambda in the remote context session.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextclient.eval (new Structure: Target: &quot;foo&quot; SpeechAct: &quot;you&quot;))
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>AmpStructure</th>
+			    <td>Structure</td>
+			    <td>The AMP message structure.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local
+				Context request queue that will	be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>Amp Structure with elements added by AMP Lambda that was evaluated.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code Examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetCurrentContexts"></A>getCurrentContexts</H2></P>		
+		    <div class="h2section" id="getCurrentContexts">
+			   <p>Overview</p>
+			<p>Use getCurrentContexts to get a list of contexts active on remote server.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.getCurrentContexts)
+			(myContextClient.getCurrentContexts 0)
+			(myContextClient.getCurrentContexts 0 0)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>Optional argument - contains context name of empty string for all contexts.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local
+				Context request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: tab separated list of context names or &quot;false&quot; if error</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- When To Use Template -->
+		    <p>When To Use</p>
+		    <p>As required in by your application logic.</P>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See the contextClient.selfTest Lambda.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSubscriptions"></A>getSubscriptions</H2></P>		
+		    <div class="h2section" id="getSubscriptions">
+		    <p>Overview</p>
+			<p>Use getSubscriptions to retrieve a list of session information for a specified context or 
+			all contexts on the AIS server to which the contextClient instance is connected.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.getSubscriptions) ; get all session information
+			(myContextClient.getSubscriptions &quot;&quot;) ; get all session information
+			(myContextClient.getSubscriptions &quot;mycontext&quot;) ; get sessions on mycontext
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>The context name or an empty string for all contexts.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local Context
+				request queue that will	be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: </td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SisContextOpen"></A>isContextOpen</H2></P>		
+		    <div class="h2section" id="isContextOpen">
+		    <p>Overview</p>
+			<p>Use isContextOpen to find out if a context is current open.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color="Black">Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.isContextOpen &quot;mycontext&quot;) ; check if a context named mycontext is open
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>The context name.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the
+				Local Context request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; if open &quot;false&quot; otherwise.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Slogoff"></A>logoff</H2></P>		
+		    <div class="h2section" id="logoff">
+		 <p>Overview</p>
+			<p>Use logoff to end the current remote context session.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextclient.logoff)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local Context
+				request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Slogon"></A>logon</H2></P>		
+		    <div class="h2section" id="logon">
+			 <p>Overview</p>
+			<p>Use logon to authenticate yourself on the remote server.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.logon &quot;tester&quot; &quot;cool dude&quot;)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>UserName</th>
+			    <td>String</td>
+			    <td>User name</td>
+			  </tr>
+			  <tr>
+			    <th>Password</th>
+			    <td>String</td>
+			    <td>Password</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local
+				Context request queue that will	be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- When To Use Template -->
+		    <p>When To Use</p>
+		    <p>Use after doing an openConnection and before calling openSession.</P>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>		
+		    <div class="h2section" id="new">
+		   <p>Overview</p>
+			<p>Use the new function to create a new instance of the contextClient Lambda.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+			(setq myContextClient (new contextClient &quot;127.0.0.1&quot; 81))
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>hostAddress</th>
+			    <td>String</td>
+			    <td>An AIS server address.</td>
+			  </tr>
+			  <tr>
+			    <th>appPort</th>
+			    <td>Number</td>
+			    <td>An AIS appServer port#.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Lambda</td>
+			    <td>contextClient Lambda instance.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- When To Use Template -->
+		    <p>When To Use</p>
+		    <p>No special circumstances.</P>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snotify"></A>notify</H2></P>		
+		    <div class="h2section" id="notify">
+		 <p>Overview</p>
+			<p>Notification AMP Messages arrived addressed to contextClient.notify. This Lambda is responsible for redirecting the
+			AMP Message to each application Lambda previously registered by calls to contextClient.notifyRegister.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextclient.notify ampMessage)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ampMessage</th>
+			    <td>Structure</td>
+			    <td>The notification AMP message.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>none</td>
+			    <td></td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SnotifyRegister"></A>notifyRegister</H2></P>		
+		    <div class="h2section" id="notifyRegister">
+		    <p>Overview</p>
+			<p>Use notifyRegister to register application Lambdas that should receive copies
+			of incoming notification AMP messages.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextclient.notifyRegister &quot;myapp.handleEvents&quot;)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>appLambda</th>
+			    <td>String</td>
+			    <td>The name of the application Lambda that should receive copies if incoming notification AMP messages.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Boolean</td>
+			    <td>true</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SopenConnection"></A>openConnection</H2></P>		
+		    <div class="h2section" id="openConnection">
+		    <p>Overview</p>
+			<p>Use openConnection to establish a connection with the AIS server.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Lambda</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (setq result (myContextClient.openConnection))
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local Context
+				request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- When To Use Template -->
+		    <p>When To Use</p>
+		    <p>Use openConnection before attempting logon for the first time.</P>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>    
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SopenContext"></A>openContext</H2></P>		
+		    <div class="h2section" id="openContext">
+			    <p>Overview</p>
+			<p>Use openContext to open a Remote Context.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.openContext &quot;worker1/astartup.sl&quot; &quot;worker1&quot;)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>StartupPath</th>
+			    <td>String</td>
+			    <td>The path to the context folder and its startup script. This may be a full path or a path 
+				relative to the install directory of the remote server. The startup script portion of the path
+				is optional. If a startup script name is included, this script will be parsed for context specific
+				parameters, ex: ;#memory=50. NOTE: The startup script is NOT executed when you call openContext.</td>
+			  </tr>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>The name you want the context to  have. Context names must be unique withing a single server.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>0=Wait, 1=NoReturn, 2=ReturnRemote</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>0=NoNotify,1=FullNotify,2=Notify</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local Context
+				request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- When To Use Template -->
+		    <p>When To Use</p>
+		    <p>No special circumstances.</P>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>After opening a remote context it is usually necessary to open a user session and then
+			run the remote contexts startup script. See contextClient.selfTest for an example of this
+			sequence of calls.</P>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SopenSession"></A>openSession</H2></P>		
+		    <div class="h2section" id="openSession">
+		    <p>Overview</p>
+			<p>Use openSession after calling logon and before calling eval on the remote context.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextclient.openSession &quot;worker1&quot;)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>The name of the Remote Context you want to open a session on.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the Local Context request queue that will
+				be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>NumValue: A positive value greater than 1 is your session number. A value less than 1 indicates failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetSubscriptions"></A>setSubscriptions</H2></P>		
+		    <div class="h2section" id="setSubscriptions">
+		    <p>Overview</p>
+			<p>Use setSubscriptions to specify which sessions the current session should receive output from. Only
+			sessions on the AIS server to which the contextClient instance is connected to may be specified.</p>
+		    <!-- Type and Syntax Template -->
+		    <p>Type:
+		    <font color='black'>Function</font></p>
+		    <p>Syntax examples</p>
+		    <pre class=code>
+		    (myContextClient.setSubscriptions)
+			</pre>
+		    <!-- Arguments Table Template -->
+		    <p>Arguments</p>
+		    <hr>
+			<table>
+			  <tr>
+			    <th>ContextName</th>
+			    <td>String</td>
+			    <td>The context name or an empty string for all contexts.</td>
+			  </tr>
+			  <tr>
+			    <th>ReturnType</th>
+			    <td>Number</td>
+			    <td>Optional return type: 0=Wait, 1=NoReturn, 2=ReturnRemote - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>NotifyType</th>
+			    <td>Number</td>
+			    <td>Optional notify type: 0=NoNotify,1=FullNotify,2=Notify - 0 is default.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>Number</td>
+			    <td>RequestId - A positive number. An Notification Amp Message will arrive in the
+				Local Context request queue that will be identified by this number.</td>
+			  </tr>
+			  <tr>
+			    <th>Returns</th>
+			    <td>AmpStructure</td>
+			    <td>AisOut: &quot;true&quot; on success &quot;false&quot; on failure.</td>
+			  </tr>
+			</table>
+		    <hr>
+		    <!-- Code examples Template -->
+		    <p>Examples</p>
+			<p>See contextClient.selfTest.</p>
+		    <!-- Notes & Hints Template -->
+		    <p>Notes &amp; Hints</p>
+		    <p>No special notes.</P> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

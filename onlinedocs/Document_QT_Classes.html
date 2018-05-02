@@ -1,0 +1,81 @@
+
+<HTML>
+<HEAD>
+
+
+<!--------------------------------------------------------------------------------->
+<!---            Height control Script for the IFRAME                          ---->
+<!--------------------------------------------------------------------------------->
+<script language="JavaScript">
+<!--
+function calcHeight()
+{
+  //find the height of the internal page
+  var the_height=
+    document.getElementById('the_iframe').contentWindow.
+      document.body.scrollHeight;
+
+  //change the height of the iframe
+  document.getElementById('the_iframe').height=
+      the_height;
+}
+//-->
+</script>
+
+<!--------------------------------------------------------------------------------->
+<!---            start of the Document Template                                ---->
+<!--------------------------------------------------------------------------------->
+
+<TITLE>AIS Document Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=800>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="16%" VALIGN="TOP">
+<IMG SRC="Image_AILogo.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Classes Overview</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="Essay_QT_Classes_Overview.html" target="ShowEssay"><FONT SIZE=2>QT Classes Overview </FONT></A></LI><LI><A HREF="Essay_QT_Class_MainWindow.html" target="ShowEssay"><FONT SIZE=2>QT Class MainWindow </FONT></A></LI><LI><A HREF="Essay_QT_Class_Console.html" target="ShowEssay"><FONT SIZE=2>QT Class Console </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadCheckBox.html" target="ShowEssay"><FONT SIZE=2>QT Class RadCheckBox </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadDialog.html" target="ShowEssay"><FONT SIZE=2>QT Class RadDialog </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadHBoxLayout.html" target="ShowEssay"><FONT SIZE=2>QT Class RadHBoxLayout </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadLabel.html" target="ShowEssay"><FONT SIZE=2>QT Class RadLabel </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadLineEdit.html" target="ShowEssay"><FONT SIZE=2>QT Class RadLineEdit </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadMutex.html" target="ShowEssay"><FONT SIZE=2>QT Class RadMutex </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadMutexLocker.html" target="ShowEssay"><FONT SIZE=2>QT Class RadMutexLocker </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadObject.html" target="ShowEssay"><FONT SIZE=2>QT Class RadObject </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadPushButton.html" target="ShowEssay"><FONT SIZE=2>QT Class RadPushButton </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadTabWidget.html" target="ShowEssay"><FONT SIZE=2>QT Class RadTabWidget </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadTcpServer.html" target="ShowEssay"><FONT SIZE=2>QT Class RadTcpServer </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadTcpSocket.html" target="ShowEssay"><FONT SIZE=2>QT Class RadTcpSocket </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadTextEdit.html" target="ShowEssay"><FONT SIZE=2>QT Class RadTextEdit </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadThread.html" target="ShowEssay"><FONT SIZE=2>QT Class RadThread </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadVBoxLayout.html" target="ShowEssay"><FONT SIZE=2>QT Class RadVBoxLayout </FONT></A></LI><LI><A HREF="Essay_QT_Class_RadWidget.html" target="ShowEssay"><FONT SIZE=2>QT Class RadWidget </FONT></A></LI>
+
+</UL>
+
+</TD>
+</TR>
+</TABLE> 
+
+<hr>
+
+
+<!--------------------------------------------------------------------------------->
+<!---             Define an IFRAME control for the record details              ---->
+<!--------------------------------------------------------------------------------->
+<IFRAME name="ShowEssay" 
+        id="the_iframe"
+        onLoad="calcHeight();"
+        frameborder="0" 
+        vspace="0" 
+        hspace="0" 
+        marginwidth="0" 
+        marginheight="0" 
+        width="100%" 
+        Height="1"
+        scrolling="no" 
+        style="overflow:visible"
+        src="Essay_QT_Classes_Overview.html"
+        
+</IFRAME>
+
+</BODY>
+</HTML>

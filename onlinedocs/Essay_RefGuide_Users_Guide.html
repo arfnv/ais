@@ -1,0 +1,196 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>RefGuide User's Guide</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SRefGuide Installation and Update"><FONT SIZE=2>RefGuide Installation and Update</font></a></li><li><a href="#SRunning AisRefGuide"><FONT SIZE=2>Running AisRefGuide</font></a></li><li><a href="#SCreating Ontology Objects"><FONT SIZE=2>Creating Ontology Objects</font></a></li><li><a href="#SSpecial Characters"><FONT SIZE=2>Special Characters</font></a></li>
+</UL>
+
+<P><H2><A NAME="SRefGuide Installation and Update"></A>RefGuide Installation and Update</H2></P>		
+		    <div class="h2section" id="RefGuide Installation">		  
+		   <OL>
+           <LI>Check out the entire _RefGuide project from StarTeam into a folder named RefGuide.   </LI>
+           <LI>If not already constructed, add the following subdirectories to RefGuide:
+ <br>
+		      Bin		- Holds the AisRefGuide.db repository       <br>
+		      Foundry   - Holds the files to be evaluated by the aisRefGuide program   <br>
+		      wwwroot	- Holds the generated html documentation pages    <br>
+           </LI>
+            <LI> To work on the existing AIS Documentation: </LI>
+            <UL>
+            <LI>You may edit a document in CoreContent.  To edit, click on the CoreContent cabinet in the cabinets tab.  
+            The contents of this cabinet will appear in the right hand text pane. Double-click on the document to be 
+            edited. Edit the document as needed.   </LI>
+            <LI>To prepare for HTML generation of the AIS Documentation, copy all the files from the CoreContent folder and
+             Templates folder to Foundry. </LI>    
+            </UL>
+            <LI> To make own documentation and generate it using aisRefGuide program: </LI>
+            <UL>
+            <LI>Create a separate folder in RefGuide. </LI>
+            <LI>Create ontology objects as needed. See <a href="#Creating">Creating Ontology Objects</a> below. </LI>   
+            <LI>Save the created ontology objects in your created folder. </LI>  
+            <LI>To prepare for HTML generation of your own documentation, copy all the files from your created folder and
+             all the files in the Templates folder to Foundry. </LI>   
+             </UL>
+           <LI>  Click on Astartup.sl in the refguide directory to start up AIS. </LI>
+           <LI>Initialize RefGuide as follows:  </LI>  
+           <UL>
+	         <LI>Open the Cabinets Tab in the session form.  </LI>
+	         <LI>Right-click on the RefGuide cabinet. Select Import. Import Source/RefGuide.sl  </LI>
+	      </UL>
+         <LI>Return to the console tab and run RefGuide by entering "(aisRefGuide)" in the Console
+         command text area.  This command will generate a set of HTML document files in wwwroot.
+         For more options on running aisRefGuide, please see <a href="#Running">Running AisRefGuide</a></LI>
+         <LI>Copy the files from wwwroot into your ais/docs/onlinedocs directory.</LI>
+         </OL>
+		 </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRunning AisRefGuide"></A>Running AisRefGuide</H2></P>
+		    <div class="h2section" id="Ontologies">  
+		    <p>AisRefGuide may be run by entering any one of these <a name="Running">commands</a>  in the Console command text area. </p> 
+		    <blockquote><pre> (aisRefGuide)</pre></blockquote>
+		    <p>This runs aisRefGuide and generates the HTML documents in wwwroot.</p>
+		    <blockquote><pre>  (aisRefGuide "targetCabinet" "targetLambda" "export folder path") </pre></blockquote>
+		    <p> This command is used to extract any embedded documentation from a source file.The aisRefGuide Lambda will get the file from the "targetCabinet".  Then it writes the source files in the
+               Foundry subfolder in the "export folder path". The html output will be placed in the wwwroot subfolder also 
+               in the "export folder path".    </p>  
+            <p>Example: (aisRefGuide "JavaScript" "javaScript" "C://ais/libraries/javaScript/")  </p>
+            <p>Note: Just make sure you have the "wwwroot" and "Foundry" subfolders under the "export folder path". </p>
+		    <blockquote><pre>  
+(setq aisrefGuide.myVerboseSwitch true/false)  
+(aisRefGuide) </pre></blockquote> 
+		    <p> Setting myVerboseSwitch to <b>true</b> lets aisRefGuide print the time it takes in seconds to run
+		        aisRefGuide and all its child Lambdas.  Set myVerboseSwitch to false if you want to turn this timing option off. </p>
+ 			<blockquote><pre>  (setq aisRefGuide.exampleChecking true/false) 
+								(aisRefGuide)</pre></blockquote>
+		    <p> Setting exampleChecking to <b>true</b> lets aisRefGuide run the source code examples you have in the Syntax->Expression
+				field in the Example Ontology Object.  If the sample source code does not run, RefGuide prints the file name of the
+                file containing the incorrect source code. Set exampleChecking to false if you want to turn this  option off. </p>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCreating Ontology Objects"></A>Creating Ontology Objects</H2></P>
+		    <div class="h2section" id="Creating Ontology Objects">
+		    <h3><a name="Creating"> Document Ontology Objects:</a></h3>
+		    <p>See the <a href="Essay_RefGuide_Ontology_Examples.html#SDocument Ontology">Document Ontology Example</a>.   
+		     The Document  Ontology  is divided into KnowledgeBase and the list of Essays.  The
+            KnowledgeBase division is composed of the Document Title, Topic, Subtopic and a list of Keywords (termed as Human
+            Keywords). The contents of KnowledgeBase are used to cross-index, cross link and search for Documents and Essays.  
+            The list of Essays enclosed in the &ltEssay&gt tags is composed of the topical subdivisions of  the document.  </p> 
+            <p>To create a Document Ontology Object, just fill in values for the XML tags in the Document Ontology  and save it as
+            <b>"Document_DocumentOntologyTitle.html"</b> </p>
+            <h3>Essay Ontology Objects:</h3>
+		    <p>See the <a href="Essay_RefGuide_Ontology_Examples.html#SEssay Ontology">Essay Ontology Example</a>.   Make sure that all the Essays in
+		    the &ltEssay&gt tags of the Document Ontology Object have its own corresponding Essay Ontology Object. The Essay  Ontology Template is divided into KnowledgeBase and the list of Sections.  The
+            KnowledgeBase division is composed of the Essay Title, Topic, Subtopic and a list of Human Keywords   The contents of KnowledgeBase are used to 
+            cross-index, cross link and search for Documents and Essays. The Sections contain the contents of the Essay Object. </p>            
+            <p>To create an Essay Ontology Object, just fill in values for the XML tags in the Essay Ontology  and save it as
+            <b>"Essay_EssayOntologyTitle.html"</b>.  Make sure that the title of your Essay Ontology Object is the same as the
+            Essay specified in the Document Ontology Object. </p>
+           <h3>Datatype Ontology Objects:</h3>
+		    <p>See the <a href="Essay_RefGuide_Ontology_Examples.html#SDatatype Ontology">Datatype Ontology Example</a>.  
+              The Datatype Ontology Template is divided into KnowledgeBase and the 
+		    list of Sections. The Datatype Ontology objects are cross-linked and cross-referenced
+		    with other Datatype Ontology Objects and with Function and Example Ontology Objects.  </p> 
+            <p>To create a Datatype Ontology Object, just fill in values for the XML tags in the Datatype Ontology  and save it as
+            <b>"Datatype_DatatypeName.html".</b>   </p>
+            <h3>Function  Ontology Objects:</h3>
+		    <p>See the <a href="Essay_RefGuide_Ontology_Examples.html#SFunction Ontology">Function Ontology Example</a>. 
+             The Function Ontology Object are cross-linked
+		    through referencing the <b>&ltArgumentTypes&gt</b> tag, <b>&ltDatatype&gt</b> tag and <b>&ltRelatedFunctions&gt </b> tag. </p>  
+		    <p>  <b>&ltDatatype&gt</b>  tag contains all the supported datatypes for the function. <b>&ltRelatedFunctions&gt</b> tag
+		        contains the list of the related AIS Functions.</p> 
+		    <p>  <b>&ltArgumentTypes&gt</b> tag in the KnowledgeBase contain the AIS Datatypes of the Function arguments. 
+		    Since functions support multiple datatypes, the ArgumentType for a function of one datatype may not be the same for
+		    another datatype.  To differentiate the
+		    ArgumentTypes for the Datatypes, just add the Datatype to the ArgumentType tag (&ltArgumentType-Datatype&gt). </p>
+		    <p>For instance, the <b>inside</b> function
+		    works on Vectors and Dictionaries.  For the Dictionary Datatype, the syntax is: <b> (inside key dictionary)  </b>.  The Argument Names with its
+		    corresponding AIS Datatypes are as follows:  </p>
+		    <UL>   
+		        <LI> key - String or Text  </LI>
+		        <LI> dictionary - Dictionary </LI>		    
+		    </UL>          
+		    <p> For the Vector Datatype, the syntax is: <b> (inside obj vector)  </b>.  The Argument Names with its
+		    corresponding AIS Datatypes are as follows:  </p>
+		    <UL>   
+		        <LI> obj - Character String Symbol Vector BitVector ByteVector IntVector FltVector ObjVector Structure Dictionary Directory 
+		           Matrix NumMatrix Integer Float Number Complex  </LI>
+		        <LI> vector - Vector BitVector ShortVector IntVector NumVector  </LI>		    
+		    </UL>    
+		    <p> Therefore, the <b>&ltArgumentName&gt</b> for the <b>inside</b> function may look like this: </p>
+		    <blockquote><pre>
+&ltArgumentTypes-Dictionary&gt String Text Dictionary &lt&#47ArgumentTypes-Dictionary&gt   
+&ltArgumentTypes-Vector&gt Character String Symbol Vector BitVector ByteVector Number Complex Vector
+		        IntVector FltVector ObjVector Structure Dictionary Directory Matrix NumMatrix Integer Float 
+		        BitVector ShortVector IntVector NumVector  &lt&#47ArgumentTypes-Vector&gt  </pre></blockquote>  
+		    <p> For functions with the same argument type regardless of the supported Datatype , there is no need to specify the Datatype in the
+                ArgumentType tag, <b>&ltArgumentTypes&gt</b> will do. Having the <b>&ltArgumentTypes&gt</b> tag may also mean that the contents inside
+                the <b>&ltArgumentTypes&gt</b>  tag is the default argument types of the other datatypes supported by the  function.
+                For the <b>inside</b> function, the ArgumentTypes tags may be written as:</p>
+             <blockquote><pre>
+&ltArgumentTypes-Dictionary&gt String Text Dictionary &lt&#47ArgumentTypes-Dictionary&gt   
+&ltArgumentTypes&gt Character String Symbol Vector BitVector ByteVector Number Complex Vector
+		        IntVector FltVector ObjVector Structure Dictionary Directory Matrix NumMatrix Integer Float 
+		        BitVector ShortVector IntVector NumVector  &lt&#47ArgumentTypes&gt  </pre></blockquote>  
+            <p> Like the  <b>&ltArgumentTypes&gt</b> tag, the <b>&ltOverview&gt</b>, <b>&ltUsage&gt</b>  and <b>&ltSyntax&gt</b> tags may specify the
+                specific supported Datatype of the Function if the contents of the Overview, Usage and Syntax tags
+                are unique to that function of the supported datatype. But for functions with the same text for
+                overview, usage or syntax,  there is no need to specify the Datatype in the tag. </p>    
+            <p>To create a Function Ontology Object,  just fill in values for the XML tags in the Function Ontology  and save it as
+            <b>"Function_FunctionName.html".</b>   </p>
+            <h3>Example Ontology Objects: </h3>
+            <p>See the <a href="Essay_RefGuide_Ontology_Examples.html#SExample Ontology">Example Ontology Example</a>. 
+             The Example Ontology objects are cross-linked and cross-referenced
+		    with other Example Ontology Objects and with Datatype and Function Ontology Objects.  </p>   
+		     <p>The <b>&ltTypeKeywords&gt</b> found in the KnowledgeBase refer to the function argument datatypes used in the example. </p>
+		    <p>To create an Example Ontology Object, just fill in values for the XML tags in the Example Ontology  and save it as
+            <b>"Example_Datatype_ExampleName_ExampleNumber.html". </b>  </p>
+            <p> Sample source code may be written either in the Example Ontology or the VMInstruction Ontology Objects.  RefGuide can check 
+                  whether the sample source code is working or not.  Working source code samples must be enclosed between &#60sc&#62 &#60&#47sc&#62 XML tags to 
+                  enable checking by RefGuide. If the user does not want to have the source code checked,  or if the purpose of such code is to 
+                   illustrate an error, &#60sc&#62 &#60&#47sc&#62 tags must be omitted.  </p>
+            <h3>VMInstruction Ontology Objects: </h3>
+            <p>Open the file <a href="Essay_RefGuide_Ontology_Examples.html#SVMInstruction Ontology">VMInstruction Ontology Example</a>.  To create a VMInstruction Ontology Object, 
+           just fill in values for the XML tags in the VMInstruction Ontology  and save it as
+            <b>"VMInstruction_VMInstructionName.html". </b>  </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSpecial Characters"></A>Special Characters</H2></P>
+		    <div class="h2section" id="Allowable Characters in RefGuide Files and Filenames"> 
+		    <h3>Special Characters in Ontology Objects</h3>
+		    <p> AIS RefGuide Ontologies read and evaluate alphanumeric characters as PCDATA or parsable character data.
+		    RefGuide also recognizes Special Characters but other Special Characters  must be represented in the 
+		    Ontology Objects as an HTML name or  RefGuide will either flag an error or wrongly evaluate and
+		    render the special character. </p>
+		    <p>Below is a list of Special Characters that must be represented in
+		    their HTML name:</p>   
+		    <UL>
+		    <LI> &lt  must be represented as &amplt   </LI>  
+		    <LI> &gt  must be represented as &ampgt   </LI>   
+		    <LI> &amp  must be represented as &ampamp   </LI>  
+		    <LI> &quot  must be represented as &ampquot  </LI> 
+		    </UL>   
+		    <h3>Special Characters in File Names</h3>    
+		    <p> Function and Example Ontology file names may contain special characters.  This happens because
+		    function names are part of the file names in the file naming convention for Function and Example Ontology Objects.
+		    (Please see <a href="#Creating">"Creating Ontology Objects"</a> above for file naming convention.)     </p>
+		    <p>Currently, file names containing special characters are renamed as <b>(sym)SpecialCharacterName</b>. 
+		    For instance, the function <b> &#42 </b> has the following files: Function_(sym)mul.html and Example_Complex_(sym)mul_002.html </p>
+		    </div>
+		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

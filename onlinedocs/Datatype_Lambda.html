@@ -1,0 +1,151 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lambda</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Lambda Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>Lambda Declaration</font></a></li><li><a href="#S3"><FONT SIZE=2>Lambda Properties</font></a></li><li><a href="#S4"><FONT SIZE=2>Object or Heap Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Lambda Overview</H4></FONT></P>
+		 <p class=MsoBodyText>Each Lambda is an executable software object which is storable as a fundamental 
+		 unit of data in an AIS repository.  The Lambda Object data type can be mobile between copies of Analytic Information Server across the 
+		 Internet. </p>   		   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>Lambda Declaration</H4></FONT></P>
+          <p>The lambda function supports the creation of unbound-unnamed Lambdas. The multiple ways of declaring 
+          bound-named Lambdas are as follows:</p>
+          <ul>
+          <li>defun</li>   
+          <li>defchild</li>
+          <li>defriend</li>                    
+          <li>deforphan</li>   
+          <li>defmethod</li> 
+          <li>defmacro</li>  
+          <li>defvm</li>      
+          </ul> 
+          <p> Each Lambda declaration contains the declaration of variables (including argument variables), the 
+           of Lambda interfaces, and any Lambda event keywords.  </p>        
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Lambda Properties</H4></FONT></P>
+          <p>An Lambda is a First Class Object. A First Class object in Analytic Information Server is any object that is fully 
+          exposed, i.e., all of the Structures are visible and modifiable by the other Lambdas in the system. All Lambdas 
+          have the following data structure elements: source code <b>(Sc)</b>, pseudo code instructions <b>(Pc)</b>, 
+          argument variables <b>(Av)</b>, self object variables <b>(Sv)</b>, persistent variables <b>(Pv)</b>, 
+          persistent class variables <b>(Cv)</b>, register variables <b>(Rv)</b>, temporary variables <b>(Tv)</b>, 
+          interfaces <b>(In)</b>, native code <b>(Nc)</b>, and the virtual machine emulator <b>(Vm)</b>. 
+          All Lambda structures can viewed and modified by the programmer.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Object or Heap Data Type</H4></FONT></P>
+          <p>The <b>Lambda</b> Data Type is an example of an AIS Object Data Type. </p>
+		  <p>The Analytic Information Server Object Types are stored in the <b>Heap</b> and are
+          managed by the <b>Heap manager</b>. The <b>Analytic Information Server Heap manager</b> 
+          supports object resizing, garbage collection, and anti-fragmentation algorithms so 
+          that the user may concentrate on the analysis and modeling of data rather than on 
+          memory management. Without exception, all of the <b>Object types</b> are identified 
+          by an <b>object id</b>. The <b>object id</b>  identifies a block of memory, managed by 
+          the <b>Analytic Information Server memory manager</b>, in which the Object's data is stored.</p>
+          <p>The Analytic Information Server Heap Object and Native Data types can be saved and 
+          loaded to and from persistent (disk file) storage at any time. Words with immediate 
+          data are saved on disk in fixed length records equal to the size of the Word. Words 
+          with Heap object references are saved in fixed length records, which are automatically 
+          expanded to include the contents of the Heap object, and any objects referenced by 
+          the Heap object, etc. This feature is called <b>Object Closure Management</b> and is 
+          automatic with every Analytic Information Server database save.</p>
+	      <p>Analytic Information Server Words may be loaded from any database repository record at 
+          any time. If the data in the record is immediate, the database load fills the Word with 
+          the immediate data. If the data in the record is an <b>object closure</b>, the database
+          load fills the Word with a <b>Heap object reference</b>, and all of the objects in the 
+          record are loaded back into the <b>Heap</b>  with the same referential relationships 
+          they had when they were saved in the repository.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Lambda object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Lambda_argCount_001.html">Example_Lambda_argCount_001</A></td>
+<td><A HREF="Example_Lambda_argFetch_001.html">Example_Lambda_argFetch_001</A></td>
+<td><A HREF="Example_Lambda_balance_001.html">Example_Lambda_balance_001</A></td>
+<td><A HREF="Example_Lambda_callcc_001.html">Example_Lambda_callcc_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_compareEQ_008.html">Example_Lambda_compareEQ_008</A></td>
+<td><A HREF="Example_Lambda_compareGE_008.html">Example_Lambda_compareGE_008</A></td>
+<td><A HREF="Example_Lambda_compareGT_008.html">Example_Lambda_compareGT_008</A></td>
+<td><A HREF="Example_Lambda_compareLE_008.html">Example_Lambda_compareLE_008</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_compareLT_008.html">Example_Lambda_compareLT_008</A></td>
+<td><A HREF="Example_Lambda_compareNE_008.html">Example_Lambda_compareNE_008</A></td>
+<td><A HREF="Example_Lambda_compare_008.html">Example_Lambda_compare_008</A></td>
+<td><A HREF="Example_Lambda_compile_001.html">Example_Lambda_compile_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_copy_008.html">Example_Lambda_copy_008</A></td>
+<td><A HREF="Example_Lambda_debugBrowsableProcs_001.html">Example_Lambda_debugBrowsableProcs_001</A></td>
+<td><A HREF="Example_Lambda_debug_001.html">Example_Lambda_debug_001</A></td>
+<td><A HREF="Example_Lambda_defchild_001.html">Example_Lambda_defchild_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_define(macro)_001.html">Example_Lambda_define(macro)_001</A></td>
+<td><A HREF="Example_Lambda_define_001.html">Example_Lambda_define_001</A></td>
+<td><A HREF="Example_Lambda_defmacro_001.html">Example_Lambda_defmacro_001</A></td>
+<td><A HREF="Example_Lambda_defmacro_002.html">Example_Lambda_defmacro_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_deforphan_001.html">Example_Lambda_deforphan_001</A></td>
+<td><A HREF="Example_Lambda_defriend_001.html">Example_Lambda_defriend_001</A></td>
+<td><A HREF="Example_Lambda_defun_001.html">Example_Lambda_defun_001</A></td>
+<td><A HREF="Example_Lambda_defun_002.html">Example_Lambda_defun_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_disassemble_001.html">Example_Lambda_disassemble_001</A></td>
+<td><A HREF="Example_Lambda_eval_001.html">Example_Lambda_eval_001</A></td>
+<td><A HREF="Example_Lambda_exportTab_001.html">Example_Lambda_exportTab_001</A></td>
+<td><A HREF="Example_Lambda_globalBinding_001.html">Example_Lambda_globalBinding_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_importTab_001.html">Example_Lambda_importTab_001</A></td>
+<td><A HREF="Example_Lambda_inspect_001.html">Example_Lambda_inspect_001</A></td>
+<td><A HREF="Example_Lambda_isLambda_001.html">Example_Lambda_isLambda_001</A></td>
+<td><A HREF="Example_Lambda_lambda_001.html">Example_Lambda_lambda_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_makeLambda_001.html">Example_Lambda_makeLambda_001</A></td>
+<td><A HREF="Example_Lambda_myself_001.html">Example_Lambda_myself_001</A></td>
+<td><A HREF="Example_Lambda_new_001.html">Example_Lambda_new_001</A></td>
+<td><A HREF="Example_Lambda_new_002.html">Example_Lambda_new_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_new_003.html">Example_Lambda_new_003</A></td>
+<td><A HREF="Example_Lambda_onError_001.html">Example_Lambda_onError_001</A></td>
+<td><A HREF="Example_Lambda_ref_017.html">Example_Lambda_ref_017</A></td>
+<td><A HREF="Example_Lambda_setq_005.html">Example_Lambda_setq_005</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_setq_015.html">Example_Lambda_setq_015</A></td>
+<td><A HREF="Example_Lambda_type_009.html">Example_Lambda_type_009</A></td>
+<td><A HREF="Example_Lambda_type_010.html">Example_Lambda_type_010</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

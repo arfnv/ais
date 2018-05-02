@@ -1,0 +1,257 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Brick setq 28</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> These examples show the <b>setq</b> function set a
+                  value to the Brick field.  The syntax for setting is as follows: setq RecordName[ Column Repeat Row ]
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Create a new Brick, named Contestant, and give it 5 Rows each containing two Columns(Name and Score). 
+               The second column(Score) repeats 20 times for each row.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant  (new Brick:  5 Name:Object:1 Score:Number:20))</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Name field as a Vector for the first row's first repeat.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[0 0 0] #("Anna Smith"))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Name field as a Vector for the second row.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[0 0 1] #("John Doe"))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Name field as a Vector for the third row. This example uses a symbol(Name:) instead of an integer index</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[Name: 0 2] #("Jane Baker"))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the first row and first repeat as 100.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 0 0] 100.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the first row and second repeat as 99.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 1 0] 99.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the second row and first repeat as 99.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 0 1] 99.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the second row and second repeat as 100.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 1 1] 100.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the third row and first repeat as 75.0. This example uses a symbol(Score:) instead of an integer index.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[Score: 0 2] 75.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the third row and second repeat as 75.0. This example uses a symbol(Score:) instead of an integer index.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[Score: 1 2] 75.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>setq</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_setq_024.html">BitVector setq 024</A></td>
+<td><A HREF="Example_Boolean_setq_016.html">Boolean setq 016</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_setq_017.html">Character setq 017</A></td>
+<td><A HREF="Example_Date_setq_019.html">Date setq 019</A></td>
+<td><A HREF="Example_Dictionary_setq_007.html">Dictionary setq 007</A></td>
+<td><A HREF="Example_Dictionary_setq_009.html">Dictionary setq 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_setq_010.html">Directory setq 010</A></td>
+<td><A HREF="Example_Directory_setq_011.html">Directory setq 011</A></td>
+<td><A HREF="Example_FltVector_setq_019.html">FltVector setq 019</A></td>
+<td><A HREF="Example_IntVector_setq_020.html">IntVector setq 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_setq_015.html">Lambda setq 015</A></td>
+<td><A HREF="Example_List_setq_025.html">List setq 025</A></td>
+<td><A HREF="Example_List_setq_026.html">List setq 026</A></td>
+<td><A HREF="Example_Matrix_setq_014.html">Matrix setq 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_setq_021.html">NumVector setq 021</A></td>
+<td><A HREF="Example_Number_setq_018.html">Number setq 018</A></td>
+<td><A HREF="Example_ObjVector_setq_022.html">ObjVector setq 022</A></td>
+<td><A HREF="Example_ObjectRepository_setq_027.html">ObjectRepository setq 027</A></td>
+</tr><tr>
+<td><A HREF="Example_PcodeVector_setq_023.html">PcodeVector setq 023</A></td>
+<td><A HREF="Example_ShortVector_setq_021.html">ShortVector setq 021</A></td>
+<td><A HREF="Example_String_setq_001.html">String setq 001</A></td>
+<td><A HREF="Example_Structure_setq_003.html">Structure setq 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setq_004.html">Structure setq 004</A></td>
+<td><A HREF="Example_Structure_setq_005.html">Structure setq 005</A></td>
+<td><A HREF="Example_Structure_setq_006.html">Structure setq 006</A></td>
+<td><A HREF="Example_Symbol_setq_001.html">Symbol setq 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_setq_002.html">Symbol setq 002</A></td>
+<td><A HREF="Example_Vector_setq_012.html">Vector setq 012</A></td>
+<td><A HREF="Example_Vector_setq_013.html">Vector setq 013</A></td>
+<td><A HREF="Example_Void_setq_015.html">Void setq 015</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_setq_Builtin.html">setq</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_ref_Builtin.html">ref(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Brick.html">Brick</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Brick compare 019</A></td>
+<td><A HREF="Example_Brick_compareEQ_019.html">Brick compareEQ 019</A></td>
+<td><A HREF="Example_Brick_compareGT_019.html">Brick compareGT 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_compareLE_019.html">Brick compareLE 019</A></td>
+<td><A HREF="Example_Brick_compareLT_019.html">Brick compareLT 019</A></td>
+<td><A HREF="Example_Brick_compareNE_019.html">Brick compareNE 019</A></td>
+<td><A HREF="Example_Brick_comparison_019.html">Brick comparison 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_copy_012.html">Brick copy 012</A></td>
+<td><A HREF="Example_Brick_isAtom_011.html">Brick isAtom 011</A></td>
+<td><A HREF="Example_Brick_isEqual_018.html">Brick isEqual 018</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Brick isIdentical 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_isObject_014.html">Brick isObject 014</A></td>
+<td><A HREF="Example_Brick_isType_022.html">Brick isType 022</A></td>
+<td><A HREF="Example_Brick_length_017.html">Brick length 017</A></td>
+<td><A HREF="Example_Brick_new_015.html">Brick new 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_ref_036.html">Brick ref 036</A></td>
+<td><A HREF="Example_Brick_setCdr_014.html">Brick setCdr 014</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_sizeof_029.html">Brick sizeof 029</A></td>
+<td><A HREF="Example_Brick_type_026.html">Brick type 026</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

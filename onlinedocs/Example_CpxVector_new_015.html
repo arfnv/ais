@@ -1,0 +1,240 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example CpxVector new 015</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> These examples show how to construct a CpxVector.
+
+                  A
+Vector with #void values is also constructed using the
+
+                  <b>new</b> function.
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note> Creates a new Cpx Vector containing 2 Character values.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq X (new Vector: complex: 2 1.0))	              </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60CpxVector 123456&#62</Returns></b></td></tr>
+</table><p><Note> Displays the contents of the Complex Vector.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display X)    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(cpx| #c1.0+0.0i #c1.0+0.0i )</Returns></b></td></tr>
+</table><p><Note> Creates a new  Cpx Vector with no values.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq X (new Vector: complex: 0 1.0 2.0))                 </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60CpxVector 234567&#62</Returns></b></td></tr>
+</table><p><Note> Displays the contents of the  Cpx Vector.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display X)    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(cpx| )</Returns></b></td></tr>
+</table><p><Note> Create a new Cpx Vector, with no value but with a set cdr value.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq X (new Vector: complex: q . #c5.0+6.0i ))                  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60CpxVector 345678&#62</Returns></b></td></tr>
+</table><p><Note> Displays the contents of the  CpxVector.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display X)    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(cpx| . #c5.0+6.0i)</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>If a reference to an existing object is modified to point to a new object 
+               (as shown in the above examples), the reference count on the previous object
+               on the heap will be decremented. If the count goes to zero, the object's allocated
+               memory area will automatically be reclaimed by the garbage collector. </p>
+              <p>If the returned value from new or make new is not captured, (e.g. using <b>setq</b>),
+               then the newly created heap object will not have any reference to it and, thus, 
+               will soon be swept away by the garbage collector. </p>
+              <p>The space required to hold the complex number data (not including headers, etc.)
+               is twice the size of a double. Internally, the real part of each complex number 
+               is stored as the first double and the imaginary part is stored as the 
+               second double. </p>
+         </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>new</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_new_013.html">BitVector new 013</A></td>
+<td><A HREF="Example_Brick_new_015.html">Brick new 015</A></td>
+<td><A HREF="Example_ByteVector_new_015.html">ByteVector new 015</A></td>
+<td><A HREF="Example_CpxVector_new_015.html">CpxVector new 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_new_004.html">Dictionary new 004</A></td>
+<td><A HREF="Example_Directory_new_005.html">Directory new 005</A></td>
+<td><A HREF="Example_Directory_new_006.html">Directory new 006</A></td>
+<td><A HREF="Example_FltVector_new_009.html">FltVector new 009</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_new_010.html">IntVector new 010</A></td>
+<td><A HREF="Example_Lambda_new_001.html">Lambda new 001</A></td>
+<td><A HREF="Example_Lambda_new_002.html">Lambda new 002</A></td>
+<td><A HREF="Example_Lambda_new_003.html">Lambda new 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_new_009.html">Matrix new 009</A></td>
+<td><A HREF="Example_Matrix_new_010.html">Matrix new 010</A></td>
+<td><A HREF="Example_NumMatrix_new_015.html">NumMatrix new 015</A></td>
+<td><A HREF="Example_NumVector_new_011.html">NumVector new 011</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_new_012.html">ObjVector new 012</A></td>
+<td><A HREF="Example_ObjectRepository_new_014.html">ObjectRepository new 014</A></td>
+<td><A HREF="Example_PcodeVector_new_014.html">PcodeVector new 014</A></td>
+<td><A HREF="Example_ShortVector_new_011.html">ShortVector new 011</A></td>
+</tr><tr>
+<td><A HREF="Example_String_new_001.html">String new 001</A></td>
+<td><A HREF="Example_Structure_new_003.html">Structure new 003</A></td>
+<td><A HREF="Example_Symbol_new_002.html">Symbol new 002</A></td>
+<td><A HREF="Example_Vector_new_007.html">Vector new 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_new_008.html">Vector new 008</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_new_Builtin.html">new</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_setq_Builtin.html">setq(Builtin)</A></td>
+<td><A HREF="Function_define_Builtin.html">define(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="CpxVector.html">CpxVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_CpxVector_append_013.html">CpxVector append 013</A></td>
+<td><A HREF="Example_CpxVector_avg_002.html">CpxVector avg 002</A></td>
+<td><A HREF="Example_CpxVector_binaryInsert_008.html">CpxVector binaryInsert 008</A></td>
+<td><A HREF="Example_CpxVector_binarySearch_008.html">CpxVector binarySearch 008</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_cdr_011.html">CpxVector cdr 011</A></td>
+<td><A HREF="Example_CpxVector_compare_020.html">CpxVector compare 020</A></td>
+<td><A HREF="Example_CpxVector_compareEQ_020.html">CpxVector compareEQ 020</A></td>
+<td><A HREF="Example_CpxVector_compareGE_020.html">CpxVector compareGE 020</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_compareGT_020.html">CpxVector compareGT 020</A></td>
+<td><A HREF="Example_CpxVector_compareLE_020.html">CpxVector compareLE 020</A></td>
+<td><A HREF="Example_CpxVector_compareLT_020.html">CpxVector compareLT 020</A></td>
+<td><A HREF="Example_CpxVector_compareNE_020.html">CpxVector compareNE 020</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_copy_013.html">CpxVector copy 013</A></td>
+<td><A HREF="Example_CpxVector_new_015.html">CpxVector new 015</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

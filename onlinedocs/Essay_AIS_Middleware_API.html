@@ -1,0 +1,1640 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>AIS Middleware API</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SOpenContext"><FONT SIZE=2>OpenContext</font></a></li><li><a href="#SCloseContext"><FONT SIZE=2>CloseContext</font></a></li><li><a href="#SAEvals"><FONT SIZE=2>AEvals</font></a></li><li><a href="#SEval"><FONT SIZE=2>Eval</font></a></li><li><a href="#SEvalAMP"><FONT SIZE=2>EvalAMP</font></a></li><li><a href="#SEvals"><FONT SIZE=2>Evals</font></a></li><li><a href="#SErrorTrace"><FONT SIZE=2>ErrorTrace</font></a></li><li><a href="#SGetConsoleLog"><FONT SIZE=2>GetConsoleLog</font></a></li><li><a href="#SGetDebugLog"><FONT SIZE=2>GetDebugLog</font></a></li><li><a href="#SGetHttpTransferLog"><FONT SIZE=2>GetHttpTransferLog</font></a></li><li><a href="#SGetResult"><FONT SIZE=2>GetResult</font></a></li><li><a href="#SGetValue"><FONT SIZE=2>GetValue</font></a></li><li><a href="#SInstructionTrace"><FONT SIZE=2>InstructionTrace</font></a></li><li><a href="#SInterruptNow"><FONT SIZE=2>InterruptNow</font></a></li><li><a href="#SIsEngineBusy"><FONT SIZE=2>IsEngineBusy</font></a></li><li><a href="#SSetDebugResponse"><FONT SIZE=2>SetDebugResponse</font></a></li><li><a href="#SSetHttpTransferResults"><FONT SIZE=2>SetHttpTransferResults</font></a></li><li><a href="#SSetValue"><FONT SIZE=2>SetValue</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Overview">
+		    <p class="MsoBodyText">Lambda
+		    Information Server, LambdaRemote, and Analytic Information Server are Hosting
+		    Clients for the Analytic Information Server database engine. Analytic Information
+		    Server is an in process ActiveX container server. Analytic Information Server
+		    always runs on the same machine and in the same process as its application
+		    client. LambdaRemote is an out of process ActiveX container server.
+		    LambdaRemote always runs in a different process, and possibly a different
+		    machine, from its application client. Each client launches a unique copy of
+		    LambdaRemote. LambdaShared is an out of process ActiveX container server.
+		    LambdaShared always runs in a different process, and possibly a different
+		    machine, from its application client. Each client shares a single copy of
+		    LambdaShared.</p>
+		    <p class="MsoBodyText">Lambda
+		    Information Server/LambdaRemote/LambdaShared fully supports a reflexive
+		    ActiveX container interface. Analytic Information Server database engine
+		    objects are automatically exported to the application client as ActiveX
+		    objects. ActiveX objects, passed by the application client, are
+		    automatically imported to the Analytic Information Server database engine as
+		    internal Analytic Information Server objects.</p>
+		    <p class="MsoBodyText" style="MARGIN-LEFT: 0.5in; TEXT-INDENT: -0.5in; tab-stops: .5in"><b style="mso-bidi-font-weight: normal">Note</b>:
+		     The Analytic Information Server/LambdaRemote/LambdaShared
+		    class interface is identical. The only difference is whether the programmer
+		    wishes in process or out of process execution.</p>
+		    <h2><a name="_Toc43190347"><u>EngineInterface
+		    Class</u></a><u>
+		    </u></h2>
+		    <p class="MsoBodyText">The public
+		    class for accessing the Analytic Information Server database engine, via the
+		    Analytic Information Server ActiveX component, is named: <b style="mso-bidi-font-weight: normal">EngineInterface</b>.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <p class="Note"><b style="mso-bidi-font-weight: normal">Note</b>:
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </p>
+		    <p class="Note">The
+		    THREAD id's used by the EngineInterface Class are NOT the same as host
+		    operating system threads. OS threads include a multi-threading timer
+		    interrupt service, a machine operations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    stack, and machine temporary storage; while EngineInterface class
+		    THREAD id's include a Analytic Information Server engine operations stack, a
+		    Analytic Information Server engine garbage collection stack, and Lambda
+		    Information Server engine thread temporary storage. For each OS thread
+		    allocated, the EngineInterface Class allocates a matching Analytic Information
+		    Server THREAD id.
+		 
+		    </p>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SOpenContext"></A>OpenContext</H2></P>		
+		    <div class="h2section" id="OpenContext">
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    OpenContext(VARIANT contextName, VARIANT memoryBytes,
+		 
+		    </b></p>
+		    <p class="MsoBodyText" style="MARGIN-LEFT: 1.5in; TEXT-INDENT: 0.5in"><b style="mso-bidi-font-weight: normal">VARIANT
+		    maxThreads);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">OpenContext</b>
+		    method establishes a link with the Analytic Information Server engine and opens
+		    a Analytic Information Server engine context with the specified name.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextName
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            name of the context to open.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            memoryBytes
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            number of bytes to allocate for the context memory work space (from
+		            3 meg to 400 meg).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            maxThreads
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            maximum number of Analytic Information Server engine thread structures
+		            for this context.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            <b style="mso-bidi-font-weight: normal">contextID</b> for the
+		            context just created. If an error occurs, this will be a negative
+		            number as an error code.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCloseContext"></A>CloseContext</H2></P>		
+		    <div class="h2section" id="CloseContext">
+		  <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    CloseContext(VARIANT contextID);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">CloseContext</b>
+		    method destroys the link with the Analytic Information Server engine and closes
+		    the Analytic Information Server engine context with the specified name.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the context to close.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">If
+		            an error occurs, this will be a negative number as an error code.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAEvals"></A>AEvals</H2></P>		
+		    <div class="h2section" id="AEvals">
+		  <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    AEvals(VARIANT scriptString);</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">The
+		    <b style="mso-bidi-font-weight: normal">AEvals</b> method passes a script
+		    string to the Analytic Information Server engine for evaluation (asynchronous).&nbsp;
+		    No context ID, thread ID, or call back object are passed to this
+		    method, because the method makes a number of assumptions. First, the AEvals
+		    method assumes that the context ID is that associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. Second, the AEvals method always creates a new back ground OS
+		    thread and allocates a new back ground EngineInterface thread ID. Third, no
+		    call back object is passed because the AEvals method assumes that the
+		    programmer, to communicate with the asynchronous back ground task, will use
+		    the polling interface methods supplied with the EngineInterface class.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the AEvals method is
+		    invoked, the AEvals method will open the &quot;default&quot; context with a
+		    memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            scriptString
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            Lisp script string to be evaluated.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">If
+		            the back ground thread was initiated successfully, returns -1;
+		            otherwise, returns a string error message.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEval"></A>Eval</H2></P>		
+		    <div class="h2section" id="Eval">
+			   <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    Eval(VARIANT contextID, VARIANT threadID, VARIANT callBackObject,
+		 
+		    </b></p>
+		    <p class="MsoBodyText" style="MARGIN-LEFT: 1in; TEXT-INDENT: 0.5in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    scriptString);</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b>
+		    </p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">The
+		    <b style="mso-bidi-font-weight: normal">Eval</b> method passes a script
+		    string to the Analytic Information Server engine for evaluation (synchronous).&nbsp;
+		    The Eval method evaluates the script string synchronously using the
+		    existing OS thread, in the EngineInterface context ID specified, using the
+		    EngineInterface thread ID specified, and with the call back object
+		    specified.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the Eval method uses the context ID
+		    associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the Eval
+		    method is invoked with an empty context ID, the Eval method will open the
+		    &quot;default&quot; context with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the Eval opens a new temporary
+		    EngineInterface thread ID.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            callBackObject
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            COM call back object (see callBackObject [virtual] class).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            scriptString
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            Lisp script string to be evaluated.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            result of evaluation with Analytic Information Server engine objects
+		            returned as <b style="mso-bidi-font-weight: normal">LambdaInterface</b>
+		            class objects.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEvalAMP"></A>EvalAMP</H2></P>		
+		    <div class="h2section" id="EvalAMP">
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    EvalAMP(VARIANT speachActString, VARIANT sessionID, VARIANT httpHeader);</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">The
+		    <b style="mso-bidi-font-weight: normal">EvalAMP</b> method passes a speech
+		    act string to the Analytic Information Server engine for evaluation (see the
+		    Lambda Message Protocol document).&nbsp; No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method makes a number of assumptions. First, the EvalAMP method
+		    assumes that the context ID is that associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. Second, the EvalAMP method always uses the existing OS thread and
+		    allocates a new temporary EngineInterface thread ID. Third, no call back
+		    object is passed because the EvalAMP method assumes that the programmer will
+		    not communicate with the synchronous task until it is complete.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the EvalAMP method is
+		    invoked, the EvalAMP method will open the &quot;default&quot; context with a
+		    memory space of 32 megabytes and one thread. Except in the case where the
+		    speech act string contains initialization commands.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            speachActString
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            speech act string to be evaluated.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            sessionID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            application session ID.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            httpHeader
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            application http header.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            result of evaluating the speachActString with Analytic Information
+		            Server engine objects returned as <b style="mso-bidi-font-weight: normal">LambdaInterface</b>
+		            class objects.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEvals"></A>Evals</H2></P>		
+		    <div class="h2section" id="Evals">
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    Evals(VARIANT contextID, VARIANT threadID, VARIANT callBackObject,
+		 
+		    </b></p>
+		    <p class="MsoBodyText" style="MARGIN-LEFT: 1in; TEXT-INDENT: 0.5in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    scriptString);</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">The
+		    <b style="mso-bidi-font-weight: normal">Evals</b> method passes a script
+		    string to the Analytic Information Server engine for evaluation (synchronous).&nbsp;
+		    The Evals method evaluates the script string synchronously using the
+		    existing OS thread, in the EngineInterface context ID specified, using the
+		    EngineInterface thread ID specified, and with the call back object
+		    specified.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the Evals method uses the context ID
+		    associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the Evals
+		    method is invoked with an empty context ID, the Evals method will open the
+		    &quot;default&quot; context with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the Evals opens a new temporary
+		    EngineInterface thread ID.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            callBackObject
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            COM call back object (see callBackObject [virtual] class).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            scriptString
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            Lisp script string to be evaluated.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            result of evaluation with Analytic Information Server engine objects
+		            returned as ascii string object references.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SErrorTrace"></A>ErrorTrace</H2></P>		
+		    <div class="h2section" id="ErrorTrace">
+		   <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    ErrorTrace(VARIANT contextID, VARIANT threadID, VARIANT toggleSwitch);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">ErrorTrace</b>
+		    method sets, and returns the Analytic Information Server engine error trace
+		    on/off switch.&nbsp;</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the ErrorTrace method uses the context ID
+		    associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the
+		    ErrorTrace method is invoked with an empty context ID, the ErrorTrace method
+		    will open the &quot;default&quot; context with a memory space of 32
+		    megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the ErrorTrace method uses the thread ID
+		    associated with the back ground thread (opened by the AEvals method).</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            toggleSwitch
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            error trace toggle switch (0 = off, 1 = on).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            resulting state of the error trace switch (0 = off, 1 = on).</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGetConsoleLog"></A>GetConsoleLog</H2></P>		
+		    <div class="h2section" id="GetConsoleLog">
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    GetConsoleLog();</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">GetConsoleLog</b>
+		    method returns the contents of the console writeln log written during an
+		    AEvals method evaluation or an empty result if the AEvals method has not
+		    written to the console writeln log.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method always refers to the context ID and thread ID associated
+		    with the AEvals method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the GetConsoleLog
+		    method is invoked, the GetConsoleLog method will open the
+		    &quot;default&quot; context with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            contents of the console writeln log written during an AEvals method
+		            evaluation.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGetDebugLog"></A>GetDebugLog</H2></P>		
+		    <div class="h2section" id="GetDebugLog">
+		   <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    GetDebugLog();</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">GetDebugLog</b>
+		    method returns the contents of the debugger dialog log written during an
+		    AEvals method evaluation or an empty result if the AEvals method has not
+		    written to the debugger dialog log.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method always refers to the context ID and thread ID associated
+		    with the AEvals method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the GetDebugLog
+		    method is invoked, the GetDebugLog method will open the &quot;default&quot;
+		    context with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            contents of the debugger dialog log written during an AEvals method
+		            evaluation.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGetHttpTransferLog"></A>GetHttpTransferLog</H2></P>		
+		    <div class="h2section" id="GetHttpTransferLog">
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    GetHttpTransferLog();</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">GetHttpTransferLog</b>
+		    method returns the contents of the http transfer log written during an
+		    AEvals method evaluation or an empty result if the AEvals method has not
+		    written to the http transfer log.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method always refers to the context ID and thread ID associated
+		    with the AEvals method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the
+		    GetHttpTransferLog method is invoked, the GetDebugLog method will open the
+		    &quot;default&quot; context with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            contents of the http transfer log written during an AEvals method
+		            evaluation.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGetResult"></A>GetResult</H2></P>		
+		    <div class="h2section" id="GetResult">
+			   <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    GetResult();</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">GetResult</b>
+		    method returns the results of an AEvals method evaluation or an empty result
+		    if the AEvals method has not completed. The IsEngineBusy method can also be
+		    used to test for AEvals method completion before invoking the GetResult
+		    method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method always refers to the context ID and thread ID associated
+		    with the AEvals method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the GetResult method
+		    is invoked, the GetResult method will open the &quot;default&quot; context
+		    with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            result of AEvals method evaluation with Analytic Information Server
+		            engine objects returned as ascii string object references.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGetValue"></A>GetValue</H2></P>		
+		    <div class="h2section" id="GetValue">
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    GetValue(VARIANT contextID, VARIANT threadID, VARIANT symbolName);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">GetValue</b>
+		    method returns the contents of the specified global symbol name and exports
+		    any Analytic Information Server internal objects as ActiveX objects of class <b style="mso-bidi-font-weight: normal">LambdaInterface</b>.&nbsp;</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the GetValue method uses the context ID
+		    associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the
+		    GetValue method is invoked with an empty context ID, the GetValue method
+		    will open the &quot;default&quot; context with a memory space of 32
+		    megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the GetValue method uses the thread ID
+		    associated with the back ground thread (opened by the AEvals method).</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            symbolName
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            name of the Analytic Information Server global variable whose contents
+		            are to be returned.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            contents of the specified global variable with Analytic Information
+		            Server engine objects returned as <b style="mso-bidi-font-weight: normal">LambdaInterface</b>
+		            class objects.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SInstructionTrace"></A>InstructionTrace</H2></P>		
+		    <div class="h2section" id="InstructionTrace">
+		   <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    InstructionTrace(VARIANT contextID, VARIANT threadID, VARIANT toggleSwitch);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">InstructionTrace</b>
+		    method sets, and returns the Analytic Information Server engine instruction
+		    trace on/off switch.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the InstructionTrace method uses the
+		    context ID associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the
+		    InstructionTrace method is invoked with an empty context ID, the
+		    InstructionTrace method will open the &quot;default&quot; context with a
+		    memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the InstructionTrace method uses the thread
+		    ID associated with the background thread (opened by the AEvals method).</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            toggleSwitch
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            instruction trace toggle switch (0 = off, 1 = on).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            resulting state of the instruction trace switch (0 = off, 1 = on)..</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SInterruptNow"></A>InterruptNow</H2></P>		
+		    <div class="h2section" id="InterruptNow">
+			  <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    InterruptNow(VARIANT contextID, VARIANT threadID);</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">The
+		    <b style="mso-bidi-font-weight: normal">InterruptNow</b> method turns on the
+		    Analytic Information Server engine interrupt now switch.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the InterruptNow method uses the context
+		    ID associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the
+		    InterruptNow method is invoked with an empty context ID, the InterruptNow
+		    method will open the &quot;default&quot; context with a memory space of 32
+		    megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the InterruptNow method uses the thread ID
+		    associated with the background thread (opened by the AEvals method).</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">Always
+		            returns 1.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SIsEngineBusy"></A>IsEngineBusy</H2></P>		
+		    <div class="h2section" id="IsEngineBusy">
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT
+		    IsEngineBusy(VARIANT contextID, VARIANT threadID);</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">The
+		    <b style="mso-bidi-font-weight: normal">IsEngineBusy</b> method returns the
+		    busy state of the EngineInterface context ID and thread ID specified.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the IsEngineBusy method uses the context
+		    ID associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the
+		    IsEngineBusy method is invoked with an empty context ID, the IsEngineBusy
+		    method will return 0 (idle).</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the IsEngineBusy method uses the thread ID
+		    associated with the back ground thread (opened by the AEvals method).</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in; mso-pagination: widow-orphan lines-together">The
+		            resulting busy state of the context ID and thread ID specified (0 =
+		            idle, 1 = busy).</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSetDebugResponse"></A>SetDebugResponse</H2></P>		
+		    <div class="h2section" id="SetDebugResponse">
+			    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    SetDebugResponse(VARIANT resultValue);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">SetDebugResponse</b>
+		    method returns the user response to the debugger dialog log written during
+		    an AEvals method evaluation.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method always refers to the context ID and thread ID associated
+		    with the AEvals method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the SetDebugResponse
+		    method is invoked, the SetDebugResponse method will open the
+		    &quot;default&quot; context with a memory space of 32 megabytes.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            userResponse
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            user response after seeing the contents of the debugger dialog log
+		            written during an AEvals method evaluation.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">Always
+		            returns 0.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSetHttpTransferResults"></A>SetHttpTransferResults</H2></P>		
+		    <div class="h2section" id="SetHttpTransferResults">
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    SetHttpTransferResults(VARIANT httpResult);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">SetHttpTransferResults</b>
+		    method returns the results of the http transfer log request, written during
+		    an AEvals method evaluation.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">No
+		    context ID, thread ID, or call back object are passed to this method,
+		    because the method always refers to the context ID and thread ID associated
+		    with the AEvals method.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the &quot;default&quot; context has not be opened when the
+		    GetHttpTransferResults method is invoked, the GetHttpTransferResults method
+		    will open the &quot;default&quot; context with a memory space of 32
+		    megabytes.</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            httpResult
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            http result after responding to contents of the http transfer log
+		            written during an AEvals method evaluation.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">Always
+		            returns 0.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSetValue"></A>SetValue</H2></P>		
+		    <div class="h2section" id="SetValue">
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">VARIANT
+		    SetValue(VARIANT contextID, VARIANT threadID, VARIANT symbolName,</b></p>
+		    <p class="MsoBodyText" style="MARGIN-LEFT: 1in; TEXT-INDENT: 0.5in"><b style="mso-bidi-font-weight: normal">VARIANT
+		    newValue);</b></p>
+		    <p class="MsoBodyText"><b style="mso-bidi-font-weight: normal">COM
+		    Method</b></p>
+		    <p class="MsoBodyText">The <b style="mso-bidi-font-weight: normal">SetValue</b>
+		    method sets the contents of the specified global symbol name to the
+		    specified new value and imports any application client ActiveX objects as
+		    internal Analytic Information Server objects of type <b style="mso-bidi-font-weight: normal">HostObject</b>.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the context ID argument is empty, the SetValue method uses the context ID
+		    associated with the <b style="mso-bidi-font-weight: normal">&quot;default&quot;</b>
+		    context. If the &quot;default&quot; context has not be opened when the
+		    SetValue method is invoked with an empty context ID, the SetValue method
+		    will open the &quot;default&quot; context with a memory space of 32
+		    megabytes.</p>
+		    <p class="MsoBodyText" style="mso-pagination: widow-orphan lines-together">If
+		    the thread ID argument is empty, the SetValue method uses the thread ID
+		    associated with the back ground thread (opened by the AEvals method).</p>
+		    <p class="MsoBodyText">&nbsp;
+		 
+		    </p>
+		    <table style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0in 5.4pt 0in 5.4pt" cellspacing="0" cellpadding="0" border="0">
+		      <tbody>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            contextID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the context to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            threadID
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            ID of the thread to be used.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            symbolName
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            name of the Analytic Information Server global variable whose contents
+		            are to be set.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">VARIANT&nbsp;
+		            newValue
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            new value.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">Result
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 162.9pt; PADDING-TOP: 0in" valign="top" width="272">
+		            <p class="TableText" style="MARGIN: 2pt 0in"><b style="mso-bidi-font-weight: normal">return(VARIANT)
+		 
+		            </b></p>
+		          </td>
+		          <td style="PADDING-RIGHT: 5.4pt; PADDING-LEFT: 5.4pt; PADDING-BOTTOM: 0in; WIDTH: 315.9pt; PADDING-TOP: 0in" valign="top" width="527">
+		            <p class="TableText" style="MARGIN: 2pt 0in">The
+		            contents of the specified global variable with Analytic Information
+		            Server engine objects returned as <b style="mso-bidi-font-weight: normal">LambdaInterface</b>
+		            class objects.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

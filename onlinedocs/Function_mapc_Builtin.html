@@ -1,0 +1,653 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>mapc</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+      
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in <b>{vector}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>Structure</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b>
+             to each value in <b>{structure}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>Dictionary</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in <b>{dictionary}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>Directory</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in <b>{directory}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>Matrix</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in <b>{matrix}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>NumMatrix</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in <b>{nummatrix}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>Pair</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in the<b>{pair}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+            <h3>List</h3>
+
+	         <p> The <b>mapc</b> Function applies the specified function <b>{proc}</b> 
+             to each value in the<b>{list}</b>.  The <b>mapc</b> function returns the 
+             value resulting from the last mapping of the specified function.    The function 
+             <b>{proc}</b> must be a function that requires a single argument.</p>
+        
+    </Overview>
+ <p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+      
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the Vector.  It is a simpler than coding a 
+           loop and applying a function to each Vector element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{vector}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length vector) do (proc vector[i])) </b> </p>
+        
+          <h3>Structure</h3>
+
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the Vector.  It is a simpler than coding a 
+           loop and applying a function to each Structure element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{structure}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length structure) do (proc structure[i])) </b> </p>
+        
+          <h3>Dictionary</h3>
+
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the Vector.  It is a simpler than coding a 
+           loop and applying a function to each Dictionary element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{dictionary}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length dictionary) do (proc dictionary[i])) </b> </p>
+        
+          <h3>Directory</h3>
+
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the Vector.  It is a simpler than coding a 
+           loop and applying a function to each Directory element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{directory}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length directory) do (proc directory[i])) </b> </p>
+        
+          <h3>Matrix</h3>
+
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the Matrix.  It is a simpler than coding a 
+           loop and applying a function to each Matrix element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{matrix}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length matrix) do (proc matrix[i])) </b> </p>
+        
+          <h3>NumMatrix</h3>
+
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the NumMatrix.  It is a simpler than coding a 
+           loop and applying a function to each NumMatrix element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{matrix}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length matrix) do (proc matrix[i])) </b> </p>
+        
+          <h3>Pair</h3>
+
+        <p>The <b>mapc</b> function is a non-destructive function that behaves like the <b>map</b> 
+            with the difference being the return value is the value returned by the last function 
+            whereas <b>mapc</b> returns a new copy of the Pair or List.  It is a simpler than coding a 
+           loop and applying a function to each Pair or List element. For instance, the <b>mapc</b> 
+           function, with arguments of <b>{proc}</b> and <b>{pair}</b>, is equivalent to the 
+           following generic loop code: </p>
+           <p><b>(loop for i from 0 until (length pair) do (proc pair[i])) </b> </p>
+        
+    </Usage>
+ 
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc vector)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>vector </b></td><td><FONT COLOR=blue><i>Vector FltVector ShortVector IntVector NumVector </i></FONT></td>
+<td> Vector containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc structure)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>structure </b></td><td><FONT COLOR=blue><i>Structure </i></FONT></td>
+<td> Structure containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+      
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc dictionary)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>dictionary </b></td><td><FONT COLOR=blue><i>Dictionary </i></FONT></td>
+<td> Dictionary containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc directory)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>directory </b></td><td><FONT COLOR=blue><i>Directory </i></FONT></td>
+<td> Directory containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc matrix)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>matrix </b></td><td><FONT COLOR=blue><i>Matrix </i></FONT></td>
+<td> Matrix containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc nummatrix)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>nummatrix </b></td><td><FONT COLOR=blue><i>NumMatrix </i></FONT></td>
+<td> NumMatrix containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p> (mapc proc pair)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>pair </b></td><td><FONT COLOR=blue><i>Pair</i></FONT></td>
+<td> A Pair containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+       <p> (mapc proc list)</p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>proc </b></td><td><FONT COLOR=blue><i>Function </i></FONT></td>
+<td> A function requiring a single argument. </td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b> list </b></td><td><FONT COLOR=blue><i>List </i></FONT></td>
+<td> A  List containing the argument values for the function {proc} </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>The result of the last invocation of the function <b>{proc}</b>.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_Structure.html">Structure</A></td>
+<td><A HREF="Datatype_Dictionary.html">Dictionary</A></td>
+<td><A HREF="Datatype_Directory.html">Directory</A></td>
+<td><A HREF="Datatype_Vector.html">Vector</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Matrix.html">Matrix</A></td>
+<td><A HREF="Datatype_Pair.html">Pair</A></td>
+<td><A HREF="Datatype_List.html">List</A></td>
+<td><A HREF="Datatype_ShortVector.html">ShortVector</A></td>
+</tr><tr>
+<td><A HREF="Datatype_NumMatrix.html">NumMatrix</A></td>
+<td><A HREF="Datatype_FltVector.html">FltVector</A></td>
+<td><A HREF="Datatype_IntVector.html">IntVector</A></td>
+<td><A HREF="Datatype_NumVector.html">NumVector</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_appendWriteln_Builtin.html">appendWriteln</A></td>
+<td><A HREF="Function_append_Builtin.html">append</A></td>
+<td><A HREF="Function_apply_Builtin.html">apply</A></td>
+<td><A HREF="Function_associate_Builtin.html">associate</A></td>
+</tr><tr>
+<td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td>
+<td><A HREF="Function_binarySearch_Builtin.html">binarySearch</A></td>
+<td><A HREF="Function_bitToIntegerVector_Builtin.html">bitToIntegerVector</A></td>
+<td><A HREF="Function_bitToNumberVector_Builtin.html">bitToNumberVector</A></td>
+</tr><tr>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+<td><A HREF="Function_c::r_Builtin.html">c::r</A></td>
+<td><A HREF="Function_car_Builtin.html">car</A></td>
+<td><A HREF="Function_cdr_Builtin.html">cdr</A></td>
+</tr><tr>
+<td><A HREF="Function_class_Builtin.html">class</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+</tr><tr>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+</tr><tr>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+<td><A HREF="Function_compile_Builtin.html">compile</A></td>
+<td><A HREF="Function_cons_Builtin.html">cons</A></td>
+<td><A HREF="Function_copy_Builtin.html">copy</A></td>
+</tr><tr>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+<td><A HREF="Function_debugDetective_Builtin.html">debugDetective</A></td>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+<td><A HREF="Function_dimension_Builtin.html">dimension</A></td>
+</tr><tr>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+</tr><tr>
+<td><A HREF="Function_fieldsOf_Builtin.html">fieldsOf</A></td>
+<td><A HREF="Function_findBlock_Builtin.html">findBlock</A></td>
+<td><A HREF="Function_find_Builtin.html">find</A></td>
+<td><A HREF="Function_freeBlock_Builtin.html">freeBlock</A></td>
+</tr><tr>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert</A></td>
+<td><A HREF="Function_inside_Builtin.html">inside</A></td>
+</tr><tr>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td>
+<td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td>
+</tr><tr>
+<td><A HREF="Function_isBound_Builtin.html">isBound</A></td>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td>
+<td><A HREF="Function_isCharAlphabetic_Builtin.html">isCharAlphabetic</A></td>
+<td><A HREF="Function_isCharAlphanumeric_Builtin.html">isCharAlphanumeric</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharLowercase_Builtin.html">isCharLowercase</A></td>
+<td><A HREF="Function_isCharName_Builtin.html">isCharName</A></td>
+<td><A HREF="Function_isCharNumeric_Builtin.html">isCharNumeric</A></td>
+<td><A HREF="Function_isCharUppercase_Builtin.html">isCharUppercase</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharWhitespace_Builtin.html">isCharWhitespace</A></td>
+<td><A HREF="Function_isChar_Builtin.html">isChar</A></td>
+<td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td>
+<td><A HREF="Function_isClass_Builtin.html">isClass</A></td>
+</tr><tr>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+<td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td>
+<td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td>
+</tr><tr>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+</tr><tr>
+<td><A HREF="Function_isInside_Builtin.html">isInside</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+<td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td>
+</tr><tr>
+<td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember</A></td>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+<td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td>
+</tr><tr>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+</tr><tr>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td>
+<td><A HREF="Function_isString_Builtin.html">isString</A></td>
+<td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td>
+</tr><tr>
+<td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td>
+<td><A HREF="Function_isText_Builtin.html">isText</A></td>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+<td><A HREF="Function_isVector_Builtin.html">isVector</A></td>
+</tr><tr>
+<td><A HREF="Function_last_Builtin.html">last</A></td>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+<td><A HREF="Function_lisp_Builtin.html">lisp</A></td>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+</tr><tr>
+<td><A HREF="Function_loadRepository_Builtin.html">loadRepository</A></td>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeDictionary_Builtin.html">makeDictionary</A></td>
+<td><A HREF="Function_makeGaussianMatrix_Builtin.html">makeGaussianMatrix</A></td>
+</tr><tr>
+<td><A HREF="Function_makeGramMatrix_Builtin.html">makeGramMatrix</A></td>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_makeStructure_Builtin.html">makeStructure</A></td>
+<td><A HREF="Function_map_Builtin.html">map</A></td>
+</tr><tr>
+<td><A HREF="Function_mapc_Builtin.html">mapc</A></td>
+<td><A HREF="Function_matrixGaussianEliminate_Builtin.html">matrixGaussianEliminate</A></td>
+<td><A HREF="Function_matrixGaussianSubstitute_Builtin.html">matrixGaussianSubstitute</A></td>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+</tr><tr>
+<td><A HREF="Function_methodsOf_Builtin.html">methodsOf</A></td>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+<td><A HREF="Function_morph_Builtin.html">morph</A></td>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+</tr><tr>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+<td><A HREF="Function_objectToDictionary_Builtin.html">objectToDictionary</A></td>
+<td><A HREF="Function_objectToDirectory_Builtin.html">objectToDirectory</A></td>
+<td><A HREF="Function_objectToList_Builtin.html">objectToList</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToMatrix_Builtin.html">objectToMatrix</A></td>
+<td><A HREF="Function_objectToNumMatrix_Builtin.html">objectToNumMatrix</A></td>
+<td><A HREF="Function_objectToNumVector_Builtin.html">objectToNumVector</A></td>
+<td><A HREF="Function_objectToStructure_Builtin.html">objectToStructure</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToVector_Builtin.html">objectToVector</A></td>
+<td><A HREF="Function_offset_Builtin.html">offset</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+<td><A HREF="Function_parent_Builtin.html">parent</A></td>
+</tr><tr>
+<td><A HREF="Function_parse_Builtin.html">parse</A></td>
+<td><A HREF="Function_pointer_Builtin.html">pointer</A></td>
+<td><A HREF="Function_product_Builtin.html">product</A></td>
+<td><A HREF="Function_proplist_Builtin.html">proplist</A></td>
+</tr><tr>
+<td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td>
+<td><A HREF="Function_putprop_Builtin.html">putprop</A></td>
+<td><A HREF="Function_quote_Builtin.html">quote</A></td>
+<td><A HREF="Function_rank_Builtin.html">rank</A></td>
+</tr><tr>
+<td><A HREF="Function_refAttributes_Builtin.html">refAttributes</A></td>
+<td><A HREF="Function_refValues_Builtin.html">refValues</A></td>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_remProp_Builtin.html">remProp</A></td>
+</tr><tr>
+<td><A HREF="Function_remove_Builtin.html">remove</A></td>
+<td><A HREF="Function_resize_Builtin.html">resize</A></td>
+<td><A HREF="Function_reverse_Builtin.html">reverse</A></td>
+<td><A HREF="Function_saveImmediate_Builtin.html">saveImmediate</A></td>
+</tr><tr>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+<td><A HREF="Function_saveRepository_Builtin.html">saveRepository</A></td>
+<td><A HREF="Function_send_Builtin.html">send</A></td>
+<td><A HREF="Function_setAttributes_Builtin.html">setAttributes</A></td>
+</tr><tr>
+<td><A HREF="Function_setBlock_Builtin.html">setBlock</A></td>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+</tr><tr>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+<td><A HREF="Function_stringToBVector_Builtin.html">stringToBVector</A></td>
+</tr><tr>
+<td><A HREF="Function_stringToVector_Builtin.html">stringToVector</A></td>
+<td><A HREF="Function_string_Builtin.html">string</A></td>
+<td><A HREF="Function_super_Builtin.html">super</A></td>
+<td><A HREF="Function_svmRegression_Builtin.html">svmRegression</A></td>
+</tr><tr>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td>
+<td><A HREF="Function_vectorBinaryInnerProduct_Builtin.html">vectorBinaryInnerProduct</A></td>
+<td><A HREF="Function_vectorBipolarInnerProduct_Builtin.html">vectorBipolarInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorCosineInnerProduct_Builtin.html">vectorCosineInnerProduct</A></td>
+<td><A HREF="Function_vectorCubeInnerProduct_Builtin.html">vectorCubeInnerProduct</A></td>
+<td><A HREF="Function_vectorDelete_Builtin.html">vectorDelete</A></td>
+<td><A HREF="Function_vectorExpInnerProduct_Builtin.html">vectorExpInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td>
+<td><A HREF="Function_vectorInnerProduct_Builtin.html">vectorInnerProduct</A></td>
+<td><A HREF="Function_vectorLogInnerProduct_Builtin.html">vectorLogInnerProduct</A></td>
+<td><A HREF="Function_vectorQuartInnerProduct_Builtin.html">vectorQuartInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorQuintInnerProduct_Builtin.html">vectorQuintInnerProduct</A></td>
+<td><A HREF="Function_vectorSigmoidInnerProduct_Builtin.html">vectorSigmoidInnerProduct</A></td>
+<td><A HREF="Function_vectorSineInnerProduct_Builtin.html">vectorSineInnerProduct</A></td>
+<td><A HREF="Function_vectorSquareInnerProduct_Builtin.html">vectorSquareInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorTanInnerProduct_Builtin.html">vectorTanInnerProduct</A></td>
+<td><A HREF="Function_vectorTanhInnerProduct_Builtin.html">vectorTanhInnerProduct</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

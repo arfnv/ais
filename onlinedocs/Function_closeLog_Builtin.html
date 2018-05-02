@@ -1,0 +1,369 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>closeLog</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+		<p>The <b>closeLog</b> function stops writing the an open log file.  It may have a string argument as a note that will
+			be written at the end of the log file.  If there is no opened log file this function returns false. </p>
+        </Overview>
+ <p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+        <p>Use the <b>closeLog</b> function to close the log file opened using <b>openLog</b>.
+		</p>
+        </Usage>
+ 
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression><p>(close [aNote]) </p></Expression>
+	</b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>aNote</b></td><td><FONT COLOR=blue><i>String</i></FONT></td>
+<td> Optional information to be written to the log.</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return> 
+	    <p>Returns the Boolean value true, or false if an error occurred.  This function will also return false if
+		thre is no opened log file.
+        </p>
+	    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_String.html">String</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_(sym)mulValue_Builtin.html">&#42&#61</A></td>
+<td><A HREF="Function_appendWriteln_Builtin.html">appendWriteln</A></td>
+<td><A HREF="Function_append_Builtin.html">append</A></td>
+<td><A HREF="Function_balance_Builtin.html">balance</A></td>
+</tr><tr>
+<td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td>
+<td><A HREF="Function_binarySearch_Builtin.html">binarySearch</A></td>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+<td><A HREF="Function_character_Builtin.html">character</A></td>
+</tr><tr>
+<td><A HREF="Function_clean_Builtin.html">clean</A></td>
+<td><A HREF="Function_closeLog_Builtin.html">closeLog</A></td>
+<td><A HREF="Function_code_Builtin.html">code</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+</tr><tr>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+<td><A HREF="Function_compress_Builtin.html">compress</A></td>
+</tr><tr>
+<td><A HREF="Function_cons_Builtin.html">cons</A></td>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+<td><A HREF="Function_date_Builtin.html">date</A></td>
+<td><A HREF="Function_day_Builtin.html">day</A></td>
+</tr><tr>
+<td><A HREF="Function_days360_Builtin.html">days360</A></td>
+<td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td>
+<td><A HREF="Function_debugDetective_Builtin.html">debugDetective</A></td>
+<td><A HREF="Function_debugEval_Builtin.html">debugEval</A></td>
+</tr><tr>
+<td><A HREF="Function_dimension_Builtin.html">dimension</A></td>
+<td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+<td><A HREF="Function_downcase_Builtin.html">downcase</A></td>
+</tr><tr>
+<td><A HREF="Function_encode_Builtin.html">encode</A></td>
+<td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+</tr><tr>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+<td><A HREF="Function_fileDir_Builtin.html">fileDir</A></td>
+<td><A HREF="Function_fileEraseDir_Builtin.html">fileEraseDir</A></td>
+<td><A HREF="Function_fileExists_Builtin.html">fileExists</A></td>
+</tr><tr>
+<td><A HREF="Function_fileMakeDir_Builtin.html">fileMakeDir</A></td>
+<td><A HREF="Function_fileReadAll_Builtin.html">fileReadAll</A></td>
+<td><A HREF="Function_fileReadRecord_Builtin.html">fileReadRecord</A></td>
+<td><A HREF="Function_fileWriteAll_Builtin.html">fileWriteAll</A></td>
+</tr><tr>
+<td><A HREF="Function_find_Builtin.html">find</A></td>
+<td><A HREF="Function_hashString_Builtin.html">hashString</A></td>
+<td><A HREF="Function_hour_Builtin.html">hour</A></td>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+</tr><tr>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert</A></td>
+<td><A HREF="Function_inside_Builtin.html">inside</A></td>
+<td><A HREF="Function_inspect_Builtin.html">inspect</A></td>
+</tr><tr>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td>
+<td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td>
+</tr><tr>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td>
+<td><A HREF="Function_isCharAlphabetic_Builtin.html">isCharAlphabetic</A></td>
+<td><A HREF="Function_isCharAlphanumeric_Builtin.html">isCharAlphanumeric</A></td>
+<td><A HREF="Function_isCharLowercase_Builtin.html">isCharLowercase</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharName_Builtin.html">isCharName</A></td>
+<td><A HREF="Function_isCharNumeric_Builtin.html">isCharNumeric</A></td>
+<td><A HREF="Function_isCharUppercase_Builtin.html">isCharUppercase</A></td>
+<td><A HREF="Function_isCharWhitespace_Builtin.html">isCharWhitespace</A></td>
+</tr><tr>
+<td><A HREF="Function_isChar_Builtin.html">isChar</A></td>
+<td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+</tr><tr>
+<td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td>
+<td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+</tr><tr>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+<td><A HREF="Function_isInside_Builtin.html">isInside</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+<td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td>
+<td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember</A></td>
+</tr><tr>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+<td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+</tr><tr>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isString_Builtin.html">isString</A></td>
+<td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td>
+<td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td>
+<td><A HREF="Function_isText_Builtin.html">isText</A></td>
+</tr><tr>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+<td><A HREF="Function_isVector_Builtin.html">isVector</A></td>
+<td><A HREF="Function_julian_Builtin.html">julian</A></td>
+<td><A HREF="Function_left_Builtin.html">left</A></td>
+</tr><tr>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+<td><A HREF="Function_loadWorkspace_Builtin.html">loadWorkspace</A></td>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+</tr><tr>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_makeQuotedSymbol_Builtin.html">makeQuotedSymbol</A></td>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+<td><A HREF="Function_mid_Builtin.html">mid</A></td>
+</tr><tr>
+<td><A HREF="Function_minute_Builtin.html">minute</A></td>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+<td><A HREF="Function_month_Builtin.html">month</A></td>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+</tr><tr>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+<td><A HREF="Function_offset_Builtin.html">offset</A></td>
+<td><A HREF="Function_openLog_Builtin.html">openLog</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+</tr><tr>
+<td><A HREF="Function_parent_Builtin.html">parent</A></td>
+<td><A HREF="Function_parse_Builtin.html">parse</A></td>
+<td><A HREF="Function_pointer_Builtin.html">pointer</A></td>
+<td><A HREF="Function_qt_Builtin.html">qt</A></td>
+</tr><tr>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_remove_Builtin.html">remove</A></td>
+<td><A HREF="Function_replace_Builtin.html">replace</A></td>
+<td><A HREF="Function_rept_Builtin.html">rept</A></td>
+</tr><tr>
+<td><A HREF="Function_right_Builtin.html">right</A></td>
+<td><A HREF="Function_run_Builtin.html">run</A></td>
+<td><A HREF="Function_saveImmediate_Builtin.html">saveImmediate</A></td>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+</tr><tr>
+<td><A HREF="Function_saveWorkspace_Builtin.html">saveWorkspace</A></td>
+<td><A HREF="Function_second_Builtin.html">second</A></td>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+<td><A HREF="Function_set_Builtin.html">set</A></td>
+<td><A HREF="Function_setf_Builtin.html">setf</A></td>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+</tr><tr>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+<td><A HREF="Function_sql_Builtin.html">sql</A></td>
+<td><A HREF="Function_stringCiEQ_Builtin.html">stringCiEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_stringCiGE_Builtin.html">stringCiGE</A></td>
+<td><A HREF="Function_stringCiGT_Builtin.html">stringCiGT</A></td>
+<td><A HREF="Function_stringCiLE_Builtin.html">stringCiLE</A></td>
+<td><A HREF="Function_stringCiLT_Builtin.html">stringCiLT</A></td>
+</tr><tr>
+<td><A HREF="Function_stringCiNE_Builtin.html">stringCiNE</A></td>
+<td><A HREF="Function_stringFill_Builtin.html">stringFill</A></td>
+<td><A HREF="Function_stringToBVector_Builtin.html">stringToBVector</A></td>
+<td><A HREF="Function_stringToVector_Builtin.html">stringToVector</A></td>
+</tr><tr>
+<td><A HREF="Function_string_Builtin.html">string</A></td>
+<td><A HREF="Function_submit_Builtin.html">submit</A></td>
+<td><A HREF="Function_substitute_Builtin.html">substitute</A></td>
+<td><A HREF="Function_substringCiEQ_Builtin.html">substringCiEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiGE_Builtin.html">substringCiGE</A></td>
+<td><A HREF="Function_substringCiGT_Builtin.html">substringCiGT</A></td>
+<td><A HREF="Function_substringCiLE_Builtin.html">substringCiLE</A></td>
+<td><A HREF="Function_substringCiLT_Builtin.html">substringCiLT</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiNE_Builtin.html">substringCiNE</A></td>
+<td><A HREF="Function_substringEQ_Builtin.html">substringEQ</A></td>
+<td><A HREF="Function_substringFill_Builtin.html">substringFill</A></td>
+<td><A HREF="Function_substringGE_Builtin.html">substringGE</A></td>
+</tr><tr>
+<td><A HREF="Function_substringGT_Builtin.html">substringGT</A></td>
+<td><A HREF="Function_substringLE_Builtin.html">substringLE</A></td>
+<td><A HREF="Function_substringLT_Builtin.html">substringLT</A></td>
+<td><A HREF="Function_substringNE_Builtin.html">substringNE</A></td>
+</tr><tr>
+<td><A HREF="Function_substring_Builtin.html">substring</A></td>
+<td><A HREF="Function_symbolToTypeCode_Builtin.html">symbolToTypeCode</A></td>
+<td><A HREF="Function_symbol_Builtin.html">symbol</A></td>
+<td><A HREF="Function_system_Builtin.html">system</A></td>
+</tr><tr>
+<td><A HREF="Function_text_Builtin.html">text</A></td>
+<td><A HREF="Function_time_Builtin.html">time</A></td>
+<td><A HREF="Function_trim_Builtin.html">trim</A></td>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+</tr><tr>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td>
+<td><A HREF="Function_upcase_Builtin.html">upcase</A></td>
+<td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+</tr><tr>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+<td><A HREF="Function_year_Builtin.html">year</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

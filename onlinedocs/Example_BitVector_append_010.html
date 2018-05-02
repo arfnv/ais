@@ -1,0 +1,271 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example BitVector append 010</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example takes 2 existing Bit Vectors and appends 
+                  the values of each Bit Vector.  The result is placed in a new Bit Vector.
+
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (setq X (new Vector:  bit: 5  1))         </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60BitVector 123456&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Y (new Vector:  bit: 4  0))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60BitVector 234567&#62   </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (append X Y )    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60BitVector 456789&#62   </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display #&#60BitVector 456789&#62 )       </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(bit| 1 1 1 1 1 0 0 0 0 )</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>append</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_append_010.html">BitVector append 010</A></td>
+<td><A HREF="Example_CpxVector_append_013.html">CpxVector append 013</A></td>
+<td><A HREF="Example_FltVector_append_007.html">FltVector append 007</A></td>
+<td><A HREF="Example_IntVector_append_007.html">IntVector append 007</A></td>
+</tr><tr>
+<td><A HREF="Example_List_member_009.html">List member 009</A></td>
+<td><A HREF="Example_Matrix_append_007.html">Matrix append 007</A></td>
+<td><A HREF="Example_NumMatrix_append_012.html">NumMatrix append 012</A></td>
+<td><A HREF="Example_NumVector_append_008.html">NumVector append 008</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_append_009.html">ObjVector append 009</A></td>
+<td><A HREF="Example_Pair_append_011.html">Pair append 011</A></td>
+<td><A HREF="Example_ShortVector_append_008.html">ShortVector append 008</A></td>
+<td><A HREF="Example_String_append_001.html">String append 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_append_002.html">String append 002</A></td>
+<td><A HREF="Example_Structure_append_004.html">Structure append 004</A></td>
+<td><A HREF="Example_Structure_append_005.html">Structure append 005</A></td>
+<td><A HREF="Example_Symbol_append_003.html">Symbol append 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_append_006.html">Vector append 006</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_append_Builtin.html">append</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_new_Builtin.html">new(Builtin)</A></td>
+<td><A HREF="Function_replace_Builtin.html">replace(Builtin)</A></td>
+<td><A HREF="Function_rept_Builtin.html">rept(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="BitVector.html">BitVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_append_010.html">BitVector append 010</A></td>
+<td><A HREF="Example_BitVector_bitToIntegerVector_001.html">BitVector bitToIntegerVector 001</A></td>
+<td><A HREF="Example_BitVector_bitToNumberVector_001.html">BitVector bitToNumberVector 001</A></td>
+<td><A HREF="Example_BitVector_cdr_010.html">BitVector cdr 010</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_compare_018.html">BitVector compare 018</A></td>
+<td><A HREF="Example_BitVector_compareEQ_014.html">BitVector compareEQ 014</A></td>
+<td><A HREF="Example_BitVector_compareGE_014.html">BitVector compareGE 014</A></td>
+<td><A HREF="Example_BitVector_compareGT_014.html">BitVector compareGT 014</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_compareLE_014.html">BitVector compareLE 014</A></td>
+<td><A HREF="Example_BitVector_compareLT_014.html">BitVector compareLT 014</A></td>
+<td><A HREF="Example_BitVector_compareNE_014.html">BitVector compareNE 014</A></td>
+<td><A HREF="Example_BitVector_comparison_014.html">BitVector comparison 014</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_copy_011.html">BitVector copy 011</A></td>
+<td><A HREF="Example_BitVector_findBlock_001.html">BitVector findBlock 001</A></td>
+<td><A HREF="Example_BitVector_freeBlock_001.html">BitVector freeBlock 001</A></td>
+<td><A HREF="Example_BitVector_isAtom_010.html">BitVector isAtom 010</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_isBitVector_001.html">BitVector isBitVector 001</A></td>
+<td><A HREF="Example_BitVector_isEqual_017.html">BitVector isEqual 017</A></td>
+<td><A HREF="Example_BitVector_isIdentical_017.html">BitVector isIdentical 017</A></td>
+<td><A HREF="Example_BitVector_isObject_012.html">BitVector isObject 012</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_isType_020.html">BitVector isType 020</A></td>
+<td><A HREF="Example_BitVector_length_013.html">BitVector length 013</A></td>
+<td><A HREF="Example_BitVector_member_008.html">BitVector member 008</A></td>
+<td><A HREF="Example_BitVector_new_013.html">BitVector new 013</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_ref_027.html">BitVector ref 027</A></td>
+<td><A HREF="Example_BitVector_remove_008.html">BitVector remove 008</A></td>
+<td><A HREF="Example_BitVector_resize_010.html">BitVector resize 010</A></td>
+<td><A HREF="Example_BitVector_reverse_007.html">BitVector reverse 007</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_setCdr_010.html">BitVector setCdr 010</A></td>
+<td><A HREF="Example_BitVector_setLastCdr_010.html">BitVector setLastCdr 010</A></td>
+<td><A HREF="Example_BitVector_setq_024.html">BitVector setq 024</A></td>
+<td><A HREF="Example_BitVector_sizeof_019.html">BitVector sizeof 019</A></td>
+</tr><tr>
+<td><A HREF="Example_BitVector_sort_017.html">BitVector sort 017</A></td>
+<td><A HREF="Example_BitVector_type_021.html">BitVector type 021</A></td>
+<td><A HREF="Example_BitVector_vectorFill_007.html">BitVector vectorFill 007</A></td>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_bitToIntegerVector_002.html">IntVector bitToIntegerVector 002</A></td>
+<td><A HREF="Example_NumVector_bitToNumberVector_002.html">NumVector bitToNumberVector 002</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+<td><A HREF="Example_Vector_setBlock_001.html">Vector setBlock 001</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

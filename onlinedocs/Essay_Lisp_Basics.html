@@ -1,0 +1,2396 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lisp Basics</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SAIS Lisp Data Types"><FONT SIZE=2>AIS Lisp Data Types</font></a></li><li><a href="#SAIS Type Casting"><FONT SIZE=2>AIS Type Casting</font></a></li><li><a href="#SAIS Lisp Constants"><FONT SIZE=2>AIS Lisp Constants</font></a></li><li><a href="#SLexical Elements"><FONT SIZE=2>Lexical Elements</font></a></li><li><a href="#SNames"><FONT SIZE=2>Names</font></a></li><li><a href="#SCreating Objects"><FONT SIZE=2>Creating Objects</font></a></li><li><a href="#SBracket Operator []"><FONT SIZE=2>Bracket Operator []</font></a></li><li><a href="#SDot Operator ."><FONT SIZE=2>Dot Operator .</font></a></li><li><a href="#SOffset Addressing"><FONT SIZE=2>Offset Addressing</font></a></li><li><a href="#SCarot Operator ^"><FONT SIZE=2>Carot Operator ^</font></a></li><li><a href="#SQuote Operator '"><FONT SIZE=2>Quote Operator '</font></a></li><li><a href="#SColon Operator :"><FONT SIZE=2>Colon Operator :</font></a></li><li><a href="#SAt Operator @"><FONT SIZE=2>At Operator @</font></a></li><li><a href="#SFunctions"><FONT SIZE=2>Functions</font></a></li><li><a href="#SArgument Variables"><FONT SIZE=2>Argument Variables</font></a></li><li><a href="#STemporary Variables"><FONT SIZE=2>Temporary Variables</font></a></li><li><a href="#SPersistent Variables"><FONT SIZE=2>Persistent Variables</font></a></li><li><a href="#SClass Variables"><FONT SIZE=2>Class Variables</font></a></li><li><a href="#SConstant Variables"><FONT SIZE=2>Constant Variables</font></a></li><li><a href="#SRegister Variables"><FONT SIZE=2>Register Variables</font></a></li><li><a href="#SVector Data Instructions"><FONT SIZE=2>Vector Data Instructions</font></a></li><li><a href="#SSafe Coding Practice"><FONT SIZE=2>Safe Coding Practice</font></a></li><li><a href="#SNormal Coding Practice"><FONT SIZE=2>Normal Coding Practice</font></a></li><li><a href="#SAdvanced Coding Practice"><FONT SIZE=2>Advanced Coding Practice</font></a></li><li><a href="#SWriting Fast Machine Code"><FONT SIZE=2>Writing Fast Machine Code</font></a></li><li><a href="#SLISP Optimization"><FONT SIZE=2>LISP Optimization</font></a></li>
+</UL>
+
+<P><H2><A NAME="SAIS Lisp Data Types"></A>AIS Lisp Data Types</H2></P>
+               
+         <div class="h2section" id="AIS Lisp Data Types">
+          <p>AIS Lisp uses the standard Analytic Information Server data types, 
+             which are are listed in the following table.</p>
+          <table>
+            <tr>
+              <th>Data Type</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <th>Word</th>
+              <td>A 128 bit container capable of holding any one of the AIS data types shown below.</td>
+            </tr>
+            <tr>
+              <th>Void</th>
+              <td>The empty or nil type.</td>
+            </tr>
+            <tr>
+              <th>Boolean</th>
+              <td>Logical truth values, i.e. <i>true</i>&nbsp;&nbsp;<i>false</i>. (<font color=red>Note</font>: inside a Word only, Boolean values are stored as the 32 bit Integer values 0 or 1).
+              </td>
+            </tr>
+            <tr>
+              <th>Character</th>
+              <td>An 8 bit data field containing the standard ASCII character set.  (<font color=red>Note</font>: inside a Word only, Character values are stored as 32 bit Integer values).
+              </td>
+            </tr>
+            <tr>
+              <th>CharPointer</th>
+              <td>Pointer to an array of character data bytes in context memory</td>
+            </tr>
+            <tr>
+              <th>Complex</th>
+              <td>A Heap object containing two IEEE 64 bit double precision real numbers, the real and the imaginary elements.</td>
+            </tr>
+            <tr>
+              <th>Date</th>
+              <td>An IEEE double precision real number with a floating date/time scale capable of microsecond accuracy in the present era, 
+                  and capable of daily accuracy in the 15,000,000,000BC and the 15,000,000,000AD eras.</td>
+            </tr>
+            <tr>
+              <th>FloatPointer</th>
+              <td>Pointer to an array of 32 bit IEEE floating point data values in context memory</td>
+            </tr>
+            <tr>
+              <th>IntPointer</th>
+              <td>Pointer to an array of integer data values in context memory</td>
+            </tr>
+            <tr>
+              <th>Integer</th>
+              <td>A 32 bit integer value.</td>
+            </tr>
+            <tr>
+              <th>JumpPointer</th>
+              <td>Pointer to a virtual machine instruction in the current Lambda's pcode vector</td>
+            </tr>
+            <tr>
+              <th>LongPointer</th>
+              <td>Pointer to an array of long integer data values in context memory</td>
+            </tr>
+            <tr>
+              <th>Money</th>
+              <td>An IEEE double precision real number representing U.S. currency values.</td>
+            </tr>
+            <tr>
+              <th>Number</th>
+              <td>An IEEE 64 bit double precision real number.</td>
+            </tr>
+            <tr>
+              <th>NumPointer</th>
+              <td>Pointer to an array of 64 bit IEEE floating point data values in context memory</td>
+            </tr>
+            <tr>
+              <th>ShortPointer</th>
+              <td>Pointer to an array of short integer data values in context memory</td>
+            </tr>
+            <tr>
+              <th>String</th>
+              <td>A Heap object containing zero or more 8 bit ASCII data items and terminated by a nul (0) value.</td>
+            </tr>
+            <tr>
+              <th>Text</th>
+              <td>An immediate string of from zero to nine 8 bit ASCII data items followed by a nul (0) value. 
+                  (<font color=red>Note</font>: inside a Word only, Text values are stored in the 80 bit immediate area of the Word).</td>
+            </tr>
+            <tr>
+              <th>Symbol</th>
+              <td>A unique Heap object containing one or more 8 bit ASCII data items and terminated by a nul (0) value,
+                  plus an additional global value component which is a 128 bit Word container.
+                  (<font color=red>Note</font>: 
+                  Symbol objects are forced to be unique. No two Symbol objects have the same ASCII string contents.
+                  Because they are unique, Symbol objects are used to store and reference global values, 
+                  which are stored in the Word component of the Symbol object).
+                  </td>
+            </tr>
+            <tr>
+              <th>Vector</th>
+              <td>A Heap object containing zero or more Word data items.</td>
+            </tr>
+            <tr>
+              <th>BitVector</th>
+              <td>A Heap object containing zero or more one bit data items (i.e. 0 1).</td>
+            </tr>
+            <tr>
+              <th>Brick</th>
+              <td>A Heap object containing zero or more bindings.
+                  Each binding is composed of <i>any</i> AIS data type (possibly repeating),
+                  and referenced by a Symbol key,
+                  allowing Brick field values to be referenced and modified by symbolic key.
+                  Brick key values must be references to Symbol objects.
+                  (<font color=red>Note</font>: Brick key values are stored separate from the BrickS data body).
+              </td>
+            </tr>
+            <tr>
+              <th>ByteVector</th>
+              <td>A Heap object containing zero or more 8 bit data values.
+                  (<font color=red>Note</font>: the ByteVector object is NOT restricted to ASCII data and may contain any configuration of 8 bit data values).
+              </td>
+            </tr>
+            <tr>
+              <th>CpxVector</th>
+              <td>A Heap object containing zero or more Complex number data items. 
+                  Each Complex number data item is two IEEE 64 bit double precision real numbers, the real and the imaginary elements.
+                  </td>
+            </tr>
+            <tr>
+              <th>FltVector</th>
+              <td>A Heap object containing zero or more IEEE 32 bit single precision real numbers.</td>
+            </tr>
+            <tr>
+              <th>IntVector</th>
+              <td>A Heap object containing zero or more 32 bit integer values.</td>
+            </tr>
+            <tr>
+              <th>LongVector</th>
+              <td>A Heap object containing zero or more 32 bit integer data values.</td>
+            </tr>
+            <tr>
+              <th>NumVector</th>
+              <td>A Heap object containing zero or more IEEE 64 bit double precision real numbers.</td>
+            </tr>
+            <tr>
+              <th>ObjectRepository</th>
+              <td>A Heap object containing zero or more bindings.
+                  Each binding is composed of an AIS Word data value and followed by an object reference key,
+                  allowing ObjectRepository values to be referenced and modified by object key.
+                  The ObjectRepository values are NOT stored in memory; instead, they are stored on disk.
+                  (<font color=red>Note</font>: ObjectRepository key values are NOT restricted to Symbol objects,
+                                                and may be references to <i>any</i> AIS heap object).
+              </td>
+            </tr>
+            <tr>
+              <th>ObjVector</th>
+              <td>A Heap object containing zero or more pointers to other Heap objects in the System.
+                  (<font color=red>Note</font>: the empty or nil value is represented by a nil (0) pointer value).
+              </td>
+            </tr>
+            <tr>
+              <th>PcodeVector</th>
+              <td>A Heap object containing zero or more 32 bit DRM Virtual Machine instructions.
+              </td>
+            </tr>
+            <tr>
+              <th>ShortVector</th>
+              <td>A Heap object containing zero or more 16 bit integer data values.</td>
+            </tr>
+            <tr>
+              <th>Structure</th>
+              <td>A Heap object containing zero or more bindings.
+                  Each binding is composed of an AIS Word data value and followed by a Symbol reference key,
+                  allowing Structure values to be referenced and modified by symbolic key.
+                  (<font color=red>Note</font>: Structure key values must be references to Symbol objects).
+              </td>
+            </tr>
+            <tr>
+              <th>Dictionary</th>
+              <td>A Heap object containing zero or more bindings.
+                  Each binding is composed of an AIS Word data value and followed by an object reference key,
+                  allowing Dictionary values to be referenced and modified by object key.
+                  (<font color=red>Note</font>: Dictionary key values are NOT restricted to Symbol objects,
+                                                and may be references to <i>any</i> AIS heap object).
+              </td>
+            </tr>
+            <tr>
+              <th>Directory</th>
+              <td>A Heap object containing zero or more bindings.
+                  Each binding is composed of an AIS Word data value and followed by an AIS Word reference key,
+                  allowing Directory values to be referenced and modified by arbitrary keys.
+                  (<font color=red>Note</font>: Directory key values are NOT restricted to object references,
+                                                and may be <i>any</i> AIS data type).
+              </td>
+            </tr>
+            <tr>
+              <th>Matrix</th>
+              <td>A Heap object containing zero or more 128 bit AIS Word values,
+                  which are arranged in from one to three dimensions.
+                  (<font color=red>Note</font>: Matrix objects may be dynamically arranged with one, two, or three dimensions).
+                  </td>
+            </tr>
+            <tr>
+              <th>NumMatrix</th>
+              <td>A Heap object containing zero or more IEEE 64 bit double precision real numbers,
+                  which are arranged in from one to three dimensions.
+                  (<font color=red>Note</font>: NumMatrix objects may be dynamically arranged with one, two, or three dimensions).
+                  </td>
+            </tr>
+          </table>
+          <h3>Overview of Data Types</h3>
+          <p>AIS Lisp uses the standard Analytic Information Server data types, which are
+          divided into four categories: Native Data Types (also known as Immediate
+          types), Objects (heap objects), registers, and Repositories. The Native
+          (immediate) types can be entirely contained within the immediate data of a
+          single Virtual Machine Word. The Objects (heap objects) types are too
+          large to be contained within a single Virtual Machine Word and require
+          extra memory must be managed by the heap manager. Without exception, all of
+          the Object types are identified by an object id. The object id identifies a
+          block of memory, managed by the Analytic Information Server memory manager, in
+          which the Object's data is stored.</p>
+          <p>Most of the memory space, set aside within the host application, for use
+          by the Analytic Information Server subsystem is divided into a set of virtual
+          machine words. Each virtual machine word begins with a type tag and is
+          followed by an immediate data (Dynamic Typing). The contents of the tag
+          inform the Analytic Information Server virtual machine about the type of data
+          which follows.</p>
+          <p>The Heap contains memory resident data, which is of variable length or is
+          too large to fit in AIS Words. The Analytic Information Server
+          object Heap manager supports automated object resizing, garbage collection,
+          and anti-fragmentation algorithms so that the user may concentrate on the
+          analysis and modeling of data rather than on memory management.</p>
+          <p>Registers are very fast special locations that can be mapped directly to
+          the microchip's operation registers. There are fifty arithmetic registers for
+          use by the programmer.</p>
+          <p>Object Repositories (databases) contain persistent data of all sorts. Lambda
+          Information Server supports repositories with multiple database volumes and
+          multiple database schema?s including General Object Repositories, Text
+          Repositories, and Spreadsheet Repositories.</p>
+          <h3>AIS Word Format</h3>
+          <p>The AIS Word is a 128-bit dynamically typed Word capable of holding any of the AIS native data types (shown above).
+          Each Word begins with an 80-bit data area capable of holding up to ten bytes of null-terminated ASCII text,
+          or any one of these other native AIS data types: Character, Boolean, Float, Integer, Long, Number, Object, or Short.
+          Immediately following the Word's 80-bit data area, is the Word's tail (a 32-bit signed integer). 
+          The tail is a general purpose data field used for linking words to other words, keeping word counts, or any other purpose.
+          Immediately following the Word's tail, is the Word's Declared Type (an 8-bit data type  announcing the user's preferred data type for this Word).
+          Immediately following the Word's Declared Type, is the Word's Current Type (an 8-bit data type announcing the type of data contained in the Word's 80-bit data area). 
+          </p>
+          <h3>Object Data Types</h3>
+          <p>The Analytic Information Server Object Types are stored in the Heap and are
+          managed by the Heap manager. The Analytic Information Server Heap manager
+          supports object resizing, garbage collection, and anti-fragmentation
+          algorithms so that the user may concentrate on the analysis and modeling of
+          data rather than on memory management. Without exception, all of the Object
+          types are identified by an object id. The object id identifies a block of
+          memory, managed by the Analytic Information Server memory manager, in which the
+          Object's data is stored.</p>
+          <p>The Analytic Information Server Heap Object and Native Data types can be saved
+          and loaded to and from persistent (disk file) storage at any time. Words
+          with immediate data are saved on disk in fixed length records equal to the
+          size of the Word. Words with Heap object references are saved in
+          fixed length records, which are automatically expanded to include the contents
+          of the Heap object, and any objects referenced by the Heap object, etc. This
+          feature is called Object Closure Management and is automatic with every Lambda
+          Information Server database save.</p>
+          <p>Analytic Information Server Words may be loaded from any database
+          repository record at any time. If the data in the record is immediate, the
+          database load fills the Word with the immediate data. If the data in the
+          record is an object closure, the database load fills the Word with a Heap
+          object reference, and all of the objects in the record are loaded back into
+          the Heap with the same referential relationships they had when they were saved
+          in the repository.</p>
+          <h3>Register Data Types</h3>
+          <p>AIS Lisp allows up to fifty register variables to be declared (see the <i>regs</i> special form).
+          AIS Lisp register variables allow the fastest possible integer and floating
+          point arithmetic operations carried out at microchip-level speeds. The pointer
+          types allow the fastest possible indirect referencing of heap memory.
+          Each register can be declared as one of the following types:</p>
+          <table>
+            <tr>
+              <th>Integer</th>
+              <td>32 or 64 bit integer data depending upon the microchip</td>
+            </tr>
+            <tr>
+              <th>LongPointer</th>
+              <td>Pointer to an array of long integer data values in context memory</td>
+            </tr>
+            <tr>
+              <th>Number</th>
+              <td>64 bit IEEE floating point data depending upon the microchip</td>
+            </tr>
+            <tr>
+              <th>CharPointer</th>
+              <td>Pointer to an array of character data bytes in context memory</td>
+            </tr>
+            <tr>
+              <th>ShortPointer</th>
+              <td>Pointer to an array of short integer data values in context memory</td>
+            </tr>
+            <tr>
+              <th>JumpPointer</th>
+              <td>Pointer to a virtual machine instruction in the current Lambda's pcode vector</td>
+            </tr>
+            <tr>
+              <th>IntPointer</th>
+              <td>Pointer to an array of integer data values in context memory</td>
+            </tr>
+            <tr>
+              <th>FloatPointer</th>
+              <td>Pointer to an array of 32 bit IEEE floating point data values in context memory</td>
+            </tr>
+            <tr>
+              <th>NumPointer</th>
+              <td>Pointer to an array of 64 bit IEEE floating point data values in context memory</td>
+            </tr>
+          </table>        
+         </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAIS Type Casting"></A>AIS Type Casting</H2></P>     
+         <div class="h2section" id="AIS Type Casting">
+          <p>AIS Lisp supports limited type casting inside expressions.
+             Three type casting expressions are supported 
+             (Number: ...expression...) which casts the expression into a Number register
+             (Integer:  ...expression...) which casts the expression into an Integer register and 
+             (Word:  ...expression...) which casts the expression into a Word temporary. 
+             No attempt is made to provide a comprehensive set of type casting services.
+             It will always be the case that absolute programmer control of AIS Lisp
+             is obtained via the explicit use of Lisp assembler statements.
+             Some examples of AIS Lisp type casting expressions are given below.</p>
+
+          <ul>
+            <li>(setq r1 (cos (Number:2.0)))</li>
+            <li>(vmregAddInteger i1 (vmregSubInteger (Integer:2) i2))</li>
+            <li>(vmregLoadInteger (Word: (+ 1 2)) i1)</li>
+          </ul>
+
+
+          <h3>Warning</h3>
+          <p>There is a syntax conflict between the messaging short cut (msg: ...expression...)
+          and the type casting inside expressions (Number: ...expression...).
+          Wherever the meaning is unclear, AIS Lisp will always assume that a type cast was intended.</p>
+         </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAIS Lisp Constants"></A>AIS Lisp Constants</H2></P>  
+          <div class="h2section" id="AIS Lisp Constants">
+          <p>AIS Lisp has access to all of the Analytic Information Server data types, more
+          built-in data types than are available to either Common Lisp or Scheme. AIS
+          Lisp uses an extension of the standard Lisp constant syntax. The following is
+          a table of all the AIS data types which have AIS Lisp constant formats.</p>
+          <table>
+            <tr>
+              <th>Data Type</th>
+              <th>Constant Examples</th>
+            </tr>
+            <tr>
+              <td>Void</td>
+              <th>#void</th>
+            </tr>
+            <tr>
+              <td>Boolean</td>
+              <th>true&nbsp;&nbsp;false</th>
+            </tr>
+            <tr>
+              <td>Character</td>
+              <th>#\G&nbsp;&nbsp;#\a&nbsp;&nbsp;#\&quot;&nbsp;&nbsp;#\2&nbsp;&nbsp;#\newline&nbsp;&nbsp;#\return&nbsp;&nbsp;#\tab&nbsp;&nbsp;#\,</th>
+            </tr>
+            <tr>
+              <td>Complex</td>
+              <th>#ci&nbsp;&nbsp;#c-i&nbsp;&nbsp;#c34&nbsp;&nbsp;#c34.5&nbsp;&nbsp;#c4.5i&nbsp;&nbsp;#c-4.5i&nbsp;&nbsp;#c2.1-4.5i</th>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <th>#Jan,3,1984&nbsp;&nbsp;#Feb,22,1492&nbsp;&nbsp;#Aug,10,2002:11:34:01&nbsp;&nbsp;#Jan,1,0:11:34:01&nbsp;&nbsp;#Jan,23,1050BC</th>
+            </tr>
+            <tr>
+              <td>Integer</td>
+              <th>25&nbsp;&nbsp;-1&nbsp;&nbsp;10392756&nbsp;&nbsp;-10392756&nbsp;&nbsp;-10392756&nbsp;&nbsp;-103&nbsp;&nbsp;2756</th>
+            </tr>
+            <tr>
+              <td>Money</td>
+              <th>$25.34&nbsp;&nbsp;$-1.00&nbsp;&nbsp;$1039.27&nbsp;&nbsp;$-1.64&nbsp;&nbsp;$-103.92&nbsp;&nbsp;$-.10&nbsp;&nbsp;$275.26</th>
+            </tr>
+            <tr>
+              <td>Number</td>
+              <th>25.34&nbsp;&nbsp;-1.0&nbsp;&nbsp;1039.2756&nbsp;&nbsp;-1.6E-56&nbsp;&nbsp;-103.92756&nbsp;&nbsp;-.103&nbsp;&nbsp;275.6</th>
+            </tr>
+            <tr>
+              <td>Percent</td>
+              <th>25.34%&nbsp;&nbsp;-1.0%&nbsp;&nbsp;1039.27%&nbsp;&nbsp;-1.66%&nbsp;&nbsp;-103.92%&nbsp;&nbsp;10%&nbsp;&nbsp;275%</th>
+            </tr>
+            <tr>
+              <td>String&nbsp;&nbsp;<i>or</i>&nbsp;&nbsp;Text</td>
+              <th>&quot;This is a string&quot;&nbsp;&nbsp;&quot;I've got a
+                string&quot;&nbsp;&nbsp;&quot;This is a quote \&quot;
+                character&quot;&nbsp;&nbsp;{This is a quote &quot;
+                character}&nbsp;&nbsp;{What is the meaning of life?}</th>
+            </tr>
+            <tr>
+              <td>Symbol</td>
+              <th>|This is a symbol|:&nbsp;&nbsp;'myName&nbsp;&nbsp;myName:&nbsp;&nbsp;|myName|:&nbsp;&nbsp;'|Hello
+                there|</th>
+            </tr>
+            <tr>
+              <td>Vector</td>
+              <th>#(a b 2)&nbsp;&nbsp;#(1 . 2)&nbsp;&nbsp;#(a (b c) d)&nbsp;&nbsp;#(#(1
+                2) #(3 4) #(5 6))&nbsp;&nbsp;#((1 2) a (5 6) . ( 3 4) )</th>
+            </tr>
+            <tr>
+              <td>BitVector</td>
+              <th>#(bit| 1 0 1)&nbsp;&nbsp;#(bit| 1 0 1 0 0 0 1 1 0 1)</th>
+            </tr>
+            <tr>
+              <td>CpxVector</td>
+              <th>#(cpx| #c34.0 #i #3.4-2i)&nbsp;&nbsp;#(cpx| #c-23.567i #-i #3.34+2.66i)</th>
+            </tr>
+            <tr>
+              <td>IntVector</td>
+              <th>#(int| 2)&nbsp;&nbsp;#(int| 1 . 2)&nbsp;&nbsp;#(int| 1 34
+                2)&nbsp;&nbsp;#(int| 1 -34 20163 -23)</th>
+            </tr>
+            <tr>
+              <td>FltVector</td>
+              <th>#(float| 2.2)&nbsp;&nbsp;#(float| -1.4 . 4.2)&nbsp;&nbsp;#(float| 1.3
+                34 2.1)&nbsp;&nbsp;#(float| 1.23 -3.4 2.0163 -2.3)</th>
+            </tr>
+            <tr>
+              <td>ObjVector</td>
+              <th>#(obj| a b #(1 2 3))&nbsp;&nbsp;#(obj| a)&nbsp;&nbsp;#(obj| a bb (b c)
+                d . sf)&nbsp;&nbsp;#(obj| &quot;Hello there&quot; #(3 4) #(5 6))</th>
+            </tr>
+            <tr>
+              <td>Structure</td>
+              <th>#{a 22 b #(1 2 3)}&nbsp;&nbsp;#{a true}&nbsp;&nbsp;
+                  #{a bb c (b c) d 1 . sf}&nbsp;&nbsp;
+                  #{ as &quot;Hello there&quot; b #(3 4) myKey #(5 6)}&nbsp;&nbsp;
+                  #{decl| (String:Name "Hello") Number:Salary Vector:x}
+                  </th>
+            </tr>
+            <tr>
+              <td>Dictionary</td>
+              <th>#{dic| a 22 b #(1 2 3)}&nbsp;&nbsp;#{dic| a true}&nbsp;&nbsp;#{dic| a
+                bb c (b c) d 1}&nbsp;&nbsp;#{dic| as &quot;Hello there&quot; b #(3 4)
+                myKey #(5 6)}</th>
+            </tr>
+            <tr>
+              <td>Directory</td>
+              <th>#{dir| 22 a #(1 2 3) b}&nbsp;&nbsp;#{dir| true a}&nbsp;&nbsp;#{dir| a
+                bb (b c) d c 1}&nbsp;&nbsp;#{dir| &quot;Hello there&quot; as b #(3 4)
+                myKey #(5 6)}</th>
+            </tr>
+            <tr>
+              <td>Matrix</td>
+              <th>#(mat| c b 2 3)&nbsp;&nbsp;#(mat[3]| c b 2)&nbsp;&nbsp;#(mat[3 2]| c b
+                2 d (8 . d) 2)&nbsp;&nbsp;#(mat[2 3 2]| c b 2 d (8 . d) 2 x
+                &quot;Hello&quot; 2 d #(8 3 d) 2)</th>
+            </tr>
+            <tr>
+              <td>NumMatrix</td>
+              <th>#(nummat| 1.1 2.4 3)&nbsp;&nbsp;#(nummat[3]| 1 4 2)&nbsp;&nbsp;#(nummat[3 2]| 2.56 -56 2.2 6 8.234
+                2)&nbsp;&nbsp;#(nummat[2 3 2]| 2.3 -3 3.5 4.5 1000 2 -34 5.6 2 1 0 2)</th>
+            </tr>
+          </table>
+         </div>        
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLexical Elements"></A>Lexical Elements</H2></P>       
+         <div class="h2section" id="Lexical Elements">
+          <p>Lisp supports the following compiler directives:</p>
+            <!-- Example of Embedded Table -->
+          <table>
+            <tr>
+              <th>#LOCKGLOBALS#</th>
+              <td>Locks current global symbols</td>
+            </tr>
+            <tr>
+              <th>#javaScript#</th>
+              <td>Invokes the javaScript parser (must be first seven characters in
+                source string).</td>
+            </tr>
+            <tr>
+              <th>#alice#</th>
+              <td>Invokes the alice parser (must be first seven characters in source
+                string).</td>
+            </tr>
+            <tr>
+              <th>#xml#</th>
+              <td>Invokes the xml parser (must be first seven characters in source
+                string).</td>
+            </tr>
+            <tr>
+              <th>#<i>name</i>#</th>
+              <td>Invokes the <i>name</i> parser (must be first seven characters in
+                source string).</td>
+            </tr>
+          </table>
+          <h3>White Space</h3>
+          <p>Lisp uses white space to separate each of its symbols and operators. The
+          Lisp white space characters include the comma, all the standard 8-bit ASCII
+          control characters (less than 32 decimal), and the blank character (32
+          decimal).</p>
+            <!-- Example of Embedded Table -->
+          <table>
+            <tr>
+              <th>,</th>
+              <td>Comma</td>
+            </tr>
+            <tr>
+              <th>new line</th>
+              <td>Line feed control character (10 decimal)</td>
+            </tr>
+            <tr>
+              <th>carraige return</th>
+              <td>Carraige return control character (13 decimal)</td>
+            </tr>
+            <tr>
+              <th>right tab</th>
+              <td>Right tab control character (9 decimal)</td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td>Blank character (32 decimal)</td>
+            </tr>
+          </table>
+          <p>The Lisp parser looks for white space or parentheses, brackets, or braces
+          to determine each token. A token is either a symbol, a constant value, or
+          operator. If white space is missing between an operator and a symbol, the Lisp
+          interpreter cannot parse the statement correctly.</p>
+            <!-- Example of Embedded Table -->
+          <table>
+            <tr>
+              <th align="CENTER">(+ 1 2 )</th>
+              <td>not</td>
+              <th align="CENTER">(+1 2 )</th>
+            </tr>
+          </table>
+          <h3>Special Characters</h3>
+          <p>Lisp uses the standard 8-bit ASCII character set. Some of the Lisp special
+          characters serve to group a set of characters as a single unit (e.g. double
+          quotes group characters to form a string constant). The remainder of the
+          special characters serve to separate tokens (e.g. comma or blank) or prefix a
+          constant (e.g. $ # ). The following are the Lisp special characters.</p>
+            <!-- Example of Embedded Table -->
+          <table>
+            <tr>
+              <th>\</th>
+              <th>|</th>
+              <th>(</th>
+              <th>)</th>
+              <th>[</th>
+              <th>]</th>
+              <th>{</th>
+              <th>}</th>
+              <th>#</th>
+              <th>@</th>
+            </tr>
+            <tr>
+              <th>`</th>
+              <th>'</th>
+              <th>,</th>
+              <th>&quot;</th>
+              <th>:</th>
+              <th>;</th>
+              <th>$</th>
+              <th>%</th>
+              <th>.</th>
+              <th><i>blank</i></th>
+            </tr>
+          </table>
+          <h3>String Constants</h3>
+          <p>Lisp supports String constants. A String is any series of Lisp characters
+          or symbols: (A) enclosed in double quote symbol paris ("  ");
+                      (B) enclosed in left-right brace paris ({  }); or 
+                      (C) enclosed in these special sequence paris ({##[  ]##}); 
+          For Example:</p>
+            <!-- Example of Embedded Table -->
+          <table>
+            <tr>
+              <td>"This is a string \" constant"</td>
+              <td>"This is a string constant"</td>
+            </tr>
+            <tr>
+              <td>{This is a string "A" constant}</td>
+              <td>{This is a string constant}</td>
+            </tr>
+            <tr>
+              <td>{##[This is a string "A" constant]##}</td>
+              <td>{##[This is a string {A} constant]##}</td>
+            </tr>
+          </table>
+          <h3>Comments</h3>
+          <p>Lisp supports comment constants. A comment is any series of Lisp characters
+          or symbols, preceded by a semicolon (;), and terminating at the end of the
+          line on which the comment appears. For Example:</p>
+            <!-- Example of Embedded Table -->
+          <table>
+            <tr>
+              <th>(+ 2 4)</th>
+              <td>; This is a comment after the semicolon</td>
+            </tr>
+            <tr>
+              <th>&quot;This is not ; a comment&quot;</th>
+              <td>; This is a comment</td>
+            </tr>
+            <tr>
+              <th>#\;</th>
+              <td>; The first semicolon does not start a comment</td>
+            </tr>
+          </table>
+          <h3>Object Identifier Notation</h3>
+          <p>Lisp supports object identifier notation which acts as syntactical short
+          hand for invoking the inspect function. The inspect function allows one to
+          refer to an object by its object identifier only. The characters #&lt;
+          followed by a type name, an integer object identifier, and terminated with the
+          &gt; character, invokes object identifier notation. For Example:</p>
+          <p>&nbsp;&nbsp;&nbsp;<b>#&lt;Vector: 3194&gt;</b>&nbsp;&nbsp;&nbsp;<i>is
+          shorthand for</i>&nbsp;&nbsp;&nbsp;<b>(inspect Vector: 3194)</b></p>  
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNames"></A>Names</H2></P>    
+          <div class="h2section" id="Names">
+          <h3>Naming Conventions</h3>
+          <p>AIS Lisp uses the naming convention that single word names are always
+          lowercase. For multiple word names, the first word is always lowercase while
+          the first letter of each succeeding word is uppercase. Special system names
+          always begin with an underscore character. For example:</p>
+          <ul>
+            <li>string</li>
+            <li>isNumber</li>
+            <li>makeVector</li>
+            <li>_eol</li>
+          </ul>
+          <h3>Labels</h3>
+          <p>Lisp supports labels of arbitrary length and containing a wide range of
+          characters. A Lisp label is any valid symbol followed immediately by the :
+          (colon) special character. In Lisp labels are used as keywords in many special
+          forms and are useful in a variety of other situations. Furthermore, Lisp
+          supports goto labels which are any valid symbol followed immediately by the ::
+          (double colon) special character pair. goto labels can be used with the goto
+          special form for unconditional branches.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;&nbsp;&nbsp; (defun foo(n) vars:(x) (setq x (+ n n))) ;;
+          Here vars is a keyword</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun xyz(n)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Here::</b> ;;
+          Here is a goto label</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (setq n (sub1 n))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (if (&lt; n 10)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (goto <b>Here:</b>)) ;; goto branches to Here (up 3 lines above)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true)</p>
+          <p>&nbsp;</p>
+          <h3>Local Variables</h3>
+          <p>AIS Lisp supports the declaration of local variables. There are five
+          categories of local variables for each Lambda.</p>
+          <ul>
+            <li>Argument variables passed (<i>on the stack</i>) to the Lambda upon
+              invocation (<b>args</b>)</li>
+            <li>Temporary variables allocated (<i>on the stack</i>) by the Lambda upon
+              invocation (<b>vars</b>)</li>
+            <li>Persistent variables allocated (<i>in the Pv Structure</i>) for the life
+              of the Lambda (<b>pvars</b>)</li>
+            <li>Persistent variables allocated (<i>in the Cv Structure</i>) for the life
+              of the Lambda (<b>cvars</b>)</li>
+            <li>Register variables allocated (<i>in the microchip</i>) by the Lambda upon
+              invocation (<b>regs</b>)</li>
+          </ul>
+          <p>The <b>vars</b>, <b>pvars</b>, and <b>cvars</b> local variable allocations
+          may include initialization specifications along with their declarations. The <b>regs</b>
+          local variable allocations may include data type specifications along with
+          their declarations.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;&nbsp;&nbsp; (defun foo(<b>n</b>) ;; Variable <b>n</b>
+          is an argument variable.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vars:(<b>x</b> (<b>y</b>x
+          and <b>y</b> are temporary variables.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pvars:((<b>a</b>
+          20)) ;; Variable <b>a</b> is a persistent variable initialized to 20.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cvars:(<b>b</b>) ;;
+          Variable <b>b</b> is a persistent variable uninitialized.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regs:(Integer:<b>myReg</b>) 
+          ;; Variable <b>myReg</b> is a microchip register variable typed as
+          Integer.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true)</p>
+          <p>&nbsp;</p>
+          <h3>Global Variables</h3>
+          <p>In AIS Lisp, referencing a symbol, which has <b>NOT</b> already been
+          declared, automatically causes it to be declared as a global variable. Lisp
+          programmers will recognize automatic variable declaration as a Lisp extension.
+          This feature has been added to make Lisp more user-friendly. In standard Lisp
+          terms, the following Lisp expressions are equivalent (<i>the assumption is
+          made that X has not already been referenced</i>).</p>
+          <p>&nbsp;&nbsp;&nbsp;<b>(setq x 23)</b>&nbsp;&nbsp;&nbsp;<i>is equivalent to</i>&nbsp;&nbsp;&nbsp;<b>(define x 23)</b></p>
+          <p>In AIS Lisp, referencing a global symbol <b>explicitly</b>,
+          automatically causes it to be declared as a global variable. 
+          There are two methods of explicitly specifying a symbol as a global variable reference.
+          If <b>name</b> is the variable, then either <b>^name</b> or <b>|Gv:name|</b> 
+          will automatically be considered global variable references.
+          The <b>|Gv:name|</b> reference simply generates a global variable reference directly; while,
+          the <b>^name</b> reference generates a call to the <b>getGlobalValue</b> function.</p>
+          <p>&nbsp;&nbsp;&nbsp;<b>^name</b>&nbsp;&nbsp;&nbsp;<i>is equivalent to</i>&nbsp;&nbsp;&nbsp;<b>(getGlobalValue name:)</b></p>
+          <p>Lisp global variables are valid during the whole life of the current
+          context (see the _globals global symbol table variable). Global variables are
+          not lost when the current function invocation returns control. Lisp global
+          variables are referenced by specifying the symbol. In addition to user defined
+          globals, Lisp global variables include all of the built-in functions such as <b>+
+          - * define lambda let,</b> etc.</p>
+          <p>The Lisp language is specified as case-sensitive (most dialects of Lisp are
+          case-insensitive). Therefore:</p>
+          <p>&nbsp;&nbsp;&nbsp;<b>define</b>&nbsp;&nbsp;&nbsp;<i>is NOT equivalent to</i>&nbsp;&nbsp;&nbsp;<b>Define</b></p>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCreating Objects"></A>Creating Objects</H2></P>    
+        <div class="h2section" id="Creating Objects">    
+          <p>AIS Lisp allocates memory by creating new data objects with the <b>new</b>
+          function (<i>the constant forms for some objects can also be used to allocate
+          static memory</i>). Once created, the new object can be stored into or
+          retrieved from as befits the type of object created. When the Lisp program no
+          longer needs the object, the garbage collector will reclaim the allocated
+          memory. Automatic garbage collection is one of the nice features about Lisp.
+          The following is a table of some AIS Lisp data objects being created with the <b>new</b>
+          function.</p>
+          <table>
+            <tr>
+              <th>Data Type</th>
+              <th>Constant Examples</th>
+            </tr>
+            <tr>
+              <td>String</td>
+              <th>(new String: &quot;This is a string&quot;)&nbsp;&nbsp;(new String:
+                &quot;I've got a string&quot;)&nbsp;&nbsp;(new String: &quot;This is a
+                quote \&quot; character&quot;)</th>
+            </tr>
+            <tr>
+              <td>Symbol</td>
+              <th>(new Symbol: |This is a symbol|)&nbsp;&nbsp;(new Symbol: 'myName)&nbsp;&nbsp;(new
+                Symbol: '|Hello there|)</th>
+            </tr>
+            <tr>
+              <td>Vector</td>
+              <th>(new Vector:3 a: b: 2)&nbsp;&nbsp;(new Vector:1 1 . 2)&nbsp;&nbsp;(new
+                Vector:1000)&nbsp;&nbsp;(new Vector:1 (new Vector:100))</th>
+            </tr>
+            <tr>
+              <td>BitVector</td>
+              <th>(new Vector: bit:3 1 0 1)&nbsp;&nbsp;(new Vector: bit:10 1 0 1 0 0 0 1
+                1 0 1)</th>
+            </tr>
+            <tr>
+              <td>ByteVector</td>
+              <th>(new Vector: byte:3 1 0 1)&nbsp;&nbsp;(new Vector: byte:10000)</th>
+            </tr>
+            <tr>
+              <td>IntVector</td>
+              <th>(new Vector: integer:2)&nbsp;&nbsp;(new Vector: integer:1 1 .
+                2)&nbsp;&nbsp;(new Vector: integer:3 1 -34 2)</th>
+            </tr>
+            <tr>
+              <td>FltVector</td>
+              <th>(new Vector: float:1 2.2)&nbsp;&nbsp;(new Vector: float:1 -1.4 .
+                4.2)&nbsp;&nbsp;(new Vector: float:3 1.3 34 2.1)</th>
+            </tr>
+            <tr>
+              <td>ObjVector</td>
+              <th>(new Vector: object:3 a b #(1 2 3))&nbsp;&nbsp;(new Vector: object:1
+                a)&nbsp;&nbsp;(new Vector: object:4 a bb (b c) d . sf)&nbsp;&nbsp;(new
+                Vector: object:3000)</th>
+            </tr>
+            <tr>
+              <td>Structure</td>
+              <th>(new Structure: a: 22 b: #(1 2 3))&nbsp;&nbsp;(new Structure: a:
+                true)&nbsp;&nbsp;(new Structure: a: bb: c: '(b c) d: 1 . sf)</th>
+            </tr>
+            <tr>
+              <td>Dictionary</td>
+              <th>(new Dictionary: a: 22 b: #(1 2 3))&nbsp;&nbsp;(new Dictionary: a:
+                true)&nbsp;&nbsp;(new Dictionary: a: bb c: '(b c) d: 1)&nbsp;&nbsp;(new
+                Dictionary: as: &quot;Hello there&quot; b: #(3 4))</th>
+            </tr>
+            <tr>
+              <td>Directory</td>
+              <th>(new Directory: 22 a: #(1 2 3) b:)&nbsp;&nbsp;(new Directory: true
+                a:)&nbsp;&nbsp;(new Directory: a: bb: '(b c) d: c: 1)</th>
+            </tr>
+            <tr>
+              <td>Matrix</td>
+              <th>(new Matrix:1 4 c: b: 2 3)&nbsp;&nbsp;(new Matrix:1 3 c: b:
+                2)&nbsp;&nbsp;(new Matrix:2 3 2 c: b: 2 d: '(8 . d) 2)</th>
+            </tr>
+            <tr>
+              <td>NumMatrix</td>
+              <th>(new Matrix: number:1 3 1.1 2.4 3)&nbsp;&nbsp;(new Matrix: number:1 3
+                1 4 2)&nbsp;&nbsp;(new Matrix: number:2 2 3 2.56 -56 2.2 6 8.234 2)</th>
+            </tr>
+          </table> 
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBracket Operator []"></A>Bracket Operator []</H2></P>
+            <div class="h2section" id="Bracket Operator []">
+            <p>The Bracket Operator <b>[ ]</b> supports both setting and referencing
+              indexed elements within an object in AIS Lisp. The bracket operator, used for
+              reference, is the equivalent of the <b>ref</b> built-in function. The bracket
+              operator, used for assignment, is the equivalent of the <b>setq</b> special
+              form.</p>
+              <p>&nbsp;</p>
+                <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Lexical</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable[index]</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (setq variable[index]
+              newValue)</p>
+              <p>&nbsp;</p>
+                <!-- Arguments Table Template -->
+              <p><u>Equivalence</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>x[5]</th>
+                  <td>is identical to</td>
+                  <td>(ref x 5)</td>
+                </tr>
+                <tr>
+                  <th>(setq x[2] &quot;Hello&quot;)</th>
+                  <td>is identical to</td>
+                  <td>(setq (ref x 0) &quot;Hello&quot;)</td>
+                </tr>
+              </table>
+              <hr>
+                <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>Use the bracket operator when writing out the full equivalent <b>setq</b>
+              or <b>ref</b> expressions would be too cumbersome or would make the Lisp
+              program less readable.</p>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example 1</b></u></p>
+              <p>Here are just a few sample object retrievals and settings using the bracket
+              operator.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x (new Vector:3 45 -6 78)) ;; Set the
+              newly created vector object into the variable <b>x</b>.</p>
+              <p>&nbsp;&nbsp;&nbsp; x<b>[</b>2<b>]</b>&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;78</p>
+              <p>&nbsp;&nbsp;&nbsp; x<b>[</b>0<b>]</b>&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;45</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x<b>[</b>0<b>]</b>
+              26)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#(26 -6 78)</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x &quot;Hello World&quot;) ;; Set the
+              string &quot;Hello World&quot; into the variable <b>x</b>.</p>
+              <p>&nbsp;&nbsp;&nbsp; x<b>[</b>1<b>]</b>&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#\e</p>
+              <p>&nbsp;&nbsp;&nbsp; x<b>[</b>6<b>]</b>&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#\W</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x<b>[</b>0<b>]</b>
+              #\h)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&quot;hello World&quot;</p>
+              <p>&nbsp;</p>
+                <!-- Notes & Hints Template -->
+              <p><u><b>Notes &amp; Hints</b></u></p>
+              <p>Refer to the appropriate object data type reference guide to determine the
+              effect of the bracket operator on that specific type or even what types of
+              indices the bracket operator can take. For String objects refer to the <a href="axstring.htm">String
+              Object Reference Guide</a>, For Vector objects refer to the <a href="axvector.htm">Vector
+              Object Reference Guide</a>, For Dictionary objects refer to the <a href="axdictionary.htm">Dictionary
+              Object Reference Guide</a>, etc.</p>
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDot Operator ."></A>Dot Operator .</H2></P>
+             <div class="h2section" id="Dot Operator .">
+              <p>The Dot Operator <b>.</b> supports both setting and referencing indexed
+              elements within an object in AIS Lisp. The dot operator, used for reference,
+              is the equivalent of the <b>ref</b> built-in function. The dot operator, used
+              for assignment, is the equivalent of the <b>setq</b> special form.</p>
+              <p>&nbsp;</p>
+                <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Lexical</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable.indexSymbol</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (setq
+              variable.indexSymbol newValue)</p>
+              <p>&nbsp;</p>
+                <!-- Arguments Table Template -->
+              <p><u>Equivalence</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>x.A</th>
+                  <td>is identical to</td>
+                  <td>(ref x A:)</td>
+                </tr>
+                <tr>
+                  <th>(setq x.C &quot;Hello&quot;)</th>
+                  <td>is identical to</td>
+                  <td>(setq (ref x C:) &quot;Hello&quot;)</td>
+                </tr>
+              </table>
+              <hr>
+                <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>Use the dot operator when writing out the full equivalent <b>setq</b> or <b>ref</b>
+              expressions would be too cumbersome or would make the Lisp program less
+              readable.</p>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example 1</b></u></p>
+              <p>Here are just a few sample object retrievals and settings using the dot
+              operator.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x (new Structure: A: 45 B: -6 C: 78))
+              ;; Set the newly created Structure object into the variable <b>x</b>.</p>
+              <p>&nbsp;&nbsp;&nbsp; x<b>.</b>C&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;78</p>
+              <p>&nbsp;&nbsp;&nbsp; x<b>.</b>A&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;45</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x<b>.</b>A 26)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{A
+              26 B -6 C 78}</p>
+              <p>&nbsp;&nbsp;&nbsp; (setq x<b>.</b>B 0)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{A
+              26 B 0 C 78}</p>
+              <p>&nbsp;</p>
+                <!-- Notes & Hints Template -->
+              <p><u><b>Notes &amp; Hints</b></u></p>
+              <p>Refer to the appropriate object data type reference guide to determine the
+              effect of the dot operator on that specific type or even what types of indices
+              the bracket operator can take. For String objects refer to the <a href="axstring.htm">String
+              Object Reference Guide</a>, For Vector objects refer to the <a href="axvector.htm">Vector
+              Object Reference Guide</a>, For Dictionary objects refer to the <a href="axdictionary.htm">Dictionary
+              Object Reference Guide</a>, etc.</p>
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SOffset Addressing"></A>Offset Addressing</H2></P>        
+          
+              <p>The <b>offset</b> function returns the byte offset, from the start of the specified basis object <b>basis</b>,  
+              when computed using the specified constant indices <b>index1</b>, <b>index2</b>, <b>index3</b>.
+              The offset function operates on a number of object types and can accept from one to three indices depending upon the type of basis object.
+              The offset function is an important tool in supporting direct offset addressing using AIS Lisp registers addressing.</p>
+              <p>The offset function is called automatically, by the compiler, when an AIS Lisp register variable is indexed by
+              a <i>constant offset expression</i>, using the <b>bracket</b> operator such as: <b>register[:integer:]</b>,
+              <b>register[basis(name)]</b>, <b>register[basis(index1)]</b>, <b>register[basis(index1,index2)]</b>, or <b>register[basis(index1,index2,index3)]</b>.
+              AIS Lisp treats each register offset expression as a single <i>compound variable name</i>. Therefore, there can be absolutely
+              NO whitespace between any of the parts of the register offset expression. It should also be noted that
+              AIS Lisp only supports register offsets of up to 32,767 bytes.
+              </p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>vars:((employee #{decl| (Name "John Doe") (Number:Salary 23450.00)}))</b></p><br>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>rvars:(NumPointer:ptr)</b></p><br>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(setq ptr employee)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Loads register <i>ptr</i> with the address of the employee Structure.</p><br>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(+= ptr[employee(Salary)] 200.0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Adds 200 to Salary, using direct offset addressing from the <i>ptr</i> register.</p>
+              <p>&nbsp;</p>
+
+            <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Function</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (offset basis index1)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (offset basis index1 index2)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (offset basis index1 index2 index3)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              register[:integer:]<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              register[basis(name)]<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              register[basis(index1)]<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              register[basis(index1,index2)]<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              register[basis(index1,index2,index3)]</p>
+              <p>&nbsp;</p>
+              <!-- Arguments Table Template -->
+              <p><u>Arguments</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>basis</th>
+                  <td>The specified basis object to be referenced via direct offset addressing.</td>
+                </tr>
+                <tr>
+                  <th>name</th>
+                  <td>(Mandatory) The field name from which to compute the direct offset address.</td>
+                </tr>
+                <tr>
+                  <th>Returns</th>
+                  <td>The direct offset address, from the start of the basis object, for the indices specified.</td>
+                </tr>
+              </table>
+              <hr>
+              <table>
+                <tr>
+                  <th>basis</th>
+                  <td>The specified basis object to be referenced via direct offset addressing.</td>
+                </tr>
+                <tr>
+                  <th>index1</th>
+                  <td>(Mandatory) The first numeric index from which to compute the direct offset address.</td>
+                </tr>
+                <tr>
+                  <th>index2</th>
+                  <td>(Optional) The second numeric index from which to compute the direct offset address.</td>
+                </tr>
+                <tr>
+                  <th>index3</th>
+                  <td>(Optional) The third numeric index from which to compute the direct offset address.</td>
+                </tr>
+                <tr>
+                  <th>Returns</th>
+                  <td>The direct offset address, from the start of the basis object, for the indices specified.</td>
+                </tr>
+              </table>
+              <hr>
+              <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>The offset function is an important tool in supporting direct offset addressing using AIS Lisp registers addressing.</p>
+              <p>The offset function operates on a number of object types and can accept a number of different constant indices, as follows:</p>
+              <ul>
+                  <li>Brick (accepts a single integer or symbol index)</li>
+                  <li>ByteVector (accepts a single integer index)</li>
+                  <li>CpxVector (accepts a single integer index)</li>
+                  <li>Dictionary (accepts a single integer or symbol index, or accepts a pair of integer indices)</li>
+                  <li>Directory (accepts a single word index, or accepts a pair of integer indices)</li>
+                  <li>FltVector (accepts a single integer index)</li>
+                  <li>IntVector (accepts a single integer index)</li>
+                  <li>LongVector (accepts a single integer index)</li>
+                  <li>Matrix (accepts from one to three integer indices)</li>
+                  <li>NumMatrix (accepts from one to three integer indices)</li>
+                  <li>NumVector (accepts a single integer index)</li>
+                  <li>ObjVector (accepts a single integer index)</li>
+                  <li>PcodeVector (accepts a single integer index)</li>
+                  <li>ShortVector (accepts a single integer index)</li>
+                  <li>String (accepts a single integer index)</li>
+                  <li>Structure (accepts a single integer or symbol index, or accepts a pair of integer indices)</li>
+                  <li>Symbol (accepts a single integer index)</li>
+                  <li>Vector (accepts a single integer or symbol index)</li>
+              </ul>
+              <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example 1</b></u></p>
+              <p>Here follows a simple example of AIS Lisp offset addressing in action.</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>vars:((complex #{Real 2134.2 Imagine 23450.00}))</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>rvars:(NumPointer:ptr)</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(setq ptr complex)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Loads register <i>ptr</i> with the address of the complex Structure.<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(+= ptr[complex(Real)] 200.0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Adds 200 to the real part of complex.<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(+= ptr[complex(Imagine)] 1540.0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Adds 200 to the imaginary part of complex.</p>
+              <p>&nbsp;</p>
+              <p><u><b>Example 2</b></u></p>
+              <p>Here follows a simple example of AIS Lisp offset addressing for Number Matrices.</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>vars:((gauss #(NumMat[2 2 2]| 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0)))</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>rvars:(NumPointer:ptr)</b><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(setq ptr gauss)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Loads register <i>ptr</i> with the address of the gauss Matrix.<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <b>(setq ptr[gauss(1 0 1)] .45)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>;; Moves .45 into the [1 0 1]th element of the matrix.</p>
+              <p>&nbsp;</p>
+              <!-- Notes & Hints Template -->
+              <p><u><b>Notes &amp; Hints</b></u></p>
+              <p>The offset function is an important tool for supporting direct register offset addressing in AIS Lisp.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCarot Operator ^"></A>Carot Operator ^</H2></P>
+              <p>The Carot Operator <b>^</b> preceding a symbol references a global
+              variable value even in contexts where there are local variable naming
+              conflicts. The AIS Lisp <b>^</b> operator uses the <b>getGlobalValue</b>
+              function to return the global value of the specified symbol argument. 
+              The carot operator <b>^name</b> is the equivalent of the <b>(getGlobalValue name:)</b> function.
+              Also the carot operator <b>^name</b> has a similar effect as the <b>|Gv:name|</b> symbolic form.
+              </p>
+              <p>&nbsp;</p>
+                <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Lexical</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^variable</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |Gv:variable|</p>
+              <p>&nbsp;</p>
+                <!-- Arguments Table Template -->
+              <p><u>Equivalence</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>^name</th>
+                  <td>is identical to</td>
+                  <td>(getGlobalValue name:)</td>
+                </tr>
+                <tr>
+                  <th>^name</th>
+                  <td>has a similar effect as</td>
+                  <td>|Gv:name|</td>
+                </tr>
+              </table>
+              <hr>
+                <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>Use the carot operator when writing out the full equivalent <b>(getGlobalValue name:)</b>
+              expression would be too cumbersome or would make the Lisp program less readable, or
+              use the |Gv:name| symbolic form to achieve the same effect without a function call.
+              </p>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example</b></u></p>
+              <p>Here are just a few sample globals retrievals using the carot operator.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp; 
+              (setq x (new Structure: A: 45 B: -6 C: 78))
+              ;; Set the Structure object into the global variable <b>x</b>.</p>
+              <p>&nbsp;&nbsp;&nbsp; 
+              ((lambda(x) ^x) 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{A 45 B -6 C 78}</p>
+              <p>&nbsp;&nbsp;&nbsp; 
+              ((lambda(x) |Gv:x|) 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{A 45 B -6 C 78}</p>
+              <p>&nbsp;&nbsp;&nbsp; 
+              ((lambda(x) x) 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;2</p>
+              <p>&nbsp;</p>
+                <!-- Notes & Hints Template -->
+              <p><u><b>Notes &amp; Hints</b></u></p>
+              <p>Use the carot operator only as shorthand notation for the <b>(getGlobalValue name)</b> function,
+                 or use the |Gv:name| symbolic form to achieve the same effect without a function call. 
+                 </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SQuote Operator '"></A>Quote Operator '</H2></P>
+             <div class="h2section" id="Quote Operator '">
+              <p>The Quote Operator <b>'</b> preceding a list or symbol converts the list or symbol into
+              a list or symbol constant. The AIS Lisp <b>'</b> is the short hand equivalent of the <b>quote</b>
+              special form.</p>
+              <p>&nbsp;</p>
+                <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Lexical</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              'symbol</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              '(...list...)</p>
+              <p>&nbsp;</p>
+                <!-- Arguments Table Template -->
+              <p><u>Equivalence</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>'thing</th>
+                  <td>is identical to</td>
+                  <td>(quote thing)</td>
+                </tr>
+              </table>
+              <hr>
+                <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>Use the quote operator when writing out the full equivalent <b>quote</b>
+              expression would be too cumbersome or would make the Lisp program less
+              readable.</p>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example 1</b></u></p>
+              <p>Here are just a few examples of the quote operator in action.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (defun foo(x) (length x))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda 291&gt;</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (setq x (new Vector: 3 1 2 3))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#(1 2 3)</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              x&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#(1 2 3)</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              <b>'</b>x&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;x</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (foo x)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;3</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (foo <b>'</b>x)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;1</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              '(foo x)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;(foo x)</p>
+              <p>&nbsp;</p>
+                <!-- Notes & Hints Template -->
+              <p><u><b>Notes &amp; Hints</b></u></p>
+              <p>Use the quote operator only as shorthand notation for the <b>quote</b>
+              special form.</p>
+             </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SColon Operator :"></A>Colon Operator :</H2></P>
+             <p>The Colon Operator <b>:</b> suffixing a symbol always converts the symbol into a symbolic constant.
+              Also symbols enclosed in vertical bars <b>|I am a compound symbol|:</b> can be converted into symbolic constants using the colon operator. 
+              The AIS Lisp <b>name:</b> is the short hand equivalent of the <b>(quote name)</b> special form.
+              </p>
+              
+              <p>Using the colon operator on a symbol at the head of a list can be used as short hand to send a message to a class instance.
+                 The AIS Lisp <b>(msg: self)</b> is the short hand equivalent of the <b>(send msg: self)</b> method invocation.
+                 </p>
+              <p>&nbsp;</p>
+                <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Lexical</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              name:</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              |I am a compound symbol|:</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (msg: self)</p>
+              <p>&nbsp;</p>
+                <!-- Arguments Table Template -->
+              <p><u>Equivalence</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>name:</th>
+                  <td>is identical to</td>
+                  <td>(quote name)</td>
+                </tr>
+                <tr>
+                  <th>(msg: self)</th>
+                  <td>is identical to</td>
+                  <td>(send msg: self)</td>
+                </tr>
+              </table>
+              <hr>
+                <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>Use the colon operator when writing out the full equivalent <b>(quote name)</b> or <b>(send msg: self)</b>
+              expressions would be too cumbersome or would make the Lisp program less readable.
+              </p>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example</b></u></p>
+              <p>Here are some examples of the colon operator in action.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (defclass foo() svars:(Number:x Vector:y) (defun new(self) (setq y (new Vector: 3 1 2 3))) true)</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (defmethod foo:len(self) (length y))</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (setq x (new foo))</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (len: x)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;3</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              x<b>:</b>&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;x</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (length x)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;2</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (length x:)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;1</p>
+              <p>&nbsp;</p>
+                <!-- Notes & Hints Template -->
+              <p><u><b>Notes &amp; Hints</b></u></p>
+              <p>Use the colon operator as shorthand notation for the <b>(quote name)</b> special form, or
+                 use the colon operator as shorthand notation sending a message to a class instance.
+                 </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAt Operator @"></A>At Operator @</H2></P>
+             <p>The At Operator <b>@</b> infixing a compound name, converts the compound name into a member macro invocation. 
+              The AIS Lisp <b>parent@name</b> is the short hand equivalent of the <b>(refmacro parent name)</b> special form.
+              Using the @ Operator on a symbol at the head of a list can be used to invoke a member macro during compilation.
+              </p>
+              <p>&nbsp;</p>
+                <!-- Type and Syntax Template -->
+              <p>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="black">Lexical</font></p>
+              <p>&nbsp;</p>
+              <p>Syntax examples</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (parent@name)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (parent.child@name)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (parent.child[2]@name)</p>
+              <p>&nbsp;</p>
+                <!-- Arguments Table Template -->
+              <p><u>Equivalence</u></p>
+              <hr>
+              <table>
+                <tr>
+                  <th>parent@name</th>
+                  <td>is identical to</td>
+                  <td>(refmacro parent name)</td>
+                </tr>
+              </table>
+              <hr>
+                <!-- When To Use Template -->
+              <p>&nbsp;</p>
+              <p><u><b>When To Use</b></u></p>
+              <p>Use the @ operator when writing out the full equivalent <b>(refmacro parent name)</b>
+              expression would be too cumbersome or would make the Lisp program less readable.
+              </p>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example</b></u></p>
+              <p>Here is an example of the colon operator in action.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (defun foo(x) pvars:(v len) (setq v x))</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (defmacro foo:len(self) (macroReplace self '(length %1)))</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              (setq x (new Vector: 3 1 2 3))</p>
+              <p>&nbsp;&nbsp;&nbsp;
+              <b>(foo@len x)</b>&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;3</p>
+              <p>&nbsp;</p>        
+         <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFunctions"></A>Functions</H2></P>        
+        <div class="h2section" id="Functions">
+          <p>Lisp is the original <i>functional</i> programming language. Heavily
+          influenced by Church's lambda calculus during its development phase, Lisp
+          attempts to express all algorithms as a combination of function declarations
+          and function calls. AIS Lisp continues that tradition; however, in AIS Lisp
+          every function declaration creates an executable Lambda object (<i>instead of a
+          function object</i>). This means that AIS Lisp function declarations <i>can</i>
+          be but <i>need not</i> be much more than simple functions.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Hello world Declaration</b></u></p>
+          <p>An example of a simple Lisp function declaration is the time honored <i>Hello
+          World</i> function as follows (notice that Lisp functions are declared with
+          the <i>lambda</i> keyword further showing the heavy influence of Church's
+          lambda calculus on Lisp language design).</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (lambda() &quot;Hello
+          World&quot;)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda
+          2940&gt;</p>
+          <p>Notice that <b>lambda</b> is also a Lisp function which creates and returns
+          other functions. In effect, <b>lambda</b> is like a function <i>factory</i>
+          whose job is to produce other functions (<i>except in AIS Lisp lambda returns
+          an Lambda object which can behave like a function</i>).</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Hello world Invocation</b></u></p>
+          <p>Enclosing <b>lambda</b> in parentheses invokes the lambda function which
+          returns an Lambda object (<i>albeit an Lambda object designed to act like a
+          function</i>). Enclosing <b>lambda</b> in parentheses twice, first invokes the
+          lambda function, which returns the &quot;Hello World&quot; function, and then
+          immediately invokes the just created function, which returns &quot;Hello
+          World&quot; as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; ((lambda() &quot;Hello
+          World&quot;))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&quot;Hello
+          World&quot;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 3: Named Functions</b></u></p>
+          <p>The <b>define</b> keyword supports the creation of globally named <b>lambda</b>
+          values (functions) as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (define foo (lambda() &quot;Hello
+          World&quot;))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda
+          2940&gt;</p>
+          <p>&nbsp;</p>
+          <p>The <b>defun</b> keyword also supports the creation of globally named <b>lambda</b>
+          values (functions) as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun foo() &quot;Hello
+          World&quot;)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda
+          2940&gt;</p>
+          <p>&nbsp;</p>
+          <p>The newly defined <b>foo</b> function can be invoked as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (foo)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&quot;Hello
+          World&quot;</p>
+          <p>&nbsp;</p>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SArgument Variables"></A>Argument Variables</H2></P>
+            
+          <div class="h2section" id="Argument Variables">    
+          <p>Argument values, passed to Lisp functions, increase the flexibility and
+          power of the programming language. AIS Lisp supports the declaration of
+          argument variables in the <b>lambda</b>, <b>defun</b> and other special forms.</p>
+          <p>Argument passing to functions is a central feature of Church's lambda calculus
+          (<i>which heavily influenced Lisp language design</i>) as well as many other
+          general purpose computer programming languages. AIS Lisp supports the
+          declaration of up to twenty (20) argument variables. All Lisp arguments are
+          passed as Words and cannot be initialized. However, each Lisp argument
+          variable can be declared as having a preferred type (even though encapsulated
+          in a Word). Each Lisp argument variable can be declared as one of the 
+          following types:</p>
+          <ul>      
+              <li>Lambda</li>
+              <li>Boolean</li>
+              <li>BitVector</li>
+              <li>Brick</li>
+              <li>Brick:{template_name}</li>
+              <li>ByteVector</li>
+              <li>Character</li>
+              <li>Dictionary</li>
+              <li>Directory</li>
+              <li>FltVector</li>
+              <li>Function</li>
+              <li>Integer</li>
+              <li>IntVector</li>
+              <li>LongVector</li>
+              <li>Matrix</li>
+              <li>Number</li>
+              <li>NumMatrix</li>
+              <li>NumVector</li>
+              <li>ObjVector</li>
+              <li>Pair</li>
+              <li>ShortVector</li>
+              <li>String</li>
+              <li>Structure</li>
+              <li>Structure:{template_name}</li>
+              <li>Symbol</li>
+              <li>Text</li>
+              <li>Vector</li>
+              <li>Word (<i>the default if undeclared</i>)</li>
+          </ul>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Cube Declaration</b></u></p>
+          <p>An example of a simple Lisp function declaration is the time honored <b>Cube</b>
+          function as follows (notice that Lisp functions are declared with the <i>lambda</i>
+          keyword further showing the heavy influence of Church's lambda calculus on
+          Lisp language design).</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (lambda(Number:x) (* x x x))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda
+          2341&gt;</p>
+          <p>Notice that <b>lambda</b> is also a Lisp function which creates and returns
+          other functions. In effect, <b>lambda</b> is like a function <i>factory</i>
+          whose job is to produce other functions (<i>except in AIS Lisp lambda returns
+          an Lambda object which can behave like a function</i>).</p>
+          <p><font color='red'><b>Note:</b></font> The <b>x</b> argument has been declared to expect a Number data type.</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Cube Invocation</b></u></p>
+          <p>Enclosing <b>lambda</b> in parentheses invokes the lambda function which
+          returns an Lambda object (<i>albeit an Lambda object designed to act like a
+          function</i>). Enclosing <b>lambda</b> in parentheses twice, allong with the
+          argument <b>3</b>, first invokes the lambda function, which returns the <b>Cube</b>
+          function, and then immediately invokes the just created function, passing it
+          the argument <b>3</b>, which returns 27 (the cube of the argument <b>3</b>) as
+          follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; ((lambda(x) (* x x x)) 3)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;27</p>
+          <p><font color='red'><b>Note:</b></font> The <b>x</b> argument is undeclared and defaults to expect a Word data type.</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 3: Named Functions</b></u></p>
+          <p>The <b>define</b> keyword supports the creation of globally named <b>lambda</b>
+          values (functions) as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (define cube (lambda(x) (* x x
+          x)))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda 928&gt;</p>
+          <p>&nbsp;</p>
+          <p>The <b>defun</b> keyword also supports the creation of globally named <b>lambda</b>
+          values (functions) as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun cube(x) (* x x x))&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#&lt;Lambda
+          340&gt;</p>
+          <p>&nbsp;</p>
+          <p>The newly defined <b>cube</b> function can be invoked and passed the
+          argument <b>4</b> as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (cube 4)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;64</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 4: Arguments Visible in Lambda Object</b></u></p>
+          <p>AIS Lisp returns the <b>cube</b> function as an executable Lambda
+          object. The argument <b>x</b> is visible in the <b>Av</b> Structure element of
+          the <b>cube</b> Lambda as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; cube.Av&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{x
+          #void}</p>
+          <p>&nbsp;</p>
+          <p>The <b>cube</b> Lambda knows that it needs an argument, upon invocation, to
+          bind with the argument variable <b>x</b>. Attempting to invoke the <b>cube</b>
+          Lambda with less than one or more than one argument will return an error as
+          follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (cube)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;!arglist!</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (cube 23 6)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;!arglist!</p>
+          <p>&nbsp;</p>     
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STemporary Variables"></A>Temporary Variables</H2></P>
+                       
+        <div class="h2section" id="Temporary Variables">
+          <p>Temporary variables, for temporary storage in Lisp functions, increase the
+          flexibility and power of the programming language. AIS Lisp supports the
+          declaration of temporary variables in the <b>lambda</b> and <b>defun</b>
+          special forms. Temporary variables in functions is a central feature of Lisp
+          as well as many other general purpose computer programming languages. 
+          The <b>vars</b> keyword is used to declare persistent variables.
+          Each AIS Lisp persistent variable is stored in a Word and may optionally be
+          initialized to a constant value; also, each Lisp temporary variable can be 
+          declared as one of the following preferred types:</p>
+          <ul>      
+              <li>Lambda</li>
+              <li>Boolean</li>
+              <li>BitVector</li>
+              <li>Brick</li>
+              <li>Brick:{template_name}</li>
+              <li>ByteVector</li>
+              <li>Character</li>
+              <li>Dictionary</li>
+              <li>Directory</li>
+              <li>FltVector</li>
+              <li>Function</li>
+              <li>Integer</li>
+              <li>IntVector</li>
+              <li>LongVector</li>
+              <li>Matrix</li>
+              <li>Number</li>
+              <li>NumMatrix</li>
+              <li>NumVector</li>
+              <li>ObjVector</li>
+              <li>Pair</li>
+              <li>ShortVector</li>
+              <li>String</li>
+              <li>Structure</li>
+              <li>Structure:{template_name}</li>
+              <li>Symbol</li>
+              <li>Text</li>
+              <li>Vector</li>
+              <li>Word (<i>the default if undeclared</i>)</li>
+          </ul>
+          <p>If a temporary variable is uninitialized, it will have a preferred type of Word.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Making X upper case</b></u></p>
+          <p>An example of a simple Lisp function declaration, which uses temporary
+          variables, is the following function which converts all lower case <b>x</b>
+          characters into upper case <b>X</b> characters. The string to be altered <b>s</b>
+          is passed as an argument. The temporary variables <b>N</b> and <b>n</b> are
+          used to store the length of the string (<b>N</b>) and the character index into
+          the string (<b>n</b>) respectively, as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun makeXUpperCase(s)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vars:((Integer:<b>n</b> 0) <b>N</b>)
+          ;; Declare temporary variables to help loop through each character in the
+          string.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (setq <b>N</b> (length
+          s)) ;; Set the length of the string in <b>N</b>.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (loop for <b>n</b> from 0
+          until <b>N</b> do ;; Loop through each character in the string s.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((if (=
+          s[<b>n</b>] #\x) (setq s[<b>n</b>] #\X)) ;; Replace and lower case (x) chars
+          with upper case (X) chars.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ) ;;
+          end s loop.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s) ;; Return the altered
+          string s.</p>
+          <p>&nbsp;</p>
+          <p>Invoking the <b>makeXUpperCase</b> function with the argument &quot;x marks
+          the spot&quot; will convert the lower case (x) character into an upper case
+          (X) character as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (makeXUpperCase &quot;x marks the
+          spot&quot;)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&quot;X marks the
+          spot&quot;</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Temporaries Visible in Lambda Object</b></u></p>
+          <p>AIS Lisp returns the <b>makeXUpperCase</b> function as an executable Lambda
+          object. The temporary variables <b>n</b> and <b>N</b> are visible in the <b>Tv</b>
+          Structure element of the <b>makeXUpperCase</b> Lambda as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; makeXUpperCase.Tv&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{n
+          0 N #void}</p>
+          <p>&nbsp;</p>
+          <p>The <b>makeXUpperCase</b> Lambda knows that it must allocate stack space for
+          two temporary variables (<b>n</b> and <b>N</b>) upon each invocation. At the
+          start of each invocation, the <b>n</b> temporary variable is initialized to 0,
+          and the <b>N</b> temporary variable is initialized to #void.</p>
+          <p>&nbsp;</p>    
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SPersistent Variables"></A>Persistent Variables</H2></P>
+                    
+        <div class="h2section" id="Persistent Variables">
+          <p>Persistent variables, for permanent storage in Lisp functions, increase the
+          flexibility and power of the programming language. Once persistent variables
+          are declared in a Lisp function it starts to cross the line between behaving
+          like a simple function and behaving like a simple Lambda.
+          AIS Lisp supports the declaration of persistent variables in the <b>lambda</b>
+          and <b>defun</b> special forms. Persistent variables in functions is a central
+          feature of AIS Lisp as well as many other Lambda oriented computer programming
+          languages. AIS Lisp supports the declaration of an unlimited number of
+          persistent variables in any one Lambda.</p>
+          <p>The <b>pvars</b> keyword is used to declare persistent variables.
+          Each AIS Lisp persistent variable is stored in a Word and may optionally be
+          initialized to a constant value; also, each Lisp persistent variable can be 
+          declared as one of the following preferred types:</p>
+          <ul>      
+              <li>Lambda</li>
+              <li>Boolean</li>
+              <li>BitVector</li>
+              <li>Brick</li>
+              <li>Brick:{template_name}</li>
+              <li>ByteVector</li>
+              <li>Character</li>
+              <li>Dictionary</li>
+              <li>Directory</li>
+              <li>FltVector</li>
+              <li>Function</li>
+              <li>Integer</li>
+              <li>IntVector</li>
+              <li>LongVector</li>
+              <li>Matrix</li>
+              <li>Number</li>
+              <li>NumMatrix</li>
+              <li>NumVector</li>
+              <li>ObjVector</li>
+              <li>Pair</li>
+              <li>ShortVector</li>
+              <li>String</li>
+              <li>Structure</li>
+              <li>Structure:{template_name}</li>
+              <li>Symbol</li>
+              <li>Text</li>
+              <li>Vector</li>
+              <li>Word (<i>the default if undeclared</i>)</li>
+          </ul>
+          <p>If a persistant variable is uninitialized, it will have a preferred type of Word.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Keeping Score</b></u></p>
+          <p>An example of a simple Lisp function declaration, which uses persistent
+          variables, is the following function which keeps a rolling <b>total</b> of all
+          the numbers ever passed to it. The number to be tallied is passed as an
+          argument. The persistent variable <b>total</b> is used to store the total of
+          all prior numbers ever passed, as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun keepScore(Integer:n)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          pvars:((Integer:<b>total</b> 0)) ;; Declare a persistent variable to save the rolling total.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (setq <b>total</b> (+ n
+          total)) ;; Accumulate the rolling forward sum in <b>total</b>.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total) ;; Return the
+          rolling forward sum.</p>
+          <p>&nbsp;</p>
+          <p>Invoking the <b>keepScore</b> function with the argument 2 will return the
+          following results.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (keepScore 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;2</p>
+          <p>&nbsp;&nbsp;&nbsp; (keepScore 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;4</p>
+          <p>&nbsp;&nbsp;&nbsp; (keepScore 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;6</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Persistent Variables Visible in Lambda
+          Object</b></u></p>
+          <p>AIS Lisp returns the <b>keepScore</b> function as an executable Lambda
+          object. The persistent variable <b>total</b> is visible in the <b>Pv</b>
+          Structure element of the <b>keepScore</b> Lambda as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; keepScore.Pv&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{total
+          6}</p>
+          <p>&nbsp;&nbsp;&nbsp; keepScore.Pv.total&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;6</p>
+          <p>&nbsp;</p>  
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SClass Variables"></A>Class Variables</H2></P>
+                    
+
+          <p>Class variables, for permanent storage in Lisp functions, increase the
+          flexibility and power of the programming language. Once class variables
+          are declared in a Lisp function it starts to cross the line between behaving
+          like a simple function and behaving like an object oriented Lambda.
+          AIS Lisp supports the declaration of class variables in the <b>lambda</b>
+          and <b>defun</b> special forms. Class variables in functions is a central
+          feature of AIS Lisp as well as many other objected oriented computer programming
+          languages. AIS Lisp supports the declaration of an unlimited number of
+          class variables in any one Lambda.</p>
+          <p>The <b>svars</b> keyword is used to declare class variables.
+          Each AIS Lisp class variable is stored in a Word and may optionally be
+          initialized to a constant value; also, each Lisp class variable can be 
+          declared as one of the following preferred types:</p>
+          <ul>      
+              <li>Lambda</li>
+              <li>Boolean</li>
+              <li>BitVector</li>
+              <li>Brick</li>
+              <li>Brick:{template_name}</li>
+              <li>ByteVector</li>
+              <li>Character</li>
+              <li>Dictionary</li>
+              <li>Directory</li>
+              <li>FltVector</li>
+              <li>Function</li>
+              <li>Integer</li>
+              <li>IntVector</li>
+              <li>LongVector</li>
+              <li>Matrix</li>
+              <li>Number</li>
+              <li>NumMatrix</li>
+              <li>NumVector</li>
+              <li>ObjVector</li>
+              <li>Pair</li>
+              <li>ShortVector</li>
+              <li>String</li>
+              <li>Structure</li>
+              <li>Structure:{template_name}</li>
+              <li>Symbol</li>
+              <li>Text</li>
+              <li>Vector</li>
+              <li>Word (<i>the default if undeclared</i>)</li>
+          </ul>
+          <p>If a class variable is uninitialized, it will have a preferred type of Word.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><b><font color="blue"><u>Example 1</u></font></b></p>
+          <p>Creating and initializing a new class of object.</p>
+
+          <p><b>(defclass employee()</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          svars:(String:Name (Number:Salary 0.0))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (defun new(self name salary)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq Name (string name))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq Salary (number salary))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          self) ;; end of new method</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          true)  ;; end of employee class</b></p>
+
+          <p><b>(setq x (new employee "John Doe" 24000.0))</b></p>
+          <p>x.Name &nbsp;&nbsp;&nbsp; ==> &nbsp;&nbsp;&nbsp; "John Doe"</p>
+          <p>x.Salary &nbsp;&nbsp;&nbsp; ==> &nbsp;&nbsp;&nbsp; 24000.0</p>
+          <p><b>Note:</b> The <b>new</b> function creates a new copy of the class object, containing all of the variables as declared in the svars:().
+             This newly minted copy of the class object is passed to the new method as the argument <b>self</b>. 
+             The Sv register is automatically set to address the <b>self</b> argument so any reference to the svars:() variables will effect the self object.
+             </p>
+
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SConstant Variables"></A>Constant Variables</H2></P>
+                    
+        <div class="h2section" id="Persistent Variables">
+          <p>Constant variables, for permanent storage in Lisp functions, increase the
+          flexibility and power of the programming language. Once constant variables
+          are declared in a Lisp function it starts to cross the line between behaving
+          like a simple function and behaving like a simple Lambda.
+          AIS Lisp supports the declaration of constant variables in the <b>lambda</b>
+          and <b>defun</b> special forms. Constant variables in functions is a central
+          feature of AIS Lisp as well as many other Lambda oriented computer programming
+          languages. AIS Lisp supports the declaration of an unlimited number of
+          constant variables in any one Lambda.</p>
+          <p>The <b>cvars</b> keyword is used to declare constant variables.
+          Each AIS Lisp constant variable is stored in a Word and may optionally be
+          initialized to a constant value; also, each Lisp constant variable can be 
+          declared as one of the following preferred types:</p>
+          <ul>      
+              <li>Lambda</li>
+              <li>Boolean</li>
+              <li>BitVector</li>
+              <li>Brick</li>
+              <li>Brick:{template_name}</li>
+              <li>ByteVector</li>
+              <li>Character</li>
+              <li>Dictionary</li>
+              <li>Directory</li>
+              <li>FltVector</li>
+              <li>Function</li>
+              <li>Integer</li>
+              <li>IntVector</li>
+              <li>LongVector</li>
+              <li>Matrix</li>
+              <li>Number</li>
+              <li>NumMatrix</li>
+              <li>NumVector</li>
+              <li>ObjVector</li>
+              <li>Pair</li>
+              <li>ShortVector</li>
+              <li>String</li>
+              <li>Structure</li>
+              <li>Structure:{template_name}</li>
+              <li>Symbol</li>
+              <li>Text</li>
+              <li>Vector</li>
+              <li>Word (<i>the default if undeclared</i>)</li>
+          </ul>
+          <p>If a constant variable is uninitialized, it will have a preferred type of Word.</p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Keeping Score</b></u></p>
+          <p>An example of a simple Lisp function declaration, which uses persistent
+          variables, is the following function which keeps a rolling <b>total</b> of all
+          the numbers ever passed to it. The number to be tallied is passed as an
+          argument. The persistent variable <b>total</b> is used to store the total of
+          all prior numbers ever passed, as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun keepScore(Integer:n)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          cvars:((Integer:<b>total</b> 0)) ;; Declare a constant variable to save the rolling total.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (setq <b>total</b> (+ n
+          total)) ;; Accumulate the rolling forward sum in <b>total</b>.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total) ;; Return the
+          rolling forward sum.</p>
+          <p>&nbsp;</p>
+          <p>Invoking the <b>keepScore</b> function with the argument 2 will return the
+          following results.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (keepScore 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;2</p>
+          <p>&nbsp;&nbsp;&nbsp; (keepScore 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;4</p>
+          <p>&nbsp;&nbsp;&nbsp; (keepScore 2)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;6</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Constant Variables Visible in Lambda
+          Object</b></u></p>
+          <p>AIS Lisp returns the <b>keepScore</b> function as an executable Lambda
+          object. The constant variable <b>total</b> is visible in the <b>Cv</b>
+          Structure element of the <b>keepScore</b> Lambda as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; keepScore.Cv&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;#{total
+          6}</p>
+          <p>&nbsp;&nbsp;&nbsp; keepScore.Cv.total&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;6</p>
+          <p>&nbsp;</p>  
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRegister Variables"></A>Register Variables</H2></P>
+        <div class="h2section" id="Register Variables">    
+          <p>AIS Lisp programmers use register variables when they wish to <i>increase</i>
+          execution speed, and are willing to sacrifice <i>flexibility</i>. Register
+          Variables, for fast temporary storage in Lisp functions, <u>decrease</u> the
+          flexibility and <u>increase</u> the execution speed of the programming
+          language. AIS Lisp supports the declaration of register variables in the <b>lambda</b>
+          and <b>defun</b> special forms. Register variables in functions is a central
+          feature of AIS Lisp as well as many other execution speed sensitive computer
+          programming languages. AIS Lisp supports the declaration of up to fifty
+          register variables in any one Lambda (see the <i>regs</i> special form).
+          The <b>regs</b> keyword is used to declare persistent variables.
+          Each AIS Lisp persistent variable is stored in a Word and may optionally be
+          initialized to a constant value; also, each Lisp register variable can be 
+          declared as one of the following preferred types:</p>
+          <ul>      
+              <li>Integer (<i>32 or 64 bit integer data depending upon the microchip</i>)</li>
+              <li>Number (<i>64 bit IEEE floating point data depending upon the microchip</i>)</li>
+              <li>CharPointer: (<i>Pointer to an array of character data bytes in context memory</i>)</li>
+              <li>FloatPointer: (<i>Pointer to an array of 32 bit IEEE floating point data values in context memory</i>)</li>
+              <li>IntPointer: (<i>Pointer to an array of integer data values in context memory</i>)</li>
+              <li>JumpPointer: (<i>Pointer to a virtual machine instruction in the current Lambda's pcode vector</i>)</li>
+              <li>LongPointer: (<i>Pointer to an array of long integer data values in context memory</i>)</li>
+              <li>NumPointer: (<i>Pointer to an array of 64 bit IEEE floating point data values in context memory</i>)</li>
+              <li>ObjPointer: (<i>Pointer to an array of 32 bit object pointer data values in context memory</i>)</li>
+              <li>ShortPointer: (<i>Pointer to an array of short integer data values in context memory</i>)</li>
+              <li>WordPointer: (<i>Pointer to an array of 128 bit word data values in context memory</i>)</li>
+          </ul>
+          <p>If a temporary variable has no declared type and is uninitialized, it will have a preferred type of Integer.</p>
+          <p>Register variables may be initialized to a Boolean constant, a Character constant, an Integer constant, or a Number constant.
+             Obviously register variables should be declared to a preferred type compatible with any initial constants. 
+             If a Register variable is initialized to a Boolean constant, it is automatically declared as type Integer
+             (all Boolean data is stored in Register variables as 32 bit integers).
+             If a Register variable is initialized to a Character constant, it is automatically declared as type Integer.
+             (all Character data is stored in Register variables as 32 bit integers).
+             If a Register variable is initialized to an Integer constant, it is automatically declared as type Integer.
+             If a Register variable is initialized to a Number constant, it is automatically declared as type Number.
+             If a Register variable in both undeclared and uninitialized, then it automatically defaults to a preferred type of <b>Integer</b>.
+             </p>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Making X upper case (flexibly)</b></u></p>
+          <p>An example of a simple Lisp function declaration, which uses temporary (not
+          register) variables, is the following function which converts all lower case <b>x</b>
+          characters into upper case <b>X</b> characters. The object to be altered <b>s</b>
+          is passed as an argument. The temporary variables <b>N</b> and <b>n</b> are
+          used to store the length of the object (<b>N</b>) and the index into the
+          object (<b>n</b>) respectively, as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun makeXUpperCase(s)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          vars:((n 0) N) ;; Declare temporary variables to help loop through each character in the object.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq N (length s)) ;; Set the length of the object in N.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for n from 0 until N do ;; Loop through each character in the object s.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ((if (= s[n] #\x) (setq s[n] #\X)) ;; Replace and lower case (x) chars with upper case (X) chars.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ;; end s loop.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          s) ;; Return the altered object s.</p>
+          <p>&nbsp;</p>
+          <p>Invoking the <b>makeXUpperCase</b> function with the argument &quot;x marks
+          the spot&quot; will convert the lower case (x) character into an upper case
+          (X) character; but, <b>makeXUpperCase</b> is very flexible. It will also work
+          if we send it a vector object, or a Structure object, as follows.</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (makeXUpperCase &quot;<b>x</b> marks the spot&quot;)&nbsp;&nbsp;&nbsp;
+            <i>Returns</i>&nbsp;&nbsp;&nbsp;&quot;<b>X</b> marks the spot&quot;</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (makeXUpperCase #(45 #\<b>x</b> 34.5 (8 . 6)))&nbsp;&nbsp;&nbsp;
+            <i>Returns</i>&nbsp;&nbsp;&nbsp;#(45 #\<b>X</b> 34.5 (8 . 6))</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (makeXUpperCase #{A 45 B #\<b>x</b> C 34.5}&nbsp;&nbsp;&nbsp;
+            <i>Returns</i>&nbsp;&nbsp;&nbsp;#{A 45 B #\<b>X</b> C 34.5}</p>
+          <p>&nbsp;</p>
+          <p>Designing the <b>makeXUpperCase</b> function with <i>dynamically typed</i>
+          temporary variables, makes it very general and flexible; however, there is a
+          cost: <u>execution speed</u>.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Making X upper case (fast)</b></u></p>
+          <p>Designing the <b>makeXUpperCase</b> function with register variables, and
+          restricting it's flexibility so that it works only with String objects, will
+          make it execute much faster, as follows.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (defun makeXUpperCase(String:s)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          regs:(CharPointer:p (n 0) c N (CX #\X)) ;; Declare register variables for speed.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjLength s N) ;; Set the length of the string into the register N.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq p s) ;; Set a pointer to the character data (in the string) into the register p.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for n from 0 until N do ;; Loop through each character in the string s.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq c p[n]) ;; Load the next character into the register c.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ((if (= c #\x) (setq p[n] CX)) ;; Replace any lower case (x) chars with upper case (X) chars.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ;; end s loop.</p>
+         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          s) ;; Return the altered string s.</p>
+          <p>&nbsp;</p>
+          <p>Invoking the <b>makeXUpperCase</b> function with the argument &quot;x marks
+          the spot&quot; will convert the lower case (x) character into an upper case
+          (X) character; and, the inflexible register version will execute very much
+          faster than the more general version.</p>
+          <p>&nbsp;</p>  
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SVector Data Instructions"></A>Vector Data Instructions</H2></P>     
+        <div class="h2section" id="Vector Data Instructions">
+          <p>AIS Lisp programmers use vector data instructions when they wish to process data arrays
+          at the <i>fastest possible</i> execution speeds. The AIS Lisp vector data instructions
+          provide two internal Vector Processing Stacks (<i>one for Integer data and one for Number data</i>),
+          three internal Vector Data Pointer Registers, three internal Vector Data Pointer Increment Registers,
+          and one internal Vector Data Loop Counter Register. The AIS Lisp vector data instruction set is designed
+          to use the latest highly parallel auxilliary, floating point, signal processing, and graphics microprocessor chips,
+          and supports the <i>fastest possible</i> processing of the following types of vectored data:</p>
+          <ul>      
+              <li>Float (<i>32 bit IEEE floating point data</i>)</li>
+              <li>Number (<i>64 bit IEEE floating point data</i>)</li>
+          </ul>
+          <p>The use of vector data instructions is appropriate for those applications requiring 
+          the <i>fastest possible</i> execution speeds, and willing to sacrifice <i>flexibility</i>.
+          Vector data algorithms, for extremely fast processing of vectored data, <u>decrease</u> the
+          flexibility and <u>increase</u> the execution speed of the programming language. Vector data
+          algorithms must be composed of clustered vector data instuctions with no other intervening instruction
+          types. Grouping each vector data algorithm together in a cluster of instructions allows the AIS Lisp 
+          <i>Just-In-Time</i> compiler to easily recognize the vector data algorithm and to execute the algorithm on
+          the <i>fastest available</i> auxilliary, floating point, signal processing, or graphics microprocessor chip.</p> 
+          <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example 1: Vector Dot Product</b></u></p>
+          <p>An example of a vector Dot Product computation, which uses vector data instructions,
+          is the following function.</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (defun vectorDotProduct(NumVector:X NumVector:Y)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          regs:(NumPointer:px NumPointer:py Number:z n N) ;; Declare register variables for speed.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjPointer X px) ;; Set a pointer to the vector X.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjPointer Y py) ;; Set a pointer to the vector Y.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjLength X N) ;; Get the length of X (example assumes the Vectors are of equal length).</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregMoveImmediate Number: n) ;; Set the byte size of a Number in n.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSetPointers px py py) ;; Declare the Vector Pointer Registers.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSetIncrements n n n) ;; Declare the Vector Increment Registers.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecNumScalar dot: n z) ;; Perform the dot product on the two vectors.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          z) ;; Return the resulting scalar z.</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 2: Vector Multiply with Cosine</b></u></p>
+          <p>An example of a simple Lisp vector multiply with cosine, which uses vector data instructions,
+          is the following function.</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (defun vectorCosMultiply(FloatVector:X FloatVector:Y FloatVector:Z)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          regs:(FloatPointer:px FloatPointer:py FloatPointer:pz n N) ;; Declare register variables for speed.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjPointer X px) ;; Set a pointer to the vector X.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjPointer Y> py) ;; Set a pointer to the vector Y.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjPointer Z pz) ;; Set a pointer to the vector Z.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjLength X N) ;; Get the length of X (example assumes the Vectors are of equal length).</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregMoveImmediate Float: n) ;; Set the byte size of a float in n.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSetPointers px py pz) ;; Declare the Vector Pointer Registers.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSetIncrements n n n) ;; Declare the Vector Increment Registers.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecInitialize target: n) ;; Start the Vector data loop.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPush Float: argument:) ;; Load a Number from the X vector.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPush Float: source:) ;; Load a Number from the Y vector.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecBinary mul:) ;; Multiply the X and Y Numbers together.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecUnary cos:) ;; Compute the cosine of the product.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPop Float: target:) ;; Save the result in the Z vector.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecLoop) ;; End the Vector data loop.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          Z) ;; Return the result vector Z.</p>
+          <p>&nbsp;</p>
+          <p>In this example, the vector data algorithm begins with the first vmvecSetPointers instruction and ends
+          with the last vmvecLoop instruction. The algorithm is composed of a clustered group ov <i>vmvec</i> instructions
+          with no intervening other instruction types. The algorithm is readily identifyable by the AIS Lisp JIT which is
+          free to execute the algorithm on the <i>fastest available</i> auxilliary, floating point, signal processing, 
+          or graphics microprocessor chip.</p>
+          <p>&nbsp;</p>
+          <p><u><b>Example 3: Bubble Sort</b></u></p>
+          <p>An example of a simple Lisp Integer bubble sort, which uses vector data instructions,
+          is the following function which sorts an Integer Vector.</p>
+          <p>&nbsp;&nbsp;&nbsp; 
+          (defun bubbleSort(NumVector:V)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          regs:(NumPointer:pv Number:v i n N) ;; Declare register variables for speed.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjPointer V pv) ;; Set a pointer to the vector in pv.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregObjLength V N) ;; Set the length of the vector in N.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregMoveImmediate Integer: i) ;; Set the byte size of an Integer in i.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSetPointers pv pv pv) ;; Declare the Vector Pointer Registers.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSetIncrements i i i) ;; Declare the Vector Increment Registers.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for n from N until 0 by -1 do ;; Loop through each Integer in the vector.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecRefNumber pv v) ;; Load the first integer in the bubble into a temporary register.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPushNumber v) ;; Load the first integer in the bubble.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecInitialize argument: n) ;; Start looping through each integer in the bubble.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPush Number: argument:) ;; Load the next integer in the bubble.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecSwap LT:) ;; Leave the larger number on top of the stack.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPop Number: argument:) ;; Save the larger number.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecLoop) ;; End the Vector data loop.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmvecPopNumber v) ;; Save the minimum number in a temporary register.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregSetNumber v pv) ;; Save the minimum number in the first position of this bubble.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregAddPointer i pv) ;; Promote the vector pointer to the next bubble.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ;; end n loop.</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          V) ;; Return the sorted vector.</p>
+          <p>&nbsp;</p>     
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSafe Coding Practice"></A>Safe Coding Practice</H2></P>    
+        <div class="h2section" id="Safe Coding Practice">
+          <p>AIS Lisp programmers are encouraged to use a specific style of coding as their Safe Coding Practice.
+          This prototypical coding style obtains the most safety out of the AIS Lisp compiler while requiring the least engineering effort during the development process.
+          There are only three simple rules for Safe Coding Practice, as follows:
+          </p>
+          <ul>      
+              <li>Simple single line assignments and expressions (where possible).</li>
+              <li>No variables allocated to registers.</li>
+              <li>All variables generically typed (no type specified).</li>
+          </ul>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example</b></u>: A straight forward example of AIS Lisp Safe Coding Practice is shown below.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun foo(i)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          vars:(m M n N x)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          vars:(v1 v2)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq N i)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq M 1000)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq v1 (new Vector: Number: M 0))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq v2 (new Vector: Number: M 0))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for n from 0 until N do</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for m from 0 until M do</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq x v1[m])</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (+= x 10.0)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (*= x x)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (/= x 10.0)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq v2[m] x)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ; end m loop</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ; end n loop</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          v2) ; end of foo</p> 
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNormal Coding Practice"></A>Normal Coding Practice</H2></P>    
+        <div class="h2section" id="Normal Coding Practice">
+             <p>AIS Lisp programmers are encouraged to use a specific style of coding as their Normal Coding Practice.
+              This preferred coding style obtains the most efficiency out of the AIS Lisp compiler without requiring the extra effort of writing in Lisp Assembler.
+              There are only five simple rules for Normal Coding Practice, as follows:
+              </p>
+              <ul>      
+                  <li>Simple single line assignments and expressions (where possible).</li>
+                  <li>All Integer and Number variables relocated to registers.</li>
+                  <li>All Integer and Number constants relocated to register variables.</li>
+                  <li>All Vectors, Matrices, and Structure variables strongly typed (where the type is known).</li>
+                  <li>All remaining variables generically typed (where the type is unknown).</li>
+              </ul>
+                <!-- Code Eaxmples Template -->
+              <p>&nbsp;</p>
+              <p><u><b>Example</b></u>: A straight forward example of AIS Lisp Normal Coding Practice is shown below.</p>
+              <p>&nbsp;</p>
+              <p>&nbsp;&nbsp;&nbsp; (defun foo(Integer:i)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              regs:(m M n N Number:x (Number:cTen 10.0)) ;; Default type for regs is always Integer</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              vars:(NumVector:v1 NumVector:v2)  ;; Default type for vars, pvars, & cvars is always Word</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (setq N i)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (setq M 1000)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (setq v1 (new Vector: Number: M 0))</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (setq v2 (new Vector: Number: M 0))</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (loop for n from 0 until N do</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (loop for m from 0 until M do</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (setq x v1[m])</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (+= x cTen)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (*= x x)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (/= x cTen)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              (setq v2[m] x)</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              ) ; end m loop</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              ) ; end n loop</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              v2) ; end of foo</p>    
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAdvanced Coding Practice"></A>Advanced Coding Practice</H2></P>    
+        <div class="h2section" id="Advanced Coding Practice">
+          <p>AIS Lisp programmers are encouraged to use a specific style of coding as their Advanced Coding Practice.
+          This advanced coding style obtains the most efficiency out of the AIS Lisp compiler by adding the extra effort of writing in almost Lisp Assembler.
+          </p>          
+          <p>The mission of the Lisp compiler is to compile reasonably fast (but safe) Lambdas for prototyping complex algorithms.
+          A secondary mission of the Lisp compiler is to provide the facility for reworking mature prototypes into very fast portable algorithmic Lambdas.
+          Implicit in the design of the Lisp compiler, is that the programmer will place extra engineering effort into those mission critical Lambdas needing rework;
+          and, that the resulting reworked Lambdas will be very fast (but not necessarily safe). 
+          Therefore, the final rework stage is intended only for mission critical Lambdas where speed is essential;
+          AND, it is assumed that the programmer will invest a level of personal attention so as to be satisfied with the speed and safety of the final generated code.
+          </p>
+          <p>There are only three simple rules for Advanced Coding Practice, as follows:
+          </p>
+          <ul>      
+              <li>All strongly typed Vectors, Matrices, Symbols, and String variables converted to pointers.</li>
+              <li>Use multiple <i>vmregRunInHardware</i> instructions to guide the optimizer (for complex algorithms).</li>
+              <li>Examine the Lambda with <i>disassemble</i>, intervening with Lisp Assembler instructions to improve optimization.</li>
+          </ul>
+            <!-- Code Eaxmples Template -->
+          <p>&nbsp;</p>
+          <p><u><b>Example</b></u>: An example of AIS Lisp advanced coding practice is shown below.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp; (defun foo(Integer:i)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          regs:(m M n N Number:x Number:y (Number:cTen 10.0))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          regs:(NumPointer:pv1 NumPointer:pv2)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          vars:(NumVector:v1 NumVector:v2)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq N i)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq M 1000)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq v1 (new Vector: Number: M 0))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq pv1 v1)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq v2 (new Vector: Number: M 0))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq pv2 v2)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregRunInHardware start:)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for n from 0 until N do</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for m from 0 until M do</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq x pv1[m])</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (+= x cTen)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (*= x x)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (/= x cTen)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq pv2[m] x)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ) ; end m loop</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ; end n loop</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregRunInHardware stop:)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregRunInHardware start:)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (loop for m from 0 until M do</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq x pv1[m])</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (setq y pv2[m])</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (+= y x)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq pv2[m] y)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          ) ; end m loop</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          (vmregRunInHardware stop:)</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          v2) ; end of foo</p> 
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SWriting Fast Machine Code"></A>Writing Fast Machine Code</H2></P>           
+        <div class="h2section" id="Writing Fast Machine Code">
+         <p>AIS Lisp programmers are encouraged to use the safe style of coding for their prototype Lambdas. 
+          AIS Lisp Lambdas, written in Safe Coding Practice, execute approximately three to fifteen times slower than their Advance Coding Practice cousins;
+          but, they are much safer and require much less engineering attention during the development process. 
+          </p>
+          <p>For mission-critical Lambdas, where speed is essential, Safe Coding Practice Lambdas will require conversion to Normal or Advanced Coding Practice.
+          AIS Lisp Programmers are encouraged to use care when converting from the Safe coding style to either Normal or Advanced Coding Practice.
+          The advanced coding style obtains the most efficiency out of the AIS Lisp compiler by adding the extra effort of writing in almost Lisp Assembler.
+          Implicit in the design of the Lisp compiler, is that the programmer will place extra engineering effort into those mission critical Lambdas needing rework;
+          and, that the resulting reworked Lambdas will be very fast (but not necessarily safe). 
+          Therefore, the final rework stage is intended only for mission critical Lambdas where speed is essential;
+          AND, it is assumed that the programmer will invest a level of personal attention so as to be satisfied with the speed and safety of the final generated code.
+          </p>          
+          <p>&nbsp;</p>
+          <p><u><b>Example</b></u>: Writing Fast Yet Safe Code.</p>
+          <p>Writing fast AIS Lisp code requires as much careful attention as writing in Assembler or C. 
+          Pointers, registers, and other low level machine tools are fast; but, not necessarily safe.
+          Conversion of an AIS Lisp Lambda to Advanced Coding Practice, with registers and pointers, 
+          requires frequent use of the <b>disassemble</b> function as well as an understanding of the DRM virtual machine code generated by the compiler. 
+          The example below shows a simple Lambda, named foo, using Safe Coding Practice, and its DRM virtual machine code generated by the compiler.
+          </p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp;(defun foo() vars:(X) vars:((n 20) y) (setq X (new Vector: Integer:)) (setq X[n] y))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          <b>(disassemble foo)</b> ==></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0000: (vmpush    Cv[__C3553:"Vector"]  Cv[__C3554:"Integer"] )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0003: (vmcall    2  Gv[new] Tv[X] )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0007: (vmset    Tv[n]  Tv[y]  Tv[X] )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0011: (vmreturn    Tv[X] )</p>
+          <p>&nbsp;</p>
+          <p>The vmpush followed by the vmcall instructions create an IntVector, of zero length, in the X variable. 
+          The vmset instruction notices that the IntVector does not have the capacity to store y at location 20 (n);
+          so the vmset instruction extends the size of the IntVector before storing y at location 20 (n). 
+          </p>
+           <p>The example below shows the foo Lambda, converted to Normal Coding Practice, and its DRM virtual machine code generated by the compiler.
+          </p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp;(defun foo() vars:(IntVector:X) regs:((n 20) y) (setq X (new Vector: Integer:)) (setq X[n] y))</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          <b>(disassemble foo)</b> ==></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0000: (vmpush    Cv[__C3581:"Vector"]  Cv[__C3582:"Integer"] )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0003: (vmcall    2  Gv[new] Tv[X] )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0007: (vmregObjPointer    Tv[X]  __Rp  )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0009: (vmregSetXInteger    y   n   __Rp  )</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          0010: (vmreturn    Tv[X] )</p>
+          <p>&nbsp;</p> 
+          <p>Following this simple conversion from Safe to Normal Coding Practice, the foo Lambda was executed and crashed the AIS system.
+          The crash occurs because, the vmpush followed by the vmcall instructions create an IntVector, of zero length, in the X variable. 
+          The vmregObjPointer instruction loads a pointer register (__Rp) with the address of the data portion of the IntVector X.
+          Since X is of zero length, the pointer (__Rp) is loaded with the zero address.
+          The vmregSetXInteger instruction attempts to store y at location __Rp plus 20 (n). 
+          This causes an illegal memory access error in the host computer chip, crashing the AIS system.
+          </p>
+           <p>The example below shows the foo Lambda, converted to Normal Coding Practice, with the system crash fixed.
+          </p>
+          <p>&nbsp;</p>
+          <p>&nbsp;&nbsp;&nbsp;(defun foo() vars:(IntVector:X) regs:((n 20) y) (setq X (new Vector: Integer: <b><u>21</u></b>)) (setq X[n] y))</p>  
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLISP Optimization"></A>LISP Optimization</H2></P>           
+        
+         <p>AIS LISP Programmers may encounter these issues when trying to lessen execution time and use lesser
+           memory to improve performance and efficiency of LISP Lambdas. 
+          </p>
+          <p><b> Memory Allocation (Byte Vectors or Strings) </b></p>
+          <p>Like C, LISP  provides for  Static and Dynamic Memory Allocation. </p>
+          <p><blockquote>1.    <b>Static Memory Allocation</b> provides space for the object in the binary at
+            compile time.  An example is  a command preallocating a fixed memory size of 
+             1000 bytes  to a vector.</blockquote> </p>
+          <p><blockquote>(setq testByteVector (new Vector: Byte: 1000))</blockquote></p>
+          <p><blockquote>2.    <b>Dynamic Memory Allocation</b> allows blocks of memory of arbitrary size to  be requested at run-time.   The 
+             Heap manager which  supports dynamic memory allocation allows for object resizing, 
+             garbage collection, and anti-fragmentation algorithms.</blockquote></p>
+          <p><blockquote>A String is an example of an AIS  Object Data type that uses dynamic memory allocation.  
+             The initial type and number of a sequence of characters in  a String  is determined by 
+             its size or it may be declared initially empty.  When a character constant is modified  
+             or when a String is expanded or contracted, Analytic Information Server handles the transition 
+             dynamically as needed.</blockquote></p>
+
+          <p>The use of register programming to manipulate pointers and store the characters being pointed into 
+             a Byte Vector of a fixed size is fast compared to the use of Strings.  But this also depends  
+             on the nature of the data being processed.  If the size of the data to be processed is more or 
+             less constant, the Static Memory Allocation approach is better and  faster.  But if the size
+             of the data greatly varies (e.g. from 10 bytes to 100000  bytes) then Dynamic memory allocation
+             through the use of string is faster and more efficient.</p>
+
+          <p><b> Register Programming</b></p>
+
+          <p>The use of pointers to traverse  the contents of a Byte Vector or String is a fast 
+            alternative to other time and memory intensive functions such as: copy, append, etc. 
+             An example of this is:
+          </p>
+          <p>
+          <blockquote>  
+         (vmregRunInHardware start:)
+         (setq charPointer1  charPointer2)
+         (++ charPointer1)
+         (setq cc charPointer1 [0])                                             
+         (while (and (&#62 cc 0) (&#60= cc 32)) (begin (++ start) (setq cc start[0])))
+         (vmregRunInHardware stop:)    
+           </blockquote>
+           </p>
+          <p>This code traverses through all the characters in a document until it encounters a whitespace(ASCII Number 32). 
+            This register code is fast especially since it is enclosed in vmregRunInHardware commands.</p>
+          
+           <p><b> Global variables</b></p>
+            <p>The presence of global or persistent variables may have a significant impact in a LISP program's performance. 
+            For instance,  an unwanted persistent variable may cause data to be concatenated to it until the   increase
+            of variable size eats up memory and affects performance. This may cause memory overhead to increase per program run.</p>
+
+          <p>To show global variables accessed by a specific Lambda, issue the command: </p>
+          <p>
+          <blockquote>  (browseLib.showGlobals rootLambda)  </blockquote>
+          </p>
+          <p>where  rootLambda is the name of the  Lambda in memory.</p>
+          <p> Unwanted global references should either be deleted or  converted from persistent variables to ordinary variables (pvars to vars).</p>
+
+          <p><b> Program Checking</b></p>
+          <p>LISP has various commands to check performance and memory status. Also included below are other suggested tips
+            to check causes for longer execution time and more memory utilization.</p>
+          <p><b>1.<i> inspect</i> </b></p>
+          <p>This  command return the statistical and system information concerning the specified Analytic Information Server environment.</p>
+          <p><b>2.<i> systemCheck</i> </b></p>
+          <p>The systemCheck function performs a system diagnostic check of the current memory manager and displays a system error message
+             if any memory blocks are damaged and cannot be repaired The systemCheck function is useful for determining if there are memory leaks</p>
+          <p><b>3.<i>getTickCount</i> </b></p>
+          <p>This function is helpful to get timing results of a LISP program.  Usually, the timing test code looks like this:</p>
+          <p><blockquote>
+          (setq startTime 0)
+          (setq endTime 0)
+          (setq startTime (getTickCount 0))
+           ... Program execution
+          (setq endTime (getTickCount startTime))</blockquote></p>
+          <p><b>4.<i>sizeof and length</i> </b></p>
+          <p>These functions are helpful to do a per variable checking within the Lambda.  The length function checks if there are unwanted concatenated 
+          data in a variable.  The sizeof function determines the object closure size of an object.</p>
+          <p><b>5.<i>number of recursion or iterations</i> </b></p>
+          <p>It is always helpful to check and see if the number of recursions or iterations is consistent with the program logic. </p>
+        
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

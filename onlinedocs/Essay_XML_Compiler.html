@@ -1,0 +1,294 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>XML Compiler</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SXML Compiler Overview"><FONT SIZE=2>XML Compiler Overview</font></a></li><li><a href="#SDocument Tree Models"><FONT SIZE=2>Document Tree Models</font></a></li><li><a href="#SCompiling a String"><FONT SIZE=2>Compiling a String</font></a></li><li><a href="#SCompiling A String with PI"><FONT SIZE=2>Compiling A String with PI</font></a></li><li><a href="#SCompiling A String with event handling"><FONT SIZE=2>Compiling A String with event handling</font></a></li><li><a href="#SInput Lambda"><FONT SIZE=2>Input Lambda</font></a></li>
+</UL>
+
+<P><H2><A NAME="SXML Compiler Overview"></A>XML Compiler Overview</H2></P>
+            <div class="h2section" id="XML CompilerOverview">		
+		    <P>The XML compiler is a Lisp function Library designed as a tiny XML compiler 
+               for a subset of SAX and DOM compliant XML implementations. The xml function is not, 
+               itself, a full SAX and DOM compliant XML compiler; instead, allows applications 
+               to read and write a subset of standards compliant XML without the size and expense 
+               of a full SAX and DOM standards compliant XML compiler.
+               The XML compiler allows applications to store their data in XML compliant format.
+               XML documents written by the XML compiler can always be read by full standards
+               compliant compilers.</P>
+		   <P>The xml Function implements an XML compiler via the method of recursive descent. 
+             	The xml function is a tiny XML compiler and not a parser such as the lisp or 
+          	 	javaScript functions. The result of running the xml function on an XML input string 
+            	is a completed XML document tree model.</P>
+            </div>	  
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDocument Tree Models"></A>Document Tree Models</H2></P>
+        <div class="h2section" id="Document Tree Models">
+		<p>The XML document tree model is a recursive Structure with the data inside 
+		  the XML document addressable by attribute as well as by numeric index. For
+		  example the following XML input string:</p>				  
+		<PRE>&lt;?xml version = '1.0' standalone='yes' encoding = 'hello' ?&gt;
+		&lt;!-- This is a dynamic name and address example --&gt;
+		&lt;Address FirstName = "yes" LastName = 'yes'&gt; 
+		This is just general content for the Address element.
+		&lt;FirstName&gt;Michael&lt;/FirstName&gt;
+		&lt;LastName&gt;Korns&lt;/LastName&gt;
+		&lt;Street&gt;214 Shorebreaker&lt;/Street&gt;
+		&lt;City&gt;Laguna Niguel&lt;/City&gt;
+		&lt;State&gt;California&lt;/State&gt;
+		This is more content for the Address element.
+		&lt;/Address&gt;
+		Returns the following XML document tree model:
+		#{
+		 __attlist: #{version: '1.0' standalone: 'yes' encoding: 'hello'}
+			Address: #{
+			    __attlist: #{FirstName: "yes" LastName: 'yes'}
+				__content: "This is just general content for the Address element."
+			    FirstName: "Michael"
+			    LastName:  "Korns"
+			    Street:    "214 Shorebreaker"
+			    City:      "Laguna Niguel"
+				State:     "California"
+			   __content: "This is more content for the Address element."
+			  }
+		}			
+		</PRE>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCompiling a String"></A>Compiling a String</H2></P>
+         <div class="h2section" id="Compiling a String">
+		<P>The xml function supports the compilation of a single source string and returning an XML document tree model.<BR>
+		Syntax: (xml  [document] inputString)</P>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>document</B></TD>
+		<TD>
+		(optional) A Structure to be extended as an XML document in tree model form. After being extended, this structure is then returned as the result of  XML compilation.</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>inputString</B></TD>
+		<TD>
+		A string containing the XML source to be compiled</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>
+		An XML document in tree model form</TD>
+		</TR>
+		</TABLE>
+		<P>Syntax: (xml  [document] inputLambda)</P>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>document</B></TD>
+		<TD>
+		(optional) A Structure to be extended as an XML document in tree model form. After being extended, this structure is then returned as the result of  XML compilation.</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>inputLambda</B></TD>
+		<TD>
+		An Lambda which provides the input string, containing the XML source, to the xml function on demand (see the Input Source Providers chapter)</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>
+		An XML document in tree model form</TD>
+		</TR>
+		</TABLE>
+		<H3>Example1</H3>
+		<pre>(xml &quot;&lt;?xml version=?1??&gt;&lt;Name&gt;John Doe&lt;/Name&gt;&quot;)<BR>
+		;; Returns    <BR>
+		#{xml: true __attlist: #{version: 1}  Name:  &quot;John Doe&quot; }</pre>
+		<H3>Example2</H3>
+		<PRE>(setq xmlDoc (new Structure:))
+		(xml xmlDoc &quot;&lt;?xml version=?1??&gt;&lt;Name&gt;John Doe&lt;/Name&gt;&lt;*%&gt;&lt;City&gt;San Francisco&lt;/City&gt;&quot;)</PRE><DIR>
+		<DIR>
+		<DIR>
+		<P>Returns the following error message:</P></DIR>
+		</DIR>
+		</DIR>
+		<PRE>!Invalid element start tag:
+		&lt;Name&gt;John Doe&lt;/Name&gt;&lt;*%&gt;
+		            ^ error
+		&lt;City&gt;San Francisco&lt;/City&gt;
+		!</PRE>
+		<P>However xmlDoc contains the XML document-in-progress at the time of the error:</P>
+		<PRE>''xmlDoc is
+		#{xml: true __attlist: #{version: 1} Name: &quot;John Doe&quot;}</PRE><DIR>
+		<DIR>
+		<P>Note: <B> </B>Passing the optional, (<B>xmlDoc</B>) argument allows the <B>xml</B> compiler to return an error message and still allow the caller access to the XML document-in-progress as it was at the time of the error.</P></DIR>
+		</DIR>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCompiling A String with PI"></A>Compiling A String with PI</H2></P>
+         <div class="h2section" id="Compiling A String with PI">
+				<P>The xml function supports the compilation of a single source string with active process instruction handling and returning an XML document tree model. The second argument must be a Structure of active process instruction bindings (<B>piStructure</B>). If the xml compiler should encounter a process instruction, the pi target name is looked up in the piStructure. If found, the xml function invokes the specified processing Lambda to process the character data. If not found, the xml function saves the process instruction source, but attempts no processing.<BR>
+			Syntax: (xml [document] inputString piStructure)</P>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>document</B></TD>
+			<TD>
+			(optional) A Structure to be extended as an XML document in tree model form. After being extended, this structure is then returned as the result of  XML compilation.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>inputString</B></TD>
+			<TD>
+			A string containing the XML source to be compiled</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>piStructure</B></TD>
+			<TD>
+			A Structure containing the process instruction Lambdas bound to the active pi target names</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>
+			An XML document in tree model form</TD>
+			</TR>
+			</TABLE>
+			<P>Syntax: (xml  [document] inputLambda piStructure)</P>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>document</B></TD>
+			<TD>
+			(optional) A Structure to be extended as an XML document in tree model form. After being extended, this structure is then returned as the result of  XML compilation.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>inputLambda</B></TD>
+			<TD>
+			An Lambda which provides the input string, containing the XML source, to the xml function on demand (see the Input Source Providers chapter)</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>inputLambda</B></TD>
+			<TD>
+			A string containing the XML source to be compiled</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>piStructure</B></TD>
+			<TD>
+			A Structure containing the process instruction Lambdas bound to the active pi target names</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>
+			An XML document in tree model form</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<PRE>(xml &quot;&lt;?xml version=?1??&gt;&lt;?noScript Hello there?&gt;&quot; 
+			#{javaScript: (lambda(piStructure document this source) 
+			          (eval (compile 
+			                         (morph (javaScript source)) 
+			                         (new Lambda: Pv: (new Structure: document: document this: this))
+			                         ))})
+			Returns #{xml: true
+			        __attlist: #{version: 1}
+			   noScript:  &quot;Hello there&quot;
+			  }</PRE>
+			<H3>Example2</H3>
+			<PRE>(xml &quot;&lt;?xml version=?1??&gt;&lt;?javaScript writeln(?Hello world?); ?&gt;&quot; 
+			#{javaScript: (lambda(piStructure document this source) 
+			      (eval (compile 
+			            (morph (javaScript source)) 
+			            (new Lambda: Pv: (new Structure: document: document this: this))
+			       ))})
+			;;Returns the structure
+			#{xml: true __attlist: #{version: 1} javaScript:  &quot;writeln(?Hello world?);&quot;}
+			;;and Displays
+			&quot;Hello World&quot;</PRE>
+			<P>Note: Each processing instruction target name, in the <B>piStructure</B>, must be
+              bound to a lambda value expecting four arguments: (<B>piStructure</B>) the 
+              piStructure itself so that scripts can add to the available processing instruction 
+             targets, (<B>document</B>) the xml document in progress, (<B>this</B>) the current 
+             xml element, and (<B>source</B>) the processing instruction content.</P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCompiling A String with event handling"></A>Compiling A String with event handling</H2></P>
+           <div class="h2section" id="Compiling A String with event handling">
+				<P>The xml function supports the compilation of a single source string with event handling. No XML document tree model is returned. The second argument must be an Lambda or a Host Object which will handle document events (<B>eventHandler</B>). The eventHandler must support the methods exposed in the Chapter on Document Event Handlers.<BR>
+		Syntax: (xml  inputString eventHandler)</P>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>inputString</B></TD>
+		<TD>
+		A string containing the XML source to be compiled</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>eventHandler</B></TD>
+		<TD>
+		An Lambda or Host Object which will handle document events as described in the Chapter on Document Event Handlers.</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>
+		An XML document in tree model form</TD>
+		</TR>
+		</TABLE>
+		<P>Syntax: (xml  inputLambda eventHandler)</P>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>inputLambda</B></TD>
+		<TD>
+		An Lambda which provides the input string, containing the XML source, to the xml function on demand (see the Input Source Providers chapter)</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>inputString</B></TD>
+		<TD>
+		A string containing the XML source to be compiled</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>eventHandler</B></TD>
+		<TD>
+		An Lambda or Host Object which will handle document events as described in the Chapter on Document Event Handlers.</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>
+		An XML document in tree model form</TD>
+		</TR>
+		</TABLE>
+		<H3>Example1</H3>
+		<PRE>(xml &quot;&lt;?xml version=?1??&gt;&lt;?javaScript writeln(?Hello world?);?&gt;&quot;  eventHandler)
+		;;Sends the following events to eventHandler
+		;;(eventHandler.startDocument)
+		;;(eventHandler.startElement &quot;xml&quot; #{version: 1})
+		;;(eventHandler.processingInstruction &quot;javaScript&quot;  &quot;writeln(?Hello world?);&quot;)
+		;;(eventHandler.endElement &quot;xml&quot;)
+		;;(eventHandler.endDocument)</PRE>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SInput Lambda"></A>Input Lambda</H2></P>
+        <div class="h2section" id="Input Lambda">
+		<P>The xml function supports the compilation of a multiple input strings served from an input Lambda. 
+		   This allows compilation of include files and other instances where multiple XML source strings must be compiled as a single XML document. 
+		   The first argument must be an Lambda or a Host Object which will provide strings of complete XML source in response to the (<B>moreSource</B>) message.
+		    The inputLambda must support the <B>moreSource</B> method by returning either <B>#void</B> (if there is no more source) or the next input string in sequence.</P>
+		<p><B>Note</B>:Each input string must be a complete XML fragment.<BR>
+		Syntax:<B>(inputLambda.moreSource)</B></p>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>
+		An complete XML input string or #void</TD>
+		</TR>
+		</TABLE>
+		<H3>Example1</H3>
+		<PRE>(inputLambda.moreSource)
+		;;Returns the string
+		&quot;&lt;?xml version=?1??&gt;&lt;Name&gt;John&lt;/Name&gt;&quot;</PRE>
+		<P>Note:<B> </B>Each input string must be a complete XML fragment. This means that each input string must end at an end tag boundary.</P>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

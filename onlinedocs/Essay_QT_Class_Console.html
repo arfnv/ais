@@ -1,0 +1,677 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Class console</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SaddCommandItem"><FONT SIZE=2>addCommandItem</font></a></li><li><a href="#Sfind"><FONT SIZE=2>find</font></a></li><li><a href="#SgetCommandCount"><FONT SIZE=2>getCommandCount</font></a></li><li><a href="#SgetCommandItem"><FONT SIZE=2>getCommandItem</font></a></li><li><a href="#SgetCommandText"><FONT SIZE=2>getCommandText</font></a></li><li><a href="#SgetConsoleLog"><FONT SIZE=2>getConsoleLog</font></a></li><li><a href="#SgetDisplayHtml"><FONT SIZE=2>getDisplayHtml</font></a></li><li><a href="#SgetDisplayText"><FONT SIZE=2>getDisplayText</font></a></li><li><a href="#SgetSelectedText"><FONT SIZE=2>getSelectedText</font></a></li><li><a href="#SgetSelectionEnd"><FONT SIZE=2>getSelectionEnd</font></a></li><li><a href="#SgetSelectionStart"><FONT SIZE=2>getSelectionStart</font></a></li><li><a href="#Smaximize"><FONT SIZE=2>maximize</font></a></li><li><a href="#Sminimize"><FONT SIZE=2>minimize</font></a></li><li><a href="#Spaste"><FONT SIZE=2>paste</font></a></li><li><a href="#SremoveCommandItem"><FONT SIZE=2>removeCommandItem</font></a></li><li><a href="#SsetCommandItem"><FONT SIZE=2>setCommandItem</font></a></li><li><a href="#SsetCommandText"><FONT SIZE=2>setCommandText</font></a></li><li><a href="#SsetDisplayHtml"><FONT SIZE=2>setDisplayHtml</font></a></li><li><a href="#SsetDisplayText"><FONT SIZE=2>setDisplayText</font></a></li><li><a href="#SsetConsoleMgr"><FONT SIZE=2>setConsoleMgr</font></a></li><li><a href="#SsetTabIndex"><FONT SIZE=2>setTabIndex</font></a></li><li><a href="#SsetSelectedText"><FONT SIZE=2>setSelectedText</font></a></li><li><a href="#SsetTitle"><FONT SIZE=2>setTitle</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+        <div class="h2section" id="Overview">
+
+        <p>The RAD <b>console</b> class inherits from the QMainWindow class and is the principal
+        tool for AIS Lisp to surface console functionality. 
+        The RAD Console class features a main console pane for showing writeln output, for editing Lisp commands, etc.
+        The RAD Console main pane inherits from QTextEdit.
+        The RAD Console class also contains Clear and Run buttons plus a command line with a drop down command list.
+        The RAD Console command line inherits from QComboBox and QLineEdit. 
+        Opening and showing the console object causes the AIS Lisp .exe to move from the
+        Background Processes list to the Apps list in the Windows Task Manager.
+        The console is one of the key words accepted by the <b>qt</b> function.
+        There can be only one console object.
+        </p>
+
+        <p>Instantiating and showing the console object panets a GUI background containing 
+        <ul>
+          <li>console tab on the main window tab bar</li>
+          <li>a main console display pane</li>
+          <li>a Clear button</li>
+          <li>a Run button</li>
+          <li>a Command edit line with drop down command list</li>
+        </ul> 
+        The functions surfaced with the console object allow the AIS Lisp programmer to manage the various features and services available via the RAD console object.
+        </p>
+
+        <p>&nbsp;</p>
+        <h3>Display Pane</h3>
+
+        <p>The <b>Display Pane</b> appears in the center of the application main window GUI and shows all writeln displays as well as allowing the editing of Lisp commands.</p>
+
+        <p>&nbsp;</p>
+        <h3>Clear Button</h3>
+
+        <p>The <b>Clear Button</b> appears above the top of the application main window GUI just below the Tab Bar.
+        Pressing the Clear button erases all display contents in the console display pane.</p>
+
+        <p>&nbsp;</p>
+        <h3>Run Button</h3>
+
+        <p>The <b>Run Button</b> appears above the top of the application main window GUI just below the Tab Bar and the the right of the Clear Button.
+        Pressing the Run button evaluates the Lisp command contained in the Console Command Line.</p>
+
+        <p>&nbsp;</p>
+        <h3>Command Line</h3>
+
+        <p>The <b>Command Line</b> appears above the top of the application main window GUI just below the Tab Bar and the the right of the Run Button.
+        The Console Command Line supports entering Lisp commands and also contains a drop down list of helpful ocmmand hints.</p>
+
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddCommandItem"></A>addCommandItem</H2></P>        
+        <div class="h2section" id="addCommandItem">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>addCommandItem</b> function adds a new text item to the console command drop down list.
+        The console object must be showing for the command line drop down list to work properly.
+        To display the current properties of the console, use the <b>maximize</b> function.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: addCommandItem: myText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>The text to be added to the command line drop down list.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns true.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)") ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                 ;; Display the console window.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sfind"></A>find</H2></P>        
+        <div class="h2section" id="find">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>find</b> function locates and selects (<i>highlights</i>) the next occurance of the specified text in the console display pane.
+        The find can be case sensitive, backwards or forewards, and search for whole words only depending on the specified switches.
+        Once found the matching text is selected (<i>highlighted</i>) in the console display pane.
+        The find function returns true if the specified text was found and selected.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq result (qt console: find: text caseInSensitiveSW backWardsSW wholeWordSW))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>text</b></td><td>The text to be matched in the console display pane.</td></tr>
+        <tr><td><b>caseInSensitiveSW</b></td><td>True if the find is to be case sensitive.</td></tr>
+        <tr><td><b>backWardsSW</b></td><td>True if the find is to be backwards from the current cursor location.</td></tr>
+        <tr><td><b>wholeWordSW</b></td><td>True if the find is to be for whole words only.</td></tr>
+        <tr><td><b>result</b></td><td>Always returns the true if the find was successful.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT find Demo."))         ;; Set the console title<br>
+        (qt console: setDisplayText: ""))                           ;; Clear the console display pane.<br>
+        (writeln "Now is the time for all good men")                ;; Write to the console display pane.<br>
+        (setq return (qt console: find: "time" false true false))  ;; Select and highlight the "time" text on the console pane.<br>
+        (qt console: maximize:)                                     ;; Display the console<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetCommandCount"></A>getCommandCount</H2></P>        
+        <div class="h2section" id="getCommandCount">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getCommandCount</b> function returns the number of items currently in the console command drop down list.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq count (qt console: getCommandCount:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>count</b></td><td>Always returns the number of items in the console command drop down list.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)") ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                 ;; Display the console window.<br>
+        (setq n (qt console: getCommandCount:)) ;; Return count of items in the command line drop down list.<br>
+        (writeln n )                            ;; Displays 2 on the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetCommandItem"></A>getCommandItem</H2></P>        
+        <div class="h2section" id="getCommandItem">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getCommandItem</b> function returns the number of tabs on the horizontal tab bar of the main window.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt console: getCommandItem: index))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>index</b></td><td>The index of the command drop down item to be returned (starts at 0).</td></tr>
+        <tr><td><b>myText</b></td><td>Always returns the text of the specified console command drop down item.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)") ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                 ;; Display the console window.<br>
+        (setq myText (qt console: getCommandItem: 1)) ;; Return the text of command line drop down list item 1.<br>
+        (writeln myText)                        ;; Displays "(+ 1 2)" on the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetCommandText"></A>getCommandText</H2></P>        
+        <div class="h2section" id="getCommandText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getCommandText</b> function returns the entire contents of the console command line.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt console: getCommandText:)))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>Always returns the entire contents of the console command line.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)") ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                 ;; Display the console window.<br>
+        (setq myText (qt console: getCommandText:)) ;; Return the text in the command line.<br>
+        (writeln (eval myText))                 ;; Displays "3" on the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetConsoleLog"></A>getConsoleLog</H2></P>        
+        <div class="h2section" id="getConsoleLog">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getConsoleLog</b> function returns the entire contents of the console log and reset the console log to "".
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt console: getConsoleLog:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>Always returns the entire contents of the console log and reset to "".</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun consoleMgr(code) vars:(s) (setq s (qt console: getConsoleLog:)) (qt console: setDisplayText: s) true) ;; Define a console display manager.<br>
+        (qt console: setTitle: (append "My QT display manager Demo.")) ;; Set the console title<br>
+        (qt console: setConsoleMgr: consoleMgr)			               ;; Set the console manager.
+        (qt console: maximize:) ;; Display the console<br>
+        (writeln "Hello there") ;; Invokes the consoleMgr which set the console pane to "Hello there".<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetDisplayHtml"></A>getDisplayHtml</H2></P>        
+        <div class="h2section" id="getDisplayHtml">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getDisplayHtml</b> function returns the entire contents of the console display pane as an HTML markup string.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myHtml (qt console: getDisplayHtml:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myHtml</b></td><td>Always returns the entire contents of the console display pane as an HTML markup string.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT HTML Demo."))    ;; Set the console title<br>
+        (qt console: maximize:) ;; Display the console.<br>
+        (qt console: setHtmlText: "<b>Hello <i>there</i></b>") ;; Sets the console display pane with HTML content.<br>
+        (setq myHtml (qt console: getDisplayHtml:)) ;; Returns the console display pane contents as an HTML string.<br>
+        (qt console: setCommandText: myHtml) ;; Sets the console command line with the specified HTML string.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetDisplayText"></A>getDisplayText</H2></P>        
+        <div class="h2section" id="getDisplayText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getDisplayText</b> function returns the entire contents of the console display pane as an ASCII string.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt console: getDisplayText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>Always returns the entire contents of the console display pane as an ADCII string.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT HTML Demo."))    ;; Set the console title<br>
+        (qt console: maximize:) ;; Display the console.<br>
+        (qt console: setHtmlText: "<b>Hello <i>there</i></b>") ;; Sets the console display pane with HTML content.<br>
+        (setq myText (qt console: getDisplayText:)) ;; Returns the console display pane contents as an ASCII string.<br>
+        (qt console: setCommandText: myText) ;; Sets the console command line with "Hello there".<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSelectedText"></A>getSelectedText</H2></P>        
+        <div class="h2section" id="getSelectedText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getSelectedText</b> function returns the entire contents of currently selected text in the console display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt console: getSelectedText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>Always returns the entire contents of currently selected text in the console display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT find Demo."))         ;; Set the console title<br>
+        (qt console: setDisplayText: ""))                           ;; Clear the console display pane.<br>
+        (qt console: maximize:)                                     ;; Display the console<br>
+        (writeln "Now is the time for all good men")                ;; Write to the console display pane.<br>
+        (setq result (qt console: find: "time" false true false))   ;; Select and highlight the "time" text on the console pane.<br>
+        (setq result (qt console: getSelectedText:))                ;; Return the text selected by the find.<br>
+        (writeln result)                                            ;; Write "time" to the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSelectionEnd"></A>getSelectionEnd</H2></P>        
+        <div class="h2section" id="getSelectionEnd">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getSelectionEnd</b> function returns the end position of the currently selected text in the console display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq pos (qt console: getSelectionEnd:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>pos</b></td><td>Always returns the end position of the currently selected text in the console display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT find Demo."))         ;; Set the console title<br>
+        (qt console: setDisplayText: ""))                           ;; Clear the console display pane.<br>
+        (qt console: maximize:)                                     ;; Display the console<br>
+        (writeln "Now is the time for all good men")                ;; Write to the console display pane.<br>
+        (setq result (qt console: find: "time" false true false))   ;; Select and highlight the "time" text on the console pane.<br>
+        (setq result (qt console: getSelectionEnd:))                ;; Return end position of the currently selected text in the console display pane.<br>
+        (writeln result)                                            ;; Write 15 to the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSelectionStart"></A>getSelectionStart</H2></P>        
+        <div class="h2section" id="getSelectionStart">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>getSelectionStart</b> function returns the start position of the currently selected text in the console display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq pos (qt console: getSelectionStart:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>pos</b></td><td>Always returns the start position of the currently selected text in the console display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT find Demo."))         ;; Set the console title<br>
+        (qt console: setDisplayText: ""))                           ;; Clear the console display pane.<br>
+        (qt console: maximize:)                                     ;; Display the console<br>
+        (writeln "Now is the time for all good men")                ;; Write to the console display pane.<br>
+        (setq result (qt console: find: "time" false true false))   ;; Select and highlight the "time" text on the console pane.<br>
+        (setq result (qt console: getSelectionStart:))              ;; Return start position of the currently selected text in the console display pane.<br>
+        (writeln result)                                            ;; Write 12 to the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smaximize"></A>maximize</H2></P>        
+        <div class="h2section" id="maximize">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>maximize</b> function displays the console in its full screen format.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: maximize:))</blockquote></b></p>
+        <p><b><blockquote>(qt console: maximize: title))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>(Optional) title to be set into the title bar of the main window.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: maximize: (append "My Console Demo.")) ;; Display the console<br>
+        (writeln "Hello world") ;; Write on  the console<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sminimize"></A>minimize</H2></P>        
+        <div class="h2section" id="minimize">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>minimize</b> function displays the console in its minimal format for the host operating system.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: minimize:))</blockquote></b></p>
+        <p><b><blockquote>(qt console: minimize: title))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>(Optional) title to be set into the title bar of the main window.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: maximize: (append "My Console Demo.")) ;; Display the console<br>
+        (writeln "Hello world") ;; Write on  the console<br>
+        (sleep 1000.0) ;; Wait<br>
+        (qt console: minimize:)) ;; Minimize the console<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Spaste"></A>paste</H2></P>        
+        <div class="h2section" id="paste">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>paste</b> function pastes the text in the mainWindow clipboard into the console display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: paste:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>result</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: maximize: (append "My Console Demo.")) ;; Display the console<br>
+        (qt mainWindow setClipboardText:  "Hello world") ;; Set "Hello world" into the main window clipboard<br>
+        (qt console: paste:)) ;; Writes "Hello world" to the console<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SremoveCommandItem"></A>removeCommandItem</H2></P>        
+        <div class="h2section" id="removeCommandItem">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>removeCommandItem</b> function removes the specified text item from the console command drop down list.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: removeCommandItem: index)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>index</b></td><td>The index of the item to be removed from the console command drop down list.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)") ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)") ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                 ;; Display the console window.<br>
+        (qt console: removeCommandItem: 0) ;; Drop the "(* 1 2)" Lisp command from the command line drop down list.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetCommandItem"></A>setCommandItem</H2></P>        
+        <div class="h2section" id="setCommandItem">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setCommandItem</b> function sets the specified text item in the console command drop down list.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setCommandItem: index text)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>index</b></td><td>The index of the item to be set in the console command drop down list.</td></tr>
+        <tr><td><b>text</b></td><td>The text of the item to be set in the console command drop down list.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)")   ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)")   ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)")   ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                   ;; Display the console window.<br>
+        (qt console: setCommandItem: 0 "(- 1 2)") ;; Set the "(- 1 2)" Lisp command into the 0th command line drop down list.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetCommandText"></A>setCommandText</H2></P>        
+        <div class="h2section" id="setCommandText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setCommandText</b> function sets the entire contents of the console command line.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setCommandText: myText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>The text value to be set in the console command line.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: addCommandItem: "(* 1 2)")   ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: addCommandItem: "(+ 1 2)")   ;; Add another Lisp command hint to the command line drop down list.<br>
+        (qt console: setCommandText: "(/ 1 2)")   ;; Add a Lisp command to the command line itself.<br>
+        (qt console: maximize:)                   ;; Display the console window.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetDisplayHtml"></A>setDisplayHtml</H2></P>        
+        <div class="h2section" id="setDisplayHtml">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setDisplayHtml</b> function sets the entire contents of the console display pane to the specified HTML text.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setDisplayHtml: myText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>The HTML text value to be set in the console display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: maximize:)                                   ;; Display the console window.<br>
+        (qt console: setDisplayHtml: "<b>Hello</b> <i>world</i>") ;; Display HTML in the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetDisplayText"></A>setDisplayText</H2></P>        
+        <div class="h2section" id="setDisplayText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setDisplayText</b> function sets the entire contents of the console display pane to the specified ASCII text.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setDisplayText: myText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>The ASCII text value to be set in the console display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My QT Console Demo."))<br>
+        (qt console: maximize:)                                   ;; Display the console window.<br>
+        (qt console: setDisplayText: "Hello world") ;; Display ASCII in the console display pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetConsoleMgr"></A>setConsoleMgr</H2></P>        
+        <div class="h2section" id="setConsoleMgr">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setConsoleMgr</b> function sets the console manager name - where (defun mgrLambdaName(command) ...lisp code...)
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setConsoleMgr: mgrLambdaName)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>mgrLambdaName</b></td><td>The console manager name - where (defun mgrLambdaName(command) ...lisp code...).</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun consoleMgr(code) vars:(s) (setq s (qt console: getConsoleLog:)) (qt console: setDisplayText: s) true) ;; Define a console display manager.<br>
+        (qt console: setTitle: (append "My QT display manager Demo.")) ;; Set the console title<br>
+        (qt console: setConsoleMgr: consoleMgr)			               ;; Set the console manager.
+        (qt console: maximize:) ;; Display the console<br>
+        (writeln "Hello there") ;; Invokes the consoleMgr which set the console pane to "Hello there".<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTabIndex"></A>setTabIndex</H2></P>        
+        <div class="h2section" id="setTabIndex">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setTabIndex</b> function sets the index of the RAD Main Tab index to which the console display system is assigned (sent by RadMainWindow, etc.).
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setTabIndex: tabIndex)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td>The RAD Main Tab index to which the console display system is to be assigned.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (setq tabCount (qt mainWindow: count:)) ;; Return the count of tabs<br>
+        (qt radTextEditPtr setText: (string tabCount)) ;; Display the main window<br>
+        (qt console: setTabIndex: 1) ;; Display the console window in tab 1<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetSelectedText"></A>setSelectedText</H2></P>        
+        <div class="h2section" id="setSelectedText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setSelectedText</b> function sets the currently selected text based on the command (all, line, word).
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setSelectedText: command)</blockquote></b></p>
+        <p><b><blockquote>(qt console: setSelectedText: start end)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>command</b></td><td>The the command (all, line, word) for selecting the text around the current cursor position.</td></tr>
+        <tr><td><b>start</b></td><td>The starting position for selecting the text in the console display pane.</td></tr>
+        <tr><td><b>end</b></td><td>The ending position for selecting the text in the console display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: maximize:) ;; Display the main window<br>
+        (writeln "Hello World") ;; Display on the console leaving the cursor at the end of "world".<br>
+        (qt console: setSelectedText: word:) ;; The term "world" is highlighted on the console.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTitle"></A>setTitle</H2></P>        
+        <div class="h2section" id="setTitle">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The console <b>setTitle</b> function sets the contents of the main window title bar (<i>but does not display the title bar</i>).
+        The AIS Lisp programmer has full control over the contents of the .exe title bar.
+        To display the title bar and all other current properties of the console, use the <b>maximize</b> function.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt console: setTitle: textData)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>textData</b></td><td>The text data to appear in the title bar.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt console: setTitle: (append "My Application with [" (inspect) "] bytes of free heap memory."))<br>
+        (qt console: maximize:) ;; Display the console.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

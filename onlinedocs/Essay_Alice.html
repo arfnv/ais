@@ -1,0 +1,2080 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Alice</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SAlice Overview"><FONT SIZE=2>Alice Overview</font></a></li><li><a href="#SEnhancements to A.L.I.C.E."><FONT SIZE=2>Enhancements to A.L.I.C.E.</font></a></li><li><a href="#SAlice Persistant Memory"><FONT SIZE=2>Alice Persistant Memory</font></a></li><li><a href="#SAlice Discussion Memory"><FONT SIZE=2>Alice Discussion Memory</font></a></li><li><a href="#SAlice Personal Memory"><FONT SIZE=2>Alice Personal Memory</font></a></li><li><a href="#SAlice Client Lambdas"><FONT SIZE=2>Alice Client Lambdas</font></a></li><li><a href="#Salice"><FONT SIZE=2>alice</font></a></li><li><a href="#SactOnAll"><FONT SIZE=2>actOnAll</font></a></li><li><a href="#Sassert"><FONT SIZE=2>assert</font></a></li><li><a href="#Sdrop"><FONT SIZE=2>drop</font></a></li><li><a href="#Squery"><FONT SIZE=2>query</font></a></li><li><a href="#SqueryAllMatches"><FONT SIZE=2>queryAllMatches</font></a></li><li><a href="#SqueryHtml"><FONT SIZE=2>queryHtml</font></a></li><li><a href="#Sremember"><FONT SIZE=2>remember</font></a></li><li><a href="#Sreset"><FONT SIZE=2>reset</font></a></li><li><a href="#SxmlSocketEvals"><FONT SIZE=2>xmlSocketEvals</font></a></li><li><a href="#SAlice AIML Script Lambdas"><FONT SIZE=2>Alice AIML Script Lambdas</font></a></li><li><a href="#SactOnMatch"><FONT SIZE=2>actOnMatch</font></a></li><li><a href="#SappendFeatures"><FONT SIZE=2>appendFeatures</font></a></li><li><a href="#SfindAllMatches"><FONT SIZE=2>findAllMatches</font></a></li><li><a href="#SnewToken"><FONT SIZE=2>newToken</font></a></li><li><a href="#SparsePhrase"><FONT SIZE=2>parsePhrase</font></a></li>
+</UL>
+
+<P><H2><A NAME="SAlice Overview"></A>Alice Overview</H2></P>		
+		    <div class="h2section" id="Alice Overview">
+		    <p>The Analytic Information Server implementation of the
+		    A.L.I.C.E. technology is an artificial intelligence natural language chat
+		    Lambda, written in Lisp, and named "<b>alice</b>". The Alice chat Lambda
+		    is actually a community of Lambdas all attached to each other in parent child
+		    relationships. The AIS implementation of Alice has a number of enhancements
+		    related to the integration of the original A.L.I.C.E. technology with the
+		    full capabilities of the Analytic Information Server environment.</p>
+		    <p>The AIS implementation of Alice requires four Lambda
+		    repositories: <b>Alice</b>, <b>AliceAIML</b>, <b>AliceRules</b>, and <b>AliceFacts</b>.
+		    The <b>Alice</b> repository contains the A.L.I.C.E. chat Lambda herself. The <b>AliceAIML</b>
+		    repository contains the source code for the AIML rules and facts
+		    knowledgebase for Alice. The <b>AliceRules</b> repository contains the
+		    compiled AIML rules knowledgebase for Alice. The <b>AliceFacts</b>
+		    repository contains the compiled AIML facts knowledgebase for Alice.</p>
+		    <p>Each of these four repositories (<b>Alice</b>, <b>AliceAIML</b>,
+		    <b>AliceRules</b>, and <b>AliceFacts</b>) are registered with and managed by
+		    the browseLib. Alice may also allocate and register space
+		    with <b>dataMineLib</b> and <b>xmlBase</b>
+		    so that Alice may store facts, acquired or learned during her training process, in data mine tables and XML documents.
+		    Alice may also use the full features of the Analytic Information Server and any Lambdas resident therein.</p>
+		  </div>	  
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEnhancements to A.L.I.C.E."></A>Enhancements to A.L.I.C.E.</H2></P>
+          <div class="h2section" id="Enhancements to A.L.I.C.E.">
+			<p>A.L.I.C.E. is an artificial intelligence natural
+		    language chat robot technology based on an extension of the old ELIZA
+		    psychiatrist program. The principle advantage of the A.L.I.C.E. technology,
+		    like its ELIZA ancestor, is it's uncanny ability to deceive a wide range
+		    of human clients into perceiving Alice as having some intelligence. While
+		    many chat robot tools have complex rule systems but little content, Alice's
+		    wonderful content allows her to be  "chatty".</p>
+		    <p>Starting in 2001, we began adapting the A.L.I.C.E.
+		    technology to operate in the Analytic Information Server database environment.
+		    We wanted to preserve Alice's chatty personality; but, we needed to
+		    enhance Alice's logic and search tool set in the areas of: parsing,
+		    syntax, semantic analysis, database access, rule-base goal specification,
+		    and action-response options.</p>
+		    <p>The Analytic Information Server implementation of
+		    A.L.I.C.E. includes enhancements designed to retain Alice's unparalleled
+		    ability to deceive and entertain human clients while extending the logic and
+		    search tools available in the technology. Our core enhancements to A.L.I.C.E.
+		    technology include the following:</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Integration of Alice with the complete Analytic Information
+		    Server database environment.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Expanding
+		    Graphmaster storage capacity using Analytic Information Server repositories.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Replacing
+		    Alice's word parser with a feature based parser and semantic analyser.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Providing
+		    Alice with imbedded HTML responses served to the client by Analytic Information
+		    Server.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Allowing
+		    Alice full access to the Internet and web searches via Analytic Information
+		    Server.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Supporting
+		    adding, morphing, and combining of feature based tokens in Alice's working
+		    memory.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Supporting
+		    forward production logic &amp; goal seeking with backtracking in Alice's
+		    working memory.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Supporting
+		    Alice as the client interface to a wide range of disparate knowledgebase
+		    systems via the local and remote TCP/IP communication facilities of Lambda
+		    Information Server.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    localized topic rules with the &lt;rule topic="name"&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    additional wild cards (? and @) to Alice's &lt;pattern&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    user defined feature-based definitions with the &lt;lex&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    feature-based wild cards (%Feature and $Feature) to Alice's
+		    &lt;pattern&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    feature-based matching actions with the &lt;arg&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    user programmable conditions and actions with the &lt;lisp&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding "classic"
+		    AI tuple logic matching with the &lt;token&gt; tag.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    user defined rule conflict resolution with the findAllMatches Alice child
+		    Lambda.
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Adding
+		    user defined XML database facts and fact retrieval via XQuery with the
+		    &lt;fact&gt; tag.
+		    
+		    </p>
+		    <p>Conversion of the Alice Graphmaster parsed input from
+		    a sequence of words into a sequence of feature based tokens, fills working
+		    memory with a set of tuples (albeit feature based rather than horn-clause
+		    logic tuples). Like the logic-based tuples in CLIPS or OPSYS5 working
+		    memory, the feature-based tuples in Alice working memory can also be morphed
+		    and combined. Composite goal seeking feature-base tuples can be added to
+		    Alice working set, during recursive rule matching, to support backtracking
+		    in either a depth first or breadth first mode.</p>
+		    <p>In the Dr. Wallace's original content Alice answers
+		    the input <u>"What is the meaning of Life?"</u> with the response <u>"Actually,
+		    it's twenty-three, not forty-two"</u>. While this is a classic and
+		    amusing example of wild card pattern matching, it may not be defensible as a
+		    "logical" response.</p>
+		    <p>In the enhanced version of Alice, rules localized to
+		    a specific "topic" area can be formed in strict adherence to the rules
+		    of logic. An excellent example of this is demonstrated in the small set of
+		    AIML rules that allow the enhanced Alice to perform flawless English
+		    language arithmetic.</p>
+		    <p>Theoretically the enhanced Analytic Information Server
+		    implementation of Alice could conceivably be used to provide advanced logic
+		    services including forward production, goal seeking with backtracking, and
+		    depth first or breadth first search. If the client request failed to find an
+		    appropriate goal, using logical methods, then the default might be Alice's
+		    amusing personality, or an appropriate mix of the two.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAlice Persistant Memory"></A>Alice Persistant Memory</H2></P>
+            <div class="h2section" id="Alice Persistant Memory">
+			<p>Alice shares her persistent memory with each Lisp
+		    AIML Lambda executed in an AIML template. Alice's persistent memory
+		    contains the following named elements that are listed below along with an
+		    explanation of their contents.</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>arg</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The vector of &lt;arg/&gt; matches during the current pattern check.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>in</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The vector of input feature-based tokens during the current pattern
+		    check.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>star</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The vector of &lt;star/&gt; matches during the current pattern check.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>that</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The last answer, from Alice, to be used in &lt;that&gt; pattern
+		    matching.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>myAimlPatterns</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The short term memory of AIML patterns loaded from the Alice
+		    knowledgebase respositories.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>myHtmlResponseHeading</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The HTML heading provided (if any) with the response alice last
+		    returned.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>myHtmlResponseResults</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The HTML page provided (if any) with the response alice last
+		    returned.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>myMemory</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The discussion and personal term memory of Alice.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>myWebTimeOut</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The maximum time to wait for a response from the world wide web.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>webOnline</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    The web online switch is true iff the Internet is available.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAlice Discussion Memory"></A>Alice Discussion Memory</H2></P>
+		    <div class="h2section" id="Alice Discussion Memory">
+			<p>Alice herself has a discussion memory capacity that,
+		    at each initialization, contains the following named elements that are
+		    included below along with an explanation of their contents.</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>context</b>:&nbsp; ."The
+		    current discussion context"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>it</b>:&nbsp; "The
+		    subject to which "it" refers in&nbsp; the
+		    current discussion"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>name</b>: "The client's name"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>patternSwitches</b>: "The Dictionary of named pattern
+		    switches"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>petname</b>: "The client's pet name"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>subject</b>: "The current discussion subject " </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAlice Personal Memory"></A>Alice Personal Memory</H2></P>
+			<div class="h2section" id="Alice Personal Memory">
+		   <p>Alice herself has a personal memory capacity that, at
+		    each initialization, contains the following named elements that are included
+		    below along with an explanation of their contents.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>arch</b>:&nbsp; ..The
+		    architecture of the computer Alice runs on?</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>categories</b>:&nbsp; ?The
+		    number of categories Alice has been trained with?</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>birthday</b>: "The date of Alice's birth"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>birthplace</b>: "The place where Alice was born"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>boyfriend</b>: "Alice's current boyfriend"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>dailyclients</b>: "The average number of clients serviced
+		    by Alice"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>favoriteband</b>: "Alice's favorite musical group"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>favoritebook</b>: "Alice's favorite book"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>favoritecolor</b>: "Alice's favorite color"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>favoritefood</b>: "Alice's favorite food"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>favoritemovie</b>: "Alice's favorite movie"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>favoritesong</b>: "Alice's favorite song"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>friends</b>: "Alice's current friends"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>forfun</b>: "What Alice likes to do for fun"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>gender</b>: "Alice's virtual gender"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>hourlyqueries</b>: "The average number of queries
+		    serviced by Alice"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>girlfriend</b>: "Alice's current girlfriend"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>kindmusic</b>: "Alice's favorite musical style"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>location</b>: "Alice's current physical location"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>looklike</b>: "Who Alice currently looks like"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>master</b>: "Alice's current bot-master"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>memory</b>: "Alice's current memory capacity"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>maxclients</b>: "The maximum number of clients serviced
+		    by Alice"&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>nclients</b>: "The current number of clients serviced by
+		    Alice"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>ndevelopers</b>: "The total number of developers who have
+		    helped program Alice"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>name</b>: "Alice's current name"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>os</b>: "The current operating environment used by Alice"&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>question</b>: "Alice's current burning issue"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>sign</b>: "Alice's astrological sign"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>spt</b>: "Alice's current response time"&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>talkabout</b>: "Alice's current favorite chat subject"&nbsp;</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>totalclients</b>: "The total number of clients ever
+		    serviced by Alice"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>vocabulary</b>: "The total number of words taught to
+		    Alice"</p>
+		    <p>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>wear</b>: "Alice's favorite clothing"</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAlice Client Lambdas"></A>Alice Client Lambdas</H2></P>
+			<div class="h2section" id="Alice Client Lambdas">
+		 	<p>The Alice chat Lambda is actually a community of Lambdas all attached to
+		    each other in parent child relationships. External Alice clients can invoke
+		    a number of these Lambdas, which perform all of the required initialization
+		    and clean up. Here follow the reference materials for the Alice client
+		    Lambdas.</p>
+		  	</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Salice"></A>alice</H2></P>
+			<div class="h2section" id="alice">
+			<p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>alice</b> top level Lambda
+		    compiles the argument string as an AIML source file. The result of compiling
+		    an AIML source string is the population of the AliceRules repository with
+		    the rules contained in the compiled AIML source string. The AliceRules
+		    repository contains the rule base for the A.L.I.C.E. technology
+		    implementation in Analytic Information Server.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Parent Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice aimlString)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice</b>
+		    top level Lambda performs the compilation of the argument AIML source string
+		    into the AliceRules repository. Use the <b>alice</b>
+		    top level Lambda when an AIML source file is to be compiled into the Alice
+		    knowledgebase.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>aimlString
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>An AIML string to be
+		            compiled into the AliceRules knowledgebase.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>An Analytic Information
+		            Server universal parse tree for the AIML source string.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice parent Lambda
+		    will teach Alice how to respond to the client query "What is your name?",
+		    as follows:</p>
+		    <p><b>(alice .&lt;aiml&gt;&lt;rule&gt;&lt;pattern&gt;WHAT
+		    IS YOUR NAME&lt;/pattern&gt;&lt;template&gt;My name is &lt;bot/&gt;&lt;/template&gt;&lt;/rule&gt;&lt;/aiml&gt;.)
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice</b>
+		    top level Lambda is used to compile AIML source into the AliceRules
+		    repository.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SactOnAll"></A>actOnAll</H2></P>
+			<div class="h2section" id="actOnAll">
+			<p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>actOnAll</b> child Lambda accepts
+		    a client query string, a rule topic name, and returns a list of all of Alice's
+		    responses as a vector of strings. The <b>actOnAll</b> child Lambda always
+		    acts on ALL matching patterns found in the AliceRules knowledgebase. ALL
+		    resulting Alice response strings are returned in a vector of strings.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.actOnAll queryString topic)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>actOnAll</b>
+		    child Lambda accepts a client query string and returns ALL of Alice's
+		    responses as a vector of strings. Use the <b>actOnAll</b>
+		    child Lambda when a client query is to be acted upon by ALL possible matches
+		    in the AliceRules knowledgebase.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>queryString
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A client query string
+		            to be acted upon by Alice.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>topic
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A rule topic name to be
+		            used by Alice.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A vector of Alice
+		            response strings.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.actOnAll child
+		    Lambda will return Alice's response to the client query "What is your
+		    name?", as follows:</p>
+		    <p><b>(alice.actOnAll
+		    "What is your name?" personal:)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>#("My name is Alice"
+		    "What is your Name?" "Why do you ask?")<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.actOnAll</b>
+		    child Lambda accepts a client query string or a vector of query strings and
+		    returns ALL Alice responses as a vector of strings.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sassert"></A>assert</H2></P>
+			<div class="h2section" id="assert">
+			<p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>assert</b> child Lambda accepts a
+		    reminder string and stores the specified XML document in the AliceFacts
+		    repository for later retrieval via the <b>alice.remember</b> child Lambda.&nbsp;</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Synt</b><b>ax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b>(alice.assert reminderString
+		    xmlD</b><b>ocument)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>assert</b>
+		    child Lambda accepts a reminder string and stores the specified XML document
+		    in the AliceFacts repository for later retrieval via the <b>alice.remember</b>
+		    child Lambda. Use the <b>assert</b>
+		    child Lambda when an important XML document is to be stored in the AliceFacts knowledgebase.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>reminder</b><b>String
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A string containing a
+		            list of uppercase words separated by blanks; or, a vector of feature
+		            based tokens where each Value feature contains an uppercase word</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>xmlDocument</b><b>
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>An XML document already
+		            compiled into XML model format.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>true</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.assert child
+		    Lambda will store an XML model of the European capitals in the AliceFacts
+		    repository, as follows:</p>
+		    <p><b>(alice.assert
+		    "EUROPEAN CAPITALS" #{FRANCE Paris ENGLAND London GERMANY Berlin})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b>#{FRANCE Paris ENGLAND
+		    London GERMANY Berlin}&nbsp; 
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.a</b><b>ssert</b>
+		    child Lambda accepts a reminder string and stores the specified XML document
+		    in the AliceFacts repository for later retrieval via the <b>alice.remember</b>
+		    child Lambda.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdrop"></A>drop</H2></P>
+			<div class="h2section" id="drop">
+			<p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>drop</b> child Lambda deletes a
+		    reminder string and previously stored XML document from the AliceFacts
+		    repository.&nbsp;</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Synt</b><b>ax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b>(alice.drop reminderString)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>drop</b> child Lambda accepts a reminder string and deletes
+		    the reminder string and previously stored XML document from the AliceFacts
+		    repository. Use the <b>drop</b> child Lambda when an important XML document is to be
+		    deleted from the AliceFacts knowledgebase.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>reminder</b><b>String
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A string containing a
+		            list of uppercase words separated by blanks; or, a vector of feature
+		            based tokens where each Value feature contains an uppercase word</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>true</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.drop child
+		    Lambda will store an XML model of the European capitals in the AliceFacts
+		    repository, and then delete it, as follows:</p>
+		    <p><b>(alice.assert
+		    "EUROPEAN CAPITALS" #{FRANCE Paris ENGLAND London GERMANY Berlin})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(alice.drop</b><b>
+		    "EUROPEAN CAPITALS")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    #{FRANCE Paris ENGLAND London GERMANY Berlin}&nbsp; 
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.drop</b>
+		    child Lambda accepts a reminder string and deletes the reminder string and previously stored XML document from the AliceFacts
+		    repository.</p>
+		    </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Squery"></A>query</H2></P>
+			<div class="h2section" id="query">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>query</b> child Lambda accepts a
+		    client query string and returns Alice's response as a simple string. One
+		    and only one ASCII response string is returned. The <b>query</b> child Lambda
+		    always acts ONLY on the very first matching pattern found in the AliceRules
+		    knowledgebase.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.query queryString)
+		    
+		    </b></p>
+		    <p><b>(alice.query
+		    queryString&nbsp; topic)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>query</b>
+		    child Lambda accepts a client query string and returns Alice's response as
+		    a simple string. Use the <b>query</b>
+		    child Lambda when client query is to be answered in a text only environment.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>queryString
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A client query string
+		            to be answered by Alice.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>topic
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>(Optional) the
+		            localized rules topic for Alice to apply.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>An Alice answer as a
+		            simple string.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.query child
+		    Lambda will return Alice's response to the client query "What is your
+		    name?", as follows:</p>
+		    <p><b>(alice.query
+		    "What is your name?")&nbsp;&nbsp;&nbsp; </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"My name is Alice"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.query</b>
+		    child Lambda accepts a client query string and returns Alice's response as
+		    a simple string.<b><u>
+		    
+		    </u></b></p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SqueryAllMatches"></A>queryAllMatches</H2></P>
+			<div class="h2section" id="queryAllMatches">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>queryAllMatches</b> child Lambda
+		    accepts a query string, a rule topic name, and returns a vector of template
+		    match structures (the match list).</p>
+		    <p>Each template match structure is a Structure
+		    containing the <b>arg</b>, <b>star</b>, and <b>template</b> elements of an
+		    AIML rule, which Alice found matched the input query token vector.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.queryAllMatches matchStructure)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>queryAllMatches</b>
+		    child Lambda accepts a query string, a rule topic name, and returns a vector
+		    of template match structures (the match list). Use the <b>queryAllMatches</b>
+		    child Lambda to perform user defined rule conflict resolution in connection
+		    with the <b>actOnMatch</b> Alice child Lambda.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>matchStructure
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A template match
+		            structure (an element of the match list returned by the <b>queryAllMatches</b>
+		            Alice child Lambda).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The Alice response
+		            string.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.actOnMatch
+		    child Lambda will return Alice's response to the client query "What is
+		    your name?". The method of conflict resolution is always to act on the
+		    first matching rule.</p>
+		    <p><b>(alice.actOnMatch
+		    (setq M (alice.queryAllMatches "What is your name?" personal:))[0])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"Why do you ask"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.queryAllMatches</b>
+		    child Lambda may be used to implement user defined conflict resolution
+		    between multiple matching AIML rules.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SqueryHtml"></A>queryHtml</H2></P>
+			<div class="h2section" id="queryHtml">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>queryHtml</b> child Lambda
+		    accepts a client query string and returns Alice's response as an HTML-URL.
+		    One and only one response HTML-URL is returned. The <b>queryHtml</b> child
+		    Lambda always acts ONLY on the very first matching pattern found in the
+		    AliceRules knowledgebase.</p>
+		    <p>There are three special ASCII values used by the <b>queryHtml</b>
+		    child Lambda to construct the response HTML page referred to by the HTML-URL.</p>
+		    <p>The <i>ASCII text response </i>&nbsp;(returned
+		    by <b>query</b>, which is called by <b>queryHtml</b>) contains the ASCII
+		    text response returned by the Alice AIML template action. The text response
+		    will be displayed at the first location in the response HTML page. <b>Note</b>:
+		    If the text response is prefixed with $$$HREF$$$ (see Special below), then
+		    the text response will be treated as a URL to be displayed immediately.</p>
+		    <p>The <b>alice.<i>myHtmlResponseHeading</i></b>
+		    contains the HTML response heading (if any) set by the Alice AIML template
+		    action. The <i>myHtmlResponseHeading</i> (if any) will be displayed at the
+		    second location in the response HTML page.</p>
+		    <p>The <b>alice.<i>myHtmlResponseResult</i></b> contains
+		    the HTML response result (if any) set by the Alice AIML template action. The
+		    <i>myHtmlResponseResult</i> (if any) will be displayed at the third location
+		    in the response HTML page.</p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.queryHtml queryString)
+		    
+		    </b></p>
+		    <p><b>(alice.queryHtml
+		    queryString&nbsp; topic)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Special:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    $$$HREF$$$</b>&nbsp;&nbsp;&nbsp;
+		    Any Alice text response, prefaced with the <b>$$$HREF$$$</b>
+		    string will be treated as a URL reference to be displayed immediately.<b>
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>queryHtml</b>
+		    child Lambda accepts a client query string and returns Alice's response as
+		    an HTML-URL. Use the <b>queryHtml</b>
+		    child Lambda when client query is to be answered in an HTML environment.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>queryString
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A client query string
+		            to be answered by Alice.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>topic
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>(Optional) the
+		            localized rules topic for Alice to apply.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>An Alice answer as an
+		            HTML-URL.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.queryHtml child
+		    Lambda will return Alice's response to the client query "What is your
+		    name?", as follows:</p>
+		    <p><b>(alice.queryHtml
+		    "What is your name?")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"AnswerDetails.html"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.queryHtml</b>
+		    child Lambda accepts a client query string and returns Alice's response as
+		    an HTML-URL.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sremember"></A>remember</H2></P>
+		<div class="h2section" id="remember">
+		   <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>remember</b> child Lambda accepts a
+		    reminder string and retrieves a previously stored XML document from the AliceFacts
+		    repository. The XML document must have been previously stored in the
+		    AliceFacts repository via the <b>alice.assert</b> child Lambda or via the
+		    AIML <b>fact</b> tag.</p>
+		    <p>The reminder string may contain an incomplete word
+		    list; therefore,&nbsp;the <b>remember</b> child Lambda always returns either void or a
+		    Directory of all XML documents whose reminder strings begin with the words
+		    in the specified partial word list. In this returned directory of XML documents,
+		    the document associated with the key of <i>true</i> (if any) will be the document associated 
+		    with the exact reminder string specified.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Synt</b><b>ax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b><b>(alice.remember reminderString)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>remember</b>
+		    child Lambda accepts a
+		    reminder string and retrieves a previously stored XML document from the AliceFacts
+		    repository. Use the <b>remember</b> child Lambda when an important XML document is to be
+		    retrieved from the AliceFacts knowledgebase.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>reminder</b><b>String
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A string containing a
+		            list of uppercase words separated by blanks; or, a vector of feature
+		            based tokens where each Value feature contains an uppercase word</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>Either void or a
+		            Directory of all XML documents whose reminder strings begin with the words
+		            in the specified partial word list (the document associated with the key of <i>true</i> 
+		            (if any) will be the document associated with the exact reminder string specified.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.remember child
+		    Lambda will store an XML model of the European capitals in the AliceFacts
+		    repository, and then retrieve it, as follows:</p>
+		    <p><b>(alice.assert
+		    "EUROPEAN CAPITALS" #{FRANCE Paris ENGLAND London GERMANY Berlin})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>(alice.remember
+		    "EUROPEAN CAPITALS")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    #{FRANCE Paris ENGLAND London GERMANY Berlin}&nbsp; 
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.</b><b>remember</b>
+		    child Lambda accepts a
+		    reminder string and retrieves a previously stored XML document from the AliceFacts
+		    repository.</p>
+		    </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sreset"></A>reset</H2></P>
+			<div class="h2section" id="reset">
+		     <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>reset</b> function resets the
+		    Alice Lambda. The previously asserted rules are cleared, and the Lambda is
+		    made ready for new client queries.<b>
+		    
+		    
+		    </b></p>
+		    <p><b>&nbsp;
+		    
+		    </b></p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.reset)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>Use the <b>reset</b>
+		    function when the Alice Lambda is to be reset, and a new set of client
+		    queries are to be sent.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>true</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>Clearing the Lambda resets all of the discussion
+		    memory. The Lambda is then ready for a new client discussion.</p>
+		    <p><b>(alice.reset)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    true</b></p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SxmlSocketEvals"></A>xmlSocketEvals</H2></P>
+			<div class="h2section" id="xmlSocketEvals">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>xmlSocketEvals</b> function
+		    allows any remote Analytic Information Server client to execute Lisp commands
+		    over the TCP/IP XML socket interface. The previously asserted rules are
+		    cleared, and the Lambda is made ready for new client queries.<b>
+		    
+		    
+		    </b></p>
+		    <p><b>&nbsp;
+		    
+		    </b></p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.xmlSocketEvals&nbsp; command)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>Use the <b>result</b>
+		    function when the Alice Lambda is to be reset, and a new set of client
+		    queries are to be sent.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>command
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The Lisp command to be
+		            evaluated by Alice.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>true</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>Invoking the <b>xmlSocketEvals</b> Lambda allows Alice
+		    to evaluate Lisp commands sent from the remote TCP/IP XML socket interface.
+		    The result is returned as an AIS AMP protocol return Structure.</p>
+		    <p><b>(alice.xmlSocketEvals
+		    "(+ 3 4)")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>Returns<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    #{Result 12}</b></p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAlice AIML Script Lambdas"></A>Alice AIML Script Lambdas</H2></P>
+			<div class="h2section" id="Alice AIML Script Lambdas">
+		    <p>The Alice chat Lambda is actually a community of Lambdas all attached to
+		    each other in parent child relationships. AIML Lisp scripts can invoke a
+		    number of these Lambdas during the execution of an AIML rule. In addition,
+		    all AIML scripts may reference any element within Alice's persistent
+		    memory (such as <b>arg</b>, <b>in</b>, <b>star</b>, etc.). Here follow the
+		    reference materials for the AIML Lisp script Lambdas.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SactOnMatch"></A>actOnMatch</H2></P>
+			<div class="h2section" id="actOnMatch">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>actOnMatch</b> child Lambda
+		    accepts a template match structure returned from the <b>findAllMatches</b>
+		    Alice child Lambda, and returns Alice's response as a string.</p>
+		    <p>The template match structure must be one of the
+		    elements in a match list returned by the <b>findAllMatches</b> Alice child
+		    Lambda. The template match structure is a Structure containing the <b>topic</b>,
+		    <b>in</b>, <b>arg</b>, <b>star</b>, <b>pattern</b>, and <b>template</b>
+		    elements of an AIML rule, which Alice found matched the input query token
+		    vector.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.actOnMatch matchStructure)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>actOnMatch</b>
+		    child Lambda accepts a template match structure returned from the <b>findAllMatches</b>
+		    Alice child Lambda, and returns Alice's response as a string. Use the <b>actOnMatch</b>
+		    child Lambda to perform user defined rule conflict resolution in connection
+		    with the <b>findAllMatches</b> Alice child Lambda.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>matchStructure
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A template match
+		            structure (an element of the match list returned by the <b>findAllMatches</b>
+		            Alice child Lambda).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The Alice response
+		            string.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.actOnMatch
+		    child Lambda will return Alice's response to the client query "What is
+		    your name?". The method of conflict resolution is always to act on the
+		    first matching rule.</p>
+		    <p><b>(alice.actOnMatch
+		    (setq M (alice.findAllMatches "What is your name?" personal:))[0])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"Why do you ask"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.actOnMatch</b>
+		    child Lambda may be used to implement user defined conflict resolution
+		    between multiple matching AIML rules.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SappendFeatures"></A>appendFeatures</H2></P>
+			<div class="h2section" id="appendFeatures">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>appendFeatures</b> child Lambda
+		    converts a vector of feature-based tokens into a result string. Appending
+		    the specified feature from each of the feature-based tokens forms the result
+		    string.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.appendFeatures tokenVector featureName)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>appendFeatures</b>
+		    child Lambda converts a vector of feature-based tokens into a result string.
+		    Appending the specified feature from each of the feature-based tokens forms
+		    the result string. Use the <b>appendFeatures</b>
+		    child Lambda to perform user defined conversion between vectors of
+		    feature-based tokens and simple ASCII strings.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>tokenVector
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A vector of
+		            feature-based tokens.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>featureName
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The name of a feature
+		            contained in each of the feature-based tokens.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The converted ASCII
+		            string.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.appendFeatures
+		    child Lambda will return the appended values in the Original feature of each
+		    token output by parsePhrase. This example demonstrates how a string can be
+		    converted into a vector of feature-based tokens and then converted back into
+		    the original string.</p>
+		    <p><b>(alice.appendFeatures
+		    (alice.parsePhrase "My name is Mike") Original:)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"My name is Mike"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.appendFeatures</b>
+		    child Lambda may be used to convert a vector of feature-based tokens into an
+		    ASCII string.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SfindAllMatches"></A>findAllMatches</H2></P>
+			<div class="h2section" id="findAllMatches">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>findAllMatches</b> child Lambda
+		    accepts a query string, a rule topic name, and returns a vector of template
+		    match structures (the match list).</p>
+		    <p>Each template match structure is a Structure
+		    containing the <b>arg</b>, <b>star</b>, and <b>template</b> elements of an
+		    AIML rule, which Alice found matched the input query token vector.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.findAllMatches matchStructure)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>findAllMatches</b>
+		    child Lambda accepts a query string, a rule topic name, and returns a vector
+		    of template match structures (the match list). Use the <b>findAllMatches</b>
+		    child Lambda to perform user defined rule conflict resolution in connection
+		    with the <b>actOnMatch</b> Alice child Lambda.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>matchStructure
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A template match
+		            structure (an element of the match list returned by the <b>findAllMatches</b>
+		            Alice child Lambda).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The Alice response
+		            string.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.actOnMatch
+		    child Lambda will return Alice's response to the client query "What is
+		    your name?". The method of conflict resolution is always to act on the
+		    first matching rule.</p>
+		    <p><b>(alice.actOnMatch
+		    (setq M (alice.findAllMatches ?What is your name?? personal:))[0])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"Why do you ask"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.findAllMatches</b>
+		    child Lambda may be used to implement user defined conflict resolution
+		    between multiple matching AIML rules.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SnewToken"></A>newToken</H2></P>
+			<div class="h2section" id="newToken">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>newToken</b> child Lambda
+		    converts a set of feature-name feature-value pairs into a feature-based
+		    token.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.newToken featureName featureValue " featureName featureValue)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>newToken</b>
+		    child Lambda converts a set of feature-name feature-value pairs into a
+		    feature-based token. Use the <b>newToken</b>
+		    child Lambda to perform user-defined conversion from a set of feature-name
+		    feature-value pairs into a feature-based token.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>featureName
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The symbolic name of a
+		            feature in the final feature-based token.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>featureValue
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The value of a feature
+		            in the final feature-based token.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The feature-based
+		            token.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following example demonstrates a how a new
+		    feature-based token can be created within an AIML script. The <b>&lt;lisp&gt;</b>
+		    tag returns the new token.</p>
+		    <p>&nbsp;</p>
+		    <p><b>&lt;!--This
+		    examples shows how to create a new feature-based token --&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>&lt;rule&gt;
+		    
+		    </b></p>
+		    <p><b>&lt;pattern&gt;WHAT
+		    IS ONE PLUS ONE&lt;/pattern&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p><b>&lt;template&gt;One
+		    plus one is &lt;lisp&gt;(newToken Value: 2)&lt;/lisp&gt;&lt;/template&gt;
+		    
+		    </b></p>
+		    <p><b>&lt;/rule&gt;
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.newToken</b>
+		    child Lambda to perform user-defined conversion from a set of feature-name
+		    feature-value pairs into a feature-based token.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SparsePhrase"></A>parsePhrase</H2></P>
+			<div class="h2section" id="parsePhrase">
+		    <p><b><u>Overview&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>The Alice chat Lambda is actually a community of
+		    Lambdas all attached to each other in parent child relationships. Invoking
+		    the <b>parsePhrase</b> child Lambda
+		    converts an ASCII string into a vector of feature-based tokens. Alice's
+		    own internal feature-based parser is employed in the conversion.</p>
+		    <p>&nbsp;
+		    
+		    </p>
+		    <p><b>Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Child Lambda
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b>Syntax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    (alice.parsePhrase asciiString)
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>When
+		    To Use&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>parsePhrase</b>
+		    child Lambda converts an ASCII string into a vector of feature-based tokens.
+		    Alice's own internal feature-based parser is employed in the conversion.
+		    Use the <b>parsePhrase</b> child Lambda
+		    to perform user defined conversion between ASCII strings and vectors of
+		    feature-based tokens.<b>
+		    
+		    </b></p>
+		    <p><b>__________________________________________________________________
+		    
+		    </b></p>
+		    <p><b>Arguments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    Explanation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>asciiString
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>An ASCII string to be
+		            converted into a vector of feature-based tokens.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Returns
+		            
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The vector of
+		            feature-based tokens.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p><b>________________________________________________________________
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Example1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The following invocation of the alice.parsePhrase
+		    child Lambda will return a vector of feature-based token using Alice's own
+		    internal feature-based parser in the conversion process. This example
+		    demonstrates how a string can be converted into a vector of feature-based
+		    tokens and then converted back into the original string.</p>
+		    <p><b>(alice.appendFeatures
+		    (alice.parsePhrase "My name is Mike") Original:)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    
+		    
+		    </b></p>
+		    <p>Returns
+		    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>"My name is Mike"<b>
+		    
+		    
+		    </b></p>
+		    <p><b><u>&nbsp;
+		    
+		    </u></b></p>
+		    <p><b><u>Notes
+		    and Hints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </u>
+		    
+		    </b></p>
+		    <p>The <b>alice.parsePhrase</b>
+		    child Lambda may be used to convert an ASCII string into a vector of
+		    feature-based tokens.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

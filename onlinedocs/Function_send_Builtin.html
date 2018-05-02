@@ -1,0 +1,372 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>send</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+          <p>The  <b>send</b> special form invokes a method of an object.  
+           The methods  invocation may include 0 or more arguments. </p>
+          <p>Here we define a class Lambda, create an object of the class, and then
+           use the <b>send</b> special form to invoke a method of the newly created object.</p> 
+           <code><b>
+           (defclass employee()<br>
+           &nbsp;&nbsp; svars:(String:Name (Number:Salary 0.0))<br>
+           &nbsp;&nbsp; cvars:(empStatic)<br>
+           &nbsp;&nbsp; (defun new(self name salary)<br>
+           &nbsp;&nbsp; &nbsp;&nbsp; (setq Name (string name))<br>
+           &nbsp;&nbsp; &nbsp;&nbsp; (setq Salary salary)<br>
+           &nbsp;&nbsp; &nbsp;&nbsp; self) ;; end of new method<br>
+           &nbsp;&nbsp; (defun talk(self)<br>
+           &nbsp;&nbsp; &nbsp;&nbsp; (writeln "I " Name " am an employee.")<br>
+           &nbsp;&nbsp; &nbsp;&nbsp; true) ;; end of talk method<br>
+           <br>
+           &nbsp;&nbsp; ;;.... other class methods here<br>
+           <br>
+           &nbsp;&nbsp; true) ;; end of employee class<br>
+           <br>
+           ;; Using send to invoke a method of an object created by a class Lambda<br>
+           (setq emp (new employee "John Doe" 24000.0)) ;; Create an object of class employee<br>
+           (send talk:emp) ;; writes on console, "I John Doe am an employee."<br>
+           <br>
+           ;; Using a short cut to send<br>
+           (talk:emp) ;; writes on console, "I John Doe am an employee."<br>
+           <br>
+           ;; Using a ref instead of send<br>
+           (emp.talk emp) ;; writes on console, "I John Doe am an employee."<br>
+           <br>
+           ;; Invoking the class method directly instead of send<br>
+           (employee.talk emp) ;; writes on console, "I John Doe am an employee."<br>
+           </b></code>
+    </Overview>
+ <p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+      
+        <p>The <b>send</b> special form can only be used to invoke a method of a class Structure or
+           a class Lambda. The <b>send</b> Special Form causes a lookup of the method 
+          name argument in the class methods Structure.  If the method name is found, the Lambda bound
+          to the method name will be invoked.   
+        </p>
+        
+    </Usage>
+ 
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>(send methodName object)</p>
+               <p>(send methodName object arg1 arg2...)</p>
+               <p>(methodName object)</p>
+               <p>(methodName object arg1  arg2 ...) </p>
+       
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>methodName</b></td><td><FONT COLOR=blue><i>Symbol</i></FONT></td>
+<td> The name of the method to be invoked</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>object</b></td><td><FONT COLOR=blue><i>Structure or Lambda</i></FONT></td>
+<td>The target object of the message.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>args...</b></td><td><FONT COLOR=blue><i>all types</i></FONT></td>
+<td>(Optional) The argument list.</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+        <p>Dependents upon the method invoked.</p>
+        
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_Structure.html">Structure</A></td>
+<td><A HREF="Datatype_or.html">or</A></td>
+<td><A HREF="Datatype_Lambda.html">Lambda</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_append_Builtin.html">append</A></td>
+<td><A HREF="Function_apply_Builtin.html">apply</A></td>
+<td><A HREF="Function_argCount_Builtin.html">argCount</A></td>
+<td><A HREF="Function_argFetch_Builtin.html">argFetch</A></td>
+</tr><tr>
+<td><A HREF="Function_attachLibrarian_Builtin.html">attachLibrarian</A></td>
+<td><A HREF="Function_balance_Builtin.html">balance</A></td>
+<td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+</tr><tr>
+<td><A HREF="Function_callcc_Builtin.html">callcc</A></td>
+<td><A HREF="Function_cdr_Builtin.html">cdr</A></td>
+<td><A HREF="Function_class_Builtin.html">class</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+</tr><tr>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+<td><A HREF="Function_compile_Builtin.html">compile</A></td>
+</tr><tr>
+<td><A HREF="Function_cons_Builtin.html">cons</A></td>
+<td><A HREF="Function_copy_Builtin.html">copy</A></td>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+<td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td>
+</tr><tr>
+<td><A HREF="Function_debugDetective_Builtin.html">debugDetective</A></td>
+<td><A HREF="Function_debug_Builtin.html">debug</A></td>
+<td><A HREF="Function_defchild_Builtin.html">defchild</A></td>
+<td><A HREF="Function_defclass_Builtin.html">defclass</A></td>
+</tr><tr>
+<td><A HREF="Function_define(macro)_Builtin.html">define(macro)</A></td>
+<td><A HREF="Function_define_Builtin.html">define</A></td>
+<td><A HREF="Function_defmacro_Builtin.html">defmacro</A></td>
+<td><A HREF="Function_defmethod_Builtin.html">defmethod</A></td>
+</tr><tr>
+<td><A HREF="Function_deforphan_Builtin.html">deforphan</A></td>
+<td><A HREF="Function_defriend_Builtin.html">defriend</A></td>
+<td><A HREF="Function_defun_Builtin.html">defun</A></td>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+</tr><tr>
+<td><A HREF="Function_detachLibrarian_Builtin.html">detachLibrarian</A></td>
+<td><A HREF="Function_dimension_Builtin.html">dimension</A></td>
+<td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+</tr><tr>
+<td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+</tr><tr>
+<td><A HREF="Function_fieldsOf_Builtin.html">fieldsOf</A></td>
+<td><A HREF="Function_globalBinding_Builtin.html">globalBinding</A></td>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+</tr><tr>
+<td><A HREF="Function_insert_Builtin.html">insert</A></td>
+<td><A HREF="Function_inside_Builtin.html">inside</A></td>
+<td><A HREF="Function_inspect_Builtin.html">inspect</A></td>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+</tr><tr>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td>
+<td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td>
+<td><A HREF="Function_isBound_Builtin.html">isBound</A></td>
+</tr><tr>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td>
+<td><A HREF="Function_isChar_Builtin.html">isChar</A></td>
+<td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td>
+<td><A HREF="Function_isClass_Builtin.html">isClass</A></td>
+</tr><tr>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+<td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td>
+<td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td>
+</tr><tr>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+</tr><tr>
+<td><A HREF="Function_isInside_Builtin.html">isInside</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+<td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td>
+</tr><tr>
+<td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember</A></td>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+<td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td>
+</tr><tr>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+</tr><tr>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td>
+<td><A HREF="Function_isString_Builtin.html">isString</A></td>
+<td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td>
+</tr><tr>
+<td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td>
+<td><A HREF="Function_isText_Builtin.html">isText</A></td>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+<td><A HREF="Function_isVector_Builtin.html">isVector</A></td>
+</tr><tr>
+<td><A HREF="Function_lambda_Builtin.html">lambda</A></td>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+<td><A HREF="Function_lisp_Builtin.html">lisp</A></td>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+</tr><tr>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeLambda_Builtin.html">makeLambda</A></td>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_makeStructure_Builtin.html">makeStructure</A></td>
+</tr><tr>
+<td><A HREF="Function_map_Builtin.html">map</A></td>
+<td><A HREF="Function_mapc_Builtin.html">mapc</A></td>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+</tr><tr>
+<td><A HREF="Function_myself_Builtin.html">myself</A></td>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+<td><A HREF="Function_objectToList_Builtin.html">objectToList</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToMatrix_Builtin.html">objectToMatrix</A></td>
+<td><A HREF="Function_objectToNumMatrix_Builtin.html">objectToNumMatrix</A></td>
+<td><A HREF="Function_objectToNumVector_Builtin.html">objectToNumVector</A></td>
+<td><A HREF="Function_objectToStructure_Builtin.html">objectToStructure</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToVector_Builtin.html">objectToVector</A></td>
+<td><A HREF="Function_offset_Builtin.html">offset</A></td>
+<td><A HREF="Function_onError_Builtin.html">onError</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+</tr><tr>
+<td><A HREF="Function_parent_Builtin.html">parent</A></td>
+<td><A HREF="Function_parse_Builtin.html">parse</A></td>
+<td><A HREF="Function_pointer_Builtin.html">pointer</A></td>
+<td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td>
+</tr><tr>
+<td><A HREF="Function_putprop_Builtin.html">putprop</A></td>
+<td><A HREF="Function_refAttributes_Builtin.html">refAttributes</A></td>
+<td><A HREF="Function_refLibrarian_Builtin.html">refLibrarian</A></td>
+<td><A HREF="Function_refValues_Builtin.html">refValues</A></td>
+</tr><tr>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_remProp_Builtin.html">remProp</A></td>
+<td><A HREF="Function_remove_Builtin.html">remove</A></td>
+<td><A HREF="Function_resize_Builtin.html">resize</A></td>
+</tr><tr>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+<td><A HREF="Function_send_Builtin.html">send</A></td>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+</tr><tr>
+<td><A HREF="Function_string_Builtin.html">string</A></td>
+<td><A HREF="Function_super_Builtin.html">super</A></td>
+<td><A HREF="Function_svmRegression_Builtin.html">svmRegression</A></td>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+</tr><tr>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td>
+<td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,1797 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>SQL Data Types</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SOverview of Numeric Types"><FONT SIZE=2>Overview of Numeric Types</font></a></li><li><a href="#SOverview of Date and Time Types"><FONT SIZE=2>Overview of Date and Time Types</font></a></li><li><a href="#SOverview of String Types"><FONT SIZE=2>Overview of String Types</font></a></li><li><a href="#SData Type Default Values"><FONT SIZE=2>Data Type Default Values</font></a></li><li><a href="#SNumeric Types"><FONT SIZE=2>Numeric Types</font></a></li><li><a href="#SDate and Time Types"><FONT SIZE=2>Date and Time Types</font></a></li><li><a href="#SThe DATETIME, DATE, and TIMESTAMP Types"><FONT SIZE=2>The DATETIME, DATE, and TIMESTAMP Types</font></a></li><li><a href="#STIMESTAMP Properties"><FONT SIZE=2>TIMESTAMP Properties</font></a></li><li><a href="#SThe TIME Type"><FONT SIZE=2>The TIME Type</font></a></li><li><a href="#SThe YEAR Type"><FONT SIZE=2>The YEAR Type</font></a></li><li><a href="#SYear 2000 Issues and Date Types"><FONT SIZE=2>Year 2000 Issues and Date Types</font></a></li><li><a href="#SString Types"><FONT SIZE=2>String Types</font></a></li><li><a href="#SThe CHAR and VARCHAR Types"><FONT SIZE=2>The CHAR and VARCHAR Types</font></a></li><li><a href="#SThe BINARY and VARBINARY Types"><FONT SIZE=2>The BINARY and VARBINARY Types</font></a></li><li><a href="#SThe BLOB and TEXT Types"><FONT SIZE=2>The BLOB and TEXT Types</font></a></li><li><a href="#SThe ENUM Type"><FONT SIZE=2>The ENUM Type</font></a></li><li><a href="#SThe SET Type"><FONT SIZE=2>The SET Type</font></a></li><li><a href="#SData Type Storage Requirements"><FONT SIZE=2>Data Type Storage Requirements</font></a></li><li><a href="#SChoosing the Right Type for a Column"><FONT SIZE=2>Choosing the Right Type for a Column</font></a></li><li><a href="#SUsing Data Types from Other Database Engines"><FONT SIZE=2>Using Data Types from Other Database Engines</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+			<p>SQL supports a number of data types in several categories: numeric types, date and time types, and string (character) types.
+				This chapter first gives an overview of these data types, and then provides a more detailed description of the properties of the types in each category, and a summary of the data type storage requirements.
+				The initial overview is intentionally brief.
+				The more detailed descriptions later in the chapter should be consulted for additional information about particular data types, such as the allowable formats in which you can specify values.</p>
+				
+			<p>Data type descriptions use these conventions:</P>
+
+			<p>M indicates the maximum display width for integer types.
+				For floating-point and fixed-point types, M is the total number of digits that can be stored.
+				For string types, M is the maximum length.
+				The maximum allowable value of M depends on the data type.</p>
+
+			<p>D applies to floating-point and fixed-point types and indicates the number of digits following the decimal point.
+				The maximum possible value is 30, but should be no greater than M-2.</p>
+
+			<p>Square brackets ("[" and "]") indicate optional parts of type definitions.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SOverview of Numeric Types"></A>Overview of Numeric Types</H2></P>
+		<p>A summary of the numeric data types follows.
+			For additional information, see Section on "Numeric Types".
+			Storage requirements are given in Section on "Data Type Storage Requirements".</p>
+
+		<p>M indicates the maximum display width for integer types.
+			The maximum legal display width is 255. Display width is unrelated to the range of values a type can contain, as described in Section on "Numeric Types".
+			For floating-point and fixed-point types, M is the total number of digits that can be stored.</p>
+
+		<p>If you specify ZEROFILL for a numeric column, SQL automatically adds the UNSIGNED attribute to the column.</p>
+		
+		<p>Numeric data types that allow the UNSIGNED attribute also allow SIGNED.
+			However, these data types are signed by default, so the SIGNED attribute has no effect.</p>
+
+		<p>SERIAL is an alias for BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE.</p>
+
+		<p>SERIAL DEFAULT VALUE in the definition of an integer column is an alias for NOT NULL AUTO_INCREMENT UNIQUE.</p>
+		
+		<p>Warning: When you use subtraction between integer values where one is of type UNSIGNED, the result is unsigned unless the NO_UNSIGNED_SUBTRACTION SQL mode is enabled.</p>
+
+		<ul>
+			<li><p>BIT[(M)]</p>
+				<p>A bit-field type.
+					M indicates the number of bits per value, from 1 to 64.
+					The default is 1 if M is omitted.</p>
+			</li>
+			<li><p>TINYINT[(M)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A very small integer.
+					The signed range is -128 to 127.
+					The unsigned range is 0 to 255.</p>
+			</li>
+			<li><p>BOOL, BOOLEAN</p>
+				<p>These types are synonyms for TINYINT(1).
+					A value of zero is considered false.
+					Non-zero values are considered true:</p>
+				<pre>(sql sqlHandle {SELECT IF(0, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(0, 'true', 'false')|:Character:5)| |IF(0, 'true', 'false')|:"false")</pre>
+
+				<pre>(sql sqlHandle {SELECT IF(1, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(1, 'true', 'false')|:Character:5)| |IF(1, 'true', 'false')|:"true")</pre>
+
+				<pre>(sql sqlHandle {SELECT IF(2, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(2, 'true', 'false')|:Character:5)| |IF(2, 'true', 'false')|:"true")</pre>
+
+				<p>However, the values TRUE and FALSE are merely aliases for 1 and 0, respectively, as shown here:</p>
+				
+				<pre>(sql sqlHandle {SELECT IF(0 = FALSE, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(0 = FALSE, 'true', 'false')|:Character:5)| |IF(0 = FALSE, 'true', 'false')|:"true")</pre>
+
+				<pre>(sql sqlHandle {SELECT IF(1 = TRUE, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(1 = TRUE, 'true', 'false')|:Character:5)| |IF(1 = TRUE, 'true', 'false')|:"true")</pre>
+
+				<pre>(sql sqlHandle {SELECT IF(2 = TRUE, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(2 = TRUE, 'true', 'false')|:Character:5)| |IF(2 = TRUE, 'true', 'false')|:"false")</pre>
+
+				<pre>(sql sqlHandle {SELECT IF(2 = FALSE, 'true', 'false')}) <b>Returns</b>
+#(rec(|IF(2 = FALSE, 'true', 'false')|:Character:5)| |IF(2 = FALSE, 'true', 'false')|:"false")</pre>
+
+				<p>The last two statements display the results shown because 2 is equal to neither 1 nor 0.</p>
+			</li>
+			<li><p>SMALLINT[(M)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A small integer.
+					The signed range is -32768 to 32767.
+					The unsigned range is 0 to 65535.</p>
+			</li>
+			<li><p>MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A medium-sized integer.
+					The signed range is -8388608 to 8388607.
+					The unsigned range is 0 to 16777215.</p>
+			</li>
+			<li><p>INT[(M)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A normal-size integer.
+					The signed range is -2147483648 to 2147483647.
+					The unsigned range is 0 to 4294967295.</p>
+			</li>
+			<li><p>INTEGER[(M)] [UNSIGNED] [ZEROFILL]</p>
+				<p>This type is a synonym for INT.</p>
+			</li>
+			<li><p>BIGINT[(M)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A large integer.
+					The signed range is -9223372036854775808 to 9223372036854775807.
+					The unsigned range is 0 to 18446744073709551615.</p>
+				<p>SERIAL is an alias for BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE.</p>
+				<p>Some things you should be aware of with respect to BIGINT columns:</p>
+				<ul>
+					<li><p>All arithmetic is done using signed BIGINT or DOUBLE values, so you should not use unsigned big integers larger than 9223372036854775807 (63 bits) except with bit functions!
+						If you do that, some of the last digits in the result may be wrong because of rounding errors when converting a BIGINT value to a DOUBLE.</p>
+						<p>SQL can handle BIGINT in the following cases:
+							<ul>
+								<li>When using integers to store large unsigned values in a BIGINT column.</li>
+								<li>In MIN(col_name) or MAX(col_name), where col_name refers to a BIGINT column.</li>
+								<li>When using operators (+, -, *, and so on) where both operands are integers.</li>
+							</ul>
+						</p>
+					</li>
+					<li>You can always store an exact integer value in a BIGINT column by storing it using a string.
+						In this case, SQL performs a string-to-number conversion that involves no intermediate double-precision representation.
+					</li>
+					<li>The -, +, and * operators use BIGINT arithmetic when both operands are integer values.
+						This means that if you multiply two big integers (or results from functions that return integers), you may get unexpected results when the result is larger than 9223372036854775807.
+					</li>
+				</ul>
+			</li>
+			<li><p>FLOAT[(M,D)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A small (single-precision) floating-point number.
+					Allowable values are -3.402823466E+38 to -1.175494351E-38, 0, and 1.175494351E-38 to 3.402823466E+38.
+					These are the theoretical limits, based on the IEEE standard.
+					The actual range might be slightly smaller depending on your hardware or operating system.</p>
+				<p>M is the total number of digits and D is the number of digits following the decimal point. If M and D are omitted, values are stored to the limits allowed by the hardware.
+					A single-precision floating-point number is accurate to approximately 7 decimal places.</p>
+				<p>UNSIGNED, if specified, disallows negative values.</p>
+				<p>Using FLOAT might give you some unexpected problems because all calculations in SQL are done with double precision.</p>
+			</li>
+			<li><p>DOUBLE[(M,D)] [UNSIGNED] [ZEROFILL]</p>
+				<p>A normal-size (double-precision) floating-point number.
+					Allowable values are -1.7976931348623157E+308 to -2.2250738585072014E-308, 0, and 2.2250738585072014E-308 to 1.7976931348623157E+308.
+					These are the theoretical limits, based on the IEEE standard.
+					The actual range might be slightly smaller depending on your hardware or operating system.</p>
+				<p>M is the total number of digits and D is the number of digits following the decimal point.
+					If M and D are omitted, values are stored to the limits allowed by the hardware.
+					A double-precision floating-point number is accurate to approximately 15 decimal places.</p>
+				<p>UNSIGNED, if specified, disallows negative values.</p>
+			</li>
+			<li><p>DOUBLE PRECISION[(M,D)] [UNSIGNED] [ZEROFILL], REAL[(M,D)] [UNSIGNED] [ZEROFILL]</p>
+				<p>These types are synonyms for DOUBLE.
+					Exception: If the REAL_AS_FLOAT SQL mode is enabled, REAL is a synonym for FLOAT rather than DOUBLE.</p>
+			</li>
+			<li><p>FLOAT(p) [UNSIGNED] [ZEROFILL]</p>
+				<p>A floating-point number.
+					p represents the precision in bits, but SQL uses this value only to determine whether to use FLOAT or DOUBLE for the resulting data type.
+					If p is from 0 to 24, the data type becomes FLOAT with no M or D values.
+					If p is from 25 to 53, the data type becomes DOUBLE with no M or D values.
+					The range of the resulting column is the same as for the single-precision FLOAT or double-precision DOUBLE data types described earlier in this section.</p>
+				<p>FLOAT(p) syntax is provided for ODBC compatibility.</p>
+			</li>
+			<li><p>DECIMAL[(M[,D])] [UNSIGNED] [ZEROFILL]</p>
+				<p>A packed "exact" fixed-point number.
+					M is the total number of digits (the precision) and D is the number of digits after the decimal point (the scale).
+					The decimal point and (for negative numbers) the "-" sign are not counted in M.
+					If D is 0, values have no decimal point or fractional part.
+					The maximum number of digits (M) for DECIMAL is 65.
+					The maximum number of supported decimals (D) is 30.
+					If D is omitted, the default is 0. If M is omitted, the default is 10.</p>
+				<p>UNSIGNED, if specified, disallows negative values.</p>
+				<p>All basic calculations (+, -, *, /) with DECIMAL columns are done with a precision of 65 digits.</p>
+			</li>
+			<li><p>DEC[(M[,D])] [UNSIGNED] [ZEROFILL], NUMERIC[(M[,D])] [UNSIGNED] [ZEROFILL], FIXED[(M[,D])] [UNSIGNED] [ZEROFILL]</p>
+				<p>These types are synonyms for DECIMAL.
+					The FIXED synonym is available for compatibility with other database systems.</p>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SOverview of Date and Time Types"></A>Overview of Date and Time Types</H2></P>
+		<p>A summary of the temporal data types follows.</p>
+		
+		<p>For the DATETIME and DATE range descriptions, "supported" means that although earlier values might work, there is no guarantee.</p>
+		
+		<ul>
+			<li>
+				<p>DATE</p>
+				<p>A date. The supported range is '1000-01-01' to '9999-12-31'. 
+					SQL displays DATE values in 'YYYY-MM-DD' format, but allows assignment of values to DATE columns using either strings or numbers.</p>
+			</li>
+			<li>
+				<p>DATETIME</p>
+				<p>A date and time combination.
+					The supported range is '1000-01-01 00:00:00' to '9999-12-31 23:59:59'. 
+					SQL displays DATETIME values in 'YYYY-MM-DD HH:MM:SS' format, but allows assignment of values to DATETIME columns using either strings or numbers.</p>
+			</li>
+			<li>
+				<p>TIMESTAMP</p>
+				<p>A timestamp.
+					The range is '1970-01-01 00:00:01' UTC to '2038-01-09 03:14:07' UTC.
+					TIMESTAMP values are stored as the number of seconds since the epoch ('1970-01-01 00:00:00' UTC).
+					A TIMESTAMP cannot represent the value '1970-01-01 00:00:00' because that is equivalent to 0 seconds from the epoch and the value 0 is reserved for representing '0000-00-00 00:00:00', the "zero" TIMESTAMP value.</p>
+					
+				<p>A TIMESTAMP column is useful for recording the date and time of an INSERT or UPDATE operation.
+					By default, the first TIMESTAMP column in a table is automatically set to the date and time of the most recent operation if you do not assign it a value yourself.
+					You can also set any TIMESTAMP column to the current date and time by assigning it a NULL value.</p>
+					
+				<p>A TIMESTAMP value is returned as a string in the format 'YYYY-MM-DD HH:MM:SS' with a display width fixed at 19 characters.
+					To obtain the value as a number, you should add +0 to the timestamp column.</p>
+			</li>
+			<li>
+				<p>TIME</p>
+				<p>A time.
+					The range is '-838:59:59' to '838:59:59'. SQL displays TIME values in 'HH:MM:SS' format, but allows assignment of values to TIME columns using either strings or numbers.</p>
+			</li>
+			<li>
+				<p>YEAR[(2|4)]</p>
+				<p>A year in two-digit or four-digit format.
+					The default is four-digit format. In four-digit format, the allowable values are 1901 to 2155, and 0000.
+					In two-digit format, the allowable values are 70 to 69, representing years from 1970 to 2069.
+					SQL displays YEAR values in YYYY format, but allows you to assign values to YEAR columns using either strings or numbers.</p>
+			</li>
+		</ul>
+		
+		<p>The SUM() and AVG() aggregate functions do not work with temporal values.
+			(They convert the values to numbers, which loses the part after the first non-numeric character.)
+			To work around this problem, you can convert to numeric units, perform the aggregate operation, and convert back to a temporal value.
+			Examples:</p>
+		
+		<pre>(sql sqlHandle {SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(time_col))) FROM tbl_name})
+(sql sqlHandle {SELECT FROM_DAYS(SUM(TO_DAYS(date_col))) FROM tbl_name})</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SOverview of String Types"></A>Overview of String Types</H2></P>
+		<p>A summary of the string data types follows.</p>
+		
+		<p>In some cases, SQL may change a string column to a type different from that given in a CREATE TABLE or ALTER TABLE statement.</p>
+		
+		<p>SQL interprets length specifications in character column definitions in character units.
+			This applies to CHAR, VARCHAR, and the TEXT types.</p>
+		
+		<p>Column definitions for many string data types can include attributes that specify the character set or collation of the column.
+			These attributes apply to the CHAR, VARCHAR, the TEXT types, ENUM, and SET data types:</p>
+			
+		<ul>
+			<li>
+				<p>The CHARACTER SET attribute specifies the character set, and the COLLATE attribute specifies a collation for the character set.
+					For example: </p>
+				<pre>(sql sqlHandle {CREATE TABLE t (c1 VARCHAR(20) CHARACTER SET utf8, c2 TEXT CHARACTER SET latin1 COLLATE latin1_general_cs)})</pre>
+				<p>This table definition creates a column named c1 that has a character set of utf8 with the default collation for that character set, and a column named c2 that has a character set of latin1 and a case-sensitive collation.</p>
+				<p>CHARSET is a synonym for CHARACTER SET.</p>
+			</li>
+			<li>
+				<p>Specifying the CHARACTER SET binary attribute for a character data type causes the column to be created as the corresponding binary data type: CHAR becomes BINARY, VARCHAR becomes VARBINARY, and TEXT becomes BLOB.
+					For the ENUM and SET data types, this does not occur; they are created as declared.
+					Suppose that you specify a table using this definition:</p>
+				<pre>(sql sqlHandle {CREATE TABLE t (c1 VARCHAR(10) CHARACTER SET binary, c2 TEXT CHARACTER SET binary, c3 ENUM('a','b','c') CHARACTER SET binary)})</pre>
+				<p>The resulting table has this definition:</p>
+				<pre>(sql sqlHandle {CREATE TABLE t (c1 VARBINARY(10), c2 BLOB, c3 ENUM('a','b','c') CHARACTER SET binary)})</pre>
+			</li>
+			<li>
+				<p>The ASCII attribute is shorthand for CHARACTER SET latin1.</p>
+			</li>
+			<li>
+				<p>The UNICODE attribute is shorthand for CHARACTER SET ucs2.</p>
+			</li>
+			<li>
+				<p>The BINARY attribute is shorthand for specifying the binary collation of the column character set.
+					In this case, sorting and comparison are based on numeric character values.</p>
+			</li>
+		</ul>
+		
+		<p>Character column sorting and comparison are based on the character set assigned to the column.
+			For the CHAR, VARCHAR, TEXT, ENUM, and SET data types, you can declare a column with a binary collation or the BINARY attribute to cause sorting and comparison to use the underlying character code values rather than a lexical ordering.</p>
+
+		<ul>
+			<li>
+				<p>[NATIONAL] CHAR[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A fixed-length string that is always right-padded with spaces to the specified length when stored.
+					M represents the column length in characters.
+					The range of M is 0 to 255. If M is omitted, the length is 1.</p>
+				<p>Note: Trailing spaces are removed when CHAR values are retrieved unless the PAD_CHAR_TO_FULL_LENGTH SQL mode is enabled.</p>
+				<p>CHAR is shorthand for CHARACTER. NATIONAL CHAR (or its equivalent short form, NCHAR) is the standard SQL way to define that a CHAR column should use some predefined character set.</p>
+				<p>The CHAR BYTE data type is an alias for the BINARY data type. This is a compatibility feature.</p>
+				<p>SQL allows you to create a column of type CHAR(0).
+					This is useful primarily when you have to be compliant with old applications that depend on the existence of a column but that do not actually use its value.
+					CHAR(0) is also quite nice when you need a column that can take only two values: A column that is defined as CHAR(0) NULL occupies only one bit and can take only the values NULL and '' (the empty string).</p>
+			</li>
+			<li>
+				<p>[NATIONAL] VARCHAR(M) [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A variable-length string.
+					M represents the maximum column length in characters. The range of M is 0 to 65,535.
+					The effective maximum length of a VARCHAR is subject to the maximum row size (65,535 bytes, which is shared among all columns) and the character set used.
+					For example, utf8 characters can require up to three bytes per character, so a VARCHAR column that uses the utf8 character set can be declared to be a maximum of 21,844 characters.</p>
+				<p>SQL stores VARCHAR values as a one-byte or two-byte length prefix plus data.
+					The length prefix indicates the number of bytes in the value.
+					A VARCHAR column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.</p>
+				<p>Note:SQL does not remove trailing spaces from VARCHAR values.</p>
+				<p>VARCHAR is shorthand for CHARACTER VARYING. NATIONAL VARCHAR is the standard SQL way to define that a VARCHAR column should use some predefined character set.
+					SQL uses utf8 as this predefined character set. NVARCHAR is shorthand for NATIONAL VARCHAR.</p>
+			</li>
+			<li>
+				<p>BINARY(M)</p>
+				<p>The BINARY type is similar to the CHAR type, but stores binary byte strings rather than non-binary character strings.
+					M represents the column length in bytes.</p>
+			</li>
+			<li>
+				<p>VARBINARY(M)</p>
+				<p>The VARBINARY type is similar to the VARCHAR type, but stores binary byte strings rather than non-binary character strings.
+					M represents the maximum column length in bytes.</p>
+			</li>
+			<li>
+				<p>TINYBLOB</p>
+				<p>A BLOB column with a maximum length of 255 (28 - 1) bytes.
+					Each TINYBLOB value is stored using a one-byte length prefix that indicates the number of bytes in the value.</p>
+			</li>
+			<li>
+				<p>TINYTEXT [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A TEXT column with a maximum length of 255 (28 - 1) characters.
+					The effective maximum length is less if the value contains multi-byte characters.
+					Each TINYTEXT value is stored using a one-byte length prefix that indicates the number of bytes in the value.</p>
+			</li>
+			<li>
+				<p>BLOB[(M)]</p>
+				<p>A BLOB column with a maximum length of 65,535 (216 - 1) bytes.
+					Each BLOB value is stored using a two-byte length prefix that indicates the number of bytes in the value.</p>
+				<p>An optional length M can be given for this type.
+					If this is done, SQL creates the column as the smallest BLOB type large enough to hold values M bytes long.</p>
+			</li>
+			<li>
+				<p>TEXT[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A TEXT column with a maximum length of 65,535 (216 - 1) characters.
+					The effective maximum length is less if the value contains multi-byte characters.
+					Each TEXT value is stored using a two-byte length prefix that indicates the number of bytes in the value.</p>
+				<p>An optional length M can be given for this type.
+					If this is done, SQL creates the column as the smallest TEXT type large enough to hold values M characters long.</p>
+			</li>
+			<li>
+				<p>MEDIUMBLOB</p>
+				<p>A BLOB column with a maximum length of 16,777,215 (224 - 1) bytes.
+					Each MEDIUMBLOB value is stored using a three-byte length prefix that indicates the number of bytes in the value.</p>
+			</li>
+			<li>
+				<p>MEDIUMTEXT [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A TEXT column with a maximum length of 16,777,215 (224 - 1) characters.
+					The effective maximum length is less if the value contains multi-byte characters.
+					Each MEDIUMTEXT value is stored using a three-byte length prefix that indicates the number of bytes in the value.</p>
+			</li>
+			<li>
+				<p>LONGBLOB</p>
+				<p>A BLOB column with a maximum length of 4,294,967,295 or 4GB (232 - 1) bytes.
+					The effective maximum length of LONGBLOB columns depends on the configured maximum packet size in the client/server protocol and available memory.
+					Each LONGBLOB value is stored using a four-byte length prefix that indicates the number of bytes in the value.</p>
+			</li>
+			<li>
+				<p>LONGTEXT [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A TEXT column with a maximum length of 4,294,967,295 or 4GB (232 - 1) characters.
+					The effective maximum length is less if the value contains multi-byte characters.
+					The effective maximum length of LONGTEXT columns also depends on the configured maximum packet size in the client/server protocol and available memory.
+					Each LONGTEXT value is stored using a four-byte length prefix that indicates the number of bytes in the value.</p>
+			</li>
+			<li>
+				<p>ENUM('value1','value2',...) [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>An enumeration. A string object that can have only one value, chosen from the list of values 'value1', 'value2', ..., NULL or the special '' error value.
+					An ENUM column can have a maximum of 65,535 distinct values. ENUM values are represented internally as integers. </p>
+			</li>
+			<li>
+				<p>SET('value1','value2',...) [CHARACTER SET charset_name] [COLLATE collation_name]</p>
+				<p>A set. A string object that can have zero or more values, each of which must be chosen from the list of values 'value1', 'value2', ... 
+					A SET column can have a maximum of 64 members. SET values are represented internally as integers.</p>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SData Type Default Values"></A>Data Type Default Values</H2></P>
+			<p>The DEFAULT value clause in a data type specification indicates a default value for a column.
+				With one exception, the default value must be a constant; it cannot be a function or an expression.
+				This means, for example, that you cannot set the default for a date column to be the value of a function such as NOW() or CURRENT_DATE.
+				The exception is that you can specify CURRENT_TIMESTAMP as the default for a TIMESTAMP column.</p>
+			<p>BLOB and TEXT columns cannot be assigned a default value.</p>
+			<p>If a column definition includes no explicit DEFAULT value, SQL determines the default value as follows:</p>
+			<p>If the column can take NULL as a value, the column is defined with an explicit DEFAULT NULL clause.</p>
+			<p>If the column cannot take NULL as the value, SQL defines the column with no explicit DEFAULT clause.
+				For data entry, if an INSERT or REPLACE statement includes no value for the column, SQL handles the column according to the SQL mode in effect at the time:</p>
+			<ul>
+				<li><p>If strict SQL mode is not enabled, SQL sets the column to the implicit default value for the column data type.</p>
+				</li>
+				<li><p>If strict mode is enabled, an error occurs for transactional tables and the statement is rolled back.
+					For non-transactional tables, an error occurs, but if this happens for the second or subsequent row of a multiple-row statement, the preceding rows will have been inserted.</p>
+				</li>
+			</ul>
+			
+			<p>Suppose that a table t is defined as follows:</p>
+			<pre>(sql sqlHandle {CREATE TABLE t (i INT NOT NULL)})</pre>
+			<p>In this case, i has no explicit default, so in strict mode each of the following statements produce an error and no row is inserted.
+				When not using strict mode, only the third statement produces an error; the implicit default is inserted for the first two statements, but the third fails because DEFAULT(i) cannot produce a value:</p>
+
+			<pre>(sql sqlHandle {INSERT INTO t VALUES()})
+(sql sqlHandle {INSERT INTO t VALUES(DEFAULT)})
+(sql sqlHandle {INSERT INTO t VALUES(DEFAULT(i))})</pre>
+
+			<p>For a given table, you can use the SHOW CREATE TABLE statement to see which columns have an explicit DEFAULT clause.</p>
+			<p>Implicit defaults are defined as follows:</p>
+
+			<ul>
+				<li>
+					<p>For numeric types, the default is 0, with the exception that for integer or floating-point types declared with the AUTO_INCREMENT attribute, the default is the next value in the sequence.</p>
+				</li>
+				<li>
+					<p>For date and time types other than TIMESTAMP, the default is the appropriate "zero" value for the type.
+						For the first TIMESTAMP column in a table, the default value is the current date and time.</p>
+				</li>
+				<li>
+					<p>For string types other than ENUM, the default value is the empty string.
+						For ENUM, the default is the first enumeration value.</p>
+				</li>
+			</ul>
+			<p>SERIAL DEFAULT VALUE in the definition of an integer column is an alias for NOT NULL AUTO_INCREMENT UNIQUE.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNumeric Types"></A>Numeric Types</H2></P>
+		<p>SQL supports all of the standard SQL numeric data types.
+			These types include the exact numeric data types (INTEGER, SMALLINT, DECIMAL, and NUMERIC), as well as the approximate numeric data types (FLOAT, REAL, and DOUBLE PRECISION).
+			The keyword INT is a synonym for INTEGER, and the keyword DEC is a synonym for DECIMAL.</p>
+		<p>The numeric types used for the results of calculations depends on the operations being performed and the numeric types of the operands.</p>
+		<p>The BIT data type stores bit-field values and is supported for MyISAM, MEMORY, InnoDB, and NDBCLUSTER tables.</p>
+		<p>As an extension to the SQL standard, SQL also supports the integer types TINYINT, MEDIUMINT, and BIGINT.
+			The following table shows the required storage and range for each of the integer types.</p>
+		<table>
+		<tr>
+			<th align="left">Type</th>
+			<th align="left">Bytes</th>
+			<th align="left">Minimum Value</th>
+			<th align="left">Maximum Value</th>
+		</tr>
+		<tr>
+			<th align="left"> </th>
+			<th align="left"> </th>
+			<th align="left">(Signed/Unsigned)</th>
+			<th align="left">(Signed/Unsigned)</th>
+		</tr>
+		<tr>
+			<td>TINYINT</td>
+			<td>1</td>
+			<td>-128</td>
+			<td>127</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td>0</td>
+			<td>255</td>
+		</tr>
+		<tr>
+			<td>SMALLINT</td>
+			<td>2</td>
+			<td>-32768</td>
+			<td>32767</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td>0</td>
+			<td>65535</td>
+		</tr>
+		<tr>
+			<td>MEDIUMINT</td>
+			<td>3</td>
+			<td>-8388608</td>
+			<td>8388607</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td>0</td>
+			<td>16777215</td>
+		</tr>
+		<tr>
+			<td>INT</td>
+			<td>4</td>
+			<td>-2147483648</td>
+			<td>2147483647</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td>0</td>
+			<td>4294967295</td>
+		</tr>
+		<tr>
+			<td>BIGINT</td>
+			<td>8</td>
+			<td>-9223372036854775808</td>
+			<td>9223372036854775807</td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> </td>
+			<td>0</td>
+			<td>18446744073709551615</td>
+		</tr>
+		</table>
+		
+		<p>Another extension is supported by SQL for optionally specifying the display width of integer data types in parentheses following the base keyword for the type (for example, INT(4)).
+			This optional display width is used to display integer values having a width less than the width specified for the column by left-padding them with spaces.</p>
+			
+		<p>The display width does not constrain the range of values that can be stored in the column, nor the number of digits that are displayed for values having a width exceeding that specified for the column.
+			For example, a column specified as SMALLINT(3) has the usual SMALLINT range of -32768 to 32767, and values outside the range allowed by three characters are displayed using more than three characters.</p>
+		
+		<p>When used in conjunction with the optional extension attribute ZEROFILL, the default padding of spaces is replaced with zeros.
+			For example, for a column declared as INT(5) ZEROFILL, a value of 4 is retrieved as 00004. Note that if you store larger values than the display width in an integer column,
+			you may experience problems when SQL generates temporary tables for some complicated joins, because in these cases SQL assumes that the data fits into the original column width.</p>
+		
+		<p>Note: The ZEROFILL attribute is ignored when a column is involved in expressions or UNION queries.</p>
+		
+		<p>All integer types can have an optional (non-standard) attribute UNSIGNED.
+			Unsigned values can be used when you want to allow only non-negative numbers in a column and you need a larger upper numeric range for the column.
+			For example, if an INT column is UNSIGNED, the size of the column's range is the same but its endpoints shift from -2147483648 and 2147483647 up to 0 and 4294967295.</p>
+			
+		<p>Floating-point and fixed-point types also can be UNSIGNED.
+			As with integer types, this attribute prevents negative values from being stored in the column.
+			However, unlike the integer types, the upper range of column values remains the same.</p>
+	
+		<p>If you specify ZEROFILL for a numeric column, SQL automatically adds the UNSIGNED attribute to the column.</p>
+		
+		<p>Integer or floating-point data types can have the additional attribute AUTO_INCREMENT.
+			When you insert a value of NULL (recommended) or 0 into an indexed AUTO_INCREMENT column, the column is set to the next sequence value.
+			Typically this is value+1, where value is the largest value for the column currently in the table. AUTO_INCREMENT sequences begin with 1.</p>
+		
+		<p>For floating-point data types, SQL uses four bytes for single-precision values and eight bytes for double-precision values.</p>
+		
+		<p>The FLOAT and DOUBLE data types are used to represent approximate numeric data values. For FLOAT, the SQL standard allows an optional specification of the precision (but not the range of the exponent) in bits following the keyword FLOAT in parentheses. 
+			SQL also supports this optional precision specification, but the precision value is used only to determine storage size. A precision from 0 to 23 results in a four-byte single-precision FLOAT column.
+			A precision from 24 to 53 results in an eight-byte double-precision DOUBLE column.</p>
+		
+		<p>SQL allows a non-standard syntax: FLOAT(M,D) or REAL(M,D) or DOUBLE PRECISION(M,D).
+			Here, "(M,D)" means than values can be stored with up to M digits in total, of which D digits may be after the decimal point.
+			For example, a column defined as FLOAT(7,4) will look like -999.9999 when displayed.
+			SQL performs rounding when storing values, so if you insert 999.00009 into a FLOAT(7,4) column, the approximate result is 999.0001.</p>
+			
+		<p>SQL treats DOUBLE as a synonym for DOUBLE PRECISION (a non-standard extension).
+			SQL also treats REAL as a synonym for DOUBLE PRECISION (a non-standard variation), unless the REAL_AS_FLOAT SQL mode is enabled.</p>
+			
+		<p>For maximum portability, code requiring storage of approximate numeric data values should use FLOAT or DOUBLE PRECISION with no specification of precision or number of digits.</p>
+		
+		<p>The DECIMAL and NUMERIC data types are used to store exact numeric data values.
+			In SQL, NUMERIC is implemented as DECIMAL.
+			These types are used to store values for which it is important to preserve exact precision, for example with monetary data.</p>
+			
+		<p>SQL stores DECIMAL and NUMERIC values in binary format.</p>
+		
+		<p>When declaring a DECIMAL or NUMERIC column, the precision and scale can be (and usually is) specified; for example:</p>
+		
+		<pre>salary DECIMAL(5,2)</pre>
+		
+		<p>In this example, 5 is the precision and 2 is the scale.
+			The precision represents the number of significant digits that are stored for values, and the scale represents the number of digits that can be stored following the decimal point.
+			If the scale is 0, DECIMAL and NUMERIC values contain no decimal point or fractional part.</p>
+			
+		<p>Standard SQL requires that the salary column be able to store any value with five digits and two decimals.
+			In this case, therefore, the range of values that can be stored in the salary column is from -999.99 to 999.99.</p>
+			
+		<p>In standard SQL, the syntax DECIMAL(M) is equivalent to DECIMAL(M,0).
+			Similarly, the syntax DECIMAL is equivalent to DECIMAL(M,0), where the implementation is allowed to decide the value of M.
+			SQL supports both of these variant forms of the DECIMAL and NUMERIC syntax. The default value of M is 10.</p>
+			
+		<p>The maximum number of digits for DECIMAL or NUMERIC is 65, but the actual range for a given DECIMAL or NUMERIC column can be constrained by the precision or scale for a given column.
+			When such a column is assigned a value with more digits following the decimal point than are allowed by the specified scale, the value is converted to that scale.
+			(The precise behavior is operating system-specific, but generally the effect is truncation to the allowable number of digits.)</p>
+			
+		<p>The BIT data type is used to store bit-field values. A type of BIT(M) allows for storage of M-bit values. M can range from 1 to 64.</p>
+		
+		<p>To specify bit values, b'value' notation can be used.
+			value is a binary value written using zeros and ones. For example, b'111' and b'10000000' represent 7 and 128, respectively.</p>
+			
+		<p>If you assign a value to a BIT(M) column that is less than M bits long, the value is padded on the left with zeros.
+			For example, assigning a value of b'101' to a BIT(6) column is, in effect, the same as assigning b'000101'.</p>
+			
+		<p>When asked to store a value in a numeric column that is outside the data type's allowable range, SQL's behavior depends on the SQL mode in effect at the time.
+			For example, if no restrictive modes are enabled, SQL clips the value to the appropriate endpoint of the range and stores the resulting value instead.
+			However, if the mode is set to TRADITIONAL, SQL rejects a value that is out of range with an error, and the insert fails, in accordance with the SQL standard.</p>
+
+		<p>In non-strict mode, when an out-of-range value is assigned to an integer column, SQL stores the value representing the corresponding endpoint of the column data type range.
+			If you store 256 into a TINYINT or TINYINT UNSIGNED column, SQL stores 127 or 255, respectively.
+			When a floating-point or fixed-point column is assigned a value that exceeds the range implied by the specified (or default) precision and scale,
+		SQL stores the value representing the corresponding endpoint of that range.</p>
+
+		<p>Conversions that occur due to clipping when SQL is not operating in strict mode are reported as warnings for ALTER TABLE, LOAD DATA INFILE, UPDATE, and multiple-row INSERT statements.
+			When SQL is operating in strict mode, these statements fail, and some or all of the values will not be inserted or changed, depending on whether the table is a transactional table and other factors.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDate and Time Types"></A>Date and Time Types</H2></P>
+		<p>The date and time types for representing temporal values are DATETIME, DATE, TIMESTAMP, TIME, and YEAR.
+			Each temporal type has a range of legal values, as well as a "zero" value that may be used when you specify an illegal value that SQL cannot represent.
+			The TIMESTAMP type has special automatic updating behavior, described later on.</p>
+
+		<p>SQL gives warnings or errors if you try to insert an illegal date.
+			By setting the SQL mode to the appropriate value, you can specify more exactly what kind of dates you want SQL to support. 
+			You can get SQL to accept certain dates, such as '2009-11-31', by using the ALLOW_INVALID_DATES SQL mode.
+			This is useful when you want to store a "possibly wrong" value which the user has specified (for example, in a web form) in the database for future processing.
+			Under this mode, SQL verifies only that the month is in the range from 0 to 12 and that the day is in the range from 0 to 31.
+			These ranges are defined to include zero because SQL allows you to store dates where the day or month and day are zero in a DATE or DATETIME column.
+			This is extremely useful for applications that need to store a birthdate for which you do not know the exact date.
+			In this case, you simply store the date as '2009-00-00' or '2009-01-00'.
+			If you store dates such as these, you should not expect to get correct results for functions such as DATE_SUB() or DATE_ADD() that require complete dates.
+			(If you do not want to allow zero in dates, you can use the NO_ZERO_IN_DATE SQL mode).</p>
+
+		<p>A DATE value is coerced to the DATETIME type by adding the time portion as '00:00:00'.</p>
+		
+		<p>SQL also allows you to store '0000-00-00' as a "dummy date" (if you are not using the NO_ZERO_DATE SQL mode).
+			This is in some cases more convenient (and uses less data and index space) than using NULL values.</p>
+		
+		<p>Here are some general considerations to keep in mind when working with date and time types:</p>
+		
+		<ul>
+			<li>SQL retrieves values for a given date or time type in a standard output format,
+				but it attempts to interpret a variety of formats for input values that you supply (for example, when you specify a value to be assigned to or compared to a date or time type).
+				Only the formats described in the following sections are supported. It is expected that you supply legal values.
+				Unpredictable results may occur if you use values in other formats.
+			</li>
+			<li>Dates containing two-digit year values are ambiguous because the century is unknown. SQL interprets two-digit year values using the following rules:
+				<ul>
+					<li>Year values in the range 70-99 are converted to 1970-1999.</li>
+					<li>Year values in the range 00-69 are converted to 2000-2069.</li>
+				</ul>
+			</li>
+			<li>Although SQL tries to interpret values in several formats,
+				dates always must be given in year-month-day order (for example, '98-09-04'),
+				rather than in the month-day-year or day-month-year orders commonly used elsewhere (for example, '09-04-98', '04-09-98').
+			</li>
+			<li>SQL automatically converts a date or time type value to a number if the value is used in a numeric context and vice versa.
+			</li>
+			<li><p>By default, when SQL encounters a value for a date or time type that is out of range or otherwise illegal for the type (as described at the beginning of this section),
+				it converts the value to the "zero" value for that type. The exception is that out-of-range TIME values are clipped to the appropriate endpoint of the TIME range.</p>
+				<p>The following table shows the format of the "zero" value for each type.
+					Note that the use of these values produces warnings if the NO_ZERO_DATE SQL mode is enabled.</p>
+				<table>
+				<tr>
+					<th align="left">Data Type</th>
+					<th align="left">"Zero Value"</th>
+				</tr>
+				<tr>
+					<td>DATETIME</td>
+					<td>'0000-00-00 00:00:00'</td>
+				</tr>
+				<tr>
+					<td>DATE</td>
+					<td>'0000-00-00'</td>
+				</tr>
+				<tr>
+					<td>TIMESTAMP</td>
+					<td>'0000-00-00 00:00:00'</td>
+				</tr>
+				<tr>
+					<td>TIME</td>
+					<td>'00:00:00'</td>
+				</tr>
+				<tr>
+					<td>YEAR</td>
+					<td>0000</td>
+				</tr>
+				</table>
+			</li>
+			<li>The "zero" values are special, but you can store or refer to them explicitly using the values shown in the table. You can also do this using the values '0' or 0, which are easier to write.
+			</li>
+			<li>"Zero" date or time values used through MyODBC are converted automatically to NULL in MyODBC 2.50.12 and above, because ODBC cannot handle such values.
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe DATETIME, DATE, and TIMESTAMP Types"></A>The DATETIME, DATE, and TIMESTAMP Types</H2></P>
+		<p>The DATETIME, DATE, and TIMESTAMP types are related.
+			This section describes their characteristics, how they are similar, and how they differ.</p>
+
+		<p>The DATETIME type is used when you need values that contain both date and time information.
+			SQL retrieves and displays DATETIME values in 'YYYY-MM-DD HH:MM:SS' format.
+			The supported range is '1000-01-01 00:00:00' to '9999-12-31 23:59:59'.</p>
+
+		<p>The DATE type is used when you need only a date value, without a time part.
+			SQL retrieves and displays DATE values in 'YYYY-MM-DD' format.
+			The supported range is '1000-01-01' to '9999-12-31'.</p>
+
+		<p>For the DATETIME and DATE range descriptions, "supported" means that although earlier values might work, there is no guarantee.</p>
+
+		<p>The TIMESTAMP data type has a range of '1970-01-01 00:00:01' UTC to '2038-01-09 03:14:07' UTC.
+			It has varying properties, depending on the SQL version and the SQL mode the server is running in.
+			These properties are described later in this section.</p>
+
+		<p>You can specify DATETIME, DATE, and TIMESTAMP values using any of a common set of formats:</p>
+		
+		<ul>
+			<li>As a string in either 'YYYY-MM-DD HH:MM:SS' or 'YY-MM-DD HH:MM:SS' format.
+				A "relaxed" syntax is allowed: Any punctuation character may be used as the delimiter between date parts or time parts.
+				For example, '98-12-31 11:30:45', '98.12.31 11+30+45', '98/12/31 11*30*45', and '98@12@31 11^30^45' are equivalent.</li>
+
+			<li>As a string in either 'YYYY-MM-DD' or 'YY-MM-DD' format.
+				A "relaxed" syntax is allowed here, too.
+				For example, '98-12-31', '98.12.31', '98/12/31', and '98@12@31' are equivalent.</li>
+
+			<li>As a string with no delimiters in either 'YYYYMMDDHHMMSS' or 'YYMMDDHHMMSS' format, provided that the string makes sense as a date.
+				For example, '20070523091528' and '070523091528' are interpreted as '2007-05-23 09:15:28', but '071122129015' is illegal (it has a nonsensical minute part) and becomes '0000-00-00 00:00:00'.</li>
+
+			<li>As a string with no delimiters in either 'YYYYMMDD' or 'YYMMDD' format, provided that the string makes sense as a date.
+				For example, '20070523' and '070523' are interpreted as '2007-05-23', but '071332' is illegal (it has nonsensical month and day parts) and becomes '0000-00-00'.</li>
+
+			<li>As a number in either YYYYMMDDHHMMSS or YYMMDDHHMMSS format, provided that the number makes sense as a date.
+				For example, 19830905132800 and 830905132800 are interpreted as '1983-09-05 13:28:00'.</li>
+
+			<li>As a number in either YYYYMMDD or YYMMDD format, provided that the number makes sense as a date.
+				For example, 19830905 and 830905 are interpreted as '1983-09-05'.</li>
+
+			<li>As the result of a function that returns a value that is acceptable in a DATETIME, DATE, or TIMESTAMP context, such as NOW() or CURRENT_DATE.</li>	
+		</ul>
+		
+		<p>A microseconds part is allowable in temporal values in some contexts, such as in literal values, and in the arguments to or return values from some temporal functions.
+			Microseconds are specified as a trailing .uuuuuu part in the value. Example:</p>
+
+			
+		<pre>(sql sqlHandle {SELECT MICROSECOND('2010-12-10 14:12:09.019473')}) <b>Returns</b>
+#(rec(|MICROSECOND('2010-12-10 14:12:09.019473')|:Integer:1)| |MICROSECOND('2010-12-10 14:12:09.019473')|:19473)</pre>
+		
+		<p>However, microseconds cannot be stored into a column of any temporal data type. Any microseconds part is discarded.</p>
+
+		<p>Conversion of TIME or DATETIME values to numeric form (for example, by adding +0) results in a double value with a microseconds part of .000000:</p>
+
+		<pre>(sql sqlHandle {SELECT CURTIME(), CURTIME()+0}) <b>Returns</b>
+#(rec(|CURTIME()|:Date:1 |CURTIME()+0|:Number:1)| |CURTIME()|:#Jan,1,0:21:57:52 |CURTIME()+0|:215753.0)</pre>		
+
+		<pre>(sql sqlHandle {SELECT NOW(), NOW()+0}) <b>Returns</b>
+#(rec(|NOW()|:Date:1 |NOW()+0|:Number:1)| |NOW()|:#Nov,9,2008:21:59:11 |NOW()+0|:2.008110921591E+013)</pre>
+
+		<p>Illegal DATETIME, DATE, or TIMESTAMP values are converted to the "zero" value of the appropriate type ('0000-00-00 00:00:00' or '0000-00-00').</p>
+
+		<p>For values specified as strings that include date part delimiters, it is not necessary to specify two digits for month or day values that are less than 10.
+			'1979-6-9' is the same as '1979-06-09'. Similarly, for values specified as strings that include time part delimiters,
+			it is not necessary to specify two digits for hour, minute, or second values that are less than 10. '1979-10-30 1:2:3' is the same as '1979-10-30 01:02:03'.</p>
+
+		<p>Values specified as numbers should be 6, 8, 12, or 14 digits long. If a number is 8 or 14 digits long,
+			it is assumed to be in YYYYMMDD or YYYYMMDDHHMMSS format and that the year is given by the first 4 digits.
+			If the number is 6 or 12 digits long, it is assumed to be in YYMMDD or YYMMDDHHMMSS format and that the year is given by the first 2 digits.
+			Numbers that are not one of these lengths are interpreted as though padded with leading zeros to the closest length.</p>
+
+		<p>Values specified as non-delimited strings are interpreted using their length as given.
+			If the string is 8 or 14 characters long, the year is assumed to be given by the first 4 characters.
+			Otherwise, the year is assumed to be given by the first 2 characters.
+			The string is interpreted from left to right to find year, month, day, hour, minute, and second values, for as many parts as are present in the string.
+			This means you should not use strings that have fewer than 6 characters.
+			For example, if you specify '9903', thinking that represents March, 1999, SQL inserts a "zero" date value into your table.
+			This occurs because the year and month values are 99 and 03, but the day part is completely missing, so the value is not a legal date.
+			However, you can explicitly specify a value of zero to represent missing month or day parts. For example, you can use '990300' to insert the value '1999-03-00'.</p>
+
+		<p>You can to some extent assign values of one date type to an object of a different date type.
+			However, there may be some alteration of the value or loss of information:</p>
+			
+		<ul>
+			<li>If you assign a DATE value to a DATETIME or TIMESTAMP object,
+				the time part of the resulting value is set to '00:00:00' because the DATE value contains no time information.</li>
+			<li>If you assign a DATETIME or TIMESTAMP value to a DATE object,
+				the time part of the resulting value is deleted because the DATE type stores no time information.</li>
+			<li>Remember that although DATETIME, DATE, and TIMESTAMP values all can be specified using the same set of formats,
+				the types do not all have the same range of values.
+				For example, TIMESTAMP values cannot be earlier than 1970 UTC or later than '2038-01-09 03:14:07' UTC.
+				This means that a date such as '1968-01-01', while legal as a DATETIME or DATE value, is not valid as a TIMESTAMP value and is converted to 0.</li>	
+		</ul>
+		
+		<p>Be aware of certain pitfalls when specifying date values:</p>
+
+		<ul>
+			<li>The relaxed format allowed for values specified as strings can be deceiving.
+				For example, a value such as '10:11:12' might look like a time value because of the ":" delimiter,
+				but if used in a date context is interpreted as the year '2010-11-12'.
+				The value '10:45:15' is converted to '0000-00-00' because '45' is not a legal month.</li>
+
+			<li>The server requires that month and day values be legal, and not merely in the range 1 to 12 and 1 to 31, respectively.
+				With strict mode disabled, invalid dates such as '2004-04-31' are converted to '0000-00-00' and a warning is generated.
+				With strict mode enabled, invalid dates generate an error. To allow such dates, enable ALLOW_INVALID_DATES.</li>
+
+			<li>SQL does not accept timestamp values that include a zero in the day or month column or values that are not a valid date.
+				The sole exception to this rule is the special value '0000-00-00 00:00:00'.</li>
+
+			<li>Dates containing two-digit year values are ambiguous because the century is unknown.
+				SQL interprets two-digit year values using the following rules:
+				<ul>
+					<li>Year values in the range 00-69 are converted to 2000-2069.</li>
+					<li>Year values in the range 70-99 are converted to 1970-1999.</li>
+				</ul>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STIMESTAMP Properties"></A>TIMESTAMP Properties</H2></P>
+		<p>TIMESTAMP columns are displayed in the same format as DATETIME columns.
+			In other words, the display width is fixed at 19 characters, and the format is 'YYYY-MM-DD HH:MM:SS'.</p>
+
+		<p>TIMESTAMP values are converted from the current time zone to UTC for storage, and converted back from UTC to the current time zone for retrieval.
+			(This occurs only for the TIMESTAMP data type, not for other types such as DATETIME.)
+			By default, the current time zone for each connection is the server's time.
+			The time zone can be set on a per-connection basis. As long as the time zone setting remains constant, you get back the same value you store.
+			If you store a TIMESTAMP value, and then change the time zone and retrieve the value, the retrieved value is different from the value you stored.
+			This occurs because the same time zone was not used for conversion in both directions.
+			The current time zone is available as the value of the time_zone system variable.</p>
+
+		<p>The TIMESTAMP data type offers automatic initialization and updating.
+			You can choose whether to use these properties and which column should have them:</p>	
+
+		<ul>
+			<li>For one TIMESTAMP column in a table, you can assign the current timestamp as the default value and the auto-update value.
+				It is possible to have the current timestamp be the default value for initializing the column, for the auto-update value, or both.
+				It is not possible to have the current timestamp be the default value for one column and the auto-update value for another column.</li>
+
+			<li>Any single TIMESTAMP column in a table can be used as the one that is initialized to the current date and time, or updated automatically.
+				This need not be the first TIMESTAMP column.</li>
+
+			<li>If a DEFAULT value is specified for the first TIMESTAMP column in a table, it is not ignored.
+				The default can be CURRENT_TIMESTAMP or a constant date and time value.</li>
+
+			<li><p>In a CREATE TABLE statement, the first TIMESTAMP column can be declared in any of the following ways:</p>
+				<ul>
+					<li>With both DEFAULT CURRENT_TIMESTAMP and ON UPDATE CURRENT_TIMESTAMP clauses,
+						the column has the current timestamp for its default value, and is automatically updated.</li>
+					<li>With neither DEFAULT nor ON UPDATE clauses,
+						it is the same as DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP.</li>
+					<li>With a DEFAULT CURRENT_TIMESTAMP clause and no ON UPDATE clause,
+						the column has the current timestamp for its default value but is not automatically updated.</li>
+					<li>With no DEFAULT clause and with an ON UPDATE CURRENT_TIMESTAMP clause,
+						the column has a default of 0 and is automatically updated.</li>
+					<li>With a constant DEFAULT value, the column has the given default and is not automatically initialized to the current timestamp.
+						If the column also has an ON UPDATE CURRENT_TIMESTAMP clause,
+						it is automatically updated; otherwise, it has a constant default and is not automatically updated.</li>
+				</ul>
+				
+				<p>In other words, you can use the current timestamp for both the initial value and the auto-update value,
+					or either one, or neither. (For example, you can specify ON UPDATE to enable auto-update without also having the column auto-initialized.)
+					The following column definitions demonstrate each of the possibilities:</p>
+
+				<ul>
+					<li><p>Auto-initialization and auto-update:</p>
+						<p>ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</p>
+					</li>
+					<li><p>Auto-initialization only:</p>
+						<p>ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP</p>
+					</li>
+					<li><p>Auto-update only:</p>
+						<p>ts TIMESTAMP DEFAULT 0 ON UPDATE CURRENT_TIMESTAMP</p>
+					</li>
+					<li><p>Neither:</p>
+						<p>ts TIMESTAMP DEFAULT 0</p>
+					</li>
+				</ul>
+			</li>
+			<li><p>To specify automatic default or updating for a TIMESTAMP column other than the first one,
+					you must suppress the automatic initialization and update behaviors for the first TIMESTAMP column by
+					explicitly assigning it a constant DEFAULT value(for example, DEFAULT 0 or DEFAULT '2003-01-01 00:00:00').
+					Then, for the other TIMESTAMP column, the rules are the same as for the first TIMESTAMP column,
+					except that if you omit both of the DEFAULT and ON UPDATE clauses, no automatic initialization or updating occurs.</p>
+
+				<p>Example:</p>
+
+				<pre>(sql sqlHandle {CREATE TABLE t (ts1 TIMESTAMP DEFAULT 0, ts2 TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)})</pre>
+			</li>
+			<li><p>CURRENT_TIMESTAMP or any of its synonyms (CURRENT_TIMESTAMP(), NOW(), LOCALTIME, LOCALTIME(), LOCALTIMESTAMP, or LOCALTIMESTAMP())
+				can be used in the DEFAULT and ON UPDATE clauses. They all mean "the current timestamp."
+				(UTC_TIMESTAMP is not allowed. Its range of values does not align with those of the TIMESTAMP column anyway unless the current time zone is UTC.)</p>
+			</li>
+
+			<li><p>The order of the DEFAULT and ON UPDATE attributes does not matter.
+					If both DEFAULT and ON UPDATE are specified for a TIMESTAMP column, either can precede the other. For example, these statements are equivalent:</p>
+
+				<pre>(sql sqlHandle {CREATE TABLE t (ts TIMESTAMP)})</pre>
+				
+				<pre>(sql sqlHandle {CREATE TABLE t (ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)})</pre>
+
+				<pre>(sql sqlHandle {CREATE TABLE t (ts TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP)})</pre>
+				
+				<p>Note: The examples that use DEFAULT 0 will not work if the NO_ZERO_DATE SQL mode is enabled because that mode causes "zero" date values
+					(specified as 0, '0000-00-00, or '0000-00-00 00:00:00') to be rejected. Be aware that the TRADITIONAL SQL mode includes NO_ZERO_DATE.</p>
+			</li>
+		</ul>
+		
+		<p>TIMESTAMP columns are NOT NULL by default, cannot contain NULL values, and assigning NULL assigns the current timestamp.
+			However, a TIMESTAMP column can be allowed to contain NULL by declaring it with the NULL attribute.
+			In this case, the default value also becomes NULL unless overridden with a DEFAULT clause that specifies a different default value.
+			DEFAULT NULL can be used to explicitly specify NULL as the default value.
+			(For a TIMESTAMP column not declared with the NULL attribute, DEFAULT NULL is illegal.)
+			If a TIMESTAMP column allows NULL values, assigning NULL sets it to NULL, not to the current timestamp.</p>
+
+		<p>The following table contains several TIMESTAMP columns that allow NULL values:</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE t (ts1 TIMESTAMP NULL DEFAULT NULL, ts2 TIMESTAMP NULL DEFAULT 0, ts3 TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP)})</pre>
+
+		<p>Note that a TIMESTAMP column that allows NULL values will not take on the current timestamp except under one of the following conditions:</p>
+
+		<ul>
+			<li>Its default value is defined as CURRENT_TIMESTAMP</li>
+			<li>NOW() or CURRENT_TIMESTAMP is inserted into the column</li>
+		</ul>
+
+		<p>In other words, a TIMESTAMP column defined as NULL will auto-initialize only if it is created using a definition such as the following:</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE t (ts TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP)})</pre>
+
+		<p>Otherwise - that is, if the TIMESTAMP column is defined to allow NULL values but not using DEFAULT CURRENT_TIMESTAMP, as shown here...</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE t1 (ts TIMESTAMP NULL DEFAULT NULL)})</pre>
+		<pre>(sql sqlHandle {CREATE TABLE t2 (ts TIMESTAMP NULL DEFAULT '0000-00-00 00:00:00')})</pre>
+		
+		<p>...then you must explicitly insert a value corresponding to the current date and time. For example:</p>
+
+		<pre>(sql sqlHandle {INSERT INTO t1 VALUES (NOW())})</pre>
+		<pre>(sql sqlHandle {INSERT INTO t2 VALUES (CURRENT_TIMESTAMP)})</pre>
+
+		<p>Note: The SQL server can be run with the MAXDB SQL mode enabled.
+			When the server runs with this mode enabled, TIMESTAMP is identical with DATETIME.
+			That is, if this mode is enabled at the time that a table is created, TIMESTAMP columns are created as DATETIME columns.
+			As a result, such columns use DATETIME display format, have the same range of values,
+			and there is no automatic initialization or updating to the current date and time.</p>
+
+		<p>To enable MAXDB mode, set the server SQL mode to MAXDB at startup using the --sql-mode=MAXDB server option or by setting the global sql_mode variable at runtime:</p>
+
+		<pre>(sql sqlHandle {SET GLOBAL sql_mode=MAXDB})</pre>
+
+		<p>A client can cause the server to run in MAXDB mode for its own connection as follows:</p>
+
+		<pre>(sql sqlHandle {SET SESSION sql_mode=MAXDB})</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe TIME Type"></A>The TIME Type</H2></P>
+		<p>SQL retrieves and displays TIME values in 'HH:MM:SS' format (or 'HHH:MM:SS' format for large hours values).
+			TIME values may range from '-838:59:59' to '838:59:59'.
+			The hours part may be so large because the TIME type can be used not only to represent a time of day (which must be less than 24 hours),
+			but also elapsed time or a time interval between two events (which may be much greater than 24 hours, or even negative).</p>
+
+		<p>You can specify TIME values in a variety of formats:</p>
+		<ul>
+			<li>As a string in 'D HH:MM:SS.fraction' format.
+				You can also use one of the following "relaxed" syntaxes: 'HH:MM:SS.fraction', 'HH:MM:SS', 'HH:MM', 'D HH:MM:SS', 'D HH:MM', 'D HH', or 'SS'.
+				Here D represents days and can have a value from 0 to 34. Note that SQL does not store the fraction part.</li>
+			<li>As a string with no delimiters in 'HHMMSS' format, provided that it makes sense as a time.
+				For example, '101112' is understood as '10:11:12', but '109712' is illegal (it has a nonsensical minute part) and becomes '00:00:00'.</li>
+			<li>As a number in HHMMSS format, provided that it makes sense as a time.
+				For example, 101112 is understood as '10:11:12'. The following alternative formats are also understood: SS, MMSS, HHMMSS, HHMMSS.fraction.
+				Note that SQL does not store the fraction part.</li>
+			<li>As the result of a function that returns a value that is acceptable in a TIME context, such as CURRENT_TIME.</li>
+		</ul>
+
+		<p>A trailing .uuuuuu microseconds part of TIME values is allowed under the same conditions as for other temporal values, "The DATETIME, DATE, and TIMESTAMP Types".
+			This includes the property that any microseconds part is discarded from values stored into TIME columns.</p>
+
+		<p>For TIME values specified as strings that include a time part delimiter,
+			it is not necessary to specify two digits for hours, minutes, or seconds values that are less than 10. '8:3:2' is the same as '08:03:02'.</p>
+
+		<p>Be careful about assigning abbreviated values to a TIME column.
+			Without colons, SQL interprets values using the assumption that the two rightmost digits represent seconds.
+			(SQL interprets TIME values as elapsed time rather than as time of day.)
+			For example, you might think of '1112' and 1112 as meaning '11:12:00' (12 minutes after 11 o'clock),
+			but SQL interprets them as '00:11:12' (11 minutes, 12 seconds). Similarly, '12' and 12 are interpreted as '00:00:12'.
+			TIME values with colons, by contrast, are always treated as time of the day. That is, '11:12' mean '11:12:00', not '00:11:12'.</p>
+
+		<p>By default, values that lie outside the TIME range but are otherwise legal are clipped to the closest endpoint of the range.
+			For example, '-850:00:00' and '850:00:00' are converted to '-838:59:59' and '838:59:59'.
+			Illegal TIME values are converted to '00:00:00'. Note that because '00:00:00' is itself a legal TIME value,
+			there is no way to tell, from a value of '00:00:00' stored in a table, whether the original value was specified as '00:00:00' or whether it was illegal.</p>
+
+		<p>For more restrictive treatment of invalid TIME values, enable strict SQL mode to cause errors to occur.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe YEAR Type"></A>The YEAR Type</H2></P>
+		<p>The YEAR type is a one-byte type used for representing years.
+			It can be declared as YEAR(2) or YEAR(4) to specify a display width of two or four characters.
+			The default is four characters if no width is given.</p>
+
+		<p>For four-digit format, SQL displays YEAR values in YYYY format, with a range of 1901 to 2155.
+			For two-digit format, SQL displays values with a range of 70 (1970) to 69 (2069).</p>
+
+		<p>You can specify input YEAR values in a variety of formats:</p>
+		<ul>
+			<li>As a four-digit string in the range '1901' to '2155'.</li>
+			<li>As a four-digit number in the range 1901 to 2155.</li>
+			<li>As a two-digit string in the range '00' to '99'.
+				Values in the ranges '00' to '69' and '70' to '99' are converted to YEAR values in the ranges 2000 to 2069 and 1970 to 1999.</li>
+			<li>As a two-digit number in the range 1 to 99.
+				Values in the ranges 1 to 69 and 70 to 99 are converted to YEAR values in the ranges 2001 to 2069 and 1970 to 1999.
+				Note that the range for two-digit numbers is slightly different from the range for two-digit strings,
+				because you cannot specify zero directly as a number and have it be interpreted as 2000.
+				You must specify it as a string '0' or '00' or it is interpreted as 0000.</li>
+			<li>As the result of a function that returns a value that is acceptable in a YEAR context, such as NOW().</li>
+		</ul>
+		<p>Illegal YEAR values are converted to 0000.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SYear 2000 Issues and Date Types"></A>Year 2000 Issues and Date Types</H2></P>
+		<p>SQL Server itself has no problems with Year 2000 (Y2K) compliance:</p>
+		<ul>
+		<li>SQL Server uses Unix time functions that handle dates into the year 2038 for TIMESTAMP values.
+			For DATE and DATETIME values, dates through the year 9999 are accepted.</li>
+		<li>All SQL date functions are implemented in one source file, sql/time.cc, and are coded very carefully to be year 2000-safe.</li>
+		<li>In SQL, the YEAR data type can store the years 0 and 1901 to 2155 in one byte and display them using two or four digits.
+			All two-digit years are considered to be in the range 1970 to 2069, which means that if you store 01 in a YEAR column, SQL Server treats it as 2001.</li>
+		</ul>
+			
+		<p>Although SQL Server itself is Y2K-safe, you may run into problems if you use it with applications that are not Y2K-safe.
+			For example, many old applications store or manipulate years using two-digit values (which are ambiguous) rather than four-digit values.
+			This problem may be compounded by applications that use values such as 00 or 99 as "missing" value indicators.
+			Unfortunately, these problems may be difficult to fix because different applications may be written by different programmers,
+			each of whom may use a different set of conventions and date-handling functions.</p>
+
+		<p>Thus, even though SQL Server has no Y2K problems, it is the application's responsibility to provide unambiguous input.
+			Any value containing a two-digit year is ambiguous, because the century is unknown.
+			Such values must be interpreted into four-digit form because SQL stores years internally using four digits.</p>
+
+		<p>For DATETIME, DATE, TIMESTAMP, and YEAR types, SQL interprets dates with ambiguous year values using the following rules:</p>
+		<ul>
+			<li>Year values in the range 00-69 are converted to 2000-2069.</li>
+			<li>Year values in the range 70-99 are converted to 1970-1999.</li>
+		</ul>
+		
+		<p>Remember that these rules are only heuristics that provide reasonable guesses as to what your data values mean.
+			If the rules used by SQL do not produce the correct values, you should provide unambiguous input containing four-digit year values.</p>
+
+		<p>ORDER BY properly sorts YEAR values that have two-digit years.</p>
+
+		<p>Some functions like MIN() and MAX() convert a YEAR to a number.
+			This means that a value with a two-digit year does not work properly with these functions.
+			The fix in this case is to convert the TIMESTAMP or YEAR to four-digit year format.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SString Types"></A>String Types</H2></P>
+		<p>The string types are CHAR, VARCHAR, BINARY, VARBINARY, BLOB, TEXT, ENUM, and SET.
+			This section describes how these types work and how to use them in your queries.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe CHAR and VARCHAR Types"></A>The CHAR and VARCHAR Types</H2></P>
+		<p>The CHAR and VARCHAR types are similar, but differ in the way they are stored and retrieved.
+			They also differ in maximum length and in whether trailing spaces are retained.</p>
+
+		<p>The CHAR and VARCHAR types are declared with a length that indicates the maximum number of characters you want to store.
+			For example, CHAR(30) can hold up to 30 characters.</p>
+
+		<p>The length of a CHAR column is fixed to the length that you declare when you create the table.
+			The length can be any value from 0 to 255. When CHAR values are stored, they are right-padded with spaces to the specified length.
+			When CHAR values are retrieved, trailing spaces are removed unless the PAD_CHAR_TO_FULL_LENGTH SQL mode is enabled.</p>
+
+		<p>Values in VARCHAR columns are variable-length strings.
+			The length can be specified as a value from 0 to 65,535.
+			The effective maximum length of a VARCHAR is subject to the maximum row size (65,535 bytes, which is shared among all columns) and the character set used.</p>
+
+		<p>In contrast to CHAR, VARCHAR values are stored as a one-byte or two-byte length prefix plus data.
+			The length prefix indicates the number of bytes in the value.
+			A column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.</p>
+
+		<p>If strict SQL mode is not enabled and you assign a value to a CHAR or VARCHAR column that exceeds the column's maximum length,
+			the value is truncated to fit and a warning is generated.
+			For truncation of non-space characters, you can cause an error to occur (rather than a warning) and suppress insertion of the value by using strict SQL mode.</p>
+
+		<p>For VARCHAR columns, excess trailing spaces are truncated prior to insertion and a warning is generated,
+			regardless of the SQL mode in use. For CHAR columns, truncation of excess trailing spaces from inserted values is performed silently regardless of the SQL mode.</p>
+
+		<p>VARCHAR values are not padded when they are stored.
+			Trailing spaces are retained when values are stored and retrieved, in conformance with standard SQL.</p>
+
+		<p>The following table illustrates the differences between CHAR and VARCHAR by showing the result of storing various string values into CHAR(4) and VARCHAR(4) columns
+			(assuming that the column uses a single-byte character set such as latin1):</p>
+		
+		<table>
+			<tr>
+				<th align="left">Value</th>
+				<th align="left">CHAR(4)</th>
+				<th align="left">Storage Required</th>
+				<th align="left">VARCHAR(4)</th>
+				<th align="left">Storage Required</th>
+			</tr>
+			<tr>
+				<td><pre>''</pre></td>
+				<td><pre>'    '</pre></td>
+				<td>4 bytes</td>
+				<td><pre>''</pre></td>
+				<td>1 byte</td>
+			</tr>
+			<tr>
+				<td><pre>'ab'</pre></td>
+				<td><pre>'ab  '</pre></td>
+				<td>4 bytes</td>
+				<td><pre>'ab'</pre></td>
+				<td>3 bytes</td>
+			</tr>
+			<tr>
+				<td><pre>'abcd'</pre></td>
+				<td><pre>'abcd'</pre></td>
+				<td>4 bytes</td>
+				<td><pre>'abcd'</pre></td>
+				<td>5 bytes</td>
+			</tr>
+			<tr>
+				<td><pre>'abcdefgh'</pre></td>
+				<td><pre>'abcd'</pre></td>
+				<td>4 bytes</td>
+				<td><pre>'abcd'</pre></td>
+				<td>5 bytes</td>
+			</tr>
+		</table>
+		
+		<p>The values shown as stored in the last row of the table apply only when not using strict mode;
+			if SQL is running in strict mode, values that exceed the column length are not stored, and an error results.</p>
+
+		<p>If a given value is stored into the CHAR(4) and VARCHAR(4) columns,
+			the values retrieved from the columns are not always the same because trailing spaces are removed from CHAR columns upon retrieval.
+			The following example illustrates this difference:</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE vc (v VARCHAR(4), c CHAR(4))}) <b>Returns</b> 0</pre>
+		<pre>(sql sqlHandle {INSERT INTO vc VALUES ('ab  ', 'ab  ')}) <b>Returns</b> 1</pre>
+
+		<pre>(sql sqlHandle {SELECT CONCAT('(', v, ')'), CONCAT('(', c, ')') FROM vc}) <b>Returns</b>
+#(rec(|CONCAT('(', v, ')')|:Character:6 |CONCAT('(', c, ')')|:Character:6)| |CONCAT('(', v, ')')|:"(ab  )" |CONCAT('(', c, ')')|:"(ab)")</pre>
+
+		<p>Values in CHAR and VARCHAR columns are sorted and compared according to the character set collation assigned to the column.</p>
+
+		<p>All SQL collations are of type PADSPACE.
+			This means that all CHAR and VARCHAR values in SQL are compared without regard to any trailing spaces. For example:</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE names (myname CHAR(10), yourname VARCHAR(10))}) <b>Returns</b> 0</pre>
+
+		<pre>(sql sqlHandle {INSERT INTO names VALUES ('Monty ', 'Monty ')}) <b>Returns</b> 1</pre>
+
+		<pre>(sql sqlHandle {SELECT myname = 'Monty  ', yourname = 'Monty  ' FROM names}) <b>Returns</b>
+#(rec(|myname = 'Monty  '|:Integer:1 |yourname = 'Monty  '|:Integer:1)| |myname = 'Monty  '|:1 |yourname = 'Monty  '|:1)</pre>
+
+		<p>This is true for all SQL versions, and that it is not affected by the server SQL mode.</p>
+
+		<p>For those cases where trailing pad characters are stripped or comparisons ignore them,
+			if a column has an index that requires unique values, inserting into the column values that differ only in number of trailing pad characters will result in a duplicate-key error.
+			For example, if a table contains 'a', an attempt to store 'a ' causes a duplicate-key error.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe BINARY and VARBINARY Types"></A>The BINARY and VARBINARY Types</H2></P>
+		<p>The BINARY and VARBINARY types are similar to CHAR and VARCHAR, except that they contain binary strings rather than non-binary strings.
+			That is, they contain byte strings rather than character strings. This means that they have no character set,
+			and sorting and comparison are based on the numeric values of the bytes in the values.</p>
+
+		<p>The allowable maximum length is the same for BINARY and VARBINARY as it is for CHAR and VARCHAR,
+			except that the length for BINARY and VARBINARY is a length in bytes rather than in characters.</p>
+
+		<p>The BINARY and VARBINARY data types are distinct from the CHAR BINARY and VARCHAR BINARY data types.
+			For the latter types, the BINARY attribute does not cause the column to be treated as a binary string column.
+			Instead, it causes the binary collation for the column character set to be used, and the column itself contains non-binary character strings rather than binary byte strings.
+			For example, CHAR(5) BINARY is treated as CHAR(5) CHARACTER SET latin1 COLLATE latin1_bin, assuming that the default character set is latin1.
+			This differs from BINARY(5), which stores 5-bytes binary strings that have no character set or collation.</p>
+
+		<p>If strict SQL mode is not enabled and you assign a value to a BINARY or VARBINARY column that exceeds the column's maximum length,
+			the value is truncated to fit and a warning is generated. For cases of truncation, you can cause an error to occur (rather than a warning)
+			and suppress insertion of the value by using strict SQL mode.</p>
+
+		<p>When BINARY values are stored, they are right-padded with the pad value to the specified length.
+			The pad value is 0x00 (the zero byte). Values are right-padded with 0x00 on insert, and no trailing bytes are removed on select.
+			All bytes are significant in comparisons, including ORDER BY and DISTINCT operations.
+			0x00 bytes and spaces are different in comparisons, with 0x00 &lt; space.</p>
+
+		<p>Example: For a BINARY(3) column, 'a ' becomes 'a \0' when inserted. 'a\0' becomes 'a\0\0' when inserted. Both inserted values remain unchanged when selected.</p>
+
+		<p>For VARBINARY, there is no padding on insert and no bytes are stripped on select.
+			All bytes are significant in comparisons, including ORDER BY and DISTINCT operations.
+			0x00 bytes and spaces are different in comparisons, with 0x00 &lt; space.</p>
+
+		<p>For those cases where trailing pad bytes are stripped or comparisons ignore them,
+			if a column has an index that requires unique values, inserting into the column values that differ only in number of trailing pad bytes will result in a duplicate-key error.
+			For example, if a table contains 'a', an attempt to store 'a\0' causes a duplicate-key error.</p>
+
+		<p>You should consider the preceding padding and stripping characteristics carefully if you plan to use the BINARY data type for storing binary data and
+			you require that the value retrieved be exactly the same as the value stored.
+			The following example illustrates how 0x00-padding of BINARY values affects column value comparisons:</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE t (c BINARY(3))}) <b>Returns</b> 0</pre>
+
+		<pre>(sql sqlHandle {INSERT INTO t SET c = 'a'}) <b>Returns</b> 1</pre>
+
+		<pre>(sql sqlHandle {SELECT HEX(c), c = 'a', c = 'a\0\0' from t}) <b>Returns</b>
+               #(rec(|HEX(c)|:Character:6 |c = 'a'|:Integer:1 |c = 'a\0\0'|:Integer:1)| |HEX(c)|:"610000" |c = 'a'|:0 |c = 'a\0\0'|:1)</pre>
+
+		<p>If the value retrieved must be the same as the value specified for storage with no padding,
+			it might be preferable to use VARBINARY or one of the BLOB data types instead.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe BLOB and TEXT Types"></A>The BLOB and TEXT Types</H2></P>
+		<p>A BLOB is a binary large object that can hold a variable amount of data.
+			The four BLOB types are TINYBLOB, BLOB, MEDIUMBLOB, and LONGBLOB.
+			These differ only in the maximum length of the values they can hold.
+			The four TEXT types are TINYTEXT, TEXT, MEDIUMTEXT, and LONGTEXT.
+			These correspond to the four BLOB types and have the same maximum lengths and storage requirements.</p>
+		
+		<p>BLOB columns are treated as binary strings (byte strings).
+			TEXT columns are treated as non-binary strings (character strings).
+			BLOB columns have no character set, and sorting and comparison are based on the numeric values of the bytes in column values.
+			TEXT columns have a character set, and values are sorted and compared based on the collation of the character set.</p>
+
+		<p>If strict SQL mode is not enabled and you assign a value to a BLOB or TEXT column that exceeds the column's maximum length,
+			the value is truncated to fit and a warning is generated. For truncation of non-space characters,
+			you can cause an error to occur (rather than a warning) and suppress insertion of the value by using strict SQL mode.</p>
+
+		<p>Truncation of excess trailing spaces from values to be inserted into TEXT columns always generates a warning, regardless of the SQL mode.</p>
+
+		<p>If a TEXT column is indexed, index entry comparisons are space-padded at the end.
+			This means that, if the index requires unique values, duplicate-key errors will occur for values that differ only in the number of trailing spaces.
+			For example, if a table contains 'a', an attempt to store 'a ' causes a duplicate-key error.
+			This is not true for BLOB columns.</p>
+			
+		<p>In most respects, you can regard a BLOB column as a VARBINARY column that can be as large as you like.
+			Similarly, you can regard a TEXT column as a VARCHAR column. BLOB and TEXT differ from VARBINARY and VARCHAR in the following ways:</p>
+		<ul>
+			<li><p>For indexes on BLOB and TEXT columns, you must specify an index prefix length.
+				For CHAR and VARCHAR, a prefix length is optional.</p></li>
+			<li><p>BLOB and TEXT columns cannot have DEFAULT values.</p></li>
+		</ul>
+		
+		<p>LONG and LONG VARCHAR map to the MEDIUMTEXT data type. This is a compatibility feature.
+			If you use the BINARY attribute with a TEXT data type, the column is assigned the binary collation of the column character set.</p>
+
+		<p>Because BLOB and TEXT values can be extremely long, you might encounter some constraints in using them:</p>
+		<ul>
+			<li>
+				<p>Only the first max_sort_length bytes of the column are used when sorting.
+					The default value of max_sort_length is 1024. This value can be changed using the --max_sort_length=N option when starting the mysqld server.</p>
+
+				<p>You can make more bytes significant in sorting or grouping by increasing the value of max_sort_length at runtime.
+					Any client can change the value of its session max_sort_length variable:</p>
+
+				<pre>(sql sqlHandle {SET max_sort_length = 2000})</pre>
+				<pre>(sql sqlHandle {SELECT id, comment FROM t ORDER BY comment})</pre>
+				
+				<p>Another way to use GROUP BY or ORDER BY on a BLOB or TEXT column containing long values when you want more than max_sort_length bytes to be
+					significant is to convert the column value into a fixed-length object. The standard way to do this is with the SUBSTRING() function.
+					For example, the following statement causes 2000 bytes of the comment column to be taken into account for sorting:</p>
+
+				<pre>(sql sqlHandle {SELECT id, SUBSTRING(comment,1,2000) FROM t ORDER BY SUBSTRING(comment,1,2000)})</pre>
+			</li>
+			<li>
+				<p>The maximum size of a BLOB or TEXT object is determined by its type, but the largest value you actually can transmit between the
+					client and server is determined by the amount of available memory and the size of the communications buffers.
+					You can change the message buffer size by changing the value of the max_allowed_packet variable, 
+					but you must do so for both the server and your client program.
+					For example, both mysql and mysqldump allow you to change the client-side max_allowed_packet value.
+					You may also want to compare the packet sizes and the size of the data objects you are storing with the storage requirements.</p>
+			</li>
+		</ul>
+
+		<p>Each BLOB or TEXT value is represented internally by a separately allocated object.
+			This is in contrast to all other data types, for which storage is allocated once per column when the table is opened.</p>
+
+		<p>In some cases, it may be desirable to store binary data such as media files in BLOB or TEXT columns.
+			You may find SQL's string handling functions useful for working with such data. 
+			For security and other reasons, it is usually preferable to do so using application code rather than allowing application users the FILE privilege.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe ENUM Type"></A>The ENUM Type</H2></P>
+		<p>An ENUM is a string object with a value chosen from a list of allowed values that are enumerated explicitly in the column specification at table creation time.</p>
+		<p>An enumeration value must be a quoted string literal; it may not be an expression, even one that evaluates to a string value.
+			For example, you can create a table with an ENUM column like this:</p>
+		<pre>(sql sqlHandle {CREATE TABLE sizes (name ENUM('small', 'medium', 'large'))})</pre>
+		
+		<p>However, this version of the previous CREATE TABLE statement does not work:</p>
+		<pre>(sql sqlHandle {CREATE TABLE sizes (c1 ENUM('small', CONCAT('med','ium'), 'large'))})</pre>
+		
+		<p>You also may not employ a user variable as an enumeration value. This pair of statements do not work:</p>
+
+		<pre>(sql sqlHandle {SET @mysize = 'medium'})</pre>
+		<pre>(sql sqlHandle {CREATE TABLE sizes (name ENUM('small', @mysize, 'large'))})</pre>
+		
+		<p>If you wish to use a number as an enumeration value, you must enclose it in quotes.</p>
+
+		<p>Duplicate values in the definition cause a warning, or an error if strict SQL mode is enabled.</p>
+
+		<p>The value may also be the empty string ('') or NULL under certain circumstances:</p>
+		<ul>
+			<li>
+				<p>If you insert an invalid value into an ENUM (that is, a string not present in the list of allowed values),
+					the empty string is inserted instead as a special error value.
+					This string can be distinguished from a "normal" empty string by the fact that this string has the numerical value 0. More about this later.</p>
+
+				<p>If strict SQL mode is enabled, attempts to insert invalid ENUM values result in an error.</p>
+			</li>
+			<li>
+				<p>If an ENUM column is declared to allow NULL, the NULL value is a legal value for the column, and the default value is NULL.
+					If an ENUM column is declared NOT NULL, its default value is the first element of the list of allowed values.</p>
+			</li>
+		</ul>
+
+		<p>Each enumeration value has an index:</p>
+		<ul>
+			<li>
+				<p>Values from the list of allowable elements in the column specification are numbered beginning with 1.</p>
+			</li>
+			<li>
+				<p>The index value of the empty string error value is 0.
+					This means that you can use the following SELECT statement to find rows into which invalid ENUM values were assigned:</p>
+				<pre>(sql sqlHandle {SELECT * FROM tbl_name WHERE enum_col=0})</pre>
+			</li>
+			<li>
+				<p>The index of the NULL value is NULL.</p>
+			</li>
+			<li>
+				<p>The term "index" here refers only to position within the list of enumeration values. It has nothing to do with table indexes.</p>
+			</li>
+		</ul>
+		
+		<p>For example, a column specified as ENUM('one', 'two', 'three') can have any of the values shown here. The index of each value is also shown:</p>
+		
+		<table>
+			<tr>
+				<th align="left">Value</th>
+				<th align="left">Index</th>
+			</tr>
+			<tr>
+				<td>NULL</td>
+				<td>NULL</td>
+			</tr>
+			<tr>
+				<td>''</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>'one'</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>'two'</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>'three'</td>
+				<td>3</td>
+			</tr>
+		</table>
+		
+		<p>An enumeration can have a maximum of 65,535 elements.</p>
+
+		<p>Trailing spaces are automatically deleted from ENUM member values in the table definition when a table is created.</p>
+
+		<p>When retrieved, values stored into an ENUM column are displayed using the lettercase that was used in the column definition.
+			Note that ENUM columns can be assigned a character set and collation.
+			For binary or case-sensitive collations, lettercase is taken into account when assigning values to the column.</p>
+
+		<p>If you retrieve an ENUM value in a numeric context, the column value's index is returned.
+			For example, you can retrieve numeric values from an ENUM column like this:</p>
+
+		<pre>(sql sqlHandle {SELECT enum_col+0 FROM tbl_name})</pre>
+
+		<p>If you store a number into an ENUM column, the number is treated as the index into the possible values, and the value stored is the enumeration member with that index.
+			(However, this does not work with LOAD DATA, which treats all input as strings.)
+			If the numeric value is quoted, it is still interpreted as an index if there is no matching string in the list of enumeration values.
+			For these reasons, it is not advisable to define an ENUM column with enumeration values that look like numbers, because this can easily become confusing.
+			For example, the following column has enumeration members with string values of '0', '1', and '2', but numeric index values of 1, 2, and 3:</p>
+
+		<pre>numbers ENUM('0','1','2')</pre>
+		<p>If you store 2, it is interpreted as an index value, and becomes '1' (the value with index 2).
+			If you store '2', it matches an enumeration value, so it is stored as '2'. If you store '3',
+			it does not match any enumeration value, so it is treated as an index and becomes '2' (the value with index 3).</p>
+
+		<pre>(sql sqlHandle {INSERT INTO t (numbers) VALUES(2),('2'),('3')})</pre>
+		<pre>(sql sqlHandle {SELECT * FROM t}) <b>Returns</b>
++---------+
+| numbers |
++---------+
+| 1       | 
+| 2       | 
+| 2       | 
++---------+</pre>
+
+		<p>ENUM values are sorted according to the order in which the enumeration members were listed in the column specification.
+			(In other words, ENUM values are sorted according to their index numbers.) For example, 'a' sorts before 'b' for ENUM('a', 'b'), but 'b' sorts before 'a' for ENUM('b', 'a').
+			The empty string sorts before non-empty strings, and NULL values sort before all other enumeration values.
+			To prevent unexpected results, specify the ENUM list in alphabetical order.
+			You can also use GROUP BY CAST(col AS CHAR) or GROUP BY CONCAT(col) to make sure that the column is sorted lexically rather than by index number.</p>
+
+		<p>Functions such as SUM() or AVG() that expect a numeric argument cast the argument to a number if necessary.
+			For ENUM values, the cast operation causes the index number to be used.</p>
+
+		<p>If you want to determine all possible values for an ENUM column, use SHOW COLUMNS FROM tbl_name LIKE enum_col and parse the ENUM definition in the Type column of the output.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe SET Type"></A>The SET Type</H2></P>
+		<p>A SET is a string object that can have zero or more values, each of which must be chosen from a list of allowed values specified when the table is created.
+			SET column values that consist of multiple set members are specified with members separated by commas (",").
+			A consequence of this is that SET member values should not themselves contain commas.</p>
+
+		<p>For example, a column specified as SET('one', 'two') NOT NULL can have any of these values:</p>
+
+		<p>''</p>
+		<p>'one'</p>
+		<p>'two'</p>
+		<p>'one,two'</p>
+		
+		<p>A SET can have a maximum of 64 different members.</p>
+
+		<p>Duplicate values in the definition cause a warning, or an error if strict SQL mode is enabled.</p>
+
+		<p>Trailing spaces are automatically deleted from SET member values in the table definition when a table is created.</p>
+
+		<p>When retrieved, values stored in a SET column are displayed using the lettercase that was used in the column definition.
+			Note that SET columns can be assigned a character set and collation.
+			For binary or case-sensitive collations, lettercase is taken into account when assigning values to the column.</p>
+
+		<p>SQL stores SET values numerically, with the low-order bit of the stored value corresponding to the first set member.
+			If you retrieve a SET value in a numeric context, the value retrieved has bits set corresponding to the set members that make up the column value.
+			For example, you can retrieve numeric values from a SET column like this:</p>
+
+		<pre>(sql sqlHandle {SELECT set_col+0 FROM tbl_name})</pre>
+
+		<p>If a number is stored into a SET column, the bits that are set in the binary representation of the number determine the set members in the column value.
+			For a column specified as SET('a','b','c','d'), the members have the following decimal and binary values:</p>
+
+		<table>
+			<tr>
+				<th align="left">SET Member</th>
+				<th align="left">Decimal Value</th>
+				<th align="left">Binary Value</th>
+			</tr>
+			<tr>
+				<td>'a'</td>
+				<td>1</td>
+				<td>0001</td>
+			</tr>
+			<tr>
+				<td>'b'</td>
+				<td>2</td>
+				<td>0010</td>
+			</tr>
+			<tr>
+				<td>'c'</td>
+				<td>4</td>
+				<td>0100</td>
+			</tr>
+			<tr>
+				<td>'d'</td>
+				<td>8</td>
+				<td>1000</td>
+			</tr>
+		</table>
+		
+		<p>If you assign a value of 9 to this column, that is 1001 in binary,
+			so the first and fourth SET value members 'a' and 'd' are selected and the resulting value is 'a,d'.</p>
+
+		<p>For a value containing more than one SET element, it does not matter what order the elements are listed in when you insert the value.
+			It also does not matter how many times a given element is listed in the value.
+			When the value is retrieved later, each element in the value appears once, with elements listed according to the order in which they were specified at table creation time.
+			For example, suppose that a column is specified as SET('a','b','c','d'):</p>
+		<pre>(sql sqlHandle {CREATE TABLE myset (col SET('a', 'b', 'c', 'd'))})</pre>
+		
+		<p>If you insert the values 'a,d', 'd,a', 'a,d,d', 'a,d,a', and 'd,a,d':</p>
+		<pre>(sql sqlHandle {INSERT INTO myset (col) VALUES ('a,d'), ('d,a'), ('a,d,a'), ('a,d,d'), ('d,a,d')}) <b>Returns</b> 5</pre>
+		
+		<p>Then all of these values appear as 'a,d' when retrieved:</p>
+		<pre>(sql sqlHandle {SELECT col FROM myset}) <b>Returns</b>
+#(rec(5 col:Character:7)| [0](col:"a,d") [1](col:"a,d") [2](col:"a,d") [3](col:"a,d") [4](col:"a,d"))</pre>
+
+		<p>If you set a SET column to an unsupported value, the value is ignored and a warning is issued:</p>
+		<pre>(sql sqlHandle {INSERT INTO myset (col) VALUES ('a,d,d,s')}) <b>Returns</b> 1</pre>
+
+		<pre>(sql sqlHandle {SHOW WARNINGS}) <b>Returns</b>
+#(rec(Level:Character:7 Code:Long:1 Message:Object:1)| Level:"Warning" Code:1265 Message:"Data truncated for column 'col' at row 1")</pre>
+
+		<pre>(sql sqlHandle {SELECT col FROM myset}) <b>Returns</b>
+#(rec(6 col:Character:7)| [0](col:"a,d") [1](col:"a,d") [2](col:"a,d") [3](col:"a,d") [4](col:"a,d") [5](col:"a,d"))</pre>
+
+		<p>If strict SQL mode is enabled, attempts to insert invalid SET values result in an error.</p>
+
+		<p>SET values are sorted numerically. NULL values sort before non-NULL SET values.</p>
+
+		<p>Functions such as SUM() or AVG() that expect a numeric argument cast the argument to a number if necessary.
+			For SET values, the cast operation causes the numeric value to be used.</p>
+
+		<p>Normally, you search for SET values using the FIND_IN_SET() function or the LIKE operator:</p>
+
+		<pre>(sql sqlHandle {SELECT * FROM tbl_name WHERE FIND_IN_SET('value',set_col)>0})</pre>
+		<pre>(sql sqlHandle {SELECT * FROM tbl_name WHERE set_col LIKE '%value%'})</pre>
+
+		<p>The first statement finds rows where set_col contains the value set member.
+			The second is similar, but not the same: It finds rows where set_col contains value anywhere, even as a substring of another set member.</p>
+
+		<p>The following statements also are legal:</p>
+
+		<pre>(sql sqlHandle {SELECT * FROM tbl_name WHERE set_col & 1})</pre>
+		<pre>(sql sqlHandle {SELECT * FROM tbl_name WHERE set_col = 'val1,val2'})</pre>
+
+		<p>The first of these statements looks for values containing the first set member.
+			The second looks for an exact match. Be careful with comparisons of the second type.
+			Comparing set values to 'val1,val2' returns different results than comparing values to 'val2,val1'.
+			You should specify the values in the same order they are listed in the column definition.</p>
+
+		<p>If you want to determine all possible values for a SET column,
+			use SHOW COLUMNS FROM tbl_name LIKE set_col and parse the SET definition in the Type column of the output.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SData Type Storage Requirements"></A>Data Type Storage Requirements</H2></P>
+		<p>The storage requirements for each of the data types supported by SQL are listed here by category.</p>
+
+		<p>The maximum size of a row in a MyISAM table is 65,535 bytes. (However, each BLOB or TEXT column contributes only 9-12 bytes toward this size.)
+			This limitation may be shared by other storage engines as well.</p>
+
+		<p><b>Storage Requirements for Numeric Types</b></p>
+		<table>
+			<tr>
+				<th align="left">Data Type</th>
+				<th align="left">Storage Required</th>
+			</tr>
+			<tr>
+				<td>TINYINT</td>
+				<td>1 byte</td>
+			</tr>
+			<tr>
+				<td>SMALLINT</td>
+				<td>2 bytes</td>
+			</tr>
+			<tr>
+				<td>MEDIUMINT</td>
+				<td>3 bytes</td>
+			</tr>
+			<tr>
+				<td>INT, INTEGER</td>
+				<td>4 bytes</td>
+			</tr>
+			<tr>
+				<td>BIGINT</td>
+				<td>8 bytes</td>
+			</tr>
+			<tr>
+				<td>FLOAT(p)</td>
+				<td>4 bytes if 0 &lt;= p &lt;= 24, 8 bytes if 25 &lt;= p &lt;= 53</td>
+			</tr>
+			<tr>
+				<td>FLOAT</td>
+				<td>4 bytes</td>
+			</tr>
+			<tr>
+				<td>DOUBLE [PRECISION], REAL</td>
+				<td>8 bytes</td>
+			</tr>
+			<tr>
+				<td>DECIMAL(M,D), NUMERIC(M,D)</td>
+				<td>Varies; see following discussion</td>
+			</tr>
+			<tr>
+				<td>BIT(M)</td>
+				<td>approximately (M+7)/8 bytes</td>
+			</tr>
+		</table>
+		<p>Values for DECIMAL (and NUMERIC) columns are represented using a binary format that packs nine decimal (base 10) digits into four bytes.
+			Storage for the integer and fractional parts of each value are determined separately.
+			Each multiple of nine digits requires four bytes, and the "leftover" digits require some fraction of four bytes.
+			The storage required for excess digits is given by the following table:</p>
+
+		<table>
+			<tr>
+				<th align="left">Leftover Digits</th> 
+				<th align="left">Number of Bytes</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>4</td>
+			</tr>
+		</table>
+
+		<p><b>Storage Requirements for Date and Time Types</b></p>
+
+		<table>
+			<tr>
+				<th align="left">Data Type</th>
+				<th align="left">Storage Required</th>
+			</tr>
+			<tr>
+				<td>DATE</td>
+				<td>3 bytes</td>
+			</tr>
+			<tr>
+				<td>TIME</td>
+				<td>3 bytes</td>
+			</tr>
+			<tr>
+				<td>DATETIME</td>
+				<td>8 bytes</td>
+			</tr>
+			<tr>
+				<td>TIMESTAMP</td>
+				<td>4 bytes</td>
+			</tr>
+			<tr>
+				<td>YEAR</td>
+				<td>1 byte</td>
+			</tr>
+		</table>
+
+		<p>The storage requirements shown in the table arise from the way that SQL represents temporal values:</p>
+		<ul>
+			<li>DATE: A three-byte integer packed as DD + MM*32 + YYYY*16*32</li>
+			<li>TIME: A three-byte integer packed as DD*24*3600 + HH*3600 + MM*60 + SS</li>
+			<li>DATETIME: Eight bytes:
+				<ul>
+					<li>A four-byte integer packed as YYYY*10000 + MM*100 + DD</li>
+					<li>A four-byte integer packed as HH*10000 + MM*100 + SS</li>
+				</ul>
+			</li>
+			<li>TIMESTAMP: A four-byte integer representing seconds UTC since the epoch ('1970-01-01 00:00:00' UTC)</li>
+			<li>YEAR: A one-byte integer</li>
+		</ul>
+
+		<p><b>Storage Requirements for String Types</b></p>
+
+		<p>In the following table, M represents the declared column length in characters for non-binary string types and bytes for binary string types.
+			L represents the actual length in bytes of a given string value.</p>
+
+		<table>	
+			<tr>
+				<th align="left">Data Type</th>
+				<th align="left">Storage Required</th>
+			</tr>
+			<tr>
+				<td>CHAR(M)</td>
+				<td>M * w bytes, 0 &lt;= M &lt;= 255, where w is the number of bytes required for the maximum-length character in the character set</td>
+			</tr>
+			<tr>
+				<td>BINARY(M)</td>
+				<td>M bytes, 0 &lt;= M &lt;= 255</td>
+			</tr>
+			<tr>
+				<td>VARCHAR(M), VARBINARY(M)</td>
+				<td>L + 1 bytes if column values require 0 - 255 bytes, L + 2 bytes if values may require more than 255 bytes</td>
+			</tr>
+			<tr>
+				<td>TINYBLOB, TINYTEXT</td>
+				<td>L + 1 bytes, where L &lt; 28</td>
+			</tr>
+			<tr>
+				<td>BLOB, TEXT</td>
+				<td>L + 2 bytes, where L &lt; 216</td>
+			</tr>
+			<tr>
+				<td>MEDIUMBLOB, MEDIUMTEXT</td>
+				<td>L + 3 bytes, where L &lt; 224</td>
+			</tr>
+			<tr>
+				<td>LONGBLOB, LONGTEXT</td>
+				<td>L + 4 bytes, where L &lt; 232</td>
+			</tr>
+			<tr>
+				<td>ENUM('value1','value2',...)</td>
+				<td>1 or 2 bytes, depending on the number of enumeration values (65,535 values maximum)</td>
+			</tr>
+			<tr>
+				<td>SET('value1','value2',...)</td>
+				<td>1, 2, 3, 4, or 8 bytes, depending on the number of set members (64 members maximum)</td>
+			</tr>
+		</table>
+
+        <p>Variable-length string types are stored using a length prefix plus data.
+           The length prefix requires from one to four bytes depending on the data type, and the value of the prefix is L (the byte length of the string).
+           For example, storage for a MEDIUMTEXT value requires L bytes to store the value plus three bytes to store the length of the value.</p>		
+
+		<p>To calculate the number of bytes used to store a particular CHAR, VARCHAR, or TEXT column value,
+			you must take into account the character set used for that column and whether the value contains multi-byte characters.
+			In particular, when using the utf8 Unicode character set, you must keep in mind that not all utf8 characters use the same number of bytes and can require up to three bytes per character.</p>
+
+		<p>VARCHAR, VARBINARY, and the BLOB and TEXT types are variable-length types. For each, the storage requirements depend on these factors:</p>
+
+		<ul>
+			<li>The actual length of the column value</li>
+			<li>The column's maximum possible length</li>
+			<li>The character set used for the column, because some character sets contain multi-byte characters</li>
+		</ul>
+
+		<p>For example, a VARCHAR(255) column can hold a string with a maximum length of 255 characters.
+			Assuming that the column uses the latin1 character set (one byte per character), the actual storage required is the length of the string (L),
+			plus one byte to record the length of the string. For the string 'abcd', L is 4 and the storage requirement is five bytes.
+			If the same column is instead declared to use the ucs2 double-byte character set, the storage requirement is 10 bytes:
+			The length of 'abcd' is eight bytes and the column requires two bytes to store lengths because the maximum length is greater than 255 (up to 510 bytes).</p>
+
+		<p>Note: The effective maximum number of bytes that can be stored in a VARCHAR or VARBINARY column is subject to the maximum row size of 65,535 bytes, which is shared among all columns.
+			For a VARCHAR column that stores multi-byte characters, the effective maximum number of characters is less.
+			For example, utf8 characters can require up to three bytes per character, so a VARCHAR column that uses the utf8 character set can be declared to be a maximum of 21,844 characters.</p>
+
+		<p>The size of an ENUM object is determined by the number of different enumeration values.
+			One byte is used for enumerations with up to 255 possible values.
+			Two bytes are used for enumerations having between 256 and 65,535 possible values.</p>
+
+		<p>The size of a SET object is determined by the number of different set members.
+			If the set size is N, the object occupies (N+7)/8 bytes, rounded up to 1, 2, 3, 4, or 8 bytes. A SET can have a maximum of 64 members.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SChoosing the Right Type for a Column"></A>Choosing the Right Type for a Column</H2></P>
+		<p>For optimum storage, you should try to use the most precise type in all cases.
+			For example, if an integer column is used for values in the range from 1 to 99999, MEDIUMINT UNSIGNED is the best type.
+			Of the types that represent all the required values, this type uses the least amount of storage.</p>
+
+		<p>All basic calculations (+, -, *, and /) with DECIMAL columns are done with precision of 65 decimal (base 10) digits.</p>
+
+		<p>If accuracy is not too important or if speed is the highest priority, the DOUBLE type may be good enough.
+			For high precision, you can always convert to a fixed-point type stored in a BIGINT.
+			This allows you to do all calculations with 64-bit integers and then convert results back to floating-point values as necessary.</p>
+
+		<p>PROCEDURE ANALYSE can be used to obtain suggestions for optimal column data types.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SUsing Data Types from Other Database Engines"></A>Using Data Types from Other Database Engines</H2></P>
+		<p>To facilitate the use of code written for SQL implementations from other vendors, 
+			SQL maps data types as shown in the following table. These mappings make it easier to import table definitions from other database systems into SQL:</p>
+
+		<table>
+			<tr>
+				<th align="left">Other Vendor Type</th>
+				<th align="left">SQL Type</th>
+			</tr>
+			<tr>
+				<td>BOOL</td>
+				<td>TINYINT</td>
+			</tr>
+			<tr>
+				<td>BOOLEAN</td>
+				<td>TINYINT</td>
+			</tr>
+			<tr>
+				<td>CHARACTER VARYING(M)</td>
+				<td>VARCHAR(M)</td>
+			</tr>
+			<tr>
+				<td>FIXED</td>
+				<td>DECIMAL</td>
+			</tr>
+			<tr>
+				<td>FLOAT4</td>
+				<td>FLOAT</td>
+			</tr>
+			<tr>
+				<td>FLOAT8</td>
+				<td>DOUBLE</td>
+			</tr>
+			<tr>
+				<td>INT1</td>
+				<td>TINYINT</td>
+			</tr>
+			<tr>
+				<td>INT2</td>
+				<td>SMALLINT</td>
+			</tr>
+			<tr>
+				<td>INT3</td>
+				<td>MEDIUMINT</td>
+			</tr>
+			<tr>
+				<td>INT4</td>
+				<td>INT</td>
+			</tr>
+			<tr>
+				<td>INT8</td>
+				<td>BIGINT</td>
+			</tr>
+			<tr>
+				<td>LONG VARBINARY</td>
+				<td>MEDIUMBLOB</td>
+			</tr>
+			<tr>
+				<td>LONG VARCHAR</td>
+				<td>MEDIUMTEXT</td>
+			</tr>
+			<tr>
+				<td>LONG</td>
+				<td>MEDIUMTEXT</td>
+			</tr>
+			<tr>
+				<td>MIDDLEINT</td>
+				<td>MEDIUMINT</td>
+			</tr>
+			<tr>
+				<td>NUMERIC</td>
+				<td>DECIMAL</td>
+			</tr>
+		</table>
+
+		<p>Data type mapping occurs at table creation time, after which the original type specifications are discarded.
+			If you create a table with types used by other vendors and then issue a DESCRIBE tbl_name statement, SQL reports the table structure using the equivalent SQL types. For example:</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE t (a BOOL, b FLOAT8, c LONG VARCHAR, d NUMERIC)}) <b>Returns</b> 0</pre>
+
+		<pre>(sql sqlHandle {DESCRIBE t}) <b>Returns</b>
+#(rec(4 Field:Character:64 Type:Object:1 Null:Character:3 Key:Character:3 Default:Object:1 Extra:Character:27)| 
+[0](Field:"a" Type:"tinyint(1)" Null:"YES" Key:"" Default:#void Extra:"") 
+[1](Field:"b" Type:"double" Null:"YES" Key:"" Default:#void Extra:"") 
+[2](Field:"c" Type:"mediumtext" Null:"YES" Key:"" Default:#void Extra:"") 
+[3](Field:"d" Type:"decimal(10,0)" Null:"YES" Key:"" Default:#void Extra:""))</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

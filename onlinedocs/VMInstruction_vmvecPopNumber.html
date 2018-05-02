@@ -1,0 +1,293 @@
+
+<HTML>
+<HEAD><TITLE>AIS VM Instruction Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>vmvecPopNumber</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#KEYWORDS"><FONT SIZE=2>Keyword Links</FONT></A></LI>
+<LI><A HREF="#INSTYPE"><FONT SIZE=2>Instruction Type</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#VMI"><FONT SIZE=2>Virtual Machine Instructions</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black><Description>
+		<p>When evaluated, this vm instruction stores the top number from 
+		the internal Vector Processing Stack, into the destination, specified 
+		by the <b>target</b> argument, and decrements the internal Vector 
+		Processing Stack by one position. The top stack word is stored, in the 
+		target register, as a Number data type. There are no conversions made 
+		between different types. The initial values in the three pointer registers, 
+		the three increment registers, and the counter register are NOT altered by 
+		this instruction. This instruction may return an Error value. After the 
+		operation, the Instruction Pointer is promoted. The operation of this vm 
+		instruction is expressed in the following C expression:
+	    </p>
+        <ul><li> <b>   (double)target = (double)ST[top--]; </b></li></ul>          
+    </Description>
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=red><table border=0 cellspacing=5 cellpadding=5>
+<tr><td><b><Expression>(vmvecPopNumber target)</Expression> </b></td></tr>
+</table><br><hr align=left color="#000000" width=50% size="1">
+<tr><td align=center><table border=0 cellspacing=5 cellpadding=5>
+<tr><td width=20%><FONT COLOR="#0000FF"><b>Name</b></FONT></td>
+                                           <td width=20%><FONT COLOR="#0000FF"><b>Format</b></FONT></td>
+                                           <td><FONT COLOR="#0000FF"><b>AIS Types</b></FONT></td></tr> 
+<tr><td><b>target</b></td><td>register</td><td>number</td></tr>
+</table></td></tr></table><br>
+<hr align=left color="#000000" width=50% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+s
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="KEYWORDS"></A>Keyword Links</H4></FONT>
+<P>
+Here are a number of links to this instruction by related keywords.
+</P>
+<P>
+<font color=red>[...under construction ]</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INSTYPE"></A>Instruction Type</H4></FONT>
+<P>
+Here are a number of links to this instructions of this same type.
+</P>
+<P>
+<font color=red><table width="100%"><tr>
+<td><A HREF="VMInstruction_vmvecBinary.html">vmvecBinary</A></td>
+<td><A HREF="VMInstruction_vmvecInitialize.html">vmvecInitialize</A></td>
+<td><A HREF="VMInstruction_vmvecLoop.html">vmvecLoop</A></td>
+<td><A HREF="VMInstruction_vmvecNumScalar.html">vmvecNumScalar</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecNumVector.html">vmvecNumVector</A></td>
+<td><A HREF="VMInstruction_vmvecPop.html">vmvecPop</A></td>
+<td><A HREF="VMInstruction_vmvecPopNumber.html">vmvecPopNumber</A></td>
+<td><A HREF="VMInstruction_vmvecPush.html">vmvecPush</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecPushNumber.html">vmvecPushNumber</A></td>
+<td><A HREF="VMInstruction_vmvecSetIncrements.html">vmvecSetIncrements</A></td>
+<td><A HREF="VMInstruction_vmvecSetPointers.html">vmvecSetPointers</A></td>
+<td><A HREF="VMInstruction_vmvecSwapCC.html">vmvecSwapCC</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecUnary.html">vmvecUnary</A></td>
+</tr>
+</table>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+Here are a number of links which are related to this instructions .
+</P>
+<P>
+<font color=black><table width="100%"><tr>
+<td><A HREF="VMInstruction_vmadd.html">vmadd</A></td>
+<td><A HREF="VMInstruction_vmaddi.html">vmaddi</A></td>
+<td><A HREF="VMInstruction_vmaddn.html">vmaddn</A></td>
+<td><A HREF="VMInstruction_vmdiv.html">vmdiv</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmdivi.html">vmdivi</A></td>
+<td><A HREF="VMInstruction_vmdivn.html">vmdivn</A></td>
+<td><A HREF="VMInstruction_vmdivr.html">vmdivr</A></td>
+<td><A HREF="VMInstruction_vmdivri.html">vmdivri</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmjumpcc.html">vmjumpcc</A></td>
+<td><A HREF="VMInstruction_vmmul.html">vmmul</A></td>
+<td><A HREF="VMInstruction_vmmuli.html">vmmuli</A></td>
+<td><A HREF="VMInstruction_vmmuln.html">vmmuln</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnadd.html">vmnadd</A></td>
+<td><A HREF="VMInstruction_vmnatAddNumber.html">vmnatAddNumber</A></td>
+<td><A HREF="VMInstruction_vmnatDivNumber.html">vmnatDivNumber</A></td>
+<td><A HREF="VMInstruction_vmnatDivrNumber.html">vmnatDivrNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatJumpCCNumber.html">vmnatJumpCCNumber</A></td>
+<td><A HREF="VMInstruction_vmnatLoadFloat.html">vmnatLoadFloat</A></td>
+<td><A HREF="VMInstruction_vmnatLoadNumber.html">vmnatLoadNumber</A></td>
+<td><A HREF="VMInstruction_vmnatMulNumber.html">vmnatMulNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmnatSaveFloat.html">vmnatSaveFloat</A></td>
+<td><A HREF="VMInstruction_vmnatSaveNumber.html">vmnatSaveNumber</A></td>
+<td><A HREF="VMInstruction_vmnatSubNumber.html">vmnatSubNumber</A></td>
+<td><A HREF="VMInstruction_vmndiv.html">vmndiv</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmndivr.html">vmndivr</A></td>
+<td><A HREF="VMInstruction_vmnmul.html">vmnmul</A></td>
+<td><A HREF="VMInstruction_vmnsub.html">vmnsub</A></td>
+<td><A HREF="VMInstruction_vmregAbsNumber.html">vmregAbsNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregAddNumber.html">vmregAddNumber</A></td>
+<td><A HREF="VMInstruction_vmregCosNumber.html">vmregCosNumber</A></td>
+<td><A HREF="VMInstruction_vmregDivNumber.html">vmregDivNumber</A></td>
+<td><A HREF="VMInstruction_vmregDivrNumber.html">vmregDivrNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregInteger.html">vmregInteger</A></td>
+<td><A HREF="VMInstruction_vmregJumpCCNumber.html">vmregJumpCCNumber</A></td>
+<td><A HREF="VMInstruction_vmregLoadNumber.html">vmregLoadNumber</A></td>
+<td><A HREF="VMInstruction_vmregLogNumber.html">vmregLogNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregMoveNumber.html">vmregMoveNumber</A></td>
+<td><A HREF="VMInstruction_vmregMulNumber.html">vmregMulNumber</A></td>
+<td><A HREF="VMInstruction_vmregNumber.html">vmregNumber</A></td>
+<td><A HREF="VMInstruction_vmregPwrNumber.html">vmregPwrNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregRefNumber.html">vmregRefNumber</A></td>
+<td><A HREF="VMInstruction_vmregSaveNumber.html">vmregSaveNumber</A></td>
+<td><A HREF="VMInstruction_vmregSaveTail.html">vmregSaveTail</A></td>
+<td><A HREF="VMInstruction_vmregSetFloat.html">vmregSetFloat</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSetIntImmediate.html">vmregSetIntImmediate</A></td>
+<td><A HREF="VMInstruction_vmregSetNumber.html">vmregSetNumber</A></td>
+<td><A HREF="VMInstruction_vmregSetXFloat.html">vmregSetXFloat</A></td>
+<td><A HREF="VMInstruction_vmregSetXNumber.html">vmregSetXNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmregSinNumber.html">vmregSinNumber</A></td>
+<td><A HREF="VMInstruction_vmregSqrtNumber.html">vmregSqrtNumber</A></td>
+<td><A HREF="VMInstruction_vmregSubNumber.html">vmregSubNumber</A></td>
+<td><A HREF="VMInstruction_vmregTanNumber.html">vmregTanNumber</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmsub.html">vmsub</A></td>
+<td><A HREF="VMInstruction_vmsubi.html">vmsubi</A></td>
+<td><A HREF="VMInstruction_vmsubn.html">vmsubn</A></td>
+<td><A HREF="VMInstruction_vmvecNumScalar.html">vmvecNumScalar</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecNumVector.html">vmvecNumVector</A></td>
+<td><A HREF="VMInstruction_vmvecPop.html">vmvecPop</A></td>
+<td><A HREF="VMInstruction_vmvecPopNumber.html">vmvecPopNumber</A></td>
+<td><A HREF="VMInstruction_vmvecPush.html">vmvecPush</A></td>
+</tr><tr>
+<td><A HREF="VMInstruction_vmvecPushNumber.html">vmvecPushNumber</A></td>
+<td><A HREF="VMInstruction_vmvecSwapCC.html">vmvecSwapCC</A></td>
+</tr>
+</table>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="VMI"></A>Virtual Machine Instructions</H4></FONT>
+<P>
+AIS Lambdas are designed to be write-once-run-anywhere executable objects. 
+This is accomplished via the virtual machine concept of software Lambda execution. 
+Lambda virtual machines are designed to be mapped onto the actual host microchip at the server location, 
+providing faithful Lambda execution wherever the Lambda may travel on the Internet. 
+There are currently several virtual machines operating within Analytic Information Server. 
+The DRM virtual machine uses a Dynamically typed Register Machine model to provide portable Lambda execution 
+from high level dynamically typed instructions all the way to super fast microchip-level register execution. 
+The DRM virtual machine runs in emulation mode during the testing and debug phases of Lambda development, 
+and there is an AIS Lambda debugger available for Lambdas running on this virtual machine. 
+During the final release phases of Lambda development, DRM virtual machine Lambdas are automatically converted 
+to the NATIVE virtual machine on the host computer, using the just-in-time compiler. 
+The NATIVE virtual machine is a faithful machine language translation of the execution rules in the DRM virtual machine 
+onto the actual host microchip at the server location. 
+NATIVE virtual machine execution runs at microchip-level execution speeds.
+</P>
+
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

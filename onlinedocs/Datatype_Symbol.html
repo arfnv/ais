@@ -1,0 +1,239 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Symbol</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Symbol Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Quoted Symbol</font></a></li><li><a href="#S4"><FONT SIZE=2>Unquoted Symbol</font></a></li><li><a href="#S5"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Symbol Overview</H4></FONT></P>
+		 <p class=MsoBodyText>At least within the United States, Lisp has become the defacto 
+         language of choice for symbolic processing. Of course, the Symbol object plays a 
+         central role in symbolic processing. Essentially a Symbol object is a string, but a 
+         string with certain important properties.</p> 
+         <ul>
+            <li>Unlike Strings, Symbol objects are unique (for any specified text content, there is one and only one
+             Symbol object containing the specified text contents). </li>
+            <li>Like Visual Basic, Smalltalk, etc., Symbol objects can be used to refer to Lisp native and user
+            defined type names. Therefore Symbol objects can be automatically associated with
+            type names in the global context. </li>
+            <li>Like Visual Basic, C, Fortran, Smalltalk, etc., Symbol objects can be used to refer to
+             Lisp global and local variables. Therefore Symbol objects can be automatically associated with 
+             variable names in both the local and global context. In Computer Science terms, 
+             Symbol objects are said to make up the Lisp Name space.   </li>
+         </ul>  
+         <p>The most difficult aspect of Symbol objects is their simplest aspect. Symbols are things in and of themselves 
+         (each Symbol has a system-wide unique text value). In the global context, a Symbol also
+          has a global variable value. In the local context, a Symbol may have a local variable 
+          value different from its global variable value. Whether a Symbol object refers to itself, 
+          its global, or its local variable contents is controlled, in Lisp, with quoting.</p>		   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The Symbol object is used in any situation that a named identifier is need to 
+          hold global or local values. In other words, Symbols are used to label a container.
+          Furthermore, since Symbol objects are unique, Symbols should be used instead of Strings 
+          where storage is to be minimized.</p>          
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Quoted Symbol</H4></FONT></P>
+		<p class=MsoBodyText>A quoted symbol always refers to itself. In
+		this sense, it acts as a kind of unique String object. The following simple
+		example may be helpful.</p>
+		<p class=MsoBodyText>            (setq  xyz
+		20)                           ;;
+		Set the global value of the Symbol |<b style='mso-bidi-font-weight:normal'>xyz</b>|
+		(no colon or quote).</p>
+		<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+		tab-stops:1.25in 1.75in 2.5in'>xyz<b style='mso-bidi-font-weight:normal'>:</b>[0]        =&gt;        <b style='mso-bidi-font-weight:normal'>#\x</b>             ;;
+		Return the 1st character in the text value of the |<b style='mso-bidi-font-weight:
+		normal'>xyz</b>| Symbol</p>
+		<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+		tab-stops:1.25in 1.75in 2.5in'>xyz<b style='mso-bidi-font-weight:normal'>:</b>[1]        =&gt;        <b style='mso-bidi-font-weight:normal'>#\y</b>             ;;
+		Return the 2nd character in the text value of the |<b style='mso-bidi-font-weight:
+		normal'>xyz</b>| Symbol</p>
+		<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+		tab-stops:1.25in 1.75in 2.5in'>xyz<b style='mso-bidi-font-weight:normal'>:</b>[2]        =&gt;        <b style='mso-bidi-font-weight:normal'>#\z</b>             ;;
+		Return the 3rd character in the text value of the |<b style='mso-bidi-font-weight:
+		normal'>xyz</b>| Symbol</p>
+		<p class=MsoBodyText>            (setq  xyz  <b style='mso-bidi-font-weight:normal'>'</b>abc)                         ;;
+		Set the global value of the Symbol |<b style='mso-bidi-font-weight:normal'>xyz</b>|
+		to the Symbol |<b style='mso-bidi-font-weight:normal'>abc</b>|.</p>
+		<p class=MsoBodyText>            (setq  xyz
+		abc<b style='mso-bidi-font-weight:normal'>:</b>)                        ;; Set the global value of the Symbol |<b style='mso-bidi-font-weight:normal'>xyz</b>| to the Symbol |<b style='mso-bidi-font-weight:normal'>abc</b>|.</p>
+		<p class=MsoBodyText style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>Note</b>:    In Lisp the colon (trailing) and the quote
+		(leading) have the same meaning when used with a Symbol.   </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Unquoted Symbol</H4></FONT></P>
+			<p class=MsoBodyText>An unquoted symbol always refers to the
+			local or global variable value of the Symbol (depending upon the context). In
+			this sense, it is used to name containers (variables) which may hold values
+			during program operation. The following simple example may be helpful.</p>
+			<p class=MsoBodyText>            (setq  xyz
+			20)                           ;;
+			Set the global value of the <b style='mso-bidi-font-weight:normal'>xyz</b>
+			variable (no colon or quote).</p>
+			<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+			tab-stops:1.25in 1.75in 2.5in'>xyz                                           ;;
+			Return the global value of the <b style='mso-bidi-font-weight:normal'>xyz</b>
+			variable <b style='mso-bidi-font-weight:normal'>20</b></p>
+			<p class=MsoBodyText>            (setq  xyz  <b style='mso-bidi-font-weight:normal'>'</b>abc)                         ;;
+			Set the global value of the Symbol |<b style='mso-bidi-font-weight:normal'>xyz</b>|
+			to the Symbol |<b style='mso-bidi-font-weight:normal'>abc</b>|.</p>
+			<p class=MsoBodyText>            (setq  xyz
+			abc<b style='mso-bidi-font-weight:normal'>:</b>)                        ;; Set the global value of the Symbol |<b style='mso-bidi-font-weight:normal'>xyz</b>| to the Symbol |<b style='mso-bidi-font-weight:normal'>abc</b>|.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'> </b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    In Lisp the colon (trailing) and the quote
+			(leading) have the same meaning when used with a Symbol.</p>
+			<p class=MsoBodyText>            </p>
+			<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+			tab-stops:1.25in 1.75in 2.5in'>xyz[0]         =&gt;        <b style='mso-bidi-font-weight:normal'>#\a</b>             ;; Return the 1st character of the
+			value held in the <b style='mso-bidi-font-weight:normal'>xyz</b> variable</p>
+			<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+			tab-stops:1.25in 1.75in 2.5in'>xyz[1]         =&gt;        <b style='mso-bidi-font-weight:normal'>#\b</b>             ;; Return the 2nd character of the
+			value held in the <b style='mso-bidi-font-weight:normal'>xyz</b> variable</p>
+			<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+			tab-stops:1.25in 1.75in 2.5in'>xyz[2]         =&gt;        <b style='mso-bidi-font-weight:normal'>#\c</b>             ;; Return the 3rd character of the
+			value held in the <b style='mso-bidi-font-weight:normal'>xyz</b> variable</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'> </b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    In Lisp, local and global variables are
+			determined by context, as follows.    </p>
+			<p class=MsoBodyText>&nbsp;</p>
+			<p class=MsoBodyText style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>(setq  xyz
+			20)</b>                          ;;
+			Set the global value of the <b style='mso-bidi-font-weight:normal'>xyz</b>
+			variable (no colon or quote).</p>
+			<p class=MsoBodyText style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>xyz</b>                                           ;;
+			Return <b style='mso-bidi-font-weight:normal'>20</b>, the global value of the <b style='mso-bidi-font-weight:normal'>xyz</b> variable </p>
+			<p class=MsoBodyText style='tab-stops:.5in 1.75in 2.5in'>            <b style='mso-bidi-font-weight:normal'>(defun foo()</b> </p>
+			<p class=MsoBodyText style='margin-left:.5in;text-indent:.5in'><b style='mso-bidi-font-weight:normal'>vars: ( xyz )</b>                 ;; Define the local <b style='mso-bidi-font-weight:
+			normal'>xyz</b> variable (different from the global                                                               ;;  variable)</p>
+			<p class=MsoBodyText style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>(setq
+			xyz  30)</b>              ;; Set the local value of the <b style='mso-bidi-font-weight:normal'>xyz</b> variable (no colon or quote).</p>
+			<p class=MsoBodyText style='margin-left:225.0pt;text-indent:-153.0pt;
+			tab-stops:1.25in 1.75in 2.5in'><b style='mso-bidi-font-weight:normal'>xyz</b>             <b style='mso-bidi-font-weight:
+			normal'> </b>                 ;; Return
+			the local value of the <b style='mso-bidi-font-weight:normal'>xyz</b> variable</p>
+			<p class=MsoBodyText style='margin-left:189.0pt;text-indent:-153.0pt;
+			tab-stops:63.0pt 1.25in 1.75in 2.5in'><b style='mso-bidi-font-weight:normal'>) ;;
+			end of foo function</b></p>
+			<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>&nbsp;</p>
+			<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>            <b style='mso-bidi-font-weight:normal'>(setq
+			abc (foo))</b>                        ;
+			The global variable <b style='mso-bidi-font-weight:normal'>abc</b> is set to <b style='mso-bidi-font-weight:normal'>30</b></p>
+			<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>            <b style='mso-bidi-font-weight:normal'>xyz                                           ; </b>Returns<b style='mso-bidi-font-weight:normal'> 20,</b> the global value of xyz</p>			
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>BitVector</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Symbol object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Symbol_(sym)add1_001.html">Example_Symbol_(sym)add1_001</A></td>
+<td><A HREF="Example_Symbol_(sym)addValue_001.html">Example_Symbol_(sym)addValue_001</A></td>
+<td><A HREF="Example_Symbol_(sym)divValue_001.html">Example_Symbol_(sym)divValue_001</A></td>
+<td><A HREF="Example_Symbol_(sym)mulValue_001.html">Example_Symbol_(sym)mulValue_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_(sym)sub1_001.html">Example_Symbol_(sym)sub1_001</A></td>
+<td><A HREF="Example_Symbol_(sym)subValue_001.html">Example_Symbol_(sym)subValue_001</A></td>
+<td><A HREF="Example_Symbol_append_003.html">Example_Symbol_append_003</A></td>
+<td><A HREF="Example_Symbol_compareEQ_002.html">Example_Symbol_compareEQ_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_compareGE_002.html">Example_Symbol_compareGE_002</A></td>
+<td><A HREF="Example_Symbol_compareGT_002.html">Example_Symbol_compareGT_002</A></td>
+<td><A HREF="Example_Symbol_compareLE_002.html">Example_Symbol_compareLE_002</A></td>
+<td><A HREF="Example_Symbol_compareLT_002.html">Example_Symbol_compareLT_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_compareNE_002.html">Example_Symbol_compareNE_002</A></td>
+<td><A HREF="Example_Symbol_compare_002.html">Example_Symbol_compare_002</A></td>
+<td><A HREF="Example_Symbol_comparison_002.html">Example_Symbol_comparison_002</A></td>
+<td><A HREF="Example_Symbol_downcase_002.html">Example_Symbol_downcase_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_getGlobalValue_001.html">Example_Symbol_getGlobalValue_001</A></td>
+<td><A HREF="Example_Symbol_getGlobalValue_002.html">Example_Symbol_getGlobalValue_002</A></td>
+<td><A HREF="Example_Symbol_getSymbolTable_001.html">Example_Symbol_getSymbolTable_001</A></td>
+<td><A HREF="Example_Symbol_getSymbolTable_002.html">Example_Symbol_getSymbolTable_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_hashString_002.html">Example_Symbol_hashString_002</A></td>
+<td><A HREF="Example_Symbol_isCharAlphabetic_002.html">Example_Symbol_isCharAlphabetic_002</A></td>
+<td><A HREF="Example_Symbol_isCharAlphanumeric_002.html">Example_Symbol_isCharAlphanumeric_002</A></td>
+<td><A HREF="Example_Symbol_isCharLowercase_002.html">Example_Symbol_isCharLowercase_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharName_002.html">Example_Symbol_isCharName_002</A></td>
+<td><A HREF="Example_Symbol_isCharNumeric_002.html">Example_Symbol_isCharNumeric_002</A></td>
+<td><A HREF="Example_Symbol_isCharUppercase_002.html">Example_Symbol_isCharUppercase_002</A></td>
+<td><A HREF="Example_Symbol_isCharWhitespace_002.html">Example_Symbol_isCharWhitespace_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isObject_002.html">Example_Symbol_isObject_002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Example_Symbol_isSymbol_001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Example_Symbol_isType_004</A></td>
+<td><A HREF="Example_Symbol_length_003.html">Example_Symbol_length_003</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_makeQuotedSymbol_001.html">Example_Symbol_makeQuotedSymbol_001</A></td>
+<td><A HREF="Example_Symbol_new_002.html">Example_Symbol_new_002</A></td>
+<td><A HREF="Example_Symbol_proplist_001.html">Example_Symbol_proplist_001</A></td>
+<td><A HREF="Example_Symbol_proprecord_001.html">Example_Symbol_proprecord_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_putprop_001.html">Example_Symbol_putprop_001</A></td>
+<td><A HREF="Example_Symbol_ref_003.html">Example_Symbol_ref_003</A></td>
+<td><A HREF="Example_Symbol_remProp_001.html">Example_Symbol_remProp_001</A></td>
+<td><A HREF="Example_Symbol_setq_001.html">Example_Symbol_setq_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_setq_002.html">Example_Symbol_setq_002</A></td>
+<td><A HREF="Example_Symbol_sizeof_002.html">Example_Symbol_sizeof_002</A></td>
+<td><A HREF="Example_Symbol_symbol_001.html">Example_Symbol_symbol_001</A></td>
+<td><A HREF="Example_Symbol_symbol_002.html">Example_Symbol_symbol_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_type_002.html">Example_Symbol_type_002</A></td>
+<td><A HREF="Example_Symbol_upcase_004.html">Example_Symbol_upcase_004</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

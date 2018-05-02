@@ -1,0 +1,170 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Integer</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Integer Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Native Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Integer Overview</H4></FONT></P>
+		 <p class=MsoBodyText>Analytic supports the <b>Integer</b> data type for representing 32 bit Integer values. 
+         The Integer Native Data Type are containers for whole numbers only. 
+
+		 Although a subtype of the Number data type, there are some functions that return <b>only Integer</b> and
+         not Number.    </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The Integer Native data type is a suitable container for numeric values.  
+
+          Several mathematical functions are provided by Analytic Information Server that perform several 
+
+          common computations.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+		<p class=MsoBodyText>Integers are represented by the constant form: </p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>34        -34 </b></p>
+        <p> Other examples of the Integer data type in its constant format are:</p>
+        <p><b>25  -1  10392756  -10392756  -10392756  -103  2756</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Native Data Type</H4></FONT></P>
+          <p>The <b>Integer</b> Data Type is an example of an AIS Native Data Type. </p>
+          <p> Analytic Information Server stores all of its Native Data Types in Virtual Machine Containers.  
+
+          All containers are stored in memory. Containers provide the basic storage mechanism for modeling 
+
+          data of all types. Containers provide these fundamental characteristics:      </p>
+          <p>  Ability to hold any type of data (including code) at any time.</p>
+          <p>  Ability to know what type of data is contained.</p>
+          <p>  Ability to be stored, retrieved and evaluated by the system.</p>
+          <p>   Ability to handle type conversion, and memory management automatically.</p>
+          <p> Containers come in two sizes, Large and Small. Small containers are six bytes in length, 
+
+          and large containers are ten bytes in length. Large containers can store larger amounts of data 
+
+          immediately and place less of a burden on the Heap manager. Small containers require less immediate space, 
+
+          but place more of a burden on the Heap manager.    </p>
+          <p>  Large containers can store the following data types immediately and does not require the services of the Heap manager:</p>
+         <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>
+          <p>  Small containers can store the following data types immediately without placing additional burden on the Heap manager:</p>
+          <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>
+          <p>  Analytic Information Server containers can be saved and loaded to and from persistent (database) 
+
+          storage at any time. Containers with immediate data are saved on disk in fixed length records equal 
+
+          to the size of the container. Containers with Heap object references are saved in fixed length records, 
+
+          which are automatically expanded to include the contents of the Heap object, and any objects referenced 
+
+          by the Heap object, etc. This feature is called Object Closure Management and is automatic with every 
+
+          Analytic Information Server container database save. Analytic Information Server containers may be loaded 
+
+          from any database repository record at any time. If the data in the record is immediate, the database 
+
+          load fills the container with the immediate data. If the data in the record is an object closure, the 
+
+          database load fills the container with a Heap object reference, and all of the objects in the record 
+
+          are loaded back into the Heap with the same referential relationships they had when they were saved.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Integer object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Integer_binaryNand_001.html">Example_Integer_binaryNand_001</A></td>
+<td><A HREF="Example_Integer_binaryNor_001.html">Example_Integer_binaryNor_001</A></td>
+<td><A HREF="Example_Integer_binaryNot_001.html">Example_Integer_binaryNot_001</A></td>
+<td><A HREF="Example_Integer_binaryNxor_001.html">Example_Integer_binaryNxor_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_bitwiseAnd_001.html">Example_Integer_bitwiseAnd_001</A></td>
+<td><A HREF="Example_Integer_bitwiseNand_001.html">Example_Integer_bitwiseNand_001</A></td>
+<td><A HREF="Example_Integer_bitwiseNor_001.html">Example_Integer_bitwiseNor_001</A></td>
+<td><A HREF="Example_Integer_bitwiseNot_001.html">Example_Integer_bitwiseNot_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_bitwiseNxor_001.html">Example_Integer_bitwiseNxor_001</A></td>
+<td><A HREF="Example_Integer_bitwiseOr_001.html">Example_Integer_bitwiseOr_001</A></td>
+<td><A HREF="Example_Integer_bitwiseShiftLeft_001.html">Example_Integer_bitwiseShiftLeft_001</A></td>
+<td><A HREF="Example_Integer_bitwiseShiftRight_001.html">Example_Integer_bitwiseShiftRight_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_bitwiseXor_001.html">Example_Integer_bitwiseXor_001</A></td>
+<td><A HREF="Example_Integer_fact_001.html">Example_Integer_fact_001</A></td>
+<td><A HREF="Example_Integer_gcd_001.html">Example_Integer_gcd_001</A></td>
+<td><A HREF="Example_Integer_iadd_001.html">Example_Integer_iadd_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_icompareEQ_001.html">Example_Integer_icompareEQ_001</A></td>
+<td><A HREF="Example_Integer_icompareGE_001.html">Example_Integer_icompareGE_001</A></td>
+<td><A HREF="Example_Integer_icompareGT_001.html">Example_Integer_icompareGT_001</A></td>
+<td><A HREF="Example_Integer_icompareLE_001.html">Example_Integer_icompareLE_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_icompareLT_001.html">Example_Integer_icompareLT_001</A></td>
+<td><A HREF="Example_Integer_icompareNE_001.html">Example_Integer_icompareNE_001</A></td>
+<td><A HREF="Example_Integer_idiv_001.html">Example_Integer_idiv_001</A></td>
+<td><A HREF="Example_Integer_imod_001.html">Example_Integer_imod_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_imul_001.html">Example_Integer_imul_001</A></td>
+<td><A HREF="Example_Integer_integer_001.html">Example_Integer_integer_001</A></td>
+<td><A HREF="Example_Integer_isInteger_001.html">Example_Integer_isInteger_001</A></td>
+<td><A HREF="Example_Integer_isub_001.html">Example_Integer_isub_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_lcm_001.html">Example_Integer_lcm_001</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

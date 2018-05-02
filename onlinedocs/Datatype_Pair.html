@@ -1,0 +1,159 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Pair</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Pair Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>Pair Illustration</font></a></li><li><a href="#S3"><FONT SIZE=2>Visual Basic Comparison</font></a></li><li><a href="#S4"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Pair Overview</H4></FONT></P>
+		 <p class=MsoBodyText>The original Lisp was billed as a list
+		processing language. It is one of the oldest computer languages in use today,
+		and was one of the first to implement true Artificial Intelligence techniques.
+		It is the strength of it's list processing features and functionality that
+		makes Lisp the language of choice, in the United States, for such applications
+		as parsing, semantic analysis, and natural language processing. Pairs and Lists
+		together with all of the functions available to manipulate them greatly expand
+		the analytic power of the Analytic Information Server programmer.</p>
+		<p class=MsoBodyText>The most difficult aspect of Pairs and Lists
+		is their simplest aspect. Pairs are things. Lists are not things. Lists are one
+		way of chaining Pairs together. Lists are not even the only way of chaining
+		Pairs together (albeit an important way but not the only way). Some similar
+		examples from everyday experience would include rain and crowds. Water droplets
+		are things. Rain is not a thing. It is a collection of falling water droplets.
+		There are collections of water droplets that are not rain. Rain is only one way
+		of configuring lots of water droplets. People are things. Crowds are not
+		things. They are collections of people under certain circumstances. Crowds are
+		not the only configuration of lots of people. There are other ways lots of
+		people can be collected together, villages, cities, clubs, etc.  </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>Pair Illustration</H4></FONT></P>
+		<p class=MsoBodyText>Pairs are very simple objects, which are
+		divided two parts as follows:</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><IMG SRC="Image_Pair_001.gif"  ALIGN="center" ALT="Pair Image 001" BORDER="0"></b></p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>car</b>
+		is the first part of the Pair and the <b style='mso-bidi-font-weight:normal'>cdr</b>
+		is the last part of the Pair. Both the car and the cdr may contain the full
+		range of Analytic Information Server values: native types, objects, Lambdas, etc.
+		In fact, both the car and the cdr may point to other Pairs, which is how Lists
+		are configured, but that will come later. Once again, Pairs are simple objects
+		which contain two values: a car value and a cdr value.</p>
+		<p class=MsoBodyText>A Pair can be represented in a constant form
+		as follows:</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>             '( A . B )</b></p>
+		<p class=MsoBodyText>In the preceding example, A is the car and B
+		is the cdr. Pairs do not have to contain the same type of values as follows:<b style='mso-bidi-font-weight:normal'><u></u></b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>             '( 1 . &quot;Hello&quot; )</b></p>
+		<p class=MsoBodyText>In the preceding example, the car contains
+		the Integer value 1, and the cdr contains the Text value &quot;Hello&quot;.
+		Pairs may contain complex objects as follows:<b style='mso-bidi-font-weight:
+		normal'><u></u></b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>             '( #(1 2 3) . (1 . 2) )</b></p>
+		<p class=MsoBodyText>In the preceding example, the car contains a
+		reference to the Vector object #(1 2 3), and the cdr contains a reference to
+		the Pair value '(1 . 2). Pairs may refer to other Pairs which may refer to
+		other Pairs, ad infinitum., and that is how Lists can be constructed.<b style='mso-bidi-font-weight:normal'><u></u></b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Visual Basic Comparison</H4></FONT></P>
+          <p>The Pair and List constructs do not have a Visual Basic equivalent.   Visual Basic is not suitable for List processing applications.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>Pair</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Pair object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Pair_append_011.html">Example_Pair_append_011</A></td>
+<td><A HREF="Example_Pair_apply_009.html">Example_Pair_apply_009</A></td>
+<td><A HREF="Example_Pair_apply_010.html">Example_Pair_apply_010</A></td>
+<td><A HREF="Example_Pair_associate_001.html">Example_Pair_associate_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_car_001.html">Example_Pair_car_001</A></td>
+<td><A HREF="Example_Pair_compareEQ_019.html">Example_Pair_compareEQ_019</A></td>
+<td><A HREF="Example_Pair_compareGE_019.html">Example_Pair_compareGE_019</A></td>
+<td><A HREF="Example_Pair_compareGT_019.html">Example_Pair_compareGT_019</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_compareLE_019.html">Example_Pair_compareLE_019</A></td>
+<td><A HREF="Example_Pair_compareLT_019.html">Example_Pair_compareLT_019</A></td>
+<td><A HREF="Example_Pair_compareNE_019.html">Example_Pair_compareNE_019</A></td>
+<td><A HREF="Example_Pair_compare_019.html">Example_Pair_compare_019</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_comparison_019.html">Example_Pair_comparison_019</A></td>
+<td><A HREF="Example_Pair_cons_001.html">Example_Pair_cons_001</A></td>
+<td><A HREF="Example_Pair_copy_009.html">Example_Pair_copy_009</A></td>
+<td><A HREF="Example_Pair_count_006.html">Example_Pair_count_006</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_isAtom_010.html">Example_Pair_isAtom_010</A></td>
+<td><A HREF="Example_Pair_isEqual_018.html">Example_Pair_isEqual_018</A></td>
+<td><A HREF="Example_Pair_isIdentical_017.html">Example_Pair_isIdentical_017</A></td>
+<td><A HREF="Example_Pair_isInside_009.html">Example_Pair_isInside_009</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_isMember_008.html">Example_Pair_isMember_008</A></td>
+<td><A HREF="Example_Pair_isObject_014.html">Example_Pair_isObject_014</A></td>
+<td><A HREF="Example_Pair_isPair_001.html">Example_Pair_isPair_001</A></td>
+<td><A HREF="Example_Pair_isType_021.html">Example_Pair_isType_021</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_length_014.html">Example_Pair_length_014</A></td>
+<td><A HREF="Example_Pair_map_008.html">Example_Pair_map_008</A></td>
+<td><A HREF="Example_Pair_mapc_008.html">Example_Pair_mapc_008</A></td>
+<td><A HREF="Example_Pair_pair_001.html">Example_Pair_pair_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_setCar_001.html">Example_Pair_setCar_001</A></td>
+<td><A HREF="Example_Pair_sizeof_021.html">Example_Pair_sizeof_021</A></td>
+<td><A HREF="Example_Pair_type_023.html">Example_Pair_type_023</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

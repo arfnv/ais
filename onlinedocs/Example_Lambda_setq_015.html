@@ -1,0 +1,385 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Lambda setq 015</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description>This example shows how the <b>setq</b> function sets the value of the persistent
+                variable of the defined Lambda, <b>foo</b>.
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Define an Lambda containing the persistent variable y,  and the Child Lambda named sum: </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (defun foo(x) 
+						  pvars:(y) 
+                         (defun sum(x) (+ x y))
+                         (setq y x))       </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> #&#60Lambda 123456&#62</Returns></b></td></tr>
+</table><p><Note>Run foo with the argument 99 </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (foo 99)      </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> 99</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref foo.y)     </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> 99</Returns></b></td></tr>
+</table><p><Note>Replaces the value of the persistent variable, y. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq foo.y  44)         </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> #&#60Lambda 234567&#62</Returns></b></td></tr>
+</table><p><Note>The newly set value 44 replaces the old value 99.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref foo.y)        </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> #&#60Lambda 234567&#62</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints>The <b>set</b> function keyword may be used instead of <b>setq</b>.</Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>setq</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_setq_024.html">BitVector setq 024</A></td>
+<td><A HREF="Example_Boolean_setq_016.html">Boolean setq 016</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_setq_017.html">Character setq 017</A></td>
+<td><A HREF="Example_Date_setq_019.html">Date setq 019</A></td>
+<td><A HREF="Example_Dictionary_setq_007.html">Dictionary setq 007</A></td>
+<td><A HREF="Example_Dictionary_setq_009.html">Dictionary setq 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_setq_010.html">Directory setq 010</A></td>
+<td><A HREF="Example_Directory_setq_011.html">Directory setq 011</A></td>
+<td><A HREF="Example_FltVector_setq_019.html">FltVector setq 019</A></td>
+<td><A HREF="Example_IntVector_setq_020.html">IntVector setq 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_setq_015.html">Lambda setq 015</A></td>
+<td><A HREF="Example_List_setq_025.html">List setq 025</A></td>
+<td><A HREF="Example_List_setq_026.html">List setq 026</A></td>
+<td><A HREF="Example_Matrix_setq_014.html">Matrix setq 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_setq_021.html">NumVector setq 021</A></td>
+<td><A HREF="Example_Number_setq_018.html">Number setq 018</A></td>
+<td><A HREF="Example_ObjVector_setq_022.html">ObjVector setq 022</A></td>
+<td><A HREF="Example_ObjectRepository_setq_027.html">ObjectRepository setq 027</A></td>
+</tr><tr>
+<td><A HREF="Example_PcodeVector_setq_023.html">PcodeVector setq 023</A></td>
+<td><A HREF="Example_ShortVector_setq_021.html">ShortVector setq 021</A></td>
+<td><A HREF="Example_String_setq_001.html">String setq 001</A></td>
+<td><A HREF="Example_Structure_setq_003.html">Structure setq 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setq_004.html">Structure setq 004</A></td>
+<td><A HREF="Example_Structure_setq_005.html">Structure setq 005</A></td>
+<td><A HREF="Example_Structure_setq_006.html">Structure setq 006</A></td>
+<td><A HREF="Example_Symbol_setq_001.html">Symbol setq 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_setq_002.html">Symbol setq 002</A></td>
+<td><A HREF="Example_Vector_setq_012.html">Vector setq 012</A></td>
+<td><A HREF="Example_Vector_setq_013.html">Vector setq 013</A></td>
+<td><A HREF="Example_Void_setq_015.html">Void setq 015</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_setq_Builtin.html">setq</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_new_Builtin.html">new(Builtin)</A></td>
+<td><A HREF="Function_define_Builtin.html">define(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Lambda.html">Lambda</A></td>
+<td><A HREF="Text.html">Text</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_ref_027.html">BitVector ref 027</A></td>
+<td><A HREF="Example_BitVector_vectorFill_007.html">BitVector vectorFill 007</A></td>
+<td><A HREF="Example_Boolean_boolean_001.html">Boolean boolean 001</A></td>
+<td><A HREF="Example_Boolean_setq_016.html">Boolean setq 016</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isCharAlphabetic_003.html">ByteVector isCharAlphabetic 003</A></td>
+<td><A HREF="Example_ByteVector_isCharAlphanumeric_003.html">ByteVector isCharAlphanumeric 003</A></td>
+<td><A HREF="Example_ByteVector_isCharLowercase_003.html">ByteVector isCharLowercase 003</A></td>
+<td><A HREF="Example_ByteVector_isCharName_003.html">ByteVector isCharName 003</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isCharNumeric__003.html">ByteVector isCharNumeric  003</A></td>
+<td><A HREF="Example_ByteVector_isCharUppercase_003.html">ByteVector isCharUppercase 003</A></td>
+<td><A HREF="Example_ByteVector_isCharWhitespace_003.html">ByteVector isCharWhitespace 003</A></td>
+<td><A HREF="Example_Character_setq_017.html">Character setq 017</A></td>
+</tr><tr>
+<td><A HREF="Example_Context_debug_001.html">Context debug 001</A></td>
+<td><A HREF="Example_Context_debugBrowsableProcs_001.html">Context debugBrowsableProcs 001</A></td>
+<td><A HREF="Example_Context_disassemble_001.html">Context disassemble 001</A></td>
+<td><A HREF="Example_Context_globalBinding_001.html">Context globalBinding 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Context_inspect_001.html">Context inspect 001</A></td>
+<td><A HREF="Example_Date_hour_001.html">Date hour 001</A></td>
+<td><A HREF="Example_Date_minute_001.html">Date minute 001</A></td>
+<td><A HREF="Example_Date_month_001.html">Date month 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_second_001.html">Date second 001</A></td>
+<td><A HREF="Example_Date_setq_019.html">Date setq 019</A></td>
+<td><A HREF="Example_Date_time_001.html">Date time 001</A></td>
+<td><A HREF="Example_Date_time_002.html">Date time 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_year_001.html">Date year 001</A></td>
+<td><A HREF="Example_Dictionary_ref_007.html">Dictionary ref 007</A></td>
+<td><A HREF="Example_Dictionary_ref_008.html">Dictionary ref 008</A></td>
+<td><A HREF="Example_Dictionary_ref_009.html">Dictionary ref 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_refAttributes_002.html">Dictionary refAttributes 002</A></td>
+<td><A HREF="Example_Dictionary_refValues_002.html">Dictionary refValues 002</A></td>
+<td><A HREF="Example_Dictionary_setq_009.html">Dictionary setq 009</A></td>
+<td><A HREF="Example_Directory_refAttributes_003.html">Directory refAttributes 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_refValues_003.html">Directory refValues 003</A></td>
+<td><A HREF="Example_Directory_setq_011.html">Directory setq 011</A></td>
+<td><A HREF="Example_FltVector_ref_022.html">FltVector ref 022</A></td>
+<td><A HREF="Example_FltVector_vectorFill_003.html">FltVector vectorFill 003</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_ref_023.html">IntVector ref 023</A></td>
+<td><A HREF="Example_IntVector_vectorFill_004.html">IntVector vectorFill 004</A></td>
+<td><A HREF="Example_Lambda_argCount_001.html">Lambda argCount 001</A></td>
+<td><A HREF="Example_Lambda_argFetch_001.html">Lambda argFetch 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_balance_001.html">Lambda balance 001</A></td>
+<td><A HREF="Example_Lambda_callcc_001.html">Lambda callcc 001</A></td>
+<td><A HREF="Example_Lambda_compare_008.html">Lambda compare 008</A></td>
+<td><A HREF="Example_Lambda_compareEQ_008.html">Lambda compareEQ 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_compareGE_008.html">Lambda compareGE 008</A></td>
+<td><A HREF="Example_Lambda_compareGT_008.html">Lambda compareGT 008</A></td>
+<td><A HREF="Example_Lambda_compareLT_008.html">Lambda compareLT 008</A></td>
+<td><A HREF="Example_Lambda_compareNE_004.html">Lambda compareNE 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_compile_001.html">Lambda compile 001</A></td>
+<td><A HREF="Example_Lambda_copy_008.html">Lambda copy 008</A></td>
+<td><A HREF="Example_Lambda_debug_001.html">Lambda debug 001</A></td>
+<td><A HREF="Example_Lambda_debugBrowsableProcs_001.html">Lambda debugBrowsableProcs 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_defchild_001.html">Lambda defchild 001</A></td>
+<td><A HREF="Example_Lambda_define_001.html">Lambda define 001</A></td>
+<td><A HREF="Example_Lambda_define(macro)_001.html">Lambda define(macro) 001</A></td>
+<td><A HREF="Example_Lambda_defmacro_001.html">Lambda defmacro 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_defmacro_002.html">Lambda defmacro 002</A></td>
+<td><A HREF="Example_Lambda_deforphan_001.html">Lambda deforphan 001</A></td>
+<td><A HREF="Example_Lambda_defriend_001.html">Lambda defriend 001</A></td>
+<td><A HREF="Example_Lambda_defun_001.html">Lambda defun 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_defun_002.html">Lambda defun 002</A></td>
+<td><A HREF="Example_Lambda_disassemble_001.html">Lambda disassemble 001</A></td>
+<td><A HREF="Example_Lambda_eval_001.html">Lambda eval 001</A></td>
+<td><A HREF="Example_Lambda_exportTab_001.html">Lambda exportTab 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_globalBinding_001.html">Lambda globalBinding 001</A></td>
+<td><A HREF="Example_Lambda_importTab_001.html">Lambda importTab 001</A></td>
+<td><A HREF="Example_Lambda_inspect_001.html">Lambda inspect 001</A></td>
+<td><A HREF="Example_Lambda_isLambda_001.html">Lambda isLambda 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_lambda_001.html">Lambda lambda 001</A></td>
+<td><A HREF="Example_Lambda_makeLambda_001.html">Lambda makeLambda 001</A></td>
+<td><A HREF="Example_Lambda_myself_001.html">Lambda myself 001</A></td>
+<td><A HREF="Example_Lambda_new_001.html">Lambda new 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_new_002.html">Lambda new 002</A></td>
+<td><A HREF="Example_Lambda_new_003.html">Lambda new 003</A></td>
+<td><A HREF="Example_Lambda_onError_001.html">Lambda onError 001</A></td>
+<td><A HREF="Example_Lambda_ref_017.html">Lambda ref 017</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_setq_015.html">Lambda setq 015</A></td>
+<td><A HREF="Example_Lambda_type_011.html">Lambda type 011</A></td>
+<td><A HREF="Example_Matrix_ref_015.html">Matrix ref 015</A></td>
+<td><A HREF="Example_Matrix_ref_016.html">Matrix ref 016</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_setq_014.html">Matrix setq 014</A></td>
+<td><A HREF="Example_Matrix_vectorFill_002.html">Matrix vectorFill 002</A></td>
+<td><A HREF="Example_NumMatrix_ref_035.html">NumMatrix ref 035</A></td>
+<td><A HREF="Example_NumMatrix_vectorFill_008.html">NumMatrix vectorFill 008</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_ref_024.html">NumVector ref 024</A></td>
+<td><A HREF="Example_NumVector_vectorFill_005.html">NumVector vectorFill 005</A></td>
+<td><A HREF="Example_Number_setq_018.html">Number setq 018</A></td>
+<td><A HREF="Example_ObjVector_ref_025.html">ObjVector ref 025</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_vectorFill_006.html">ObjVector vectorFill 006</A></td>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">ObjectRepository detachLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">ObjectRepository refLibrarian 001</A></td>
+<td><A HREF="Example_PcodeVector_ref_026.html">PcodeVector ref 026</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_ref_024.html">ShortVector ref 024</A></td>
+<td><A HREF="Example_ShortVector_vectorFill_005.html">ShortVector vectorFill 005</A></td>
+<td><A HREF="Example_String_clean_001.html">String clean 001</A></td>
+<td><A HREF="Example_String_code_001.html">String code 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_downcase_001.html">String downcase 001</A></td>
+<td><A HREF="Example_String_left_001.html">String left 001</A></td>
+<td><A HREF="Example_String_length_001.html">String length 001</A></td>
+<td><A HREF="Example_String_length_002.html">String length 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_mid_001.html">String mid 001</A></td>
+<td><A HREF="Example_String_new_001.html">String new 001</A></td>
+<td><A HREF="Example_String_ref_001.html">String ref 001</A></td>
+<td><A HREF="Example_String_ref_002.html">String ref 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_replace_001.html">String replace 001</A></td>
+<td><A HREF="Example_String_rept_001.html">String rept 001</A></td>
+<td><A HREF="Example_String_right_001.html">String right 001</A></td>
+<td><A HREF="Example_String_stringFill_001.html">String stringFill 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_substitute_001.html">String substitute 001</A></td>
+<td><A HREF="Example_String_substitute_002.html">String substitute 002</A></td>
+<td><A HREF="Example_String_substring_001.html">String substring 001</A></td>
+<td><A HREF="Example_String_substring_002.html">String substring 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_text_001.html">String text 001</A></td>
+<td><A HREF="Example_String_trim_001.html">String trim 001</A></td>
+<td><A HREF="Example_String_upcase_001.html">String upcase 001</A></td>
+<td><A HREF="Example_String_upcase_002.html">String upcase 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_upcase_003.html">String upcase 003</A></td>
+<td><A HREF="Example_Structure_ref_006.html">Structure ref 006</A></td>
+<td><A HREF="Example_Structure_refAttributes_001.html">Structure refAttributes 001</A></td>
+<td><A HREF="Example_Structure_refValues_001.html">Structure refValues 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharAlphabetic_002.html">Symbol isCharAlphabetic 002</A></td>
+<td><A HREF="Example_Symbol_isCharAlphanumeric_002.html">Symbol isCharAlphanumeric 002</A></td>
+<td><A HREF="Example_Symbol_isCharLowercase_002.html">Symbol isCharLowercase 002</A></td>
+<td><A HREF="Example_Symbol_isCharUppercase_002.html">Symbol isCharUppercase 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharWhitespace__002.html">Symbol isCharWhitespace  002</A></td>
+<td><A HREF="Example_Symbol_length_003.html">Symbol length 003</A></td>
+<td><A HREF="Example_Vector_ref_013.html">Vector ref 013</A></td>
+<td><A HREF="Example_Vector_ref_014.html">Vector ref 014</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_refAttributes_004.html">Vector refAttributes 004</A></td>
+<td><A HREF="Example_Vector_refValues_004.html">Vector refValues 004</A></td>
+<td><A HREF="Example_Vector_setq_012.html">Vector setq 012</A></td>
+<td><A HREF="Example_Vector_setq_013.html">Vector setq 013</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_vectorFill_001.html">Vector vectorFill 001</A></td>
+<td><A HREF="Example_Void_ref_017.html">Void ref 017</A></td>
+<td><A HREF="Example_Void_setq_015.html">Void setq 015</A></td>
+<td><A HREF="Example_substringFill_001.html">substringFill 001</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,571 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Class mainWindow</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SaboutQt"><FONT SIZE=2>aboutQt</font></a></li><li><a href="#SaddTab"><FONT SIZE=2>addTab</font></a></li><li><a href="#SaddMenu"><FONT SIZE=2>addMenu</font></a></li><li><a href="#Scount"><FONT SIZE=2>count</font></a></li><li><a href="#SgetAis"><FONT SIZE=2>getAis</font></a></li><li><a href="#SgetClipboardText"><FONT SIZE=2>getClipboardText</font></a></li><li><a href="#SgetCurrentIndex"><FONT SIZE=2>getCurrentIndex</font></a></li><li><a href="#SinsertTab"><FONT SIZE=2>insertTab</font></a></li><li><a href="#Smaximize"><FONT SIZE=2>maximize</font></a></li><li><a href="#Sminimize"><FONT SIZE=2>minimize</font></a></li><li><a href="#SremoveTab"><FONT SIZE=2>removeTab</font></a></li><li><a href="#SsetCurrentIndex"><FONT SIZE=2>setCurrentIndex</font></a></li><li><a href="#SsetClipboardText"><FONT SIZE=2>setClipboardText</font></a></li><li><a href="#SsetTitle"><FONT SIZE=2>setTitle</font></a></li><li><a href="#SshowMsgBox"><FONT SIZE=2>showMsgBox</font></a></li><li><a href="#SshowOpenFileDialog"><FONT SIZE=2>showOpenFileDialog</font></a></li><li><a href="#SshowSaveFileDialog"><FONT SIZE=2>showSaveFileDialog</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+        <div class="h2section" id="Overview">
+
+        <p>The RAD <b>mainWindow</b> class inherits from the QMainWindow class and is the principal
+        tool for AIS Lisp to surface a graphic user interface (GUI). 
+        Opening and showing the mainWindow object causes the AIS Lisp .exe to move from the
+        Background Processes list to the Apps list in the Windows Task Manager.
+        The mainWindow is one of the key words accepted by the <b>qt</b> function.
+        There can be only one mainWindow object.
+        </p>
+
+        <p>Instantiating and showing the mainWindow object paints a GUI background containing 
+        <ul>
+          <li>a title bar</li>
+          <li>a horizontal menu bar</li>
+          <li>a horizontal tab bar</li>
+        </ul> 
+        The functions surfaced with the mainWindow object allow the AIS Lisp programmer to manage the various features and services available via the mainWindow object.
+        </p>
+
+        <p>&nbsp;</p>
+        <h3>Title Bar</h3>
+
+        <p>The <b>Title Bar</b> appears along the top of the application main window GUI and contains the .exe icon followed by whatever contents are specified
+        by the AIS Lisp programmer.</p>
+
+        <p>&nbsp;</p>
+        <h3>Horizontal Menu Bar</h3>
+
+        <p>The <b>Horizontal Menu Bar</b> appears along the top of the application main window GUI just below the Title Bar.
+        It contains the drop down menus specified by the AIS Lisp programmer.</p>
+
+        <p>&nbsp;</p>
+        <h3>Horizontal Tab Bar</h3>
+
+        <p>The <b>Horizontal Tab Bar</b> appears along the top of the application main window GUI just below the Horizontal Menu Bar.
+        It contains the tab panes specified by the AIS Lisp programmer.</p>
+
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaboutQt"></A>aboutQt</H2></P>        
+        <div class="h2section" id="aboutQt">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>aboutQt</b> function displays the contents of the special QT about message box.
+        The mainWindow object must be showing for the aboutQt message box to work properly.
+        The aboutQt function returns control when the GUI user presses the OK button on the message box.
+        The contents of the message box are provided by QT and contain general information about the current release of QT.
+        To display the current properties of the main window, use the <b>maximize</b> function.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: aboutQt:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>Returns</b></td><td>Always returns 0.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt mainWindow: setTitle: (append "My QT Message Box Demo."))<br>
+        (qt mainWindow: maximize:) ;; Display the main window.<br>
+        (qt mainWindow: aboutQt:) ;; Display the standard QT message box<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddTab"></A>addTab</H2></P>        
+        <div class="h2section" id="addTab">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>addTab</b> function adds a tab to the right on the horizontal tab bar of the main window.
+        The tab must have a title, a GUI object descendant of RadWidget as its contents, and a tab manger Lambda to handle tab events properly.
+        The aboutQt function returns control when the GUI user presses the OK button on the message box.
+        The contents of the new tab are provided by radWidgetPtr argument, which muist be the returned value from a previous (qt new: RadWidget: ...) function call.
+        The tabManager Lambda must provide the proper management of tab events.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq tabIndex (qt mainWindow: addTab: radWidgetPtr title tabManager))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>radWidgetPtr</b></td><td>A pointer to ANY QT GUI object with RadWidget as an ancestor.</td></tr>
+        <tr><td><b>title</b></td><td>The text title to appear on the tab.</td></tr>
+        <tr><td><b>tabManager</b></td><td>The Lambda tab manger function which must provide the proper behavior for tab events.</td></tr>
+        <tr><td><b>tabIndex</b></td><td>Always returns the index of the tab on the main window horizontal tab bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddMenu"></A>addMenu</H2></P>        
+        <div class="h2section" id="addMenu">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>addMenu</b> function adds a manu to the right on the horizontal menu bar of the main window.
+        The menu must have a title which is displayed on the main window horizontal menu bar.
+        The returned main menu object pointer can be used to add vertical menu items beneath the main menu on the horizontal menu bar.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq radMainMenuPtr (qt mainWindow: addMenu: title))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>The text title to appear on the menu.</td></tr>
+        <tr><td><b>radMainMenuPtr</b></td><td>Always returns a pointer to the menu object on the main window horizontal menu bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Menu Demo.")) ;; Set the main window title<br>
+        (setq radMainMenuPtr (qt mainWindow: addMenu: "Help")) ;; Add a new tab to the main window horizontal menu bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scount"></A>count</H2></P>        
+        <div class="h2section" id="count">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>count</b> function returns the number of tabs on the horizontal tab bar of the main window.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq tabCount (qt mainWindow: count:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabCount</b></td><td>Always returns the count of tabs on the main window horizontal tab bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (setq tabCount (qt mainWindow: count:)) ;; Return the count of tabs<br>
+        (qt radTextEditPtr setText: (string tabCount)) ;; Display the main window<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetAis"></A>getAis</H2></P>        
+        <div class="h2section" id="getAis">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>getAis</b> function returns and sets the global _ais Structure.
+        The global _ais Structure contains important information about the current .exe context including the following elements.
+        </p>
+
+        <ul>
+        <li><b>ContextName</b>&nbsp;&nbsp;&nbsp;The name of the current context.</li>
+        <li><b>Heap</b>&nbsp;&nbsp;&nbsp;The size in bytes of the current heap space allocated.</li>
+        <li><b>Objects</b>&nbsp;&nbsp;&nbsp;The naximum number of objects allocated.</li>
+        <li><b>CStack</b>&nbsp;&nbsp;&nbsp;The size in bytes of the current C stack space allocated.</li>
+        <li><b>MaxRecursions</b>&nbsp;&nbsp;&nbsp;The maximum number of Lisp recursions allocated.</li>
+        <li><b>ExeFileName</b>&nbsp;&nbsp;&nbsp;The path and file name of the executable currently running.</li>
+        <li><b>ExePath</b>&nbsp;&nbsp;&nbsp;The path name of the folder containing the executable currently running.</li>
+        <li><b>LogFileName</b>&nbsp;&nbsp;&nbsp;The path and file name of the AIS writeln log file.</li>
+        <li><b>ScriptFileName</b>&nbsp;&nbsp;&nbsp;The path and file name of the start up script file.</li>
+        <li><b>ScriptPath</b>&nbsp;&nbsp;&nbsp;The path name of the folder containing the start up script file.</li>
+        <li><b>MySQLDataDir</b>&nbsp;&nbsp;&nbsp;The path name of the folder containing the MySQL directory.</li>
+        <li><b>MachineName</b>&nbsp;&nbsp;&nbsp;The name of the current machine on the Internet.</li>
+        <li><b>HostIP</b>&nbsp;&nbsp;&nbsp;The IP address of the current machine on the Internet.</li>
+        <li><b>AisHelpURL</b>&nbsp;&nbsp;&nbsp;The URL of the AIS Help HTML directory index on the Internet.</li>
+        <li><b>QtHelpURL</b>&nbsp;&nbsp;&nbsp;The URL of the Qt Help HTML directory index on the Internet.</li>
+        <li><b>MySQLHelpURL</b>&nbsp;&nbsp;&nbsp;The URL of the MySQL Help HTML directory index on the Internet.</li>
+        <li><b>TcpPort</b>&nbsp;&nbsp;&nbsp;The local Tcp Port address on the current machine on the Internet.</li>
+        <li><b>OS</b>&nbsp;&nbsp;&nbsp;The name of the host operating system currently executing.</li>
+        </ul>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq _ais (qt mainWindow: getAis:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>_ais</b></td><td>Always returns and sets the global _ais Structure.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: getAis:) ;; Set the global _ais Structure<br>
+        (qt radTextEditPtr setText: (string _ais true)) ;; Display the _ais Structure contents in the main window<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetClipboardText"></A>getClipboardText</H2></P>        
+        <div class="h2section" id="getClipboardText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>getClipboardText</b> function returns the text currently stored in the main window clipboard.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq text (qt mainWindow: getClipboardText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>text</b></td><td>Always returns the text currently stored in the main window clipboard.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (setq text (qt mainWindow: getClipboardText:)) ;; Set the clipboard text<br>
+        (qt radTextEditPtr setText: text) ;; Display the clipboard contents in the main window<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetCurrentIndex"></A>getCurrentIndex</H2></P>        
+        <div class="h2section" id="getCurrentIndex">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>getCurrentIndex</b> function returns the index of the currently selected tab in the main window horizontal tab bar.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq tabIndex (qt mainWindow: getCurrentIndex:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td>Always returns the the index of the currently selected tab in the main window horizontal tab bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (setq tabIndex (qt mainWindow: getCurrentIndex:)) ;; Set the index of the currently selected tab<br>
+        (qt radTextEditPtr setText: (string tabIndex true)) ;; Display the index of the currently selected tab<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SinsertTab"></A>insertTab</H2></P>        
+        <div class="h2section" id="insertTab">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>insertTab</b> function inserts a new tab on the main window horizontal tab bar at the specified tab index.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq tabIndex (qt mainWindow: insertTab: tabIndex radWidgetPtr title tabManager))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td>Always returns the the index of the newly inserted tab in the main window horizontal tab bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt radTextEditPtr setText: (string tabIndex true)) ;; Display the index of the newly inserteded tab<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smaximize"></A>maximize</H2></P>        
+        <div class="h2section" id="maximize">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>maximize</b> function displays the main window in its full screen format.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: maximize:))</blockquote></b></p>
+        <p><b><blockquote>(qt mainWindow: maximize: title))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>(Optional) title to be set into the title bar of the main window.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt radTextEditPtr setText: (string tabIndex true)) ;; Display the index of the newly inserteded tab<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sminimize"></A>minimize</H2></P>        
+        <div class="h2section" id="minimize">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>minimize</b> function displays the main window in its minimal format for the host operating system.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: minimize:))</blockquote></b></p>
+        <p><b><blockquote>(qt mainWindow: minimize: title))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>(Optional) title to be set into the title bar of the main window.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt radTextEditPtr setText: (string tabIndex true)) ;; Display the index of the newly inserteded tab<br>
+        (qt mainWindow: minimize:) ;; Display the main window in its most minimal format for the host operating system<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SremoveTab"></A>removeTab</H2></P>        
+        <div class="h2section" id="removeTab">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>removeTab</b> function removes the specified tab fromthe main window horizontal tab bar.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: removeTab: tabIndex)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td>The index of the tab to be removed from the main window horizontal tab bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt radTextEditPtr setText: (string tabIndex true)) ;; Display the index of the newly inserteded tab<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (sleep 5000.0) ;; Wait for 5 seconds
+        (qt mainWindow: removeTab:) ;; Remove the edit tab from the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetCurrentIndex"></A>setCurrentIndex</H2></P>        
+        <div class="h2section" id="setCurrentIndex">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>setCurrentIndex</b> function sets the main window horizontal tab bar to focus on specified tab.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: setCurrentIndex: tabIndex)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td>The index of the tab to become the focused tab on the main window horizontal tab bar.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtrE (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtrE "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt radTextEditPtrE setText: "Edit Tab Focused") ;; Display on the newly inserteded tab<br>
+        (setq radTextEditPtrH (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 1 radTextEditPtrH "Help" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt radTextEditPtrH setText: "Help Tab Focused") ;; Display on the newly inserteded tab<br>
+        (qt mainWindow: setCurrentIndex: 0) ;; Focus on the edit tab in the main window<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (sleep 5000.0) ;; Wait for 5 seconds
+        (qt mainWindow: setCurrentIndex: 1) ;; Focus on the edit tab in the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetClipboardText"></A>setClipboardText</H2></P>        
+        <div class="h2section" id="setClipboardText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>setClipboardText</b> function sets the main window clipboard text to the specified value.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: setClipboardText: theText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>theText</b></td><td>The text value to be set in the main window clipboard.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: setClipboardText: "I set this text in the clipboard") ;; Set text into the main window clipboard<br>
+        (setq theText (qt mainWindow: getClipboardText:)) ;; Get the contents of the main window clipboard<br>
+        (qt radTextEditPtr setText: theText) ;; Display on the newly inserteded tab<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTitle"></A>setTitle</H2></P>        
+        <div class="h2section" id="setTitle">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>setTitle</b> function sets the contents of the main window title bar (<i>but does not display the title bar</i>).
+        The AIS Lisp programmer has full control over the contents of the .exe title bar.
+        To display the title bar and all other current properties of the main window, use the <b>maximize</b> function.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt mainWindow: setTitle: textData)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>textData</b></td><td>The text data to appear in the title bar.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt mainWindow: setTitle: (append "My Application with [" (inspect) "] bytes of free heap memory."))<br>
+        (qt mainWindow: maximize:) ;; Display the main window.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SshowMsgBox"></A>showMsgBox</H2></P>        
+        <div class="h2section" id="showMsgBox">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>showMsgBox</b> function displays a standard message box and returns the button pressed.
+        Several styles of standard message box may be shown.
+        The standard message box may contain one or more buttons.
+        If more than one button is displayed, the button pressed will be returned.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq index (qt mainWindow: showMsgBox: style title message buttons))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>style</b></td><td>The style of standard message box to display.<br>
+                                     The style options are - information: question: warning: critical:</td></tr>
+        <tr><td><b>title</b></td><td>The text title of the standard message box.</td></tr>
+        <tr><td><b>message</b></td><td>The message to be displayed in the standard message box.<br>
+                                       May be RichText with basic HTML tags, etc.</td></tr>
+        <tr><td><b>buttons</b></td><td>The buttons to be displayed in the standard message box.<br>
+                                       The button options are - Ok: Yes: No: YesNo:<br>
+                                       YesNo displays two buttons and returns which button the user pressed (0=No, 1=Yes)</td></tr>
+        <tr><td><b>index</b></td><td>Always returns the button pressed.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (qt mainWindow: setTitle: (append "My Application with [" (inspect) "] bytes of free heap memory."))<br>
+        (qt mainWindow: maximize:) ;; Display the main window.<br>
+        (setq index (qt mainWindow: showMsgBox: critical: "Warning" "Alien attack! Do you wish to resist?" YesNo:)) ;; Display a standard message box.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SshowOpenFileDialog"></A>showOpenFileDialog</H2></P>        
+        <div class="h2section" id="showOpenFileDialog">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>showOpenFileDialog</b> function displays a standard Open File dialog box and returns the file and path name selected.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq pathFileName (qt mainWindow: showOpenFileDialog: title pathName wildCards))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>The text title of the standard open file dialog box.</td></tr>
+        <tr><td><b>pathName</b></td><td>The path name to be used for browsing.</td></tr>
+        <tr><td><b>wildCards</b></td><td>The wild cards to be used to limit browing choices.</td></tr>
+        <tr><td><b>pathFileName</b></td><td>Always returns the path and file name selected.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (setq pathFileName (qt mainWindow: showOpenFileDialog: "Select a file" "" "*.sl")) ;; Display a standard open file dialog box.<br>
+        (qt radTextEditPtr setText: pathFileName) ;; Display on the newly inserteded tab<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SshowSaveFileDialog"></A>showSaveFileDialog</H2></P>        
+        <div class="h2section" id="showSaveFileDialog">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The mainWindow <b>showOpenFileDialog</b> function displays a standard Save File dialog box and returns the file and path name selected.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq pathFileName (qt mainWindow: showSaveFileDialog: title pathName wildCards))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td>The text title of the standard save file dialog box.</td></tr>
+        <tr><td><b>pathName</b></td><td>The path name to be used for browsing.</td></tr>
+        <tr><td><b>wildCards</b></td><td>The wild cards to be used to limit browing choices.</td></tr>
+        <tr><td><b>pathFileName</b></td><td>Always returns the path and file name selected.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: insertTab: 0 radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (setq pathFileName (qt mainWindow: showSaveFileDialog: "Select a file" "" "*.sl")) ;; Display a standard open file dialog box.<br>
+        (qt radTextEditPtr setText: pathFileName) ;; Display on the newly inserteded tab<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

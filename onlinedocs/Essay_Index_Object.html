@@ -1,0 +1,388 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Index Object</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#Sclear"><FONT SIZE=2>clear</font></a></li><li><a href="#Sdelete"><FONT SIZE=2>delete</font></a></li><li><a href="#Sdrop"><FONT SIZE=2>drop</font></a></li><li><a href="#SisMember"><FONT SIZE=2>isMember</font></a></li><li><a href="#Slength;"><FONT SIZE=2>length;</font></a></li><li><a href="#Smember"><FONT SIZE=2>member</font></a></li><li><a href="#Smembers"><FONT SIZE=2>members</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#SrefAttributes"><FONT SIZE=2>refAttributes</font></a></li><li><a href="#SrefValues"><FONT SIZE=2>refValues</font></a></li><li><a href="#Supdate"><FONT SIZE=2>update</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>		
+		    <div class="h2section" id="Introduction">
+		<P>Index objects are created by the index Lambda and are persistent objects
+		residing in object repositories. Index objects are similar to directory objects
+		with extensions for unique and non-unique key insertion and retreival. An index
+		object contains an arbitrary number of bindings. An index object can manage a
+		unique index or non-unique index. Values can be referenced by key, a single
+		index or two indices.Like a directory object, keys in an index object can be of
+		any type. Values can also be of any type unless the user specifies that values
+		will always be numeric.</P>
+		<P>Non-unique indices keep a vector of values for each unique key. When you
+		reference a key in a non-unqiue index you get back a vector of values. Each of
+		the values in the returned vector is a value that was previously associated
+		with the key in the index.When you reference a key in a unique index you get
+		back a single value. Remember that vlaues may themselves be of any type
+		(including a vector).</P>
+		<P>Index objects are instances of the index Lambda. Include the index.sl Lambda
+		in a cabinet to use index objects. Use the (index.new ...) function to create
+		new index objects or open existing index objects. All other index object
+		functions are performed on the index object returned from a call to new.</P>
+		Using the Index Object <P>To use index objects you must first have an open
+		repository object in which to store the index. See the documentation on object
+		repositories to learn more about creating and managing object repositories.
+		Consider the code below: </P>   
+		<blockquote>
+		<PRE>;;Create a new unique index object
+		(setq myIndex (index.new myIndex:  myrepo create: unique:))
+		(setq myIndex[&quot;teddy&quot;] 10)
+		(writeln myIndex[&quot;teddy&quot;]); &gt;&gt; 10
+		(setq myIndex[&quot;teddybear&quot;] 20)
+		(writeln (myIndex.Pv.refValues)); &gt;&gt; #(10 20)
+		(writeln myIndex[0 1]); &gt;&gt; 10
+		(writeln myIndex[0 0]); &gt;&gt; &quot;teddy&quot;
+		(writlen (myIndex.Pv.refAttributes)); &gt;&gt; #(teddy teddybear)
+		(writeln (myIndex.Pv.member &quot;teddy&quot;)); &gt;&gt; 0
+		(writeln (myIndex.Pv.refValues &quot;teddy&quot;)); &gt;&gt; #(10 20)
+		(writeln (myIndex.Pv.length)); &gt;&gt; 2
+		(writeln (myIndex.Pv.length); &gt; 1
+		
+		(myIndex.close); close the index
+		</PRE>
+		</blockquote>
+		<blockquote>
+		<PRE>;;Create a new non-unique index object
+		(setq myIndex (index.new myIndex: myrepo create:))
+		(setq myIndex[&quot;teddy&quot;] 10)
+		(writeln myIndex[&quot;teddy&quot;]); &gt;&gt; #(10)
+		(setq myIndex[&quot;teddy&quot;] 20)
+		(writeln myIndex[&quot;teddy&quot;] ; #(10 20)
+		(setq myIndex[&quot;teddybear&quot;] 30)
+		(writeln (myIndex.Pv.refValues)); &gt;&gt; #(10 20 30)
+		(writeln myIndex[0 1]); &gt;&gt; #(10 20)
+		(writeln myIndex[0 0](; &gt;&gt; &quot;teddy&quot;
+		(writlen (myIndex.Pv.refAttributes)); &gt;&gt; #(teddy teddybear)
+		(writeln (myIndex.Pv.member &quot;teddy&quot;)); &gt;&gt; 0
+		(writeln (myIndex.Pv.length)); &gt;&gt; 2
+		
+		(myIndex.close); close the index
+		
+		;;Create a new unique composite key index object
+		(setq myIndex (index.new myIndex: myrepo create: 2))
+		(setq myIndex[#(&quot;teddy&quot; 1)] 10)
+		(writeln myIndex[#(&quot;teddy&quot; 1)]); &gt;&gt; #(10)
+		(setq myIndex[#(&quot;teddy&quot; 2)] 20)
+		(writeln myIndex[#(&quot;teddy&quot;)] ; #(10 20)
+		(setq myIndex[#(&quot;teddybear&quot; 1)] 30)
+		(writeln (myIndex.Pv.refValues)); &gt;&gt; #(10 20 30)
+		(writeln myIndex[0 1]); &gt;&gt; #(10 20)
+		(writeln myIndex[0 0](; &gt;&gt; #(&quot;teddy&quot; 1)
+		(writlen (myIndex.Pv.refAttributes)); &gt;&gt; #(#(&quot;teddy&quot; 1) #(&quot;teddy&quot; 2) #(&quot;teddybear&quot; 1))
+		(writeln (myIndex.Pv.length)); &gt;&gt; 3		
+		(myIndex.close); close the index
+		   </PRE> 
+		   </blockquote>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sclear"></A>clear</H2></P>		
+		    <div class="h2section" id="clear">
+		<P>Use the indexobject.Pv.clear method to delete all keys from the index.<BR>
+		Syntax: (indexobject.Pv.close )</P>
+		<TABLE>
+		<TR>
+		<TD>Returns</TD>
+		<TD>True</TD>
+		</TR>
+		</TABLE>
+		</DIV>
+		<DIV CLASS="h2section" ID="close">
+		<H2>close</H2>
+		<P>Use the indexobject.Pv.close method to close the index object.<BR>
+		Syntax: (indexobject.Pv.close <I>nosave:</I>)</P>
+		<TABLE>
+		<TR>
+		<TD><I>nosave:</I></TD>
+		<TD>An optional symbol argument spcifying that the index not be
+		saved on close. This option is only meaningful and valid if the index was
+		opened with the memory: options.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>FrameID of saved index</TD>
+		</TR>
+		</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdelete"></A>delete</H2></P>		
+		    <div class="h2section" id="delete">
+		<P>Use the indexobject.Pv.delete method to delete keys and their associated
+		values from an index. Pass the optional <I>value</I> argument to delete a
+		seleced value from a non-unique index. Calling delete on a non-unique index
+		with only a key argument will delete all values associated with that key from
+		the index. Keys with no values associated with them are removed from non-unique
+		indices. The optional value argument should not be passed when delete is called
+		on a unique index. <BR>
+		Syntax: (indexobject.Pv.delete key <I>oldvalue</I></P>
+		<TABLE>
+		<TR>
+		<TD>key</TD>
+		<TD>An argument containing a key value for a single key index or a
+		vector of key component values for a composite key index. Keys can be of any
+		type. </TD>
+		</TR>
+		<TR>
+		<TD><I>oldvalue</I></TD>
+		<TD>An optional argument of any type that contains a value to make
+		selection possible in non-unique indicies. This argument may not be passed when
+		using a unique index.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>Reference to Index object</TD>
+		</TR>
+		</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdrop"></A>drop</H2></P>		
+		<div class="h2section" id="drop">
+		<P>Use the indexobject.Pv.drop method to remove an open index from the
+		repository. <BR>
+		Syntax: (indexobject.Pv.drop )</P>
+		<TABLE>
+		<TR>
+		<TD>Returns</TD>
+		<TD>True</TD>
+		</TR>
+		</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SisMember"></A>isMember</H2></P>		
+		 <div class="h2section" id="isMember">
+		<P>Use the indexobject.Pv.isMember method to determine if a supplied key is in
+		the index.<BR>
+		Syntax: (indexobject.Pv.isMember key )</P>
+		<TABLE>
+		<TR>
+		<TD>key</TD>
+		<TD>An argument containing a key value for a single key index or a
+		vector of key component values for a composite key index. Keys can be of any
+		type. Partial composite keys may be passed and will cause key selection that
+		match the partial key specification.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>True if key found, false if key not found.</TD>
+		</TR>
+		</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Slength;"></A>length;</H2></P>		
+		 <div class="h2section" id="length;">
+		<P>Use the indexobject.Pv.length method to find the number of entries in the
+		index.<BR>
+		Syntax: (indexobject.Pv.length)</P>
+		<TABLE>
+		<TR>
+		<TD>Returns</TD>
+		<TD>Number of key entries in index.</TD>
+		</TR>
+		</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smember"></A>member</H2></P>		
+		<div class="h2section" id="member"> 
+		<P>Use the indexobject.Pv.member method to get the index of the first entry
+		having the supplied key.<BR>
+		Syntax: (indexobject.Pv.member key)</P>
+		<TABLE>
+		<TR>
+		<TD>key</TD>
+		<TD>An argument containing a key value for a single key index or a
+		vector of key component values for a composite key index. Keys can be of any
+		type. Partial composite keys may be passed and will cause key selection that
+		match the partial key specification.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>Returns the index of the first key matching the supplied key.
+		False is returned if no match is found. </TD>
+		</TR>
+		</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smembers"></A>members</H2></P>		
+		    <div class="h2section" id="members">
+		 <P>Use the indexobject.Pv.members method to get a vector of indices for entries
+		having the supplied key or partial key.<BR>
+		Syntax: (indexobject.Pv.members key)</P>
+		<TABLE>
+		<TR>
+		<TD>key</TD>
+		<TD>An argument containing a key value for a single key index or a
+		vector of key component values for a composite key index. Keys can be of any
+		type. Partial composite keys may be passed and will cause key selection that
+		match the partial key specification.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>Vector of indicies to entries matching supplied key. Empty
+		vector is returned if no matches found.</TD>
+		</TR>
+		</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>		
+		    <div class="h2section" id="new">
+			 <P>Use the index.new function to create a new index object. If the specified
+			index already exists in the object repository it will be opened. Pass the
+			create: argument to create a new index.<BR>
+			Syntax: (index.new indexName repository <I>create:</I> <I>numComponents</I>
+			<I>unique:</I> <I>snapshot:</I> <I>memory:</I> <I>numvalues:</I>)<BR>
+			Syntax: (index.new indexFrameID repository <I>create:</I> <I>numComponents</I>
+			<I>unique:</I><I>snapshot:</I> <I>memory:</I><I>numvalues:</I>) <BR>
+			Returns: Index Object</P>
+			<TABLE>
+			<TR>
+			<TD>indexName</TD>
+			<TD>A string or symbol containing the name of the index.</TD>
+			</TR>
+			<TR>
+			<TD>indexFrameID</TD>
+			<TD>A number containing the frameID of the index header record.
+			Pass #void if creating a new index. Your application should store the frameID
+			returned from the indexobject.close method so that you can reopen the index in
+			the future. </TD>
+			</TR>
+			<TR>
+			<TD>repository</TD>
+			<TD>Object reference to object repository in which index is
+			stored.</TD>
+			</TR>
+			<TR>
+			<TD><I>create:</I></TD>
+			<TD>Use when you are creating a new index or when you want to clear
+			the current index and create it anew. Note that you must supply the
+			numComponents value when you supply the create: flag. </TD>
+			</TR>
+			<TR>
+			<TD><I>numComponents</I></TD>
+			<TD>A number specifying the number of components supplied for each
+			key. Pass this value when you have specified create:. The numComponents value
+			allows the index object to distinguish among a key that is a vector and a
+			composite key supplied as a vector of components. This is useful for optimizing
+			various query operations.</TD>
+			</TR>
+			<TR>
+			<TD><I>transLambdas</I></TD>
+			<TD>An optional structure containing transaction Lambdas to use
+			instead of defaults. ie: #{beginTrans: someLambda commitTrans: someLambda
+			rollbackTrans: someLambda}</TD>
+			</TR>
+			<TR>
+			<TD><I>unique:</I></TD>
+			<TD>An optional symbol argument specifying that the index is to be
+			a unique key index. Provide this argument on when first creating an index. It
+			will be stored in the index header record and need not be supplied again.
+			Passing this argument when opening an existing index will yield an error.</TD>
+			</TR>
+			<TR>
+			<TD><I>snapshot:</I></TD>
+			<TD>An optional symbol argument specifying that an existing index
+			should be copied on open. The original index will not be modified.</TD>
+			</TR>
+			<TR>
+			<TD><I>memory:</I></TD>
+			<TD>An optional symbol argument specifying that the entire index
+			should be loaded and processed in memory.</TD>
+			</TR>
+			<TR>
+			<TD><I>numvalues:</I></TD>
+			<TD>An optional symbol argument specifying that only numeric values
+			will be allowed. This option has no effect on the index keys - which can be of
+			any type. This option allows the index Lambda to optimize it's storage
+			structures and run faster. Do not use this option if you want to store values
+			of any type in the index.</TD>
+			</TR>
+			<TR>
+			<TD>Returns</TD>
+			<TD>True</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrefAttributes"></A>refAttributes</H2></P>		
+		    <div class="h2section" id="refAttributes"> 
+		<P>Use the indexobject.Pv.refAttributes method to get a vector containing keys
+		from the index. The optional keys argument allows composite keys partially
+		matching the optional keys argument to be returned.<BR>
+		Syntax: (indexobject.Pv.refAttributes <I>key:</I>)</P>
+		<TABLE>
+		<TR>
+		<TD><I>key:</I></TD>
+		<TD>An optional argument containing a vector of key component
+		values for a composite key index. Keys can be of any type. Partial composite
+		keys may be passed and will return all composite keys that match the partial
+		key specification.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>A vector containing the index keys.</TD>
+		</TR>
+		</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrefValues"></A>refValues</H2></P>		
+		    <div class="h2section" id="refValues">
+		 <P>Use the indexobject.Pv.refValues method to get a vector containing the index
+		values. Pass an optional key value to restrict the range of values returned. 
+		<BR>
+		Syntax: (indexobject.Pv.refValues <I>key</I> )</P>
+		<TABLE>
+		<TR>
+		<TD><I>key</I></TD>
+		<TD>An optional argument containing a key value for a single key
+		index or a vector of key component values for a composite key index. Keys can
+		be of any type. Partial composite keys may be passed and will return all values
+		that match the partial key specification.</TD>
+		</TR>
+		<TR>
+		<TD>Returns</TD>
+		<TD>Vector containing values from index that match the key supplied
+		or all values in index if no key argument was supplied. An empty vector is
+		returned if no matches are found.</TD>
+		</TR>
+		</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Supdate"></A>update</H2></P>		
+		    <div class="h2section" id="update"> 
+			<P>Use the indexobject.Pv.update method update a key/value pair in non-unqiue
+			indicies.<BR>
+			Syntax: (indexobject.Pv.update key oldvalue newvalue)</P>
+			<TABLE>
+			<TR>
+			<TD>key</TD>
+			<TD>An argument containing a key value for a single key index or a
+			vector of key component values for a composite key index.</TD>
+			</TR>
+			<TR>
+			<TD>oldvalue</TD>
+			<TD>A value currently associated with the key in the index.</TD>
+			</TR>
+			<TR>
+			<TD>newvalue</TD>
+			<TD>A value to replace the old value in the index.</TD>
+			</TR>
+			<TR>
+			<TD>Returns</TD>
+			<TD>A reference to the index Lambda.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

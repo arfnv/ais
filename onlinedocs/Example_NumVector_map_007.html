@@ -1,0 +1,268 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example NumVector map 007</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example defines a NumVector and applies the <b>add1</b>
+                 function to each element of the Vector using the  <b>map</b> function.   
+
+
+
+
+                
+
+
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>A Number Vector is defined. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define Scores  #(num| 89.21 90.89 91 ) ) </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60NumVector 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Increments the values by  one.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq  NewScores  (map  add1  Scores))      </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60NumVector 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Displays the resulting Vector.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>  NewScores[0]  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>90.21</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>  NewScores[1]  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>91.89</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>  NewScores[2]  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>92.0</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>map</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_Dictionary_map_002.html">Dictionary map 002</A></td>
+<td><A HREF="Example_Directory_map_003.html">Directory map 003</A></td>
+<td><A HREF="Example_FltVector_map_005.html">FltVector map 005</A></td>
+<td><A HREF="Example_IntVector_map_006.html">IntVector map 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_map_006.html">Matrix map 006</A></td>
+<td><A HREF="Example_Matrix_map_007.html">Matrix map 007</A></td>
+<td><A HREF="Example_NumMatrix_map_010.html">NumMatrix map 010</A></td>
+<td><A HREF="Example_NumVector_map_007.html">NumVector map 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_map_008.html">Pair map 008</A></td>
+<td><A HREF="Example_ShortVector_map_007.html">ShortVector map 007</A></td>
+<td><A HREF="Example_Structure_map_001.html">Structure map 001</A></td>
+<td><A HREF="Example_Vector_map_004.html">Vector map 004</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_map_Builtin.html">map</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_mapc_Builtin.html">mapc(Builtin)</A></td>
+<td><A HREF="Function_new_Builtin.html">new(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="NumVector.html">NumVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_bitToNumberVector_001.html">BitVector bitToNumberVector 001</A></td>
+<td><A HREF="Example_BitVector_inside_007.html">BitVector inside 007</A></td>
+<td><A HREF="Example_NumVector_append_008.html">NumVector append 008</A></td>
+<td><A HREF="Example_NumVector_apply_007.html">NumVector apply 007</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_binaryInsert_006.html">NumVector binaryInsert 006</A></td>
+<td><A HREF="Example_NumVector_binarySearch_007.html">NumVector binarySearch 007</A></td>
+<td><A HREF="Example_NumVector_bitToNumberVector_002.html">NumVector bitToNumberVector 002</A></td>
+<td><A HREF="Example_NumVector_cdr_008.html">NumVector cdr 008</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_compare_016.html">NumVector compare 016</A></td>
+<td><A HREF="Example_NumVector_compareEQ_014.html">NumVector compareEQ 014</A></td>
+<td><A HREF="Example_NumVector_compareGE_014.html">NumVector compareGE 014</A></td>
+<td><A HREF="Example_NumVector_compareGT_014.html">NumVector compareGT 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_compareLE_014.html">NumVector compareLE 014</A></td>
+<td><A HREF="Example_NumVector_compareLT_014.html">NumVector compareLT 014</A></td>
+<td><A HREF="Example_NumVector_compareNE_014.html">NumVector compareNE 014</A></td>
+<td><A HREF="Example_NumVector_comparison_014.html">NumVector comparison 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_copy_008.html">NumVector copy 008</A></td>
+<td><A HREF="Example_NumVector_delete_011.html">NumVector delete 011</A></td>
+<td><A HREF="Example_NumVector_insert_007.html">NumVector insert 007</A></td>
+<td><A HREF="Example_NumVector_inside_006.html">NumVector inside 006</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_isAtom_007.html">NumVector isAtom 007</A></td>
+<td><A HREF="Example_NumVector_isEqual_015.html">NumVector isEqual 015</A></td>
+<td><A HREF="Example_NumVector_isIdentical_014.html">NumVector isIdentical 014</A></td>
+<td><A HREF="Example_NumVector_isNumberVector__001.html">NumVector isNumberVector  001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_isObject_009.html">NumVector isObject 009</A></td>
+<td><A HREF="Example_NumVector_isType_018.html">NumVector isType 018</A></td>
+<td><A HREF="Example_NumVector_length_010.html">NumVector length 010</A></td>
+<td><A HREF="Example_NumVector_map_007.html">NumVector map 007</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_mapc_007.html">NumVector mapc 007</A></td>
+<td><A HREF="Example_NumVector_member_006.html">NumVector member 006</A></td>
+<td><A HREF="Example_NumVector_new_011.html">NumVector new 011</A></td>
+<td><A HREF="Example_NumVector_objectToNumVector_001.html">NumVector objectToNumVector 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_ref_024.html">NumVector ref 024</A></td>
+<td><A HREF="Example_NumVector_remove_006.html">NumVector remove 006</A></td>
+<td><A HREF="Example_NumVector_resize_008.html">NumVector resize 008</A></td>
+<td><A HREF="Example_NumVector_reverse_005.html">NumVector reverse 005</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_setCdr_008.html">NumVector setCdr 008</A></td>
+<td><A HREF="Example_NumVector_setLastCdr_008.html">NumVector setLastCdr 008</A></td>
+<td><A HREF="Example_NumVector_setq_021.html">NumVector setq 021</A></td>
+<td><A HREF="Example_NumVector_sizeof_016.html">NumVector sizeof 016</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_sort_015.html">NumVector sort 015</A></td>
+<td><A HREF="Example_NumVector_svmRegression_001.html">NumVector svmRegression 001</A></td>
+<td><A HREF="Example_NumVector_type_018.html">NumVector type 018</A></td>
+<td><A HREF="Example_NumVector_uniqueInsert_006.html">NumVector uniqueInsert 006</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorBinaryInnerProduct_001.html">NumVector vectorBinaryInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorBipolarInnerProduct_001.html">NumVector vectorBipolarInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorCosineInnerProduct_001.html">NumVector vectorCosineInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorCubeInnerProduct_001.html">NumVector vectorCubeInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorExpInnerProduct_001.html">NumVector vectorExpInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorFill_005.html">NumVector vectorFill 005</A></td>
+<td><A HREF="Example_NumVector_vectorInnerProduct_001.html">NumVector vectorInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorLogInnerProduct_001.html">NumVector vectorLogInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorQuartInnerProduct_001.html">NumVector vectorQuartInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorQuintInnerProduct_001.html">NumVector vectorQuintInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorSigmoidInnerProduct_001.html">NumVector vectorSigmoidInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorSineInnerProduct_001.html">NumVector vectorSineInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorSquareInnerProduct_001.html">NumVector vectorSquareInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorTanInnerProduct_001.html">NumVector vectorTanInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorTanhInnerProduct_001.html">NumVector vectorTanhInnerProduct 001</A></td>
+<td><A HREF="Example_ObjVector_cdr_009.html">ObjVector cdr 009</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_sort_016.html">ObjVector sort 016</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

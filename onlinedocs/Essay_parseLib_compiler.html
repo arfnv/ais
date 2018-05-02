@@ -1,0 +1,1193 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SCompiler Definition Language"><FONT SIZE=2>Compiler Definition Language</font></a></li><li><a href="#SbrowseLib"><FONT SIZE=2>browseLib</font></a></li><li><a href="#STheory Of Operation"><FONT SIZE=2>Theory Of Operation</font></a></li><li><a href="#SparseLib"><FONT SIZE=2>parseLib</font></a></li><li><a href="#S_explanOnOff"><FONT SIZE=2>_explanOnOff</font></a></li><li><a href="#S_verbose "><FONT SIZE=2>_verbose </font></a></li><li><a href="#S_verboseSynIn, _verboseLexIn, _verboseSemIn"><FONT SIZE=2>_verboseSynIn, _verboseLexIn, _verboseSemIn</font></a></li><li><a href="#S_verboseSynCount, _verboseLexCount, _verboseSemCount"><FONT SIZE=2>_verboseSynCount, _verboseLexCount, _verboseSemCount</font></a></li><li><a href="#S_verboseSynCount, _verboseLexCount, _verboseSemCount"><FONT SIZE=2>_verboseSynCount, _verboseLexCount, _verboseSemCount</font></a></li><li><a href="#SFeatures of Generated Compilers"><FONT SIZE=2>Features of Generated Compilers</font></a></li><li><a href="#SAppendix "><FONT SIZE=2>Appendix </font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Overview">
+		<p>This Lambda is a compiler compiler tool in the same general
+		class of tools as yacc. The compiler definition language for this Lambda uses a
+		feature based grammar. Feature based grammars exceed the capabilities of
+		regular expressions and BNF notation grammars. This Lambda is capable of
+		supporting context sensitive compilers, such as those required to parse natural
+		languages.</p>
+		<p>This Lambda converts a compiler definition into a generated
+		Lambda, which is a compiler or translator for the language specified in the
+		compiler definition. The compiler definition language may be described as a
+		&quot;meta language&quot; with which to describe compilers, and is capable of
+		describing, not only the formal syntax of the language to be compiled, but also
+		the semantics, code optimization, and code generation required from the
+		compiler.</p>
+		<p>There are a number of features which differentiate this
+		Lambda from other compiler compiler tools of previous generations (such as yacc
+		and lex). A brief list of these differentiating features is as follows:</p>
+		<p><a name="_Toc392061948">??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Support for context sensitive languages, natural
+		languages, and extensive semantic analysis.</a></p>
+		<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Complete code generation facilities by parse tree pass
+		through to morph and compile.</p>
+		<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Built-in lexical analyzer with user defined alterations
+		and extensions.</p>
+		<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Feature based grammar support in both dynamic and
+		static modes.</p>
+		<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Simple RTN recognition rules including rule iteration
+		and rule argument passing.</p>
+		<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Semantic forward production rules including rule
+		iteration and rule argument passing.</p>
+		<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Produces human readable source code as well as
+		generating the resulting compiler.</p>
+		<p>&nbsp;</p>
+		  </div>	  
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCompiler Definition Language"></A>Compiler Definition Language</H2></P>
+          <div class="h2section" id="Compiler Definition Language"> 
+		<p>This Lambda supports a Compiler Definition Language (<b>CDL</b>) of <b>IF -&gt; THEN</b> feature based recognition rules for transforming an
+		ASCII source string into compiled or transformed output. The IF - &gt; THEN
+		rules are all entered via the <b>CDL</b>. This
+		Lambda accepts a set of compiler definition rules as its sole input argument.
+		The compiler definition language, described in the previous section,
+		constitutes the CDL of this Lambda. After receiving the compiler definition
+		language input, the this Lambda constructs a result Lambda. The result Lambda is
+		produced in human readable Lisp source code format and is checked into the file
+		cabinet. The result Lambda is a compiler which implements the specified compiler
+		definition rules.</p>       
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SbrowseLib"></A>browseLib</H2></P>
+            <div class="h2section" id="browseLib">
+			<p>This Lambda depends upon the browseLib and upon an open
+			Lambda file cabinet. The <b>parseLib</b>
+			is passed the name of the compiler to be generated, &quot;<b>myCompiler&quot;</b>. The parseLib assumes that the compiler
+			definition language input for generating the &quot;myCompiler&quot; compiler is
+			checked into the file cabinet under the key:
+			&quot;myCompiler:%DEFINITION&quot;. The parseLib generates the the
+			&quot;myCompiler&quot; compiler in Lisp source form and checks the source into
+			the file cabinet.</p>	
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STheory Of Operation"></A>Theory Of Operation</H2></P>
+		    <div class="h2section" id="Theory of Operation">
+			<p>This Lambda expects to receive a single argument, which is
+			the name of the compiler definition source in the Lambda file cabinet. The <b>parseLib</b> then generates human
+			readable source code back into the file cabinet as follows:</p>
+			<p><b><u>Theory Of
+			Operation</u></b></p>
+			<p><b>(parseLib
+			cabinetName &quot;java&quot;)</b></p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			First, the parseLib, using the browseLib, checks
+			out the compiler definition under the key &quot;<b>java:%DEFINITION</b>&quot;. </p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			After reading the compiler definition file, the
+			parseLib generates the Lisp source code for the java compiler. The main <b>java</b> Lambda and several child Lambdas are
+			generated.</p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Using the browseLib, the java compiler's Lisp source
+			code is checked into the file cabinet.</p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The java compiler's Lisp source code is compile,
+			producing a complete java compiler read to run.</p>
+			</div>	
+       <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SparseLib"></A>parseLib</H2></P>
+			<div class="h2section" id="parseLib">
+		    <p>The <b>parseLib</b>
+			function accepts the name of the compiler cabinet and the name of the compiler
+			to be generated. It is assumed that the compiler definition for the new
+			compiler is checked into the file cabinet under the key: &quot;<i style='mso-bidi-font-style:normal'>NAME</i>:%DEFINITION&quot;. The resulting
+			compiler is generated in the form of Lisp source code and is checked into the
+			file cabinet under the key &quot;<i style='mso-bidi-font-style:normal'>NAME</i>&quot;.</p>
+			<p><b>Note:</b> The
+			parseLib can also generate a compiler which is a friend Lambda within a parent
+			Lambda. In this case, it is assumed that the compiler definition for the new
+			compiler is checked into the file cabinet under the key: &quot;PARENT:<i style='mso-bidi-font-style:normal'>NAME</i>:%DEFINITION&quot;. The resulting
+			compiler is generated in the form of Lisp source code and is checked into the
+			file cabinet under the key &quot;PARENT:<i style='mso-bidi-font-style:normal'>NAME</i>&quot;.</p>
+			<p>&nbsp;</p>
+			<p><b>Type:
+			           Function</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p><b>Syntax:            (parseLib  cabinetName &quot;Name&quot;)</b></p>
+			<p><b>(parseLib  cabinetName &quot;Parent:Name&quot;)</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p><b><u>When To Use</u></b></p>
+			<p>The <b>parseLib</b>
+			function performs the actual parsing recognition provided by this Lambda. Use
+			the <b>parseLib</b> function you wish to regenerate
+			the specified compiler from its compiler definition.<b></b></p>
+			<p><b>__________________________________________________________________</b></p>
+			<p><b>Arguments                               Explanation                                                                  </b></p>
+			<table>
+			 <tr>
+			  <td>
+			  <p><b>cabinetName</b></p>
+			  </td>
+			  <td>
+			  <p>The name of the file cabinet in which the compiler
+			  definition is to be found</p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			  <p><b>&quot;Name&quot;</b></p>
+			  </td>
+			  <td>
+			  <p>A compiler definition for the specified compiler <b>Name</b> is checked into the file cabinet
+			  under the key: &quot;<i style='mso-bidi-font-style:normal'>Name</i>:%DEFINITION&quot;.</p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			  <p><b>Returns</b></p>
+			  </td>
+			  <td>
+			  <p>The compiler Name is generated in
+			  Lisp source code form and is checked into the file cabinet under the key
+			  &quot;<i style='mso-bidi-font-style:normal'>Name</i>&quot;.</p>
+			  </td>
+			 </tr>
+			</table>
+			<p><b>________________________________________________________________</b></p>
+			<p><b>Arguments                               Explanation                                                                  </b></p>
+			<table>
+			 <tr>
+			  <td>
+			  <p><b>cabinetName</b></p>
+			  </td>
+			  <td>
+			  <p>The name of the file cabinet in which the compiler
+			  definition is to be found</p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			  <p><b>&quot;Parent:Name&quot;</b></p>
+			  </td>
+			  <td>
+			  <p>A compiler definition for the specified compiler <b>&quot;Parent:Name&quot;</b> is checked
+			  into the file cabinet under the key: &quot;Parent<i style='mso-bidi-font-style:
+			  normal'>:Name</i>:%DEFINITION&quot;.</p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			  <p><b>Returns</b></p>
+			  </td>
+			  <td>
+			  <p>The compiler Parent:Name is
+			  generated in Lisp source code form and is checked into the file cabinet under
+			  the key &quot;Parent:<i style='mso-bidi-font-style:normal'>Name</i>&quot;.</p>
+			  </td>
+			 </tr>
+			</table>
+			<p><b>________________________________________________________________</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p>Example1                     </p>
+			<p><b>(parseLib  "Test" &quot;tinyC&quot;)</b></p>
+			<p><b>(tinyC  {writeln(&quot;Hello World!&quot;)}          </b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p><b><u>Notes and
+			Hints           </u></b></p>
+			<p>The example calls, shown above, cause the following
+			effects. </p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			First, the parseLib, using the browseLib, checks
+			out the compiler definition under the key &quot;tinyC:%DEFINITION&quot;. </p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			After reading the compiler definition file, the
+			parseLib generates the Lisp source code for the tiny C compiler.</p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Using the browseLib, the tinyC compiler's Lisp source
+			code is checked into the file cabinet.</p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The tinyC compiler's Lisp source code is compiled.</p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The tinyC compiler is invoked to compile the simple C
+			expression.</p>
+			<p>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The words  <b>&quot;Hello World!&quot;</b>  are displayed on the console.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_explanOnOff"></A>_explanOnOff</H2></P> 
+            <div class="h2section" id="_explanOnOff">
+			 <p>Overview  </p>
+			<p>The <b>_explanOnOff</b>
+			variable turns on (true) or off (false) the compiler compiler's explanation
+			mode for all semantic passes. In explain mode, the parseLib saves every
+			semantic rule firing in the persistent variable, _<b>explanation</b>, for human use after the parsing run.</p>
+			<p><b> Type:              Variable</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p><b>Syntax:            (setq  parseLib._explainOnOff  true)</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p>  When To Use </p>
+			<p>The <b>_explainOnOff</b>
+			variable can be used to aid the debugging of difficult compiler definitions.<b></b></p>
+			<p><b>__________________________________________________________________</b></p>
+			<p><b>Variable                                   Explanation                                                                  </b></p>
+			<table>
+			 <tr>
+			  <td>
+			  <p><b>_explainOnOff</b></p>
+			  </td>
+			  <td>
+			  <p>Contains true if explain mode is on, or false if
+			  explain mode is off.</p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			  <p><b>Effects</b></p>
+			  </td>
+			  <td>
+			  <p>Turns the compiler's explain mode
+			  on or off.</p>
+			  </td>
+			 </tr>
+			</table>
+			<p><b>__________________________________________________________________</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p>Example1                     </p>
+			<p>This simple example demonstrates the effect turning on
+			explain mode during debugging. </p>
+			<blockquote>
+			<p><b>(parseLib  "Test" &quot;tinyC&quot;)</b></p>
+			<p><b>(setq
+			tinyC._explainOnOff  true)          </b></p>
+			<p><b>(tinyC &quot;x + y
+			- 10&quot;) </b></p>
+			<p><b>tinyC._explain </b></p>
+			<p><b>&quot;Replacing:  x + x - 10
+			==&gt; (-  (+  x
+			x)  10)</b></p>
+			<p><b>Replacing:  (+
+			x  x) ==&gt; (*  2  x)
+			</b></p>
+			<p><b>Replacing: (-  (+
+			x  x)  10)  ==&gt; (-  (*
+			2  x) 10)</b></p>
+			<p><b>Replacing: x + x - 10  ==&gt; (-
+			(*  2  x) 10)&quot;</b></p>
+			 </blockquote>      
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_verbose "></A>_verbose </H2></P> 
+            <div class="h2section" id="_verbose">
+			<p>Overview </p>
+			<p>The <b>_verbose</b>
+			variable turns on (true) or off (false) the compiler compiler's verbose mode.
+			In verbose mode the parseLib displays every compiler definition rule which
+			has fired.</p>
+			<p><b> Type:              Variable</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p><b>Syntax:            (setq  parseLib._verbose  true)</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p><b><u>When To Use</u></b></p>
+			<p>The <b>_verbose</b>
+			variable can be used to aid the debugging of difficult compiler definitions.<b></b></p>
+			<p><b>__________________________________________________________________</b></p>
+			<p><b>Variable                                   Explanation                                                                  </b></p>
+			<table>
+			 <tr>
+			  <td>
+			  <p><b>_verbose</b></p>
+			  </td>
+			  <td>
+			  <p>Contains true if verbose mode is on, or false if
+			  verbose mode is off.</p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td>
+			  <p><b>Effects</b></p>
+			  </td>
+			  <td>
+			  <p>Turns the compiler's verbose mode
+			  on or off.</p>
+			  </td>
+			 </tr>
+			</table>
+			<p><b>__________________________________________________________________</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p> Example1                      </p>
+			<p>This simple example demonstrates the effect turning on
+			verbose mode during debugging. </p>
+			<blockquote>
+			<p><b>(parseLib  "Test" &quot;tinyC&quot;)</b></p>
+			<p><b>(setq
+			tinyC._verbose  true)      </b></p>
+			<p><b>(tinyC &quot;x + y
+			- 10&quot;) </b></p>
+			<p><b>MAIN: Term Operator Term &lt;&lt;
+			(addToList $0 (list (list $2.Value $1.Value $3.Value))) &gt;&gt; </b></p>
+			<p><b>MAIN: Operator Number &lt;&lt;
+			(foldConstants $0 $1.Value 0 $2.Value) &gt;&gt;</b></p> 
+			</blockquote>    
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_verboseSynIn, _verboseLexIn, _verboseSemIn"></A>_verboseSynIn, _verboseLexIn, _verboseSemIn</H2></P>
+       <div class="h2section" id="_verboseSynIn, _verboseLexIn, _verboseSemIn"> 
+		<p> Overview  </p>
+		<p>The <b>_verboseSynIn</b>
+		variable contains is #void by default but may be assigned a structure
+		containing instructions for selectively turning on the _verbose switch for
+		selected rules and specifying how many the selected rule will execute before
+		exiting the parse process. _verboseLexIn and _verboseSemIn provide the same
+		functionality in the Lexical and Semantic passes respectively.</p>
+		<p><b> Type:              Variable</b></p>
+		<p><b><u>&nbsp;</u></b></p>
+		<p><b>Syntax:            (setq  parseLib._verboseSynIn  #{RULENAME: count}) </b></p>
+		<p><b><u>When To Use</u></b></p>
+		<p>The <b>_verboseSynIn </b>variable
+		can be used to aid the debugging of difficult compiler definitions.<b></b></p>
+		<p><b>__________________________________________________________________</b></p>
+		<p><b>Variable                                   Explanation                                                      </b></p>
+		<table>
+		 <tr>
+		  <td>
+		  <p><b>_verboseSynIn</b></p>
+		  </td>
+		  <td>
+		  <p>Contains #void or structure created by user</p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td>
+		  <p><b>Effects</b></p>
+		  </td>
+		  <td>
+		  <p>Selectively turns the compiler's
+		  verbose mode on or off for specified rules.</p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td>
+		  <p><b>RULENAME</b></p>
+		  </td>
+		  <td>
+		  <p>The name of the rule in which want
+		  to turn _verbose on. Note that all rules called from this rule will also have
+		  _verbose set to true</p>
+		  </td>
+		 </tr>
+		 <tr>
+		  <td>
+		  <p><b>Count</b></p>
+		  </td>
+		  <td>
+		  <p>Number of times the specified rule
+		  should execute before forcing an exit from the parse. Set count to -1 for
+		  unlimited executions.</p>
+		  </td>
+		 </tr>
+		</table>		
+		<p><b>__________________________________________________________________</b></p>              
+	   </div>    
+	   <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_verboseSynCount, _verboseLexCount, _verboseSemCount"></A>_verboseSynCount, _verboseLexCount, _verboseSemCount</H2></P> 
+            <div class="h2section" id="_verboseSynCount, _verboseLexCount, _verboseSemCount">
+			 <p>Overview                </p>
+			<p>The <b>_verboseSynCount</b>
+			variable contains a structure with symbolic key entries for each rule executed
+			during the Syntactical pass. The value associated with each symbolic key is the
+			execution count of the rule during that pass.
+			_verboseLexCount and _verboseSemCount provide the same functionality in
+			the Lexical and Semantic passes respectively.</p>
+			<p><b> Type:              Variable</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p>When To Use        </p>
+			<p>These values are useful for performance analysis of the
+			rules you have defined.</p>
+			<p><b>__________________________________________________________________</b></p>
+			<p>Example1</p>
+			<p>(javaScript &quot;a=15;&quot;)</p>
+			<p>(writeln javaScript._verboseSynCount)</p>
+			<p>#{MAIN: 1 STMTLIST: 1
+			SEXPRESSION: 4 EXPRESSION: 4 PHRASE: 4 CFCALL: 1 NAME: 7 QUALIFY: 1 TERM: 3
+			STATEMENT: 2 CHILD: 2 CLASS: 2 FRIEND: 2 FUNCTION: 2 METHOD: 2 ORPHAN: 2}</p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_verboseSynCount, _verboseLexCount, _verboseSemCount"></A>_verboseSynCount, _verboseLexCount, _verboseSemCount</H2></P> 
+            <div class="h2section" id="_verboseSynCount, _verboseLexCount, _verboseSemCount">
+			 <p>Overview       </p>
+			<p>The <b>_verboseSynCount</b>
+			variable contains a structure with symbolic key entries for each rule executed
+			during the Syntactical pass. The value associated with each symbolic key is the
+			execution count of the rule during that pass.
+			_verboseLexCount and _verboseSemCount provide the same functionality in
+			the Lexical and Semantic passes respectively.</p>
+			<p><b> Type:              Variable</b></p>
+			<p><b><u>&nbsp;</u></b></p>
+			<p>When To Use        </p>
+			<p>These values are useful for performance analysis of the
+			rules you have defined.</p>
+			<p><b>__________________________________________________________________</b></p>
+			<p>Example1</p>
+			<p>(javaScript &quot;a=15;&quot;)</p>
+			<p>(writeln javaScript._verboseSynCount)</p>
+			<p>#{MAIN: 1 STMTLIST: 1
+			SEXPRESSION: 4 EXPRESSION: 4 PHRASE: 4 CFCALL: 1 NAME: 7 QUALIFY: 1 TERM: 3
+			STATEMENT: 2 CHILD: 2 CLASS: 2 FRIEND: 2 FUNCTION: 2 METHOD: 2 ORPHAN: 2}</p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFeatures of Generated Compilers"></A>Features of Generated Compilers</H2></P> 
+            <div class="h2section" id="Features of Generated Compilers">   
+           		<h3> _verbose </h3>
+				<p>Overview   </p>
+				<p>The <b>_verbose</b>
+				variable turns on (true) or off (false) the compiler compiler's verbose mode.
+				In verbose mode the parseLib displays every compiler definition rule which
+				has fired. _verbose operates the same in a generated compiler as it does in
+				parseLib.</p>
+				<h3> _verboseSynCount, _verboseLexCount, _verboseSemCount </h3>
+				<p>Overview  </p>
+				<p>The <b>_verboseSynCount</b>
+				variable contains a structure with symbolic key entries for each rule executed
+				during the Syntactical pass. The value associated with each symbolic key is the
+				execution count of the rule during that pass.
+				_verboseLexCount and _verboseSemCount provide the same functionality in
+				the Lexical and Semantic passes respectively. These settings operate the same
+				in a generated compiler as they do in parseLib.</p>
+				<h3> _consoleErrors </h3>
+				<p>Overview    </p>
+				<p>The _consoleErrors variable contains a value of true or
+				false. A value of true will cause the compiler to generate a full error to the
+				console when it is encountered. A value of false will cause the compiler to
+				return from an error but suppress any error messages on the console.</p>
+				<p><b> Type:              Variable</b></p>
+				<p><b><u>&nbsp;</u></b></p>
+				<p><b>Syntax:            (setq  javaScript._consoleErrors false) </b></p>
+				<p>&nbsp;</p>
+				<h3> _lastError </h3>
+				<p>Overview        </p>
+				<p>The _lastError variable is a structure  containing the details of the last error
+				encountered during the compilation process. </p>
+				<p><b> Type:              Variable</b></p>
+				<p><b><u>&nbsp;</u></b></p>
+				<p><b>Syntax:            (writeln  javaScript._lastError)</b></p>
+				<p><b>__________________________________________________________________</b></p>
+				<p><b>Variable                                   Explanation                                                      </b></p>
+				<table>
+				 <tr>
+				  <td>
+				  <p><b>_lastError</b></p>
+				  </td>
+				  <td>
+				  <p>Contains a structure describing the last error found</p>
+				  </td>
+				 </tr>
+				 <tr>
+				  <td>
+				  <p><b>_lastError.errorKey</b></p>
+				  </td>
+				  <td>
+				  <p>The short error identifier - set
+				  by _makeError</p>
+				  </td>
+				 </tr>
+				 <tr>
+				  <td>
+				  <p><b>_lastError.desc</b></p>
+				  </td>
+				  <td>
+				  <p>The error description - set by
+				  _makeError</p>
+				  </td>
+				 </tr>
+				 <tr>
+				  <td>
+				  <p><b>_lastError.line</b></p>
+				  </td>
+				  <td>
+				  <p>The line number the error occurred
+				  in - set by _makeError</p>
+				  </td>
+				 </tr>
+				 <tr>
+				  <td>
+				  <p><b>_lastError.charpos</b></p>
+				  </td>
+				  <td>
+				  <p>The character position the error
+				  occurred in - set by _makeError</p>
+				  </td>
+				 </tr>
+				 <tr>
+				  <td>
+				  <p><b>_lastError.message</b></p>
+				  </td>
+				  <td>
+				  <p>The formatted contextual error
+				  message - set by _makeError</p>
+				  </td>
+				 </tr>
+				</table>
+				<p><b>__________________________________________________________________
+				</b></p>
+				<p>&nbsp;</p>
+				<p>Example1                  </p>
+				<p>This simple example demonstrates the error handling and
+				content of _lastError</p>
+				<p><b>(javaScript
+				&quot;a=13=15&quot;)</b></p>
+				<p><b>&quot; Invalid expression Line:0 Charpos:4<br>
+				a=13=15;<br>
+				    ^error<br>
+				&quot;<br>
+				!JS 100!</b><b></b></p>
+				<p><b>(writeln javaScript._lastError)<br>
+				#{errorKey: &quot;JS 100&quot; line: 0 desc: &quot;Invalid expression&quot;
+				charpos: 4 message: &quot;<br>
+				a=13=15;<br>
+				    ^error<br>
+				</b><b>&quot;}</b></p>
+				<p>Notes:</p>
+				<p>To get errors of the format shown in the _lastError
+				example, you must call the _makeError function instead of _error or error when
+				specifying an error condition in a rule. For example:</p>
+				<p><b>MAIN: STMTLIST Any <br>
+				    :: (_makeError &quot;JS 100&quot;
+				$2.Charpos &quot;Invalid expression&quot;) ::</b></p>
+		  </div>
+	   <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAppendix "></A>Appendix </H2></P> 
+            <div class="h2section" id="Appendix">
+            <h3><a name="_Toc78728611">JavaScript Compiler Definition</a>  </h3>
+			<p>This is the compiler definition source for a small
+			JavaScript compiler, included here as an example only. Remember to allow for
+			the fact that many of the longer lines are wrapped around to the next line.</p>
+			<p><b>&nbsp;</b></p>
+			<p>;; ********************************************************************</p>
+			<p>;; summary:  This JavaScript compiler definition includes all the features</p>
+			<p>;;           of a full JavaScript compiler for the Analytic Information
+			Server engine.</p>
+			<p>;;           See the following references:</p>
+			<p>;;</p>
+			<p>;;           [1]  &quot;Lambda
+			Information Server JavaScript compiler&quot;, Korns Associates</p>
+			<p>;;           [2]
+			&quot;JavaScript For The World Wide Web&quot;, Postscript Press</p>
+			<p>;;           [3]
+			&quot;JavaScript Developer's Resource&quot;, Prentice Hall</p>
+			<p>;;</p>
+			<p>;; Notes:    Requires the browseLib, the parseLib, and this compiler</p>
+			<p>;;           definition source must be checked into the file cabinet </p>
+			<p>;;           under the key: |javaScript:%DEFINITION|.</p>
+			<p>;; Parms:    none</p>
+			<p>;; return:   java   The parseLib
+			checks in a newly updated copy of the</p>
+			<p>;;                  java compiler source and compiles the
+			&quot;javaScript&quot; compiler.</p>
+			<p>;;
+			********************************************************************</p>
+			<p>&nbsp;</p>
+			<p>#RuleDefinitions#</p>
+			<p>&nbsp;</p>
+			<p>
+			MAIN: # &quot;javaScript&quot; # || (= $3.Charpos 11) || &lt;&lt; true
+			&gt;&gt;</p>
+			<p>
+			MAIN: STMTLIST :: (list $1.Value) ::</p>
+			<p>
+			MAIN: SEXPRESSION Eof :: (list $1.Value) ::</p>
+			<p>
+			MAIN: Value :: (error (append &quot;Invalid expression [&quot;
+			$1.Charpos &quot;] &quot; (mid $IN $1.Charpos 20))) ::</p>
+			<p>
+			MAIN: Eof :: (list #void) ::</p>
+			<p>&nbsp;</p>
+			<p>
+			STMTLIST: STATEMENT &lt;&lt; (addToBeginList $0 $1.Value) &gt;&gt;</p>
+			<p>&nbsp;</p>
+			<p>
+			STATEMENT: Semicolon :: $0 ::</p>
+			<p>
+			STATEMENT: PHRASE Semicolon :: $1 ::</p>
+			<p>  STATEMENT: PHRASE  :: $1 ::</p>
+			<p>
+			STATEMENT: FUNCTION Name LeftParen ARGLIST LeftBrace STMTLIST RightBrace
+			:: (funList $0 $2 $4 $6) ::</p>
+			<p>
+			STATEMENT: FRIEND Name Name LeftParen ARGLIST LeftBrace STMTLIST
+			RightBrace :: (friendList $0 $2 $3 $5 $7) ::</p>
+			<p>
+			STATEMENT: CHILD Name Name LeftParen ARGLIST LeftBrace STMTLIST
+			RightBrace :: (childList $0 $2 $3 $5 $7) ::</p>
+			<p>&nbsp;</p>
+			<p>
+			FUNCTION: Function :: (pushVars $0) ::</p>
+			<p>
+			FRIEND:   Friend :: (pushVars $0)
+			::</p>
+			<p>
+			CHILD:    Child :: (pushVars $0)
+			::</p>
+			<p>&nbsp;</p>
+			<p>
+			QUALIFY: DotOperator Name QUALIFY((qualifyName $0 %0.Value
+			(makeQuotedSymbol $2.Value))) :: $3 ::</p>
+			<p>
+			QUALIFY: DotOperator Name :: (qualifyName $0 %0.Value (makeQuotedSymbol
+			$2.Value)) ::</p>
+			<p>
+			QUALIFY: LeftBracket SEXPRESSION RightBracket QUALIFY((qualifyName $0
+			%0.Value $2.Value)) :: $4 ::</p>
+			<p>
+			QUALIFY: LeftBracket SEXPRESSION RightBracket :: (qualifyName $0
+			%0.Value $2.Value) ::</p>
+			<p>&nbsp;</p>
+			<p>
+			NAME: Name QUALIFY($1) :: $2 ::</p>
+			<p>
+			NAME: Name :: $1 ::</p>
+			<p>&nbsp;</p>
+			<p>
+			PHRASE: Increment NAME :: (setq $0.Value (list $1.Value $2.Value)) ::</p>
+			<p>
+			PHRASE: NAME Increment :: (postfix $0 $1.Value $2.Value) ::</p>
+			<p>
+			PHRASE: NAME AssignmentOperator SEXPRESSION :: (setq $0.Value
+			(appendList $2.Lisp $1.Value (list $3.Value))) ::</p>
+			<p>
+			PHRASE: NAME LeftParen ARGLIST :: (argList $0 $1.Value $3.Value) ::</p>
+			<p>
+			PHRASE: LeftBrace STMTLIST RightBrace :: $2 ::</p>
+			<p>
+			PHRASE: If SEXPRESSION STATEMENT :: (setq $0.Value (list |if|: $2.Value
+			$3.Value)) ::</p>
+			<p>
+			PHRASE: If SEXPRESSION STATEMENT Else STATEMENT :: (setq $0.Value (list
+			|if|: $2.Value $3.Value $5.Value)) ::</p>
+			<p>
+			PHRASE: While SEXPRESSION STATEMENT :: (setq $0.Value (list |while|:
+			$2.Value $3.Value)) ::</p>
+			<p>
+			PHRASE: For LeftParen PHRASE Semicolon SEXPRESSION Semicolon PHRASE
+			RightParen STATEMENT</p>
+			<p>             :: (setq $0.Value (list |begin|: $3.Value (list
+			|while|: $5.Value $9.Value $7.Value))) ::</p>
+			<p>  PHRASE: Var Name AssignmentOperator
+			SEXPRESSION </p>
+			<p>          :: (addVar varVector $2.Value (setq $0.Value (appendList
+			$3.Lisp $2.Value (list $4.Value)))) ::</p>
+			<p>  PHRASE: Pvar Name AssignmentOperator SEXPRESSION
+			</p>
+			<p>          :: (addVar pvarVector $2.Value (setq $0.Value (appendList
+			$3.Lisp $2.Value (list $4.Value)))) ::</p>
+			<p>
+			PHRASE: Var Name :: (addVar varVector $2.Value $0) ::</p>
+			<p>
+			PHRASE: Pvar Name :: (addVar pvarVector $2.Value $0) ::</p>
+			<p>&nbsp;</p>
+			<p>
+			TERM: Boolean :: (setq $0.Value $1.Boolean) ::</p>
+			<p>
+			TERM: + Term :: $2 ::</p>
+			<p>
+			TERM: - Number :: (foldConstants $0 |-|: 0 $2.Value) ::</p>
+			<p>
+			TERM: - Term :: (setq $0.Value (list |-|: 0 $2.Value)) ::</p>
+			<p>
+			TERM: NAME LeftParen ARGLIST :: (argList $0 $1.Value $3.Value) ::</p>
+			<p>
+			TERM: Number Operator Number :: (foldConstants $0 $2.Lisp $1.Value
+			$3.Value) ::</p>
+			<p>  TERM: NAME :: $1 ::</p>
+			<p>
+			TERM: Term :: $1 ::</p>
+			<p>
+			TERM: LeftParen SEXPRESSION RightParen :: $2 ::</p>
+			<p>
+			TERM: Increment NAME :: (setq $0.Value (list $1.Value $2.Value)) ::</p>
+			<p>
+			TERM: NAME Increment :: (postfix $0 $1.Value $2.Value) ::</p>
+			<p>&nbsp;</p>
+			<p>
+			ARGLIST: RightParen :: (setq $0.Value #void) ::</p>
+			<p>
+			ARGLIST: SEXPRESSION RightParen :: (setq $0.Value (new Vector: 1
+			$1.Value)) ::</p>
+			<p>
+			ARGLIST: SEXPRESSION Comma ARGLIST :: (setq $0.Value (insert $3.Value 0
+			$1.Value)) ::</p>
+			<p>&nbsp;</p>
+			<p>
+			SEXPRESSION: TERM Operator SEXPRESSION :: (setq $0.Value (list $2.Lisp
+			$1.Value $3.Value)) ::</p>
+			<p>  SEXPRESSION: TERM :: $1 ::</p>
+			<p>&nbsp;</p>
+			<p>#End#</p>
+			<p>&nbsp;</p>
+			<p>#DelimitedStrings#</p>
+			<p>
+			String: {&quot;} {&quot;}</p>
+			<p>
+			Whitespace: {/*} {*/}</p>
+			<p>
+			Whitespace2: {//} _eol</p>
+			<p>#End#</p>
+			<p>&nbsp;</p>
+			<p>#AttributeClasses#</p>
+			<p>&nbsp;</p>
+			<p>
+			Operator: [+ - * / % == &lt; &lt;= &gt; &gt;= !=]</p>
+			<p>
+			AssignmentOperator: [= += -= /= *=]</p>
+			<p>
+			Lisp: [+ - * / % == &lt; &lt;= &gt; &gt;= != = += -= /= *=] [+ - * / mod
+			= &lt; &lt;= &gt; &gt;= &lt;&gt; setq += -= /= *=]</p>
+			<p>
+			Boolean: [true false] [true false]</p>
+			<p>
+			Term: [true false]</p>
+			<p>
+			Increment: [++ --]</p>
+			<p>
+			For: [for]</p>
+			<p>
+			Function: [function]</p>
+			<p>
+			Friend: [friend]</p>
+			<p>
+			Child: [child]</p>
+			<p>
+			If: [if]</p>
+			<p>
+			While: [while]</p>
+			<p>
+			Else: [else]</p>
+			<p>
+			Var: [var]</p>
+			<p>
+			Pvar: [pvar]</p>
+			<p>
+			Control: [child else for friend function if pvar var while]</p>
+			<p>
+			Semicolon: [&quot;;&quot;]</p>
+			<p>
+			LeftParen: [&quot;(&quot;]</p>
+			<p>
+			RightParen: [&quot;)&quot;]</p>
+			<p>
+			LeftBrace: [&quot;{&quot;]</p>
+			<p>
+			RightBrace: [&quot;}&quot;]</p>
+			<p>
+			LeftBracket: [&quot;[&quot;]</p>
+			<p>
+			RightBracket: [&quot;]&quot;]</p>
+			<p>
+			Comma: [&quot;,&quot;]</p>
+			<p>
+			DotOperator: [&quot;.&quot;]</p>
+			<p>&nbsp;</p>
+			<p>#End#</p>
+			<p>&nbsp;</p>
+			<p>#UserFunctions#</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Function start pushes a new
+			variable dictionary on the stack</p>
+			<p>;; Note: These persistant variables
+			will extend the java environment</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:startRule()</p>
+			<p>
+			pvars:(pvarVector varVector)</p>
+			<p>
+			;; Initialize the variable vectors.</p>
+			<p>    (setq pvarVector (new
+			Vector: 0))</p>
+			<p>
+			(setq varVector (new Vector: 0))</p>
+			<p>
+			true) ; end startRule</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Function start pushes a new
+			variable dictionary on the stack</p>
+			<p>;; Note: We use
+			the persistant variables from startRule</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:pushVars(struct)</p>
+			<p>
+			;; Create a new variable dictionary for this function.</p>
+			<p>
+			(setq pvarVector[(length pvarVector)] (new Dictionary:))</p>
+			<p>
+			(setq varVector[(length varVector)] (new Dictionary:))</p>
+			<p>
+			struct) ; end pushVars</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Function end pops the variable
+			dictionary from the stack</p>
+			<p>;; Note: We use
+			the persistant variables from startRule</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:popVars()</p>
+			<p>
+			vars:(result pvarDic varDic vecLast varLen i varList)</p>
+			<p>
+			;; Pop the variable dictionaries from the stack.</p>
+			<p>
+			(setq vecLast (subi (length pvarVector) 1))</p>
+			<p>
+			(setq pvarDic pvarVector[vecLast])</p>
+			<p>
+			(setq varDic varVector[vecLast])</p>
+			<p>
+			(resize pvarVector vecLast)</p>
+			<p>
+			(resize varVector vecLast)</p>
+			<p>
+			;; If there are any pvars, append them to the result.</p>
+			<p>
+			(if (&gt; (length pvarDic) 0)</p>
+			<p>        (begin</p>
+			<p>           (setq result (list (makeQuotedSymbol
+			&quot;pvars&quot;)))</p>
+			<p>           (setq varLen (length pvarDic))</p>
+			<p>           (setq varList #void)</p>
+			<p>           (loop for i from 0 until varLen do</p>
+			<p>               (setq varList (appendList varList pvarDic[i 0]))</p>
+			<p>               ) ; end loop</p>
+			<p>           (if (not (isPair varList)) (setq varList (list
+			varList)))</p>
+			<p>           (setq result (appendList result (list varList)))</p>
+			<p>           )) ; end if pvars</p>
+			<p>
+			;; If there are any vars, append them to the result.</p>
+			<p>
+			 (if (&gt; (length varDic) 0)</p>
+			<p>        (begin</p>
+			<p>           (setq result (appendList result (list (makeQuotedSymbol
+			&quot;vars&quot;))))</p>
+			<p>           (setq varLen (length varDic))</p>
+			<p>           (setq varList #void)</p>
+			<p>           (loop for i from 0 until varLen do</p>
+			<p>               (setq varList (appendList varList varDic[i 0]))</p>
+			<p>               ) ; end loop</p>
+			<p>           (if (not (isPair varList)) (setq varList (list
+			varList)))</p>
+			<p>           (setq result (appendList result (list varList)))</p>
+			<p>           )) ; end if vars</p>
+			<p>
+			result) ; end popVars</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Add a new variable to the pvars or
+			the vars variable list</p>
+			<p>;; Note: We use
+			the persistant variables from startRule</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:addVar(var name
+			struct)</p>
+			<p>
+			vars:(vecLast)</p>
+			<p>
+			;; Add a new variable to the variable dictionary for this function.</p>
+			<p>
+			(setq vecLast (subi (length var) 1))</p>
+			<p>
+			(if (&lt; vecLast 0)</p>
+			<p>        (error (append &quot;Found variable &quot; name &quot; declared
+			outside of a function&quot;)))</p>
+			<p>
+			(setq var[vecLast][(symbol name)] true)</p>
+			<p>
+			struct) ; end addVar</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Appends iterative results into a
+			single structure </p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:addToList(struct
+			x) </p>
+			<p>
+			(setq struct.Value (appendList struct.Value x))) ; end addToList</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Constructs a function call argument
+			list from an argument vector.</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:argList(struct
+			name args)</p>
+			<p>
+			;; Return if there are no arguments.</p>
+			<p>
+			(if (= args #void) </p>
+			<p>        (setq struct.Value (list name))</p>
+			<p>        (setq struct.Value (append (list name) (objectToList
+			args)))</p>
+			<p>        ) ; end if</p>
+			<p>
+			(setq struct.Term true)</p>
+			<p>
+			struct) ; end argList</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; AddToBeginList</p>
+			<p>;; Note: Avoid using append for
+			repeatedly linking long lists together.</p>
+			<p>;;       Use the setCdr function, it is much faster. Append was never</p>
+			<p>;;       meant to be used for long lists repeatedly.</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild
+			javaScript:addToBeginList(struct x)</p>
+			<p>
+			;; Return if there is nothing to append.</p>
+			<p>
+			(if (= x #void) (return struct))</p>
+			<p>
+			(cond</p>
+			<p>        ;; Set up begin list header the first time.</p>
+			<p>        ((= struct.Value #void)</p>
+			<p>         (begin </p>
+			<p>            (setq struct.Value (list |begin|: x))</p>
+			<p>            (setCdr struct (last struct.Value))</p>
+			<p>            ))</p>
+			<p>        ;; Append to the begin list the remaining times.</p>
+			<p>        (else </p>
+			<p>         (begin </p>
+			<p>            (setCdr (cdr struct) (list x))</p>
+			<p>            (setCdr struct (last (cdr struct)))</p>
+			<p>            ))</p>
+			<p>        ) ; end conf</p>
+			<p>
+			struct) ; end addToBeginList</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Constructs a java child definition
+			from an argument list.</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:childList(struct
+			parent name args body)</p>
+			<p>
+			vars:(varList)</p>
+			<p>
+			;; Retrieve all the declare variables</p>
+			<p>
+			(setq varList (popVars))</p>
+			<p>
+			;; Set up |()| if there are no arguments.</p>
+			<p>
+			(if (= args.Value #void)</p>
+			<p>        (setq args (symbol &quot;()&quot;))</p>
+			<p>        (setq args (objectToList args.Value))</p>
+			<p>        ) ; end if</p>
+			<p>
+			;; Create the function declaration up to the variables</p>
+			<p>
+			(setq struct.Value (list |defchild|: (makeQuotedSymbol parent.Value)
+			name.Value args))</p>
+			<p>
+			;; Append the variable declarations (if any)</p>
+			<p>
+			(if (&lt;&gt; varList #void)</p>
+			<p>        (setq struct.Value (appendList struct.Value varList (list
+			body.Value)))</p>
+			<p>        (setq struct.Value (appendList struct.Value (list
+			body.Value)))</p>
+			<p>        ) ; end if</p>
+			<p>
+			(setq struct.Func true)</p>
+			<p>
+			struct) ; end childList</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Modified default rule for adding
+			Term attributes to all name tokens.</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild
+			javaScript:defaultTokenRule(token)</p>
+			<p>
+			vars:(result tokenLen tokenEnd)</p>
+			<p>
+			;; Is this token a delimited constant?</p>
+			<p>
+			(if (isVector token) </p>
+			<p>        (begin</p>
+			<p>           (setq result (new Structure: Value: token[1] token[0]
+			true  Constant: true))</p>
+			<p>           ;; If this is a String constant, make it a Term also and
+			remove the enclosing quotes</p>
+			<p>           (if (= token[0] String:) </p>
+			<p>               (begin</p>
+			<p>                  (setq result.Value (mid result.Value 1 (subi
+			(length result.Value) 2)))</p>
+			<p>
+			            (setq result.Term
+			true)</p>
+			<p>                  )) ; end if</p>
+			<p>           (return result)</p>
+			<p>           )) ;; end if delimited constant</p>
+			<p>
+			;; Is this token a numeric constant?</p>
+			<p>
+			(if (isNumber token) </p>
+			<p>        (begin</p>
+			<p>           (setq result (new Structure: Value: token  Number: true  Term: true))</p>
+			<p>           (return result)</p>
+			<p>           )) ;; end if numeric constant</p>
+			<p>
+			;; Is this token a name token?</p>
+			<p>
+			(if (isCharName token) </p>
+			<p>        (begin</p>
+			<p>           (setq result (new Structure: Value: token  Name: true
+			Term: true))</p>
+			<p>           (return result)</p>
+			<p>           )) ;; end if numeric constant</p>
+			<p>
+			;; Create a default attributed structure for this token</p>
+			<p>
+			(setq result (new Structure: Value: token Default: true))</p>
+			<p>
+			result) ;; end defaultTokenRule</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Constant Folding Function </p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild
+			javaScript:foldConstants(struct op x y) </p>
+			<p>
+			vars:(f n)</p>
+			<p>
+			(setq f (getGlobalValue (symbol op))) </p>
+			<p>
+			(setq n (f x y))</p>
+			<p>
+			(if (&lt;&gt; struct #void)</p>
+			<p>        (begin</p>
+			<p>           (setq struct.Number true)</p>
+			<p>           (setq struct.Value (appendList struct.Value n)))</p>
+			<p>        else</p>
+			<p>        n)) ; end foldConstants</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Constructs a java friend definition
+			from an argument list.</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:friendList(struct
+			parent name args body)</p>
+			<p>
+			vars:(varList)</p>
+			<p>
+			;; Retrieve all the declare variables</p>
+			<p>
+			(setq varList (popVars))</p>
+			<p>
+			;; Set up |()| if there are no arguments.</p>
+			<p>
+			(if (= args.Value #void)</p>
+			<p>        (setq args (symbol &quot;()&quot;))</p>
+			<p>        (setq args (objectToList args.Value))</p>
+			<p>        ) ; end if</p>
+			<p>
+			;; Create the function declaration up to the variables</p>
+			<p>
+			(setq struct.Value (list |defriend|: (makeQuotedSymbol parent.Value)
+			name.Value args))</p>
+			<p>
+			;; Append the variable declarations (if any)</p>
+			<p>
+			(if (&lt;&gt; varList #void)</p>
+			<p>        (setq struct.Value (appendList struct.Value varList (list
+			body.Value)))</p>
+			<p>        (setq struct.Value (appendList struct.Value (list
+			body.Value)))</p>
+			<p>        ) ; end if</p>
+			<p>
+			(setq struct.Func true)</p>
+			<p>
+			struct) ; end friendList</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Constructs a java function
+			definition from an argument list.</p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:funList(struct
+			name args body)</p>
+			<p>
+			vars:(varList)</p>
+			<p>
+			;; Retrieve all the declare variables</p>
+			<p>
+			(setq varList (popVars))</p>
+			<p>
+			;; Set up |()| if there are no arguments.</p>
+			<p>
+			(if (= args.Value #void)</p>
+			<p>        (setq args (symbol &quot;()&quot;))</p>
+			<p>        (setq args (objectToList args.Value))</p>
+			<p>        ) ; end if</p>
+			<p>
+			;; Create the function declaration up to the variables</p>
+			<p>
+			(setq struct.Value (list |defun|: name.Value args))</p>
+			<p>
+			;; Append the variable declarations (if any)</p>
+			<p>
+			(if (&lt;&gt; varList #void)</p>
+			<p>        (setq struct.Value (appendList struct.Value varList (list
+			body.Value)))</p>
+			<p>        (setq struct.Value (appendList struct.Value (list
+			body.Value)))</p>
+			<p>        ) ; end if</p>
+			<p>
+			(setq struct.Func true)</p>
+			<p>
+			struct) ; end funList</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Appends iterative results into a
+			single structure </p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:postfix(struct
+			variable op)</p>
+			<p>    (setq struct.Value </p>
+			<p>           (list |begin|: </p>
+			<p>               (list |setq|: |_currentResult|: variable) </p>
+			<p>               (list op variable)</p>
+			<p>               _currentResult:))) ; end postfix</p>
+			<p>&nbsp;</p>
+			<p>;;*********************************************************************</p>
+			<p>;; Appends iterative results into a
+			single structure </p>
+			<p>;;*********************************************************************</p>
+			<p>(defchild javaScript:qualifyName(struct
+			x y) </p>
+			<p>
+			(setq struct.Value (list |ref|: x y))</p>
+			<p>
+			(setq struct.Name true)</p>
+			<p>
+			(setq struct.Term true)</p>
+			<p>
+			(setq struct.NAME true)) ; end qualifyName</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>#End#</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p><b><u>&nbsp;</u></b></p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

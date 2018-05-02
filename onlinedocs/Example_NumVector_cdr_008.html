@@ -1,0 +1,415 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example NumVector cdr 008</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example shows how the the <b>cdr</b>
+                  function accesses the tail value of a Vector.
+
+
+
+                 
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define ClassRec #(num|89 90.895 75 . #{Teacher: "Smith"  Subject: "Math" }) )</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60NumVector 188141&#62 </Returns></b></td></tr>
+</table><p><Note>The cdr value is assigned to the variable TeacherRec.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq TeacherRec (cdr ClassRec)) </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Structure 123456&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (display TeacherRec)    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#{Teacher: "Smith" Subject: "Math"} </Returns></b></td></tr>
+</table><p><Note>Displays the value of the Vector with index 0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>ClassRec[0]</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>89.0</Returns></b></td></tr>
+</table><p><Note>Displays the value of the Vector with index 1.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>ClassRec[1]</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>90.895</Returns></b></td></tr>
+</table><p><Note>Displays the value of the Vector with index 2.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>ClassRec[2]</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>75.0</Returns></b></td></tr>
+</table><p><Note>The index 3 will not reach the structure that was defined as the cdr</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>ClassRec[3]</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#void</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints>The cdr is not reachable by the [] operator. </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>cdr</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_cdr_010.html">BitVector cdr 010</A></td>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_CpxVector_cdr_011.html">CpxVector cdr 011</A></td>
+<td><A HREF="Example_Dictionary_cdr_003.html">Dictionary cdr 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_cdr_004.html">Directory cdr 004</A></td>
+<td><A HREF="Example_FltVector_cdr_006.html">FltVector cdr 006</A></td>
+<td><A HREF="Example_IntVector_cdr_007.html">IntVector cdr 007</A></td>
+<td><A HREF="Example_List_cdr_009.html">List cdr 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_cdr_007.html">Matrix cdr 007</A></td>
+<td><A HREF="Example_Matrix_cdr_008.html">Matrix cdr 008</A></td>
+<td><A HREF="Example_NumMatrix_cdr_011.html">NumMatrix cdr 011</A></td>
+<td><A HREF="Example_NumVector_cdr_008.html">NumVector cdr 008</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_cdr_009.html">ObjVector cdr 009</A></td>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_Structure_cdr_001.html">Structure cdr 001</A></td>
+<td><A HREF="Example_Structure_cdr_002.html">Structure cdr 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_cdr_005.html">Vector cdr 005</A></td>
+<td><A HREF="Example_Vector_cdr_006.html">Vector cdr 006</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_cdr_Builtin.html">cdr</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_ref_Builtin.html">ref(Builtin)</A></td>
+<td><A HREF="Function_refValues_Builtin.html">refValues(Builtin)</A></td>
+<td><A HREF="Function_refAttributes_Builtin.html">refAttributes(Builtin)</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="NumVector.html">NumVector</A></td>
+<td><A HREF="Structure.html">Structure</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_bitToNumberVector_001.html">BitVector bitToNumberVector 001</A></td>
+<td><A HREF="Example_BitVector_cdr_010.html">BitVector cdr 010</A></td>
+<td><A HREF="Example_BitVector_inside_007.html">BitVector inside 007</A></td>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_setAttributes_002.html">Dictionary setAttributes 002</A></td>
+<td><A HREF="Example_Directory_setAttributes_003.html">Directory setAttributes 003</A></td>
+<td><A HREF="Example_FltVector_cdr_006.html">FltVector cdr 006</A></td>
+<td><A HREF="Example_IntVector_cdr_007.html">IntVector cdr 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_cdr_007.html">Matrix cdr 007</A></td>
+<td><A HREF="Example_Matrix_cdr_008.html">Matrix cdr 008</A></td>
+<td><A HREF="Example_NumMatrix_cdr_011.html">NumMatrix cdr 011</A></td>
+<td><A HREF="Example_NumVector_append_008.html">NumVector append 008</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_apply_007.html">NumVector apply 007</A></td>
+<td><A HREF="Example_NumVector_binaryInsert_006.html">NumVector binaryInsert 006</A></td>
+<td><A HREF="Example_NumVector_binarySearch_007.html">NumVector binarySearch 007</A></td>
+<td><A HREF="Example_NumVector_bitToNumberVector_002.html">NumVector bitToNumberVector 002</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_cdr_008.html">NumVector cdr 008</A></td>
+<td><A HREF="Example_NumVector_compare_016.html">NumVector compare 016</A></td>
+<td><A HREF="Example_NumVector_compareEQ_014.html">NumVector compareEQ 014</A></td>
+<td><A HREF="Example_NumVector_compareGE_014.html">NumVector compareGE 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_compareGT_014.html">NumVector compareGT 014</A></td>
+<td><A HREF="Example_NumVector_compareLE_014.html">NumVector compareLE 014</A></td>
+<td><A HREF="Example_NumVector_compareLT_014.html">NumVector compareLT 014</A></td>
+<td><A HREF="Example_NumVector_compareNE_014.html">NumVector compareNE 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_comparison_014.html">NumVector comparison 014</A></td>
+<td><A HREF="Example_NumVector_copy_008.html">NumVector copy 008</A></td>
+<td><A HREF="Example_NumVector_delete_011.html">NumVector delete 011</A></td>
+<td><A HREF="Example_NumVector_insert_007.html">NumVector insert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_inside_006.html">NumVector inside 006</A></td>
+<td><A HREF="Example_NumVector_isAtom_007.html">NumVector isAtom 007</A></td>
+<td><A HREF="Example_NumVector_isEqual_015.html">NumVector isEqual 015</A></td>
+<td><A HREF="Example_NumVector_isIdentical_014.html">NumVector isIdentical 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_isNumberVector__001.html">NumVector isNumberVector  001</A></td>
+<td><A HREF="Example_NumVector_isObject_009.html">NumVector isObject 009</A></td>
+<td><A HREF="Example_NumVector_isType_018.html">NumVector isType 018</A></td>
+<td><A HREF="Example_NumVector_length_010.html">NumVector length 010</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_map_007.html">NumVector map 007</A></td>
+<td><A HREF="Example_NumVector_mapc_007.html">NumVector mapc 007</A></td>
+<td><A HREF="Example_NumVector_member_006.html">NumVector member 006</A></td>
+<td><A HREF="Example_NumVector_new_011.html">NumVector new 011</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_objectToNumVector_001.html">NumVector objectToNumVector 001</A></td>
+<td><A HREF="Example_NumVector_ref_024.html">NumVector ref 024</A></td>
+<td><A HREF="Example_NumVector_remove_006.html">NumVector remove 006</A></td>
+<td><A HREF="Example_NumVector_resize_008.html">NumVector resize 008</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_reverse_005.html">NumVector reverse 005</A></td>
+<td><A HREF="Example_NumVector_setCdr_008.html">NumVector setCdr 008</A></td>
+<td><A HREF="Example_NumVector_setLastCdr_008.html">NumVector setLastCdr 008</A></td>
+<td><A HREF="Example_NumVector_setq_021.html">NumVector setq 021</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_sizeof_016.html">NumVector sizeof 016</A></td>
+<td><A HREF="Example_NumVector_sort_015.html">NumVector sort 015</A></td>
+<td><A HREF="Example_NumVector_svmRegression_001.html">NumVector svmRegression 001</A></td>
+<td><A HREF="Example_NumVector_type_018.html">NumVector type 018</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_uniqueInsert_006.html">NumVector uniqueInsert 006</A></td>
+<td><A HREF="Example_NumVector_vectorBinaryInnerProduct_001.html">NumVector vectorBinaryInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorBipolarInnerProduct_001.html">NumVector vectorBipolarInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorCosineInnerProduct_001.html">NumVector vectorCosineInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorCubeInnerProduct_001.html">NumVector vectorCubeInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorExpInnerProduct_001.html">NumVector vectorExpInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorFill_005.html">NumVector vectorFill 005</A></td>
+<td><A HREF="Example_NumVector_vectorInnerProduct_001.html">NumVector vectorInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorLogInnerProduct_001.html">NumVector vectorLogInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorQuartInnerProduct_001.html">NumVector vectorQuartInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorQuintInnerProduct_001.html">NumVector vectorQuintInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorSigmoidInnerProduct_001.html">NumVector vectorSigmoidInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorSineInnerProduct_001.html">NumVector vectorSineInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorSquareInnerProduct_001.html">NumVector vectorSquareInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorTanInnerProduct_001.html">NumVector vectorTanInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorTanhInnerProduct_001.html">NumVector vectorTanhInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_cdr_009.html">ObjVector cdr 009</A></td>
+<td><A HREF="Example_ObjVector_sort_016.html">ObjVector sort 016</A></td>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_parse_001.html">String parse 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+</tr><tr>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Structure_append_004.html">Structure append 004</A></td>
+<td><A HREF="Example_Structure_append_005.html">Structure append 005</A></td>
+<td><A HREF="Example_Structure_apply_001.html">Structure apply 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_apply_002.html">Structure apply 002</A></td>
+<td><A HREF="Example_Structure_binaryInsert_001.html">Structure binaryInsert 001</A></td>
+<td><A HREF="Example_Structure_binarySearch_001.html">Structure binarySearch 001</A></td>
+<td><A HREF="Example_Structure_cdr_001.html">Structure cdr 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_cdr_002.html">Structure cdr 002</A></td>
+<td><A HREF="Example_Structure_compareEQ_003.html">Structure compareEQ 003</A></td>
+<td><A HREF="Example_Structure_compareGE_003.html">Structure compareGE 003</A></td>
+<td><A HREF="Example_Structure_compareGT_003.html">Structure compareGT 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_compareLE_003.html">Structure compareLE 003</A></td>
+<td><A HREF="Example_Structure_compareLT_003.html">Structure compareLT 003</A></td>
+<td><A HREF="Example_Structure_compareNE_003.html">Structure compareNE 003</A></td>
+<td><A HREF="Example_Structure_comparison_functions_003.html">Structure comparison functions 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_copy_001.html">Structure copy 001</A></td>
+<td><A HREF="Example_Structure_count_001.html">Structure count 001</A></td>
+<td><A HREF="Example_Structure_delete_001.html">Structure delete 001</A></td>
+<td><A HREF="Example_Structure_delete_002.html">Structure delete 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_insert_001.html">Structure insert 001</A></td>
+<td><A HREF="Example_Structure_inside_001.html">Structure inside 001</A></td>
+<td><A HREF="Example_Structure_isAtom_001.html">Structure isAtom 001</A></td>
+<td><A HREF="Example_Structure_isBound_001.html">Structure isBound 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_isEqual_001.html">Structure isEqual 001</A></td>
+<td><A HREF="Example_Structure_isIdentical_001.html">Structure isIdentical 001</A></td>
+<td><A HREF="Example_Structure_isInside_001.html">Structure isInside 001</A></td>
+<td><A HREF="Example_Structure_isMember_001.html">Structure isMember 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_isObject_003.html">Structure isObject 003</A></td>
+<td><A HREF="Example_Structure_isStructure_001.html">Structure isStructure 001</A></td>
+<td><A HREF="Example_Structure_length_004.html">Structure length 004</A></td>
+<td><A HREF="Example_Structure_makeStructure_001.html">Structure makeStructure 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_makeStructure_002.html">Structure makeStructure 002</A></td>
+<td><A HREF="Example_Structure_map_001.html">Structure map 001</A></td>
+<td><A HREF="Example_Structure_mapc_001.html">Structure mapc 001</A></td>
+<td><A HREF="Example_Structure_member_001.html">Structure member 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_new_003.html">Structure new 003</A></td>
+<td><A HREF="Example_Structure_objectToStructure_001.html">Structure objectToStructure 001</A></td>
+<td><A HREF="Example_Structure_objectToStructure_002.html">Structure objectToStructure 002</A></td>
+<td><A HREF="Example_Structure_objectToStructure_003.html">Structure objectToStructure 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_objectToStructure_004.html">Structure objectToStructure 004</A></td>
+<td><A HREF="Example_Structure_ref_004.html">Structure ref 004</A></td>
+<td><A HREF="Example_Structure_ref_006.html">Structure ref 006</A></td>
+<td><A HREF="Example_Structure_refAttributes_001.html">Structure refAttributes 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_refValues_001.html">Structure refValues 001</A></td>
+<td><A HREF="Example_Structure_remove_001.html">Structure remove 001</A></td>
+<td><A HREF="Example_Structure_resize_001.html">Structure resize 001</A></td>
+<td><A HREF="Example_Structure_setAttributes_001.html">Structure setAttributes 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setCdr_001.html">Structure setCdr 001</A></td>
+<td><A HREF="Example_Structure_setCdr_002.html">Structure setCdr 002</A></td>
+<td><A HREF="Example_Structure_setLastCdr_001.html">Structure setLastCdr 001</A></td>
+<td><A HREF="Example_Structure_setq_003.html">Structure setq 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setq_004.html">Structure setq 004</A></td>
+<td><A HREF="Example_Structure_setq_005.html">Structure setq 005</A></td>
+<td><A HREF="Example_Structure_setq_006.html">Structure setq 006</A></td>
+<td><A HREF="Example_Structure_sizeof_003.html">Structure sizeof 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_sort_001.html">Structure sort 001</A></td>
+<td><A HREF="Example_Structure_sort_002.html">Structure sort 002</A></td>
+<td><A HREF="Example_Structure_sort_003.html">Structure sort 003</A></td>
+<td><A HREF="Example_Structure_uniqueInsert_001.html">Structure uniqueInsert 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_uniqueInsert_002.html">Structure uniqueInsert 002</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_cdr_005.html">Vector cdr 005</A></td>
+<td><A HREF="Example_Vector_cdr_006.html">Vector cdr 006</A></td>
+<td><A HREF="Example_Vector_setAttributes_004.html">Vector setAttributes 004</A></td>
+<td><A HREF="Example_Vector_setAttributes_005.html">Vector setAttributes 005</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,493 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Selector Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#SLambda Objects"><FONT SIZE=2>Lambda Objects</font></a></li><li><a href="#SLambda Properties"><FONT SIZE=2>Lambda Properties</font></a></li><li><a href="#SSelector Lambdas"><FONT SIZE=2>Selector Lambdas</font></a></li><li><a href="#SSelector Data Types"><FONT SIZE=2>Selector Data Types</font></a></li><li><a href="#SStrong Typing"><FONT SIZE=2>Strong Typing</font></a></li><li><a href="#SWhite Space"><FONT SIZE=2>White Space</font></a></li><li><a href="#SSpecial Characters"><FONT SIZE=2>Special Characters</font></a></li><li><a href="#SNaming Conventions for Variables"><FONT SIZE=2>Naming Conventions for Variables</font></a></li><li><a href="#SConstants"><FONT SIZE=2>Constants</font></a></li><li><a href="#SComments"><FONT SIZE=2>Comments</font></a></li><li><a href="#SGlobal Variables"><FONT SIZE=2>Global Variables</font></a></li><li><a href="#SFunction Calls"><FONT SIZE=2>Function Calls</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>
+             <p>The Evolutionary Sequencing Machine evolves a population of well-formed-formulas (WFFs) in a problem-oriented grammar known as <b>Selector</b>.
+             Each WFF is known as a <i>selector</i>, and is trained to operate on the data from a single time step.
+             After training the selector will be given the <i>testing data</i> for the testing time step, 
+             and the selector will be expected to select the "best" elements from the testing time period.
+             </p>
+
+             <p>The Selector grammar is defined, within the ESM Lambda, in esm:selector:%DECLARATION, which is a feature-based grammar specification understood by the parseLib.
+             The esm.selector child Lambda is a "Selector" parser, generated from esm:selector:%DECLARATION by parseLib.
+             The Selector parser translates ASCII text strings into Selector WFFs which are annotated s-expressions.
+             Each WFF s-expression, in the population, may be annotated with grammar notes taken from the rules defined in esm:selector:%DECLARATION.
+             </p> 
+
+             <p>The Selector language is a dialect of JavaScript, to make learning and reading easy by the current generation of programmers.
+             Each Selector WFF must have the following enclosing syntax to remain gramatically correct.
+             </p> 
+
+             <pre>         
+             function (XT) {                        // Select the best Vectors from the set, XT, of Vectors.
+
+
+             }
+             </pre>
+
+             <p>While a complete layout of Selector is inappropriate right here (the full Selector language is documented later in this reference material), 
+             the Selector language does allow the full range of logical and arithmetic operators as well as sorting, filtering, and regression operators against the input data.
+             The input data is always for <u>a single time step</u> with only the fitness function allowed to compare each selector's performance across all training time periods.
+             The argument, <b>XT</b> is an Lambda containing the set of Number Vectors for a single time step as well as offering a number of operators to aid in selecting the best vectors. 
+             The expression <b>XT.allRows</b> represents all of the Number Vectors in the current time step.
+             The expression <b>XT.selectedRows</b> represents all of the Number Vectors, in the current time step, currently selected.
+             Each of the Number vectors in <b>XT.allRows</b> contain M+1 elements (<i>known as <b>xtime</b>, and <b>x1</b> thru <b>Xm</b> to selector Lambdas</i>).
+             The argument <b>XT</b>, when first passed to a Selector Lambda, is always in a state where XT.allRows == XT.selectedRows. 
+             The task of the Selector Lambda is to perform selection operations on XT such that, when completed, XT.selectedRows contains the "best" vectors found in XT.allRows.
+             Some examples of simple Selector Lambdas are as follows:
+             </p> 
+
+             <pre>
+             regress (x10 / sin(x12));          // Train a linear regression for the model "(x10 / sin(x12))" and score based upon the trained model.
+             </pre>
+
+             <pre>
+             svmregress (x10,cos(x12)/log(x3)); // Train a support vector regression for the pseudo variables (x10 and cos(x12)/log(x3) and score based upon the trained model.
+             </pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLambda Objects"></A>Lambda Objects</H2></P>
+			<p><b>AIS</b> &quot;Lambdas&quot; are a unique type of objects designed to act as the 
+		    <b><u>building blocks</u></b> for intelligent, adaptive, systems. Lambdas contain
+		    more than just binary machine code (Analytic Information Server supports many
+		    built-in functions, which are primarily binary machine code, but these are
+		    not Lambdas). Lambdas are something more than just functions. Lambdas are
+		    building block objects, which contain the necessary structure to provide
+		    some rudimentary autonomy. Lambdas can contain other child Lambdas and can
+		    give birth to other child Lambdas. Lambdas can publish their preferred style
+		    of interface. Lambdas have an abstract threshold (like a cell membrane) which
+		    makes the Lambda aware of any mutative or referential access attempt from the
+		    outside. Lambdas may run on native machine code or they may be emulated by a
+		    virtual machine. There may be a different virtual machine for each Lambda.
+		    Lambdas contain their persistent and temporary knowledge variables. Lambdas
+		    contain the original source code used to compile them. Lambdas can be
+		    generated from multiple languages. The Evolutionary Sequencing Machine comes with a
+		    built-in <b>Selector</b> compiler, which produces AIS Lambdas.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLambda Properties"></A>Lambda Properties</H2></P>
+			<p>The Lambda object stores Lambda behavior and knowledge in a standard
+		    building block format (regardless of the original source language). The
+		    Analytic Information Server Lambda object contains the following eight
+		    properties:</p>
+			
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <td>Av:</td>
+		        <td>
+		          <p>The arguments Structure object containing the Lambda's arguments.<br><br></p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>In:</td>
+		        <td>
+		          <p>The <b>faces</b>: Structure object containing the Lambda's published
+		          interface styles.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Pc:</td>
+		        <td>
+		          <p>The Pcode Vector object containing the Lambda's virtual machine
+		          codes.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Pv:</td>
+		        <td>
+		          <p>The <b>pvars</b>: Structure object containing the Lambda's
+		          persistent variables.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Cv:</td>
+		        <td>
+		          <p>The <b>cvars</b>: Structure object containing the Lambda's
+		          persistent class variables</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Nc:</td>
+		        <td>
+		          <p>The Native Code Vector object containing the Lambda's native machine
+		          code.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Sc:</td>
+		        <td>
+		          <p>The Source Code Vector containing the original language source for
+		          debugger display.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Tv:</td>
+		        <td>
+		          <p>The <b>vars</b>: Structure object containing the Lambda's temporary
+		          frame variables.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td>Vm:</td>
+		        <td>
+		          <p>The Virtual Machine emulator function (each Lambda may run on a
+		          separate virtual machine).</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>&nbsp;</p>
+		    <p>An Lambda is <i>First Class Object</i>. A First Class object in Lambda
+		    Information Server is any object that is fully exposed, i.e., all of the
+		    Structures are visible and modifiable by the programmer. All Lambdas have the
+		    following data structures: source code tokens (<b>Sc</b>), pcode tokens (<b>Pc</b>),
+		    argument variables (<b>Av</b>), persistent variables (<b>Pv</b>)<b>, </b>persistent
+		    class variables (<b>Cv</b>)<b>, </b>temporary variables (<b>Tv</b>),
+		    interfaces (<b>In</b>), native code (<b>Nc</b>), and the virtual machine
+		    emulator (<b>Vm</b>). All Lambda structures can viewed and modified by the
+		    programmer:</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelector Lambdas"></A>Selector Lambdas</H2></P>
+			<p>The principal activity of the Selector Lambda is to reduce sets to smaller
+		    sets which have a higher <i>score</i> than the original set. This
+		    process is called <i>selection</i>. For instance, in the stock market, we start
+		    with a set of all possible stocks and we wish to select a few stocks to
+		    purchase. If the few stocks we purchase have a higher <i>score</i> (percent
+		    profit) than the average of all stocks, then we are happy. The act of
+		    selecting a few stocks to purchase reduces the original set of all stocks
+		    down to the set of those we wish to purchase. This process is called
+		    selection.</p>
+		    <p>Other examples of selection include reviewing a set of all United
+		    States households to select only those households which are to receive this
+		    month's promotional mailing. Reviewing a set of possible oil deposit sites
+		    to select only those sites where we wish to drill. There are many other
+		    examples of selection.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelector Data Types"></A>Selector Data Types</H2></P>
+		   <p>The <b>Selector</b> Programmer has access to all of the types in the
+		    Analytic Information Server environment. These are the same as the Lisp data
+		    types. The Lisp data types are divided into three categories: Native Data
+		    Types (also known as Immediate types), Objects (heap objects) and
+		    Repositories. The Native (immediate) types can be entirely contained within
+		    the immediate data of a single Virtual Machine Container. The Objects (heap
+		    objects) types are too large to be contained within a single Virtual Machine
+		    Container and require extra memory must be managed by the heap manager.
+		    Without exception, all of the Object types are identified by an object id.
+		    The object id identifies a block of memory, managed by the Analytic Information
+		    Server memory manager, in which the Object's data is stored. (see Object
+		    Identifier Notation).</p>
+		    <p>Virtual Machine Containers are of fixed length and come in different
+		    sizes. Small data items are stored in immediate mode, and may be moved to
+		    the heap if the data becomes too large to store immediately.</p>
+		    <p>The Heap contains memory resident data, which is of variable length or is
+		    too large to fit in small fixed containers. The Analytic Information Server
+		    object Heap manager supports automated object resizing, garbage collection,
+		    and anti-fragmentation algorithms so that the user may concentrate on the
+		    analysis and modeling of data rather than on memory management.</p>
+		    <p>Repositories (databases) contain persistent data of all sorts. Lambda
+		    Information Server supports repositories with multiple database volumes and
+		    multiple database schema's including General Object Repositories, Text
+		    Repositories, and Lambda Repositories.</p>
+		    <p>The generic Analytic Information Server data type is known to Selector as <b>obj</b>.
+		    No type identification, such as <i>var n;</i>, will cause Selector to
+		    treat the variable, <i>n</i>, as being of type <b>obj</b>, that is to say
+		    any possible Analytic Information Server data type.</p>
+		    <p>The Selector compiler also supports strong typing of declared variables
+		    <b>obj</b>. Providing a type identification, such as <i>var int n;</i>, will
+		    cause Selector to treat the variable, <i>n</i>, as being of type <b>int</b>,
+		    that is to say it will be managed as an Analytic Information Server type <b>Integer</b>.</p>
+		    <p>The following is a list of Selector strong data types together with the
+		    Analytic Information Server types which they represent.</p>
+		    <table>
+			<colgroup><col><col class="italic"><col><col class="italic"></colgroup>
+		      <tr align="top">
+		        <th>obj</th>
+		        <td>Object</td>
+		        <th>bool</th>
+		        <td>Boolean</td>
+		        <th>char</th>
+		        <td>Character</td>
+		        <th>int</th>
+		        <td>Integer</td>
+		        <th>float</th>
+		        <td>Number</td>
+		      </tr>
+		      <tr align="top">
+		        <th>text</th>
+		        <td>Text</td>
+		        <th>string</th>
+		        <td>String</td>
+		        <th>symbol</th>
+		        <td>Symbol</td>
+		        <th>bytvec</th>
+		        <td>ByteVector</td>
+		        <th>fltvec</th>
+		        <td>FloatVector</td>
+		      </tr>
+		      <tr align="top">
+		        <th>stc</th>
+		        <td>Structure</td>
+		        <th>dir</th>
+		        <td>Directory</td>
+		        <th>dic</th>
+		        <td>Dictionary</td>
+		        <th>matrix</th>
+		        <td>Matrix</td>
+		        <th>nummat</th>
+		        <td>NumMatrix</td>
+		      </tr>
+		      <tr align="top">
+		        <th>vec</th>
+		        <td>Vector</td>
+		        <th>bitvec</th>
+		        <td>BitVector</td>
+		        <th>numvec</th>
+		        <td>NumVector</td>
+		        <th>intvec</th>
+		        <td>IntVector</td>
+		        <th>objvec</th>
+		        <td>ObjVector</td>
+		      </tr>
+		    </table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SStrong Typing"></A>Strong Typing</H2></P>
+			<p>The <b>Selector</b> Programmer has access to compile time strong typing
+		    variable declarations. Strongly typed variables are compiled with Lambda
+		    Information Server's strong typed virtual machine instructions. Strongly
+		    typed variables operate faster, at run time; but, are more prone to
+		    programmer error as there is little or no run time type checking performed.</p>
+		    <p>The programmer can even cast an arbitrary Selector expression to a
+		    valid type. The casting will alert the Selector compiler to treat the
+		    result of the cast expression as specified. This will direct the Selector
+		    compiler to use Analytic Information Server's strong typed virtual machine
+		    instructions with the cast expression. Warning: casting does not introduce
+		    any run time type checking.</p>
+		    <p>The following Selector code sample illustrates the actions of the
+		    Selector compiler when strong typing variable declarations and type casts
+		    are encounteres.</p>
+		    <p><b>The Selector source code for foo</b></p>
+		    <blockquote>
+			  <pre>
+		      // A test of strong typing, including expression type casting, in Selector.
+		      function foo(int i) {
+		      var char c1, string name=new('String',&quot;Hello There&quot;);
+		      c1 +=name[((int)length(name))-i];
+		      }</pre>
+		    </blockquote>
+		    <p><b>The compiled code for foo</b></p> 
+		    <table>
+		      <tr>
+		        <td><u>Virtual Machine Instructions for</u>: <b>foo</b></td>
+		      </tr>
+		      <tr>
+		        <td>0000: push &quot;String,&quot;Hello There&quot;</td>
+		      </tr>
+		      <tr>
+		        <td>0007: call 2,new,vars:(name)</td>
+		      </tr>
+		      <tr>
+		        <td>0011: push vars:(name)</td>
+		      </tr>
+		      <tr>
+		        <td>0013: call 1,length,vars:(__T4)</td>
+		      </tr>
+		      <tr>
+		        <td>0017: isub args:(i),vars:(__T4),vars:(__T3)</td>
+		      </tr>
+		      <tr>
+		        <td>0021: refstring vars:(__T3),vars:(name),vars:(__T2)</td>
+		      </tr>
+		      <tr>
+		        <td>0025: cadd vars:(__T2),vars:(c1),vars:(c1)</td>
+		      </tr>
+		      <tr>
+		        <td>0029: return vars:(c1)</td>
+		      </tr>
+		    </table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SWhite Space"></A>White Space</H2></P>
+			<p>The Selector compiler uses white space to separate each of its symbols
+		    and operators. The Selector white space characters include all the
+		    standard 8-bit ASCII control characters (less than 32 decimal), and the
+		    blank character (32 decimal).</p>
+		    <b>LF, CR, TAB</b> ..control chars..
+		    <p>space</p>
+		    <p>The Selector compiler ignores whitespace</p>
+		    <blockquote>
+		      <pre>a = 1 + 2;  // This is a valid statement
+		       b=1+2;  // This is also a valid statement</pre>
+		    </blockquote>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSpecial Characters"></A>Special Characters</H2></P>
+			<p>Selector uses the standard 8-bit ASCII character set. Some of the
+		    Selector special characters serve to group a set of characters as a single
+		    unit (e.g. double quotes group characters to form a string constant). The
+		    remainder of the special characters serve to separate tokens (e.g. comma or
+		    blank) or prefix a constant (e.g. $ # ).</p>
+		    <p>The following are the Selector special characters.</p>
+		    <table>
+		      <tr align="top">
+		        <td>\</td>
+		        <td>|</td>
+		        <td>(</td>
+		        <td>)</td>
+		        <td>[</td>
+		        <td>]</td>
+		        <td>{</td>
+		        <td>}</td>
+		        <td>#</td>
+		        <td>@</td>
+		      </tr>
+		      <tr align="top">
+		        <td>'</td>
+		        <td>'</td>
+		        <td>,</td>
+		        <td>&quot;</td>
+		        <td>:</td>
+		        <td>;</td>
+		        <td>$</td>
+		        <td>%</td>
+		        <td>.</td>
+		        <td>&nbsp;</td>
+		      </tr>
+		    </table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNaming Conventions for Variables"></A>Naming Conventions for Variables</H2></P>
+			<p>Selector variable names are composed of case-sensitive alphanumeric
+		    characters. No spaces are allowed in a variable name but the underscore (_)
+		    character may be embedded to separate multi-word names . Another convention
+		    to make multiple word names more readable its to use start the first word
+		    with a lowercase letter and begin the first letter of each succeeding word
+		    with an uppercase letter.</p>
+		    <p>For example</p>
+		    <blockquote>
+		      <pre>myVariable</pre>
+		      <pre>sum</pre>
+		      <pre>namesOfStudents</pre>
+		     </blockquote>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SConstants"></A>Constants</H2></P>
+			<p>Selector is a dynamically typed language. The type of a variable is
+		    unknown until runtime when data is stored into it. The follow table contains
+		    the constant forms recognized by the Selector compiler. For more detail on
+		    the data types listed below, see <b>Analytic Information Server Programmer's
+		    Guide.</b></p>
+		    <table>
+		      <tr align="top">
+		        <td><b>Type</b></td>
+		        <td><b>Constant Form</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Void</b></td>
+		        <td><b>void</b> or <b>nil</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Boolean</b></td>
+		        <td><b>true</b> or <b>false</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Date</b></td>
+		        <td><b>#Mar,2,1987</b> or <b>#Jun,1,200BC</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Integer</b></td>
+		        <td><b>12 </b>or<b> -2345</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Number</b></td>
+		        <td><b>12.9 </b>or<b> 0.123456</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Object</b></td>
+		        <td><b>#&lt;Vector 1273&gt;</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>String</b></td>
+		        <td><b>&quot;Hello World&quot;</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Symbol</b></td>
+		        <td><b>'Hello'</b></td>
+		      </tr>
+		    </table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SComments"></A>Comments</H2></P>
+			<p>Because the Selector compiler tries to evaluate all of the words in a
+		    script, it is useful to have text, which is to be ignored by the compiler.
+		    This ignored text, called a comment, allows you to include information,
+		    which may be useful to understanding the Selector statements. There are
+		    two types of comments: single line and multi-line.</p>
+		    <p>A single line comment tells the compiler to ignore all the characters up
+		    to the end-of-line (eol). A single line comment must begin with the
+		    characters: //</p>
+		    <p>For Example:</p>
+		    <blockquote>
+		      <pre>// This is a comment</pre>
+		    </blockquote>
+		    <p>A multi-line comment tells the compiler to ignore all the characters
+		    embedded in between the delimiters: <b>/*</b> and */</p>
+		    <p>For Example:</p>
+		    <blockquote>
+		      <pre>/*  Humpty Dumpty 
+		
+		            sat on a wall  */</pre>
+		    </blockquote>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGlobal Variables"></A>Global Variables</H2></P>
+			<p>Selector variables have automatic global declaration. Referencing a
+		    symbol, which has not already been declared, automatically causes it to be
+		    declared as a global variable. This feature has been added to make
+		    Selector user-friendlier and to make Selector consistent with other
+		    Analytic Information Server languages.</p>
+		    <p>The following Selector expressions are equivalent (The assumption is
+		    made that X has not already been referenced).</p>
+		    <blockquote>
+		      <pre>X = 23</pre>
+		    </blockquote>
+		    <p>is equivalent to:</p>
+		    <blockquote>
+		      <pre>var X = 23</pre>
+		    </blockquote>
+		    <p>Selector global variables are valid during the whole life of the
+		    current workspace (see the <b>_globals</b> global symbol table variable).
+		    Selector global variables are referenced by specifying the symbol. In
+		    addition to user defined globals, Selector global variables include all of
+		    the built-in functions such as <b>+ - * upperCase, sin, cos, date, etc.</b></p>
+		    <p>The Analytic Information Server Selector dialect is specified as
+		    case-sensitive (most dialects of Selector are case-insensitive). Therefore</p>
+		    <blockquote>
+		      <pre>Var</pre>
+		    </blockquote>
+		    <p>is NOT equivalent to:</p>
+		    <blockquote>
+		      <pre>var</pre>
+		    </blockquote>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFunction Calls"></A>Function Calls</H2></P>
+			<p>Any user-defined Selector Lambda, and Lisp Lambda, and any Lambda
+		    Information Server function may be called from Selector. The syntax is
+		    simple the function name followed by parenthesis, (). If the function
+		    requires arguments, they must be supplied in between the parenthesis and
+		    multiple arguments should be separated by a comma. The parenthesis are
+		    mandatory even if no arguments are supplied. All Selector functions
+		    receive arguments by value. After function invocation, one and only one
+		    result value is returned.</p>
+		    <p>For example</p>
+		    <blockquote>
+		      <pre>
+                   mod(10, 2);     //Returns 0
+		
+                   today();        //Returns 729855
+              </pre>
+		    </blockquote>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

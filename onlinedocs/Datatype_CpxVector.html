@@ -1,0 +1,123 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>CpxVector</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>CpxVector Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>CpxVector Overview</H4></FONT></P>
+        <p>A <b>Complex Vector</b> <i>(CpxVector)</i> is an  object containing zero or more 
+          Complex number data items. Each Complex number data item is two IEEE 64 bit double
+          precision real numbers, the real and the imaginary elements. 
+        Since complex numbers require room for two doubles, 
+        both complex numbers and complex number vectors are heap objects.</p>
+        <p>The real part and the imaginary part of a complex number are stored as doubles in a 
+         heap object. A heap object consists of a Virtual Machine Container which holds a pointer 
+          to a data structure in the heap and the data type, in this case, complex. The data 
+         structure on the heap contains the object id, the data type, the real part and the 
+         imaginary part of the complex number.</p> 
+        <p>Complex numbers support both literals and dynamic creation using new:</p> 
+        <p>(setq W #c1.0+2.0i)</p>
+        <p>(setq X (new Complex: 1.0 2.0))</p>
+        <p>(setq Y (new Vector: Complex: 1 #c1.0+2.0i))</p>
+        <p>(setq Z #(cpx| #c1.0+2.0i))</p>
+        <p>The first line creates a literal value embedded in the code. The real part is a
+         double of value 1.0 and the imaginary part is a double of value 2.0. 
+         The second line dynamically creates a complex number at run time of the same value. 
+         The third line dynamically creates a complex number vector at run time containing the same value. 
+         The forth line dynamically creates a complex number vector constant at compile time. 
+         Either case requires the same amount of storage.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p><b>CpxVectors</b> store zero or more complex numbers as a pair of 64-bit 
+          floating-point numbers (doubles) in the heap. The first number of each pair 
+          represents the real part of the complex number and the second number represents 
+          the imaginary part. Each complex number may be fetched using an integer index. 
+          Assuming there are n elements in a vector, the elements of the vector are accessed 
+          as elements 0 thru n-1. A <b>CpxVector</b> also has a tail in the same sense that a 
+          Pair has a tail. The tail may be any type of variable, but most often, it is a 
+          complex number.</p>
+          <p>
+           Use complex vector to store a sequence of complex numbers for use with the Lambda 
+           Information Server statistical and matrix analysis routines.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>CpxVector</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The CpxVector object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_CpxVector_append_013.html">Example_CpxVector_append_013</A></td>
+<td><A HREF="Example_CpxVector_apply_010.html">Example_CpxVector_apply_010</A></td>
+<td><A HREF="Example_CpxVector_avg_002.html">Example_CpxVector_avg_002</A></td>
+<td><A HREF="Example_CpxVector_binaryInsert_008.html">Example_CpxVector_binaryInsert_008</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_binarySearch_008.html">Example_CpxVector_binarySearch_008</A></td>
+<td><A HREF="Example_CpxVector_cdr_011.html">Example_CpxVector_cdr_011</A></td>
+<td><A HREF="Example_CpxVector_compareEQ_020.html">Example_CpxVector_compareEQ_020</A></td>
+<td><A HREF="Example_CpxVector_compareGE_020.html">Example_CpxVector_compareGE_020</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_compareGT_020.html">Example_CpxVector_compareGT_020</A></td>
+<td><A HREF="Example_CpxVector_compareLE_020.html">Example_CpxVector_compareLE_020</A></td>
+<td><A HREF="Example_CpxVector_compareLT_020.html">Example_CpxVector_compareLT_020</A></td>
+<td><A HREF="Example_CpxVector_compareNE_020.html">Example_CpxVector_compareNE_020</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_compare_020.html">Example_CpxVector_compare_020</A></td>
+<td><A HREF="Example_CpxVector_copy_013.html">Example_CpxVector_copy_013</A></td>
+<td><A HREF="Example_CpxVector_new_015.html">Example_CpxVector_new_015</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

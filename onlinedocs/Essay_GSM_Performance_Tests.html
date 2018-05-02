@@ -1,0 +1,2619 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Performance Tests</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SFull Test Suite (defaultMVL) 5 Columns"><FONT SIZE=2>Full Test Suite (defaultMVL) 5 Columns</font></a></li><li><a href="#SCross Correlation Function"><FONT SIZE=2>Cross Correlation Function</font></a></li><li><a href="#SEllipsoidal Function"><FONT SIZE=2>Ellipsoidal Function</font></a></li><li><a href="#SCyclic Series Function"><FONT SIZE=2>Cyclic Series Function</font></a></li><li><a href="#SThe regressGaCMVL Option Setting"><FONT SIZE=2>The regressGaCMVL Option Setting</font></a></li><li><a href="#SThe regressSvmMVL Option Setting"><FONT SIZE=2>The regressSvmMVL Option Setting</font></a></li><li><a href="#SLinear Regression"><FONT SIZE=2>Linear Regression</font></a></li><li><a href="#SCubic Regression"><FONT SIZE=2>Cubic Regression</font></a></li><li><a href="#SHidden Model"><FONT SIZE=2>Hidden Model</font></a></li><li><a href="#SCycle Dependent Regression (No Random Noise)"><FONT SIZE=2>Cycle Dependent Regression (No Random Noise)</font></a></li><li><a href="#SCycle Dependent Regression (20% Random Noise - Ten Variables)"><FONT SIZE=2>Cycle Dependent Regression (20% Random Noise - Ten Variables)</font></a></li><li><a href="#SCycle Dependent Regression (20% Random Noise - Ten Variables)"><FONT SIZE=2>Cycle Dependent Regression (20% Random Noise - Ten Variables)</font></a></li><li><a href="#SCycle Dependent Regression (20% Random Noise - One Variable)"><FONT SIZE=2>Cycle Dependent Regression (20% Random Noise - One Variable)</font></a></li><li><a href="#SMixed Model Regression (20% Random Noise - Ten Variables)"><FONT SIZE=2>Mixed Model Regression (20% Random Noise - Ten Variables)</font></a></li><li><a href="#SMixed Model Regression (20% Random Noise - Ten Variables)"><FONT SIZE=2>Mixed Model Regression (20% Random Noise - Ten Variables)</font></a></li><li><a href="#SMixed Model Regression (run parameter comparison)"><FONT SIZE=2>Mixed Model Regression (run parameter comparison)</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>
+			<p>The Grammatical Swarm Symbolic Regression Machine contains a self testing child Lambda.
+            The selfTest child Lambda allows the GSM to be tested
+            on a variety of industrial scale tests.
+            This chapter contains a history of selected GSM selfTest runs over a number
+            of illustrative problems. 
+            In these test problems we vary the number of independent variables, add random noise
+            and record the effects on training time, regression, and sequencing accuracy. 
+		    These testing logs contain data which may aid the user in understanding the response range
+		    of this learning machine on a variety of candidate problems.</p>
+
+            <p>All testing has performed on a DELL XPS laptop, containing a Pentium M running at 3.4ghz,
+            2 gig of 533mhz RAM over an 800mhz front size bus.
+            In this testing environment, the GSM performs very high quality predictive order preservation 
+            and ball-park level regression on even the most complex text cases.
+            </p>
+
+            <p>A collection of test problems are used to profile this learning machine.
+            For each test problem, we vary the number of independent variables, add random noise
+            and record the effects on training time, regression, and sequencing accuracy.
+            All of the performance tests are run using the <B>gsm.selfTest</B> method; 
+            and, are therefore reproducable by any GSM user.</p>
+
+            <P><B>Performance References:</B></P>
+            <ol>
+               <li>"Breeding Swarms: A GP/PSO Hybrid", Settles & Soule, University of Idaho,</li>
+            </ol>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFull Test Suite (defaultMVL) 5 Columns"></A>Full Test Suite (defaultMVL) 5 Columns</H2></P>
+			<p>The full GSM test suite is executed, with one million rows and five columns per test.
+            The individual tests and the formulas they use are shown below. No random noise was added.
+            </p>
+ 		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Name</th>
+		        <th>Formula</th>
+		      </tr>
+		      <tr>
+		        <td>linearRegression</td>
+		        <td>y = 1.576246453868 + (1.576246453868*x0) - (39.34690816454*x1) + (2.139554491495*x2) + (46.59470912803*x3) + (11.54421404243*x4);</td>
+		      </tr>
+		      <tr>
+		        <td>crossCorrelation</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*x0*x0) - (19.5666514757*x0*x1*x1) + (21.87460482304*x0*x1*x2) - (17.48124453288*x1*x2*x3) + (38.81839452492*x2*x3*x4);</td>
+		      </tr>
+		      <tr>
+		        <td>cubicRegression</td>
+		        <td>y = 1.576246453868 + (1.576246453868*x0*x0*x0) - (39.34690816454*x1*x1*x1) + (2.139554491495*x2*x2*x2) + (46.59470912803*x3*x3*x3) + (11.54421404243*x4*x4*x4);</td>
+		      </tr>
+		      <tr>
+		        <td>hyperTangent</td>
+		        <td>y = 1.576246453868 + (1.576246453868*tanh(x0*x0*x0)) - (39.34690816454*tanh(x1*x1*x1)) + (2.139554491495*tanh(x2*x2*x2)) + (46.59470912803*tanh(x3*x3*x3)) + (11.54421404243*tanh(x4*x4*x4));</td>
+		      </tr>
+		      <tr>
+		        <td>elipsoid</td>
+		        <td>y = 0.0 + (1.0*x0*x0) + (2.0*x1*x1) + (3.0*x2*x2) + (4.0*x3*x3) + (5.0*x4*x4);</td>
+		      </tr>
+		      <tr>
+		        <td>hiddenModel</td>
+		        <td>y = 1.576246453868 + (2.139554491495*sin(x2));</td>
+		      </tr>
+		      <tr>
+		        <td>cyclicSeries</td>
+		        <td>y = 14.65350538719 + (14.65350538719*x0*sin(x0)) - (6.739011522396*x1*cos(x0)) - (18.35326211779*x2*tan(x0)) - (40.32047802994*x3*sin(x0)) - (4.433481378615*x4*cos(x0));</td>
+		      </tr>
+		      <tr>
+		        <td>mixedModels</td>
+		        <td>
+                if ((x0 % 4) == 0) y = + (1.576246453868*log(.000001+abs(x0))) - (39.34690816454*log(.000001+abs(x1))) + (2.139554491495*log(.000001+abs(x2))) + (46.59470912803*log(.000001+abs(x3))) + (11.54421404243*log(.000001+abs(x4)));
+                <br>
+                if ((x0 % 4) == 1) y = + (1.576246453868*x0*x0) - (39.34690816454*x1*x1) + (2.139554491495*x2*x2) + (46.59470912803*x3*x3) + (11.54421404243*x4*x4);
+                <br>
+                if ((x0 % 4) == 2) y = + (1.576246453868*sin(x0)) - (39.34690816454*sin(x1)) + (2.139554491495*sin(x2)) + (46.59470912803*sin(x3)) + (11.54421404243*sin(x4));
+                <br>
+                if ((x0 % 4) == 3) y = + (1.576246453868*x0) - (39.34690816454*x1) + (2.139554491495*x2) + (46.59470912803*x3) + (11.54421404243*x4);
+                </td>
+		      </tr>
+		      <tr>
+		        <td>ratioRegression</td>
+		        <td>
+                if ((x0 % 4) == 0) y = + ((1.576246453868*x0)/(39.34690816454*x1)) + ((39.34690816454*x1)/(2.139554491495*x2)) + ((2.139554491495*x2)/(46.59470912803*x3)) + ((46.59470912803*x3)/(11.54421404243*x4));
+                <br>
+                if ((x0 % 4) == 1) y = + ((1.576246453868*x0)%(39.34690816454*x1)) + ((39.34690816454*x1)%(2.139554491495*x2)) + ((2.139554491495*x2)%(46.59470912803*x3)) + ((46.59470912803*x3)%(11.54421404243*x4));
+                <br>
+                if ((x0 % 4) == 2) y = + ((1.576246453868*sin(x0))/(39.34690816454*tan(x1))) + ((39.34690816454*sin(x1))/(2.139554491495*tan(x2))) + ((2.139554491495*sin(x2))/(46.59470912803*tan(x3))) + ((46.59470912803*sin(x3))/(11.54421404243*tan(x4)));
+                <br>
+                if ((x0 % 4) == 3) y = - (39.34690816454* log(.000001+abs(x1))) + (2.139554491495* log(.000001+abs(x2))) + (46.59470912803* log(.000001+abs(x3))) + (11.54421404243* log(.000001+abs(x4)));
+                </td>
+		      </tr>
+            </table>
+
+			<p>The following are the GSM performance results for these tests executed with one million rows and five columns per test.
+            For each test, using the defaultMVL option setting, the GSM was trained for a maximum of 10 generations with a training cutoff at .01% error rate. 
+            No random noise was added, so an exact solution is theoretical possible.
+            </p>
+
+            <P><B>Performance Results 10 Generations no random noise:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Name</th>
+		        <th>Rows</th>
+		        <th>Cols</th>
+		        <th>Option</th>
+		        <th>Gens</th>
+		        <th>Minutes</th>
+		        <th>Train Err</th>
+		        <th>Test Err</th>
+		        <th>Bot 10%</th>
+		        <th>Bot 50%</th>
+		        <th>Avg Y</th>
+		        <th>Top 50%</th>
+		        <th>Top 10%</th>
+		        <th>Error</th>
+		        <th>Sort</th>
+		      </tr>
+		      <tr>
+		        <td>crossCorrelation</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>162</td>
+		        <td>0.758</td>
+		        <td>0.727</td>
+		        <td>-1607386.96</td>
+		        <td>-626113.96</td>
+		        <td>63874.34</td>
+		        <td>753862.65</td>
+		        <td>1978531.40</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>cubicRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>148</td>
+		        <td>0.424</td>
+		        <td>0.436</td>
+		        <td>-5216230.18</td>
+		        <td>-2161000.67</td>
+		        <td>-5927.33</td>
+		        <td>2149145.99</td>
+		        <td>4835835.87</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>hyperTangent</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>155</td>
+		        <td>0.786</td>
+		        <td>0.789</td>
+		        <td>-0.93</td>
+		        <td>0.54</td>
+		        <td>1.60</td>
+		        <td>2.66</td>
+		        <td>3.58</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>elipsoid</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>214</td>
+		        <td>0.068</td>
+		        <td>0.068</td>
+		        <td>3982.16</td>
+		        <td>8285.16</td>
+		        <td>12593.57</td>
+		        <td>16901.98</td>
+		        <td>22634.57</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>hiddenModel</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>0</td>
+		        <td>82</td>
+		        <td>0.000</td>
+		        <td>0.000</td>
+		        <td>-0.53</td>
+		        <td>0.18</td>
+		        <td>1.55</td>
+		        <td>2.93</td>
+		        <td>3.67</td>
+		        <th>Super</th>
+		        <th>Super</th>
+		      </tr>
+		      <tr>
+		        <td>linearRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>162</td>
+		        <td>0.001</td>
+		        <td>0.001</td>
+		        <td>-3203.86</td>
+		        <td>-1459.97</td>
+		        <td>-0.12</td>
+		        <td>1459.72</td>
+		        <td>3080.99</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>mixedModels</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>166</td>
+		        <td>0.689</td>
+		        <td>1.084</td>
+		        <td>-22596.16</td>
+		        <td>-8533.47</td>
+		        <td>18924.26</td>
+		        <td>46381.99</td>
+		        <td>79859.95</td>
+		        <th>Poor</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>ratioRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>181</td>
+		        <td>0.235</td>
+		        <td>2.067</td>
+		        <td>-6.05</td>
+		        <td>0.73</td>
+		        <td>1.91</td>
+		        <td>3.09</td>
+		        <td>3.93</td>
+		        <th>Poor</th>
+		        <th>Fair</th>
+		      </tr>
+		      <tr>
+		        <td>cyclicSeries</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>220</td>
+		        <td>0.143</td>
+		        <td>0.088</td>
+		        <td>-14803.68</td>
+		        <td>-3408.59</td>
+		        <td>-696.95</td>
+		        <td>2014.67</td>
+		        <td>7670.57</td>
+		        <th>Super</th>
+		        <th>Super</th>
+		      </tr>
+            </table>
+
+
+			<p>The following are the GSM performance results for these tests executed with one million rows and twenty columns per test.
+            For each test, using the defaultMVL option setting, the GSM was trained for a maximum of 10 generations with a training cutoff at .01% error rate. 
+            No random noise was added, so an exact solution is theoretical possible.
+            </p>
+
+            <P><B>Performance Results 10 Generations no random noise:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Name</th>
+		        <th>Rows</th>
+		        <th>Cols</th>
+		        <th>Option</th>
+		        <th>Gens</th>
+		        <th>Minutes</th>
+		        <th>Train Err</th>
+		        <th>Test Err</th>
+		        <th>Bot 10%</th>
+		        <th>Bot 50%</th>
+		        <th>Avg Y</th>
+		        <th>Top 50%</th>
+		        <th>Top 10%</th>
+		        <th>Error</th>
+		        <th>Sort</th>
+		      </tr>
+		      <tr>
+		        <td>crossCorrelation</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>927</td>
+		        <td>0.942</td>
+		        <td>0.975</td>
+		        <td>-875641.41</td>
+		        <td>-508022.75</td>
+		        <td>63700.81</td>
+		        <td>635424.39</td>
+		        <td>1303488.18</td>
+		        <th>Fair</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>cubicRegression</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>724</td>
+		        <td>0.402</td>
+		        <td>0.404</td>
+		        <td>-11283276.13</td>
+		        <td>-5124302.15</td>
+		        <td>-63005.25</td>
+		        <td>4998291.64</td>
+		        <td>11652267.63</td>
+		        <th>Good</th>
+		        <th>Super</th>
+		      </tr>
+		      <tr>
+		        <td>hyperTangent</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>659</td>
+		        <td>0.707</td>
+		        <td>0.709</td>
+		        <td>-4.73</td>
+		        <td>-1.04</td>
+		        <td>2.14</td>
+		        <td>5.34</td>
+		        <td>9.01</td>
+		        <th>Fair</th>
+		        <th>Super</th>
+		      </tr>
+		      <tr>
+		        <td>elipsoid</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>785</td>
+		        <td>0.918</td>
+		        <td>0.918</td>
+		        <td>149846.19</td>
+		        <td>163828.01</td>
+		        <td>176085.25</td>
+		        <td>188342.48</td>
+		        <td>202543.09</td>
+		        <th>Fair</th>
+		        <th>Super</th>
+		      </tr>
+		      <tr>
+		        <td>hiddenModel</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>0</td>
+		        <td>240</td>
+		        <td>0.000</td>
+		        <td>0.000</td>
+		        <td>-26.10</td>
+		        <td>-16.28</td>
+		        <td>2.12</td>
+		        <td>20.53</td>
+		        <td>30.53</td>
+		        <th>Super</th>
+		        <th>Super</th>
+		      </tr>
+		      <tr>
+		        <td>linearRegression</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>716</td>
+		        <td>0.006</td>
+		        <td>0.006</td>
+		        <td>-7392.04</td>
+		        <td>-3412.65</td>
+		        <td>-33.12</td>
+		        <td>3346.41</td>
+		        <td>7600.23</td>
+		        <th>Super</th>
+		        <th>Super</th>
+		      </tr>
+		      <tr>
+		        <td>mixedModels</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>745</td>
+		        <td>0.881</td>
+		        <td>2.037</td>
+		        <td>93775.03</td>
+		        <td>133907.69</td>
+		        <td>174716.55</td>
+		        <td>215525.41</td>
+		        <td>258681.72</td>
+		        <th>Poor</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>ratioRegression</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>708</td>
+		        <td>0.507</td>
+		        <td>1.088</td>
+		        <td>-641.48</td>
+		        <td>-74.51</td>
+		        <td>-66.94</td>
+		        <td>-59.36</td>
+		        <td>59.00</td>
+		        <th>Poor</th>
+		        <th>Fair</th>
+		      </tr>
+		      <tr>
+		        <td>cyclicSeries</td>
+		        <td>10000000</td>
+		        <td>20</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>730</td>
+		        <td>0.957</td>
+		        <td>0.970</td>
+		        <td>-1209.56</td>
+		        <td>139.21</td>
+		        <td>216.06</td>
+		        <td>292.91</td>
+		        <td>1203.97</td>
+		        <th>Fair</th>
+		        <th>Fair</th>
+		      </tr>
+            </table>
+
+
+			<p>The following are the GSM performance results for these tests executed with one million rows and five columns per test.
+            For each test, using the defaultMVL option setting, the GSM was trained for a maximum of 10 generations with a training cutoff at .99% error rate. 
+            Additionally, we add 40% random noise as follows: y = (y * 0.8) + (y * (gsm.myRandomFunction 0.4)), so an exact solution is NOT theoretical possible.
+            </p>
+
+            <P><B>Performance Results 10 Generations with 40% random noise:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Name</th>
+		        <th>Rows</th>
+		        <th>Cols</th>
+		        <th>Option</th>
+		        <th>Gens</th>
+		        <th>Minutes</th>
+		        <th>Error</th>
+		        <th>Bot 10%</th>
+		        <th>Bot 50%</th>
+		        <th>Avg Y</th>
+		        <th>Top 50%</th>
+		        <th>Top 10%</th>
+		        <th>Error</th>
+		        <th>Sort</th>
+		      </tr>
+		      <tr>
+		        <td>linearRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>290</td>
+		        <td>0.008</td>
+		        <td>-3220.49</td>
+		        <td>-1466.08</td>
+		        <td>-8.06</td>
+		        <td>1449.94</td>
+		        <td>3031.00</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>crossCorrelation</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>379</td>
+		        <td>0.698</td>
+		        <td>-1569811.77</td>
+		        <td>-613692.21</td>
+                <td>62890.12</td>
+		        <td>739472.46</td>
+		        <td>2027089.34</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>cubicRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>469</td>
+		        <td>0.038</td>
+		        <td>-5602513.27</td>
+		        <td>-2229349.39</td>
+                <td>-12071.50</td>
+		        <td>2205206.38</td>
+		        <td>5200360.75</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>hyperTangent</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>373</td>
+		        <td>0.449</td>
+		        <td>-1.97</td>
+		        <td>-0.06</td>
+		        <td>1.58</td>
+		        <td>3.23</td>
+		        <td>5.00</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>elipsoid</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>409</td>
+		        <td>0.163</td>
+		        <td>4027.53</td>
+		        <td>8348.29</td>
+		        <td>12590.29</td>
+		        <td>16832.29</td>
+		        <td>22468.17</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>hiddenModel</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>395</td>
+		        <td>0.008</td>
+		        <td>-0.54</td>
+		        <td>0.18</td>
+		        <td>1.55</td>
+		        <td>2.92</td>
+		        <td>3.65</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>cyclicSeries</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>315</td>
+		        <td>0.202</td>
+		        <td>-14521.80</td>
+		        <td>-3333.54</td>
+		        <td>-668.93</td>
+		        <td>1995.67</td>
+		        <td>2471.85</td>
+		        <th>Good</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>mixedModels</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>395</td>
+		        <td>1.083</td>
+		        <td>-37375.94</td>
+		        <td>-15139.40</td>
+		        <td>18794.82</td>
+		        <td>52729.05</td>
+		        <td>70491.15</td>
+		        <th>Poor</th>
+		        <th>Good</th>
+		      </tr>
+		      <tr>
+		        <td>ratioRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>10</td>
+		        <td>483</td>
+		        <td>2.294</td>
+		        <td>-1.86</td>
+		        <td>12.05</td>
+		        <td>1.91</td>
+		        <td>-8.21</td>
+		        <td>-12.39</td>
+		        <th>Poor</th>
+		        <th>Poor</th>
+		      </tr>
+            </table>
+
+			<p>The following are the GSM performance results for these tests executed with one million rows and five columns per test.
+            For each test, using the defaultMVL option setting, the GSM was trained for a maximum of 60 generations with a training cutoff at 00% error rate. 
+            We added no random noise, so an exact solution is theoretical possible.
+            </p>
+
+            <P><B>Performance Results 60 Generations with no random noise:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Name</th>
+		        <th>Rows</th>
+		        <th>Cols</th>
+		        <th>Option</th>
+		        <th>Gens</th>
+		        <th>Minutes</th>
+		        <th>Error</th>
+		        <th>Bot 10%</th>
+		        <th>Bot 50%</th>
+		        <th>Avg Y</th>
+		        <th>Top 50%</th>
+		        <th>Top 10%</th>
+		        <th>Error</th>
+		        <th>Sort</th>
+		      </tr>
+		      <tr>
+		        <td>ratioRegression</td>
+		        <td>10000000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>60</td>
+		        <td>1440</td>
+		        <td>1.037</td>
+		        <td>-46.42</td>
+		        <td>23.07</td>
+		        <td>-7.94</td>
+		        <td>7.56</td>
+		        <td>5.52</td>
+		        <th>Poor</th>
+		        <th>Poor</th>
+		      </tr>
+            </table>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCross Correlation Function"></A>Cross Correlation Function</H2></P>
+			<p>The Cross Correlation function, given by the following equation,
+            <BR> 
+            <BR> 
+            &nbsp;&nbsp;&nbsp;&nbsp;<B><i>y = -9.165146942478 - (9.165146942478*x0*x0*x0) - (19.5666514757*x0*x1*x1) + (21.87460482304*x0*x1*x2);</i></B>
+            <BR>
+            <BR>
+            is a standard measure of performance in the GSM. 
+            We compared several of the default option settings to perform a
+            series of tests on one thousand rows with with three columns. 
+            The tests are all exact with no random noise added.
+            The following are the GSM methods calls as issued for these tests.</P>
+
+            <P><B>Actual GSM Methods Calls:</B></P>
+            <ul>
+               <li>(gsm.setOptions regressGPSR: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions regressGPSR: 00% false)(gsm.selfTest crossCorrelation: 1 3 4000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions regress2GPSR: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions defaultMVL: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions regressMVL: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions regress2MVL: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions regress3MVL: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+               <li>(gsm.setOptions regress4MVL: 00% false)(gsm.selfTest crossCorrelation: 1 3 1000 500 00% checkpoint:)</li>
+            </ul>
+
+            <P>The following are the GSM performance results for these tests.</P>
+
+            <P><B>Performance Results:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Rows</th>
+		        <th>Columns</th>
+		        <th>Option</th>
+		        <th>Generations</th>
+		        <th>Elapsed Minutes</th>
+		        <th>Train ErrorPct</th>
+		        <th>Test ErrorPct</th>
+		        <th>WFF Length</th>
+		        <th>WFF Source</th>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regressGPSR</td>
+		        <td>500</td>
+		        <td>33</td>
+		        <td>.805</td>
+		        <td>.817</td>
+		        <td>445</td>
+		        <td>regress(((sqrt(abs(exp(x0))) - (x2 / x1)) * (sqrt(abs(sqrt(abs(exp(sin(x1)))))) * (x1 + sqrt(abs(exp(x0))))))+(((2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0)))*((2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0)))*((2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))))+((if ((sqrt(abs(exp(x0))) / (x0 * (sqrt(abs(sqrt(abs(exp(x0))))) * (x1 + sqrt(abs(exp(x0))))))) &lt;= exp(x2)) {sqrt(abs(x1))} else {x2}) + sqrt(abs(exp(x0)))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regressGPSR</td>
+		        <td>4000</td>
+		        <td>351</td>
+		        <td>0.781830076169</td>
+		        <td>0.8121874611082</td>
+		        <td>814</td>
+		        <td>regress(((sqrt(abs(exp(x0))) - (x0 / x1)) * (sqrt(abs(sqrt(abs(exp(sin((if (x2 &lt; x1) {(x1 - -4.319379008717)} else {avg(x1 , 1.410307832834)}))))))) * (x1 + sqrt(abs(exp(x0))))))+(((2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0)))*((2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0)))*((2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))*(2.155598583178 * (2.155598583178 * x0))))+(min((if ((sqrt(abs(exp(x0))) / (x0 * (sqrt(abs(sqrt(abs(exp(x0))))) * (x1 + sqrt(abs(exp(x0))))))) &lt;= exp(x2)) {sqrt(abs(x1))} else {x2}) , (tan(((if ((sqrt(abs(exp(x0))) / (x0 * (sqrt(abs(sqrt(abs(exp(x0))))) * (x1 + sqrt(abs(exp(x0))))))) &lt;= exp(x2)) {sqrt(abs(x1))} else {x2}) + sqrt(abs(exp(x1)))))*tan(((if ((sqrt(abs(exp(x0))) / (x0 * (sqrt(abs(sqrt(abs(exp(x0))))) * (x1 + sqrt(abs(exp(x0))))))) &lt;= exp(x2)) {sqrt(abs(x1))} else {x2}) + sqrt(abs(exp(x1)))))*tan(((if ((sqrt(abs(exp(x0))) / (x0 * (sqrt(abs(sqrt(abs(exp(x0))))) * (x1 + sqrt(abs(exp(x0))))))) &lt;= exp(x2)) {sqrt(abs(x1))} else {x2}) + sqrt(abs(exp(x1))))))) + (avg(x1 , -1.24991753992) % (if (x2 &lt; x0) {-2.348585731656} else {4.934507338818}))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regress2GPSR</td>
+		        <td>500</td>
+		        <td>214</td>
+		        <td>1.095703457052</td>
+		        <td>1.105457070352</td>
+		        <td>817</td>
+		        <td>regress((x2 - -4.858537919425)+expt(abs(((x0*x0*x0)*(x0*x0*x0)*(x0*x0*x0))) ,abs(min(abs(sign(log(abs((tan((if (x2 > x0) {x1} else {x2})) - 2.273652137605))))) , tanh((min((if (x0 >= abs(x2)) {(sin(x0) / (if (x1 &lt; x2) {x0} else {x0}))} else {(-4.692444869851*-4.692444869851)}) , ((if (x2 > x1) {x1} else {x1}) + (x0 * -2.452897778057))) / tan((x2 + 6.874027424659)))))))+avg((if (cos((if (x2 >= -0.05725764695619) {2.73846549776} else {x2})) &lt;= (if (x1 >= x2) {2.548358603843} else {0.1167608312345})) {(((((x0*x0*x0)*(x0*x0*x0)*(x0*x0*x0)) + ((((x0*x0*x0)*(x0*x0*x0)*(x0*x0*x0)) + sqrt(abs(3.205745271566))) / sqrt(abs((if (x0 &lt;= -0.004453697825539) {2.613227834073} else {3.05898924687}))))) / tanh(tanh(exp(-2.195361979221)))) - x1)} else {(if (x1 &lt; -0.04882083603768) {x1} else {-1.101098884998})}) , tan((if (x1 &lt; -0.04882083603768) {x1} else {(sqrt(abs(exp(-1.359169090488))) - ((if (x0 >= abs(x2)) {((x2 * x1)*(x2 * x1)*(x2 * x1))} else {(-4.692444869851*-4.692444869851)}) - min((-4.692444869851*-4.692444869851) , ninteger(abs((x0 - x0))))))}))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>defaultMVL</td>
+		        <td>500</td>
+		        <td>48</td>
+		        <td>.658</td>
+		        <td>.660</td>
+		        <td>456</td>
+		        <td>mvlregress((((x0*x0*x0) * sqrt(abs(abs(x2)))) - (((x0*x0*x0) * sqrt(abs(x1))) - abs(x2))),((((x0*x0*x0) * sqrt(abs(((-x1) + x2)))) - (ninteger(log(abs(x0)))*ninteger(log(abs(x0)))*ninteger(log(abs(x0))))) * log(abs(x2))),avg(avg(avg(abs(log(abs(abs(x1)))) , ((x0*x0*x0) * log(abs(abs((-x1)))))) , abs((-x0))) , abs(x1)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regressMVL</td>
+		        <td>500</td>
+		        <td>59</td>
+		        <td>1.03</td>
+		        <td>.963</td>
+		        <td>258</td>
+		        <td>mvlregress(((cos(x0) * (x0*x0)) * max(exp(x0) , (-x2))),avg(max(x1 , (x0*x0)) , (ninteger(x0) - exp(x0))),avg((sign(x2) + tan(x2)) , ((x0*x0*x0) / sign(x1))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regress2MVL</td>
+		        <td>500</td>
+		        <td>258</td>
+		        <td>.218</td>
+		        <td>.179</td>
+		        <td>465</td>
+		        <td>mvlregress(((x0*x0*x0) - (((ninteger((ninteger(x2) - x1)) - x1)*(ninteger((ninteger(x2) - x1)) - x1)) * (-x0))),(log(abs((avg(log(abs((x0*x0*x0))) , sign(x2))*avg(log(abs((x0*x0*x0))) , sign(x2))*avg(log(abs((x0*x0*x0))) , sign(x2))))) * (log(abs((1.0 / x2))) * avg(cos(x2) , (x0*x0)))),(ninteger(((x2*x2)*(x2*x2))) % (((x0*x0*x0)*(x0*x0*x0)*(x0*x0*x0)) + (ninteger(((x2*x2)*(x2*x2))) % (((x0*x0*x0)*(x0*x0*x0)*(x0*x0*x0)) + log(abs((x0*x0*x0))))))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regress3MVL</td>
+		        <td>500</td>
+		        <td>34</td>
+		        <td>1.02</td>
+		        <td>.892</td>
+		        <td>497</td>
+		        <td>mvlregress(min(min(min((sqrt(abs(x0))*sqrt(abs(x0))) , (abs(x2)*abs(x2))) , (((abs(x2)*abs(x2))*(abs(x2)*abs(x2)))*((abs(x2)*abs(x2))*(abs(x2)*abs(x2))))) , ((abs(((abs(x2)*abs(x2))*(abs(x2)*abs(x2))))*abs(((abs(x2)*abs(x2))*(abs(x2)*abs(x2)))))*(abs(((abs(x2)*abs(x2))*(abs(x2)*abs(x2))))*abs(((abs(x2)*abs(x2))*(abs(x2)*abs(x2))))))),max(min(expt(abs(abs(x0)) ,log(abs(x1))) , expt(abs(tan(x1)) ,x1)) , sqrt(abs((x0*x0*x0)))),avg(avg(((avg((x0*x0*x0) , sign(x2)) + ((1.0 / ninteger(abs(x2)))*(1.0 / ninteger(abs(x2)))*(1.0 / ninteger(abs(x2)))))*(avg((x0*x0*x0) , sign(x2)) + ((1.0 / ninteger(abs(x2)))*(1.0 / ninteger(abs(x2)))*(1.0 / ninteger(abs(x2)))))*(avg((x0*x0*x0) , sign(x2)) + ((1.0 / ninteger(abs(x2)))*(1.0 / ninteger(abs(x2)))*(1.0 / ninteger(abs(x2)))))) , abs((x0*x0))) , (x1*x1)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regress4MVL</td>
+		        <td>500</td>
+		        <td>44</td>
+		        <td>.858</td>
+		        <td>.848</td>
+		        <td>437</td>
+		        <td>mvlregress((((if (x1 >= x0) {-4.175317310707} else {x0})*(if (x1 >= x0) {-4.175317310707} else {x0})) - tanh(tanh((x1*x1)))),((((((ninteger(x1)*ninteger(x1)*ninteger(x1))*(ninteger(x1)*ninteger(x1)*ninteger(x1))*(ninteger(x1)*ninteger(x1)*ninteger(x1)))*((ninteger(x1)*ninteger(x1)*ninteger(x1))*(ninteger(x1)*ninteger(x1)*ninteger(x1))*(ninteger(x1)*ninteger(x1)*ninteger(x1)))*((ninteger(x1)*ninteger(x1)*ninteger(x1))*(ninteger(x1)*ninteger(x1)*ninteger(x1))*(ninteger(x1)*ninteger(x1)*ninteger(x1)))) / exp(x2)) % ((x0*x0*x0) - sin(x2))) - tanh(((x0*x0*x0)*(x0*x0*x0)))),(avg(log(abs(x1)) , sqrt(abs(sin(x2)))) + (((x0*x0*x0) + sign((exp((1.0 / tanh(2.137261851988))) + x2)))*((x0*x0*x0) + sign((exp((1.0 / tanh(2.137261851988))) + x2)))*((x0*x0*x0) + sign((exp((1.0 / tanh(2.137261851988))) + x2))))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regress2MVL</td>
+		        <td>1000</td>
+		        <td>405</td>
+		        <td>0.9874421853553</td>
+		        <td>2.280139329293</td>
+		        <td>254</td>
+		        <td>mvlregress(max(ninteger(x2) , abs(expt(abs(tanh(x4)) ,x0))),expt(abs(log(abs(x0))) ,sin(max(abs(x1) , x3))),expt(abs(abs(x3)) ,x0),(abs(ninteger(x0)) / (x1*x1*x1)),((1.0 / exp(x3)) + cos(x3)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regressCMVL</td>
+		        <td>1000</td>
+		        <td>34</td>
+		        <td>0.9850127675769</td>
+		        <td>1.018537978708E+041</td>
+		        <td>853</td>
+		        <td>mvlregress(((x4*x4*x4) - expt(abs(((sign(x3) / log(abs(x3))) - (exp(x0) / abs(x1)))) ,(sign(x0) * sign(sign(x0))))),((exp(x0) * ((1.0 / x3)*(1.0 / x3))) * ((((exp(x0) * (1.0 / x3)) * (1.0 / x3)) * (1.0 / x3))*(((exp(x0) * (1.0 / x3)) * (1.0 / x3)) * (1.0 / x3)))),((exp(x0) * ((1.0 / x3)*(1.0 / x3))) * exp(x0)),expt(abs(((sign(x3) / log(abs(x3))) * expt(abs(cos(((exp(x0) / abs(x1)) * sign(x0)))) ,ninteger(x1)))) ,expt(abs(((sign(x3) / log(abs(x3))) - (exp(log(abs(x3))) / abs(x1)))) ,(sign(x0) * sign(x0)))),(((if (x1 &lt;= x0) {x0} else {4.808727247637})*(if (x1 &lt;= x0) {x0} else {4.808727247637})*(if (x1 &lt;= x0) {x0} else {4.808727247637})) + ((exp(x0) * ((1.0 / x3)*(1.0 / x3))) * (ninteger((x4*x4*x4))*ninteger((x4*x4*x4))))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regress2CMVL</td>
+		        <td>1000</td>
+		        <td>35</td>
+		        <td>0.978221611109</td>
+		        <td>65269846.83037</td>
+		        <td>1391</td>
+		        <td>mvlregress(((avg(((exp(x0) / abs(x1)) - avg(sign(x2) , avg((1.0 / x1) , abs(x2)))) , (cos(x1) - sqrt(abs(x1)))) + (exp(x0) * (1.0 / x4))) - max((((log(abs(x0)) % abs(cos(x1))) / cos(cos(x1))) - ((-x4) - (exp(x0) / abs(x1)))) , log(abs(x2)))),(max((sign(x2) % tanh(x2)) , ((exp(x0) * (x4*x4)) * (exp(x2) * exp(x1)))) * sign(x2)),((((log(abs(x0)) % abs(cos(x1))) / cos(x1)) - (exp(x0) / abs(x1))) % exp(x0)),(expt(abs(((exp(x0) * log(abs(x2))) * (exp(x0) / abs(x1)))) ,((cos(x4) % tan(((1.0 / x3) - (1.0 / x2)))) * (sign(x3) / log(abs(log(abs(x3))))))) % max(exp(x4) , ((exp(x0) * (x4*x4)) * (exp(x2) * exp(x1))))),max(((abs(x1) * exp(x0)) * exp((max(log(abs(x3)) , max((sign(x3) / log(abs(log(abs(x3))))) , ((1.0 / x0) - (x1*x1)))) - expt(abs((-x1)) ,log(abs(x2)))))) , (((exp(x0) * (x4*x4)) * (x4*x4)) * (((1.0 / cos(x3)) - (1.0 / x0))*((1.0 / cos(x3)) - (1.0 / x0))))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regressSvmMVL</td>
+		        <td>1</td>
+		        <td>1.29</td>
+		        <td>6.073144521891E-006</td>
+		        <td>3.835072392581E-006</td>
+		        <td>78</td>
+		        <td>svmregress(x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>10 <i>Note: too many columns, too few rows</i></td>
+		        <td>regressSvmMVL</td>
+		        <td>1</td>
+		        <td>1.14</td>
+		        <td>1.037243384018</td>
+		        <td>1.109568524034E+042</td>
+		        <td>358</td>
+		        <td>mvlregress((exp(x9) - tanh(x2)),(cos(x3) - (1.0 / x9)),(x7 % (-x9)),(exp(x5) % ninteger(x0)),min(exp(x1) , (-x5)),expt(abs((x7*x7*x7)) ,sqrt(abs(x2))),expt(abs(cos(x6)) ,x1),((-x8) / (1.0 / x3)),(exp(x1) / (-x5)),(abs(x4) + abs(x2)));</td>
+		      </tr>
+            </table>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEllipsoidal Function"></A>Ellipsoidal Function</H2></P>
+			<p>The Ellipsoidal function, given by the following equation,
+            <BR> 
+            <BR> 
+            &nbsp;&nbsp;&nbsp;&nbsp;<B><i>y = 0.0 + (1*x[0]*x[0]) + (2*x[1]*x[1]) + ... + (M*x[M-1]*x[M-1])</i></B>
+            <BR>
+            <BR>
+            is a standard measure of performance in [1]. 
+            We used the <i>defaultMVL</i> option settings to perform a
+            series of tests on five hundred rows with from one to ten columns. 
+            The tests are all exact with no random noise added.
+            The following are the GSM methods calls as issued for these tests.</P>
+
+            <P><B>Actual GSM Methods Calls:</B></P>
+            <ul>
+               <li>(gsm.setOptions defaultMVL: 00% false)(gsm.selfTest elipsoid: 1 01 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions regressSMVL: 00% false)(gsm.selfTest elipsoid: 1 01 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions defaultMVL: 00% false)(gsm.selfTest elipsoid: 1 03 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions regressSMVL: 00% false)(gsm.selfTest elipsoid: 1 03 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions defaultMVL: 00% false)(gsm.selfTest elipsoid: 1 05 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions regressSMVL: 00% false)(gsm.selfTest elipsoid: 1 05 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions defaultMVL: 00% false)(gsm.selfTest elipsoid: 1 10 1000 100 .00% checkpoint:)</li>
+               <li>(gsm.setOptions regressSMVL: 00% false)(gsm.selfTest elipsoid: 1 10 1000 100 .00% checkpoint:)</li>
+            </ul>
+
+            <P>The following are the GSM performance results for these tests.</P>
+
+            <P><B>Performance Results:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Rows</th>
+		        <th>Columns</th>
+		        <th>Option</th>
+		        <th>Generations</th>
+		        <th>Elapsed Minutes</th>
+		        <th>Train ErrorPct</th>
+		        <th>Test ErrorPct</th>
+		        <th>WFF Length</th>
+		        <th>WFF Source</th>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>1</td>
+		        <td>defaultMVL</td>
+		        <td>0</td>
+		        <td>1.8</td>
+		        <td>0.00</td>
+		        <td>0.00</td>
+		        <td>39</td>
+		        <td>mvlregress(((-x0) * x0));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>1</td>
+		        <td>regressSMVL</td>
+		        <td>0</td>
+		        <td>1.8</td>
+		        <td>0.00</td>
+		        <td>0.00</td>
+		        <td>39</td>
+		        <td>mvlregress(((-x0) * x0));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>defaultMVL</td>
+		        <td>0</td>
+		        <td>34</td>
+		        <td>5.800862412751E-016</td>
+		        <td>1.457022869628E-006</td>
+		        <td>318</td>
+		        <td>mvlregress((((x2*x2) + (x1*x1)) - ((x2*x2) + (x0*x0))),min(((x2*x2) + (x0*x0)) , ((max((x2*x2) , (x1*x1))*max((x2*x2) , (x1*x1))) + (x0*x0))),(max(ninteger(x2) , ((x0*x0)*(x0*x0))) / (x1*x1)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>regressSMVL</td>
+		        <td>0</td>
+		        <td>36</td>
+		        <td>4.240183209616E-019</td>
+		        <td>6.055618236929E-019</td>
+		        <td>235</td>
+		        <td>mvlregress(max(exp(x2) , (if (x0 &lt; 0.9354712246726) {x0} else {x1})),((x2*x2) + ((x2*x2) + ((x2*x2) + (x0*x0)))),((x1*x1) + ninteger(cos(cos(cos(x0))))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>defaultMVL</td>
+		        <td>0</td>
+		        <td>38</td>
+		        <td>0.03731375508097</td>
+		        <td>0.04863589414105</td>
+		        <td>525</td>
+		        <td>mvlregress((log(abs(min(3.271128758164 , -4.199347511765))) * (exp(min(3.271128758164 , -4.199347511765)) * abs((x1*x1*x1)))),(abs(abs(x3)) * abs(x3)),max(log(abs(x2)) , (log(abs(x2)) % log(abs(x2)))),avg(abs(abs(abs(x2))) , abs(avg(sqrt(abs(x3)) , abs(avg(abs(x0) , abs(x1)))))),((((1.0 / abs(x4)) - (abs(x4)*abs(x4))) - (abs(x3)*abs(x3))) + abs((1.0 / abs(x0)))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regressSMVL</td>
+		        <td>0</td>
+		        <td>43</td>
+		        <td>2.471663352211E-018</td>
+		        <td>2.789144747384E-018</td>
+		        <td>486</td>
+		        <td>mvlregress(avg(avg((x0*x0) , avg((x2*x2) , (x2*x2))) , (x2*x2)),(x0 + expt(abs((x3 * 2.697792111764)) ,sign(x0))),(((((abs(x4)*abs(x4)) + (abs(x1)*abs(x1))) + (abs(x1)*abs(x1)))*(((abs(x4)*abs(x4)) + (abs(x1)*abs(x1))) + (abs(x1)*abs(x1)))) + ((abs(x1)*abs(x1)) + (x3*x3))),((abs(x4)*abs(x4)) + (x3*x3)),(((abs(x4)*abs(x4)) + (abs(x1)*abs(x1))) + (x1*x1)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>10</td>
+		        <td>defaultMVL</td>
+		        <td>0</td>
+		        <td>63</td>
+		        <td>0.002575105800314</td>
+		        <td>0.002559622208024</td>
+		        <td>1089</td>
+		        <td>mvlregress((abs(cos(x7)) - (sign(min((abs(x2)*abs(x2)) , avg(x3 , (ninteger(x5)*ninteger(x5))))) + (x7*x7))),(abs(min(abs(x2) , abs(x2))) * abs(x2)),max(min(sqrt(abs(x2)) , avg(x9 , abs(x2))) , (x3*x3)),(if (x4 &lt; avg(cos(x7) , max(cos(cos(x7)) , avg((x1*x1) , x4)))) {(x8*x8)} else {((x8*x8) + x1)}),avg(avg(x3 , (x4*x4)) , (x4*x4)),avg(avg(x3 , (ninteger(x5)*ninteger(x5))) , avg((x4*x4) , abs((log(abs(x8)) - (abs(x9)*abs(x9)))))),avg(avg((cos(x7)*cos(x7)) , (ninteger(x5)*ninteger(x5))) , avg((x0*x0) , abs((log(abs(x8)) - (x7*x7))))),avg((((-4.784491584615 + x9) + (x6*x6)) + x0) , (abs(x9)*abs(x9))),(avg(max(cos(cos(x7)) , avg((x1*x1) , x4)) , (abs(x9)*abs(x9))) + (x6*x6)),((avg((x7*x7) , (ninteger(x5)*ninteger(x5))) + x3) + x3));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>10</td>
+		        <td>regressSMVL</td>
+		        <td>0</td>
+		        <td>76</td>
+		        <td>0.0003037471829059</td>
+		        <td>0.0003600732894825</td>
+		        <td>980</td>
+		        <td>mvlregress((log(abs(((log(abs(x0)) - abs(x9))*(log(abs(x0)) - abs(x9))*(log(abs(x0)) - abs(x9))))) - (log(abs(((log(abs(x0)) - abs(x9))*(log(abs(x0)) - abs(x9))*(log(abs(x0)) - abs(x9))))) - (x9*x9))),max(sign(x8) , (x4*x4)),max(max(max(x8 , max(log(abs(x6)) , (x7*x7))) , x0) , x1),max(max(max((x3*x3) , x0) , x6) , x0),max(log(abs(((x5*x5*x5)*(x5*x5*x5)*(x5*x5*x5)))) , max((((x5*x5*x5)*(x5*x5*x5)*(x5*x5*x5))*((x5*x5*x5)*(x5*x5*x5)*(x5*x5*x5))) , max((((x5*x5*x5)*(x5*x5*x5)*(x5*x5*x5))*((x5*x5*x5)*(x5*x5*x5)*(x5*x5*x5))) , x4))),avg((avg(x1 , x1)*avg(x1 , x1)) , avg(avg((x5*x5) , (x6*x6)) , log(abs(x2)))),avg(avg((x5*x5) , (x6*x6)) , avg(avg((x5*x5) , (x6*x6)) , log(abs(x2)))),((1.0 / x4) + avg((x4*x4) , (x2*x2))),((((x8*x8) + avg((x4*x4) , (x2*x2))) + abs(x1)) + sin(x5)),abs((sign(sign(max(x3 , x1))) + avg((x4*x4) , (x0*x0)))));</td>
+		      </tr>
+            </table>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCyclic Series Function"></A>Cyclic Series Function</H2></P>
+			<p>The Cyclic Series function, given by the following equation,
+            <BR> 
+            <BR> 
+            &nbsp;&nbsp;&nbsp;&nbsp;<B><i>y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0)) - (17.48124453288*x3*sin(x0)) + (38.81839452492*x4*cos(x0));</i></B>
+            <BR>
+            <BR>
+            is a standard measure of performance in the GSM. 
+            We compared several of the default option settings to perform a
+            series of tests on one thousand rows with with three columns. 
+            The tests are all exact with no random noise added.
+            The following are the GSM methods calls as issued for these tests.</P>
+
+            <P><B>Actual GSM Methods Calls:</B></P>
+            <ul>
+               <li>(gsm.setOptions regressGaMVL: 00% true)(gsm.selfTest cyclicSeries: 1 5 1000 200 01% checkpoint:)</li>
+            </ul>
+
+            <P>The following are the GSM performance results for these tests.</P>
+
+            <P><B>Performance Results:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Rows</th>
+		        <th>Columns</th>
+		        <th>Option</th>
+		        <th>Generations</th>
+		        <th>Elapsed Minutes</th>
+		        <th>Train ErrorPct</th>
+		        <th>Test ErrorPct</th>
+		        <th>WFF Source</th>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regressGaMVL</td>
+		        <td>200</td>
+		        <td>17</td>
+		        <td>1.013562168645</td>
+		        <td>5.063307414908E+014</td>
+		        <td>mvlregress(min(log(abs(x2)) , tan(x1)),expt(abs(exp(x2)) ,log(abs(x2))),expt(abs(cos(x0)) ,(-x2)),expt(abs(cos(x0)) ,ninteger(x1)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regressGPSR</td>
+		        <td>200</td>
+		        <td>14</td>
+		        <td>3.012862873945</td>
+		        <td>3.135662535118</td>
+		        <td>regress(tanh(abs(x4))+((if (x3 &lt; x4) {2.455796326077} else {2.859343562168})*(if (x3 &lt; x4) {2.455796326077} else {2.859343562168}))+(max(-3.640206438313 , x3) % tan(-4.89198167607)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regressGaCMVL</td>
+		        <td>200</td>
+		        <td>27</td>
+		        <td>0.9977733359539</td>
+		        <td>5.063391381703E+014</td>
+		        <td>mvlregress(min((1.0 / x0) , log(abs(x4))),expt(abs(x3) ,x2),expt(abs(cos(x0)) ,(-x2)),expt(abs(cos(x0)) ,ninteger(x1)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>regress2GaCMVL</td>
+		        <td>200</td>
+		        <td>38</td>
+		        <td>1.004924529883</td>
+		        <td>5.063264120872E+014</td>
+		        <td>mvlregress(min(log(abs(x2)) , tan(x1)),expt(abs(cos(x0)) ,(-x2)),expt(abs(cos(x0)) ,ninteger(x1)));</td>
+		      </tr>
+            </table>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe regressGaCMVL Option Setting"></A>The regressGaCMVL Option Setting</H2></P>
+			<p>The <B>regressGaCMVL</B> option setting can be used against all of the GSM test suites to 
+            provide a comparison study and a standard measure of performance of the GSM. 
+            All of the tests are reported with the number of rows and columns. 
+            The tests are all exact with no random noise added.
+            The following are the GSM methods calls as issued for these tests.</P>
+
+            <P><B>Actual GSM Methods Calls:</B></P>
+            <ul>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest all: 1 5 1000 200 .99% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest all: 1 10 1000 200 .99% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest all: 1 20 1000 200 .99% checkpoint:)</li>
+            </ul>
+
+            <P>The following are the GSM performance results for these tests.</P>
+
+            <P><B>Performance Results:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr><th width=200 >Test</th><td>linearRegression</td></tr>
+		      <tr><th width=200 >Rows</th><td>1000</td></tr>
+		      <tr><th width=200 >Columns</th><td>5</td></tr>
+		      <tr><th width=200 >Training Gens</th><td>0</td></tr>
+		      <tr><th width=200 >Training Time</th><td>.01 minutes</td></tr>
+		      <tr><th width=200 >Training Fittness</th><td>Score=2.805047073921E-005 (ErrorPct=0.02301464075688)</td></tr> 
+		      <tr><th width=200 >Testing Fittness</th><td>Score=4.33661031386E-005 (ErrorPct=0.02299119330935)</td></tr> 
+		      <tr><th width=200 >Decile Act Y</th><td>-3366 -2107 -1375 -817 -265 215 756 1354 2127 3388 </td></tr> 
+		      <tr><th width=200 >Decile Avg EY</th><td>-3366 -2107 -1375 -817 -265 215 756 1354 2127 3388 </td></tr> 
+		      <tr><th width=200 >Decile Diff EY</th><td>3154  3823  4573  5495  6755 </td></tr> 
+		      <tr><th width=200 >Target Source</th><td>y = 36.28472509997 + (36.28472509997*x0) + (30.58638330984*x1) + (13.02686266162*x2) - (29.03445701301*x3) + (35.00133469577*x4);</td></tr>
+		      <tr><th width=200 >WFF Source</th><td>mvlregress(x4,x3,x2,x1,x0);</td></tr>
+              <tr><th width=200 >Console Display</th>
+                  <td>
+                     <blockquote> <pre> 
+                  
+Starting test case: linearRegression
+Building test data as: y = 36.28472509997 + (36.28472509997*x0) + (30.58638330984*x1) + (13.02686266162*x2) - (29.03445701301*x3) + (35.00133469577*x4);
+...starting new evolutionary process.
+...starting generation of constant estimator WFF.
+...starting regress estimator for each column name.
+...starting a best-of-breed MVL estimator WFF.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [1000], M = [5], Generations = [0], WFFs = [8], Score=[2.805047073921E-005], ScoreHistory=[#(num| 2.805047073921E-005 )]
+gsm.myBest, Score=[2.805047073921E-005], ErrorPct=[0.02301464075688], lengthWFF=[78], WFF = mvlregress(x4,x3,x2,x1,x0);
+gsm.myBestRegressor, Score=[2.805047073921E-005], ErrorPct=[0.02301464075688], lengthWFF=[78], WFF = mvlregress(x4,x3,x2,x1,x0);
+myBestEstimatorChampions
+myBestEstimatorChampions[0],Score=[2.805047073921E-005,ErrorPct=[0.02301464075688],WFF= mvlregress(x4,x3,x2,x1,x0);
+myBestRegressorChampions
+myBestRegressorChampions[0],ErrorPct=[0.02301464075688,Score=[2.805047073921E-005],WFF= mvlregress(x4,x3,x2,x1,x0);
+
+
+Show final results on training data, Score=[2.805047073921E-005], ErrorPct=[0.02301464075688]
+X[0], ey=[-5843.163750627], y=[-5808.843994914], ErrorPct=[0.02178099153448]
+X[50], ey=[-3060.383583548], y=[-3025.383739751], ErrorPct=[0.02221260861667]
+X[100], ey=[-2544.331592509], y=[-2508.973852964], ErrorPct=[0.02243974672117]
+X[150], ey=[-2122.265937244], y=[-2086.549905584], ErrorPct=[0.02266713637871]
+X[200], ey=[-1739.390229865], y=[-1703.731995936], ErrorPct=[0.02263045511856]
+X[250], ey=[-1418.373048652], y=[-1382.407482634], ErrorPct=[0.02282550305842]
+X[300], ey=[-1090.853942556], y=[-1055.615701569], ErrorPct=[0.02236390710521]
+X[350], ey=[-816.5446456864], y=[-780.8900495508], ErrorPct=[0.0226281463977]
+X[400], ey=[-610.3393271481], y=[-573.9496629182], ErrorPct=[0.02309465647645]
+X[450], ey=[-337.8171650406], y=[-302.0340395261], ErrorPct=[0.02270971741289]
+X[500], ey=[-41.35736908715], y=[-5.178759057364], ErrorPct=[0.0229607111831]
+X[550], ey=[183.4619330142], y=[220.2310103636], ErrorPct=[0.02333545055471]
+X[600], ey=[410.0478792595], y=[446.020085315], ErrorPct=[0.02282971715001]
+X[650], ey=[696.07861249], y=[733.0760047121], ErrorPct=[0.02348035031306]
+X[700], ey=[939.2025895943], y=[976.6369766491], ErrorPct=[0.02375768855615]
+X[750], ey=[1222.181265982], y=[1258.197601923], ErrorPct=[0.02285772412896]
+X[800], ey=[1650.86192273], y=[1687.688121192], ErrorPct=[0.02337170239994]
+X[850], ey=[2003.908581394], y=[2041.888413328], ErrorPct=[0.0241038544903]
+X[900], ey=[2591.889695326], y=[2628.666017283], ErrorPct=[0.02334004833617]
+X[950], ey=[3391.951723443], y=[3429.611172845], ErrorPct=[0.02390052410342]
+Actual computed error on training data is ErrorPct=[0.02301464075688] versus reported ErrorPct=[0.02301464075688] while average Y is AvgY=[-0.5984121923563]
+yHistory=[#(num| -3283.281808261 -2091.508320913 -1396.777278985 -805.6204340371 -304.1315504475 219.4866579832 716.1484604536 1277.013920423 2085.484803221 3577.20142864 )]
+eHistory=[#(num| -3283.281808261 -2091.508320913 -1396.777278985 -805.6204340371 -304.1315504475 219.4904608229 716.1446576139 1277.013920423 2085.484803221 3577.20142864 )]
+aHistory=[#(num| -3283.281808261 -2687.395064587 -2257.189136053 -1894.296960549 -1576.263878529 1575.067054144 1913.961202474 2313.233384095 2831.34311593 3577.20142864 )]
+dHistory=[#(num| 3151.330932673 3808.258163023 4570.422520148 5518.738180518 6860.483236901 )]
+
+
+Final testing on test data returns Score=[4.33661031386E-005], ErrorPct=[0.02299119330935]
+X[0], ey=[-6518.618720943], y=[-6484.623704412], ErrorPct=[0.02155033987663]
+X[50], ey=[-3271.303887069], y=[-3236.437925615], ErrorPct=[0.02210245489317]
+X[100], ey=[-2628.175261211], y=[-2593.162567164], ErrorPct=[0.02219547256389]
+X[150], ey=[-2123.983228316], y=[-2087.961124077], ErrorPct=[0.02283536437485]
+X[200], ey=[-1711.654778528], y=[-1675.368766003], ErrorPct=[0.02300266281603]
+X[250], ey=[-1446.293822763], y=[-1409.961854118], ErrorPct=[0.02303179561565]
+X[300], ey=[-1118.701300059], y=[-1082.131532354], ErrorPct=[0.0231825427274]
+X[350], ey=[-837.6775684122], y=[-801.0312808508], ErrorPct=[0.02323105068783]
+X[400], ey=[-576.0428723192], y=[-540.2923618324], ErrorPct=[0.02266319391404]
+X[450], ey=[-275.0037064372], y=[-237.6116087693], ErrorPct=[0.02370383943506]
+X[500], ey=[-25.06080852636], y=[10.30082433361], ErrorPct=[0.0224166741037]
+X[550], ey=[153.2989159602], y=[190.7620580547], ErrorPct=[0.02374887637566]
+X[600], ey=[488.6687779334], y=[524.3325539087], ErrorPct=[0.02260821061378]
+X[650], ey=[727.335100493], y=[764.1127556697], ErrorPct=[0.02331432809277]
+X[700], ey=[971.7974974384], y=[1007.200600128], ErrorPct=[0.0224429629251]
+X[750], ey=[1344.327010143], y=[1380.437501899], ErrorPct=[0.02289139555896]
+X[800], ey=[1630.753673893], y=[1667.834312768], ErrorPct=[0.02350639747083]
+X[850], ey=[2072.065773895], y=[2109.188899938], ErrorPct=[0.02353333121008]
+X[900], ey=[2586.913588067], y=[2623.683696846], ErrorPct=[0.02330954423191]
+X[950], ey=[3164.033562841], y=[3201.358129815], ErrorPct=[0.02366102994308]
+Actual computed error on testing data is ErrorPct=[0.02299119330935], Avg Y=[-8.890305832169], AvgDev Y=[1577.470087507]
+yHistory=[#(num| -3366.450229611 -2107.733923626 -1375.136018612 -817.2387459612 -265.1521579873 215.549764995 756.1077597689 1354.709844058 2127.666211191 3388.774437463 )]
+eHistory=[#(num| -3366.450229611 -2107.733923626 -1375.136018612 -817.2387459612 -265.1521579873 215.549764995 756.1077597689 1354.709844058 2127.666211191 3388.774437463 )]
+aHistory=[#(num| -3366.450229611 -2737.092076618 -2283.10672395 -1916.639729452 -1586.342215159 1568.561603495 1906.81456312 2290.383497571 2758.220324327 3388.774437463 )]
+dHistory=[#(num| 3154.903818655 3823.454292573 4573.49022152 5495.312400945 6755.224667073 )]
+
+gsm.selfTest[linearRegression]: completed in [0.01303333333338] minutes.
+
+
+
+                    </pre> </blockquote> 
+                  </td>
+		      </tr>
+            </table>
+
+
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Rows</th>
+		        <th>Cols</th>
+		        <th>Test</th>
+		        <th>Gens</th>
+		        <th>Time</th>
+		        <th>Score</th>
+		        <th>Error</th>
+		        <th>Problem Formula</th>
+		        <th>Evolved Formula</th>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>linearRegression</td>
+		        <td>0</td>
+		        <td>.01</td>
+		        <td>.000043</td>
+		        <td>0.02299</td>
+		        <td>y = 36.28472509997 + (36.28472509997*x0) + (30.58638330984*x1) + (13.02686266162*x2) - (29.03445701301*x3) + (35.00133469577*x4);</td>
+		        <td>mvlregress(x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>10</td>
+		        <td>linearRegression</td>
+		        <td>0</td>
+		        <td>.03</td>
+		        <td>.000010</td>
+		        <td>0.00858</td>
+		        <td>y = -13.99864194741 - (13.99864194741*x0) - (32.66789144459*x1) - (30.73171497235*x2) + (10.01135458484*x3) - (2.83159613203*x4) + (5.499486281783*x5) - (46.33521181329*x6) + (10.35455431571*x7) + (18.14155680594*x8) - (3.363675194861*x9);</td>
+		        <td>mvlregress(x9,x8,x7,x6,x5,x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>hiddenModel</td>
+		        <td>0</td>
+		        <td>1.24</td>
+		        <td>0.00000</td>
+		        <td>0.00000</td>
+		        <td>y = 36.28472509997 + (13.02686266162*sin(x2));</td>
+		        <td>regress(sin(x2));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>10</td>
+		        <td>hiddenModel</td>
+		        <td>0</td>
+		        <td>2.36</td>
+		        <td>0.00000</td>
+		        <td>0.00000</td>
+		        <td>y = -13.99864194741 + (5.499486281783*sin(x5));</td>
+		        <td>regress(sin(x5));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>elipsoid</td>
+		        <td>0</td>
+		        <td>2.04</td>
+		        <td>0.009296</td>
+		        <td>0.203166</td>
+		        <td>y = 0.0 + (1.0*x0*x0) + (2.0*x1*x1) + (3.0*x2*x2) + (4.0*x3*x3) + (5.0*x4*x4);</td>
+		        <td>mvlregress(sqrt(abs(x1)),max((x3*x3) , x4),max((x2*x2) , x2),avg(x0 , (x2*x2)),avg((x4*x4) , x3));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>10</td>
+		        <td>elipsoid</td>
+		        <td>10</td>
+		        <td>7.31</td>
+		        <td>0.008742</td>
+		        <td>0.199586</td>
+		        <td>y = 0.0 + (1.0*x0*x0) + (2.0*x1*x1) + (3.0*x2*x2) + (4.0*x3*x3) + (5.0*x4*x4) + (6.0*x5*x5) + (7.0*x6*x6) + (8.0*x7*x7) + (9.0*x8*x8) + (10.0*x9*x9);</td>
+		        <td>mvlregress(max(sqrt(abs(x2)) , min(min(max(x7 , min(x6 , x7)) , (cos(x6)*cos(x6))) , x7)),max(max((x9*x9) , (ninteger(x3) / exp(x3))) , abs(x6)),max(ninteger(x0) , max(x0 , max(x1 , x7))),(max(x1 , x8) / (avg(x1 , abs(x8)) % avg((x7*x7) , x9))),avg((x8*x8) , abs(max(abs(avg((x8*x8) , avg((x8*x8) , x3))) , x1))),avg((x4*x4) , min(max(x0 , x8) , max(max(x1 , x9) , x8))),avg(avg((x7*x7) , avg((x5*x5) , x5)) , sqrt(abs(avg(abs(x6) , sqrt(abs(x4)))))),avg(avg(ninteger(x0) , ninteger(x0)) , x4),avg(avg(avg((max(x7 , avg((x5*x5) , x2))*max(x7 , avg((x5*x5) , x2))) , x6) , x4) , avg((x9*x9) , x4)),avg(abs(x6) , abs(avg(abs(x3) , abs(x4)))));</td>
+		      </tr>
+            </table>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe regressSvmMVL Option Setting"></A>The regressSvmMVL Option Setting</H2></P>
+			<p>The <B>regressSvmMVL</B> option setting can be used against all of the GSM test suites to 
+            provide a comparison study and a standard measure of performance of the GSM. 
+            All of the tests are reported with the number of rows and columns. 
+            The tests are all exact with no random noise added.
+            The following are the GSM methods calls as issued for these tests.</P>
+
+            <P><B>Actual GSM Methods Calls:</B></P>
+            <ul>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest linearRegression: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest cubicRegression: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest crossCorrelation: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest elipsoid: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest hiddenModel: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest hyperTangent: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest cyclicSeries: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest ratioRegression: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest mixedModels: 1 5 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest cyclicSeries: 1 3 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest ratioRegression: 1 3 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest mixedModels: 1 3 1000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest cyclicSeries: 1 5 10000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest ratioRegression: 1 5 10000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest mixedModels: 1 5 10000 500 01% checkpoint:)</li>
+               <li>(gsm.setOptions regressSvmMVL: 00% false)(gsm.selfTest cyclicSeries: 1 5 1000000 200 01% checkpoint:)</li>
+            </ul>
+
+            <P>The following are the GSM performance results for these tests.</P>
+
+            <P><B>Performance Results:</B></P>
+		    <table>
+			<colgroup><col class="member"><col class="description"></colgroup>
+		      <tr>
+		        <th>Rows</th>
+		        <th>Columns</th>
+		        <th>Test</th>
+		        <th>Generations</th>
+		        <th>Elapsed Minutes</th>
+		        <th>Train ErrorPct</th>
+		        <th>Test ErrorPct</th>
+		        <th>Target Source</th>
+		        <th>WFF Source</th>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>linearRegression</td>
+		        <td>0</td>
+		        <td>.03</td>
+		        <td>0.0006142805107495</td>
+		        <td>0.0005763637957966</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0) - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4);</td>
+		        <td>mvlregress(x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>cubicRegression</td>
+		        <td>0</td>
+		        <td>.04</td>
+		        <td>1.65533573241E-006</td>
+		        <td>2.267653076895E-006</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*x0*x0) - (19.5666514757*x1*x1*x1) + (21.87460482304*x2*x2*x2) - (17.48124453288*x3*x3*x3) + (38.81839452492*x4*x4*x4);</td>
+		        <td>svmregress(x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>crossCorrelation</td>
+		        <td>0</td>
+		        <td>.04</td>
+		        <td>6.073144521891E-006</td>
+		        <td>3.835072392581E-006</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*x0*x0) - (19.5666514757*x0*x1*x1) + (21.87460482304*x0*x1*x2) - (17.48124453288*x1*x2*x3) + (38.81839452492*x2*x3*x4);</td>
+		        <td>svmregress(x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>elipsoid</td>
+		        <td>0</td>
+		        <td>.04</td>
+		        <td>3.168706321611E-005</td>
+		        <td>3.218076531146E-005</td>
+		        <td>y = 0.0 + (1.0*x0*x0) + (2.0*x1*x1) + (3.0*x2*x2) + (4.0*x3*x3) + (5.0*x4*x4);</td>
+		        <td>svmregress(x4,x3,x2,x1,x0);</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>hiddenModel</td>
+		        <td>3</td>
+		        <td>1.4</td>
+		        <td>6.151124792666E-014</td>
+		        <td>1.123567903671E-015</td>
+		        <td>y = -9.165146942478 + (21.87460482304*sin(x2));</td>
+		        <td>mvlregress(((1.0 / x4) - x2),(tanh(x0) * max(sign((abs(x0) % abs(x3))) , sin(x0))),min(sin(x2) , min(sin(x2) , sin(x2))),max(((x1*x1*x1) % cos(x3)) , sin(x0)),expt(abs(sign(x4)) ,expt(abs(abs(x3)) ,sin(x1))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>hyperTangent</td>
+		        <td>235</td>
+		        <td>17</td>
+		        <td>0.007754828862494</td>
+		        <td>0.009049663931868</td>
+		        <td>y = -9.165146942478 - (9.165146942478*tanh(x0*x0*x0)) - (19.5666514757*tanh(x1*x1*x1)) + (21.87460482304*tanh(x2*x2*x2)) - (17.48124453288*tanh(x3*x3*x3)) + (38.81839452492*tanh(x4*x4*x4));</td>
+		        <td>mvlregress((tanh((-x2)) - (tanh(x4) - (tanh(x0) + (-x2)))),max(sign(x1) , max(sign(x1) , min(log(abs(sign(x0))) , min(sign(x1) , sign(sign(x1)))))),expt(abs(sign(log(abs(x1)))) ,expt(abs(sign(sign((-x0)))) ,expt(abs(sign(log(abs(x1)))) ,min(log(abs(sign(x1))) , tanh(x0))))),((-x2) + (x3 + x3)),(x2 + (tanh((sign(x1) + x3)) + sign(x1))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>cyclicSeries</td>
+		        <td>500</td>
+		        <td>38</td>
+		        <td>0.3071915645385</td>
+		        <td>0.1568942436519</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0));</td>
+		        <td>mvlregress((tan(x0) - (-x1)),((-tan(cos((-tan((-x1)))))) - (((-tan(x0)) / (1.0 / x2)) - ((-x1) * cos(x0)))),avg(tan(x0) , (((-tan(x0)) / (1.0 / x2)) / (-tan(cos((-tan(x0))))))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>cyclicSeries</td>
+		        <td>500</td>
+		        <td>49</td>
+		        <td>0.9854823932357</td>
+		        <td>9.998681355293E+050</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0)) - (17.48124453288*x3*sin(x0)) + (38.81839452492*x4*cos(x0));</td>
+		        <td>mvlregress(min((1.0 / log(abs(cos(x1)))) , sqrt(abs(((1.0 / x1) * sqrt(abs(x1)))))),min(((1.0 / tanh(x2)) / (x4*x4*x4)) , sqrt(abs(cos(x1)))),expt(abs(expt(abs((tan(x4) / cos(x1))) ,sqrt(abs(sign(x2))))) ,sqrt(abs(tan(x0)))),((1.0 / sqrt(abs(x0))) / ((x2*x2*x2)*(x2*x2*x2)*(x2*x2*x2))),avg(min((1.0 / (1.0 / x2)) , sqrt(abs(ninteger(x0)))) , expt(abs(cos(x0)) ,(-x2))));</td>
+		      </tr>
+		      <tr>
+		        <td>10by1000(myTimeON)</td>
+		        <td>5</td>
+		        <td>cyclicSeries</td>
+		        <td>200</td>
+		        <td>50</td>
+		        <td>1.074203433326</td>
+		        <td>1.159588590583</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*sin(xtime)) - (19.5666514757*x1*cos(xtime)) + (21.87460482304*x2*tan(xtime)) - (17.48124453288*x3*sin(xtime)) + (38.81839452492*x4*cos(xtime));</td>
+		        <td> mvlregress(((x1 - (x4*x4*x4)) * tan(x2)),((sqrt(abs(x2))*sqrt(abs(x2))*sqrt(abs(x2))) % sqrt(abs(x2))),max(sign(x2) , (tanh(x2) * x4)),max((1.0 / log(abs(x4))) , expt(abs(log(abs(x4))) ,tanh(x3))),avg(abs(x1) , sin(abs(x1))));</td>
+		      </tr>
+		      <tr>
+		        <td>10000</td>
+		        <td>5</td>
+		        <td>cyclicSeries</td>
+		        <td>500</td>
+		        <td>139</td>
+		        <td>0.9837278996768</td>
+		        <td>1.407708513919</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0)) - (17.48124453288*x3*sin(x0)) + (38.81839452492*x4*cos(x0));</td>
+		        <td>mvlregress(((-x3) * exp(x4)),((1.0 / x1) * min(((1.0 / cos(x0))*(1.0 / cos(x0))*(1.0 / cos(x0))) , max(sign(sin(x3)) , abs(sign(sin(cos(x0))))))),((1.0 / x1) * min(((1.0 / cos(exp((1.0 / abs(x0)))))*(1.0 / cos(exp((1.0 / abs(x0)))))*(1.0 / cos(exp((1.0 / abs(x0)))))) , expt(abs((cos(x0)*cos(x0)*cos(x0))) ,abs(abs(x2))))),max(exp((1.0 / x4)) , sin(sign(x0))),(max(exp((1.0 / x4)) , sin((1.0 / x1))) / exp(x4)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000000</td>
+		        <td>5</td>
+		        <td>cyclicSeries</td>
+		        <td>200</td>
+		        <td>3012</td>
+		        <td>0.9837278296768</td>
+		        <td>1.407708513919</td>
+		        <td>y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0)) - (17.48124453288*x3*sin(x0)) + (38.81839452492*x4*cos(x0));</td>
+		        <td>mvlregress(((-x3) * exp(x4)),((1.0 / x1) * min(((1.0 / cos(x0))*(1.0 / cos(x0))*(1.0 / cos(x0))) , max(sign(sin(x3)) , abs(sign(sin(cos(x0))))))),((1.0 / x1) * min(((1.0 / cos(exp((1.0 / abs(x0)))))*(1.0 / cos(exp((1.0 / abs(x0)))))*(1.0 / cos(exp((1.0 / abs(x0)))))) , expt(abs((cos(x0)*cos(x0)*cos(x0))) ,abs(abs(x2))))),max(exp((1.0 / x4)) , sin(sign(x0))),(max(exp((1.0 / x4)) , sin((1.0 / x1))) / exp(x4)));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>ratioRegression</td>
+		        <td>0</td>
+		        <td>1.03</td>
+		        <td>1.298961438178E-016</td>
+		        <td>93.84796937406</td>
+		        <td>
+                  if ((x0 % 4) == 0) y = + ((9.165146942478*x0)/(19.5666514757*x1)) + ((19.5666514757*x1)/(21.87460482304*x2));
+                  if ((x0 % 4) == 1) y = + ((9.165146942478*x0)%(19.5666514757*x1)) + ((19.5666514757*x1)%(21.87460482304*x2));
+                  if ((x0 % 4) == 2) y = + ((9.165146942478*sin(x0))/(19.5666514757*tan(x1))) + ((19.5666514757*sin(x1))/(21.87460482304*tan(x2)));
+                  if ((x0 % 4) == 3) y = - (19.5666514757* log(.000001+abs(x1))) + (21.87460482304* log(.000001+abs(x2)));
+	            </td>
+		        <td>mvlregress((sign(x0) - (1.0 / x0)),((-x1) * (1.0 / x2)),(exp(x1) * sqrt(abs(x1))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>ratioRegression</td>
+		        <td>476</td>
+		        <td>47</td>
+		        <td>2.399015365933E-015</td>
+		        <td>1.748617462844</td>
+		        <td>
+                  if ((x0 % 4) == 0) y = + ((9.165146942478*x0)/(19.5666514757*x1)) + ((19.5666514757*x1)/(21.87460482304*x2)) + ((21.87460482304*x2)/(17.48124453288*x3)) + ((17.48124453288*x3)/(38.81839452492*x4));
+                  if ((x0 % 4) == 1) y = + ((9.165146942478*x0)%(19.5666514757*x1)) + ((19.5666514757*x1)%(21.87460482304*x2)) + ((21.87460482304*x2)%(17.48124453288*x3)) + ((17.48124453288*x3)%(38.81839452492*x4));
+                  if ((x0 % 4) == 2) y = + ((9.165146942478*sin(x0))/(19.5666514757*tan(x1))) + ((19.5666514757*sin(x1))/(21.87460482304*tan(x2))) + ((21.87460482304*sin(x2))/(17.48124453288*tan(x3))) + ((17.48124453288*sin(x3))/(38.81839452492*tan(x4)));
+                  if ((x0 % 4) == 3) y = - (19.5666514757* log(.000001+abs(x1))) + (21.87460482304* log(.000001+abs(x2))) - (17.48124453288* log(.000001+abs(x3))) + (38.81839452492* log(.000001+abs(x4)));             
+                </td>
+		        <td>mvlregress(min((1.0 / x2) , (1.0 / x2)),((1.0 / x4) / (1.0 / x3)),((((-(1.0 / abs(x1))) + (-x1)) + (abs(abs((x0*x0))) + (1.0 / abs(x1)))) / (1.0 / log(abs(exp(x2))))),avg(((1.0 / x3) / (-(1.0 / log(abs(exp(x2)))))) , tan(x0)),((x0*x0) + ((-x1) * (1.0 / x2))));</td>
+		      </tr>
+		      <tr>
+		        <td>10000</td>
+		        <td>5</td>
+		        <td>ratioRegression</td>
+		        <td>500</td>
+		        <td>124</td>
+		        <td>0.2584533130733</td>
+		        <td>1.260190723419</td>
+		        <td>
+                  if ((x0 % 4) == 0) y = + ((9.165146942478*x0)/(19.5666514757*x1)) + ((19.5666514757*x1)/(21.87460482304*x2)) + ((21.87460482304*x2)/(17.48124453288*x3)) + ((17.48124453288*x3)/(38.81839452492*x4));
+                  if ((x0 % 4) == 1) y = + ((9.165146942478*x0)%(19.5666514757*x1)) + ((19.5666514757*x1)%(21.87460482304*x2)) + ((21.87460482304*x2)%(17.48124453288*x3)) + ((17.48124453288*x3)%(38.81839452492*x4));
+                  if ((x0 % 4) == 2) y = + ((9.165146942478*sin(x0))/(19.5666514757*tan(x1))) + ((19.5666514757*sin(x1))/(21.87460482304*tan(x2))) + ((21.87460482304*sin(x2))/(17.48124453288*tan(x3))) + ((17.48124453288*sin(x3))/(38.81839452492*tan(x4)));
+                  if ((x0 % 4) == 3) y = - (19.5666514757* log(.000001+abs(x1))) + (21.87460482304* log(.000001+abs(x2))) - (17.48124453288* log(.000001+abs(x3))) + (38.81839452492* log(.000001+abs(x4)));             
+                </td>
+		        <td>mvlregress(min(sign(min(min((-x4) , sign((-x4))) , (1.0 / (1.0 / x3)))) , (log(abs(sign((1.0 / x3)))) / cos(cos(x1)))),avg(((1.0 / x3) * (1.0 / x1)) , (1.0 / x3)),avg((1.0 / x3) , ((1.0 / x3) / (1.0 / x2))),avg((1.0 / x3) , avg((1.0 / x3) , ((1.0 / x2) / ((1.0 / x1) / log(abs(x4)))))),avg(((1.0 / x2) / ((1.0 / x1) / log(abs(sign(x4))))) , ((1.0 / x3) * (1.0 / x1))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>3</td>
+		        <td>mixedModels</td>
+		        <td>427</td>
+		        <td>52</td>
+		        <td>8.336917024588E-005</td>
+		        <td>0.998412605213</td>
+		        <td>
+                  if ((x0 % 4) == 0) y = - (9.165146942478*log(.000001+abs(x0))) - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2)));
+                  if ((x0 % 4) == 1) y = - (9.165146942478*x0*x0) - (19.5666514757*x1*x1) + (21.87460482304*x2*x2);
+                  if ((x0 % 4) == 2) y = - (9.165146942478*sin(x0)) - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2));
+                  if ((x0 % 4) == 3) y = - (9.165146942478*x0) - (19.5666514757*x1) + (21.87460482304*x2);
+                </td>
+		        <td>svmregress(((log(abs(x0)) - (log(abs(x2)) - log(abs(x1)))) - (log(abs(x2)) - log(abs(x2)))),(log(abs(x2)) - log(abs(x0))),(log(abs(x0)) - (log(abs(x1)) - log(abs(x1)))));</td>
+		      </tr>
+		      <tr>
+		        <td>1000</td>
+		        <td>5</td>
+		        <td>mixedModels</td>
+		        <td>500</td>
+		        <td>50</td>
+		        <td>0.4864255161109</td>
+		        <td>1.009994583082</td>
+		        <td>
+                  if ((x0 % 4) == 0) y = - (9.165146942478*log(.000001+abs(x0))) - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4)));
+                  if ((x0 % 4) == 1) y = - (9.165146942478*x0*x0) - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4);
+                  if ((x0 % 4) == 2) y = - (9.165146942478*sin(x0)) - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4));
+                  if ((x0 % 4) == 3) y = - (9.165146942478*x0) - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4);
+                </td>
+		        <td>mvlregress((avg(cos(x3) , abs(x2)) - ((log(abs(x1)) * sqrt(abs(x4))) + abs(x3))),(log(abs(max(abs((log(abs(max(abs(x4) , sin(abs(x4))))) * sqrt(abs(x4)))) , sin(abs(x4))))) * sqrt(abs(x4))),min(ninteger(x0) , min(ninteger(ninteger(x0)) , min(min(ninteger(x0) , cos(x3)) , cos(x3)))),max(sign(x4) , abs(avg(abs(x4) , tanh(max(sign(x4) , avg(abs(x4) , tanh(x1))))))),(log(abs(x0)) + (x3*x3)));</td>
+		      </tr>
+		      <tr>
+		        <td>10000</td>
+		        <td>5</td>
+		        <td>mixedModels</td>
+		        <td>500</td>
+		        <td>134</td>
+		        <td>0.07680159990685</td>
+		        <td>1.021738837223</td>
+		        <td>
+                  if ((x0 % 4) == 0) y = - (9.165146942478*log(.000001+abs(x0))) - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4)));
+                  if ((x0 % 4) == 1) y = - (9.165146942478*x0*x0) - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4);
+                  if ((x0 % 4) == 2) y = - (9.165146942478*sin(x0)) - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4));
+                  if ((x0 % 4) == 3) y = - (9.165146942478*x0) - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4);
+                </td>
+		        <td>mvlregress((log(abs(((1.0 / ninteger(x0)) / ninteger(x3)))) * (sign(abs(x0)) % exp(avg(log(abs(abs(abs(x0)))) , log(abs(x2)))))),(avg(log(abs(x4)) , log(abs((x1*x1)))) * (sign(abs(abs(log(abs(sqrt(abs(x3))))))) % exp(avg(log(abs(abs(abs(x0)))) , log(abs(x2)))))),avg(log(abs(x4)) , log(abs(x4))),avg(log(abs(x2)) , abs(avg(log(abs(x4)) , log(abs(x2))))),avg(avg(log(abs(x3)) , log(abs((x1*x1)))) , abs(avg(log(abs(((1.0 / ninteger(x0)) / ninteger(x3)))) , log(abs(abs(log(abs((x1*x1))))))))));</td>
+		      </tr>
+            </table>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLinear Regression"></A>Linear Regression</H2></P>
+			<p>We ran the self test known as linearRegression in this SelfTest log.
+            The training and test data sets were constructed from a simple linear polynomial model on from 1 to 10 variables (not including xtime).
+            The training set was 10,000 elements distributed over twenty time periods. The testing data set was 500 elements in time period 21. 
+            After the polynomial model was computed, up to forty percent random noise was added to the final y value.
+            Learning was very quick with training set least squares error very good and order preservation nearly perfect.
+            The results are shown below.
+            </p>
+
+            <h3>1 Independent Variable</h3>
+            <p>This linear regression problem had one independent variable and was solved in the first generation by a Linear Regression Estimator Lambda.
+            The average percent error on the training data was ~0%, and the estimator score was 100%.
+            On the testing data, the average percent error was ~0%, and the estimator score was also 100%.
+            The training time was .08 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+Starting test case: linearRegression
+Building test data as: y = -9.165146942478 + (21.87460482304*x1);
+...starting generation of constant estimator WFFs.
+...starting regress estimator for each column.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [1], Generations = [0], WFFs = [8], Score=[1.0], ScoreHistory=[#(num| 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 )]
+
+Show final results on training data.
+X[0], ey=[-1100.622914395], y=[-1100.622914395], ErrorPct=[8.263454175607E-016]
+X[500], ey=[-977.9218407407], y=[-977.9218407407], ErrorPct=[8.13774507223E-016]
+X[1000], ey=[-875.6608545148], y=[-875.6608545148], ErrorPct=[9.088083131137E-016]
+X[1500], ey=[-766.1196418103], y=[-766.1196418103], ErrorPct=[7.419652983507E-016]
+X[2000], ey=[-650.1570965152], y=[-650.1570965152], ErrorPct=[8.743028287391E-016]
+X[2500], ey=[-537.6886979103], y=[-537.6886979103], ErrorPct=[6.343085032108E-016]
+X[3000], ey=[-433.7621621211], y=[-433.7621621211], ErrorPct=[7.862846115877E-016]
+X[3500], ey=[-318.5181072361], y=[-318.5181072361], ErrorPct=[8.923106343005E-016]
+X[4000], ey=[-204.0563073157], y=[-204.0563073157], ErrorPct=[6.964183024844E-016]
+X[4500], ey=[-81.87104300442], y=[-81.87104300442], ErrorPct=[5.207282401826E-016]
+X[5000], ey=[19.23916975494], y=[19.23916975494], ErrorPct=[2.215925358976E-015]
+X[5500], ey=[121.2593130926], y=[121.2593130926], ErrorPct=[1.054745315431E-015]
+X[6000], ey=[239.5186478294], y=[239.5186478294], ErrorPct=[9.49294251215E-016]
+X[6500], ey=[345.3966668729], y=[345.3966668729], ErrorPct=[1.152020184874E-015]
+X[7000], ey=[466.4614943253], y=[466.4614943253], ErrorPct=[9.748872231013E-016]
+X[7500], ey=[574.3343407973], y=[574.3343407973], ErrorPct=[7.917815784012E-016]
+X[8000], ey=[687.4609309323], y=[687.4609309323], ErrorPct=[8.26860353849E-016]
+X[8500], ey=[801.5735242539], y=[801.5735242539], ErrorPct=[8.509774907606E-016]
+X[9000], ey=[897.1039443362], y=[897.1039443362], ErrorPct=[8.870854587983E-016]
+X[9500], ey=[995.8838319791], y=[995.8838319791], ErrorPct=[7.990970819054E-016]
+Actual computed error on training data is ErrorPct=[8.579416468462E-016] versus reported ErrorPct=[8.579416468462E-016]
+
+
+Final testing on test data returns Score=[1.0]
+X[0], ey=[-1100.622914395], y=[-1100.622914395], ErrorPct=[8.263454175607E-016]
+X[25], ey=[-978.7067741528], y=[-978.7067741528], ErrorPct=[8.131218512718E-016]
+X[50], ey=[-894.1805536148], y=[-894.1805536148], ErrorPct=[7.628448455652E-016]
+X[75], ey=[-808.9760061026], y=[-808.9760061026], ErrorPct=[8.431906770832E-016]
+X[100], ey=[-684.9129330526], y=[-684.9129330526], ErrorPct=[6.639491370964E-016]
+X[125], ey=[-554.8222816813], y=[-554.8222816813], ErrorPct=[8.19627051582E-016]
+X[150], ey=[-449.3678348325], y=[-449.3678348325], ErrorPct=[6.3248206096E-016]
+X[175], ey=[-320.8667085755], y=[-320.8667085755], ErrorPct=[7.086234544327E-016]
+X[200], ey=[-213.269343612], y=[-213.269343612], ErrorPct=[5.330669462201E-016]
+X[225], ey=[-96.70193594824], y=[-96.70193594824], ErrorPct=[5.878208983451E-016]
+X[250], ey=[-2.690871633651], y=[-2.690871633651], ErrorPct=[8.58184337871E-015]
+X[275], ey=[132.1365256035], y=[132.1365256035], ErrorPct=[1.075467562833E-015]
+X[300], ey=[227.2941351483], y=[227.2941351483], ErrorPct=[1.000349944335E-015]
+X[325], ey=[347.1982497606], y=[347.1982497606], ErrorPct=[9.823220981097E-016]
+X[350], ey=[467.502979815], y=[467.502979815], ErrorPct=[8.511259803801E-016]
+X[375], ey=[571.1005103104], y=[571.1005103104], ErrorPct=[9.953312566628E-016]
+X[400], ey=[677.4217598584], y=[677.4217598584], ErrorPct=[6.712913251879E-016]
+X[425], ey=[762.409743828], y=[762.409743828], ErrorPct=[8.946908560019E-016]
+X[450], ey=[855.3449210621], y=[855.3449210621], ErrorPct=[9.303940953588E-016]
+X[475], ey=[970.9557282972], y=[970.9557282972], ErrorPct=[8.196129245222E-016]
+Actual computed error on testing data is ErrorPct=[8.537718700755E-016]
+
+gsm.selfTest: completed in [0.0823] minutes.
+
+            </pre>
+			</blockquote>
+
+            <h3>10 Independent Variables</h3>
+            <p>This linear regression problem had ten independent variables and was solved in the first generation by a Support Vector Regression Estimator Lambda.
+            The average percent error on the training data was ~0%, and the estimator score was 100%.
+            On the testing data, the average percent error was ~0%, and the estimator score was also 100%.
+            The training time was 1.2 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+Starting test case: linearRegression
+Building test data as: y = -9.165146942478 + (21.87460482304*x1) - (17.48124453288*x2) + (38.81839452492*x3) - (38.63656433142*x4) + (13.18212824804*x5) - (2.045229508597*x6) + (45.1292360492*x7) + (26.03603502163*x8) + (21.98935009253*x9) + (39.25956682671*x10);
+...starting generation of constant estimator WFFs.
+...starting regress estimator for each column.
+...starting a simple SVM estimator WFF.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [0], WFFs = [27], Score=[0.9999998952854], ScoreHistory=[#(num| 0.9999994794294 0.9999998881055 0.9999999272587 1.0 1.0 0.9999997613158 1.0 0.9999999080865 1.0 1.0 0.9999999078672 0.9999997336707 1.0 0.9999999892104 0.9999999507207 0.9999999275923 0.9999998924631 0.9999999651269 0.999999740334 0.9999998345264 )]
+
+Show final results on training data.
+X[0], ey=[-7755.472103702], y=[-7758.617785004], ErrorPct=[0.0004054435196709]
+X[500], ey=[-4474.374391617], y=[-4467.612161579], ErrorPct=[0.001513611699827]
+X[1000], ey=[-3346.291629968], y=[-3343.463462794], ErrorPct=[0.0008458794913414]
+X[1500], ey=[-2787.713079039], y=[-2787.821100673], ErrorPct=[3.874769192525E-005]
+X[2000], ey=[-2273.435258231], y=[-2267.618622062], ErrorPct=[0.002565085729984]
+X[2500], ey=[-1781.14314751], y=[-1783.293333814], ErrorPct=[0.001205738990653]
+X[3000], ey=[-1374.177281401], y=[-1376.269808461], ErrorPct=[0.001520433745732]
+X[3500], ey=[-1015.405301084], y=[-1010.797807356], ErrorPct=[0.004558274359622]
+X[4000], ey=[-627.4462464587], y=[-625.855780544], ErrorPct=[0.002541265838145]
+X[4500], ey=[-274.2398365724], y=[-270.7514723928], ErrorPct=[0.01288400815989]
+X[5000], ey=[72.90922284451], y=[74.84424407819], ErrorPct=[0.02585397524578]
+X[5500], ey=[476.3819451045], y=[471.6547763325], ErrorPct=[0.01002251860738]
+X[6000], ey=[849.454282321], y=[843.8480499106], ErrorPct=[0.006643651556678]
+X[6500], ey=[1280.320924571], y=[1279.627448872], ErrorPct=[0.0005419356232263]
+X[7000], ey=[1639.428671247], y=[1644.844841415], ErrorPct=[0.003292815243906]
+X[7500], ey=[2065.872186807], y=[2064.539562798], ErrorPct=[0.0006454824276692]
+X[8000], ey=[2548.658477857], y=[2551.792933803], ErrorPct=[0.001228334754293]
+X[8500], ey=[3094.130197363], y=[3097.744360288], ErrorPct=[0.001166707934827]
+X[9000], ey=[3728.398070621], y=[3734.538936269], ErrorPct=[0.001644343720128]
+X[9500], ey=[4904.205764074], y=[4900.295426089], ErrorPct=[0.0007979800490971]
+Actual computed error on training data is ErrorPct=[0.004199650754758] versus reported ErrorPct=[0.004199650754758]
+
+
+Final testing on test data returns Score=[0.9999998952854]
+X[0], ey=[-7383.734757145], y=[-7381.048038815], ErrorPct=[0.0003640022819898]
+X[25], ey=[-4575.742427123], y=[-4568.567784514], ErrorPct=[0.001570435844867]
+X[50], ey=[-3314.786445915], y=[-3307.995916656], ErrorPct=[0.002052762285691]
+X[75], ey=[-2727.919603418], y=[-2720.371869638], ErrorPct=[0.002774522800884]
+X[100], ey=[-2201.829334101], y=[-2197.372135978], ErrorPct=[0.002028422064043]
+X[125], ey=[-1835.257352889], y=[-1827.050688309], ErrorPct=[0.004491755281807]
+X[150], ey=[-1335.176052456], y=[-1335.054875426], ErrorPct=[9.076558004382E-005]
+X[175], ey=[-1028.087544438], y=[-1024.367427432], ErrorPct=[0.003631623679638]
+X[200], ey=[-747.621079155], y=[-739.6539884774], ErrorPct=[0.01077137526694]
+X[225], ey=[-279.4986178372], y=[-271.8264626968], ErrorPct=[0.02822446006283]
+X[250], ey=[142.4609159913], y=[144.7322138525], ErrorPct=[0.01569310522366]
+X[275], ey=[489.3009718991], y=[491.4578248953], ErrorPct=[0.004388683803576]
+X[300], ey=[824.703327615], y=[832.5314612748], ErrorPct=[0.009402808210722]
+X[325], ey=[1157.847273215], y=[1158.527485922], ErrorPct=[0.0005871355797024]
+X[350], ey=[1530.179624996], y=[1535.624165652], ErrorPct=[0.003545490347641]
+X[375], ey=[2061.754787376], y=[2064.539562798], ErrorPct=[0.001348860284111]
+X[400], ey=[2549.682695724], y=[2555.107495271], ErrorPct=[0.002123119891005]
+X[425], ey=[3083.260348754], y=[3084.191902813], ErrorPct=[0.000302041535919]
+X[450], ey=[3602.910079815], y=[3603.603187558], ErrorPct=[0.0001923374209181]
+X[475], ey=[4711.256775183], y=[4716.293725843], ErrorPct=[0.001067989178232]
+Actual computed error on testing data is ErrorPct=[0.007552823914835]
+
+gsm.selfTest: completed in [1.292716666667] minutes.
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCubic Regression"></A>Cubic Regression</H2></P>
+			<p>We ran the self test known as cubicRegression in this SelfTest log.
+            The training and test data sets were constructed from a cubic polynomial model on 10 variables (not including xtime).
+            The training set was 10,000 elements distributed over twenty time periods. The testing data set was 500 elements in time period 21. 
+            After the polynomial model was computed, up to forty percent random noise was added to the final y value.
+            Learning was very quick with training set least squares error very good and order preservation nearly perfect.
+            The results are shown below.
+            </p>
+
+            <h3>1000 Training Examples</h3>
+            <p>This cubic regression problem had ten independent variables and was solved in the first generation by a Support Vector Regression Estimator Lambda.
+            The average percent error on the training data was 185%, and the estimator score was 90%.
+            On the testing data, the average percent error was 402%, and the estimator score was also 90%.
+            The training time was 1.2 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+Starting test case: cubicRegression
+Building test data as: y = -9.165146942478 + (21.87460482304*x1*x1*x1) - (17.48124453288*x2*x2*x2) + (38.81839452492*x3*x3*x3) - (38.63656433142*x4*x4*x4) + (13.18212824804*x5*x5*x5) - (2.045229508597*x6*x6*x6) + (45.1292360492*x7*x7*x7) + (26.03603502163*x8*x8*x8) + (21.98935009253*x9*x9*x9) + (39.25956682671*x10*x10*x10);
+...starting generation of constant estimator WFFs.
+...starting regress estimator for each column.
+...starting a simple SVM estimator WFF.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [0], WFFs = [27], Score=[0.9624595337713], ScoreHistory=[#(num| 0.9626133997241 0.9614386395896 0.9617583848667 0.9634478813472 0.9607579778166 0.960129748756 0.9652223008648 0.9611321314246 0.9616496737299 0.9616360195769 0.9626758374936 0.9615892631018 0.9628325719447 0.963578717838 0.9609716094134 0.9638966457252 0.9632583921888 0.962554254991 0.9659688920523 0.9620996967779 )]
+
+Show final results on training data.
+X[0], ey=[-10738027.55205], y=[-12689112.60833], ErrorPct=[0.1537605596631]
+X[500], ey=[-3634629.741068], y=[-6972996.265278], ErrorPct=[0.478756390683]
+X[1000], ey=[-3608841.829266], y=[-5582558.586546], ErrorPct=[0.3535505676621]
+X[1500], ey=[-3528236.987998], y=[-4451324.007402], ErrorPct=[0.2073735854476]
+X[2000], ey=[-4417881.233603], y=[-3513032.627206], ErrorPct=[0.2575690870019]
+X[2500], ey=[-3488236.686056], y=[-2758416.604204], ErrorPct=[0.26457935351]
+X[3000], ey=[524209.807062], y=[-2142524.262906], ErrorPct=[1.24466925119]
+X[3500], ey=[-1425188.564291], y=[-1404079.181062], ErrorPct=[0.01503432535219]
+X[4000], ey=[-2089868.033668], y=[-909719.0032918], ErrorPct=[1.297267646499]
+X[4500], ey=[-1568183.871674], y=[-434057.5971096], ErrorPct=[2.612847424204]
+X[5000], ey=[716098.8918349], y=[215466.4214243], ErrorPct=[2.323482550558]
+X[5500], ey=[3329758.674043], y=[822098.1425177], ErrorPct=[3.050317719786]
+X[6000], ey=[1712615.745767], y=[1450310.292918], ErrorPct=[0.1808616088088]
+X[6500], ey=[3941095.137277], y=[1953189.575078], ErrorPct=[1.017773997754]
+X[7000], ey=[3749136.678147], y=[2660095.144577], ErrorPct=[0.4093994667031]
+X[7500], ey=[3528866.856054], y=[3443352.465078], ErrorPct=[0.02483463190131]
+X[8000], ey=[4990357.623486], y=[4273764.542653], ErrorPct=[0.1676725691555]
+X[8500], ey=[3728523.559345], y=[5157561.009586], ErrorPct=[0.2770762086158]
+X[9000], ey=[5544382.037212], y=[6424539.679378], ErrorPct=[0.1369993316393]
+X[9500], ey=[7819366.090833], y=[7989997.405712], ErrorPct=[0.0213556158049]
+Actual computed error on training data is ErrorPct=[1.855473332292] versus reported ErrorPct=[1.855473332292]
+
+
+Final testing on test data returns Score=[0.9624595337713]
+X[0], ey=[-10421217.04314], y=[-12242495.16574], ErrorPct=[0.1487669055975]
+X[25], ey=[-3551880.981322], y=[-6972996.265278], ErrorPct=[0.4906234212387]
+X[50], ey=[-7414060.241013], y=[-5686040.364381], ErrorPct=[0.3039056647324]
+X[75], ey=[-3858987.804062], y=[-4502379.364917], ErrorPct=[0.1429003441754]
+X[100], ey=[-3603157.934828], y=[-3492747.882022], ErrorPct=[0.0316112289049]
+X[125], ey=[-2550274.989886], y=[-2768299.025298], ErrorPct=[0.07875740063465]
+X[150], ey=[-763874.1104257], y=[-2179788.735419], ErrorPct=[0.6495650711403]
+X[175], ey=[-2126984.815349], y=[-1469005.273047], ErrorPct=[0.447908223595]
+X[200], ey=[2434996.044713], y=[-1036507.126356], ErrorPct=[3.349232323441]
+X[225], ey=[1243892.763984], y=[-509542.0411575], ErrorPct=[3.441197513671]
+X[250], ey=[413918.7149167], y=[-474.5817220763], ErrorPct=[873.1758459339]
+X[275], ey=[1763687.028657], y=[696465.9411651], ErrorPct=[1.532337799185]
+X[300], ey=[1879705.1708], y=[1464422.683059], ErrorPct=[0.2835810265333]
+X[325], ey=[4103382.305378], y=[1997723.123778], ErrorPct=[1.054029538196]
+X[350], ey=[2690195.16785], y=[2480321.009882], ErrorPct=[0.08461572398538]
+X[375], ey=[1091521.614159], y=[3287359.626662], ErrorPct=[0.6679640385839]
+X[400], ey=[6269098.521779], y=[4097497.475216], ErrorPct=[0.529982278134]
+X[425], ey=[4607628.080926], y=[5070911.922915], ErrorPct=[0.09136105083891]
+X[450], ey=[4245226.618161], y=[5980304.586028], ErrorPct=[0.2901320397493]
+X[475], ey=[8647884.77089], y=[7651679.936871], ErrorPct=[0.1301942635131]
+Actual computed error on testing data is ErrorPct=[2.857782914171]
+
+gsm.selfTest: completed in [1.29245] minutes.
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHidden Model"></A>Hidden Model</H2></P>
+			<p>We ran the self test known as hiddenModel in this SelfTest log.
+            The training and test data sets were constructed from a linear regression model on 1 variable hidden within 10 variables (not including xtime).
+            The training set was 10,000 elements distributed over twenty time periods. The testing data set was 500 elements in time period 21. 
+            After the polynomial model was computed, up to forty percent random noise was added to the final y value.
+            Learning was very quick with training set least squares error very good and order preservation nearly perfect.
+            The results are shown below.
+            </p>
+
+            <h3>10 Independent Variables</h3>
+            <p>This hidden model problem had ten independent variables and was solved in the first generation by a Linear Regression Estimator Lambda.
+            The average percent error on the training data was ~0%, and the estimator score was 100%.
+            On the testing data, the average percent error was ~0%, and the estimator score was also 100%.
+            The training time was 2.1 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+Starting test case: hiddenModel
+Building test data as: y = -9.165146942478 + (13.18212824804*sin(x5));
+...starting generation of constant estimator WFFs.
+...starting regress estimator for each column.
+...starting a simple SVM estimator WFF.
+...starting generation of root estimator WFFs.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [0], WFFs = [325], Score=[1.0], ScoreHistory=[#(num| 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 )]
+
+Show final results on training data.
+X[0], ey=[-22.34713937702], y=[-22.34713937702], ErrorPct=[2.066719907421E-015]
+X[500], ey=[-22.23268437175], y=[-22.23268437175], ErrorPct=[1.917562604351E-015]
+X[1000], ey=[-21.80191774634], y=[-21.80191774634], ErrorPct=[2.118404369825E-015]
+X[1500], ey=[-20.91931664459], y=[-20.91931664459], ErrorPct=[2.037952045466E-015]
+X[2000], ey=[-19.86363907462], y=[-19.86363907462], ErrorPct=[2.146261517613E-015]
+X[2500], ey=[-18.33298570199], y=[-18.33298570199], ErrorPct=[2.131668627362E-015]
+X[3000], ey=[-16.71480652025], y=[-16.71480652025], ErrorPct=[2.12548896363E-015]
+X[3500], ey=[-14.8435172737], y=[-14.8435172737], ErrorPct=[2.034427940021E-015]
+X[4000], ey=[-13.08450673226], y=[-13.08450673226], ErrorPct=[2.036404821079E-015]
+X[4500], ey=[-11.47383529233], y=[-11.47383529233], ErrorPct=[2.16745274078E-015]
+X[5000], ey=[-9.504464736572], y=[-9.504464736572], ErrorPct=[2.055868034127E-015]
+X[5500], ey=[-7.697183620316], y=[-7.697183620316], ErrorPct=[2.077020939504E-015]
+X[6000], ey=[-5.408479465884], y=[-5.408479465884], ErrorPct=[2.299074620554E-015]
+X[6500], ey=[-3.331448721395], y=[-3.331448721395], ErrorPct=[2.39943833623E-015]
+X[7000], ey=[-1.607070376992], y=[-1.607070376992], ErrorPct=[2.763346373675E-015]
+X[7500], ey=[-0.06273221033439], y=[-0.06273221033439], ErrorPct=[0.0]
+X[8000], ey=[1.324704161861], y=[1.324704161861], ErrorPct=[1.340946069728E-015]
+X[8500], ey=[2.565264575535], y=[2.565264575535], ErrorPct=[2.077396058491E-015]
+X[9000], ey=[3.383496451446], y=[3.383496451446], ErrorPct=[1.575018799243E-015]
+X[9500], ey=[3.902495902795], y=[3.902495902795], ErrorPct=[1.820739222945E-015]
+Actual computed error on training data is ErrorPct=[2.179545952627E-015] versus reported ErrorPct=[2.179545952624E-015]
+
+
+Final testing on test data returns Score=[1.0]
+X[0], ey=[3.656280482863], y=[-14130.82057838], ErrorPct=[1.000258745093]
+X[25], ey=[3.576418219893], y=[-8423.338542127], ErrorPct=[1.000424584409]
+X[50], ey=[3.012877252078], y=[-6683.472633956], ErrorPct=[1.00045079518]
+X[75], ey=[-22.26725724601], y=[-4946.50047313], ErrorPct=[0.9954983816605]
+X[100], ey=[-17.80460681437], y=[-4014.136918831], ErrorPct=[0.9955645242864]
+X[125], ey=[-7.665206430643], y=[-3142.218580129], ErrorPct=[0.9975605750411]
+X[150], ey=[-19.33165050183], y=[-2438.191438348], ErrorPct=[0.992071315567]
+X[175], ey=[-21.32656879903], y=[-1865.945882325], ErrorPct=[0.9885706391589]
+X[200], ey=[3.004574770358], y=[-1280.499991293], ErrorPct=[1.00234640749]
+X[225], ey=[3.676432318054], y=[-605.4326797663], ErrorPct=[1.006072404812]
+X[250], ey=[-16.49356144996], y=[30.89556852886], ErrorPct=[1.533848776227]
+X[275], ey=[3.326483812403], y=[726.4655616223], ErrorPct=[0.9954210027452]
+X[300], ey=[1.504946569266], y=[1421.028928923], ErrorPct=[0.9989409458607]
+X[325], ey=[-4.27068615444], y=[2022.907261926], ErrorPct=[1.0021111626]
+X[350], ey=[-21.54905375565], y=[2904.073915692], ErrorPct=[1.007420284187]
+X[375], ey=[3.831612084195], y=[3729.465923294], ErrorPct=[0.9989726110486]
+X[400], ey=[-21.87872994679], y=[4738.599770458], ErrorPct=[1.004617129744]
+X[425], ey=[-18.32288327488], y=[5621.61726765], ErrorPct=[1.003259361568]
+X[450], ey=[3.434573905321], y=[6671.118094573], ErrorPct=[0.9994851576817]
+X[475], ey=[-13.05858845954], y=[8273.813528861], ErrorPct=[1.001578303453]
+Actual computed error on testing data is ErrorPct=[0.9952989880657]
+
+gsm.selfTest: completed in [2.1638] minutes.
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCycle Dependent Regression (No Random Noise)"></A>Cycle Dependent Regression (No Random Noise)</H2></P>
+			<p>We ran the self test known as cyclicSeries in this SelfTest log.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21. 
+            The cyclic series regression problem had ten independent variables and was trained for one hundred generations.
+            The average percent error on the training data was 888%, and the estimator score was 99%.
+            On the testing data, the average percent error was 106%, and the estimator score was 97%. 
+            The training time was 29 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+Starting test case: cyclicSeries
+Building test data as: y = -9.165146942478 + (21.87460482304*x1*tan(xtime)) - (17.48124453288*x2*sin(xtime)) + (38.81839452492*x3*cos(xtime)) - (38.63656433142*x4*tan(xtime)) + (13.18212824804*x5*sin(xtime)) - (2.045229508597*x6*cos(xtime)) + (45.1292360492*x7*tan(xtime)) + (26.03603502163*x8*sin(xtime)) + (21.98935009253*x9*cos(xtime)) + (39.25956682671*x10*tan(xtime));
+...starting generation of constant estimator WFFs.
+...starting regress estimator for each column.
+...starting a simple SVM estimator WFF.
+...starting generation of root estimator WFFs.
+...starting a best-of-breed SVM estimator WFF.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [21], WFFs = [26266], Score=[0.9911268261292], ScoreHistory=[#(num| 0.9911268261292 )]
+
+Show final results on training data.
+X[0], ey=[-1363774.693723], y=[-1375362.762508], ErrorPct=[0.008425463521875]
+X[500], ey=[-17349.50930215], y=[-13448.78913555], ErrorPct=[0.2900424809464]
+X[1000], ey=[-8905.237990786], y=[-5545.307800046], ErrorPct=[0.6059050844234]
+X[1500], ey=[-4128.692628519], y=[-3308.049582962], ErrorPct=[0.2480745904727]
+X[2000], ey=[-4852.835019633], y=[-2398.31127248], ErrorPct=[1.023438356529]
+X[2500], ey=[191.1819910936], y=[-1866.148891692], ErrorPct=[1.102447340587]
+X[3000], ey=[-157.7516005295], y=[-1468.963024363], ErrorPct=[0.8926102305414]
+X[3500], ey=[-581.0716045963], y=[-1070.256775494], ErrorPct=[0.4570727157245]
+X[4000], ey=[-1587.91893128], y=[-704.6452138374], ErrorPct=[1.253501336697]
+X[4500], ey=[-643.1456133688], y=[-378.5644419159], ErrorPct=[0.6989065589835]
+X[5000], ey=[1089.920866978], y=[-63.37984131596], ErrorPct=[18.19664871901]
+X[5500], ey=[-1456.525418802], y=[256.6557957738], ErrorPct=[6.675014719268]
+X[6000], ey=[-841.6051292026], y=[579.4262635109], ErrorPct=[2.452480120772]
+X[6500], ey=[-1001.238158853], y=[923.938265989], ErrorPct=[2.083663482409]
+X[7000], ey=[1148.725681029], y=[1300.541524679], ErrorPct=[0.1167327922787]
+X[7500], ey=[6309.000498483], y=[1702.345261327], ErrorPct=[2.70606400582]
+X[8000], ey=[-1000.619044082], y=[2230.046548377], ErrorPct=[1.448698725509]
+X[8500], ey=[1999.432204919], y=[3062.420135702], ErrorPct=[0.3471071517558]
+X[9000], ey=[7716.825031478], y=[5189.293726794], ErrorPct=[0.4870665330879]
+X[9500], ey=[10778.69885257], y=[12268.54402301], ErrorPct=[0.1214361840859]
+Actual computed error on training data is ErrorPct=[8.833855823745] versus reported ErrorPct=[8.833855823719]
+
+
+Final testing on test data returns Score=[0.9749594370726]
+X[0], ey=[-15591.64032099], y=[-14130.82057838], ErrorPct=[0.103378266995]
+X[25], ey=[-8520.636864502], y=[-8423.338542127], ErrorPct=[0.01155104023043]
+X[50], ey=[-9095.743534773], y=[-6683.472633956], ErrorPct=[0.3609307665242]
+X[75], ey=[-6443.779712418], y=[-4946.50047313], ErrorPct=[0.3026946519912]
+X[100], ey=[-4178.110794209], y=[-4014.136918831], ErrorPct=[0.04084909874609]
+X[125], ey=[-3770.899447551], y=[-3142.218580129], ErrorPct=[0.2000754725968]
+X[150], ey=[-967.321935149], y=[-2438.191438348], ErrorPct=[0.603262516661]
+X[175], ey=[-1666.406533345], y=[-1865.945882325], ErrorPct=[0.106937372016]
+X[200], ey=[112.3667088861], y=[-1280.499991293], ErrorPct=[1.087752213706]
+X[225], ey=[-1807.693487039], y=[-605.4326797663], ErrorPct=[1.98578776378]
+X[250], ey=[-413.012118513], y=[30.89556852886], ErrorPct=[14.36800512757]
+X[275], ey=[2171.774097773], y=[726.4655616223], ErrorPct=[1.989507297391]
+X[300], ey=[1730.522612779], y=[1421.028928923], ErrorPct=[0.2177954843545]
+X[325], ey=[856.3197786302], y=[2022.907261926], ErrorPct=[0.5766885636592]
+X[350], ey=[2584.825912967], y=[2904.073915692], ErrorPct=[0.1099310871531]
+X[375], ey=[3195.224088673], y=[3729.465923294], ErrorPct=[0.1432488848562]
+X[400], ey=[5907.175852199], y=[4738.599770458], ErrorPct=[0.2466078880572]
+X[425], ey=[6214.081364008], y=[5621.61726765], ErrorPct=[0.1053903295352]
+X[450], ey=[5727.516960004], y=[6671.118094573], ErrorPct=[0.1414457248683]
+X[475], ey=[10006.54502602], y=[8273.813528861], ErrorPct=[0.2094235615919]
+Actual computed error on testing data is ErrorPct=[1.068852801293]
+
+gsm.selfTest: completed in [29.19818333333] minutes.
+
+            </pre>
+			</blockquote>
+		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCycle Dependent Regression (20% Random Noise - Ten Variables)"></A>Cycle Dependent Regression (20% Random Noise - Ten Variables)</H2></P>
+			<p>We ran the self test known as cyclicSeries in this SelfTest log.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21.
+            The cyclic series regression problem had ten independent variables and was trained for one hundred generations.
+            The average percent error on the training data was 311%, and the estimator score was 95%.
+            On the testing data, the average percent error was 349%, and the estimator score was also 94%. 
+            The training time was 40 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+(gsm.verboseON)(gsm.selfTest cyclicSeries: 20 10 500 100 100% checkpoint:)
+
+Starting test case: cyclicSeries
+Building test data as: y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0)) - (17.48124453288*x3*sin(x0)) + (38.81839452492*x4*cos(x0)) - (38.63656433142*x5*tan(x0)) + (13.18212824804*x6*sin(x0)) - (2.045229508597*x7*cos(x0)) + (45.1292360492*x8*tan(x0)) + (26.03603502163*x9*sin(x0));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...starting new evolutionary process.
+...starting a best-of-breed MVL estimator WFF.
+...starting generation of random estimator WFFs.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [100], WFFs = [2392], Score=[0.9536374356331], ScoreHistory=[#(num| 0.9536374356331 )]
+
+Show final results on training data, Score=[0.9536374356331]
+X[0], ey=[-1021777.925635], y=[-1024937.036537], ErrorPct=[0.003082248752647]
+X[500], ey=[-4483.476129939], y=[-9773.816980605], ErrorPct=[0.5412768482532]
+X[1000], ey=[-3528.588934626], y=[-4734.189061328], ErrorPct=[0.2546582130717]
+X[1500], ey=[-4947.563815254], y=[-2741.356998936], ErrorPct=[0.8047863949038]
+X[2000], ey=[820.6485870431], y=[-2014.765351952], ErrorPct=[1.407317202595]
+X[2500], ey=[4444.802166782], y=[-1551.93614668], ErrorPct=[3.864036755823]
+X[3000], ey=[-17.23712673685], y=[-1214.215685637], ErrorPct=[0.9858039004596]
+X[3500], ey=[1765.250322921], y=[-852.3491808088], ErrorPct=[3.071041261806]
+X[4000], ey=[281.0756905509], y=[-546.3941850847], ErrorPct=[1.51441925669]
+X[4500], ey=[698.4894660466], y=[-166.432262292], ErrorPct=[5.196839341289]
+X[5000], ey=[52.81240447232], y=[202.0334096688], ErrorPct=[0.7385956879167]
+X[5500], ey=[444.3919904601], y=[475.5120027448], ErrorPct=[0.0654452718439]
+X[6000], ey=[-449.8137394823], y=[835.4455784947], ErrorPct=[1.538411778171]
+X[6500], ey=[499.2260933349], y=[1127.0717718], ErrorPct=[0.5570591812998]
+X[7000], ey=[1001.029993127], y=[1395.835859137], ErrorPct=[0.282845481742]
+X[7500], ey=[266.7345621041], y=[1750.870197658], ErrorPct=[0.8476560041625]
+X[8000], ey=[2414.841192803], y=[2253.533779632], ErrorPct=[0.07157976269522]
+X[8500], ey=[5151.2139101], y=[3165.207691911], ErrorPct=[0.627448942218]
+X[9000], ey=[5267.140712911], y=[5084.541523732], ErrorPct=[0.03591261637391]
+X[9500], ey=[-3697.275512855], y=[12510.20723974], ErrorPct=[1.295540708639]
+Actual computed error on training data is ErrorPct=[3.111358108758] versus reported ErrorPct=[3.111358108756]
+
+
+Final testing on test data returns Score=[0.9489645992764]
+X[0], ey=[-128544.2771458], y=[-124201.1295381], ErrorPct=[0.03496866432546]
+X[25], ey=[-5087.455928916], y=[-11708.6792366], ErrorPct=[0.5654970277936]
+X[50], ey=[-3116.375102743], y=[-4577.939792496], ErrorPct=[0.3192625407937]
+X[75], ey=[167.6665939178], y=[-2851.651130517], ErrorPct=[1.058796320533]
+X[100], ey=[-4008.334085871], y=[-2034.338308002], ErrorPct=[0.9703380062715]
+X[125], ey=[930.2975756272], y=[-1502.105850924], ErrorPct=[1.619328907517]
+X[150], ey=[40.80119930855], y=[-1024.530167446], ErrorPct=[1.0398243025]
+X[175], ey=[-500.9908245318], y=[-787.9442378846], ErrorPct=[0.3641798487203]
+X[200], ey=[-168.7968856838], y=[-526.9949650224], ErrorPct=[0.6796992440399]
+X[225], ey=[1827.793344069], y=[-297.930618511], ErrorPct=[7.134963076988]
+X[250], ey=[-633.6144786958], y=[87.58875452875], ErrorPct=[8.233970640465]
+X[275], ey=[770.7458687625], y=[449.1817587149], ErrorPct=[0.7158886214963]
+X[300], ey=[-574.2131520707], y=[877.0752604536], ErrorPct=[1.654690854892]
+X[325], ey=[1536.681621044], y=[1143.703149587], ErrorPct=[0.3436018092626]
+X[350], ey=[910.3026959833], y=[1543.207097808], ErrorPct=[0.4101227908577]
+X[375], ey=[-269.7042664736], y=[1993.748514877], ErrorPct=[1.135274967962]
+X[400], ey=[3182.258289575], y=[2842.154821905], ErrorPct=[0.1196639483005]
+X[425], ey=[1777.112127462], y=[3750.151177889], ErrorPct=[0.5261225366219]
+X[450], ey=[1445.283352716], y=[6025.534239412], ErrorPct=[0.7601402140805]
+X[475], ey=[9236.020924487], y=[9229.935060505], ErrorPct=[0.000659361516909]
+Actual computed error on testing data is ErrorPct=[3.497904871389]
+
+gsm.selfTest: completed in [40.02631666667] minutes.
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCycle Dependent Regression (20% Random Noise - Ten Variables)"></A>Cycle Dependent Regression (20% Random Noise - Ten Variables)</H2></P>
+			<p>We ran the self test known as cyclicSeries in this SelfTest log for an extended training run.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21.
+            The cyclic series regression problem had ten independent variables and was trained for one thousand generations.
+            The average percent error on the training data was 233%, and the estimator score was 98%.
+            On the testing data, the average percent error was 123%, and the estimator score was also 98%. 
+            The training time was 406 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+(gsm.verboseON)(gsm.selfTest cyclicSeries: 20 10 500 1000 100% checkpoint:)
+
+Starting test case: cyclicSeries
+Building test data as: y = -9.165146942478 - (9.165146942478*x0*sin(x0)) - (19.5666514757*x1*cos(x0)) + (21.87460482304*x2*tan(x0)) - (17.48124453288*x3*sin(x0)) + (38.81839452492*x4*cos(x0)) - (38.63656433142*x5*tan(x0)) + (13.18212824804*x6*sin(x0)) - (2.045229508597*x7*cos(x0)) + (45.1292360492*x8*tan(x0)) + (26.03603502163*x9*sin(x0));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...starting new evolutionary process.
+...starting a best-of-breed MVL estimator WFF.
+...starting generation of random estimator WFFs.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [1000], WFFs = [3658], Score=[0.9868305026246], ScoreHistory=[#(num| 0.9868305026246 )]
+
+Show final results on training data, Score=[0.9868305026246]
+X[0], ey=[-1030387.885584], y=[-1024937.036537], ErrorPct=[0.005318228195902]
+X[500], ey=[-9951.968398611], y=[-9773.816980605], ErrorPct=[0.01822741497603]
+X[1000], ey=[-5026.077277652], y=[-4734.189061328], ErrorPct=[0.06165537804754]
+X[1500], ey=[-2389.50105742], y=[-2741.356998936], ErrorPct=[0.1283510107048]
+X[2000], ey=[152.5281842689], y=[-2014.765351952], ErrorPct=[1.075705185282]
+X[2500], ey=[-2426.423652351], y=[-1551.93614668], ErrorPct=[0.5634816274761]
+X[3000], ey=[-321.4679325519], y=[-1214.215685637], ErrorPct=[0.7352464340936]
+X[3500], ey=[-1750.625794543], y=[-852.3491808088], ErrorPct=[1.053883354334]
+X[4000], ey=[-770.2560062024], y=[-546.3941850847], ErrorPct=[0.4097075467284]
+X[4500], ey=[4.037444566292], y=[-166.432262292], ErrorPct=[1.024258785591]
+X[5000], ey=[-41.75577288999], y=[202.0334096688], ErrorPct=[1.206677563669]
+X[5500], ey=[376.8685300024], y=[475.5120027448], ErrorPct=[0.207446861852]
+X[6000], ey=[-122.2949251977], y=[835.4455784947], ErrorPct=[1.146382874415]
+X[6500], ey=[-175.2483823423], y=[1127.0717718], ErrorPct=[1.155489993386]
+X[7000], ey=[391.5756677349], y=[1395.835859137], ErrorPct=[0.7194686859693]
+X[7500], ey=[28.98547329412], y=[1750.870197658], ErrorPct=[0.9834451044213]
+X[8000], ey=[1897.957254799], y=[2253.533779632], ErrorPct=[0.1577861969705]
+X[8500], ey=[2791.831698307], y=[3165.207691911], ErrorPct=[0.117962557262]
+X[9000], ey=[7701.353302604], y=[5084.541523732], ErrorPct=[0.5146603222057]
+X[9500], ey=[10309.16392174], y=[12510.20723974], ErrorPct=[0.1759397966655]
+Actual computed error on training data is ErrorPct=[2.335759377277] versus reported ErrorPct=[2.335759377275]
+
+
+Final testing on test data returns Score=[0.9806423241556]
+X[0], ey=[-115451.2602401], y=[-124201.1295381], ErrorPct=[0.07044919261671]
+X[25], ey=[-9838.523613893], y=[-11708.6792366], ErrorPct=[0.1597238753338]
+X[50], ey=[-4194.544848452], y=[-4577.939792496], ErrorPct=[0.08374835874245]
+X[75], ey=[-66.62102060797], y=[-2851.651130517], ErrorPct=[0.9766377380827]
+X[100], ey=[-1455.414907781], y=[-2034.338308002], ErrorPct=[0.2845757748078]
+X[125], ey=[887.2675655723], y=[-1502.105850924], ErrorPct=[1.590682450925]
+X[150], ey=[42.27356990154], y=[-1024.530167446], ErrorPct=[1.041261420351]
+X[175], ey=[-3.768977131112], y=[-787.9442378846], ErrorPct=[0.9952166956113]
+X[200], ey=[177.543440904], y=[-526.9949650224], ErrorPct=[1.336897793504]
+X[225], ey=[1293.830523561], y=[-297.930618511], ErrorPct=[5.342724255825]
+X[250], ey=[-258.6390532574], y=[87.58875452875], ErrorPct=[3.952879677865]
+X[275], ey=[601.9472850416], y=[449.1817587149], ErrorPct=[0.3400973511564]
+X[300], ey=[3.474482138168], y=[877.0752604536], ErrorPct=[0.9960385587249]
+X[325], ey=[-542.693525946], y=[1143.703149587], ErrorPct=[1.474505579653]
+X[350], ey=[802.4738362764], y=[1543.207097808], ErrorPct=[0.479996017763]
+X[375], ey=[-212.1186601163], y=[1993.748514877], ErrorPct=[1.106391883697]
+X[400], ey=[2069.361573499], y=[2842.154821905], ErrorPct=[0.2719039942688]
+X[425], ey=[3500.670810997], y=[3750.151177889], ErrorPct=[0.06652541592516]
+X[450], ey=[5784.617586656], y=[6025.534239412], ErrorPct=[0.03998262115578]
+X[475], ey=[12627.53580548], y=[9229.935060505], ErrorPct=[0.3681066792678]
+Actual computed error on testing data is ErrorPct=[1.239902944162]
+
+gsm.selfTest: completed in [406.1893166667] minutes.
+true
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCycle Dependent Regression (20% Random Noise - One Variable)"></A>Cycle Dependent Regression (20% Random Noise - One Variable)</H2></P>
+			<p>We ran the self test known as cyclicSeries in this SelfTest log.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21.
+            The cyclic series regression problem had one independent variable and was trained for one hundred generations.
+            The average percent error on the training data was 10.89%, and the estimator score was 100%.
+            On the testing data, the average percent error was 20.8%, and the estimator score was also 100%. 
+            The training time was 16 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+(gsm.verboseON)(gsm.selfTest cyclicSeries: 20 1 500 100 95% checkpoint:)
+
+Starting test case: cyclicSeries
+Building test data as: y = -9.165146942478 - (9.165146942478*x0*sin(x0));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...starting new evolutionary process.
+...starting generation of random estimator WFFs.
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [1], Generations = [0], WFFs = [793], Score=[1.006816272303], ScoreHistory=[#(num| 0.9979056891189 )]
+
+Show final results on training data, Score=[1.006816272303]
+X[0], ey=[-427.6182084951], y=[-506.9782643317], ErrorPct=[0.1565354205889]
+X[500], ey=[-307.7902799242], y=[-325.4068558196], ErrorPct=[0.05413707664845]
+X[1000], ey=[-255.527758913], y=[-257.9804685534], ErrorPct=[0.00950734625057]
+X[1500], ey=[-242.8483250453], y=[-200.9154043552], ErrorPct=[0.2087093362736]
+X[2000], ey=[-194.3474723665], y=[-157.7609266026], ErrorPct=[0.2319113265358]
+X[2500], ey=[-107.5728164173], y=[-122.026327275], ErrorPct=[0.1184458401759]
+X[3000], ey=[-107.1230185854], y=[-90.07507300321], ErrorPct=[0.1892637442728]
+X[3500], ey=[-50.67575314912], y=[-60.00700279038], ErrorPct=[0.1555026781433]
+X[4000], ey=[-30.55491873375], y=[-32.38969431089], ErrorPct=[0.05664689390186]
+X[4500], ey=[-24.38133847832], y=[-21.19309281874], ErrorPct=[0.1504379604642]
+X[5000], ey=[-12.19907631577], y=[-10.91480044338], ErrorPct=[0.1176637061809]
+X[5500], ey=[5.327362752015], y=[5.601717365505], ErrorPct=[0.0489768754096]
+X[6000], ey=[25.98236699818], y=[26.9483102306], ErrorPct=[0.0358442968837]
+X[6500], ey=[44.62551819287], y=[47.50131773271], ErrorPct=[0.06054146868145]
+X[7000], ey=[92.92167218496], y=[81.40759008087], ErrorPct=[0.1414374518722]
+X[7500], ey=[129.9745064425], y=[121.9276990494], ErrorPct=[0.06599654923171]
+X[8000], ey=[165.2761425368], y=[164.526875016], ErrorPct=[0.004554073738647]
+X[8500], ey=[228.5039765556], y=[205.417055358], ErrorPct=[0.1123904787626]
+X[9000], ey=[312.6812709789], y=[253.5713976278], ErrorPct=[0.233109388141]
+X[9500], ey=[350.8422730084], y=[324.1865089111], ErrorPct=[0.08222354528808]
+Actual computed error on training data is ErrorPct=[0.1089416815593] versus reported ErrorPct=[0.1089416815592]
+
+
+Final testing on test data returns Score=[1.0]
+X[0], ey=[-429.5762926448], y=[-504.468951844], ErrorPct=[0.1484584114155]
+X[25], ey=[-311.6964465494], y=[-315.9856984548], ErrorPct=[0.01357419632079]
+X[50], ey=[-253.5554224639], y=[-245.3901859345], ErrorPct=[0.03327450320898]
+X[75], ey=[-191.726382307], y=[-190.8939319332], ErrorPct=[0.004360800604633]
+X[100], ey=[-137.2710292195], y=[-153.5216225652], ErrorPct=[0.1058521469105]
+X[125], ey=[-134.4310125008], y=[-121.6553376754], ErrorPct=[0.1050153250119]
+X[150], ey=[-81.07204762472], y=[-72.02273336397], ErrorPct=[0.1256452489107]
+X[175], ey=[-44.14497401221], y=[-52.3375131604], ErrorPct=[0.1565328318729]
+X[200], ey=[-30.48183145157], y=[-25.38470140429], ErrorPct=[0.2007953517395]
+X[225], ey=[-9.611858391581], y=[-11.14855738027], ErrorPct=[0.137838371035]
+X[250], ey=[0.6697740410197], y=[0.4641264142951], ErrorPct=[0.4430853758602]
+X[275], ey=[17.30123909837], y=[18.74961578631], ErrorPct=[0.07724833961618]
+X[300], ey=[35.39259112192], y=[34.90209278805], ErrorPct=[0.01405355079573]
+X[325], ey=[82.11114041793], y=[66.28020100262], ErrorPct=[0.2388486935137]
+X[350], ey=[82.73637869504], y=[90.90025647488], ErrorPct=[0.08981138333861]
+X[375], ey=[148.5845659846], y=[137.0874559316], ErrorPct=[0.08386697364005]
+X[400], ey=[171.514087292], y=[183.5839612851], ErrorPct=[0.06574579777345]
+X[425], ey=[242.9632608865], y=[231.0925715838], ErrorPct=[0.05136768015242]
+X[450], ey=[314.7003771462], y=[284.7935027532], ErrorPct=[0.1050124883608]
+X[475], ey=[342.3524388714], y=[349.2146878608], ErrorPct=[0.0196505165101]
+Actual computed error on testing data is ErrorPct=[0.2080051678402]
+
+gsm.selfTest: completed in [1.2362] minutes.
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMixed Model Regression (20% Random Noise - Ten Variables)"></A>Mixed Model Regression (20% Random Noise - Ten Variables)</H2></P>
+			<p>We ran the self test known asmixedModels in this SelfTest log for an extended training run.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21.
+            The mixed models regression problem had ten independent variables and was trained for one thousand generations.
+            The average percent error on the training data was 50536%, and the estimator score was 80%.
+            On the testing data, the average percent error was 3248%, and the estimator score was 00%. 
+            The training time was 424 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 1000 100% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (9.165146942478*x0) - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9);
+if ((xtime % 4) == 1) y = - (9.165146942478*x0*x0) - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9);
+if ((xtime % 4) == 2) y = - (9.165146942478* sin(x0)) - (19.5666514757* sin(x1)) + (21.87460482304* sin(x2)) - (17.48124453288* sin(x3)) + (38.81839452492* sin(x4)) - (38.63656433142* sin(x5)) + (13.18212824804* sin(x6)) - (2.045229508597* sin(x7)) + (45.1292360492* sin(x8)) + (26.03603502163* sin(x9));
+if ((xtime % 4) == 3) y = - (9.165146942478* log(.000001+abs(x0))) - (19.5666514757* log(.000001+abs(x1))) + (21.87460482304* log(.000001+abs(x2))) - (17.48124453288* log(.000001+abs(x3))) + (38.81839452492* log(.000001+abs(x4))) - (38.63656433142* log(.000001+abs(x5))) + (13.18212824804* log(.000001+abs(x6))) - (2.045229508597* log(.000001+abs(x7))) + (45.1292360492* log(.000001+abs(x8))) + (26.03603502163* log(.000001+abs(x9)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...starting new evolutionary process.
+...starting a best-of-breed MVL estimator WFF.
+...starting generation of random estimator WFFs.
+
+Final results of training
+gsm: N = [500], M = [10], Generations = [1000], WFFs = [402], Score=[0.8035448886348], ScoreHistory=[#(num| 0.8035448886348 )]
+
+Show final results on training data, Score=[0.8035448886348]
+X[0], ey=[-32597.88243325], y=[-147284.662848], ErrorPct=[0.7786742909756]
+X[500], ey=[-1046.763113004], y=[-6570.500014129], ErrorPct=[0.8406874498511]
+X[1000], ey=[39166.4907362], y=[-2276.962399079], ErrorPct=[18.20120224736]
+X[1500], ey=[-2505.245595347], y=[-771.5552339419], ErrorPct=[2.247007453437]
+X[2000], ey=[-5621.604017633], y=[-80.86076042705], ErrorPct=[68.5220275934]
+X[2500], ey=[14237.91684146], y=[-37.38012611882], ErrorPct=[381.8953665966]
+X[3000], ey=[17374.89436088], y=[-6.710495068673], ErrorPct=[2590.212000466]
+X[3500], ey=[7879.270880261], y=[20.78444779664], ErrorPct=[378.0945497976]
+X[4000], ey=[5858.201014608], y=[46.45071253512], ErrorPct=[125.1164941265]
+X[4500], ey=[-17132.00711641], y=[84.39001125974], ErrorPct=[204.0098925296]
+X[5000], ey=[24047.05128093], y=[126.7475591102], ErrorPct=[188.7239792998]
+X[5500], ey=[-1775.21180529], y=[165.7180737949], ErrorPct=[11.71224015968]
+X[6000], ey=[-7254.115537802], y=[203.7209962901], ErrorPct=[36.60808983808]
+X[6500], ey=[24473.39276444], y=[254.0801951847], ErrorPct=[95.32152851049]
+X[7000], ey=[37201.6380334], y=[459.9116701141], ErrorPct=[79.88865852038]
+X[7500], ey=[121.7070494704], y=[1817.01090678], ErrorPct=[0.9330179862893]
+X[8000], ey=[67612.90428292], y=[4005.337457948], ErrorPct=[15.88070106272]
+X[8500], ey=[14889.96003386], y=[30149.4859814], ErrorPct=[0.5061288924447]
+X[9000], ey=[9769.747919464], y=[62347.96279989], ErrorPct=[0.8433028525596]
+X[9500], ey=[16489.2905917], y=[102730.4162725], ErrorPct=[0.8394896936077]
+Actual computed error on training data is ErrorPct=[505.3691049917] versus reported ErrorPct=[505.3691049881]
+
+
+Final testing on test data returns Score=[0.0]
+X[0], ey=[4812.89290625], y=[-8488.049098751], ErrorPct=[1.567019918271]
+X[25], ey=[38847.67623433], y=[-3830.006284664], ErrorPct=[11.14297976217]
+X[50], ey=[7414.348054674], y=[-3040.41073662], ErrorPct=[3.438600800008]
+X[75], ey=[22649.36134591], y=[-2365.440306462], ErrorPct=[10.57511431764]
+X[100], ey=[43758.85519317], y=[-1891.00487813], ErrorPct=[24.14053004265]
+X[125], ey=[7001.101979928], y=[-1622.202418647], ErrorPct=[5.315800481771]
+X[150], ey=[15166.65300329], y=[-1322.378704244], ErrorPct=[12.46922054523]
+X[175], ey=[7939.249311458], y=[-1017.610017436], ErrorPct=[8.801858448157]
+X[200], ey=[2256.418268778], y=[-565.7443713525], ErrorPct=[4.988406041731]
+X[225], ey=[14882.42517168], y=[-134.4781470489], ErrorPct=[111.6679821092]
+X[250], ey=[4370.096295289], y=[126.4518341456], ErrorPct=[33.55937452246]
+X[275], ey=[1760.025838243], y=[409.6319071121], ErrorPct=[3.29660338388]
+X[300], ey=[-4741.132012577], y=[783.7084577302], ErrorPct=[7.049611900716]
+X[325], ey=[15802.1857114], y=[1107.199990813], ErrorPct=[13.27220542136]
+X[350], ey=[3258.27407803], y=[1655.621227236], ErrorPct=[0.9680069477419]
+X[375], ey=[13919.77508376], y=[1946.057743713], ErrorPct=[6.152806810965]
+X[400], ey=[8323.170088229], y=[2409.684335566], ErrorPct=[2.454049962223]
+X[425], ey=[13025.6547548], y=[2844.257418189], ErrorPct=[3.579632867089]
+X[450], ey=[5549.721532291], y=[3467.732911693], ErrorPct=[0.6003889785102]
+X[475], ey=[29825.52360295], y=[4302.293724524], ErrorPct=[5.932470331567]
+Actual computed error on testing data is ErrorPct=[32.48176037513]
+
+gsm.selfTest: completed in [424.675] minutes.
+true
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMixed Model Regression (20% Random Noise - Ten Variables)"></A>Mixed Model Regression (20% Random Noise - Ten Variables)</H2></P>
+			<p>We ran the self test known asmixedModels in this SelfTest log for an extended training run.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21.
+            The mixed models regression problem had ten independent variables and was trained for two hundred generations.
+            The average percent error on the training data was 79338%, and the estimator score was 69%.
+            On the testing data, the average percent error was 3533%, and the estimator score was 00%. 
+            The training time was 424 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+        ;; Begin User Defined Learning Options
+        (myBestAverage 1)  	            ;; The count of best estimator champions to average in creating the final myBest estimator Lambda.
+        (Number:myCrossColPct 0.00)  	;; The probability of cross over in each column island during each generation step.
+        (Number:myCrossRegPct 0.00)  	;; The probability of cross over in the best-regressor island during each generation step.
+        (Number:myCrossSelPct 1.00)  	;; The probability of cross over in the best-of-breed island during each generation step.
+        (Integer:myFRMMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one FRM regression.
+        (Integer:myGreedyDepth 00)    	;; The depth of greedy search exploration of each chosen column island  during each generation step. 
+        (Integer:myGreedyGEN  000)    	;; The number of greedy search WFFs the system will grow in the best-of-breed island  during each generation step. 
+        (myGreedyWidth narrow)    	    ;; The width of each greedy search WFF the system will grow in the best-of-breed island (base, full, narrow). 
+        (myGreedyRule MVL:)          	;; The rule used for greedy search WFFs grown in the best-of-breed island (FRM, MVL, REG, or SVM). 
+        (Integer:myGrowColINIT 00)   	;; The number of random WFFs the system will grow in each column island during the initialization step.
+        (Integer:myGrowColGEN 00)    	;; The number of random WFFs the system will grow in each column island during each generation step. 
+        (myGrowColRule REG:)         	;; The rule used for random WFFs grown in each column island (FRM, MVL, REG, or SVM). 
+        (Integer:myGrowSelINIT 5000)   	;; The number of random WFFs the system will grow in the best-of-breed island during the initialization step.
+        (Integer:myGrowSelGEN 00)    	;; The number of random WFFs the system will grow in the best-of-breed island during each generation step. 
+        (myGrowSelRule REG:)         	;; The rule used for random WFFs grown in the best-of-breed island (FRM, MVL, REG, or SVM). 
+        (myGrowWFFStyle term:)       	;; The style used for random WFFs grown in the best-of-breed island (full, or term). 
+        (Integer:myMaxColWFFLen 05)  	;; The maximum length of a single WFF for each column.
+        (Number:myMigratePct 0.00)   	;; The probability of Column island mutation during each generation step.
+        (Number:myMutateColPct 0.00) 	;; The probability of mutation in each column island during each generation step.
+        (Number:myMutateRegPct 0.00) 	;; The probability mutation in the best-regressor island during each generation step.
+        (Number:myMutateSelPct 1.00) 	;; The probability mutation in the best-of-breed island during each generation step.
+        (Integer:myMVLMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one MVL regression.
+        (myRandomError .40)          	;; The amount of random error to add to each selfTest test case (0.00 thru .50).
+        (myREGMultiple true)            ;; Support multiple columns when growing REG regression expressions.
+        (Integer:myREGMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one REG regression.
+        (Integer:myRestartGap 00010) 	;; The count of generations to allow, without measurable improvement, before initiating a new evolutionary process.
+        (Integer:myRootINIT 00)  	 	;; The number of root WFFs the system will grow in each column island during the initialization step.
+        (Integer:myRootGEN 00)       	;; The number of root WFFs the system will grow in each column island during each generation step. 
+        (myRootRule REG:)            	;; The rule used for root WFFs grown in each column island (FRM, MVL, REG, or SVM). 
+        (mySamplingON  true)   	     	;; Support initial scoring on a small sample set before scoring on the full training data set.
+        (myScoreStyle sequence:)        ;; The style of scoring the sequencing of the training data (errorpct, sequence, or combined).
+        (mySequenceFocus 005)        	;; The focus of scoring the sequencing of the training data (05, 10, 15, 20, 25, 30, 35, 40, 45, 50, or 100).
+        (mySequenceStyle high:)         ;; The style of scoring the sequencing of the training data (average, low, high, or contrast).
+        (Integer:mySurvivors  25)     	;; The count of surviving estimator WFFs in each generation.
+        (mySurvivorStyle equalOFF:)  	;; The option allowing surviving estimator WFFs to have equal scores (equalON, or equalOFF).
+        (mySvmKernelID cube:)       	;; The kernelID to use for all SVM learning (see svmRegress: all, binary, bipolar, composite, cosine, cube, exp, linear, log, poly, quart, sigmoid, sine, square, tan, tanh).
+        (Integer:mySVMMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one SVM regression.
+        (mySvmMaxGen 1)             	;; The maximum number of training generations to use for all SVM learning (see svmRegress).
+        (mySvmMaxLayers 1)             	;; The maximum number of training layers to use for all SVM learning (see svmRegress).
+        (mySvmModelCount 1)             ;; The maximum number of training models to use for all SVM learning (see svmRegress).
+        (Integer:myTournamentSize 05)	;; The size of the myBestEstimatorChampions queue which initiates a tournament-of-champions when the next evolutionary process begins.
+        (myTimeON  true)  			 	;; Support separate sequence scoring of each individual time period.
+        (myUseFRM false)             	;; Grow FRM estimator candidates during the initialization step and during each generation step.
+        (myUseMVL false)             	;; Grow MVL estimator candidates during the initialization step and during each generation step.
+        (myUseREG  true)             	;; Grow REG estimator candidates during the initialization step and during each generation step.
+        (myUseSVM false)             	;; Grow SVM estimator candidates during the initialization step and during each generation step.
+        (myVerboseSW false)		     	;; The switch controlling verbose mode during testing, maintennance, and development.
+        ;; End User Defined Learning Options
+
+(gsm.verboseON)(gsm.selfTest mixedModels: 260 30 500 25 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10) + (39.25956682671*x11) - (36.9527398792*x12) + (8.601886956836*x13) + (7.533313498536*x14) - (23.03633770636*x15) - (41.11091670539*x16) + (46.07594342939*x17) - (4.158230358161*x18) + (35.61243398897*x19) - (0.8539648928299*x20) + (48.46608517312*x21) + (21.92818922469*x22) - (5.51333900824*x23) - (3.155879615049*x24) - (35.40602155255*x25) + (21.05316767957*x26) + (48.63345254591*x27) + (18.09100857528*x28) - (45.97902827701*x29) + (18.31189165581*x30);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10) + (39.25956682671*x11*x11) - (36.9527398792*x12*x12) + (8.601886956836*x13*x13) + (7.533313498536*x14*x14) - (23.03633770636*x15*x15) - (41.11091670539*x16*x16) + (46.07594342939*x17*x17) - (4.158230358161*x18*x18) + (35.61243398897*x19*x19) - (0.8539648928299*x20*x20) + (48.46608517312*x21*x21) + (21.92818922469*x22*x22) - (5.51333900824*x23*x23) - (3.155879615049*x24*x24) - (35.40602155255*x25*x25) + (21.05316767957*x26*x26) + (48.63345254591*x27*x27) + (18.09100857528*x28*x28) - (45.97902827701*x29*x29) + (18.31189165581*x30*x30);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10)) + (39.25956682671*sin(x11)) - (36.9527398792*sin(x12)) + (8.601886956836*sin(x13)) + (7.533313498536*sin(x14)) - (23.03633770636*sin(x15)) - (41.11091670539*sin(x16)) + (46.07594342939*sin(x17)) - (4.158230358161*sin(x18)) + (35.61243398897*sin(x19)) - (0.8539648928299*sin(x20)) + (48.46608517312*sin(x21)) + (21.92818922469*sin(x22)) - (5.51333900824*sin(x23)) - (3.155879615049*sin(x24)) - (35.40602155255*sin(x25)) + (21.05316767957*sin(x26)) + (48.63345254591*sin(x27)) + (18.09100857528*sin(x28)) - (45.97902827701*sin(x29)) + (18.31189165581*sin(x30));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10))) + (39.25956682671*log(.000001+abs(x11))) - (36.9527398792*log(.000001+abs(x12))) + (8.601886956836*log(.000001+abs(x13))) + (7.533313498536*log(.000001+abs(x14))) - (23.03633770636*log(.000001+abs(x15))) - (41.11091670539*log(.000001+abs(x16))) + (46.07594342939*log(.000001+abs(x17))) - (4.158230358161*log(.000001+abs(x18))) + (35.61243398897*log(.000001+abs(x19))) - (0.8539648928299*log(.000001+abs(x20))) + (48.46608517312*log(.000001+abs(x21))) + (21.92818922469*log(.000001+abs(x22))) - (5.51333900824*log(.000001+abs(x23))) - (3.155879615049*log(.000001+abs(x24))) - (35.40602155255*log(.000001+abs(x25))) + (21.05316767957*log(.000001+abs(x26))) + (48.63345254591*log(.000001+abs(x27))) + (18.09100857528*log(.000001+abs(x28))) - (45.97902827701*log(.000001+abs(x29))) + (18.31189165581*log(.000001+abs(x30)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+
+Final results of training
+gsm: N = [500], M = [31], Generations = [25], WFFs = [3829], Score=[0.4014102032497], ScoreHistory=[#(num| 0.4314788707252 0.370830565833 0.5295548213807 0.3451624716074 0.4245445237928 0.340761449759 0.5175313435104 0.355543825195 0.4290839836546 0.3105922068026 0.5218991986507 0.2968193440175 0.3490550282891 0.3814960523474 0.5104515767008 0.3109523184407 0.4313117120513 0.3443044136048 0.5668039806836 0.3841316700523 0.4243050469755 0.2765376224936 0.4831745940098 0.3117904631927 0.3918253679707 0.3144697867339 0.5380055269564 0.3682886420199 0.4266606264549 0.3358316316095 0.5132966054544 0.3381703489507 0.3950420787284 0.3018453711844 0.5056426714079 0.3817591844732 0.5050711888544 0.3116186006794 0.595857617804 0.2995290542275 0.3625880776079 0.3540208219479 0.5600797426684 0.3263173721829 0.4064148604007 0.2837620240312 0.5762523918192 0.3556091663523 0.451788531232 0.2757394616948 0.4822318699195 0.3371976627996 0.4311446784735 0.3166378852358 0.5751618248858 0.3421843929752 0.4122873281423 0.3505610125923 0.5436604420031 0.333169694755 0.3556937548836 0.2978145598364 0.5152109006675 0.373531773994 0.5205788467954 0.2776995784607 0.5650951356193 0.2981484142706 0.3725328029706 0.3886330639769 0.5371652335046 0.3227352016664 0.4439135957985 0.3608044706109 0.5749654404464 0.3726671204379 0.4620401955774 0.2769618881544 0.4964868043753 0.3258344995575 0.4823246774442 0.3060655836617 0.5618348856339 0.3494428853556 0.4092578675161 0.3755983291156 0.5527130312327 0.3250545168439 0.3867426218476 0.3073466517031 0.5290661037633 0.4080520343218 0.4810850908941 0.286278721833 0.4982343136662 0.3119917339389 0.4047181747002 0.3470698040036 0.5195644413011 0.3124605079275 0.4320490305069 0.3252519657162 0.543547718997 0.3594731592158 0.3885670042547 0.3151804709757 0.5074877194542 0.3164815746723 0.4533149220085 0.292666228445 0.5261264396323 0.352882957115 0.4249043798564 0.3468062962237 0.5183515635114 0.3241220108847 0.4081926674651 0.3053849438537 0.5614489491272 0.4023472977057 0.4717718742258 0.2991586665644 0.5141703123601 0.3145213570247 0.3744232833164 0.3457247002533 0.506433626938 0.3178178525966 0.4272790136613 0.3585490925221 0.5675081193945 0.379352349927 0.3973305955673 0.3035211656092 0.5011545699324 0.3394168868888 0.4810214730109 0.2967597603466 0.5103934066082 0.3433985615239 0.4134789017764 0.3588417387975 0.507051280275 0.3345258530082 0.4069214944099 0.3279194874627 0.5541044343287 0.3786283060802 0.4176623447525 0.2883566586139 0.4981261106465 0.309672228571 0.3735069754608 0.3137466683324 0.5706462874675 0.3177954647703 0.4291697807343 0.3439528891504 0.5929245079231 0.3943021015065 0.4050304336118 0.328563465219 0.5055439903962 0.3583973251459 0.4257309348618 0.3184227430329 0.5317569580203 0.3587046743092 0.3998586316313 0.3755735494453 0.4995475884492 0.317587458776 0.453865856167 0.3233113796393 0.5430173741853 0.4216228543847 0.422032646461 0.2766485873816 0.4915655759963 0.2778163010047 0.3653227228014 0.3266492733405 0.5145711257676 0.29680026712 0.4293098813007 0.3185692748384 0.5948029658241 0.3731014824681 0.3776213775237 0.3453259575388 0.5052523349203 0.4330747442372 0.4466365615599 0.3190427538287 0.5301682437947 0.3239009331685 0.3902836960459 0.33513329047 0.5414153331693 0.3118163622999 0.4310590395454 0.2939959842038 0.5568470185001 0.3836087091312 0.3720524499737 0.2732039002871 0.484850897882 0.2595313800206 0.3876494510467 0.3078321471122 0.5326263126294 0.3320138624043 0.4303199410314 0.3176866394394 0.5883776340682 0.3447882384584 0.3701259800116 0.3088621378253 0.5070643916968 0.3577590605366 0.4970578083207 0.3112806023384 0.578261865986 0.345726480088 0.3544236525196 0.3699619344759 0.5214777261026 0.3201776246431 0.4541731568738 0.3326795592414 0.5656231554794 0.3823393800701 0.4549581869223 0.2775062166551 0.4849322125012 0.3178523848134 0.4148305815001 0.3086796690786 0.5365461209695 0.3646331826142 0.4234514321185 0.308776379774 0.5745796292992 0.338116298431 0.4079348218563 0.2760824635071 0.5057054928388 0.3947963090068 0.4856336377755 0.2979272722732 0.5430188880362 0.3382135868254 0.3589938903 0.3540349375879 0.5110186470176 0.3211552515249 0.4463167141724 0.3106002126643 0.5743125386278 0.3534470611767 )]
+
+Show final results on training data, Score=[0.4014102032497]
+X[0], ey=[44451.97049223], y=[-220272.9889479], ErrorPct=[1.201804001047]
+X[6500], ey=[44451.97049223], y=[-5202.136617654], ErrorPct=[9.544944848504]
+X[13000], ey=[44451.97049223], y=[-1904.040746597], ErrorPct=[24.34612353841]
+X[19500], ey=[44451.97049223], y=[-185.5385371954], ErrorPct=[240.5834911936]
+X[26000], ey=[44451.97049223], y=[-86.32421757094], ErrorPct=[515.942060792]
+X[32500], ey=[44451.97049223], y=[-18.77296532424], ErrorPct=[2368.871549565]
+X[39000], ey=[44451.97049223], y=[36.87332396086], ErrorPct=[1204.53195962]
+X[45500], ey=[44451.97049223], y=[101.4782237056], ErrorPct=[437.0444283416]
+X[52000], ey=[44451.97049223], y=[252.811269997], ErrorPct=[174.8306522204]
+X[58500], ey=[44451.97049223], y=[451.5633009914], ErrorPct=[97.44017526367]
+X[65000], ey=[44451.97049223], y=[544.3752388899], ErrorPct=[80.65685600044]
+X[71500], ey=[44451.97049223], y=[634.1011087847], ErrorPct=[69.10233837539]
+X[78000], ey=[44451.97049223], y=[741.3660810574], ErrorPct=[58.9595417541]
+X[84500], ey=[44451.97049223], y=[944.6313245087], ErrorPct=[46.05748088055]
+X[91000], ey=[44451.97049223], y=[2966.628745906], ErrorPct=[13.98400180797]
+X[97500], ey=[44451.97049223], y=[6915.682377919], ErrorPct=[5.427705620802]
+X[104000], ey=[44451.97049223], y=[67716.05118204], ErrorPct=[0.3435534158255]
+X[110500], ey=[44451.97049223], y=[139756.885234], ErrorPct=[0.68193359191]
+X[117000], ey=[44451.97049223], y=[206353.6011967], ErrorPct=[0.7845835001936]
+X[123500], ey=[45917.90175831], y=[287132.8061244], ErrorPct=[0.8400813115781]
+Actual computed error on training data is ErrorPct=[733.1831084353] versus reported ErrorPct=[736.0152916494] while average Y is AvgY=[44467.53993857]
+yHistory=[#(num| -14697.97808232 -490.3771358847 -21.55606906054 116.2166289993 435.7528068228 638.2474396991 1322.921629548 15195.26245748 137496.8512217 304680.0584888 )]
+eHistory=[#(num| 51894.6907767 42034.2375117 40855.38917786 40722.03645727 44832.89505535 42161.24532025 40471.50705644 41988.51410296 43859.91543311 55854.96849413 )]
+aHistory=[#(num| 51894.6907767 46964.4641442 44928.10582209 43876.58848088 44067.84979578 44867.23008138 45543.72627166 47234.46601007 49857.44196362 55854.96849413 )]
+dHistory=[#(num| 799.3802856023 1667.137790777 2306.36018798 2892.97781942 3960.277717427 )]
+
+
+Final testing on test data returns Score=[0.472430987482]
+X[0], ey=[44451.97049223], y=[-14517.77378233], ErrorPct=[4.061899927544]
+X[25], ey=[44451.97049223], y=[-7622.368238458], ErrorPct=[6.831779455099]
+X[50], ey=[44455.29761921], y=[-5654.441918486], ErrorPct=[8.862013309195]
+X[75], ey=[44451.97049223], y=[-4750.136542517], ErrorPct=[10.35804057302]
+X[100], ey=[44451.97049223], y=[-4028.168825865], ErrorPct=[12.03527990356]
+X[125], ey=[44451.97049223], y=[-3344.333520915], ErrorPct=[14.29172769828]
+X[150], ey=[44451.97049223], y=[-2423.739559073], ErrorPct=[19.34024217901]
+X[175], ey=[44451.97049223], y=[-1776.27287899], ErrorPct=[26.02541755719]
+X[200], ey=[44451.97049223], y=[-1241.743366626], ErrorPct=[36.79803338352]
+X[225], ey=[44451.97049223], y=[-666.3796905339], ErrorPct=[67.70667057188]
+X[250], ey=[44451.97049223], y=[-144.9999524571], ErrorPct=[307.5654142569]
+X[275], ey=[44451.97049223], y=[400.3511060442], ErrorPct=[110.032465806]
+X[300], ey=[44451.97049223], y=[821.0298006443], ErrorPct=[53.14172598528]
+X[325], ey=[44451.97049223], y=[1624.025058851], ErrorPct=[26.37148066156]
+X[350], ey=[44451.97049223], y=[2229.439285945], ErrorPct=[18.93863245008]
+X[375], ey=[44451.97049223], y=[3171.958676678], ErrorPct=[13.01404464033]
+X[400], ey=[44451.97049223], y=[4194.169328732], ErrorPct=[9.598515941575]
+X[425], ey=[44451.97049223], y=[5536.621426978], ErrorPct=[7.028717707814]
+X[450], ey=[44451.97049223], y=[7069.391097242], ErrorPct=[5.287948973368]
+X[475], ey=[44451.97049223], y=[9050.354515307], ErrorPct=[3.911627540894]
+Actual computed error on testing data is ErrorPct=[57.78003618958], Avg Y=[167.1804860875]
+yHistory=[#(num| -8000.584457878 -4778.813377477 -3251.59536317 -1795.697077344 -676.9018915225 342.7062307246 1540.356059729 3218.72270074 5626.136995946 9447.475041127 )]
+eHistory=[#(num| 733.9390631426 1172.973545901 -798.5704823483 535.9608211486 798.1202766635 -1493.752219877 -155.7082847917 493.3005453239 -255.3236731795 640.8652688918 )]
+aHistory=[#(num| 733.9390631426 953.4563045218 369.4473755651 411.075736961 488.4846449015 -154.1236727266 180.7834640611 292.9473803454 192.7707978561 640.8652688918 )]
+dHistory=[#(num| -642.6083176281 -230.2922728999 -76.49999521972 -760.6855066657 -93.07379425079 )]
+
+gsm.selfTest: completed in [137.8567833333] minutes.
+true
+
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMixed Model Regression (run parameter comparison)"></A>Mixed Model Regression (run parameter comparison)</H2></P>
+			<p>We ran the self test known asmixedModels in this SelfTest log for an extended training run.
+            This training set was 10,000 elements distributed over 20 time periods. The testing data set was 500 elements in time period 21.
+            The mixed models regression problem had ten independent variables and was trained for two hundred generations.
+            The average percent error on the training data was 79338%, and the estimator score was 69%.
+            On the testing data, the average percent error was 3533%, and the estimator score was 00%. 
+            The training time was 424 minutes. 
+            </p>
+
+			<blockquote>
+		    <pre>
+
+        ;; Begin User Defined Learning Options
+        (myBestAverage 3)  	            ;; The count of best estimator champions to average in creating the final myBest estimator Lambda.
+        (Number:myCrossColPct 0.00)  	;; The probability of cross over in each column island during each generation step.
+        (Number:myCrossRegPct 0.00)  	;; The probability of cross over in the best-regressor island during each generation step.
+        (Number:myCrossSelPct 1.00)  	;; The probability of cross over in the best-of-breed island during each generation step.
+        (Integer:myFRMMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one FRM regression.
+        (Integer:myGreedyDepth 00)    	;; The depth of greedy search exploration of each chosen column island  during each generation step. 
+        (Integer:myGreedyGEN  000)    	;; The number of greedy search WFFs the system will grow in the best-of-breed island  during each generation step. 
+        (myGreedyWidth narrow)    	    ;; The width of each greedy search WFF the system will grow in the best-of-breed island (base, full, narrow). 
+        (myGreedyRule MVL:)          	;; The rule used for greedy search WFFs grown in the best-of-breed island (FRM, MVL, REG, or SVM). 
+        (Integer:myGrowColINIT 00)   	;; The number of random WFFs the system will grow in each column island during the initialization step.
+        (Integer:myGrowColGEN 00)    	;; The number of random WFFs the system will grow in each column island during each generation step. 
+        (myGrowColRule REG:)         	;; The rule used for random WFFs grown in each column island (FRM, MVL, REG, or SVM). 
+        (Integer:myGrowSelINIT 5000)   	;; The number of random WFFs the system will grow in the best-of-breed island during the initialization step.
+        (Integer:myGrowSelGEN 00)    	;; The number of random WFFs the system will grow in the best-of-breed island during each generation step. 
+        (myGrowSelRule REG:)         	;; The rule used for random WFFs grown in the best-of-breed island (FRM, MVL, REG, or SVM). 
+        (myGrowWFFStyle term:)       	;; The style used for random WFFs grown in the best-of-breed island (full, or term). 
+        (Integer:myMaxColWFFLen 05)  	;; The maximum length of a single WFF for each column.
+        (Number:myMigratePct 0.00)   	;; The probability of Column island mutation during each generation step.
+        (Number:myMutateColPct 0.00) 	;; The probability of mutation in each column island during each generation step.
+        (Number:myMutateRegPct 0.00) 	;; The probability mutation in the best-regressor island during each generation step.
+        (Number:myMutateSelPct 1.00) 	;; The probability mutation in the best-of-breed island during each generation step.
+        (Integer:myMVLMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one MVL regression.
+        (myRandomError .40)          	;; The amount of random error to add to each selfTest test case (0.00 thru .50).
+        (myREGMultiple true)            ;; Support multiple columns when growing REG regression expressions.
+        (Integer:myREGMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one REG regression.
+        (Integer:myRestartGap 00010) 	;; The count of generations to allow, without measurable improvement, before initiating a new evolutionary process.
+        (Integer:myRootINIT 00)  	 	;; The number of root WFFs the system will grow in each column island during the initialization step.
+        (Integer:myRootGEN 00)       	;; The number of root WFFs the system will grow in each column island during each generation step. 
+        (myRootRule REG:)            	;; The rule used for root WFFs grown in each column island (FRM, MVL, REG, or SVM). 
+        (mySamplingON  true)   	     	;; Support initial scoring on a small sample set before scoring on the full training data set.
+        (myScoreStyle sequence:)        ;; The style of scoring the sequencing of the training data (errorpct, sequence, or combined).
+        (mySequenceFocus 005)        	;; The focus of scoring the sequencing of the training data (05, 10, 15, 20, 25, 30, 35, 40, 45, 50, or 100).
+        (mySequenceStyle high:)         ;; The style of scoring the sequencing of the training data (average, low, high, or contrast).
+        (Integer:mySurvivors  25)     	;; The count of surviving estimator WFFs in each generation.
+        (mySurvivorStyle equalOFF:)  	;; The option allowing surviving estimator WFFs to have equal scores (equalON, or equalOFF).
+        (mySvmKernelID cube:)       	;; The kernelID to use for all SVM learning (see svmRegress: all, binary, bipolar, composite, cosine, cube, exp, linear, log, poly, quart, sigmoid, sine, square, tan, tanh).
+        (Integer:mySVMMaximum 1000)     ;; The maximum number of chromosomes to allowed in any one SVM regression.
+        (mySvmMaxGen 1)             	;; The maximum number of training generations to use for all SVM learning (see svmRegress).
+        (mySvmMaxLayers 1)             	;; The maximum number of training layers to use for all SVM learning (see svmRegress).
+        (mySvmModelCount 1)             ;; The maximum number of training models to use for all SVM learning (see svmRegress).
+        (Integer:myTournamentSize 05)	;; The size of the myBestEstimatorChampions queue which initiates a tournament-of-champions when the next evolutionary process begins.
+        (myTimeON  true)  			 	;; Support separate sequence scoring of each individual time period.
+        (myUseFRM false)             	;; Grow FRM estimator candidates during the initialization step and during each generation step.
+        (myUseMVL false)             	;; Grow MVL estimator candidates during the initialization step and during each generation step.
+        (myUseREG  true)             	;; Grow REG estimator candidates during the initialization step and during each generation step.
+        (myUseSVM false)             	;; Grow SVM estimator candidates during the initialization step and during each generation step.
+        (myVerboseSW false)		     	;; The switch controlling verbose mode during testing, maintennance, and development.
+        ;; End User Defined Learning Options
+
+***MixedModels with pop size of 5000, and 100 generations
+(setq gsm.myGrowSelINIT 5000)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 100 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [100], WFFs = [1809], Score=[0.3275879981541], ScoreHistory=[#void]
+
+Final testing on test data returns Score=[0.308659408276]
+Actual computed error on testing data is ErrorPct=[119.753714189], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 1654.046922833 464.5885406671 -270.1604971771 -1072.570517571 -1406.065867575 -470.8927025826 -818.6333478567 -1209.652338245 80.71531320669 1636.721038942 )]
+aHistory=[#(num| 1654.046922833 1059.31773175 616.1583221076 193.9761121879 -126.0322837646 -156.3484073069 -77.71233348801 169.2613379682 858.7181760746 1636.721038942 )]
+dHistory=[#(num| -30.31612354238 -271.688445676 -446.8969841394 -200.5995556753 -17.32588389025 )]
+
+gsm.selfTest: completed in [41.58985] minutes.
+true
+
+***MixedModels with pop size of 1000, and 400 generations
+(setq gsm.myGrowSelINIT 1000)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 400 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [400], WFFs = [1430], Score=[0.3125165028855], ScoreHistory=[#void]
+
+Final testing on test data returns Score=[0.2938626212464]
+Actual computed error on testing data is ErrorPct=[119.9161473847], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 1475.360382573 787.9226397162 -295.0090995577 -1183.962480502 -1153.836654106 -470.8349219526 -1039.889389597 -1069.459058002 -362.8949387362 1900.700064807 )]
+aHistory=[#(num| 1475.360382573 1131.641511145 656.0913075771 196.0778605573 -73.90504237532 -208.4756486962 -142.8858303821 156.115356023 768.9025630355 1900.700064807 )]
+dHistory=[#(num| -134.5706063209 -338.9636909394 -499.9759515541 -362.738948109 425.3396822344 )]
+
+gsm.selfTest: completed in [111.5481833333] minutes.
+true
+
+***MixedModels with pop size of 10000, and 100 generations
+(setq gsm.myGrowSelINIT 10000)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 100 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [100], WFFs = [2531], Score=[0.3213088237771], ScoreHistory=[#void]
+
+Final testing on test data returns Score=[0.3185339114028]
+Actual computed error on testing data is ErrorPct=[120.0871767379], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 546.8936251201 -144.6559102388 -975.0962673922 -119.8486679541 -887.6513490177 -257.157985214 -672.4295914858 -211.8205766707 352.916686806 956.9465806897 )]
+aHistory=[#(num| 546.8936251201 201.1188574406 -190.952850837 -173.1768051162 -316.0717138965 33.69102282503 106.4032748348 366.014230275 654.9316337478 956.9465806897 )]
+dHistory=[#(num| 349.7627367216 279.580079951 556.967081112 453.8127763072 410.0529555696 )]
+
+gsm.selfTest: completed in [41.78828333333] minutes.
+true
+
+***MixedModels with pop size of 500, and 200 generations
+(setq gsm.myGrowSelINIT 500)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 200 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [400], WFFs = [1430], Score=[0.3125165028855], ScoreHistory=[#void]
+
+Final testing on test data returns Score=[0.2938626212464]
+Actual computed error on testing data is ErrorPct=[119.9161473847], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 1475.360382573 787.9226397162 -295.0090995577 -1183.962480502 -1153.836654106 -470.8349219526 -1039.889389597 -1069.459058002 -362.8949387362 1900.700064807 )]
+aHistory=[#(num| 1475.360382573 1131.641511145 656.0913075771 196.0778605573 -73.90504237532 -208.4756486962 -142.8858303821 156.115356023 768.9025630355 1900.700064807 )]
+dHistory=[#(num| -134.5706063209 -338.9636909394 -499.9759515541 -362.738948109 425.3396822344 )]
+
+gsm.selfTest: completed in [115.4716166667] minutes.
+true
+
+***MixedModels with pop size of 500, and 400 generations
+(setq gsm.myBestAverage 1)(setq gsm.myGrowSelINIT 5000)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 00 00% restart:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [400], WFFs = [1430], Score=[0.3117256108914], ScoreHistory=[#(num| 0.250142227357 0.1964027356312 0.5665627938412 0.3382466414492 0.209203953871 0.2335213165134 0.4858299669171 0.2766134956018 0.2538766705944 0.258936338793 0.5079217716361 0.3118152615314 0.2167300036121 0.1722409649235 0.5181139526711 0.3070378418319 0.2330286567987 0.2729992082218 0.4644234279636 0.2620678610953 )]
+
+Final testing on test data returns Score=[0.3010878174698]
+Actual computed error on testing data is ErrorPct=[39.93423195005], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 2140.173244019 10.91508697633 -208.1379210388 -1144.480713873 -1075.121278043 -114.146936064 -825.7358207427 -1028.940512751 -633.4196222147 1466.991018376 )]
+aHistory=[#(num| 2140.173244019 1075.544165497 647.6501366521 199.6174240207 -55.33031639209 -227.0503746794 -255.2762343333 -65.12303886347 416.7856980805 1466.991018376 )]
+dHistory=[#(num| -171.7200582873 -454.893658354 -712.7731755155 -658.758467417 -673.182225643 )]
+
+gsm.selfTest: completed in [115.4716166667] minutes.
+true
+
+***MixedModels with pop size of 500, and 400 generations
+(setq gsm.myBestAverage 5)(setq gsm.myGrowSelINIT 500)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 400 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [400], WFFs = [1430], Score=[0.3153549290754], ScoreHistory=[#void]
+
+Final testing on test data returns Score=[0.2844427938482]
+Actual computed error on testing data is ErrorPct=[199.8234189266], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 1407.339677461 865.5432271094 -382.8226492183 -954.7260867214 -1196.17695472 -668.6228226791 -1093.482046327 -1226.194445397 -147.5185777 1984.757222836 )]
+aHistory=[#(num| 1407.339677461 1136.441452285 630.0200851174 233.8335421577 -52.1685572179 -230.2121338536 -120.6094616472 203.6813999128 918.619322568 1984.757222836 )]
+dHistory=[#(num| -178.0435766357 -354.4430038049 -426.3386852046 -217.8221297173 577.4175453748 )]
+
+gsm.selfTest: completed in [115.30755] minutes.
+true
+
+***MixedModels with pop size of 500, and 400 generations
+(setq gsm.myBestAverage 100)(setq gsm.myGrowSelINIT 500)(gsm.verboseON)(gsm.selfTest mixedModels: 20 10 500 400 00% checkpoint:)
+
+Starting test case: mixedModels
+Building test data as:
+if ((xtime % 4) == 0) y = - (19.5666514757*x1) + (21.87460482304*x2) - (17.48124453288*x3) + (38.81839452492*x4) - (38.63656433142*x5) + (13.18212824804*x6) - (2.045229508597*x7) + (45.1292360492*x8) + (26.03603502163*x9) + (21.98935009253*x10);
+if ((xtime % 4) == 1) y = - (19.5666514757*x1*x1) + (21.87460482304*x2*x2) - (17.48124453288*x3*x3) + (38.81839452492*x4*x4) - (38.63656433142*x5*x5) + (13.18212824804*x6*x6) - (2.045229508597*x7*x7) + (45.1292360492*x8*x8) + (26.03603502163*x9*x9) + (21.98935009253*x10*x10);
+if ((xtime % 4) == 2) y = - (19.5666514757*sin(x1)) + (21.87460482304*sin(x2)) - (17.48124453288*sin(x3)) + (38.81839452492*sin(x4)) - (38.63656433142*sin(x5)) + (13.18212824804*sin(x6)) - (2.045229508597*sin(x7)) + (45.1292360492*sin(x8)) + (26.03603502163*sin(x9)) + (21.98935009253*sin(x10));
+if ((xtime % 4) == 3) y = - (19.5666514757*log(.000001+abs(x1))) + (21.87460482304*log(.000001+abs(x2))) - (17.48124453288*log(.000001+abs(x3))) + (38.81839452492*log(.000001+abs(x4))) - (38.63656433142*log(.000001+abs(x5))) + (13.18212824804*log(.000001+abs(x6))) - (2.045229508597*log(.000001+abs(x7))) + (45.1292360492*log(.000001+abs(x8))) + (26.03603502163*log(.000001+abs(x9))) + (21.98935009253*log(.000001+abs(x10)));
+Additionally, we add random error as: y = (y * 0.8) + (random 0.4);
+...locating the best estimator and the best regressor from this training run.
+
+Final results of training
+gsm: N = [500], M = [11], Generations = [400], WFFs = [1430], Score=[0.3281711314848], ScoreHistory=[#void]
+
+Final testing on test data returns Score=[0.382084157061]
+Actual computed error on testing data is ErrorPct=[719.41230309], Avg Y=[-141.1903455357]
+yHistory=[#(num| -4691.535215325 -2795.313902086 -1773.158565375 -1037.766299339 -495.2014939888 85.82106338726 732.5554099929 1478.674833022 2604.292012692 4479.728701661 )]
+eHistory=[#(num| 799.4650206441 374.1809965654 -420.055956874 -662.5139725485 -759.8706810837 -705.3853014574 -1139.709493466 -230.6558417 261.8158786566 1070.825895906 )]
+aHistory=[#(num| 799.4650206441 586.8230086048 251.1966867785 22.76902194676 -133.7589186593 -148.6217724122 -9.430890150843 367.3286442874 666.3208872811 1070.825895906 )]
+dHistory=[#(num| -14.86285375282 -32.1999120976 116.1319575089 79.49787867636 271.3608752616 )]
+
+gsm.selfTest: completed in [115.39895] minutes.
+true
+
+            </pre>
+			</blockquote>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

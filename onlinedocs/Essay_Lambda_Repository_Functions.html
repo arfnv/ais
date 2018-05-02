@@ -1,0 +1,498 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lambda Repository Functions</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sset"><FONT SIZE=2>set</font></a></li><li><a href="#Sref"><FONT SIZE=2>ref</font></a></li><li><a href="#S_path"><FONT SIZE=2>_path</font></a></li><li><a href="#SRepository Functions"><FONT SIZE=2>Repository Functions</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>
+            <p>
+                Fast Lambda oriented repository management is a corner stone of the Analytic Information Server database engine. 
+                The ability to store complex interrelated data structures with complex relationships fast, and to retrieve them fast, 
+                is essential to advanced, high volume data analysis. 
+                The Analytic Information Server object repository supports password protected data security, record compression and encryption, 
+                transaction rollback with no arbitrary limitation on the size of a transaction before rollback, automatic data recovery, 
+                multiple distributed volumes with a maximum of 2 gigabytes per volume and a maximum of 2 billion volumes supported. 
+                Each Analytic Information Server object repository supports automatic data recovery with the maximum possible data loss being limited 
+                to the object closures saved in the current transaction.
+            </p>
+
+            <p>
+             The best pocket introduction to the essential elements of AIS Object Repositories
+             is the following table of essential flow of control functional elements.
+            </p>
+
+          <!-- Arguments Table Template -->
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>(new ObjectRepository: fileName)</th>
+              <td>Repository creation/reopen statement</td>
+            </tr>
+            <tr>
+              <th>(set repository symbolicKey anyObject)</th>
+              <td>Indexed assignment statement</td>
+            </tr>
+            <tr>
+              <th>(set repository frame: frameID anyObject)</th>
+              <td>Direct frame assignment statement</td>
+            </tr>
+            <tr>
+              <th>(setf repository.symbolicKey anyObject)</th>
+              <td>Immediate indexed assignment statement</td>
+            </tr>
+            <tr>
+              <th>(ref repository symbolicKey)</th>
+              <td>Indexed access statement</td>
+            </tr>
+            <tr>
+              <th>(ref repository frame: frameID)</th>
+              <td>Direct frame access statement</td>
+            </tr>
+            <tr>
+              <th>(inspect repository)</th>
+              <td>Repository inspection statement</td>
+            </tr>
+            <tr>
+              <th>(beginTransaction repository)</th>
+              <td>Start an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(checkPointTransaction repository)</th>
+              <td>Check point an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(abortTransaction repository)</th>
+              <td>Abort an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(commitTransaction repository)</th>
+              <td>Complete/accept an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(attachLibrarian repository Lambda)</th>
+              <td>Attach an extended repository schema</td>
+            </tr>
+            <tr>
+              <th>(detachLibrarian repository)</th>
+              <td>Detach an extended repository schema</td>
+            </tr>
+          </table> 
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+                <p>The <b>new</b> function creates a new Object Repository, associates the Object Repository
+             with a repository archive file, and allows for record encryption and other options. 
+             The styles of Object Repository creation are dependent upon the number and types of the arguments passed to the <b>new</b> function. 
+             </p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p>The <b>new</b> function is used to create an Object Repository and allows the user to specify creation options.
+               </P>
+
+
+          <p><b><font color="blue">Syntax:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (new ObjectRepository: fileName)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (new ObjectRepository: fileName clear: key: code buffer: count)</b></p>
+
+
+          <!-- Arguments Table Template -->
+          <p><b><font color="blue"><u>Arguments</u></font></b></p>
+          <hr>
+          <table>
+            <tr>
+              <th>ObjectRepository:</th>
+              <td>Mandatory argument specifying the type of object to create: ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>filename</th>
+              <td>The name of the database archive file to be associated with the ObjectRepository.
+                  If no such file exists, a new database archive file will be created.</td>
+            </tr>
+            <tr>
+              <th>clear:</th>
+              <td>(Optional) If the keyword clear: is present, the database archive file will be cleared immediately 
+                   before any further processing. If no such file exists, a new database archive file will be created.</td>
+            </tr>
+            <tr>
+              <th>key: code</th>
+              <td>(Optional) If the keyword key: is present and it is followed by a number, the number is treated 
+                as an encryption code to use in record encrypting the database archive file. This same encryption key code must
+                be used in all future references to the ObjectRepository. If the keyword key: is followed
+                by the Boolean value true, the database archive file will be compressed when saved. If the
+                Boolean value false is present, the archive file will not be compressed. The same compression key code must be
+                used in all future references to the ObjectRepository. WARNING: If the ObjectRepository 
+                is later opened with a different key value from was specified during file creation, as a 
+                security measure, the ObjectRepository will be made unrecoverable</td>
+            </tr>
+            <tr>
+              <th>buffer: count</th>
+              <td>(Optional) If the key word buffer: is present, the numeric buffered object {count} must follow. The ObjectRepository will remember the
+                last {count} objects retrieved to minimize disk access when required. As same objects are retrieved, the buffered object is returned and 
+                no disk access takes place. When a new object is retrieved, the oldest buffered object 
+                is thrown away to make room for the newly retrieved object.</td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The newly created ObjectRepository.</td>
+            </tr>
+          </table>
+          <hr>
+
+
+             <!-- Code Eaxmples Template -->
+            <p></p>
+            <p><b><font color="blue"><u>Example 1</u></font></b></p>
+            <p></p>
+            <p>     
+              <table>    
+              <tr>    
+              <th align=left width=300>(setq _path  "")</th>
+              <td>;;Reset the _path variable</td>
+            </tr>
+            <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "myarchive.odb"</td>
+            </tr>    
+           </table>
+           </p>
+            <p></p>
+            <p><b><font color="blue"><u>Example 2</u></font></b></p>
+            <p></p>
+            <p>&nbsp;&nbsp;&nbsp;
+              <table>
+              <tr>    
+                <th align=left width=300>(setq _path  "d:\\test\\")</th>
+                <td>;; Set the _path variable to "d:\test"</td>
+            </tr>   
+              <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "d:\test\myarchive.odb"</td>
+            </tr>   
+              </table>
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sset"></A>set</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+              <p>The <b>set</b> function allows values to be stored in the specified ObjectRepository <b>repository</b> either by key or by direct frame id. 
+              Any value may be stored in the ObjectRepository and associated with a key. 
+              Both the key and the stored value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous key or frame id. 
+             </p>
+        
+              <p>The <b>set</b> function also allows values to be stored in the specified ObjectRepository <b>repository</b> by direct frame id. 
+              Any value may be stored in the ObjectRepository and associated with a frame id. 
+              The stored value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous frame id. 
+             </p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Form</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p>The <b>set</b> function is used to store objects into an Object Repository for later retrieval.
+               </P>
+
+          <p><b><font color="blue">Syntax:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (set repository key anyObject)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (set repository frame: frameID anyObject))</b></p>
+
+
+          <!-- Arguments Table Template -->
+          <p><b><font color="blue"><u>Arguments</u></font></b></p>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository into which the object is to be saved.</td>
+            </tr>
+            <tr>
+              <th>key</th>
+              <td>Mandatory argument specifying the key associated with the object is to be saved in the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>anyObject</th>
+              <td>Mandatory argument specifying the object to be saved in the ObjectRepository.
+                  If the object to be saved is #void, then the specified key will be freed in the ObjectRepository.
+                  </td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The ObjectRepository after the save has taken place.</td>
+            </tr>
+          </table>
+          <hr>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository into which the object is to be saved.</td>
+            </tr>
+            <tr>
+              <th>frame:</th>
+              <td>Mandatory keyword specifying that direct frame access is to be used with the object is to be saved in the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>frameID</th>
+              <td>Mandatory argument specifying the frame id associated with the object is to be saved in the ObjectRepository.
+                  If the frameID is to small to hold the specified object, then a new frame id will be assigned.
+                  If the frameID is #void, then a new frame id will be assigned.
+                  </td>
+            </tr>
+            <tr>
+              <th>anyObject</th>
+              <td>Mandatory argument specifying the object to be saved in the ObjectRepository.
+                  If the object to be saved is #void, then the specified frame id will be freed in the ObjectRepository.
+                  </td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The frame id associated with the object saved in the repository.</td>
+            </tr>
+          </table>
+          <hr>
+
+
+          <!-- Code Eaxmples Template -->
+          <p><b><font color="blue"><u>Example 1</u></font></b></p>
+          <p>Creating and initializing a new object repository.</p>
+
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo (new ObjectRepository: "test.db"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 "Hello World")</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] "Hello World"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          frameID&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;1.0</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 #void)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] #void))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+
+          <p><b>Note:</b> The <b>set</b> function saves object values into the object repository. 
+             These object values can be of any size and complexity. 
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sref"></A>ref</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+              <p>The <b>ref</b> function allows values to be retreived from the specified ObjectRepository <b>repository</b> either by key or by direct frame id. 
+              Any previously stored value, associated with a key or a frame id, may be retrieved the ObjectRepository. 
+              Both the key and the stored value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous key or frame id. 
+             </p>
+        
+              <p>The <b>ref</b> function also allows values to be retrieved from the specified ObjectRepository <b>repository</b> by direct frame id. 
+              Any previously stored value, associated with a frame id, may be retrieved the ObjectRepository. 
+              The retrieved value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous frame id. 
+             </p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Form</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p>The <b>ref</b> function is used to retrieve previously saved objects from an Object Repository.
+               </P>
+
+          <p><b><font color="blue">Syntax:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (ref repository key)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (ref repository frame: frameID)</b></p>
+
+
+          <!-- Arguments Table Template -->
+          <p><b><font color="blue"><u>Arguments</u></font></b></p>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository from which the object is to be retrieved.</td>
+            </tr>
+            <tr>
+              <th>key</th>
+              <td>Mandatory argument specifying the key associated with which the object is to be retrieved from the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The previously saved object value retrieved from the ObjectRepository.</td>
+            </tr>
+          </table>
+          <hr>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository from which the object is to be retrieved.</td>
+            </tr>
+            <tr>
+              <th>frame:</th>
+              <td>Mandatory keyword specifying that direct frame access is to be used with the object to be retrieved from the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>frameID</th>
+              <td>Mandatory argument specifying the frame id associated with the object is to be retrieved from the ObjectRepository.
+                  </td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The previously saved object value retrieved from the ObjectRepository.</td>
+            </tr>
+          </table>
+          <hr>
+
+
+          <!-- Code Eaxmples Template -->
+          <p><b><font color="blue"><u>Example 1</u></font></b></p>
+          <p>Creating and initializing a new object repository.</p>
+
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo (new ObjectRepository: "test.db"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 "Hello World")</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] "Hello World"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          frameID&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;1.0</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 #void)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] #void))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+
+          <p><b>Note:</b> The <b>set</b> function saves object values into the object repository. 
+             These object values can be of any size and complexity. 
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_path"></A>_path</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+            <p>The  global variable, <b>_path</b>,  is reserved by the system to hold the directory and  path name
+             of the current working directory. The <b>_path</b> variable is set  to the  empty string "" at 
+             system startup.  It is the programmer??s responsibility to initialize the <b>_path</b> variable. 
+             When the <b>_path</b> variable is referenced, the text contents of the <b>_path</b> variable are automatically 
+             attached to the beginning of  database archive file named in the new function.</p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Global Variable</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p> 
+            The <b>_path</b> is a global variable use to hold a path name string assigned by the programmer.   
+            If the <b>_path</b> variable is something other than a null string, the <b>_path</b> variable string will be 
+            prepended to the filename specified in the new function
+            </P>
+             <!-- Code Eaxmples Template -->
+            <p></p>
+            <p><b><font color="blue"><u>Example 1</u></font></b></p>
+            <p></p>
+            <p>     
+              <table>    
+              <tr>    
+              <th align=left width=300>(setq _path  "")</th>
+              <td>;;Reset the _path variable</td>
+            </tr>
+            <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "myarchive.odb"</td>
+            </tr>    
+           </table>
+           </p>
+            <p></p>
+            <p><b><font color="blue"><u>Example 2</u></font></b></p>
+            <p></p>
+            <p>&nbsp;&nbsp;&nbsp;
+              <table>
+              <tr>    
+                <th align=left width=300>(setq _path  "d:\\test\\")</th>
+                <td>;; Set the _path variable to "d:\test"</td>
+            </tr>   
+              <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "d:\test\myarchive.odb"</td>
+            </tr>   
+              </table>
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRepository Functions"></A>Repository Functions</H2></P>        
+        <div class="h2section" id="Repository Functions">
+        <p> Here is a list of Repository Functions that operate on stored Lambdas, Lambda opinions, Lambda knowledge, and Lambda data. 
+        <table width="100%"><tr>
+</table></tr>
+
+        </P>  
+        </div>
+      <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

@@ -1,0 +1,270 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#S%Definition"><FONT SIZE=2>%Definition</font></a></li><li><a href="#SUser Defined Functions"><FONT SIZE=2>User Defined Functions</font></a></li><li><a href="#SLeft Recursion"><FONT SIZE=2>Left Recursion</font></a></li><li><a href="#SReferences"><FONT SIZE=2>References</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>		
+		    <div class="h2section" id="parseLib Overview">
+		    <p class="MsoBodyText">This Lambda is a compiler compiler tool in the same general class 
+		    of tools as yacc; however, rather than support an implementation-independent language 
+		    specification, the <b>parseLib</b> tool is designed to support an implementation 
+		    based specification allowing complete construction of a new compiler from start to 
+		    finish. This tool supports not one, but three separate rule specification sections: 
+		    lexical rules,  syntax rules, and semantic rules.</p>
+		    <p class="MsoBodyText">The lexical rules are specified in a BNF style syntax but with 
+		    extensions for argument passing between rules and other implementation relevant 
+		    extensions. The syntax rule definition language uses a feature based grammar specification 
+		    with extensions for argument passing between rules and other implementation relevant 
+		    extensions. The semantic rule definition language uses a unification style pattern 
+		    matching specification supporting forward production substitution of matched patterns 
+		    for use in code optimization, semantic reduction, etc. This Lambda is capable of supporting 
+		    context sensitive compilers, such as those required to parse natural languages. It is also possible, 
+		    but not required, to build a chart parser with this tool.</p>
+		    <p class="MsoBodyText">This Lambda converts a compiler definition into a generated Lambda, 
+		    which is a compiler or translator for the language specified in the compiler definition. The compiler 
+		    definition language may be described as a "specification language" with which to 
+		    describe context sensitive compilers, and is capable of describing, not only the syntax 
+		    of the language to be compiled, but also the lexical rules, semantic rules, code optimization 
+		    rules, and code generation required from the compiler.  </p>
+		  </div>	  
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S%Definition"></A>%Definition</H2></P>
+          <div class="h2section" id="%Definition"> 
+           <p class="MsoBodyText"> The parseLib tool is designed to read the specification 
+          file and generate the entire source code for the finished new compiler Lambda. This work is accomplished in 
+          cooperation with the browseLib tool managing the central file cabinet where all Lambdas are stored. 
+          The <b>%DEFINITION</b> file is the specification file for the new compiler. For instance, we might wish 
+          parseLib to generate a new compiler named newCompiler. The specification file would be stored 
+          (using browseLib) in the Lambda file cabinet under the name ??newCompiler:%DEFINITION??. The specification 
+          file (containing the Compiler Definition Language) is broken into seven of sections and looks, in general, 
+          as follows:   </p>
+          <pre>;#text#
+          ; ****************************************************
+          ; Complete specification for the newCompiler compiler.
+          ; ****************************************************
+          #LexicalFeatures#
+          #end#
+          #LexicalRules#
+          #end#
+          #SyntaxFeatures#
+          #end#
+          #SyntaxRules#
+          #end#
+          #SemanticRules#
+          #end#
+          #UserFunctions#
+          #end#</pre>
+          <p class="MsoBodyText">  The generation of the newCompiler Lambda from its specification file is accomplished 
+          with the following simple invocation.  </p>
+          <p class="code">(parseLib cabinetName ??newCompiler??)</p>  
+          <p class="MsoBodyText">  The parseLib tool will automatically read the <b>??newCompiler:%DEFINITION??</b> file and 
+          will generate the complete source code for the new compiler in the Lambda file cabinet, starting with the source 
+          code for the <b>??newCompiler??</b> and also generating any child Lambdas required (i.e. <b>??newCompiler:childOne??, 
+          ??newCompiler:childTwo??,</b> etc.).   </p>    
+          <p class="MsoBodyText"> The generated compiler will normally support three passes: lexical, syntax, and 
+          semantic passes. If any of the features and rules sections are omitted from the specification, then the 
+          effected passes are omitted. For instance, a specification with no syntax and no semantic rules would produce 
+          a single pass lexical compiler, while a specification with only semantic rules would produce a pattern 
+          substituting forward production Lambda.  </p>
+          <h3> ;#text#  Header</h3>
+           <p class="MsoBodyText">  The <b>parseLib</b> compiler specification file may optionally begin with the 
+           following header:   </p>
+           <p class="code"> ;#text#   </p>
+           <p class="MsoBodyText">  If present, the text header must occupy the first positions in the compiler 
+           specification file. The header tells the browseLib not to compile the specification file.</p>  
+            <h3> #parseLib# Header</h3>
+           <p class="MsoBodyText">  The <b>parseLib</b> compiler specification file may optionally begin with the 
+           following header:   </p>
+           <p class="code"> #parseLib# </p>
+           <p class="MsoBodyText">  If present, this header must occupy the first twelve positions in the compiler 
+           specification file. The header tells the Lisp parser to send the specification file directly to the 
+           parseLib for compilation.</p> 
+           <h3>Comments</h3>       
+           <p class="MsoBodyText">  The compiler definition language supports comments anywhere in the compiler 
+           definition as follows:</p>
+           <p class="code"> ;  This is a comment </p>
+           <p class="MsoBodyText">  The comment begins with a semicolon and halts at the then of line. This is 
+           identical to the way comments in Lisp function.</p>         
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SUser Defined Functions"></A>User Defined Functions</H2></P>
+            <div class="h2section" id="User Defined Functions">
+			<p class="MsoBodyText">The compiler definition language (CDL) supports user defined functions in the 
+			compiler definition as follows:</p>   
+			<blockquote>
+			<p class="code">
+			  #UserFunctions#      <br>
+              ;; Constant Folding Function  <br>
+              (defchild theparent:foldConstants(op x y)    <br>
+              vars:(f)              <br>
+              (setq f (getGlobalValue (symbol op)))   <br>
+              (f x y)) ; end foldConstants     <br>
+              #End#
+              </p>
+			</blockquote>  
+			<p class="MsoBodyText"> The compiler definition language allows any number of valid Lisp lambda definitions 
+			between the <b>#UserFunctions#</b> header and the <b>#End#</b> terminator. User defined functions may define 
+			and initialize persistent variables for context sensitive operations.  </p>  
+			<p class="MsoBodyText"> Note:    All user defined function names should begin with a lowercase character 
+			and should contain only alphanumeric characters.</p>    
+			<p class="MsoBodyText"> The <b>parseLib</b> supports user defined functions in the generated compiler. 
+			Each user defined function is a child Lambda of the resulting compiler. Persistent variables for the 
+			generated compiler may be allocated in any child Lambda. Simple computations may be performed in user 
+			defined functions, as in the following example:</p>  
+			<blockquote>
+			<p class="code">
+			 ;; User Defined Functions     <br>
+			 (defchild theparent:userFunction1(n) <br>
+             (* n n)) ; end userRule1      <br>
+             ;; User Defined Functions     <br>
+             (defriend theparent:userFunction2(n)   <br>
+             (* n n)) ; end userRule1
+              </p>
+			</blockquote>     
+			<h3> initRule  </h3>   
+			<p class="MsoBodyText">  A special user defined function, known as  <b>initRule</b>, will be executed once 
+			during the initialization of the compiler, as in the following example:  </p>
+			 <blockquote>
+			<p class="code">
+			 ;; User Defined Initial Function.    <br>
+             (defchild theparent:initRule()   <br>
+             pvars:(factBase)               <br>
+             (setq factBase Repository[oldFacts:])      <br>
+             factBase) ; end initRule
+              </p>
+			</blockquote>
+             <p class="MsoBodyText"> Here the <b>initRule</b> initializes a persistence knowledge base of facts to be 
+             used to hold information learned during previous compilations. Any form of initialization may take place 
+             in the user defined <b>initRule</b>.   </p>     
+             <h3> preLexRule  </h3>   
+			<p class="MsoBodyText">  A special user defined function, known as  <b>preLexRule</b>, will be executed once 
+			prior to the lexical analysis phase of the compiler, as in the following example:</p>
+			 <blockquote>
+			<p class="code">
+            ;; User Defined pre lexical Function. <br>
+            (defchild theparent:preLexRule(input)   <br>
+            vars:(output)                    <br>
+            (setq output (browseLib.checkout input))   <br>
+             output) ; end preLexRule
+              </p>
+			</blockquote>
+             <p class="MsoBodyText"> Here the <b>preLexRule </b> treats the input to the compiler as a key to checking 
+             out the real source, to be compiled, from the browseLib. Any form of input substitution may take place in 
+             the user defined <b>preLexRule</b>.</p>     
+            <h3> startRule  </h3>   
+			<p class="MsoBodyText">  A special user defined function, known as  <b>startRule</b>, will be executed before 
+			the start of each compilation, as in the following example:</p>
+			 <blockquote>
+			<p class="code">
+            ;; User Defined Start Function.   <br>
+           (defchild theparent:startRule()      <br>
+            pvars:(varTree)                      <br>
+           (setq varTree (new Dictionary:))     <br>
+            varTree) ; end startRule
+              </p>
+			</blockquote>
+             <p class="MsoBodyText"> Here the <b>startRule</b> initializes a persistence Dictionary to be used to hold 
+             the variable tree. Any form of initialization may take place in the user defined <b>startRule</b>.</p>  
+              <h3> outputRule  </h3>   
+			<p class="MsoBodyText">  The <b>parseLib</b> requires a user defined output rule to construct the final 
+			output from the generated compiler. The output rule is a user defined child Lambda, of the resulting compiler, 
+			which accepts one argument and always returns the expected output from the compiler, which must be a faithful
+			 compilation or translation of the original ascii input source, as in the following example:</p>
+			 <blockquote>
+			<p class="code">
+            ;; Output Rule Function.     <br>
+           (defchild theparent:outputRule(result)  <br>
+            vars:(ret)                     <br>
+           (setq ret (compile (morph result.Value)))   <br>
+            ret) ; end outputRule
+              </p>
+			</blockquote>
+             <p class="MsoBodyText"> If the output rule is not specified, the generated compiler will output the 
+             boolean false for every compilation.</p>   
+            <h3> _errorHandler  </h3>   
+			<p class="MsoBodyText">  The _errorHandler rule is a user defined child Lambda, of the resulting compiler,
+			 which accepts any error messages which may occur during compilation. The _errorHandler rule expects one 
+			 argument (which is a string containing the error message received.</p>
+             <p class="MsoBodyText"> If the _errorHandler rule is not specified, the generated compiler will pass 
+             thru all error messages which are encountered.</p>			
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLeft Recursion"></A>Left Recursion</H2></P>
+		    <div class="h2section" id="Left Recursion">
+			<p class="MsoBodyText">All parseLib lexical, syntax, and semantic rules allow left recursive rule 
+			expressions. All left recursive rules are automatically converted into right recursive form Converting 
+			a set of rules from left to right recursion is a process which can best be described by the following 
+			examples.</p>      
+			<p class="example">  Example 1</p>
+			<blockquote>
+			<p class="code">
+			 EXPR: EXPR Operator EXPR :: ... ::   <br>
+			 EXPR: ( EXPR ) :: ... ::            <br>
+			 EXPR: Number :: ... ::      <br>
+			 EXPR: Name :: ... ::        <br>		
+			</p>
+			</blockquote>
+			<p class="MsoBodyText">The EXPR rule is converted into two rules EXPR and LEXPR in right recursion form:</p>   
+			<blockquote>
+			<p class="code">
+			 EXPR: LEXPR Operator EXPR :: ... ::   <br>
+             EXPR: LEXPR :: $1 ::                <br>
+			 LEXPR: ( EXPR ) :: ... ::          <br>
+			 LEXPR: Number :: ... ::             <br>
+			 LEXPR: Name :: ... ::	
+			</p>
+			</blockquote>      
+			<p class="example">  Example 2</p>
+			<blockquote>
+			<p class="code">
+			EXPR: user ordering :: true ::          <br>
+			EXPR: ( EXPR ) :: ... ::               <br>
+			EXPR: Number :: ... ::                 <br>
+			EXPR: EXPR Operator EXPR :: ... ::     <br>
+			EXPR: Name :: ... 
+			</p>
+			</blockquote>
+			<p class="MsoBodyText">The EXPR rule is converted into two rules EXPR and LEXPR in right recursion form:</p>   
+			<blockquote>
+			<p class="code">
+			 EXPR: user ordering :: true ::
+			 EXPR: LEXPR Operator EXPR :: ... ::
+             EXPR: LEXPR :: $1 ::   
+             <p>&nbsp;</p>
+             LEXPR: user ordering :: true ::
+		     LEXPR: ( EXPR ) :: ... ::
+			 LEXPR: Number :: ... ::
+			 LEXPR: Name :: ... ::
+			</p>
+			</blockquote>      
+			</div>	
+       <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SReferences"></A>References</H2></P>
+			<div class="h2section" id="References">
+		   <p class="MsoBodyText">The technical reference list for this chapter is as follows:</p>
+		   <ol>
+		    <li> Aho, Sethi, Ullman, <b>Compilers: Principles, Techniques, and Tools,</b> Addison-Wesley, 1986. </li>   
+		    <li> Gazdar, Mellish, <b>Natural Language Processing in Lisp,</b> Addison-Wesley, 1989.</li>  
+		    <li> Cabral, Korns, <b>Analytic Information Server Reference Guide,</b> Version 2.0, Korns Associates, 1997. </li>     
+		    <li> Korns, <b>Analytic Information Server rulesLib,</b> Version 2.0, Korns Associates, 1997. </li>   
+		   </ol> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

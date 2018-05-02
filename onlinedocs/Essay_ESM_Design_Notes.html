@@ -1,0 +1,407 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Design Notes</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#SSelector Language"><FONT SIZE=2>Selector Language</font></a></li><li><a href="#SEvolutionary Computation"><FONT SIZE=2>Evolutionary Computation</font></a></li><li><a href="#SDesign Ideas"><FONT SIZE=2>Design Ideas</font></a></li><li><a href="#SPopulation Operators"><FONT SIZE=2>Population Operators</font></a></li><li><a href="#SMultiple Grammars"><FONT SIZE=2>Multiple Grammars</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>	
+             <p>Let X be a time series of vectors such as the numeric vector x = #(num| xtime x1 x2 x3 ... xm),
+             and let Y be a numeric vector of "score" values. Let both X and Y be of length N.</p>
+
+             <p>The time series, X, together with the "scores", Y, are used to train this learning machine. 
+             There is also a testing set, TX and TY, of vectors similar to those in X and Y
+             but for the testing time period (a time period not present in X or Y).
+             After training, the machine is presented with the testing set, TX, 
+             and outputs an estimator Lambda, Selector, which attempts to estimate ty in TY when presented with the corresponding tx in TX.</p> 
+
+             <p>Running this Selector on every tx in TX returns a Vector EY, of estimates for TY. 
+             Each element in EY contains a numeric estimate for the corresponding value in TY. 
+             The Selector Lambda attempts to:</p>
+             
+             <ol>
+             <li>Make the natural ordering of EY be predictive of the natural ordering of TY</li>
+             <li>Minimize the least squared error between EY and TY</li> 
+             </ol>
+
+             <p>The internal model used by the Selector Lambda to compute ey is important. 
+             The range of possible X and Y training sets and the power of the possible estimates is determined by the internal model used in the Selector Lambda.
+             </p>       
+
+             <p><b>Linear Regression</b></p>
+
+             <p>Using the technique of <i>linear regression</i> the Selector Lambda could provide accurate estimates for all X and Y training sets
+             which had been constructed from the following model, <b>y = c0 + c1*F1(x)</b>,             
+             where c0 and c1 are internal numeric constants and F1 is an arbitrary numeric function on members of X.
+             If the choice of F1 is known, linear regression can estimate the values of C0 and C1 quite accurately just by training on X and Y.       
+             If the choice of F1 is unknown, linear regression works very poorly.</p>       
+
+             <p><b>Multiple Linear Regression</b></p>
+
+             <p>Using the technique of <i>multiple linear regression</i> the Selector Lambda could provide accurate estimates for all X and Y training sets
+             which had been constructed from the following model, <b>y = c0 + c1*F1(x) + c2*F2(x) ... + cm*Fm(x)</b>,             
+             where c0 through cm are internal numeric constants and F1 through Fm are arbitrary numeric functions on members of X.       
+             If the choices of F1 through Fm are known, multiple linear regression can estimate the values of C0 through Cm quite accurately just by training on X and Y.       
+             If the choices of F1 through Fm are unknown, multiple linear regression works very poorly.</p>       
+
+             <p><b>Evolutionary Sequencing Regression</b></p>
+
+             <p>The Evolutionary Sequencing Regression uses the techniques of <i>linear regression</i>, <i>multiple linear regression</i>,
+             <i>support vector regression</i> and <i>percentile grid regression</i>.
+             The Selector Lambda can provide accurate estimates for all X and Y training sets which have been constructed from the following models,
+             <b>y = c0 + c1*E1(x)</b> or <b>y = c0 + c1*E1(x) + c2*E2(x) ... + cm*Em(x)</b>,             
+             where c0 through cm are internal numeric constants and E1 through Em are valid Selector language regression expressions.
+             Even when the choices of E1 through Em are unknown, evolutionary sequencing regression works very well,
+             performing natural order preservation as its first priority and minimizing the least squared error as its second priority.      
+             An explanation of the power and limitations of valid Selector regression expressions is contained in the next section.</p>       
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelector Language"></A>Selector Language</H2></P>	
+             <p>The Evolutionary Sequencing Machine evolves a population of well-formed-formulas (WFFs) in a regression-oriented grammar known as <b>Selector</b>.
+             Each WFF is known as a <i>Selector</i>, and is trained to map number vectors in X and XT to numbers in Y and YT.
+             The Selector language is a dialect of JavaScript, to make learning and reading easy by the current generation of programmers. 
+             Each Selector Lambda, wff, supports the following methods. 
+             </p>
+
+             <ul>
+               <li>wff(x) ==> ey : invoking the main wff maps a number vector, x, to a number, y.</li>
+               <li>wff.run(X) ==> EY : invoking wff.run outputs a number vector, EY, of estimates for Y.</li>
+               <li>wff.train(X,Y) ==> true : invoking wff.train trains the Selector wff on the specified training data.</li>
+             </ul>
+
+             <p>The Selector grammar is defined, within the ESM Lambda, in esm:selector:%DECLARATION, which is a feature-based grammar specification understood by the parseLib.
+             The esm.selector child Lambda is a "Selector" parser, generated from esm:selector:%DECLARATION by parseLib.
+             The Selector parser translates ASCII text strings into Selector WFFs which are annotated s-expressions.
+             Each WFF s-expression, in the population, may be annotated with grammar notes taken from the rules defined in esm:selector:%DECLARATION.
+             </p> 
+
+             <p>Each Selector WFF must chose one of the following regression model syntax to remain gramatically correct.
+             </p> 
+
+             <p><b>Linear Regression</b></p>
+
+             <pre>         
+             regress <i>expression</i>;         
+
+                         <b>for example:</b>
+
+             regress (x10 / sin(x12));
+             </pre>
+
+             <p>Trains a linear regression Selector WFF for the model <i>expression</i>. The <i>expression</i> must be a valid Selector regression expression.</p>
+
+             <p><b>Support Vector Regression</b></p>
+
+             <pre>         
+             svmregress(<i>expression1</i>, <i>expression2</i>,..., <i>expressionM</i>);         
+
+                         <b>for example:</b>
+
+             svmregress (x10,cos(x12)/log(x3));
+             </pre>
+
+             <p>Trains a support vector regression Selector WFF, with a cubic kernel, for the models <i>expression1</i> through <i>expressionM</i>. 
+             The models <i>expression1</i> through <i>expressionM</i> must each be valid Selector regression expressions.
+             There must be AT LEAST one model expression and there may be up to M model expressions (where M is the number of elements in each x vector).
+             The special case of <b>svmregress();</b> is assumed to mean <b>svmregress(xtime,x1,x2,...,xm);</b></p>
+
+             <p><b>Percentile Grid Regression</b></p>
+
+             <pre>         
+             pgmregress(<i>expression1</i>, <i>expression2</i>,..., <i>expressionM</i>);         
+
+                         <b>for example:</b>
+
+             pgmregress (x1,exp(x12)/log(x3));
+             </pre>
+
+             <p>Trains a percentile grid regression Selector WFF for the models <i>expression1</i> through <i>expressionM</i>. 
+             The models <i>expression1</i> through <i>expressionM</i> must each be valid Selector regression expressions.
+             There must be AT LEAST one model expression and there may be up to M model expressions (where M is the number of elements in each x vector).</p>
+
+
+             <p><b>Basis Grid Regression</b></p>
+
+             <pre>         
+             bgmregress(<i>expression1</i>, <i>expression2</i>, <i>expression2</i>, <i>expression4</i>);         
+
+                         <b>for example:</b>
+
+             bgmregress (x1,exp(x12)/log(x3));
+             </pre>
+
+             <p>Trains a basis grid regression Selector WFF, with a basis grid, for the models <i>expression1</i> through <i>expressionM</i>. 
+             The models <i>expression1</i> through <i>expressionM</i> must each be valid Selector regression expressions.
+             There must be AT LEAST one model expression and there may be up to four model expressions.</p>
+
+
+             <p><b>Selector Expressions</b></p>
+
+             <p>Valid Selector regression expression well-formed-formulas (WFFs) can be constructed by recursively applying the following production grammar rules.</p> 
+
+             <pre>
+             <b>TERMINAL</b>: xtime x1 x2 ... xm
+
+                                  <b>explanation:</b>
+
+                              A TERMIAL is any one of the elements of the input vector, x.
+
+                                  <b>example:</b>
+
+                              svmregress (xtime, x3, x10);
+             </pre>
+
+             <pre>
+             <b>UNARY</b>:    abs(EXP) cos(EXP) cube(EXP) exp(EXP) integer(EXP) log(EXP) (- EXP) sign(EXP) sin(EXP) sqrt(EXP) square(EXP) tan(EXP) tanh(EXP)
+
+                                  <b>explanation:</b>
+
+                              A UNARY is any one of the unary operators, shown above, enclosing a valid Selector regression expression WFF.
+
+                                  <b>example:</b>
+
+                              svmregress (sin(xtime), abs(x3), log(sqrt(x10)));
+             </pre>
+
+             <pre>             
+             <b>BINARY</b>:   avg(EXP1,EXP2) (EXP1+EXP2) (EXP1-EXP2)  (EXP1/EXP2)  (EXP1*EXP2) expt(EXP1,EXP2) max(EXP1,EXP2) min(EXP1,EXP2) mod(EXP1,EXP2) 
+
+                                  <b>explanation:</b>
+
+                              A BINARY is any one of the binary operators, shown above, enclosing two valid Selector regression expression WFFs.
+
+                                  <b>example:</b>
+
+                              svmregress (sin(xtime)-abs(x3), log(sqrt(x10))*x2);
+             </pre>
+
+             <pre>             
+             <b>EXP</b>:      TERMINAL UNARY BINARY  
+
+                                  <b>explanation:</b>
+
+                              An EXP is any WFF resulting from invoking the TERMINAL, UNARY, or BINARY Selector grammar rules <u>up to five times recursively</u>.
+
+                                  <b>example:</b>
+
+                              pgmregress (sin(xtime)*abs(x3), tan(sqrt(x10))*x2);
+             </pre>
+
+             <p>A more detailed description of the Selector language is provided in the chapters on <i>Selector Introduction</i> and <i>Selector Statements</i>.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEvolutionary Computation"></A>Evolutionary Computation</H2></P>	
+             <p>There are many specialties in the umbrella field of Evolutionary Computation including (but not limited to): 
+             Genetic Algorithms; Genetic programming; Artificial Life; Grammatical Evolution; Evolvable Hardware, etc.
+             However different, these various specialties all have a <i>least common denominator</i> of similarities; and,
+             each of these specialties possess at least some techniques which have proven useful when applied to selected problem domains.
+             </p>       
+
+             <p><b>Populations</b></p>
+
+             <p>One of the primary <i>least common denominator</i> areas across all specialties in the umbrella field of Evolutionary Computation,
+             is the commonality of large populations of <i>things</i> which change, over time, becoming a population of <i>fitter things</i>. 
+             In the specialties of Genetic Algorithms, Genetic Programming, and Grammatical Evolution, the <i>things</i> are called <i>genomes</i>.
+             In other specialties the <i>things</i> are called <i>Lambdas</i>, <i>organisms</i>, <i>robots</i>, <i>rules</i>, <i>DNA sequences</i>, etc.
+             </p>       
+
+             <p><b>Fitness</b></p>
+
+             <p>Another important <i>least common denominator</i> area across all specialties in the umbrella field of Evolutionary Computation,
+             is the commonality of <i>fitness</i>. The population is said to become <i>fitter</i> over time. 
+             In each specialty, the concept of <i>fitness</i> is expressed via a mapping from things in the population to a <i>fitness score</i>. 
+             In our observations, of each area of specialty, the concept of fitness mapping can be generalized to a mapping from elements of a population
+             of things to a real vector space.
+             </p>       
+
+             <p><b>Survival</b></p>
+
+             <p>Survival is another <i>least common denominator</i> area across all specialties and is related to the fitness measure in some manner.
+             In all specialties there are discrete time steps during which the things in the population are promoted (<i>survive</i>) into the next time frame. 
+             Normally, this survival mechanism is related to the fitness measure in that the population becomes <i>fitter</i> over time. 
+             </p>       
+
+             <p><b>Operators</b></p>
+
+             <p>In almost all areas of specialty which we studied the concept of population operators morphing the population is a <i>least common denominator</i>.
+             In the specialties of Genetic Algorithms, Genetic Programming, and Grammatical Evolution, the operators are called <i>mutation</i>, <i>recombination</i>, <i>reproduction</i>, etc.
+             In many cases the population operators incorporate the concept of survival. 
+             In these architectures, the population operators map things (in the current population) into things (in the population one time step in the future).
+             Things which are not promoted do not survive. 
+             </p>       
+
+             <p><b>Data</b></p>
+
+             <p>All areas of specialty which we studied supported the concept of <i>training data</i> in one form or another.
+             In many cases the training data can be numeric vectors.
+             In other cases the training data is the initial environment for an ant colony, or a geographic playing field for robot traversal, etc. 
+             In all these architectures, the training data, population operators, and fitness mapping work together to produce populations of things which better solve a training problem. 
+             In many architectures, there is a concept of problem generalization. 
+             In these architectures, once trained, things in the population can be presented with <i>testing data</i> (not seen during the training period) 
+             and better solve a testing problem (presumably because the previous training experience was generalized).             
+             </p>       
+
+             <p><b>Evaluation</b></p>
+
+             <p>All areas of specialty which we studied supported the concept of <i>evaluation</i> in one form or another.
+             There must be some process by which each <i>thing</i> in the population can be <i>evaluated</i> so as to produce a fitness score.
+             In the specialty of Genetic Programming, the genome is often an Lisp s-expression and the evaluation is the Lisp eval function.
+             In the specialty of Genetic Algorithms, a translator is normally required to convert the genome into a program which can be evaluated.
+             In the specialty of Grammatical Evolution, the genome is run through a grammar production resulting in a program which can be evaluated.
+             </p>       
+
+             <p><b><u>Design Principle</u></b></p>
+
+             <p>The Evolutionary Sequencing Machine Lambda (ESM) is a symbolic regression engine, designed to accept an X Y training matrix as input 
+             and to output an estimator Lambda (Selector) which attempts to map elements in X onto elements in Y, in an order preserving manner, with a high degree of accuracy.
+             In order to accomplish this task, the Evolutionary Sequencing Machine Lambda (ESM) is designed, 
+             to take advantage of practical research results in the general field of Evolutionary Computation, regardless of their specialty of origin. 
+             </p>       
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDesign Ideas"></A>Design Ideas</H2></P>	
+             <p>The Evolutionary Sequencing Machine (ESM) is designed, from its basic foundation,
+             to take advantage of any practical research results in the general field of Evolutionary Computation, regardless of the specialty of origin. 
+             The Evolutionary Sequencing Machine architecture is a merger  
+             of a wide range of evolutionary techniques and theories from throughout the whole field of Evolutionary Computation.</p>       
+
+             <p><b>Population of WFFs</b></p>
+
+             <p>The Evolutionary Sequencing Machine evolves a population of well-formed-formulas (WFFs) in a problem-oriented grammar known as <b>Selector</b>.
+             The Selector grammar is defined, within the ESM Lambda, in esm:selector:%DECLARATION, which is a feature-based grammar specification understood by the parseLib.
+             The esm.selector child Lambda is a "Selector" parser, generated from esm:selector:%DECLARATION by parseLib.
+             The Selector parser translates ASCII text strings into Selector WFFs which are annotated s-expressions.
+             </p> 
+
+             <p>By implementing its <i>genomes</i> as annotated s-expressions, the Evolutionary Sequencing Machine takes advantage the large body of Genetic Programming tools 
+             while also facilitating the use of many interesting techniques available in other specialties.
+             Bit string annotations to the WFF s-expressions, facilitate the use of many interesting techniques available in Genetic Algorithm.
+             Grammar annotations to the WFF s-expressions, facilitate the use of many interesting techniques available in the Gramatical Evolution.
+             Goal and plan annotations to the WFF s-expressions, facilitate the use of many interesting techniques available in MultiLambda Systems and Swarm Learning.
+             Nevertheless, since each WFF in the population is essentially an s-expression, evaluation requires only a call to the AIS Lisp eval function.
+             </p> 
+
+             <p><b>Operators on WFFs</b></p>
+
+             <p>The Evolutionary Sequencing Machine applies a set of <i>grammar preserving operators</i> to evolve the population of well-formed-formulas (WFFs) into a population of <i>fitter</i> WFFs.
+             The ESM population operators are <i>grammar preserving</i> such that each operator maps from a population of <b>Selector</b> WFFs to a population of <b>Selector</b> WFFs.
+             Each Selector WFF evaluates to an AIS Lambda which accepts a set of Number Vectors and returns a proper subset of those same Number Vectors (attempting to pick the fittest in the set).
+             </p>
+
+             <p>The Evolutionary Sequencing Machine raises the grammar concepts embodied in Grammatical Evolution far above the WFF genome's grammar annotations,
+             making the understanding and preservation of WFF grammar an essential task of the population operators.
+             Thus ESM operators can understand that two WFF s-expressions cannot be combined because their are grammatically incompatible, 
+             that two ESM WFF s-expressions must be combined in specific ways because of their grammar annotations,
+             that two ESM WFF s-expressions are essentially equivalent, or
+             that two ESM WFF s-expressions can be combined and reduced to a more primal form.
+             </p>
+      
+             <p>Furthermore, the task of fitness improvement is raised far above any requirement for operational <i>purity</i>.
+             Evolutionary Sequencing Machine WFFs can be annotated with a wide variety of information to help the population operators raise the population fitness level.
+             Annotations can aid operators in establishing protected or unprotected sub-populations. 
+             Annotations can aid operators in enhancing populations with WFFs generated via exhaustive parital-search, statistical learning methods, etc. 
+             In general the ESM uses annotations to extend the style and type of population operator far beyond those listed in any one specialty while requiring only that the operator be grammar preserving.</p>
+
+
+             <p><b>Data</b></p>
+
+             <p>The Evolutionary Sequencing Machine learns to select and score the best individuals from a universe of individuals over time.
+             Over a series of discrete time steps, a universe of individuals is collected for each time step (the training data). 
+             During prediction the ESM attempts to select the best individuals from the testing data (the ESM is <b>NOT</b> given the "score" values for the testing data).  
+             The <i>individuals</i> are Number vectors and represent quantitative information about things such as Stocks, People, Cities, etc. 
+             The <i>score values</i> are single Numbers and represent some quantitative value about these same Stocks, People, Cities, etc.
+             </p>
+ 
+             <p>Each individual followed by the system is given a unique identifier which remains
+             unique across all time periods studied (no two individuals ever have the same identifier).
+             Furthermore, each time period studied is given a unique ascending integer index (i.e. week 1,
+             week 2, etc.). So, for a series of time periods, historical information about groups of
+             individuals is collected for each time period. The historical information collected for each
+             individual for each time period is stored in a Number Vector and includes: the time period index;
+             the unique identifier of the individual; and other numeric information about the individual
+             pertinent to the current investigation. Finally, each individual in each time period is given
+             a numeric "score" which determines the value of the individual in that time period. The "best"
+             individuals have the highest "score" values.
+             </p>
+
+             <p><b>Fitness of WFFs</b></p>
+ 
+             <p>During training, the ESM is given historical information and the "score" values for time periods 0 through T for all individuals.
+             For each time period 0 through T, we can calculate the average score for both the theoretic best and worst selections of N individuals.
+             The ESM currently computes the theoretic best and worst scores for the each of the top and bottom 5% partitions (5%, 10%, 15%, ... 45%, 50%).
+             The order preserving "fitness" of a Selector WFF are measured by what percentage of the theoretical "best" averages it obtained on each of these top and bottom percentile partitions.
+             In addition, the ESM also computes the least squares error between the predictions and the "score" values for each individual.
+             </p> 
+
+             <p>During training, each WFF in the population (without knowing the score values), attempts to score the N individuals for time periods 0 through T.
+             Associated with each WFF in the population {w in P} is the least squares error and the order preservation measure for time periods 0 through T.
+             These two fittness measures are normalized into a single fittness score as follows S[w,t] =  g(Error[w,t],Order[w,t]).
+             </p>
+
+             <p>The fitness measure for each WFF {F[w] == (S[w,0] * S[w,1] * ... * S[w,t])} is the product of its normalized scores for time periods 0 through T.
+             The fitness measure tends to favor those WFFs which have done consistantly well during the training period (as opposed to those with only an occasional big success).
+             </p>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SPopulation Operators"></A>Population Operators</H2></P>	
+             <p>The Evolutionary Sequencing Machine applies a set of <i>grammar preserving operators</i> to evolve the population of well-formed-formulas (WFFs) into a population of <i>fitter</i> WFFs.
+             The population operators are <i>grammar preserving</i> such that each operator maps from a population of <b>Selector</b> WFFs to a population of <b>Selector</b> WFFs.
+             The understanding and preservation of WFF grammar is an essential task of the population operators.
+             WFFs can be annotated with a wide variety of information to help the population operators raise the population fitness level.
+             Annotations can aid operators in establishing protected or unprotected sub-populations <i>evolved with different grammars</i>. 
+             Annotations can aid operators in enhancing populations with WFFs generated via exhaustive parital-search, statistical learning methods, etc. 
+             </p>
+
+             <p>Here follows an overview of the population operators supported during Evolutionary Sequencing Regression.
+             </p>
+
+             <p>The <b>grow</b> operator generates a new WFF, from the empty set, by randomly invoking Selector grammar rules so as to create a WFF.</p>
+ 
+             <p>The <b>mutate</b> operator generates a new WFF, from a parent WFF, by randomly mutating the parent WFF in a grammar preserving manner.</p>
+ 
+             <p>The <b>children</b> operator generates two new WFFs, from two parent WFFs, by randomly invoking Selector grammar rules so as to cut and recombine child WFFs in a grammar preserving manner.</p>
+ 
+             <p>The <b>greed</b> operator generates a new WFF, from the empty set, by using greedy search to invoke Selector grammar rules so as to create a WFF.</p>
+ 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMultiple Grammars"></A>Multiple Grammars</H2></P>	
+             <p>The Evolutionary Sequencing Machine supports multiple <i>grammars</i> in evolving the population of well-formed-formulas (WFFs) problem solutions.
+             All ESM population operators are <i>grammar preserving</i> such that each operator maps from a population of <b>Selector</b> WFFs to a population of <b>Selector</b> WFFs,
+             in a grammar preserving manner.
+             The design concept of <i>grammar preservation</i> extends to establishing protected and unprotected sub-populations <i>evolved with different grammars</i>.
+             The understanding and preservation of multiple WFF grammars is an essential task of the Evolutionary Sequencing Machine.
+             The Evolutionary Sequencing Machine certainly attempts to evolve general programs, with evolved functions and variables; but, 
+             there are also attempts to evolve program solutions using Support Vectors, Multiple Regression, and Decision Tree models.
+             In fact the ESM supports the co-evolution of a wide variety of Selector WFF grammars, providing potentially unique strategies for approaching the problem.
+             </p>
+
+             <p>There Selector grammars currently supported during Evolutionary Sequencing Regression.
+             </p>
+
+             <p>The <b>REG</b> grammar forms valid Selector WFFs which train and run a simple linear regression model on a the training data set.</p>
+
+             <p>The <b>MVL</b> grammar forms valid Selector WFFs which train and run a multiple linear regression model on a the training data set.</p>
+
+             <p>The <b>SVM</b> grammar forms valid Selector WFFs which train and run a support vector regression model with a cubic kernel on a the training data set.</p>
+
+             <p>The <b>BGM</b> grammar forms valid Selector WFFs which train and run a basis grid regression model on the training data set.</p>
+
+             <p>The <b>FRM</b> grammar forms valid Selector WFFs which train and run a multiple factor regression model on the training data set.</p>
+
+             <p>The <b>ENN</b> grammar forms valid Selector WFFs which train and run a neural net regression model on a the training data set.</p>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

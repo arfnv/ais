@@ -1,0 +1,1166 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>dataMine Lambda Repository Manager</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SInitialization and Repository Extents"><FONT SIZE=2>Initialization and Repository Extents</font></a></li><li><a href="#STransaction Support"><FONT SIZE=2>Transaction Support</font></a></li><li><a href="#SdataMineLib"><FONT SIZE=2>dataMineLib</font></a></li><li><a href="#SaddTableColumn"><FONT SIZE=2>addTableColumn</font></a></li><li><a href="#SclearCursors"><FONT SIZE=2>clearCursors</font></a></li><li><a href="#SclearMemoPad"><FONT SIZE=2>clearMemoPad</font></a></li><li><a href="#Sclose"><FONT SIZE=2>close</font></a></li><li><a href="#ScompileLambda"><FONT SIZE=2>compileLambda</font></a></li><li><a href="#ScreateMetaTable"><FONT SIZE=2>createMetaTable</font></a></li><li><a href="#ScreateTable"><FONT SIZE=2>createTable</font></a></li><li><a href="#ScurrentTable"><FONT SIZE=2>currentTable</font></a></li><li><a href="#SdeleteRecord"><FONT SIZE=2>deleteRecord</font></a></li><li><a href="#SdropTable"><FONT SIZE=2>dropTable</font></a></li><li><a href="#SexportTab"><FONT SIZE=2>exportTab</font></a></li><li><a href="#SfilterTable"><FONT SIZE=2>filterTable</font></a></li><li><a href="#SgetExtentNames"><FONT SIZE=2>getExtentNames</font></a></li><li><a href="#SgetTableDatabaseName"><FONT SIZE=2>getTableDatabaseName</font></a></li><li><a href="#SgetTableNames"><FONT SIZE=2>getTableNames</font></a></li><li><a href="#SimportTab"><FONT SIZE=2>importTab</font></a></li><li><a href="#SisTable"><FONT SIZE=2>isTable</font></a></li><li><a href="#SmergeTables"><FONT SIZE=2>mergeTables</font></a></li><li><a href="#SmergeThreeTables"><FONT SIZE=2>mergeThreeTables</font></a></li><li><a href="#Sopen"><FONT SIZE=2>open</font></a></li><li><a href="#SreadRecord"><FONT SIZE=2>readRecord</font></a></li><li><a href="#SrecordDetails"><FONT SIZE=2>recordDetails</font></a></li><li><a href="#SrenameTable"><FONT SIZE=2>renameTable</font></a></li><li><a href="#SsetTableDatabaseName"><FONT SIZE=2>setTableDatabaseName</font></a></li><li><a href="#SsortTable"><FONT SIZE=2>sortTable</font></a></li><li><a href="#SsystemCheck"><FONT SIZE=2>systemCheck</font></a></li><li><a href="#SupdateTable"><FONT SIZE=2>updateTable</font></a></li><li><a href="#SusingForCreate"><FONT SIZE=2>usingForCreate</font></a></li><li><a href="#SwriteRecord"><FONT SIZE=2>writeRecord</font></a></li>
+</UL>
+
+<P><H2><A NAME="SInitialization and Repository Extents"></A>Initialization and Repository Extents</H2></P>		
+		    <div class="h2section" id="Initialization and Repository Extents">
+		<P>You initialize the dataMineLib for use in your application by specifying
+		one or more repository extents that will contain the datamine. Each repository
+		extent is a Analytic Information Server object repository object. Object repository objects
+		manage the storage and retrieval of Analytic Information Server objects to and from a disk file.
+		To initialize dataMineLib for use, you call the dataMineLib with a
+		Structure argument as shown in the following example:</P>     
+		<blockquote>
+		<PRE>;;Initilize a dataMineLib for use
+		(setq myExtents #{reference: &quot;reference.db&quot; blackboard: &quot;blackboard.db&quot;})
+		(datMineLambda myExtents)</PRE>  
+		</blockquote>
+		<P> The structure myExtents contains the list of object repository extents that
+		constitute the &quot;datamine&quot; the dataMineLib will manage. In this
+		example there are two extents specified. The first is named reference: and the
+		file containing the repository extent is &quot;reference.db&quot;. The second
+		is named blackboard: and the file containing the repository extent is
+		&quot;blackboard.db&quot;.</P>
+		<P>Once initialized, you can call functions on the dataMineLib and its child
+		Lambdas and dataMineLib.miner. The functions in
+		dataMineLib allow the creation, update and deletion of tables in the
+		repository extents managed by dataMineLib. In addition, the
+		dataMineLib.open function returns a table cursors object that provides a rich
+		interface for the manipulation of tables in the dataMineLib repository
+		extents. These table cursors come in three flavors; memory:, static: and disk:.
+		Memory cursors load the content of an entire table into memory, static cursors
+		provide buffered read access to a table and a disk cursor provides buffered
+		read / unbuffered write access to a table. See the section Table Cursors for a
+		detailed review of the table cursor object. In reading the detailed reference
+		of dataMineLib functions provided in this section it will prove useful to
+		have reviewed the section on Table Cursors. Many of the dataMineLib functions
+		are simple wrappers for a sequence of functions executed on a Table Cursor.</P>
+		<H3>Mobile Extents</H3>
+		<P>The dataMineLib datamine is comprised of one or repository extents and
+		each repository extent contains one or more tables. Repository extents are
+		mobile in the sense that they can be used in different datamines at different
+		times. Consider the example below:</P> 
+		<blockquote>
+		<PRE>;; Use the same extent in two different datamines
+		;; Define and initilize dataMineLib on the first datamine
+		(setq datamine #{yearly: &quot;yearly.db&quot; blackboard: &quot;blackboard.db&quot;})
+		(dataMineLib datamine); Initialize the dataMineLib
+		
+		;.. do some work on the open datamine
+		
+		;; Define and initilize dataMineLib on the second datamine
+		(setq datamine #{monthly: &quot;monthly.db&quot; blackboard: &quot;blackboard.db&quot; })
+		(dataMineLib datamine); Initialize the dataMineLib
+		
+		;.. do some work on the open datamine
+		</PRE>   
+		</blockquote>
+		<P>In the preceding example the dataMineLib was initialized against a
+		datamine consisting of two repository extents; yearly: and blackboard:. Later
+		the dataMineLib was initialized again against a datamine consisting of two
+		repository extents: montly: and blackboard:. The blackboard: extent was
+		included in both datamines. This is an example of a mobile extent. </P>
+		<P>Mobile extents are very useful because they allow you to construct
+		datamine's from a reusable collection of extents as required by your data
+		analysis needs. However there are some issues that you need to keep in mind
+		when using mobile extents:</P>
+		<UL>
+		<LI>An extent may be opened by only one dataMineLib at a time. The
+		dataMineLib places an exclusive lock on opened extents.</LI>
+		<LI>Table names are unique within a datamine. If two extents contain a table of
+		the same name, then only one of these tables will be visible based on extent
+		precedence (described in the next point). </LI>
+		<LI>The order in which extents are specified in the initialization call to
+		dataMineLib establishes a table name precedence.</LI>
+		<LI>When you delete a table in an extent and a table by that same name exists
+		in another extent, this other table will become visible in the datamine.</LI>
+		</UL>
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STransaction Support"></A>Transaction Support</H2></P>		
+		    <div class="h2section" id="Transaction Support">
+		 <P>The dataMineLib provides transaction support for each repository extent.
+		Each repository extent in the datamine maintains a transaction count. Various
+		dataMineLib functions and Table Cursor functions increment/decrement the
+		transaction the count. When the transaction count is incremented from a value
+		of 0 to 1 a transaction is begun on the repository extent. When the transaction
+		count is decremented from 1 to 0 a commit is performed on the repository
+		extent, making all of the writes into the repository extent that have occurred
+		since the transaction began permanent. Some dataMineLib functions are atomic.
+		An atomic operation means that they increment the transaction count, perform
+		their operation on the repository extent, and then decrement the transaction
+		count before they return. Other dataMineLib functions increment the
+		transaction count and expect some other subsequent dataMineLib functions to
+		be called that will decrement the transaction count. The best example of these
+		kinds of functions are the dataMineLib.open and dataMineLib.close functions
+		that create and close table cursors.</P>
+		<P>Transaction support is most important to understand in reference to the use
+		of table cursors. Table cursors come in three flavors; memory, disk or static.
+		Updates to table cursor rows are possible only for memory and disk cursors.
+		Changes made to a memory cursor are not automatically saved to the object
+		repository and for this reason opening a memory cursor does not increment the
+		transaction count. A static cursor is essentially read only and it also does
+		not increment the transaction count. Disk cursors allow writes to the object
+		repository and thus increment the transaction count when they are created.
+		Calling close on the disk cursor decrements the open transaction count. Many
+		dataMineLib functions may be called between the creation of the table cursor,
+		with open, and its eventual close.</P>
+		<P>This makes it important to remember that the scope of transactions in
+		dataMineLib is at the object repository level. In fact, you rollback an open
+		transaction on a repository by calling (dataMineLib.rollback extentNum). All
+		writes to the object repository since the first currently opened disk cursor
+		will be rolled back. Consider this situation: <BR>
+		A disk cursor is opened on TABLE1. &gt;&gt;open transactions=1<BR>
+		A disk cursor is opened on TABLE2. &gt;&gt;open tranasctions=2<BR>
+		Rows in TABLE2 are modified and written to the object repository.<BR>
+		The disk cursor on TABLE2 is closed. &gt;&gt;open transactions=1<BR>
+		dataMineLib.rollback is called.</P>
+		<P>The changes made to TABLE2 are reversed. In the example above, the object
+		repository transaction started with the opening of the disk cursor on TABLE1.
+		This meant that the writes performed on the TABLE2 disk cursor became part of
+		that transaction.</P>
+		</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdataMineLib"></A>dataMineLib</H2></P>		
+		    <div class="h2section" id="dataMineLib">
+		<P>Invoke the <B>dataMineLib</B> Lambda to initialize the datamine for use. An
+		argument is passed specifying the object repository extents that will
+		constitute the datamine. After this initial call, the dataMineLib is ready
+		for use.</P>
+		<P>The dataMineLib manages one or more repository extents. Each repository
+		extent contains zero or more tables. Tables have a defined schema of columns.
+		Each table may have zero or more rows of data. Row objects are object vectors
+		of variable length.</P>
+		<P>The initialization call to dataMineLib must contain an argument specifying
+		the datamine repository extents that comprise the datamine. Up to 100
+		repository extents can be allocated.<BR>
+		Type: Function<BR>
+		Syntax: (dataMineLib extentStructure&nbsp;<EM> compress:</EM> )<BR>
+		Transaction: NA</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>extentStructure</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A structure of repository extent file and path
+		names.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B><EM>compress:</EM></B></TD>
+		<TD WIDTH="72%" VALIGN="top">An optional argument. The symbol compress:
+		specifies all repository extents are to use compression.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top">true</TD>
+		</TR>
+		</TABLE>
+		<P>Syntax: (dataMineLib filterSource)<BR>
+		Transaction: NA</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>FilterSource</B></TD>
+		<TD WIDTH="72%" VALIGN="top">The javaScript source which is to be parsed into a
+		Analytic Information Server parse tree.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top">true</TD>
+		</TR>
+		</TABLE>
+		<P>Syntax: (dataMineLib)<BR>
+		Transaction: NA</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"></TD>
+		<TD WIDTH="72%" VALIGN="top">Uses the global variable _dataMineExtents as the
+		structure of repository extent file and path names. _dataMineExtents is created
+		by dataMineLib.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top">true</TD>
+		</TR>
+		</TABLE>
+		<H3>When To Use</H3>
+		<P>The (dataMineLib extentStructure) call is required before any other
+		dataMineLib functions can be called.</P>
+		<H3>Example1</H3>
+		<P>This example initializes a datamine with three extents. Each extent must
+		specify the complete path and file name. Extents may be placed on different
+		physical devices as database management strategy requires. Each extent supports
+		up to 2 gigabytes of storage space.</P>
+		<p class="code">(define dm  #{reference: &quot;reference.db&quot;    <br>
+		blackboard1: &quot;blackboard1.db&quot;   <br>
+		blackboard2: &quot;blackboard2.db&quot;    <br>
+		}) ;; end dm                  <br>
+		(dataMineLib  dm)	;;Returns true</p>
+		<H3>Notes and Hints</H3>
+		<P>The start up script should contain code to this effect, or the client
+		application should issue code like this at startup.</P>
+		<H3>Example2</H3>
+		<P>This example parses a datamine javaScript source string into a Analytic Information Server
+		universal parse tree. In this mode, the dataMineLib is a substitute for the
+		Lisp parser. After parsing the parse tree may be sent to morph and compile to
+		produce a javaScript Lambda.</P>
+		<p class="code">(setq filterLambda (compile (morph (dataMineLib &quot;filter sort
+		Name&quot;))))</p>
+		<H3>Notes and Hints</H3>
+		<P>This example creates a filter Lambda from the specified javaScript source
+		string.</P>
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddTableColumn"></A>addTableColumn</H2></P>		
+		    <div class="h2section" id="addTableColumn">
+			 <P>The <B>addTableColumn</B> function adds a new column to the table with the
+			specified name. The column is added to the end of the table columns already
+			defined. The addTableColumn function is not available on meta tables or member
+			tables (member tables belong to meta tables and must share the same column
+			definitions). The addTableColumn function will fail with an error if a disk or
+			static cursor is open on the table.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.addTableColumn tableName colName1&hellip;colNameN) <BR>
+			Transaction: Atomic.</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table to which a column is to be added. If the specified table name must
+			already exist in the datamine.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>colName1&hellip;colNameN</B></TD>
+			<TD WIDTH="72%" VALIGN="top">One or more arguments specifying column names. At
+			least one column name must be supplied. Each argument is a symbol or string
+			containing a column name.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true.</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SclearCursors"></A>clearCursors</H2></P>		
+		    <div class="h2section" id="clearCursors">
+			<P>The <B>clearCursors</B> function closes all table cursors.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.clearCursors)<BR>
+			Transaction: Transaction count reduced to zero and commit called as necessary. 
+			</P>
+			</DIV>
+			<DIV CLASS="h2section" ID="clearDataMine">
+			<H2>clearDataMine</H2>
+			<P>The <B>clearDataMine</B> function clears the datamine. All tables in all
+			repository extents are deleted.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.clearDataMine)<BR>
+			Transaction: Forced Commit, Transaction count is zeroed</P>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SclearMemoPad"></A>clearMemoPad</H2></P>		
+		    <div class="h2section" id="clearMemoPad">
+			<P>The <B>clearMemoPad</B> function calls clearCursors.<B> Use clearCursors in
+			new applications.</B><BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.clearMemoPad)</P>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sclose"></A>close</H2></P>		
+		    <div class="h2section" id="close">
+			 <P>The <B>close</B>function closes a table cursor.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.close cursor <EM>save:</EM> )<BR>
+			Transaction: Decrements transaction count only on disk cursor</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>cursor</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The transaction cursor object returned from an
+			open function.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B><EM>save:</EM></B></TD>
+			<TD WIDTH="72%" VALIGN="top">An optional argument available only for disk
+			cursor. The symbol save: causes the cursors view directory to be saved. Without
+			this option, the view directories will only be saved if updates to the table
+			have occurred.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScompileLambda"></A>compileLambda</H2></P>		
+		    <div class="h2section" id="compileLambda">
+			<P>The <B>compileLambda</B> function returns a new datamine Lambda from the
+			specified source string. The new Lambda is compiled using the javaScript
+			language, and may be a scoring Lambda, or a filter Lambda.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.compileLambda javaString)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>javaString</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The javaScript source to be compiled into a data
+			mine Lambda.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The compiled datamine Lambda.</TD>
+			</TR>
+			</TABLE>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScreateMetaTable"></A>createMetaTable</H2></P>		
+		    <div class="h2section" id="createMetaTable">
+			<P>The <B>createMetaTable</B> function creates a new meta table with the
+			specified name that will reference the rows of the specified member tables. The
+			meta table is created in the repository extent, and associated with the logical
+			database name, previously specified in the last <B>usingForCreate</B> function.
+			The createMetaTable function will fail if there are any open disk or static
+			cursors on the meta table's member tables. Meta tables create a star join index
+			that provides a unique index to all records referenced by the meta table. The
+			first component of the star join index is a key that identifies the underlying
+			member table the record resides in and the second component of the key is a
+			unique column value found in member table rows.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.createMetaTable tableName memberTables rowKeyColumn
+			maxRowKeys )<BR>
+			Transaction: Atomic</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the meta
+			table to create. If the specified table name already exists in the datamine it
+			will be replaced.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>memberTables</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A directory of table names keyed by the TableKey.
+			A table key can be of any type. Table keys do not have to be present in the
+			underlying table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>rowKeyColumn</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			column in the member tables that contains a uniuqe row identifier within the
+			member table. This rowKeyColumn does not have to be unique across all member
+			tables.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>maxRowKeys</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A numeric argument specifying the maximum number
+			of unique keys that will appear in all member tables. Do not set this value
+			unnecessarily large as excessive memory usage will result.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">True.</TD>
+			</TR>
+			</TABLE>
+			<P>The createMetaTable Lambda marks each table specified in the memberTables
+			directory as a member table belonging to the new meta table. Member tables may
+			reside in different extents. Member tables may belong to only one meta table.
+			Once created, a meta table may only be opened with a disk cursor. You may not
+			open a disk or static cursor on a member table while a cursor is open on the
+			owning meta table. You may not open a cursor on a meta table while a disk or
+			static cursor is open on one of its member tables. Updates performed on a
+			member table are reflected in it's owning meta table. Updates performed on a
+			meta table are reflected on its member tables. You may open a memory cursor on
+			a member table at any time but the memory cursor save function is disabled.</P>
+			<P> The last member table added to a meta table is treated differently than
+			previously added member tables. Member tables other than the last added member
+			table are restricted to updates that do not change the length of the member
+			table and that do not add or remove existing unique row IDs. For example, disk
+			cursors opened on member tables (except the last member table) do not allow
+			inserts, appends (writing past current record count) or deletions. Memory
+			cursors opened on member tables do not support the save function. A full range
+			of operations are allowed on the last member table added to a meta table.</P>
+			<H3>Other important meta table related functions include:</H3>
+			<UL>
+			<LI>dataMineLib.dropTable</LI>
+			<LI>cursor.appendToMetaTable</LI>
+			<LI>cursor.getRecordBySJKey</LI>
+			<LI>cursor.getRecordRowBySJKey</LI>
+			<LI>cursor.indexViewBySJTableKey</LI>
+			<LI>cursor.indexViewBySJRowKey</LI>
+			<LI>cursor.createMemoryCursorFromView</LI>
+			<LI>cursor.writeBySJKey</LI>
+			</UL>
+			<P>Note: Because disk and static cursors on member and meta tables can not be
+			open at the same time, meta tables do not share the buffering of their member
+			tables. However, buffering is available on meta tables.</P>
+			<H3>Example1</H3>
+			<p style="code">;;Create a meta table on two existing tables  <br>
+			(setq td (new Directory:))          <br>
+			(setq td[#Aug,28,1986] Summary860828:)  <br>
+			(setq td[#Feb,28,1986] Summary860228:)   <br>
+			(dataMineLib.createMetaTable allSummaryTables: td ID: 3000); Create the meta table
+			 </p>		
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScreateTable"></A>createTable</H2></P>		
+		    <div class="h2section" id="createTable">
+			<P>The <B>createTable</B> function creates a new table with the specified name
+			and columns. The table is created in the repository extent, and associated with
+			the logical database name, previously specified in the last
+			<B>usingForCreate</B> function. </P>
+			<P>Type: Function<BR>
+			Syntax: (dataMineLib.createTable tableName <EM>colName1&hellip;colNameN</EM>
+			)<BR>
+			Transaction: Atomic</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table to create. If the specified table name already exists in the datamine, a
+			&quot;tableExists&quot; error is raised.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B><EM>colName1&hellip;colNameN</EM></B></TD>
+			<TD WIDTH="72%" VALIGN="top">Optional arguments. Zero or more symbols or
+			strings naming the new table's columns. </TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true.</TD>
+			</TR>
+			</TABLE>
+			<P> Syntax: (dataMineLib.createTable tableName <EM>colNameVector</EM> )<BR>
+			Transaction: Atomic</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table to create. If the specified table name already exists in the datamine, a
+			&quot;tableExists&quot; error is raised.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B><EM>colNameVector</EM></B></TD>
+			<TD WIDTH="72%" VALIGN="top">Optional argument. A vector containing symbols or
+			strings naming the new table's columns.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true.</TD>
+			</TR>
+			</TABLE>
+			<P>Use createTable without any column names when you need to create a new table
+			into which you are about to do a importTab.</P>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScurrentTable"></A>currentTable</H2></P>		
+		    <div class="h2section" id="currentTable">
+			 <P>The <B>currentTable</B> property contains a reference to a cursor object
+			being filtered or scored. If no table is being currently filtered or scored,
+			the currentTable property will contain #void. The currentTable property is used
+			frequently in the built in javaScript compiler.<BR>
+			Type: Variable<BR>
+			Syntax: dataMineLib.currentTable<BR>
+			Transaction: NA</P>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdeleteRecord"></A>deleteRecord</H2></P>		
+		    <div class="h2section" id="deleteRecord">  
+			<P>The <B>deleteRecord</B> function deletes a row from the specified table in
+			the datamine. The delete function will fail with an error if there is an open
+			disk cursor on the same table. deleteRecord is not available on meta tables. 
+			<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.deleteRecord tableName rowIndex)<BR>
+			Transaction: Atomic<BR>
+			Side Effect: If any static cursors are open on the same table they are each
+			reset.</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table from which the record is to be deleted.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>rowIndex</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The row index of the row to be deleted.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true.</TD>
+			</TR>
+			</TABLE>
+			<P>Note: deleteRecord opens an unbuffered disk cursor, deletes the specified
+			row and then closes the disk cursor.</P>
+			</DIV>		 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropTable"></A>dropTable</H2></P>		
+		    <div class="h2section" id="dropTable">  
+			<P>The <B>dropTable</B> function deletes one or more specified tables from the
+			datamine. The dropTable function will fail with an error if there are any open
+			cursors on a table being dropped..<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.dropTable tableName1 &hellip; tableNameN)<BR>
+			Transaction: Atomic</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName1..tableNameN</B></TD>
+			<TD WIDTH="72%" VALIGN="top">One or more symbols or strings containing the
+			names of tables to be deleted.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SexportTab"></A>exportTab</H2></P>		
+		    <div class="h2section" id="exportTab">  
+			<P>The <B>exportTab</B> function exports the contents of the specified table
+			into a ASCII tab delimited file. The column names of the table will be placed
+			in the first row of the exported file.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.exportTab tableName asciiFile)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>asciiFile</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A string containing the path and file name of the
+			export file. (The first row will contain the column names).</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SfilterTable"></A>filterTable</H2></P>		
+		    <div class="h2section" id="filterTable">
+			 <P>The <B>filterTable</B> function runs the specified javaScript Lambda against
+			the specified datamine table. If a source string is provided, the new Lambda is
+			compiled using the javaScript language, and may be a scoring Lambda, or a filter
+			Lambda. The filterTable function will fail with an error if there is an open
+			disk cursor on the table. filterTable is not available on meta tables.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.filterTable tableName javaLambda)<BR>
+			Transaction: Atomic<BR>
+			Side Effect: If any static cursors are open on the same table they are each
+			reset.</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table to be filtered.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>javaLambda</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The javaScript Lambda to be run against the table
+			specified.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			<P>Syntax: (dataMineLib.filterTable tableName javaString)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table to be filtered.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>javaString</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The javaScript source string to be compiled and
+			run against the table specified.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			<P>The filter passed to filterTable is responsible for issuing a command to
+			make the filtering permanent in the table's bckVector.</P>
+			<P>Note: filterTable opens an unbuffered disk cursor, runs the specified
+			javaScript commands, and the closes the disk cursor.</P>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetExtentNames"></A>getExtentNames</H2></P>		
+		    <div class="h2section" id="getExtentNames">
+			<P>The <B>getExtentNames</B> function returns a vector containing the names of
+			all physical database extents allocated in the datamine.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.getExtentNames)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A Vector of the datamine's repository extent names
+			is returned.</TD>
+			</TR>
+			</TABLE>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetTableDatabaseName"></A>getTableDatabaseName</H2></P>		
+		    <div class="h2section" id="getTableDatabaseName">
+			<P>The <B>getTableDatabaseName</B> function returns the database name
+			associated with the specified table.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.getTableDatabaseName tableName)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the table name.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The database name associated with the specified
+			table.</TD>
+			</TR>
+			</TABLE>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetTableNames"></A>getTableNames</H2></P>		
+		    <div class="h2section" id="getTableNames">
+			<P>The <B>getTableNames</B> function returns a vector containing the names of
+			all of the tables currently present in the datamine or the names of the tables
+			associated with a specified database.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.getTableNames <I>databaseName</I>)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B><I>databaseName</I></B></TD>
+			<TD WIDTH="72%" VALIGN="top"> An optional argument. A symbol or string
+			containing a database name.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A Vector of datamine table names.</TD>
+			</TR>
+			</TABLE>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SimportTab"></A>importTab</H2></P>		
+		    <div class="h2section" id="importTab">
+			 <P>The <B>importTab</B> function imports a specified ASCII tab delimited file
+			into a table. The column names must be the first row in the ASCII data file.
+			The importTab function will fail with an error if there is an open disk cursor
+			on the table. importTab is not available on meta tables.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.importTab tableName option asciiFile)<BR>
+			Transaction: Atomic<BR>
+			Side Effect: If any static cursors are open on the same table they are each
+			reset</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table into which the ASCII tab delimited rows are to be imported.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><STRONG>option</STRONG></TD>
+			<TD WIDTH="72%" VALIGN="top">If <B>overwrite:</B> the table is cleared before
+			import. If <B>append:</B> the ASCII tab delimited rows are appended to the
+			table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>asciiFile</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A string containing the path and file name of the
+			ASCII tab delimited import data (the first row must contain the column
+			names).</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SisTable"></A>isTable</H2></P>		
+		    <div class="h2section" id="isTable">
+			 <P>The <B>isTable</B> function returns true if the specified table exists in
+			the datamine.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.isTable tableName)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of a
+			table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">Returns <B>true</B> if the specified table
+			exits.</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SmergeTables"></A>mergeTables</H2></P>		
+		    <div class="h2section" id="mergeTables">
+			<P>The <B>mergeTables</B> function allows two tables to be updated by logically
+			combining information from both tables. The result of <B>mergeTables</B> is the
+			specified pair of tables are logically combined according to the merge Lambda
+			supplied by the caller. The caller specifies two table names, a merge field
+			name and a merge Lambda. Prior to calling <B>mergeTables</B>, both tables should
+			already be sorted in ascending order on the specified merge field. Rows are
+			read from both tables in sequential order. When two rows have matching merge
+			fields (the merge field name is specified by the caller), both rows are passed
+			to the specified merge Lambda (also specified by the caller). The merge Lambda
+			expects two row arguments, and logically combines information from both rows.
+			The matching, altered rows are written back to the tables. The mergeTables
+			function will fail with an error if a disk cursor is open on either table.
+			mergeTables is not available on meta tables.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.mergeTables tableName1 tableName2 mergeField mergeLambda)
+			<BR>
+			Transaction: Atomic<BR>
+			Side Effect: If any static cursors are open on the tables they are each reset 
+			</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName1</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table, in the datamine, which is to be logically combined (based upon a
+			matching merge field).</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName2</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			table, in the datamine, which is to be logically combined (based upon a
+			matching merge field).</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>mergeField</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+			merge field. Any two rows, which have matching values in this field, will be
+			logically combined.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>mergeLambda</B></TD>
+			<TD WIDTH="72%" VALIGN="top">An Lambda expecting two row arguments which
+			logically merges information between two rows.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			<P>Note: mergeTables opens both tables as unbuffered disk cursors to perform
+			the merge. The cursors are closed after the merge is complete.</P>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SmergeThreeTables"></A>mergeThreeTables</H2></P>		
+		    <div class="h2section" id="mergeThreeTables">
+		<P>Use <STRONG>mergeThreeTables</STRONG> to logically combine information from
+		two input tables into an output table based on a specified merge field and
+		merge Lambda. Prior to calling mergeThreeTables, both input tables should be
+		sorted in ascending order on the specified merge field. When input rows from
+		the two input tables have matching content, both input rows, together with a
+		template for the output row, are passed to the specified merge Lambda. The
+		output row returned from the merge Lambda is written to the output table. The
+		mergeThreeTables function will fail with an error if there is an open disk
+		cursor on the output table. The output table can not be a meta table.</P>
+		<P>Type: Function<BR>
+		Syntax: (dataMineLib.mergeThreeTables tableName1 tableName2 tableName3
+		mergeField mergeLambda)<BR>
+		Transaction: Atomic<BR>
+		Side Effect: If any static cursors are open on the output table they are each
+		reset</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>tableName1</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string contain the name of the first
+		input table, in the datamine, which is to be logically combined (based upon a
+		matching merge field).</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>tableName2</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+		second input table, in the datamine, which is to be logically combined (based
+		upon a matching merge field).</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>tableName3</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+		output table, in the datamine, which is to be updated (based upon logically
+		combined information from the two matching input rows).</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>mergeField</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+		merge field. Any two input rows, which have matching values in this field, will
+		be logically combined into an output row.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>mergeLambda</B></TD>
+		<TD WIDTH="72%" VALIGN="top"> An Lambda expecting three row arguments which
+		logically merges information from two rows into the third.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top">true</TD>
+		</TR>
+		</TABLE>
+		<P>Note: Table1 and Table2 are opened as unbuffered static cursors. Table3 is
+		opened as an unbuffered disk cursor. All cursors are closed after the merge is
+		complete.</P>
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sopen"></A>open</H2></P>		
+		    <div class="h2section" id="open">
+		<P>The <B>open</B> function returns a cursor for the specified table. Cursors
+		come in three flavors; memory, static and disk. Multiple cursors may be opened
+		concurrently on the same table with the restriction that only one disk cursor
+		per table may be opened. Memory cursors read the entire table into memory.
+		Static cursors provide buffered read only access to the table. Disk cursors
+		provide buffered read, unbuffered write access to the table.<BR>
+		Type: Function<BR>
+		Syntax: (dataMineLib.open tableName <EM>cursorType</EM> <EM>columns</EM>
+		<EM>bufSize</EM>)<BR>
+		Transaction: Increments transaction count on disk cursors only.</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+		table to open a cursor on.</TD>
+		</TR>
+		<TR>
+		<TD VALIGN="top" WIDTH="28%"><STRONG><EM>cursorType</EM></STRONG> </TD>
+		<TD VALIGN="top" WIDTH="72%">An optional symbol that is one of
+		<STRONG>disk:</STRONG> <STRONG>static:</STRONG> or <STRONG>memory: </STRONG>The
+		default is <STRONG>disk: </STRONG> </TD>
+		</TR>
+		<TR>
+		<TD VALIGN="top" WIDTH="28%"><STRONG><EM>columns</EM></STRONG> </TD>
+		<TD VALIGN="top" WIDTH="72%">An optional vector of columns names to read.
+		Memory cursors only! The default is all columns. </TD>
+		</TR>
+		<TR>
+		<TD VALIGN="top" WIDTH="28%"><STRONG><EM>bufSize</EM></STRONG> </TD>
+		<TD VALIGN="top" WIDTH="72%">An optional number of rows to buffer. Static and
+		disk cursors only!<BR>
+		<STRONG>-1</STRONG> for no buffering.<BR>
+		<STRONG>0</STRONG> to use previously specified buffer size.<BR>
+		The default is <STRONG>-1</STRONG> . </TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top"> <P>A cursor for the specified table</P>
+		</TD>
+		</TR>
+		</TABLE>
+		<P> Disk and static cursors opened on the same table share a read buffer. This
+		buffer can improve random access read performance of these cursors. If you
+		intend to open a file and read it sequentually you should open the cursor with
+		a bufSize of -1. This way the the contents of the existing buffer, if any, on
+		that table will not be flushed and the overhead of managing the buffer during
+		the read will be avoided. Memory cursors read the entire table content into
+		memory on open. This can be very expensive and memory requirements should be
+		considered by the application programmer to ensure that available memory is not
+		exceeded.</P>
+		<H3>Examples</H3>
+		<p class="code">;;This example opens a memory cursor on the specified columns:   <br>
+		(dataMineLib.open tableName memory: #(Name: Salary:))        <br>
+		;;This example opens a disk cursor with a 1000 row buffer:    <br>
+		(dataMineLib.open tableName disk: 1000)                    <br>
+		;;This example opens a disk cursor with a 1000 row buffer:   <br>
+		(dataMineLib.open tableName disk: 1000)                  <br>
+		;;This example attempts to open a memory cursor          <br>
+		;;with a buffer and will return an error:               <br>
+		(dataMineLib.open tableName memory: 1000)             <br>
+		;;This example attempts to open a disk cursor with a    <br>
+		;;columns argument and will return an error:
+		(dataMineLib.open tableName disk: #(Name: Salary:))</p>	
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SreadRecord"></A>readRecord</H2></P>		
+		    <div class="h2section" id="readRecord">
+		<P>The <STRONG>read</STRONG> <B>Record</B> function reads a row from the
+		specified table in the datamine.<BR>
+		Type: Function<BR>
+		Syntax: (dataMineLib.readRecord tableName rowIndex)<BR>
+		Transaction: NA</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the name of the
+		table.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>rowIndex</B></TD>
+		<TD WIDTH="72%" VALIGN="top"> The index of the row read.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top"> <P>A copy of the row object.</P>
+		</TD>
+		</TR>
+		</TABLE>
+		<P>Note: readRecord opens a buffered static cursor, reads the specified row and
+		then closes the cursor.</P>
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrecordDetails"></A>recordDetails</H2></P>		
+		    <div class="h2section" id="recordDetails">
+			<P>The <B>recordDetails</B> function converts a row from a table into an HTML
+			page. The resulting HTML page displays the details of the specified row. <BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.recordDetails tableCursor rowIndex)<BR>
+			Tranaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableCursor</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The table cursor.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>rowIndex</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The index of the row.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The HTML page showing the details of the specified
+			row.</TD>
+			</TR>
+			</TABLE>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrenameTable"></A>renameTable</H2></P>		
+		    <div class="h2section" id="renameTable">
+		<P>The <B>renameTable</B> function renames a table with the specified new name.
+		The renameTable function will fail with an error if there are any open cursors
+		on the table.<BR>
+		Type: Function<BR>
+		Syntax: (dataMineLib.renameTable oldTableName newTableName)<BR>
+		Transaction: Atomic</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>oldTableName</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the current name of
+		the table. If the specified table name does not exist, a
+		&quot;tableDoesNotExist&quot; error is raised.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>newTableName</B></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol or string containing the new table name.
+		If the new table name already exists in the datamine, a &quot;tableExists&quot;
+		error is raised.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top">true.</TD>
+		</TR>
+		</TABLE>
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTableDatabaseName"></A>setTableDatabaseName</H2></P>		
+		    <div class="h2section" id="setTableDatabaseName">
+			  <P>The <B>setTableDatabaseName</B> function changes the database name
+			associated with the specified table. If the database name does not yet exist
+			then it will be created. The setTableDatabaseName function will fail if there
+			are any open cursors on the table.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.setTableDatabaseName tableName databaseName)<BR>
+			Transaction: Atomic</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top"> A symbol or string containing the name of the
+			table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>databaseName</B></TD>
+			<TD WIDTH="72%" VALIGN="top"> A symbol or string containing the database
+			name.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true.</TD>
+			</TR>
+			</TABLE>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsortTable"></A>sortTable</H2></P>		
+		    <div class="h2section" id="sortTable">
+		<P>The <B>sortTable</B> function is primarily used to sort a table and update
+		the table's bckVector in the object repository. Unlike most other dataMineLib
+		functions it does not use the cursor interface. The sortTable function has a
+		number of other useful options as defined below. The sortTable function will
+		fail with an error if there are any open disk or static cursors on the table. 
+		<BR>
+		Type: Function<BR>
+		Syntax: (dataMineLib.sortTable tableName sortSpec <I>noSave:</I>
+		<I>noSort:</I> <I>returnVector:</I> <I>returnVectorAndKeys:</I>)<BR>
+		Transaction: Atomic<BR>
+		</P>
+		<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+		<TD WIDTH="72%" VALIGN="top"> A symbol or string containing the name of the
+		table.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>sortSpec</B></TD>
+		<TD WIDTH="72%" VALIGN="top"> A structure containing a sort specification for
+		the bckVector of the table. Each element of the structure contains a column
+		name and a Ascending or Descending specifier. See examples below.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><I>noSave:</I></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol argument specifying that the result of
+		the sort operation is not to be saved to the object repository.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><I>noSort:</I></TD>
+		<TD WIDTH="72%" VALIGN="top">A symbol argument specifying that no sort should
+		be performed. This option is provided so that the sortTable function may be
+		used polymorphically by the createMetaTable function.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><I>returnOption</I></TD>
+		<TD WIDTH="72%" VALIGN="top">An optional symbol argument of
+		<I>returnVector:</I> or <I>returnVectorAndKeys:</I>. The <I>returnVector:</I>
+		option causes sortTable to return a copy of the bckVector to the caller.
+		bckVector is a vector of numbers containing the frame ids of each row record
+		object in the table. The <I>returnVectorAndKeys:</I> option causes sortTable to
+		return the sort vector. The sort vector contains row structures with the sort
+		column contents and one additional column containing the frame id of the row
+		record object.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+		<TD WIDTH="72%" VALIGN="top">See returnOption. </TD>
+		</TR>
+		</TABLE>
+		<P> The sortTable function is the fastest way of creating a persistent sort on
+		a table. It uses much less memory than performing the sort function on a memory
+		cursor. In general, the sortTable function uses more memory than performing the
+		sort function on a disk cursor opened with no buffering but less memory than a
+		disk cursor opened with even a modest level of buffering. </P>
+		</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsystemCheck"></A>systemCheck</H2></P>		
+		    <div class="h2section" id="systemCheck">
+		    <P>The <B>systemCheck</B> function performs a systems check on the datamine. An
+		error is returned if any abnormalities are found.<BR>
+		Type: Function<BR>
+		Syntax: (dataMineLib.systemCheck)</P>
+		</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SupdateTable"></A>updateTable</H2></P>		
+		    <div class="h2section" id="updateTable">
+			 <P>The <B>updateTable</B> function runs the specified update Lambda against the
+			table causing a permanent change to the table. The update Lambda must be a
+			javaScript Lambda expecting one argument (the table row to be updated). Each row
+			in the specified table is read and passed to the update Lambda. The update Lambda
+			updates the row as specified and the updated row is written back to the table.
+			The updateTable function with fail with an error if there are any open disk
+			cursors on the table. updateTable is not available on meta tables.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.updateTable tableName updateSource)<BR>
+			Transaction: Atomic<BR>
+			Side Effect: The view directory of the table is cleared. If any static cursors
+			are open on the same table they are each reset.</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the current name of
+			the table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>updateSource</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The source code for the update Lambda to be
+			run.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			<P>Syntax: (dataMineLib.updateTable tableName updateLambda)<BR>
+			Transaction: Atomic</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the current name of
+			the table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>updateLambda</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The update Lambda to be run against the table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true</TD>
+			</TR>
+			</TABLE>
+			<P>Note: updateTable opens an unbuffered disk cursor, updates each record in
+			the cursor's bckVector, then closes the disk cursor.</P>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SusingForCreate"></A>usingForCreate</H2></P>		
+		    <div class="h2section" id="usingForCreate">
+			 <P>The <B>usingForCreate</B> function sets the repository extent and database
+			name for subsequently created tables. Use the createTable function to create
+			new tables.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.usingForCreate extentName databaseName)<BR>
+			Transaction: NA</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>extentName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or name containing the name of the
+			repository extent.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>databaseName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or name containing the name of the
+			database.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">True</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<P>This example initializes the dataMineLib, calls usingForCreate and then
+			calls createTable.</P>
+			<p class="code">;; Initialize the datamine.       <br>
+			(setq _dataMineExtents #{reference: &quot;reference.db&quot; blackboard: &quot;blackboard.db&quot;})  <br>
+			(dataMineLib _dataMineExtents)   <br>
+			;; Set the physical area and logical database name for all new tables.   <br>
+			(dataMineLib.usingForCreate reference: &quot;Sales Data&quot;)      <br>
+			;; Create a new table                 <br>
+			(dataMineLib.createTable salesSummary: #(Date: Amount:))</p>
+			 <P>In the example above the repository extent reference: contains a table named
+			salesSummary: that belongs to the database &quot;Sales Data&quot;.</P>
+			</DIV>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SwriteRecord"></A>writeRecord</H2></P>		
+		    <div class="h2section" id="writeRecord">
+			<P>The <B>writeRecord</B> function writes a row to the specified table in the
+			datamine. The writeRecord function will fail with an error if there is an open
+			disk cursor on the table. writeRecord is not available on meta tables.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.writeRecord tableName rowIndex record)<BR>
+			Transaction: Atomic<BR>
+			Side Effect: The view directory of the table is cleared. If any static cursors
+			are open on the same table they are each reset</P>
+			<TABLE CELLSPACING="0" BORDER="0" CELLPADDING="2" WIDTH="638">
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>tableName</B></TD>
+			<TD WIDTH="72%" VALIGN="top">A symbol or string containing the table name of
+			the table.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>rowIndex</B></TD>
+			<TD WIDTH="72%" VALIGN="top">The index of the row to be written.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="28%" VALIGN="top"><B>Returns</B></TD>
+			<TD WIDTH="72%" VALIGN="top">true.</TD>
+			</TR>
+			</TABLE>
+			<P> Note: writeRecord opens an unbuffered disk cursor, writes the record and
+			then closes the disk cursor.</P>
+			</DIV> 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

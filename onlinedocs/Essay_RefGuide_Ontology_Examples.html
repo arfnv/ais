@@ -1,0 +1,380 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>RefGuide Ontology Examples</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SDocument Ontology"><FONT SIZE=2>Document Ontology</font></a></li><li><a href="#SEssay Ontology"><FONT SIZE=2>Essay Ontology</font></a></li><li><a href="#SDatatype Ontology"><FONT SIZE=2>Datatype Ontology</font></a></li><li><a href="#SFunction Ontology"><FONT SIZE=2>Function Ontology</font></a></li><li><a href="#SExample Ontology"><FONT SIZE=2>Example Ontology</font></a></li><li><a href="#SVMInstruction Ontology"><FONT SIZE=2>VMInstruction Ontology</font></a></li>
+</UL>
+
+<P><H2><A NAME="SDocument Ontology"></A>Document Ontology</H2></P>		
+    		<div class="h2section" id="Document Ontology">
+            <p>  Here is an example of a Document Ontology Object. </p>
+		<blockquote>
+		<pre>	
+		&lthtml&gt&lthead&gt&lt/head&gt&ltbody&gt
+		
+		
+		&lt?xml version="1.0" encoding="UTF-8"?&gt
+		&ltDocument&gt
+			&ltKnowledgeBase&gt
+			    &ltTitle&gtVector Machines&lt/Title&gt
+				&ltTopic&gtLisp&lt/Topic&gt
+				&ltSubTopic&gtMachine Learning&lt/SubTopic&gt
+				&ltHumanKeywords&gtVector Machine Learning Programming&lt/HumanKeywords&gt
+			&lt/KnowledgeBase&gt          
+			&ltEssay&gtEssay_Vector_Machines&lt/Essay&gt
+			&ltEssay&gtEssay_Vector_Machine_Functions&lt/Essay&gt
+		 
+		&lt/Document&gt
+		 
+		&lt/body&gt&lt/html&gt
+		
+		</pre>
+		</blockquote>
+           </div>
+           <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEssay Ontology"></A>Essay Ontology</H2></P>		
+           <div class="h2section" id="Datatype Ontology">
+          <p>  Here is an example of an Essay Ontology Object. </p>
+<blockquote>
+<pre>	
+&lthtml&gt&lthead&gt&lt/head&gt&ltbody&gt
+
+
+&lt?xml version="1.0" encoding="UTF-8"?&gt
+&ltEssay&gt
+	&ltKnowledgeBase&gt
+	    &ltTitle&gtVector Machines&lt/Title&gt
+		&ltTopic&gtLisp&lt/Topic&gt
+		&ltSubTopic&gtMachine Learning&lt/SubTopic&gt
+		&ltHumanKeywords&gtVector Machine Learning Programming&lt/HumanKeywords&gt
+	&lt/KnowledgeBase&gt
+	&ltSection&gt
+	    &ltHeading&gtOverview&lt/Heading&gt
+		&ltDescription&gt		
+		    &ltdiv class="h2section" id="Overview"&gt
+		    &ltp>There are numerous modern machine learning algorithms and techniques which rely primarily 
+		     on number vectors. The most famous vector learning method is Gaussian least squares linear regression. 
+		     Until modern times, Gaussian linear regression was the only rigorous vector-based modeling technique. 
+		     More recently, non-linear regression techniques have surfaced based upon the Gram matrix. The most 
+		     famous of these modern techniques is Support Vector Regression.&lt/p&gt 		     
+		  &lt/div&gt
+	    &lt/Description&gt
+	&lt;Section&gt       
+ 
+ 
+&lt/Essay&gt
+ 
+&lt/body&gt&lt/html&gt
+ 
+</pre>
+</blockquote>
+			</div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDatatype Ontology"></A>Datatype Ontology</H2></P>		
+		    <div class="h2section" id="Datatype Ontology">
+            <p>  Here is an example of a Datatype Ontology Object. </p>
+<blockquote>
+<pre>	
+&lthtml&gt&lthead&gt&lt/head&gt&ltbody&gt
+
+&lt?xml version="1.0" encoding="UTF-8"?&gt
+&ltDatatype&gt
+	&ltKnowledgeBase&gt
+        &ltTitle&gtError&lt/Title&gt
+		&ltType&gtObject&lt/Type&gt
+		&ltRelatedTypes&gtVoid Boolean Character Integer Number Money Percent String 
+		             Text Character&lt/RelatedTypes&gt
+		&ltHumanKeywords&gtNative Error  &lt/HumanKeywords&gt
+	&lt/KnowledgeBase&gt
+ 
+	&lt;Section&gt                
+	    &ltHeading&gtError Overview&lt/Heading&gt
+		&ltDescription&gt
+		 &ltp class=MsoBodyText&gtAnalytic Information Server has a heap or object data type named Error to distinguish errors 
+		 from other data types.  The Error is a container which may hold  text and is case-sensitive, may include 
+		 blanks but not special characters, may be up to 32767 characters in length, and &ltb&gtmust&lt/b&gt  begin and end 
+		 with an exclamation mark &ltb&gt(!)&lt/b&gt.&lt/p&gt   
+		  &ltp class=MsoBodyText>The Error type does not behave like the other Analytic Information Server types. If an 
+		  Error value is reference, the function referencing the Error value immediately terminates and calls the 
+		  &ltb>onError&lt/b> function which displays the Error value. Therefore, the &ltb&gtsetq&lt/b&gt function will not work, 
+		  (nor will the &ltb&gtref&lt/b&gt function).  It is not possible to compare Error  values nor is it possible to 
+		  add methods to the Error type.&lt/p&gt
+        &lt/Description&gt
+    &lt;Section&gt                
+    
+    
+	&ltSection&gt                
+	    &ltHeading&gtWhen to Use&lt/Heading&gt
+		&ltDescription&gt
+          &ltp&gtThe Error native data type is ideal for returning text describing an error condition.  
+          Having  the Error data type eliminates the need to overload other data types to handle error conditions. &lt/p&gt          
+        &lt/Description&gt
+    &lt;Section&gt  
+    
+    &lt;Section&gt;
+	    &ltHeading&gtConstant Form&lt/Heading&gt
+		&ltDescription&gt
+          &ltp&gtAn Error constant may hold  text and is case-sensitive, may include blanks but not special 
+          characters, may be up to 12 characters in length, and &ltb&gtmust&lt/b&gt begin and end with an exclamation mark &ltb&lt(!)&lt/b&lt.   
+          Some examples:     
+          &ltp&gt&ltb&gt!bad argument!  &lt/b&gt&lt/p&gt 
+          &ltp>&ltb&gt!illegal syntax! &lt/b&gt&lt/p&gt  
+          &ltp>&ltb&gt!out of memory!&lt/b&gt&lt/p&gt    
+        &lt/Description&gt
+    &lt;Section&gt;
+    
+    &lt/Datatype&gt
+ 
+&lt/body&gt&lt/html&gt         
+    
+</pre>
+</blockquote>
+		    </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFunction Ontology"></A>Function Ontology</H2></P>		
+    		<div class="h2section" id="Function Ontology">
+             <p>  Here is an example of a Function Ontology Object. </p>
+<blockquote>
+<pre>	
+&lthtml&gt&lthead&gt&lt/head&gt&ltbody&gt 
+ 
+&lt?xml version="1.0" encoding="UTF-8"?&gt 
+&ltFunction&gt 
+	&ltKnowledgeBase&gt 
+        &ltTitle&gtinside&lt/Title&gt 
+		&ltFunctionName&gtinside&lt/FunctionName&gt 
+		&ltFunctionType&gtBuiltin&lt/FunctionType&gt 
+        &ltDataType&gt   Dictionary  Vector BitVector ShortVector IntVector NumVector  &lt/DataType&gt 
+ 	    &ltArgumentTypes-Dictionary&gtStructure Dictionary Directory Integer Boolean Symbol&lt/ArgumentTypes-Dictionary&gt      
+        &ltArgumentTypes&gtCharacter String Symbol Vector BitVector ByteVector IntVector ShortVector
+                       FltVector ObjVector Structure Dictionary Directory Boolean
+                       Matrix NumMatrix Integer Float Number Complex &lt/ArgumentTypes&gt        
+	    &ltRelatedFunctions&gtmember isMember member isInside isIdentical&lt/RelatedFunctions&gt 
+        &ltRelatedVMInstructions&gt vmregObjPointer &lt/RelatedVMInstructions&gt 
+		&ltHumanKeywords&gtinside key value index&lt/HumanKeywords&gt 
+	&lt/KnowledgeBase&gt 
+          
+         &ltBrief-Dictionary&gt 
+             &ltp&gt The &ltb>inside&lt/b&gt  function takes a key as an argument and a  Dictionary as 
+                a second argument and returns either the index where the key was found or the 
+                Boolean value false if the key is not found.   &lt/p&gt
+          &lt/Brief-Dictionary&gt
+          
+          &ltBrief&gt 
+             &ltp&gt The &ltb>inside&lt/b&gt function searches the Vector argument for the match of the 
+                 search object argument  and returns  the index  where the object was found. 
+                 If the  was not found, false is returned.  &lt/p&gt
+          &lt/Brief&gt
+         
+         
+	&ltDescription&gt     
+          
+	   &ltOverview-Dictionary&gt
+		&ltp&gtThe &ltb&gtinside&lt/b&gt function takes a key as an argument and a Dictionary as a second 
+           argument and returns the index where the key was found.  If the key was not found, 
+           the inside function returns false. The &ltb&gtinside&lt/b&gt function uses the &ltb&gtisIdentical&lt/b&gt 
+           predicate.&lt/p&gt
+        &lt/Overview-Dictionary&gt
+	   
+        &ltOverview&gt
+		&ltp&gtThe &ltb&gtinside&lt/b&gt function searches the Vector argument &ltb&gt{vector}&lt/b&gt  for the match 
+           of the search object argument &ltb&gt{obj}&lt/b&gt and returns  the index  where &ltb&gt{obj}&lt/b&gt 
+           was found. If the &ltb&gt{obj}&lt/b&gt was not found, false is returned. The &ltb>inside&lt/b&gt 
+           function uses the &ltb&gtisIdentical&lt/b&gt predicate.&lt/p&gt
+        &lt/Overview&gt
+
+       
+      
+        &ltUsage-Dictionary&gt
+        &ltp&gtThe &ltb&gtinside&lt/b&gt function if you want to locate the position of a certain key 
+           in a  Dictionary.  If you just want to know if a member is in the Directory but do not 
+           care where it is located if it is found, use the &ltb&gtisInside&lt/b&gt function, which returns a 
+           Boolean true or false.
+		&lt/p&gt
+        &lt/Usage-Dictionary&gt
+        
+        &ltUsage&gt
+        &ltp&gtThe &ltb&gtinside&lt/b&gt Function is used to find an object &ltb&gt{obj}&lt/b&gt in a Vector 
+           &ltb&gt{vector}&lt/b&gt. Since the &ltb&gtinside&lt/b&gt function returns the location of the  
+           &ltb&gt{obj}&lt/b&gt, the &ltb&gtinside&lt/b&gt function makes it convenient to perform some operation 
+           on the &ltb&gt{obj}&lt/b&gt .  An alternate function, the &ltb&gtisInside&lt/b&gt function, is used 
+           when a Boolean value of either true or false is sufficient.
+		&lt/p&gt
+        &lt/Usage&gt
+
+       
+    &lt/Description&gt 
+	 
+
+	&ltSyntax-Dictionary&gt
+	    &ltExpression&gt&ltp&gt (inside  key   dictionary)&lt/p&gt&lt/Expression&gt
+		&ltArgument&gt 
+		  &ltName&gtkey&lt/Name&gt
+		  &ltNote&gt
+		  &ltp&gt The key (member) you wish to locate. &lt/p&gt
+          &lt/Note&gt
+		  &ltAISTypes&gtString or Text &lt/AISTypes&gt
+		&lt/Argument&gt
+	    &ltArgument&gt 
+		  &ltName&gtdictionary&lt/Name&gt
+		  &ltNote&gt
+		  &ltp&gt The Dictionary to be searched. &lt/p&gt
+          &lt/Note&gt
+		  &ltAISTypes&gtDictionary &lt/AISTypes&gt
+		&lt/Argument&gt
+        
+		&ltReturn&gt 
+	    &ltp&gtReturns the index of the member if it is found, otherwise it returns false
+        &lt/p&gt
+	    &lt/Return&gt   
+	&lt/Syntax-Dictionary&gt
+
+	 
+	&ltSyntax&gt
+	    &ltExpression&gt&ltp&gt (inside obj vector)&lt/p&gt&lt/Expression&gt
+		&ltArgument&gt 
+		  &ltName&gtobj&lt/Name&gt
+		  &ltNote&gt
+		  &ltp&gt The search object. &lt/p&gt
+          &lt/Note&gt
+		  &ltAISTypes&gtCharacter String Symbol Vector BitVector ByteVector IntVector
+                       FltVector ObjVector Structure Dictionary Directory
+                       Matrix NumMatrix Integer Float Number Complex&lt/AISTypes&gt
+		&lt/Argument&gt
+	    &ltArgument&gt 
+		  &ltName&gtvector&lt/Name&gt
+		  &ltNote&gt
+		  &ltp&gtThe Vector to be searched.&lt/p&gt
+          &lt/Note&gt
+		  &ltAISTypes&gtVector BitVector ShortVector IntVector NumVector &lt/AISTypes&gt
+		&lt/Argument&gt        
+		&ltReturn&gt 
+	    &ltp&gtReturns false if the object is not present. If the object is present, returns an integer representing the 
+           index into the vector where the object was found.
+        &lt/p&gt
+	    &lt/Return&gt   
+	&lt/Syntax&gt
+
+ 
+&lt/Function&gt 
+ 
+&lt/body&gt&lt/html&gt
+  
+ 
+</pre>
+</blockquote>
+                <p><b>Note:</b> This Function Ontology shows the <b>inside</b> function
+                working only on the Dictionary and Vector Data types. Although not shown in 
+                this ontology example, the <b>inside</b> function also works on the BitVector,
+                Directory, FltVector, IntVector, List, Matrix, NumMatrix, NumVector, ObjVector,
+                Pair, PcodeVector, Brick and Structure datatypes.  </p> 
+					</div>
+				<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SExample Ontology"></A>Example Ontology</H2></P>	
+    		<div class="h2section" id="Example Ontology">
+            <p>  Here is an example of an Example Ontology Object. </p>
+<blockquote>
+<pre>	
+&lthtml&gt&lthead&gt&lt/head&gt&ltbody&gt 
+
+&lt?xml version="1.0" encoding="UTF-8"?> 
+&ltExample&gt 
+	&ltKnowledgeBase&gt   
+		&ltTitle&gtExample Lambda isLambda 001&lt/Title&gt   
+		&ltTemplate&gtExample&lt/Template&gt  
+		&ltFunctionKeywords&gtisLambda&lt/FunctionKeywords&gt 
+		&ltTypeKeywords&gtLambda Symbol&lt/TypeKeywords&gt	 
+		&ltRelatedFunctions&gt  &lt/RelatedFunctions&gt 
+		&ltLanguage&gtLisp&lt/Language&gt 
+		&ltHumanKeywords&gtType Analytic Object Boolean&lt/HumanKeywords&gt 
+	&lt/KnowledgeBase&gt  
+	 
+	&ltDescription&gt &ltp&gtThis example defines both an Integer and an Lambda and uses the
+                   &ltb&gtisLambda&lt/b&gt function to check the data type.&lt/p&gt
+     &lt/Description>
+	&ltSyntax&gt  
+  	    &ltExpression&gt &ltb&gt(define x  26)  &lt/b&gt&lt/Expression&gt   
+        &ltNote&gtAn Integer x is defined.&lt/Note&gt  
+        &ltReturns&gt26 &lt/Returns&gt 
+  	    &ltExpression&gt&ltb&gt(define (foo sym)  (getGlobalValue  sym))  &lt/b&gt&lt/Expression&gt   
+        &ltNote&gtnone&lt/Note&gt  
+        &ltReturns&gt#&#60Lambda 123456&#62 &lt/Returns&gt 
+  	    &ltExpression&gt&ltb&gt(isLambda foo)     &lt/b&gt&lt/Expression&gt  
+        &ltNote&gtnone&lt/Note&gt 
+        &ltReturns&gttrue &lt/Returns&gt
+  	    &ltExpression&gt&ltb&gt(isLambda x)     &lt/b&gt&lt/Expression&gt  
+        &ltNote&gtnone&lt/Note&gt 
+        &ltReturns&gtfalse &lt/Returns&gt
+ 
+        &ltHints&gt none&lt/Hints&gt 
+   &lt/Syntax&gt 
+ 
+&lt/Example&gt 
+&lt/body&gt&lt/html&gt
+
+</pre>
+</blockquote>
+					</div>
+			<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SVMInstruction Ontology"></A>VMInstruction Ontology</H2></P>	
+    <div class="h2section" id="VMInstruction Ontology">
+     <p>  Here is an example of a VMInstruction Ontology Object. </p>
+<blockquote>
+<pre>	
+&lthtml&gt&lthead&gt&lt/head&gt&ltbody&gt
+
+
+&lt?xml version="1.0" encoding="UTF-8"?&gt
+&ltVMInstruction&gt
+	&ltKnowledgeBase&gt
+	    &ltTitle&gtvmargcount&lt/Title&gt
+		&ltInstructionName&gtvmargcount&lt/InstructionName&gt
+		&ltInstructionType&gtGeneric&lt/InstructionType&gt
+		&ltArgumentTypes&gt Integer Word &lt/ArgumentTypes&gt
+		&ltRelatedVMInstructions&gt vmapply vmargfetch vmcall vmsend&lt/RelatedVMInstructions&gt
+		&ltHumanKeywords&gt count arguments fetch call send apply  &lt/HumanKeywords&gt
+	&lt/KnowledgeBase&gt
+	&ltDescription&gt
+		&ltp&gt When evaluated, this vm instruction places the number 
+		of arguments received by the current Lambda into the 
+		&ltb&gttarget&lt/b&gt word, as an Integer type. 
+		There are no conversions made between different types. 
+		The result will be returned as an Integer data type. 
+		This instruction will never return an Error value. 
+		After the operation, the Instruction Pointer is promoted. 
+		The operation of this vm instruction is expressed in the following C expression:
+        &lt/p&gt
+        &ltul&gt&ltli&gt&ltb&gt(word:int)target = 
+       ((char*)Tv - (char*)Av)/sizeof(word); &lt/b&gt&lt/li&gt&lt/ul&gt
+    &lt/Description&gt
+	&ltSyntax&gt
+	    &ltExpression&gt (vmargcount target)&lt/Expression&gt
+		 &ltArgument&gt 
+		  &ltName&gttarget&lt/Name&gt
+		  &ltFormat&gtregoff&lt/Format&gt
+		  &ltAISTypes&gt(word:integer)&lt/AISTypes&gt
+		&lt/Argument&gt
+	&lt/Syntax&gt
+&lt/VMInstruction&gt
+ 
+&lt/body&gt&lt/html&gt
+
+</pre>
+</blockquote>
+			</div>
+		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

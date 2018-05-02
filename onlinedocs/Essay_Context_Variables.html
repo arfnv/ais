@@ -1,0 +1,275 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Context Variables</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S_Blackboard"><FONT SIZE=2>_Blackboard</font></a></li><li><a href="#S_error"><FONT SIZE=2>_error</font></a></li><li><a href="#S_FileCabinet"><FONT SIZE=2>_FileCabinet</font></a></li><li><a href="#S_globals"><FONT SIZE=2>_globals</font></a></li><li><a href="#S_MasterLambda"><FONT SIZE=2>_MasterLambda</font></a></li><li><a href="#S_parser"><FONT SIZE=2>_parser</font></a></li><li><a href="#S_path"><FONT SIZE=2>_path</font></a></li><li><a href="#S_schema"><FONT SIZE=2>_schema</font></a></li><li><a href="#S_Startup"><FONT SIZE=2>_Startup</font></a></li><li><a href="#S_sysError"><FONT SIZE=2>_sysError</font></a></li>
+</UL>
+
+<P><H2><A NAME="S_Blackboard"></A>_Blackboard</H2></P>        
+        <div class="h2section" id="_Blackboard">
+            <p><b><u>Overview</u>         </b></p>
+        <p>The<b>
+        _Blackboard</b> variable is assigned, by the user, the current Analytic Information
+        Server ObjectRepository for the publishing of Lambda knowledge structures and
+        opinions. The <b>_Blackboard</b> is the
+        conventional location for publishing Lambda knowledge structures and opinions.</p>
+        <p>&nbsp;</p>
+        <p><b>Type:               Variable</b></p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>When To Use               </u></b></p>
+        <p>The use of the <b>_Blackboard</b> variable is a convention. The _<b>Blackboard</b> variable usually contains the Lambda repository where
+        Lambda opinions are published.</p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>Example1                     </u></b></p>
+        <blockquote>
+        <p><b>(define
+        _Blackboard (new ObjectRepository: &quot;blackboard.db&quot; clear:))</b>   </p>
+        <p><b>(setq
+        _Blackboard[foo:]  &quot;foo says, I
+        like ice cream.&quot;)</b>      </p>
+         </blockquote>
+        <p>Publish an opinion in the blackboard.</p>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_error"></A>_error</H2></P>        
+        <div class="h2section" id="_error">
+        <p><b><u>Overview                     </u>            </b></p>
+        <p>The <b>_error</b>  Variable returns the error vector
+        information saved by Analytic Information Server when the last error
+        occurred.  The error vector records the
+        error information and the Lambdas that were active when the error occurred.</p>
+        <p><b>&nbsp;</b></p>
+        <p><b>Type:               Variable</b></p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>When To Use               </u></b></p>
+        <p>Use this variable when examining the error
+        vector produced by an exception condition.<b><u></u></b></p>
+        <p>&nbsp;</p>
+        <p><b><u>Example1                     </u></b></p>
+        <p>This example shows the error vector produced
+        by an exception condition. Each element in the error vector contains the
+        function name and displacement within the function at the time of the error.<b></b></p>
+         <blockquote> 
+        <p><b>(defun  foo(n)
+        (moo  n))</b></p>
+        <p><b>(defun  moo(n)
+        (n  1  2))</b></p>
+        <p><b>(foo  3)                                     </b>Returns
+        error:  <b>!Missing or Invalid Function Name!</b>&quot; <b></b></p>
+        <p><b>_error                                      </b></p>
+        <p>The error vector<b> </b>contains <b>#(</b>&quot;<b>!Missing
+        or Invalid Function Name!</b>&quot; <b>3  #(foo
+        12)  #(moo  8))</b></p>
+        </blockquote>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_FileCabinet"></A>_FileCabinet</H2></P>        
+        <div class="h2section" id="_FileCabinet">
+            <p><b><u>Overview</u>         </b></p>
+        <p>The <b>_FileCabinet</b>  variable is assigned, by the user, the
+        current Analytic Information Server ObjectRepository for the storing of Lambda
+        scripts. The <b>_FileCabinet</b> is the
+        conventional location for storing Lambda scripts and Lambda components. </p>
+        <p>&nbsp;</p>
+        <p><b>Type:               Variable</b></p>
+        <p><b>&nbsp;</b></p>
+        <p><b><u>When To Use               </u></b></p>
+        <p>The
+        use of the _<b>FileCabinet</b> variable is
+        a convention. The _FileCabinet variable usually contains the main Lambda
+        repository for the server side application.</p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>Example1                     </u></b></p>
+        <blockquote>
+        <p><b>(define
+        _FileCabinet (new ObjectRepository: &quot;Lambda.db&quot; clear:))</b>
+        </p>
+        <p><b>(setq
+        _FileCabinet[foo:]  &quot;(defun foo(n)
+        (* n n))&quot;)        </b>            </p>
+         </blockquote>
+        <p>&nbsp;</p>
+        <p>Places an Lambda script in the new Lambda file
+        cabinet.</p>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_globals"></A>_globals</H2></P>        
+        <div class="h2section" id="_globals">
+            <p><b><u>Overview                     </u>            </b></p>
+        <p>The <b>_globals</b>  Variable returns the Analytic Information
+        Server global symbol table object. The global symbol table serves as the top
+        level environment for Analytic Information Server.</p>
+        <p><b>&nbsp;</b></p>
+        <p><b>Type:               Variable</b></p> 
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_MasterLambda"></A>_MasterLambda</H2></P>        
+        <div class="h2section" id="_MasterLambda">
+        <p><b><u>Overview</u>         </b></p>
+        <p>The<b>
+        _MasterLambda</b>  variable, by
+        convention, is set by the user to the Master Lambda which supervises the current
+        server side application.</p>
+        <p>By convention, the user defined File Cabinet
+        (see <b>_FileCabinet</b>) contains all of
+        the components necessary to build a Master Lambda and to set into operation a
+        user defined server side application. The supervisor of every server side
+        application is its Master Lambda. Some Analytic Information Server host shell
+        programs contain a Console menu item called &quot;MasterLambda(Ma)&quot; just to
+        allow easy invocation of the Master Lambda in the current user analytic model.</p>
+        <p><b>&nbsp;</b></p>
+        <p><b>Type:               Variable</b></p>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_parser"></A>_parser</H2></P>        
+        <div class="h2section" id="_parser">
+        <p><b><u>Overview                     </u>            </b></p>
+        <p>The _<b>parser</b>  variable returns the current Lambda
+        Information Server parser function which is to be used by the client prior to
+        compilation. See the <b>lisp</b>, <b>basic</b>, <b>morph</b>, and <b>compile</b>
+        functions for more information. </p>
+        <p>Changing the <b>_parser</b> variable causes the language syntax of the engine to
+        change. After changing the <b>_parser</b>
+        variable, the Analytic Information Server scripting language would be determined
+        by the new system parser function.</p>
+        <p><b>Type:               variable</b></p>     
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_path"></A>_path</H2></P>        
+        <div class="h2section" id="_path">
+            <p><b><u>Overview</u>         </b></p>
+        <p>The
+        global variable, <b>_path</b>,  is reserved by the system to hold the
+        directory and  path name of the current
+        working directory. The <b>_path</b>
+        variable is set  to the  empty string &quot;&quot; at system
+        startup.  It is the programmer's
+        responsibility to initialize the <b>_path</b>
+        variable. When the <b>_path</b>  variable is referenced, the text contents of
+        the <b>_path</b> variable are automatically
+        attached to the beginning of  database
+        archive file named in the <b>new</b>
+        function. The contents of the<b> _path</b>
+        variable are also automatically prepended to the file names in both the  <b>new
+        ObjectRepository:</b>  function and
+        the  <b>fileOpen</b>  function.</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p><b>Type:               Variable</b></p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>When To Use               </u></b></p>
+        <p>The <b>_path</b>
+        is a global variable used to hold a path name string assigned by the
+        programmer.   If the <b>_path</b> variable is something other than
+        a null string, the <b>_path</b> variable
+        string will be prepended to the filename specified in the <b>new</b> function.<b></b></p>
+        <p><b>  </b></p>
+        <p><b><u>Example1                     </u></b></p>
+        <blockquote>
+        <p><b>(setq
+        _path  &quot;&quot;)</b></p>
+        <p><b>(setq
+        gor (new ObjectRepository: &quot;myarchive.odb&quot;))  </b></p>
+          </blockquote>
+        <p>The database archive file name is now<b> &quot;myarchive.odb&quot;</b></p>
+        <p><b>&nbsp;</b></p>
+        <p><b><u>Example2                     </u></b></p>
+         <blockquote>
+        <p><b>(setq
+        _path  &quot;d:\\test\\&quot;)</b></p>
+        <p><b>(setq
+        gor (new ObjectRepository: &quot;myarchive.odb&quot;))  </b></p>
+             </blockquote>
+        <p>The database archive file name is now<b> &quot;d:\test\myarchive.odb&quot;</b></p> 
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_schema"></A>_schema</H2></P>        
+        <div class="h2section" id="_schema">
+        <p><b><u>Overview                     </u>            </b></p>
+        <p>The
+        _<b>schema</b>  variable returns the current top level schema Lambdas. The current
+        database schema is specific to each server side database application, and is
+        assigned by the database administrator's startup script at the start of each
+        application. By convention, the _<b>schema</b>
+        variable contains a Vector of Lambdas. The client examines the Interfaces data
+        for each schema Lambda (see the Lambda's In property) to determine how the
+        interact with the database.</p>
+        <p><b>Type:               variable</b></p>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_Startup"></A>_Startup</H2></P>        
+        <div class="h2section" id="_Startup">
+            <p><b><u>Overview</u>         </b></p>
+        <p>The <b>_StartUp</b>  Variable, by convention is set by the
+        user.   The <b>_Startup</b> Variable should contain the initialization Lambda which
+        loads the current analytic model and the Master Lambda into the Workspace.  </p>
+        <p>Every user defined file cabinet contains all
+        of the components necessary to build a Master Lambda and to set into operation a
+        user defined analytic model. The supervisor of every user defined analytic
+        model is its Master Lambda. Some Analytic Information Server host shell programs
+        contain a Console menu item called &quot;MasterLambda(Ma)&quot; just to allow
+        easy invocation of the Master Lambda in the current user analytic model.</p>
+        <p>&nbsp;</p>
+        <p><b>Type:               Variable</b></p> 
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_sysError"></A>_sysError</H2></P>        
+        <div class="h2section" id="_sysError">
+        <p><b><u>Overview                     </u>            </b></p>
+        <p>The <b>_sysError</b>
+        Variable returns the engine system error when a system error occurs.  The<b>
+        _sysError</b> code, if present, must be a number.</p>
+        <p><b>&nbsp;</b></p>
+        <p><b>Type:               Variable</b></p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>&nbsp;</u></b></p>
+        <p><b><u>When To Use               </u></b></p>
+        <p>The <b>_sysError</b>
+        variable is used when we want to know what system error occurred.<b><u></u></b></p>
+        <p>&nbsp;</p>
+        <p><b><u>Example1                     </u></b></p>
+        <p>&nbsp;</p>
+        <p><b>The
+        valid system error codes are as follows:</b></p>
+        <p>&nbsp;</p>
+        <p><b>Out
+        of memory                                                 1001</b></p>
+        <p><b>Garbage
+        frame overflow                                              1002</b></p>
+        <p><b>Damaged
+        memory handle                                            1003</b></p>
+        <p><b>Lisp
+        stack overflow                                                      1004</b></p>
+        <p><b>User
+        requested escape                                                1005</b></p>
+        <p><b>Invalid
+        pcode encountered                                           1006</b></p>
+        <p><b>Damaged
+        object discovered                                         1007</b></p>
+        <p><b>Lisp
+        recursion limit exceeded                                      1008</b></p>
+        <p><b>Garbage
+        frame release failure                                      1009</b></p>
+        <p><b>Lisp
+        stack release failure                                             1010</b></p>
+        <p><b>Lisp
+        resursion imbalance                                             1011</b></p>
+        <p><b>User
+        requested quit                                                     1012</b></p>
+        <p><b>Wrong
+        file or database version                                    1013</b></p>
+        <p><b>&nbsp;</b></p>
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

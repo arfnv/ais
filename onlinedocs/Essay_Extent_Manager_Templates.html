@@ -1,0 +1,546 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Extent Manager Templates</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#STemplate Overview"><FONT SIZE=2>Template Overview</font></a></li><li><a href="#S_extentManagerTemplate.abortFocus"><FONT SIZE=2>_extentManagerTemplate.abortFocus</font></a></li><li><a href="#S_extentManagerTemplate.abortTransaction"><FONT SIZE=2>_extentManagerTemplate.abortTransaction</font></a></li><li><a href="#S_extentManagerTemplate.beginTransaction"><FONT SIZE=2>_extentManagerTemplate.beginTransaction</font></a></li><li><a href="#S_extentManagerTemplate.commitTransaction"><FONT SIZE=2>_extentManagerTemplate.commitTransaction</font></a></li><li><a href="#S_extentManagerTemplate.compileByIndex"><FONT SIZE=2>_extentManagerTemplate.compileByIndex</font></a></li><li><a href="#S_extentManagerTemplate.compileByKey"><FONT SIZE=2>_extentManagerTemplate.compileByKey</font></a></li><li><a href="#S_extentManagerTemplate.deleteLambdaByIndex"><FONT SIZE=2>_extentManagerTemplate.deleteLambdaByIndex</font></a></li><li><a href="#S_extentManagerTemplate.deleteLambdaByKey"><FONT SIZE=2>_extentManagerTemplate.deleteLambdaByKey</font></a></li><li><a href="#S_extentManagerTemplate.deleteBinaryByIndex"><FONT SIZE=2>_extentManagerTemplate.deleteBinaryByIndex</font></a></li><li><a href="#S_extentManagerTemplate.deleteBinaryByKey"><FONT SIZE=2>_extentManagerTemplate.deleteBinaryByKey</font></a></li><li><a href="#S_extentManagerTemplate.deleteSourceByIndex"><FONT SIZE=2>_extentManagerTemplate.deleteSourceByIndex</font></a></li><li><a href="#S_extentManagerTemplate.deleteSourceByKey"><FONT SIZE=2>_extentManagerTemplate.deleteSourceByKey</font></a></li><li><a href="#S_extentManagerTemplate.getNextLevel"><FONT SIZE=2>_extentManagerTemplate.getNextLevel</font></a></li><li><a href="#S_extentManagerTemplate.getTypes"><FONT SIZE=2>_extentManagerTemplate.getTypes</font></a></li><li><a href="#S_extentManagerTemplate.memberIndex"><FONT SIZE=2>_extentManagerTemplate.memberIndex</font></a></li><li><a href="#S_extentManagerTemplate.refLambdaByIndex"><FONT SIZE=2>_extentManagerTemplate.refLambdaByIndex</font></a></li><li><a href="#S_extentManagerTemplate.refLambdaByKey"><FONT SIZE=2>_extentManagerTemplate.refLambdaByKey</font></a></li><li><a href="#S_extentManagerTemplate.refBinaryByIndex"><FONT SIZE=2>_extentManagerTemplate.refBinaryByIndex</font></a></li><li><a href="#S_extentManagerTemplate.refBinaryByKey"><FONT SIZE=2>_extentManagerTemplate.refBinaryByKey</font></a></li><li><a href="#S_extentManagerTemplate.refKeyByIndex"><FONT SIZE=2>_extentManagerTemplate.refKeyByIndex</font></a></li><li><a href="#S_extentManagerTemplate.refLength"><FONT SIZE=2>_extentManagerTemplate.refLength</font></a></li><li><a href="#S_extentManagerTemplate.refSourceByIndex"><FONT SIZE=2>_extentManagerTemplate.refSourceByIndex</font></a></li><li><a href="#S_extentManagerTemplate.refSourceByKey"><FONT SIZE=2>_extentManagerTemplate.refSourceByKey</font></a></li><li><a href="#S_extentManagerTemplate.setLambdaByKey"><FONT SIZE=2>_extentManagerTemplate.setLambdaByKey</font></a></li><li><a href="#S_extentManagerTemplate.setBinaryByKey"><FONT SIZE=2>_extentManagerTemplate.setBinaryByKey</font></a></li><li><a href="#S_extentManagerTemplate.setSourceByKey"><FONT SIZE=2>_extentManagerTemplate.setSourceByKey</font></a></li>
+</UL>
+
+<P><H2><A NAME="STemplate Overview"></A>Template Overview</H2></P>		
+		    <div class="h2section" id="Template Overview">
+			<P>The <b>libraryMgr.dropExtent</B> function.
+			   The total number of Lambdas stored in all registered file cabinet extents represents
+			   the complete Lambda library available to the application at that moment in time.</P>
+			<P>When a file cabinet extent is registered to the libraryMgr, a copy of the Extent
+			   Manager Template Lambda is created to manage the newly added extent. This section contains
+			   documentation on the Extent Manager Template and its API.</P>
+			<P><B>Note:</B></P>
+			<P>Creating special external extent manager templates, and supplying them in the <B>addExtent</B>
+			   function allows the mangement of foreign file cabinet extents in a wide variety of modes
+			   and fashions. </P> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.abortFocus"></A>_extentManagerTemplate.abortFocus</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.abortFocus">
+			 <P>The <B>abortFocus</B> function releases the focus on the file cabinet extent
+			   (see setFocus).<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.abortFocus)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.abortTransaction"></A>_extentManagerTemplate.abortTransaction</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.abortTransaction">
+			<P>The <B>abortTransaction</B> function aborts an open transaction on the file cabinet extent
+			   (see beginTransaction).<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.abortTransaction)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.beginTransaction"></A>_extentManagerTemplate.beginTransaction</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.beginTransaction">
+			 <P>The <B>beginTransaction</B> function opens a transaction on the file cabinet extent
+			   (see commitTransaction).<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.beginTransaction)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.commitTransaction"></A>_extentManagerTemplate.commitTransaction</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.commitTransaction">
+			  <P>The <B>beginTransaction</B> function commits an open transaction on the file cabinet extent
+			   (see beginTransaction).<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.commitTransaction)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.compileByIndex"></A>_extentManagerTemplate.compileByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.compileByIndex">
+			<P>The <B>compileByIndex</B> function compiles the specified Lambda source. If the specified
+			   Lambda has already been compiled, the Lambda will be re-compiled if and only if the
+			   <B>compileAlways</B> argument is true.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.compileByIndex  index  alwaysCompile)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda in the file cabinet extent which is to be compiled.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>alwaysCompile</B></TD>
+			<TD>True iff the specified Lambda is to be re-compiled even if it has already been compiled.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.compileByKey"></A>_extentManagerTemplate.compileByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.compileByKey">
+			<P>The <B>compileByKey</B> function compiles the specified Lambda source. If the specified
+			   Lambda has already been compiled, the Lambda will be re-compiled if and only if the
+			   <B>compileAlways</B> argument is true.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.compileByKey  key  alwaysCompile)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda in the file cabinet extent which is to be compiled.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>alwaysCompile</B></TD>
+			<TD>True iff the specified Lambda is to be re-compiled even if it has already been compiled.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.deleteLambdaByIndex"></A>_extentManagerTemplate.deleteLambdaByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.deleteLambdaByIndex">
+			<P>The <B>deleteLambdaByIndex</B> function deletes the specified Lambda from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.deleteLambdaByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda in the file cabinet extent which is to be deleted.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.deleteLambdaByKey"></A>_extentManagerTemplate.deleteLambdaByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.deleteLambdaByKey">
+			 <P>The <B>deleteLambdaByKey</B> function deletes the specified Lambda from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.deleteLambdaByKey key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda in the file cabinet extent which is to be deleted.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.deleteBinaryByIndex"></A>_extentManagerTemplate.deleteBinaryByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.deleteBinaryByIndex">
+			<P>The <B>deleteBinaryByIndex</B> function deletes the specified Lambda binary from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.deleteBinaryByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda in the file cabinet extent whose binary is to be deleted.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.deleteBinaryByKey"></A>_extentManagerTemplate.deleteBinaryByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.deleteBinaryByKey">
+			<P>The <B>deleteBinaryByKey</B> function deletes the specified Lambda binary from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.deleteBinaryByKey key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda in the file cabinet extent whose binary is to be deleted.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.deleteSourceByIndex"></A>_extentManagerTemplate.deleteSourceByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.deleteSourceByIndex">
+			<P>The <B>deleteSourceByIndex</B> function deletes the specified Lambda source from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.deleteSourceByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda in the file cabinet extent whose source is to be deleted.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.deleteSourceByKey"></A>_extentManagerTemplate.deleteSourceByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.deleteSourceByKey">
+			<P>The <B>deleteSourceByKey</B> function deletes the specified Lambda source from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.deleteSourceByKey key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda in the file cabinet extent whose source is to be deleted.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.getNextLevel"></A>_extentManagerTemplate.getNextLevel</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.getNextLevel">
+			 <P>The <B>getNextLevel</B> function returns an XPath directory
+			   string for all hierarchical descendents of the specified key.
+			   The returned directory string will be composed of newline 
+			   delimited rows and tab delimited columns. There will be one
+			   row for each directory entry.
+			   <br><br>
+			   The first row of the directory string will always contain three columns:
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>startingLine numLines totalLines</b>
+			   <br> 
+			   <br>
+			   Additional new type rows (see the getTypes function) will contain three columns:
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>NewType type action</b>
+			   <br> 
+			   <br>
+			   Thereafter, each row will contain eight columns:
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>type value size date time version symbolicKey uniqueKey</b>
+			   <br>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr.getNextLevel key startLine lineCount options)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda in the file cabinet extent whose descendents are to be returned.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>startLine</B></TD>
+			<TD>The starting line, of the descendents list, to be returned.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>lineCount</B></TD>
+			<TD>The number of lines, of the descendents list, to be returned.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>options</B></TD>
+			<TD>(Optional) Any additional arguments required by the extent manager.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>an XPath directory
+			   string for all hierarchical descendents of the specified key.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.getTypes"></A>_extentManagerTemplate.getTypes</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.getTypes">
+			<P>The <B>getTypes</B> function returns an XPath directory type list
+			   string for all possible types in a hierarchical descendents list (see the getNextLevel function).
+			   The returned directory directory type list string will be composed of newline 
+			   delimited rows and tab delimited columns. There will be one
+			   row for each type list entry.
+			   <br> 
+			   <br>
+			   Each row of the type list will contain two columns: &nbsp;<b>Type&nbsp;Features</b>
+			   <br>
+			   <br>
+			   There will be eight feature options. Features not present will have a value of off. 
+			   All features present will have a value of on. The first feature listed will be the default feature.
+			   The default type will have a name of <b>.default.</b>. The eight valid features are as follows:                   
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>descend</b> Allow descent into node.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>edit</b> Allow display in edit tab.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>popup</b> Allow display in popup dialog.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>erase</b> Allow this type to be erased.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>export</b> Allow this type to be exported.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>import</b> Allow this type to be imported.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>compile</b> Allow this type to be compiled.
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>checkin</b> Allow this type to be checked in.
+			   <br><br>
+			   Some examples would be:                    
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>String "edit,popup"</b>
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>Vector "descend"</b>
+			   <br>
+			   &nbsp;&nbsp;&nbsp;<b>Lambda "descend,edit"</b>
+			   <br>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr.getTypes)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>an XPath directory type list string.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.memberIndex"></A>_extentManagerTemplate.memberIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.memberIndex">
+			<P>The <B>memberIndex</B> function returns the index of the specified Lambda name in the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.memberIndex key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda to be located in the file cabinet extent.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>index of Lambda in file cabinet extent.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refLambdaByIndex"></A>_extentManagerTemplate.refLambdaByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refLambdaByIndex">
+			<P>The <B>refLambdaByIndex</B> function returns the specified Lambda from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refLambdaByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda  to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refLambdaByKey"></A>_extentManagerTemplate.refLambdaByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refLambdaByKey">
+			 <P>The <B>refLambdaByKey</B> function returns the specified Lambda from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refLambdaByKey key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refBinaryByIndex"></A>_extentManagerTemplate.refBinaryByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refBinaryByIndex">
+			<P>The <B>refBinaryByIndex</B> function returns the specified Lambda binary from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refBinaryByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda whose binary is to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda's binary.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refBinaryByKey"></A>_extentManagerTemplate.refBinaryByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refBinaryByKey">
+			 <P>The <B>refBinaryByKey</B> function returns the specified Lambda binary from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refBinaryByKey key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda whose binary is to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda's binary</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refKeyByIndex"></A>_extentManagerTemplate.refKeyByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refKeyByIndex">
+			<P>The <B>refKeyByIndex</B> function returns the specified Lambda name from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refKeyByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda whose name is to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda's name.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refLength"></A>_extentManagerTemplate.refLength</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refLength">
+			  <P>The <B>refLength</B> function returns the number of Lambdas in the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refLength)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the number of Lambdas.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refSourceByIndex"></A>_extentManagerTemplate.refSourceByIndex</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refSourceByIndex">
+			<P>The <B>refSourceByIndex</B> function returns the specified Lambda source from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refSourceByIndex  index)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>index</B></TD>
+			<TD>The integer index of the Lambda whose source is to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda's source.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.refSourceByKey"></A>_extentManagerTemplate.refSourceByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.refSourceByKey">
+			<P>The <B>refSourceByKey</B> function returns the specified Lambda source from the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.refSourceByKey key)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda whose source is to be returned from the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>the Lambda's source.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.setLambdaByKey"></A>_extentManagerTemplate.setLambdaByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.setLambdaByKey">
+			<P>The <B>setLambdaByKey</B> function saves the specified Lambda into the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.setLambdaByKey key newLambda)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda who is to be saved in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>newLambda</B></TD>
+			<TD>The Lambda who is to be saved in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.setBinaryByKey"></A>_extentManagerTemplate.setBinaryByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.setBinaryByKey">
+			 <P>The <B>setBinaryByKey</B> function saves the specified Lambda's binary into the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.setBinaryByKey key newBinary)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda whose binary is to be saved in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>newBinary</B></TD>
+			<TD>The Lambda whose binary is to be saved in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_extentManagerTemplate.setSourceByKey"></A>_extentManagerTemplate.setSourceByKey</H2></P>		
+		    <div class="h2section" id="_extentManagerTemplate.setSourceByKey">
+			  <P>The <B>setSourceByKey</B> function saves the specified Lambda's source into the 
+			   file cabinet extent.<BR>
+			<BR><B>Type:</B> Function</P>
+			<TABLE>
+			<TR VALIGN=TOP><TD><B>Syntax:</B></TD>
+			<TD>(libraryMgr._extentManagerTemplate.setSourceByKey key newSource)</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>key</B></TD>
+			<TD>The symbolic name of the Lambda whose source is to be saved in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>newSource</B></TD>
+			<TD>The Lambda whose source is to be saved in the file cabinet.</TD>
+			</TR>
+			<TR VALIGN=TOP><TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

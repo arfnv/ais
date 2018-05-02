@@ -1,0 +1,140 @@
+ 
+<HTML>
+<HEAD><TITLE>Alice: Answer Details</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+<BGSOUND SRC="Dong.wav" LOOP=1 AUTOSTART=true>
+<!--------------------------------------------------------------------------------->
+<!---                       Scripts for Control Mnagement                      ---->
+<!--- Note: These scripts are needed only for the Developer's Only version     ---->
+<!--------------------------------------------------------------------------------->
+<script language="JavaScript">
+var EventBlockCount = 0;		// Counter to block stacked events. See messageBar function docs below.
+
+// -------------------------------------------------------------------------------
+// Summary:  Decode all XML special characters in the specified string.
+// Args:     iMsg:         The string whose XML special characters are to be decoded.
+// Return:   result:       The string with its XML special characters decoded.
+// -------------------------------------------------------------------------------
+function decodeXml(iMsg) {
+	// Convert predefined entities, &lt;, &amp;, &gt;, &apos;, &quot;
+	var aRet = iMsg.replace(/&quot;/g, '"');
+	aRet = aRet.replace(/&lt;/g, "<");
+	aRet = aRet.replace(/&gt;/g, ">");
+	aRet = aRet.replace(/&apos;/g, "'");
+	// Do & last!
+	aRet = aRet.replace(/&amp;/g, "&");
+	return aRet;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Encodes the <, &, and " special XML characters in the specified string.
+// Args:     iMsg:         The string whose <, &, and " special XML characters are to be decoded.
+// Return:   result:       The string with its <, &, and " XML special characters decoded.
+// Note:     Encode all strings w/ special chars before including them in an XML doc.
+// -------------------------------------------------------------------------------
+function encodeXml(iMsg) {
+	// Do & first!
+	var aRet = iMsg.replace(/&/g, "&amp;");
+	aRet = aRet.replace(/</g, "&lt;");
+	aRet = aRet.replace(/"/g, "&quot;");
+	return aRet;
+}
+
+// -------------------------------------------------------------------------------
+// Summary:  Evaluate the command expression in the SmartBase engine.
+// Args:     command:      The source expression to be evaluated.
+// Return:   result:       The result of evaluating the expression.
+// -------------------------------------------------------------------------------
+function Evals(command) {
+	//return top.scripts.Evals(command);
+    var cmd = "xml=<amp target='alice' act='xmlSocketEvals'><cmd>" + encodeXml(command) + '</cmd></amp>';
+	var buffer = "";
+    if (window.XMLHttpRequest) { // branch for native XMLHttpRequest object
+        req = new XMLHttpRequest();
+        req.open("POST", "amp.dll", false); // load sync!
+		//alert("cmd=" + cmd);
+        req.send(cmd);
+    } else if (window.ActiveXObject) { // branch for IE/Windows ActiveX version
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+        if (req) {
+            req.open("POST", "amp.dll", false); // load sync!
+            req.send(cmd);
+        }
+    }
+
+	if(req.status == 200) {
+		var buffer = req.responseText;
+	} else {
+		alert("Evals failed"); 
+	}
+
+    // Extract just the result information from the returned string
+    buffer = buffer.slice(buffer.indexOf("<result>") + 8,buffer.lastIndexOf("</result>"))
+    return (buffer);
+}
+
+
+// -------------------------------------------------------------------------------
+// Summary:  Display the current Alice response in the main window viewer.
+// Args:     question:		The argument must be a question for Alice.
+// Return:     switch: 		Returns true if record loaded; otherwise, returns false.
+// -------------------------------------------------------------------------------
+function loadDetails(question) {
+	var command = "";
+	var result = "";
+
+	top.main.navigate("PleaseWait.html");
+
+	// Load the record details into the detail record viewer.
+	command = "(alice.queryHtml {" + question + "})";
+	result = Evals(command);
+	top.main.navigate("AnswerDetails.html");
+
+	// Record details have been successfully loaded.
+	return true;
+} 
+        
+</script>
+<!--------------------------------------------------------------------------------->
+<!---                     End Scripts for Control Mnagement                    ---->
+<!--------------------------------------------------------------------------------->
+
+<TABLE>
+<TR>
+<TD><IMG SRC="Image_AILogo.gif" WIDTH=100 HEIGHT=100></TD>
+<TD>
+	<TABLE><TR><TD>
+	<TEXTAREA NAME="AliceQuery" ALIGN="left" ROWS="2" COLS="80"><!--$$$QUERYSTRING$$$--></TEXTAREA>
+	</TD><TD>
+	<INPUT TYPE='button' VALUE='Next Query' onClick='loadDetails(AliceQuery.value);'>
+	</TD><TD>
+	<INPUT TYPE='button' VALUE='Help' onClick='loadDetails("Help?");'>
+	</TD></TR>
+	</TABLE>
+</TD>
+</TR>
+<TR><TD><FONT COLOR="#000080"><H4>My answer is:</H4></FONT></TD></TR>
+</TABLE>
+
+<P>
+<B>
+<!--#MyTextResponse#-->
+</B>
+</P>
+<BR>
+
+<!--#MyHTMLResponseHeading#-->
+
+<P>
+<DIV>
+<!--#MyHTMLResponseResults#-->
+</DIV>
+</P>
+
+
+</BODY>
+</HTML>
+
+
+

@@ -1,0 +1,681 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lambda Repositories</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SLegacy Data"><FONT SIZE=2>Legacy Data</font></a></li><li><a href="#SRecord Management"><FONT SIZE=2>Record Management</font></a></li><li><a href="#SSchemas"><FONT SIZE=2>Schemas</font></a></li><li><a href="#SIndexing"><FONT SIZE=2>Indexing</font></a></li><li><a href="#SKnowledgebase"><FONT SIZE=2>Knowledgebase</font></a></li><li><a href="#STransactions"><FONT SIZE=2>Transactions</font></a></li><li><a href="#SConcurrency"><FONT SIZE=2>Concurrency</font></a></li><li><a href="#SPrivacy"><FONT SIZE=2>Privacy</font></a></li><li><a href="#SObject Closure"><FONT SIZE=2>Object Closure</font></a></li><li><a href="#SData Access"><FONT SIZE=2>Data Access</font></a></li><li><a href="#SFunctional Flow-of-Control"><FONT SIZE=2>Functional Flow-of-Control</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sset"><FONT SIZE=2>set</font></a></li><li><a href="#Sref"><FONT SIZE=2>ref</font></a></li><li><a href="#S_path"><FONT SIZE=2>_path</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+            <p>
+               Analytic Information Server is a mobile, distributed, Lambda-oriented repository.  
+               It provides a mobile runtime environment and a mobile persistent repository database. 
+               "Intelligent Lambdas" infiltrate each location of a distributed application, personalizing and adapting the application to each user's needs.  
+               It is no longer necessary to send user data from the client interface back to the server for lengthy processing. 
+               Users interact with distributed "info-nimble" application interfaces, which perform in-depth analysis of the user's needs on-site, at the client. 
+               With its open and modular architecture, Analytic Information Server allows intelligent Lambdas to be easily 
+               integrated with Excel, Oracle, Java, as well as with existing in-house applications such as customer service, 
+               data warehousing, decision support, sales automation, and help desk.
+             </p>
+             <p>
+                 Multiple concurrent users are supported as well as, transaction rollback with no arbitrary limitation on the size 
+                 of a transaction, password protected data security with automatic record compression and encryption, data recovery, 
+                 and a runtime dynamic database schema at each location.
+             </p>
+            <h3>Breeding Autonomous Lambdas</h3>
+            <p>
+            Thousands of autonomous child Lambdas are created, each second, in an adaptive application. 
+            As child Lambdas are born, they are placed into an Lambda file cabinet. 
+            Each child Lambda has source code, compiled code, and knowledge information, which must be, stored somewhere. 
+            Often, there may be too many new Lambdas to keep in memory simultaneously. 
+            So, Analytic Information Server will move Lambdas from the file cabinet into memory and from memory back into the file cabinet during the course of data analysis.
+            </p>
+            <h3>A Programmable Schema</h3>
+            <p>
+                The Analytic Information Server Repository has the ability to store Lambdas, Lambda opinions, Lambda knowledge, and Lambda data. 
+                Unlike many other database systems, Analytic Information Server supports no fixed database schema. 
+                Instead, the Lambdas implement the schema for their own data and for each server application. 
+                The client examines the interfaces for each Lambda to determine how to interact with the database. 
+                Analytic Information Server can be made to look like a relational database, like a text database, like an object database, or all of the above simultaneously (depending upon which Lambda is controlling the schema).         
+            </p>
+
+            <h3>Storing Mutating Behavior</h3>
+            <p>
+                The Analytic Information Server repository supports the storing of mutating behavior in multiple repositories distributed 
+                across networks containing different computer architectures. 
+                Analytic Information Server Virtual Machine Lambda objects accomplish this feat, because the Analytic Information Server repository 
+                guarantees that a VM Lambda will operate identically on any computer where the Analytic Information Server engine resides. 
+                These stored behaviors are called Lambdas, and they are designed to invoke the analytic components 
+                in the Analytic Information Server function library to perform complex user defined analyses on the high volumes of data stored 
+                in the Analytic Information Server object repositories.
+            </P>
+            <p>
+                Fast Lambda oriented repository management is a corner stone of the Analytic Information Server database engine. 
+                The ability to store complex interrelated data structures with complex relationships fast, and to retrieve them fast, 
+                is essential to advanced, high volume data analysis. 
+                The Analytic Information Server object repository supports password protected data security, record compression and encryption, 
+                transaction rollback with no arbitrary limitation on the size of a transaction before rollback, automatic data recovery, 
+                multiple distributed volumes with a maximum of 2 gigabytes per volume and a maximum of 2 billion volumes supported. 
+                Each Analytic Information Server object repository supports automatic data recovery with the maximum possible data loss being limited 
+                to the object closures saved in the current transaction.
+            </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLegacy Data"></A>Legacy Data</H2></P>        
+            <p>    
+              The Analytic Information Server general object repository is used in conjunction with commercial legacy database systems. 
+             In a typical ES-DSS application, large quantities of data are extracted from the legacy database and passed to the user defined Lambdas for analysis. 
+             These user defined Lambdas may need a FAST temporary archive (the Analytic Information Server General Object Repository) for portions of the extracted data. 
+             Furthermore, as the Lambdas develop hypotheses and increase their understanding of the extracted data, they may need a FAST persistent local archive 
+             for their internal knowledge representation. 
+             Often the internal knowledge representation of an Lambda is not in relational format; 
+             but, instead, is a complex network of analytic objects for which the Analytic Information Server 
+             General Object Repository provides an excellent persistence mechanism.
+            </p>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRecord Management"></A>Record Management</H2></P>        
+        <p>    
+        The basic unit of storage, in the Analytic Information Server General Object Repository, 
+        is the object closure (the original object saved, together with all the objects it reaches). 
+        Once saved in the repository, an Object Closure has a Repository Index which remains constant throughout the life of the object in the repository. 
+         Analytic Information Server places no limits on either the number of objects in an object closure nor on the complexity of their interrelationships. 
+        Literally any object closure of any size and complexity may be saved in a Analytic Information Server General Object Repository.
+        </p> 
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSchemas"></A>Schemas</H2></P>        
+        <p>    
+        The ObjectRepository supports a simple associative memory database schema in which an object 
+        of any complexity is stored and retrieved using a key of any complexity. 
+        In addition to this native schema, Analytic Information Server supports programmable database schemas for each Object Repository. 
+        Programmable schemas are achieved by attaching a librarian Lambda to a repository. 
+        Once attached, the librarian has complete control of how the other intelligent Lambdas view the 
+        repository, and can develop a schema specifically tailored to the needs of the application. 
+        The librarian can easily implement an SQL relational style schema, a ODMG object style schema, 
+        a multivariate indexed style schema, or even a natural language database schema.
+        </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SIndexing"></A>Indexing</H2></P>        
+        <p>    
+        The Analytic Information Server Object Repository acts like a disk based associative memory in which 
+        data objects of arbitrary complexity are made persistent and associated with index  objects also of arbitrary complexity. 
+        Storage is accomplished via the standard <b>setq</b> function, with the index 
+        object in the role of the key and the data object in the role of the new value to be saved. 
+        The <b>setq</b> function also supports various levels of object buffering, which are determined at creation time.
+        </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SKnowledgebase"></A>Knowledgebase</H2></P>        
+         <p>    
+         The Analytic Information Server Object Repository serves as a local <b>scratchpad/blackboard</b> area for multiple intelligent Lambdas during data analysis. 
+         Each Analytic Information Server Lambda is a Lisp script, which manages and coordinates a number of other tools and scripts in some specific type of analysis.  
+         The difference between an Lambda   and a normal program, script, or procedure is fuzzy; 
+         however, the term Lambda is usually reserved for scripts which coordinate a specific type or style of analysis.  
+         An Lambda might train neural nets to recognize specific patterns in data, or an Lambda might 
+         apply a knowledgebase of rules against the data  to prove a theorem or to form a concept about the data.  
+         In general Lambdas support a more intelligent interface than normal programs. 
+         Often they are capable of receiving and responding to messages, including requests for explanation, help, and even 
+         negotiations from other Lambdas in the knowledge system. 
+         Lambdas, during the course of their analysis, form complex opinions and models about the data. 
+         These opinions, often very complex networks of interrelated objects, represent the Lambda's viewpoint or vote as to the nature of the data. 
+         These Lambda opinions are stored in the Object Repository as a scratchpad/blackboard for other Lambdas, 
+         including meta or supervisory Lambdas, to read and digest.  
+         </p> 
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STransactions"></A>Transactions</H2></P>        
+
+            <p>
+            The Object Repository supports transaction management with unlimited rollback before commit. 
+            Normally each <b>set</b> operation is an individual fully committed transaction; 
+            however, using the <b>beginTransaction</b>, <b>commitTransaction</b>, and <b>abortTransaction</b> functions, an Lambda 
+            can cause all set's back to the previous <b>beginTransaction</b> to be rolled back by using the 
+            <b>abortTransaction</b> functions instead of the <b>commitTransaction</b> functions.
+            </p> 
+
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SConcurrency"></A>Concurrency</H2></P>        
+            <p>
+            The Object Repository supports transparent multiple concurrent Lambdas using the same database 
+            archive file, using the stop/go traffic light model. The Object Repository handles all exclusive 
+            locking without Lambda intervention; however, stop/go traffic light repository concurrency is designed 
+            for a small number of Lambdas occasionally sharing knowledge and information. There is no intent to 
+            handle the volume of concurrent retrieval and update transactions that a transaction database system 
+            would support.
+            </p> 
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SPrivacy"></A>Privacy</H2></P>        
+            <p>
+            The Object Repository supports transparent record level compression for all objects saved. Furthermore, 
+            each record may be encrypted with an optional numeric key at storage and retrieval time. 
+            </p>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SObject Closure"></A>Object Closure</H2></P>        
+            <p>The basic unit of storage, in the Analytic Information Server General Object Repository, is the object 
+            closure (the original object saved, together with all the objects it reaches). Once saved in the repository, 
+            an Object Closure has a Repository Index, which remains constant throughout the life of the object 
+            in the repository. 
+            </p>
+            <p>
+            There are two parts to the Object Repository: the first is an object archive (a database file on disk) and the second is the Repository Index.  
+            The Repository Index is an Analytic Information Server Directory object and saved on disk as part of the Object Repository.  
+            Each entry in the Repository Index is a binding consisting of a key and the location of the data on disk.   
+            Each record in the Object Repository is compressed using the LZW algorithm and then encrypted.    
+            </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SData Access"></A>Data Access</H2></P>        
+              <p>
+            The Repository Index is simply a Directory, which is saved on the disk with the Object Repository.  
+            The keys in the Repository Index normally map to a value which is a pointer to the location in the disk file.  
+            Retrieving or saving a value to the Object Repository is key driven and requires two disk access:         
+            </p> 
+            <UL>     
+            <LI><b> Load the Repository Index into the Virtual Memory of Analytic Information Server </b></LI>
+            <LI> <b>Use the key and then the disk pointer associated with the key,  read the value from the disk </b></LI>
+            </UL>
+            <p>
+            The full range of object types, in the Analytic Information Server Data Model, may be saved in the Repository Index, 
+            and the full range of object types, in the Analytic Information Server Data Model, may be used as keys to index objects 
+            saved in a Analytic Information Server Object Repository. All Lambda scripting and modeling languages, available in Lambda 
+            Information Server, may be saved in the Object Repository. As an optimization feature, values may be optionally stored 
+            as immediate data in the object index using the <b>saveImmediate</b> function. 
+            </p>
+            <p>
+            The Object Repository's data archive may contain up to 2 Gigabytes of objects and Lambdas. The Repository
+            Index of an object repository must be entirely contained in memory. Each entry in the Repository Index
+            requires approximately 80 bytes. A one-megabyte data index would support a Repository data archive 
+            containing approximately 12000 objects and Lambdas. 
+            </p>
+            <p>
+            The Object Repository's Repository Index is a Directory. Each entry in the Repository Index is a binding 
+            of an object key and its value.  The key can be any Analytical Object Of course, the Repository Index 
+            initially is very small and grows dynamically with the number of entries stored in the object repository, 
+            and can grow to any size limited only by available virtual memory. 
+            </p>
+        <h3>Summary</h3>
+            <p>
+            The Object Repository offers persistent storage for the Analytic Information Server programmer. The full range of 
+            object types, in the Analytic Information Server Data Model, may be stored in the Object Repository, and the full 
+            range of object types, in the Analytic Information Server Data Model, may be used as keys to index objects saved in 
+            a Analytic Information Server Object Repository. All Lambda scripting and modeling languages, available in Lambda 
+            Information Server, may be saved in the Object Repository.  
+            </p>
+            <p>
+            Analytic Information Server also supports programmable database schemas for each Object Repository. Programmable 
+            schemas are achieved by attaching a <b>librarian</b> Lambda to a repository. Once attached, the librarian has complete 
+            control of how the other intelligent Lambdas view the repository, and can develop a schema specifically tailored 
+            to the needs of the application. The librarian can easily implement an SQL relational style schema, a ODMG object 
+            style schema, a multivariate indexed style schema, or even a natural language database schema
+            </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFunctional Flow-of-Control"></A>Functional Flow-of-Control</H2></P>
+            <p>
+                Fast Lambda oriented repository management is a corner stone of the Analytic Information Server database engine. 
+                The ability to store complex interrelated data structures with complex relationships fast, and to retrieve them fast, 
+                is essential to advanced, high volume data analysis. 
+                The Analytic Information Server object repository supports password protected data security, record compression and encryption, 
+                transaction rollback with no arbitrary limitation on the size of a transaction before rollback, automatic data recovery, 
+                multiple distributed volumes with a maximum of 2 gigabytes per volume and a maximum of 2 billion volumes supported. 
+                Each Analytic Information Server object repository supports automatic data recovery with the maximum possible data loss being limited 
+                to the object closures saved in the current transaction.
+            </p>
+
+            <p>
+             The best pocket introduction to the essential elements of AIS Object Repositories
+             is the following table of essential flow of control functional elements.
+            </p>
+
+          <!-- Arguments Table Template -->
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>(new ObjectRepository: fileName)</th>
+              <td>Repository creation/reopen statement</td>
+            </tr>
+            <tr>
+              <th>(set repository symbolicKey anyObject)</th>
+              <td>Indexed assignment statement</td>
+            </tr>
+            <tr>
+              <th>(set repository frame: frameID anyObject)</th>
+              <td>Direct frame assignment statement</td>
+            </tr>
+            <tr>
+              <th>(setf repository.symbolicKey anyObject)</th>
+              <td>Immediate indexed assignment statement</td>
+            </tr>
+            <tr>
+              <th>(ref repository symbolicKey)</th>
+              <td>Indexed access statement</td>
+            </tr>
+            <tr>
+              <th>(ref repository frame: frameID)</th>
+              <td>Direct frame access statement</td>
+            </tr>
+            <tr>
+              <th>(inspect repository)</th>
+              <td>Repository inspection statement</td>
+            </tr>
+            <tr>
+              <th>(beginTransaction repository)</th>
+              <td>Start an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(checkPointTransaction repository)</th>
+              <td>Check point an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(abortTransaction repository)</th>
+              <td>Abort an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(commitTransaction repository)</th>
+              <td>Complete/accept an extended repository transaction</td>
+            </tr>
+            <tr>
+              <th>(attachLibrarian repository Lambda)</th>
+              <td>Attach an extended repository schema</td>
+            </tr>
+            <tr>
+              <th>(detachLibrarian repository)</th>
+              <td>Detach an extended repository schema</td>
+            </tr>
+          </table> 
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+                <p>The <b>new</b> function creates a new Object Repository, associates the Object Repository
+             with a repository archive file, and allows for record encryption and other options. 
+             The styles of Object Repository creation are dependent upon the number and types of the arguments passed to the <b>new</b> function. 
+             </p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Function</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p>The <b>new</b> function is used to create an Object Repository and allows the user to specify creation options.
+               </P>
+
+
+          <p><b><font color="blue">Syntax:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (new ObjectRepository: fileName)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (new ObjectRepository: fileName clear: key: code buffer: count)</b></p>
+
+
+          <!-- Arguments Table Template -->
+          <p><b><font color="blue"><u>Arguments</u></font></b></p>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>ObjectRepository:</th>
+              <td>Mandatory argument specifying the type of object to create: ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>filename</th>
+              <td>The name of the database archive file to be associated with the ObjectRepository.
+                  If no such file exists, a new database archive file will be created.</td>
+            </tr>
+            <tr>
+              <th>clear:</th>
+              <td>(Optional) If the keyword clear: is present, the database archive file will be cleared immediately 
+                   before any further processing. If no such file exists, a new database archive file will be created.</td>
+            </tr>
+            <tr>
+              <th>key: code</th>
+              <td>(Optional) If the keyword key: is present and it is followed by a number, the number is treated 
+                as an encryption code to use in record encrypting the database archive file. This same encryption key code must
+                be used in all future references to the ObjectRepository. If the keyword key: is followed
+                by the Boolean value true, the database archive file will be compressed when saved. If the
+                Boolean value false is present, the archive file will not be compressed. The same compression key code must be
+                used in all future references to the ObjectRepository. WARNING: If the ObjectRepository 
+                is later opened with a different key value from was specified during file creation, as a 
+                security measure, the ObjectRepository will be made unrecoverable</td>
+            </tr>
+            <tr>
+              <th>buffer: count</th>
+              <td>(Optional) If the key word buffer: is present, the numeric buffered object {count} must follow. The ObjectRepository will remember the
+                last {count} objects retrieved to minimize disk access when required. As same objects are retrieved, the buffered object is returned and 
+                no disk access takes place. When a new object is retrieved, the oldest buffered object 
+                is thrown away to make room for the newly retrieved object.</td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The newly created ObjectRepository.</td>
+            </tr>
+          </table>
+          <hr>
+
+
+             <!-- Code Eaxmples Template -->
+            <p></p>
+            <p><b><font color="blue"><u>Example 1</u></font></b></p>
+            <p></p>
+            <p>     
+              <table>    
+              <tr>    
+              <th align=left width=300>(setq _path  "")</th>
+              <td>;;Reset the _path variable</td>
+            </tr>
+            <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "myarchive.odb"</td>
+            </tr>    
+           </table>
+           </p>
+            <p></p>
+            <p><b><font color="blue"><u>Example 2</u></font></b></p>
+            <p></p>
+            <p>&nbsp;&nbsp;&nbsp;
+              <table>
+              <tr>    
+                <th align=left width=300>(setq _path  "d:\\test\\")</th>
+                <td>;; Set the _path variable to "d:\test"</td>
+            </tr>   
+              <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "d:\test\myarchive.odb"</td>
+            </tr>   
+              </table>
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sset"></A>set</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+              <p>The <b>set</b> function allows values to be stored in the specified ObjectRepository <b>repository</b> either by key or by direct frame id. 
+              Any value may be stored in the ObjectRepository and associated with a key. 
+              Both the key and the stored value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous key or frame id. 
+             </p>
+        
+              <p>The <b>set</b> function also allows values to be stored in the specified ObjectRepository <b>repository</b> by direct frame id. 
+              Any value may be stored in the ObjectRepository and associated with a frame id. 
+              The stored value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous frame id. 
+             </p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Form</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p>The <b>set</b> function is used to store objects into an Object Repository for later retrieval.
+               </P>
+
+          <p><b><font color="blue">Syntax:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (set repository key anyObject)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (set repository frame: frameID anyObject))</b></p>
+
+
+          <!-- Arguments Table Template -->
+          <p><b><font color="blue"><u>Arguments</u></font></b></p>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository into which the object is to be saved.</td>
+            </tr>
+            <tr>
+              <th>key</th>
+              <td>Mandatory argument specifying the key associated with the object is to be saved in the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>anyObject</th>
+              <td>Mandatory argument specifying the object to be saved in the ObjectRepository.
+                  If the object to be saved is #void, then the specified key will be freed in the ObjectRepository.
+                  </td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The ObjectRepository after the save has taken place.</td>
+            </tr>
+          </table>
+          <hr>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository into which the object is to be saved.</td>
+            </tr>
+            <tr>
+              <th>frame:</th>
+              <td>Mandatory keyword specifying that direct frame access is to be used with the object is to be saved in the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>frameID</th>
+              <td>Mandatory argument specifying the frame id associated with the object is to be saved in the ObjectRepository.
+                  If the frameID is to small to hold the specified object, then a new frame id will be assigned.
+                  If the frameID is #void, then a new frame id will be assigned.
+                  </td>
+            </tr>
+            <tr>
+              <th>anyObject</th>
+              <td>Mandatory argument specifying the object to be saved in the ObjectRepository.
+                  If the object to be saved is #void, then the specified frame id will be freed in the ObjectRepository.
+                  </td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The frame id associated with the object saved in the repository.</td>
+            </tr>
+          </table>
+          <hr>
+
+
+          <!-- Code Eaxmples Template -->
+          <p><b><font color="blue"><u>Example 1</u></font></b></p>
+          <p>Creating and initializing a new object repository.</p>
+
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo (new ObjectRepository: "test.db"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 "Hello World")</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] "Hello World"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          frameID&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;1.0</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 #void)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] #void))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+
+          <p><b>Note:</b> The <b>set</b> function saves object values into the object repository. 
+             These object values can be of any size and complexity. 
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sref"></A>ref</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+              <p>The <b>ref</b> function allows values to be retreived from the specified ObjectRepository <b>repository</b> either by key or by direct frame id. 
+              Any previously stored value, associated with a key or a frame id, may be retrieved the ObjectRepository. 
+              Both the key and the stored value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous key or frame id. 
+             </p>
+        
+              <p>The <b>ref</b> function also allows values to be retrieved from the specified ObjectRepository <b>repository</b> by direct frame id. 
+              Any previously stored value, associated with a frame id, may be retrieved the ObjectRepository. 
+              The retrieved value may be of arbitrary complexity. 
+              An object may be removed from the ObjectRepository by setting the value #void in association with its previous frame id. 
+             </p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Form</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p>The <b>ref</b> function is used to retrieve previously saved objects from an Object Repository.
+               </P>
+
+          <p><b><font color="blue">Syntax:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (ref repository key)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          (ref repository frame: frameID)</b></p>
+
+
+          <!-- Arguments Table Template -->
+          <p><b><font color="blue"><u>Arguments</u></font></b></p>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository from which the object is to be retrieved.</td>
+            </tr>
+            <tr>
+              <th>key</th>
+              <td>Mandatory argument specifying the key associated with which the object is to be retrieved from the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The previously saved object value retrieved from the ObjectRepository.</td>
+            </tr>
+          </table>
+          <hr>
+          <hr>
+          <table>
+            <colgroup>
+              <col>
+              <col style="font-style:italic">
+            </colgroup>
+            <tr>
+              <th>repository</th>
+              <td>Mandatory argument specifying the ObjectRepository from which the object is to be retrieved.</td>
+            </tr>
+            <tr>
+              <th>frame:</th>
+              <td>Mandatory keyword specifying that direct frame access is to be used with the object to be retrieved from the ObjectRepository.</td>
+            </tr>
+            <tr>
+              <th>frameID</th>
+              <td>Mandatory argument specifying the frame id associated with the object is to be retrieved from the ObjectRepository.
+                  </td>
+            </tr>
+            <tr>
+              <th>Returns</th>
+              <td>The previously saved object value retrieved from the ObjectRepository.</td>
+            </tr>
+          </table>
+          <hr>
+
+
+          <!-- Code Eaxmples Template -->
+          <p><b><font color="blue"><u>Example 1</u></font></b></p>
+          <p>Creating and initializing a new object repository.</p>
+
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo (new ObjectRepository: "test.db"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 "Hello World")</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] "Hello World"))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          frameID&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;1.0</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;"Hello World"</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq repo.Key1 #void)</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo.Key1&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          (setq frameID (setq repo[frame: frameID] #void))</b></p>
+          <p><b>&nbsp;&nbsp;&nbsp;&nbsp;
+          repo[frame: frameID]&nbsp;&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;&nbsp;#void</b></p>
+
+          <p><b>Note:</b> The <b>set</b> function saves object values into the object repository. 
+             These object values can be of any size and complexity. 
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S_path"></A>_path</H2></P>        
+             <p><b><font color="blue"><u>Overview</u></font></b></p>
+            <p>The  global variable, <b>_path</b>,  is reserved by the system to hold the directory and  path name
+             of the current working directory. The <b>_path</b> variable is set  to the  empty string "" at 
+             system startup.  It is the programmer??s responsibility to initialize the <b>_path</b> variable. 
+             When the <b>_path</b> variable is referenced, the text contents of the <b>_path</b> variable are automatically 
+             attached to the beginning of  database archive file named in the new function.</p>
+        
+            <!-- Type and Syntax Template -->
+            <p><b><font color="blue">Type:</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Global Variable</b></p>
+            <p></p>
+            <!-- When To Use Template -->
+            <p></p>
+            <p><b><font color="blue"><u>When To Use</u></font></b></p>
+            <p> 
+            The <b>_path</b> is a global variable use to hold a path name string assigned by the programmer.   
+            If the <b>_path</b> variable is something other than a null string, the <b>_path</b> variable string will be 
+            prepended to the filename specified in the new function
+            </P>
+             <!-- Code Eaxmples Template -->
+            <p></p>
+            <p><b><font color="blue"><u>Example 1</u></font></b></p>
+            <p></p>
+            <p>     
+              <table>    
+              <tr>    
+              <th align=left width=300>(setq _path  "")</th>
+              <td>;;Reset the _path variable</td>
+            </tr>
+            <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "myarchive.odb"</td>
+            </tr>    
+           </table>
+           </p>
+            <p></p>
+            <p><b><font color="blue"><u>Example 2</u></font></b></p>
+            <p></p>
+            <p>&nbsp;&nbsp;&nbsp;
+              <table>
+              <tr>    
+                <th align=left width=300>(setq _path  "d:\\test\\")</th>
+                <td>;; Set the _path variable to "d:\test"</td>
+            </tr>   
+              <tr>    
+                <th align=left>(setq arcFile (new ObjectRepository: "myarchive.odb"))</th>
+                <td>;; Set database archive file to "d:\test\myarchive.odb"</td>
+            </tr>   
+              </table>
+              </p>
+            <!-- Notes & Hints Template -->
+            <p><b><font color="blue"><u>Notes &amp; Hints</u></font></b></p>
+            <p>[...under construction...]</P>     
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

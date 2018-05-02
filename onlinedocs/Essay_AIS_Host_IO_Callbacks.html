@@ -1,0 +1,1099 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>AIS Host IO Callbacks</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SHost_Closef"><FONT SIZE=2>Host_Closef</font></a></li><li><a href="#SHost_Display"><FONT SIZE=2>Host_Display</font></a></li><li><a href="#SHost_Escape"><FONT SIZE=2>Host_Escape</font></a></li><li><a href="#SHost_Openf"><FONT SIZE=2>Host_Openf</font></a></li><li><a href="#SHost_Readf"><FONT SIZE=2>Host_Readf</font></a></li><li><a href="#SHost_ReadW"><FONT SIZE=2>Host_ReadW</font></a></li><li><a href="#SHost_Resizef"><FONT SIZE=2>Host_Resizef</font></a></li><li><a href="#SHost_Seekf"><FONT SIZE=2>Host_Seekf</font></a></li><li><a href="#SHost_Writef"><FONT SIZE=2>Host_Writef</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Overview">
+		   <p>The Lambda
+		    Information Server C API is divided into halves. The first half consists of
+		    all the <b>C Programmer's API</b>
+		    functions (which are provided through the fsmtbase.h include file). The
+		    second half consists of all the <b>AIS
+		    Host<b> IO </b>Callback</b>
+		    <b>Functions</b> (which are provided to
+		    the Analytic Information Server engine by the hosting client application at
+		    initialization). There are a small number of C functions which provide the
+		    interface between the Analytic Information Server database engine and the
+		    hosting client application program, and they are listed in this section.</p>
+		    <p>&nbsp;</p>
+		    <p><b>Note</b>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </p>
+		    <p>These
+		    functions are always implemented by the hosting client application. As
+		    specified herein, they return error codes to signify error conditions.
+		    Optionally, the client application may throw, out of Analytic Information
+		    Server, back to its error handler.</p> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Closef"></A>Host_Closef</H2></P>		
+		    <div class="h2section" id="Host_Closef">
+		    <p><b>Host_Closef(CONTEXT*
+		    gCP,THREAD* gTP,NUM&nbsp; fileID,NUM
+		    opcode);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Closef</b>
+		    function closes a host file.&nbsp;</p>
+		    <p>&nbsp;
+		 
+		    </p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            fileID
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            host file identifier which must have been previously returned from a
+		            call to Host_Openf().</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            opcode
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            opcode switch. A value of:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		            <p>(0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            requests that the file be erased after close and removed from
+		            the disk.</p>
+		            <p>(1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		            requests that the file be closed and placed permanently on
+		            disk.</p>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            error code resulting from the display operation. A value of zero (0)
+		            indicates no error occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>
+		    <p>&nbsp;
+		 
+		    </p>
+		    <p><b>Note:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    </b>If the fileID argument is
+		    negative, all of the currently open files are closed with an assumed opcode
+		    of 1.
+		 
+		    </p>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Display"></A>Host_Display</H2></P>		
+		    <div class="h2section" id="Host_Display">
+		    <p><b>Host_Display(char*&nbsp;
+		    string,NUM&nbsp; newline);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Display</b>
+		    function displays an ASCII C string on the host application console.</p>
+		    <p>&nbsp;
+		 
+		    </p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>char*&nbsp;
+		            string
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            ASCII C string to be displayed.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            newline
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            newline switch. A value of one (1) requests that a newline be
+		            displayed after the string. Otherwise, do no advance to the next
+		            line.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            error code resulting from the display operation. A value of zero (0)
+		            indicates no error occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Escape"></A>Host_Escape</H2></P>		
+		    <div class="h2section" id="Host_Escape">
+	    <p><b>Host_Escape(void);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Escape</b>
+		    function returns an integer zero (0) if the engine is to continue normal
+		    operation; otherwise, returns an integer one (1) if the engine is to halt
+		    normal operations and escape. Sometimes the engine may respond by calling
+		    Host_error() with an ASCII C string of: &quot;Escape Requested&quot;.</p>
+		    <p>&nbsp;</p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            escape code. A value of zero (0) indicates no escape requested. A
+		            value of one (1) indicates escape requested.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>	   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Openf"></A>Host_Openf</H2></P>		
+		    <div class="h2section" id="Host_Openf">
+	    <p><b>Host_Openf(char*&nbsp;
+	    filename, NUM mode, NUM&nbsp; type);</b></p>
+	    <p><b>C
+	    Function</b></p>
+	    <p>The <b>Host_Openf</b>
+	    function opens an existing host application file. Returns an integer as a
+	    file identifier. The integer file identifier will be used, by the engine, in
+	    all subsequent references to the file.&nbsp;</p>
+	    <p>&nbsp;</p>
+	    <table>
+	      <tbody>
+	        <tr>
+	          <td>
+	            <p><b>Arguments
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>CONTEXT*
+	            gCP
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>The<b>
+	            </b>context pointer.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>THREAD*
+	            gTP
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>The<b>
+	            </b>thread pointer.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>char*&nbsp;
+	            filename
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>The
+	            name of the file to be opened. This name may include a full path
+	            specification.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>NUM&nbsp;
+	            mode</b></p>
+	          </td>
+	          <td>
+	            <p>The
+	            mode switch. A value of zero (0) requests that only an existing file
+	            be opened. A value of one (1) indicates that a new file will be
+	            created. If a file already exists with this name, it will be
+	            destroyed and a new virgin file will be created. A value of two (2),
+	            valid for database files only, indicates that an existing database
+	            file be opened for read only transactions shared with other users.&nbsp;
+	            A value of three (3) requests that an inserted repository
+	            file be opened.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>NUM&nbsp;
+	            type
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>The
+	            file type switch which determines the type of host data file which
+	            is opened:</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	          <td>
+	            <p>(0)&nbsp;
+	            requests a Smartscript text file.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	          <td>
+	            <p>(1)&nbsp;
+	            requests a Spreadsheet binary file</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	          <td>
+	            <p>(2)
+	            requests a Smarttable binary file.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	          <td>
+	            <p>(3)
+	            requests a Workspace binary file.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	          <td>
+	            <p>(4)
+	            requests an Object binary file.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	          <td>
+	            <p>r(5)
+	            equests an Object database file.</p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>Result
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>&nbsp;
+	 
+	            </p>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <p><b>return(NUM)
+	 
+	            </b></p>
+	          </td>
+	          <td>
+	            <p>The
+	            non-zero integer file identifier or zero to indicate an&nbsp;
+	            error condition.</p>
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>	   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Readf"></A>Host_Readf</H2></P>		
+		    <div class="h2section" id="Host_Readf">
+		   <p><b>Host_Readf(NUM&nbsp;
+		    fileID,NUM length,char*&nbsp; bufptr);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Readf</b>
+		    function reads the specified number of bytes from a host file into a memory
+		    buffer supplied by the engine.&nbsp;</p>
+		    <p>&nbsp;
+		 
+		    </p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            fileID
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            host file identifier which must have been previously returned from a
+		            call to Host_Openf().</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            length
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            number of bytes to read.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>char*&nbsp;
+		            bufptr
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            pointer to the memory buffer into which the data is to be read.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            error code resulting from the display operation. A value of zero (0)
+		            indicates no error occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_ReadW"></A>Host_ReadW</H2></P>		
+		    <div class="h2section" id="Host_ReadW">
+		    <p><b>Host_ReadW(NUM&nbsp;
+		    winID,NUM length,char*&nbsp; bufptr);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_ReadW</b>
+		    function reads the specified number of text bytes from a host Smartscript
+		    window into a memory buffer supplied by the engine.&nbsp;</p>
+		    <p>&nbsp;
+		 
+		    </p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            winID
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            host window identifier which must have been previously returned from
+		            a call to Host_OpenW(). The window must be a Smartscript text window
+		            or an error will result.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            length
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            number of bytes to read.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>char*&nbsp;
+		            bufptr
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            pointer to the memory buffer into which the text data is to be read.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            error code resulting from the display operation. A value of zero (0)
+		            indicates no error occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Resizef"></A>Host_Resizef</H2></P>		
+		    <div class="h2section" id="Host_Resizef">
+		    <p><b>Host_Resizef(NUM&nbsp;
+		    fileID,NUM newsize);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Releasef</b>
+		    function sets the size of a host file to the specified number of bytes.</p>
+		    <p>&nbsp;</p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            fileID
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            host file identifier which must have been previously returned from a
+		            call to Host_Openf().</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            newsize
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            new size of the file.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>A
+		            value of zero or greater, indicates no error occurred and returns
+		            the new size of the host file. A negative return code indicates an
+		            error has occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Seekf"></A>Host_Seekf</H2></P>		
+		    <div class="h2section" id="Host_Seekf">
+		    <p><b>Host_Seekf(NUM&nbsp;
+		    fileID,NUM adjustment,NUM&nbsp; opcode);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Seekf</b>
+		    function relocates the read/write pointer of a host file to a new location.</p>
+		    <p>&nbsp;</p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            fileID
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            host file identifier which must have been previously returned from a
+		            call to Host_Openf().</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            adjustment
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            adjustment in bytes of the new file read/write pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            opcode
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            opcode switch. A value of</p>
+		            <p>(0)
+		            requests that the file read/write pointer be adjusted from the
+		            current location (the adjustment is added to the current location).</p>
+		            <p>(1)
+		            requests that the file read/write pointer be adjusted from the start
+		            of the file (the adjustment is the new location).</p>
+		            <p>(2)
+		            requests that the file read/write pointer be adjusted from the end
+		            of the file (the adjustment is added to the end of the file).</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            error code resulting from the display operation. A value of zero or
+		            greater (0) indicates no error occurred and returns the current
+		            location of the host file read/write pointer starting from the
+		            beginning of the file. A negative return code indicates an error has
+		            occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHost_Writef"></A>Host_Writef</H2></P>		
+		    <div class="h2section" id="Host_Writef">
+		   <p><b>Host_Writef(NUM&nbsp;
+		    fileID,NUM length,char*&nbsp; bufptr);</b></p>
+		    <p><b>C
+		    Function</b></p>
+		    <p>The <b>Host_Writef</b>
+		    function writes the specified number of bytes from a memory buffer supplied
+		    by the engine into a host file.&nbsp;</p>
+		    <p>&nbsp;
+		 
+		    </p>
+		    <table>
+		      <tbody>
+		        <tr>
+		          <td>
+		            <p><b>Arguments
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>CONTEXT*
+		            gCP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>context pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>THREAD*
+		            gTP
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The<b>
+		            </b>thread pointer.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            fileID
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            host file identifier which must have been previously returned from a
+		            call to Host_Openf().</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>NUM&nbsp;
+		            length
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            number of bytes to write.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>char*&nbsp;
+		            bufptr
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            pointer to the memory buffer from which the data is to be written.</p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>Result
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>&nbsp;
+		 
+		            </p>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td>
+		            <p><b>return(NUM)
+		 
+		            </b></p>
+		          </td>
+		          <td>
+		            <p>The
+		            error code resulting from the display operation. A value of zero (0)
+		            indicates no error occurred.</p>
+		          </td>
+		        </tr>
+		      </tbody>
+		    </table>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

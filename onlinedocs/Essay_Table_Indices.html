@@ -1,0 +1,371 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Table Indices</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIndices Overview"><FONT SIZE=2>Indices Overview</font></a></li><li><a href="#ScreateIndex"><FONT SIZE=2>createIndex</font></a></li><li><a href="#SdeleteIndex"><FONT SIZE=2>deleteIndex</font></a></li><li><a href="#SdisableIndices"><FONT SIZE=2>disableIndices</font></a></li><li><a href="#SenableIndices"><FONT SIZE=2>enableIndices</font></a></li><li><a href="#SgetBestIndex"><FONT SIZE=2>getBestIndex</font></a></li><li><a href="#SgetRecordByKey"><FONT SIZE=2>getRecordByKey</font></a></li><li><a href="#SgetRecordRowByKey"><FONT SIZE=2>getRecordRowByKey</font></a></li><li><a href="#SgetRecordBySJKey"><FONT SIZE=2>getRecordBySJKey</font></a></li><li><a href="#SgetRecordRowBySJKey"><FONT SIZE=2>getRecordRowBySJKey</font></a></li><li><a href="#SindexView"><FONT SIZE=2>indexView</font></a></li><li><a href="#SindexViewBySJTableKey"><FONT SIZE=2>indexViewBySJTableKey</font></a></li><li><a href="#SindexViewBySJRowKey"><FONT SIZE=2>indexViewBySJRowKey</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIndices Overview"></A>Indices Overview</H2></P>		
+		    <div class="h2section" id="Indices Overview">
+		<P>The tables managed by dataMineLib allow for the creation and management of
+		one or more indices on a table. Each index is stored in the object repository
+		along with the table on which it is defined. One indexObject record exists for
+		each index defined on the table. Table indices are not allowed on meta tables
+		or member tables. The table below summarizes the cursor functions allowing
+		creation, management and query against an index defined on a table.</P>
+		<TABLE WIDTH="68%">
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">createIndex</TD>
+		<TD WIDTH="408">Create an index on the cursor.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">deleteIndex</TD>
+		<TD WIDTH="408">Delete an existing index on the cursor.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">disableIndicies</TD>
+		<TD WIDTH="408">Disable all index processing.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">enableIndices</TD>
+		<TD WIDTH="408">Enable index processing and reindex any existing indices.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">getRecordsByKey</TD>
+		<TD WIDTH="408">Get a vector of records by key in a specified index.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">getRecordRowsByKey</TD>
+		<TD WIDTH="408">Get a vector of record rows by key in a specified index.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">indexView</TD>
+		<TD WIDTH="408">Make the current view reflect the order and content of a
+		specified index. Provide an optional key value to filter the current view as
+		well.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="147" VALIGN="TOP">getBestIndex</TD>
+		<TD WIDTH="408">Inspect the cursor's indices and return the name of the best
+		index to use to search on a list of specified columns.</TD>
+		</TR>
+		</TABLE>
+		<P>In addition, a few dataMineLib level functions are available that
+		&quot;wrapper&quot; functionality available at the cursor level. A summary of
+		these are shown in the following table.</P>
+		<TABLE WIDTH="68%">
+		<TR>
+		<TD WIDTH="149" VALIGN="TOP">createIndex</TD>
+		<TD WIDTH="411">Create an index on a table. Opens a disk cursor, creates the
+		index and then closes the disk cursor.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="149" VALIGN="TOP">deleteIndex</TD>
+		<TD WIDTH="411">Delete an index on a table. Opens a disk cursor, deletes the
+		index and then closes the disk cursor.</TD>
+		</TR>
+		<TR>
+		<TD WIDTH="149" VALIGN="TOP">open</TD>
+		<TD WIDTH="411">The disk and static cursors open by default with indices
+		enabled. The memory cursor opens by default with indices disabled.<BR>
+		New arguments<B> noIndicies:</B> and <B>withIndices:</B>. noIndicies will open
+		the cursor as if there were no indices defined on the table. noIndices is the
+		default for the memory cursor. withIndices will open the memory cursor with
+		indicies and is the default for disk and static cursors.<BR>
+		<BR>
+		New optional argument <B>loadByIndex: and indexName</B> and an optional
+		<B>keyVal</B> argument to specify the cursor be opened and read in index order,
+		filtered to include only those keys matching the optional keyVal argument if it
+		was passed. </TD>
+		</TR>
+		</TABLE>
+		<P>Note: The dataMineLib.open function has an option called disableIndicies:
+		to allow you to open a cursor with its indices disabled. The indicies for a
+		table are shared among the disk and static cursors opened on the same table. 
+		</P>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScreateIndex"></A>createIndex</H2></P>		
+		    <div class="h2section" id="createIndex">
+			<P>Use the createIndex function to add a new index to a table. While indices
+			may be created on disk or memory cursors, they are saved on cursor.close only
+			for disk cursors. However, any indices you create on a memory cursor will be
+			saved if you issue the cursor.save command on the memory cursor. createIndex is
+			available for disk and memory cursors only.</P>
+			<P>Syntax: (cursor.createIndex indexName keySpec <I>unique:</I> )</P>
+			<TABLE WIDTH="83%">
+			<TR>
+			<TD VALIGN="TOP">indexName</TD>
+			<TD WIDTH="477">A string or symbol containing the name of the index.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">keySpec</TD>
+			<TD WIDTH="477">A structure or string. If a string is provided then it must be
+			a Lisp expression that will extract the appropriate key from the table
+			columns as required. If a structure is provided it should contain a column list
+			with sort specification for each column. ex: #{columnName: A: | D: ...). NOTE:
+			Currently only the A: (ascending sort) option is allowed when defining the
+			column list. You must specify A: for future compatiblity with the future
+			addition of the D: (descending sort) option.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP"><I>unique:</I></TD>
+			<TD WIDTH="477">An optional symbol argument specifying that the index is to be
+			a unique key index. </TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">Returns</TD>
+			<TD WIDTH="477">True</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdeleteIndex"></A>deleteIndex</H2></P>		
+		    <div class="h2section" id="deleteIndex">
+			<P>Use the deleteIndex function to delete an existing index from the table.
+			deleteIndex is available for disk and memory cursors only.<BR>
+			Syntax: (cursor.deleteIndex indexName)</P>
+			<TABLE WIDTH="83%">
+			<TR>
+			<TD VALIGN="TOP">indexName&nbsp;</TD>
+			<TD WIDTH="477">A string or symbol containing the name of an existing
+			index.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">Returns&nbsp;</TD>
+			<TD WIDTH="477">True</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdisableIndices"></A>disableIndices</H2></P>		
+		    <div class="h2section" id="disableIndices">
+			<P>Use the disableIndices function to disable index processing on the cursor.
+			This is useful if you want to do a lot of table updates without the incremental
+			overhead of index management. Use the enableIndices to turn index processing
+			back on. disableIndices is available for disk and memory cursors only. When you
+			disableIndicies on a disk cursor the indicies for the table are disabled for
+			all static cursors opened on that table.<BR>
+			Syntax: (cursor.deleteIndex)</P>
+			<TABLE WIDTH="83%">
+			<TR>
+			<TD VALIGN="TOP">Returns&nbsp;</TD>
+			<TD WIDTH="477">True</TD>
+			</TR>	
+			</TABLE>	     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SenableIndices"></A>enableIndices</H2></P>		
+		    <div class="h2section" id="enableIndices">
+			<P>Use the enableIndices function to enable index processing on the cursor
+			after a disableIndices. enableIndices will force a reindexing of all indices
+			defined on the cursor. enableIndices is available for disk and memory cursors
+			only. when you enableIndices ona a disk cursor the indicies for the table are
+			enabled on all satic cursors opend on that table.<BR>
+			Syntax: (cursor.deleteIndex)</P>
+			<TABLE WIDTH="83%">
+			<TR>
+			<TD VALIGN="TOP">Returns&nbsp;</TD>
+			<TD WIDTH="477">True</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetBestIndex"></A>getBestIndex</H2></P>		
+		    <div class="h2section" id="getBestIndex">
+			<P>Inspect the cursor's indices and return the name of the best index to use to
+			search on a list of specified columns.<BR>
+			Syntax: (cursor.getBestIndex colSpec)</P>
+			<TABLE WIDTH="81%">
+			<TR>
+			<TD VALIGN="TOP">colSpec</TD>
+			<TD WIDTH="466">A vector containing one or more column names.<BR>
+			#(column: ...)</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">Returns</TD>
+			<TD WIDTH="466">Name of best index to use or false if no appropriate index was
+			found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetRecordByKey"></A>getRecordByKey</H2></P>		
+		    <div class="h2section" id="getRecordByKey">
+			<P>Use the getRecordsByKey function to find and return a vector of records in
+			the table by key. getRecordsByKey works against the entire table and will
+			return records not in the current view. Remeber that the current view may have
+			been filtered and not reflect the entire content of the table.<BR>
+			Syntax: (cursor.getRecordsByKey indexName keyValues )</P>
+			<TABLE WIDTH="82%">
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">indexName&nbsp;</TD>
+			<TD WIDTH="480">A string or symbol containing the name of an existing
+			index.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">keyValues&nbsp;</TD>
+			<TD WIDTH="480">For single column indicies the keyValues is a single value. For
+			multiple column indicies (coposite keys) the keyValues argument is a vector
+			containing the key components you wish to search on. If less components are
+			passed than exist in the composite key then the search is t reated as a partial
+			search.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">Returns</TD>
+			<TD WIDTH="480">A object vector containing the first record found or false if
+			no record was found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetRecordRowByKey"></A>getRecordRowByKey</H2></P>		
+		    <div class="h2section" id="getRecordRowByKey">
+			<P>Use the getRecordRowsByKey function to find and return vector of record rows
+			in the table by key. getRecordRowsByKey works against the entire table and will
+			return a record rows for records not in the current view. Remeber that the
+			current view may have been filtered and not reflect the entire content of the
+			table.<BR>
+			Syntax: (cursor.getRecordRowsByKey indexName keyValues )</P>
+			<TABLE WIDTH="82%">
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">indexName&nbsp;</TD>
+			<TD WIDTH="480">A string or symbol containing the name of an existing
+			index.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">keyValues&nbsp;</TD>
+			<TD WIDTH="480">For single column indicies the keyValues is a single value. For
+			multiple column indicies (coposite keys) the keyValues argument is a vector
+			containing the key components you wish to search on. If less components are
+			passed than exist in the composite key then the search is t reated as a partial
+			search.</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">Returns</TD>
+			<TD WIDTH="480">A number containing the first record's row found or false if no
+			record was found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetRecordBySJKey"></A>getRecordBySJKey</H2></P>		
+		    <div class="h2section" id="getRecordBySJKey">
+			<P>Use the getRecordBySJKey function to find and return a record in a meta
+			table by key . The getRecordByKey function will return the first record
+			matching the supplied key value from the table. getRecordBySJKey works against
+			the entire table and will return a record even if it is not in the current
+			view. Remeber that the current view may have been filtered and not reflect the
+			entire content of the table.<BR>
+			Syntax: (cursor.getRecordBySJKey tableKey rowKey )</P>
+			<TABLE WIDTH="82%">
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">tableKey&nbsp;</TD>
+			<TD WIDTH="480"></TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">rowKey&nbsp;</TD>
+			<TD WIDTH="480">&nbsp;</TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">Returns</TD>
+			<TD WIDTH="480">A object vector containing the first record found or false if
+			no record was found.</TD>
+			</TR>	
+			</TABLE>	     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetRecordRowBySJKey"></A>getRecordRowBySJKey</H2></P>		
+		    <div class="h2section" id="getRecordRowBySJKey">
+			<P>Use the getRecordRowBySJKey function to find and return a record's row in a
+			meta table by key. The getRecordBySJKey function will return the row of the
+			first record matching the supplied key value from the table.
+			getRecordByRowSJKey works against the entire table and will return a record's
+			row even if it is not in the current view. Remeber that the current view may
+			have been filtered and not reflect the entire content of the table.<BR>
+			Syntax: (cursor.getRecordRowBySJKey tableKey rowKey)</P>
+			<TABLE WIDTH="82%">
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">tableKey&nbsp;</TD>
+			<TD WIDTH="480"></TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">rowKey&nbsp;</TD>
+			<TD WIDTH="480"></TD>
+			</TR>
+			<TR>
+			<TD WIDTH="193" VALIGN="TOP">Returns</TD>
+			<TD WIDTH="480">A number containing the first record's row found or false if no
+			record was found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SindexView"></A>indexView</H2></P>		
+		    <div class="h2section" id="indexView">
+			<P>Use the indexView function to filter the current view so that it contains
+			only records from the table that match the specified key value.<BR>
+			Syntax: (cursor.indexView indexName <I>keyValues</I> )</P>
+			<TABLE WIDTH="81%">
+			<TR>
+			<TD VALIGN="TOP">indexName</TD>
+			<TD WIDTH="466">A string or symbol containing the name of an existing
+			index.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP"><I>keyValues</I></TD>
+			<TD WIDTH="466">For single column indicies the keyValues is a single value. For
+			multiple column indicies (coposite keys) the keyValues argument is a vector
+			containing the key components you wish to search on. If less components are
+			passed than exist in the composite key then the search is t reated as a partial
+			search.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">Returns</TD>
+			<TD WIDTH="466">Number of records found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SindexViewBySJTableKey"></A>indexViewBySJTableKey</H2></P>		
+		    <div class="h2section" id="indexViewBySJTableKey">
+			<P>Use the indexView function to filter the current view so that it contains
+			only records from the meta table that match the specified key value.<BR>
+			Syntax: (cursor.indexViewbySJTableKey tableKey )</P>
+			<TABLE WIDTH="81%">
+			<TR>
+			<TD VALIGN="TOP"><I>tableKey</I></TD>
+			<TD WIDTH="466"></TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">Returns</TD>
+			<TD WIDTH="466">Number of records found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SindexViewBySJRowKey"></A>indexViewBySJRowKey</H2></P>		
+		    <div class="h2section" id="indexViewBySJRowKey">
+			<P>Use the indexView function to filter the current view so that it contains
+			only records from the meta table that match the specified key value.<BR>
+			Syntax: (cursor.indexViewbySJRowKey rowKey )</P>
+			<TABLE WIDTH="81%">
+			<TR>
+			<TD VALIGN="TOP"><I>rowKey</I></TD>
+			<TD WIDTH="466"></TD>
+			</TR>
+			<TR>
+			<TD VALIGN="TOP">Returns</TD>
+			<TD WIDTH="466">Number of records found.</TD>
+			</TR>
+			</TABLE>		     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

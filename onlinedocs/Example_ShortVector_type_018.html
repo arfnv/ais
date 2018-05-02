@@ -1,0 +1,263 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example ShortVector type 018</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example shows how the <b>type</b> function return the
+
+
+
+
+
+
+
+                    user-defined data type  of the AIS Objects evaluated.
+
+
+
+
+
+
+
+
+
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Define a Short Vector and check the type.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (setq X (new Vector:  short:  2  11 12))  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 123456&#62   </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(type X)   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> ShortVector </Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>type</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_type_021.html">BitVector type 021</A></td>
+<td><A HREF="Example_Boolean_type_011.html">Boolean type 011</A></td>
+<td><A HREF="Example_Brick_type_026.html">Brick type 026</A></td>
+<td><A HREF="Example_ByteVector_type_022.html">ByteVector type 022</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_type_012.html">Character type 012</A></td>
+<td><A HREF="Example_Date_type_014.html">Date type 014</A></td>
+<td><A HREF="Example_Dictionary_type_007.html">Dictionary type 007</A></td>
+<td><A HREF="Example_Directory_type_008.html">Directory type 008</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_type_016.html">FltVector type 016</A></td>
+<td><A HREF="Example_Function_type_015.html">Function type 015</A></td>
+<td><A HREF="Example_IntVector_type_017.html">IntVector type 017</A></td>
+<td><A HREF="Example_Lambda_type_011.html">Lambda type 011</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_type_010.html">Matrix type 010</A></td>
+<td><A HREF="Example_NumMatrix_type_025.html">NumMatrix type 025</A></td>
+<td><A HREF="Example_NumVector_type_018.html">NumVector type 018</A></td>
+<td><A HREF="Example_Number_type_013.html">Number type 013</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_type_019.html">ObjVector type 019</A></td>
+<td><A HREF="Example_ObjectRepository_type_024.html">ObjectRepository type 024</A></td>
+<td><A HREF="Example_Pair_type_023.html">Pair type 023</A></td>
+<td><A HREF="Example_PcodeVector_type_020.html">PcodeVector type 020</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_type_018.html">ShortVector type 018</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+<td><A HREF="Example_Vector_type_009.html">Vector type 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Void_type_011.html">Void type 011</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_type_Builtin.html">type</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_isType_Builtin.html">isType(Builtin)</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector(Builtin)</A></td>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector(Builtin)</A></td>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector(Builtin)</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical(Builtin)</A></td>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector(Builtin)</A></td>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_isVector_Builtin.html">isVector(Builtin)</A></td>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="ShortVector.html">ShortVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_ShortVector_append_008.html">ShortVector append 008</A></td>
+<td><A HREF="Example_ShortVector_apply_007.html">ShortVector apply 007</A></td>
+<td><A HREF="Example_ShortVector_binaryInsert_006.html">ShortVector binaryInsert 006</A></td>
+<td><A HREF="Example_ShortVector_binarySearch_007.html">ShortVector binarySearch 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_ShortVector_compare_016.html">ShortVector compare 016</A></td>
+<td><A HREF="Example_ShortVector_compareEQ_015.html">ShortVector compareEQ 015</A></td>
+<td><A HREF="Example_ShortVector_compareGE_015.html">ShortVector compareGE 015</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_compareGT_015.html">ShortVector compareGT 015</A></td>
+<td><A HREF="Example_ShortVector_compareLE_015.html">ShortVector compareLE 015</A></td>
+<td><A HREF="Example_ShortVector_compareLT_015.html">ShortVector compareLT 015</A></td>
+<td><A HREF="Example_ShortVector_compareNE_015.html">ShortVector compareNE 015</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_comparison_functions_015.html">ShortVector comparison functions 015</A></td>
+<td><A HREF="Example_ShortVector_copy_008.html">ShortVector copy 008</A></td>
+<td><A HREF="Example_ShortVector_delete_011.html">ShortVector delete 011</A></td>
+<td><A HREF="Example_ShortVector_insert_007.html">ShortVector insert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_inside_006.html">ShortVector inside 006</A></td>
+<td><A HREF="Example_ShortVector_isAtom_007.html">ShortVector isAtom 007</A></td>
+<td><A HREF="Example_ShortVector_isEqual_015.html">ShortVector isEqual 015</A></td>
+<td><A HREF="Example_ShortVector_isIdentical_014.html">ShortVector isIdentical 014</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_isObject_009.html">ShortVector isObject 009</A></td>
+<td><A HREF="Example_ShortVector_length_010.html">ShortVector length 010</A></td>
+<td><A HREF="Example_ShortVector_map_007.html">ShortVector map 007</A></td>
+<td><A HREF="Example_ShortVector_mapc_007.html">ShortVector mapc 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_member_006.html">ShortVector member 006</A></td>
+<td><A HREF="Example_ShortVector_new_011.html">ShortVector new 011</A></td>
+<td><A HREF="Example_ShortVector_ref_024.html">ShortVector ref 024</A></td>
+<td><A HREF="Example_ShortVector_remove_006.html">ShortVector remove 006</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_resize_008.html">ShortVector resize 008</A></td>
+<td><A HREF="Example_ShortVector_reverse_005.html">ShortVector reverse 005</A></td>
+<td><A HREF="Example_ShortVector_setCdr_008.html">ShortVector setCdr 008</A></td>
+<td><A HREF="Example_ShortVector_setq_021.html">ShortVector setq 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_sizeof_016.html">ShortVector sizeof 016</A></td>
+<td><A HREF="Example_ShortVector_sort_015.html">ShortVector sort 015</A></td>
+<td><A HREF="Example_ShortVector_type_018.html">ShortVector type 018</A></td>
+<td><A HREF="Example_ShortVector_uniqueInsert_007.html">ShortVector uniqueInsert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_vectorFill_005.html">ShortVector vectorFill 005</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

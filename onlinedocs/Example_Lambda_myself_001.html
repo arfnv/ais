@@ -1,0 +1,224 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Lambda myself 001</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> <p>This example shows how the <b>myself</b> function returns the currently evaluated Lambda. </p>
+    </Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>An Lambda to execute the following Lisp script.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><b>(defun foo() (myself))               
+</b></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Lambda 123456&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><b> 
+(foo)             </b></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Lambda 123456&#62  </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><b> foo        </b></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Lambda 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression><b>(=  (foo)  foo)            </b></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>true</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints>The Source Code Vector is typically blank, however it is usually necessary for online debugging 
+             (see <b>debug</b> or <b>disassemble</b>).  The <b>lisp</b> function will construct the source line tokens and 
+              place them in the Source Code Vector:</Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>myself</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_Lambda_myself_001.html">Lambda myself 001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_myself_Builtin.html">myself</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Lambda.html">Lambda</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Context_debug_001.html">Context debug 001</A></td>
+<td><A HREF="Example_Context_debugBrowsableProcs_001.html">Context debugBrowsableProcs 001</A></td>
+<td><A HREF="Example_Context_disassemble_001.html">Context disassemble 001</A></td>
+<td><A HREF="Example_Context_globalBinding_001.html">Context globalBinding 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Context_inspect_001.html">Context inspect 001</A></td>
+<td><A HREF="Example_Lambda_argCount_001.html">Lambda argCount 001</A></td>
+<td><A HREF="Example_Lambda_argFetch_001.html">Lambda argFetch 001</A></td>
+<td><A HREF="Example_Lambda_balance_001.html">Lambda balance 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_callcc_001.html">Lambda callcc 001</A></td>
+<td><A HREF="Example_Lambda_compare_008.html">Lambda compare 008</A></td>
+<td><A HREF="Example_Lambda_compareEQ_008.html">Lambda compareEQ 008</A></td>
+<td><A HREF="Example_Lambda_compareGE_008.html">Lambda compareGE 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_compareGT_008.html">Lambda compareGT 008</A></td>
+<td><A HREF="Example_Lambda_compareLT_008.html">Lambda compareLT 008</A></td>
+<td><A HREF="Example_Lambda_compareNE_004.html">Lambda compareNE 004</A></td>
+<td><A HREF="Example_Lambda_compile_001.html">Lambda compile 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_copy_008.html">Lambda copy 008</A></td>
+<td><A HREF="Example_Lambda_debug_001.html">Lambda debug 001</A></td>
+<td><A HREF="Example_Lambda_debugBrowsableProcs_001.html">Lambda debugBrowsableProcs 001</A></td>
+<td><A HREF="Example_Lambda_defchild_001.html">Lambda defchild 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_define_001.html">Lambda define 001</A></td>
+<td><A HREF="Example_Lambda_define(macro)_001.html">Lambda define(macro) 001</A></td>
+<td><A HREF="Example_Lambda_defmacro_001.html">Lambda defmacro 001</A></td>
+<td><A HREF="Example_Lambda_defmacro_002.html">Lambda defmacro 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_deforphan_001.html">Lambda deforphan 001</A></td>
+<td><A HREF="Example_Lambda_defriend_001.html">Lambda defriend 001</A></td>
+<td><A HREF="Example_Lambda_defun_001.html">Lambda defun 001</A></td>
+<td><A HREF="Example_Lambda_defun_002.html">Lambda defun 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_disassemble_001.html">Lambda disassemble 001</A></td>
+<td><A HREF="Example_Lambda_eval_001.html">Lambda eval 001</A></td>
+<td><A HREF="Example_Lambda_exportTab_001.html">Lambda exportTab 001</A></td>
+<td><A HREF="Example_Lambda_globalBinding_001.html">Lambda globalBinding 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_importTab_001.html">Lambda importTab 001</A></td>
+<td><A HREF="Example_Lambda_inspect_001.html">Lambda inspect 001</A></td>
+<td><A HREF="Example_Lambda_isLambda_001.html">Lambda isLambda 001</A></td>
+<td><A HREF="Example_Lambda_lambda_001.html">Lambda lambda 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_makeLambda_001.html">Lambda makeLambda 001</A></td>
+<td><A HREF="Example_Lambda_myself_001.html">Lambda myself 001</A></td>
+<td><A HREF="Example_Lambda_new_001.html">Lambda new 001</A></td>
+<td><A HREF="Example_Lambda_new_002.html">Lambda new 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_new_003.html">Lambda new 003</A></td>
+<td><A HREF="Example_Lambda_onError_001.html">Lambda onError 001</A></td>
+<td><A HREF="Example_Lambda_setq_015.html">Lambda setq 015</A></td>
+<td><A HREF="Example_Lambda_type_011.html">Lambda type 011</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">ObjectRepository detachLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">ObjectRepository refLibrarian 001</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

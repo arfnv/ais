@@ -1,0 +1,724 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Miner Lambda</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SMiner Lambda Overview"><FONT SIZE=2>Miner Lambda Overview</font></a></li><li><a href="#SProjects"><FONT SIZE=2>Projects</font></a></li><li><a href="#SBlackboard"><FONT SIZE=2>Blackboard</font></a></li><li><a href="#STesting Tables"><FONT SIZE=2>Testing Tables</font></a></li><li><a href="#SMiner Score Lambda"><FONT SIZE=2>Miner Score Lambda</font></a></li><li><a href="#SMiner Filter Lambda"><FONT SIZE=2>Miner Filter Lambda</font></a></li><li><a href="#STesting Runs"><FONT SIZE=2>Testing Runs</font></a></li><li><a href="#SWizards"><FONT SIZE=2>Wizards</font></a></li><li><a href="#SMiner Lambda API"><FONT SIZE=2>Miner Lambda API</font></a></li><li><a href="#SabortProject"><FONT SIZE=2>abortProject</font></a></li><li><a href="#SaddProjectFilter"><FONT SIZE=2>addProjectFilter</font></a></li><li><a href="#SaddProjectScore"><FONT SIZE=2>addProjectScore</font></a></li><li><a href="#SaddProjectTable"><FONT SIZE=2>addProjectTable</font></a></li><li><a href="#SclearProjectScores"><FONT SIZE=2>clearProjectScores</font></a></li><li><a href="#ScurrentProjectCursor"><FONT SIZE=2>currentProjectCursor</font></a></li><li><a href="#ScurrentProjectName"><FONT SIZE=2>currentProjectName</font></a></li><li><a href="#ScurrentTestingSW"><FONT SIZE=2>currentTestingSW</font></a></li><li><a href="#SdropAutoFilters"><FONT SIZE=2>dropAutoFilters</font></a></li><li><a href="#SdropProject"><FONT SIZE=2>dropProject</font></a></li><li><a href="#SdropProjectFilter"><FONT SIZE=2>dropProjectFilter</font></a></li><li><a href="#SdropProjectTable"><FONT SIZE=2>dropProjectTable</font></a></li><li><a href="#SgetFilterLambda"><FONT SIZE=2>getFilterLambda</font></a></li><li><a href="#SgetFilterHistory"><FONT SIZE=2>getFilterHistory</font></a></li><li><a href="#SgetFilterNames"><FONT SIZE=2>getFilterNames</font></a></li><li><a href="#SgetFilterScores"><FONT SIZE=2>getFilterScores</font></a></li><li><a href="#SgetFilterSource"><FONT SIZE=2>getFilterSource</font></a></li><li><a href="#SgetProjectNames"><FONT SIZE=2>getProjectNames</font></a></li><li><a href="#SgetProjectTable"><FONT SIZE=2>getProjectTable</font></a></li><li><a href="#SgetScoreName"><FONT SIZE=2>getScoreName</font></a></li><li><a href="#SgetScoreSource"><FONT SIZE=2>getScoreSource</font></a></li><li><a href="#SnewProject"><FONT SIZE=2>newProject</font></a></li><li><a href="#SopenProject"><FONT SIZE=2>openProject</font></a></li><li><a href="#SregisterProjectsAsExtents"><FONT SIZE=2>registerProjectsAsExtents</font></a></li><li><a href="#SrenameProjectFilter"><FONT SIZE=2>renameProjectFilter</font></a></li><li><a href="#SrenameProjectScore"><FONT SIZE=2>renameProjectScore</font></a></li><li><a href="#SrunProjectFilter"><FONT SIZE=2>runProjectFilter</font></a></li><li><a href="#SsaveFilterSource"><FONT SIZE=2>saveFilterSource</font></a></li><li><a href="#SsaveProject"><FONT SIZE=2>saveProject</font></a></li><li><a href="#StestRun"><FONT SIZE=2>testRun</font></a></li>
+</UL>
+
+<P><H2><A NAME="SMiner Lambda Overview"></A>Miner Lambda Overview</H2></P>		
+		    <div class="h2section" id="Miner Lambda Overview">
+			<P>The Miner, an important datamine child Lambda, manages the data mining
+			operations for the datamine. The Miner Lambda operates on <B>projects</B> which
+			are self-enclosed spreadsheets wherein theoretical concepts can be tested
+			against the datamine. The Miner Lambda selects one of the available projects
+			which is loaded into memory for editing, viewing, and testing. Each project is
+			composed of a list of <B>testing tables</B>, a <B>survival of the fittest</B>
+			Score Lambda, and a list of <B>filter Lambdas</B>.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SProjects"></A>Projects</H2></P>		
+		    <div class="h2section" id="Projects">
+			<P>Each datamine <B>project</B> provides a self-enclosed spreadsheet wherein
+			the dataMineLib can learn to perform better on a set of testing tables. The
+			definition of &quot;perform better&quot; is not fixed, but is entered into the
+			project as a user defined <B><I><U>Score
+			Lambda</U></I></B><I><U></U></I><U></U>. The Score Lambda is designed to provide
+			a numeric value to each of the testing tables. The dataMineLib trains a set
+			of <B><I><U>Filter Lambdas</U></I></B><I><U></U></I><U></U> to filter each of
+			the testing tables so that the resulting filtered testing tables receive better
+			scores from the Score Lambda. Once again, the set of filter Lambdas is not fixed.
+			Filter Lambdas are entered into the project by the user (usually written in the
+			javaScript language provided with the dataMineLib).</P>
+			<P>There is no restriction on the complexity of the filter Lambdas in a project.
+			Obviously, filter Lambdas can be made to learn from experience; and, filter
+			Lambdas can even create other filter Lambdas and automatically add them to the
+			project (for example, where techniques such as <B>Genetic Programming</B> are
+			used).</P>
+			<P>Each project provides a &quot;survival of the fittest&quot; spreadsheet
+			where the best performing filter Lambdas can be sorted to the top (best
+			performing being determined by the user entered Score Lambda) and the worst
+			performing filter Lambdas can be eliminated. Within each project, as machine
+			learning occurs, the top scoring filter Lambdas perform better. Once again, the
+			learning strategies employed by the filter Lambdas are not fixed. Filter Lambdas
+			are entered into the project by the user, and may employ the latest and most
+			sophisticated learning algorithms available.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBlackboard"></A>Blackboard</H2></P>		
+		    <div class="h2section" id="Blackboard">
+			<P>The <B>Blackboard</B> is the datamine logical database wherein the projects
+			are stored. The blackboard being a logical database is not restricted to any
+			one physical datamine extent.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STesting Tables"></A>Testing Tables</H2></P>		
+		    <div class="h2section" id="Testing Tables">
+		<P>The <B>testing tables</B> provide the data upon which the filter Lambdas are
+		trained. Each testing table is a standard table stored in the datamine.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMiner Score Lambda"></A>Miner Score Lambda</H2></P>		
+		    <div class="h2section" id="Miner Score Lambda">
+			<P>The <B>Score Lambda</B> provides each table (in the list of testing tables)
+			with a numeric score. As tables are filtered, their score may get better or
+			worse. The purpose of the score Lambda is to guide the filter Lambdas (during
+			machine learning).</P>	   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMiner Filter Lambda"></A>Miner Filter Lambda</H2></P>		
+		    <div class="h2section" id="Miner Filter Lambda">
+			<P>Each <B>Filter Lambda</B> filters each table (in the list of testing tables),
+			attempting to get a higher numeric score. As tables are filtered, their score
+			may get better or worse. As each filter Lambda learns, its score should improve.
+			Filter Lambdas are the components which <I><U>learn</U></I><U></U> during the
+			process of data mining.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STesting Runs"></A>Testing Runs</H2></P>		
+		    <div class="h2section" id="Testing Runs">
+			<P>Each <B>Testing Run</B> loops until each filter Lambda has filtered every
+			table (in the list of testing tables), receiving a numeric score. Each testing
+			run fills in the project spreadsheet with the scores for each filter Lambda on
+			each table. As each filter Lambda learns, its scores should improve. In
+			addition, filter Lambdas can be compared with each other so that each project
+			spreadsheet becomes a self-enclosed &quot;survival of the fittest&quot;
+			environment wherein the best scoring filter Lambdas can be sorted to the top and
+			the worst scoring filter Lambdas can be eliminated.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SWizards"></A>Wizards</H2></P>		
+		    <div class="h2section" id="Wizards">
+			<P>The <B>Wizard</B> is a user defined Lambda which uses the dataMineLib to
+			perform data mining experiments, and which provides filter Lambdas for data
+			mining projects. Wizards may submit filter Lambdas, to a project, which refer
+			back to the Wizard during machine learning. Wizards are often used as meta
+			learning Lambdas.</P>	   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMiner Lambda API"></A>Miner Lambda API</H2></P>		
+		    <div class="h2section" id="Miner Lambda API">
+			<P>All table cursor objects support a simple Lambda Programmable Interface with
+			functions for determining the size of tables, importing records to tables,
+			exporting records from tables, writing records to tables, reading records from
+			tables, etc. The functions available in the cursor API are listed in the
+			following section:</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SabortProject"></A>abortProject</H2></P>		
+		    <div class="h2section" id="abortProject">
+			<P>The <B>abortProject</B> function closes the current project without saving.
+			All changes are lost.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.abortProject)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddProjectFilter"></A>addProjectFilter</H2></P>		
+		    <div class="h2section" id="addProjectFilter">
+			<P>The <B>addProjectFilter</B> function adds or updates a Filter Lambda to the
+			current project. The current project is not saved (see <B>saveProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.addProjectFilter filterName filterSource)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda to be added to the
+			current project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterSource</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The source (usually javaScript) for the Filter
+			Lambda to be added to the current project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddProjectScore"></A>addProjectScore</H2></P>		
+		    <div class="h2section" id="addProjectScore">
+			<P>The <B>addProjectScore</B> function adds or updates the Score Lambda for the
+			current project. The current project is not saved (see <B>saveProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.addProjectScore scoreName scoreSource)<B> </B></P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>scoreName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Score Lambda for the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>scoreSource</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The source (usually javaScript) for the Score
+			Lambda for the current project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddProjectTable"></A>addProjectTable</H2></P>		
+		    <div class="h2section" id="addProjectTable">
+			<P>The <B>addProjectTable</B> function adds a testing table to the specified
+			miner project. The new testing table is added to the end of the list of testing
+			tables. The current project is saved and cleared (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.addProjectTable projectName tableName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>projectName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of project to be updated.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>tableName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the testing table to add to the
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SclearProjectScores"></A>clearProjectScores</H2></P>		
+		    <div class="h2section" id="clearProjectScores">
+			<P>The <B>clearProjectScores</B> function clears the scores for the current
+			project. The current project is not saved (see <B>saveProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.clearProjectScores)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScurrentProjectCursor"></A>currentProjectCursor</H2></P>		
+		    <div class="h2section" id="currentProjectCursor">
+			<P>The <B>currentProjectCursor</B> property contains the cursor of the current
+			project spreadsheet table. If there is no project selected, this property will
+			be void.<BR>
+			Type: Property<BR>
+			Syntax: dataMineLib.miner.currentProjectCursor</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScurrentProjectName"></A>currentProjectName</H2></P>		
+		    <div class="h2section" id="currentProjectName">
+			<P>The <B>currentProjectName</B> property contains the name of the current
+			project spreadsheet table. If there is no project selected, this property will
+			be void.<BR>
+			Type: Property<BR>
+			Syntax: dataMineLib.miner. currentProjectName</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScurrentTestingSW"></A>currentTestingSW</H2></P>		
+		    <div class="h2section" id="currentTestingSW">
+			<P>The <B>currentTestingSW</B> property is true iff the current project
+			spreadsheet table is in testing mode; otherwise, the value will be false. If
+			there is no project selected, this property will be void.<BR>
+			Type: Property<BR>
+			Syntax: dataMineLib.miner. currentTestingSW</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropAutoFilters"></A>dropAutoFilters</H2></P>		
+		    <div class="h2section" id="dropAutoFilters">
+			<P>The <B>dropAutoFilters</B> function deletes all automatically generated
+			Filter Lambdas from the current project (Filter Lambdas whose names start with
+			&quot;_Auto&quot;). The current project is not saved (see <B>saveProject</B>). 
+			<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.dropAutoFilters)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropProject"></A>dropProject</H2></P>		
+		    <div class="h2section" id="dropProject">
+			<P>The <B>dropProject</B> function deletes the specified project from the data
+			mine. The current project is saved and cleared (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.dropProject projectName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>projectName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The project to be dropped from the datamine.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropProjectFilter"></A>dropProjectFilter</H2></P>		
+		    <div class="h2section" id="dropProjectFilter">
+			<P>The <B>dropProjectFilter</B> function deletes the specified Filter Lambda
+			from the current project. The current project is not saved.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.dropProjectFilter filterName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The Filter Lambda to be dropped from the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropProjectTable"></A>dropProjectTable</H2></P>		
+		    <div class="h2section" id="dropProjectTable">
+			<P>The <B>dropProjectTable</B> function drops a testing table from the
+			specified miner project. The specified testing table is deleted from the list
+			of the list of testing tables. The current project is saved and cleared (if
+			any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.dropProjectTable projectName tableName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>projectName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of project to be updated.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>tableName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the testing table to be dropped from
+			the project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFilterLambda"></A>getFilterLambda</H2></P>		
+		    <div class="h2section" id="getFilterLambda">
+			<P>The <B>getFilterLambda</B> function returns the Filter Lambda, in the current
+			project, for the specified filter Lambda name. The current project is unaffected
+			(if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getFilterLambda filterName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda whose Lambda is to be
+			returned.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The Filter Lambda corresponding to the specified
+			filter name.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFilterHistory"></A>getFilterHistory</H2></P>		
+		    <div class="h2section" id="getFilterHistory">
+			<P>The <B>getFilterHistory</B> function returns the history structure for the
+			specified Filter Lambda in the current project. The current project is
+			unaffected (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getFilterHistory filterName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda whose History
+			structure is to be returned.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The History structure of the specified Filter
+			Lambda.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFilterNames"></A>getFilterNames</H2></P>		
+		    <div class="h2section" id="getFilterNames">
+			<P>The <B>getFilterNames</B> function returns the sorted names of all Filter
+			Lambdas in the current project. Both the sort order and the sort field are
+			specified in the arguments. The current project is unaffected (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getFilterNames sortOrder sortField)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>sortOrder</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The sort order: <B>down</B> or <B>up</B>.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>sortField</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The sort field: <B>Avg</B>, <B>Min</B>,
+			<B>Max</B>, <B>Sum</B>, <B>Ssq</B>, <B>Std</B>, <B>Rar</B>, <B>Num</B>, and
+			<B>Cnt</B>.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">A vector of the sorted names of all Filter Lambdas
+			in the current project.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFilterScores"></A>getFilterScores</H2></P>		
+		    <div class="h2section" id="getFilterScores">
+			<P>The <B>getFilterScores</B> function returns the scores structure for the
+			specified Filter Lambda in the current project. The current project is
+			unaffected (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getFilterScores filterName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda whose scores
+			structure is to be returned.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The scores structure of the specified Filter
+			Lambda.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetFilterSource"></A>getFilterSource</H2></P>		
+		    <div class="h2section" id="getFilterSource">
+			<P>The <B>getFilterSource</B> function returns the source string for the
+			specified Filter Lambda in the current project. The current project is
+			unaffected (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getFilterSource filterName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda whose source string
+			is to be returned.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The source string of the specified Filter
+			Lambda.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetProjectNames"></A>getProjectNames</H2></P>		
+		    <div class="h2section" id="getProjectNames">
+			<P>The <B>getProjectNames</B> function returns a vector of project names in the
+			datamine. The current project is unaffected (if any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getProjectNames)<B> </B></P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">A vector of project names in the datamine.</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetProjectTable"></A>getProjectTable</H2></P>		
+		    <div class="h2section" id="getProjectTable">
+			<P>The <B>getProjectTable</B> function returns the name of the specified
+			testing table in the current project. The current project is unaffected (if
+			any).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getProjectTable tableIndex)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>tableIndex</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The index of the testing table in the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the specified testing table in the
+			current project.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetScoreName"></A>getScoreName</H2></P>		
+		    <div class="h2section" id="getScoreName">
+			<P>The <B>getScoreName</B> function returns the Score Lambda name for the
+			current miner project. The current project is unaffected.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.getScoreName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The Score Lambda name for the current miner
+			project.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetScoreSource"></A>getScoreSource</H2></P>		
+		    <div class="h2section" id="getScoreSource">
+			<P>The <B>getScoreSource</B> function returns the source string for the Score
+			Lambda in the current project. The current project is unaffected (if any).<B> 
+			<BR>
+			</B>Type: Function<BR>
+			Syntax: (dataMineLib.miner.getScoreSource)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The source string of the project&rsquo;s Score
+			Lambda.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SnewProject"></A>newProject</H2></P>		
+		    <div class="h2section" id="newProject">
+			<P>The <B>newProject</B> function adds a new project to the datamine. The
+			current project is saved (if any) and the current project is set to the newly
+			created project. The project name, score Lambda name, score Lambda source, and
+			the list of testing table are specified by the user.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.newProject prjName tblNames scoreName scrSource
+			filters)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>prjName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the new project in the datamine (must
+			not conflict with any existing table names).</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>tblTables</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The object vector of testing table names (must be
+			an ObjVector).</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>scoreName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the new project&rsquo;s Score
+			Lambda.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>scrSource</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The source code (usually written in javaScript) of
+			the new project&rsquo;s Score Lambda.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filters</B></TD>
+			<TD VALIGN="top" WIDTH="72%">A structure containing the names and source code
+			for the initial population of filter Lambdas for this project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SopenProject"></A>openProject</H2></P>		
+		    <div class="h2section" id="openProject">
+			<P>The <B>openProject</B> function opens the specified project as the current
+			project of the miner Lambda. The current project is saved (if any) and the
+			specified project is set as the new miner project. The project may be opened
+			for editing or for testing.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.openProject projectName)<BR>
+			Syntax: (dataMineLib.miner.openProject projectName testingSW)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>projectName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the new project in the datamine (must
+			not conflict with any existing table names).</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>testingSW</B></TD>
+			<TD VALIGN="top" WIDTH="72%">(Optional) Set to true iff the project is to be
+			opened for testing, false iff the project is to be opened for editing.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SregisterProjectsAsExtents"></A>registerProjectsAsExtents</H2></P>		
+		    <div class="h2section" id="registerProjectsAsExtents">
+			<P>The <B>registerProjectsAsExtents</B> function registers all datamine
+			Blackboard Project Tables to the browseLib. The various project tables can
+			then be managed by the browseLib.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.registerProjectsAsExtents</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function only registers those project tables currently in
+			the Blackboard.</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrenameProjectFilter"></A>renameProjectFilter</H2></P>		
+		    <div class="h2section" id="renameProjectFilter">
+			<P>The <B>renameProjectFilter</B> function renames the specified Filter Lambda
+			in the current project. The current project is not saved (see
+			<B>saveProject</B>).</P>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.renameProjectFilter oldName newName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>oldName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The old name of the Filter Lambda in the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>newName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The new name of the Filter Lambda in the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrenameProjectScore"></A>renameProjectScore</H2></P>		
+		    <div class="h2section" id="renameProjectScore">
+			<P>The <B>renameProjectScore</B> function renames the Score Lambda for the
+			current project. The current project is not saved (see <B>saveProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.renameProjectScore scoreName)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>scoreName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Score Lambda for the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrunProjectFilter"></A>runProjectFilter</H2></P>		
+		    <div class="h2section" id="runProjectFilter">
+			<P>The <B>runProjectFilter</B> function runs the specified Filter Lambda, in the
+			current project, against the specified table cursor. The current project is not
+			saved (see <B>saveProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.runProjectFilter filterName tableCursor)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda in the current
+			project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>tableCursor</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The table cursor to be filtered.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsaveFilterSource"></A>saveFilterSource</H2></P>		
+		    <div class="h2section" id="saveFilterSource">
+			<P>The <B>saveFilterSource</B> function adds or updates a Filter Lambda to the
+			current project (but only the source is changed). The current project is not
+			saved (see <B>saveProject</B>).<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.saveFilterSource filterName filterSource)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterName</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The name of the Filter Lambda to be added to the
+			current project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>filterSource</B></TD>
+			<TD VALIGN="top" WIDTH="72%">The source (usually javaScript) for the Filter
+			Lambda to be added to the current project.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true.</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsaveProject"></A>saveProject</H2></P>		
+		    <div class="h2section" id="saveProject">
+			<P>The <B>saveProject</B> function saves the current project. If the optional
+			clear keyword is present, the project may be cleared after saving.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.saveProject clear:)<BR>
+			Syntax: (dataMineLib.miner.saveProject)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>clear:</B></TD>
+			<TD VALIGN="top" WIDTH="72%">Optional keyword to request that the project be
+			cleared as well as saved.</TD>
+			</TR>
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="StestRun"></A>testRun</H2></P>		
+		    <div class="h2section" id="testRun">
+			<P>The <B>testRun</B> function tests every Filter Lambda, in the current
+			Project, against every testing table. A score is recorded, in the current
+			Project spreadsheet, for each Filter Lambda and each testing table. Prior to the
+			testing run, the current Project is saved and closed.<BR>
+			Type: Function<BR>
+			Syntax: (dataMineLib.miner.testRun)</P>
+			<TABLE BORDER="0" CELLPADDING="2" CELLSPACING="0" WIDTH="638">
+			<TR>
+			<TD VALIGN="top" WIDTH="28%"><B>Returns</B></TD>
+			<TD VALIGN="top" WIDTH="72%">true</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: This function assumes that a miner project has been opened for
+			edit (see <B>openProject</B>).</P>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

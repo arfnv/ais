@@ -1,0 +1,297 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Virtual Machine</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#SArchitecture"><FONT SIZE=2>Architecture</font></a></li><li><a href="#SRegisters"><FONT SIZE=2>Registers</font></a></li><li><a href="#SInstruction Format"><FONT SIZE=2>Instruction Format</font></a></li><li><a href="#SAssembling Lambdas"><FONT SIZE=2>Assembling Lambdas</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>		
+		    <div class="h2section" id="Introduction">
+		    <p>The Lambda
+		    Information Server<b> </b>database
+		    engine comes with a built in virtual machine (<b>DRM</b>)
+		    for managing distributed intelligent Lambda execution. Analytic Information
+		    Server also supports multiple virtual machines (as many as one per Lambda),
+		    and execution of Lambdas on native binary machine code.</p>
+		    <p>The DRM
+		    virtual machine instruction set, which is machine independent and
+		    computationally complete, is designed for fast execution. The design goal is
+		    to come as close as possible to compiled C execution speeds, while still
+		    retaining portability. The Analytic Information Server engine does not force
+		    the user to choose an Lambda source language syntax, instead compilers are
+		    supplied for Lisp, JavaScript, and even natural language.</p>
+		    <p>The Lambda
+		    Information Server engine performs its own state of the art object
+		    management for all Lambda objects supervised by the database engine. Lambda
+		    Information Server manages all of its own object tables to maximize
+		    execution speed.&nbsp; The Lambda
+		    Information Server engine supports: fully automated mark and sweep garbage
+		    collection; a user extendible type system; dynamic object creation;
+		    optimized object messaging; both object and Lambda inheritance; mixed or
+		    interleaved execution of intelligent Lambdas and host functions, line by line
+		    source code debugging of Lambdas, and full object, Lambda, and code level
+		    browsing.</p>
+		    <p><font color="navy" size="4">Multiple Virtual Machines</font></p>
+		    <p>AIS Lambdas are designed to be write-once-run-anywhere executable objects.
+		    This is accomplished via the virtual machine concept of software Lambda
+		    execution. Lambda virtual machines are designed to be mapped onto the actual
+		    host microchip at the server location, providing faithful Lambda execution
+		    wherever the Lambda may travel on the Internet. There are currently several
+		    virtual machines operating within Analytic Information Server. The DRM
+		    virtual machine uses a <i>Dynamically typed Register Machine</i>
+		    model to provide portable Lambda execution from high level dynamically typed
+		    instructions all the way to super fast microchip-level register execution.
+		    The DRM virtual machine runs in emulation mode during the 
+		    debug phases of Lambda development; while, during normal operation, DRM
+		    virtual machine Lambdas are
+		    automatically converted into NATIVE machien code. The NATIVE machine code
+			is a faithful machine language translation of the execution rules in
+		    the DRM virtual machine onto the actual host microchip at the server
+		    location. NATIVE DRM code always runs at microchip-level execution
+		    speeds.</p>
+		    <p>Analytic Information Server is <i>agnostic</i> in the choice of Lambda
+		    virtual machine. It is certainly possible, and is currently often the
+		    practice to have communities of Lambdas which are not all running on the same
+		    virtual machine. It is often the case that one virtual machine model is
+		    preferable for certain data analysis applications while yet another virtual
+		    machine model is preferable for other data analysis applications. AIS comes
+		    equipped with several Lambda virtual machines and loadable library tools for
+		    the easy creation of additional user-defined Lambda virtual machines. The
+		    only caveat is that popular virtual machines (<i>such as the Python, Java,
+		    or Smalltalk virtual machines</i>) implemented in Analytic Information Server
+		    must be tailored to execute our executable Lambda objects, and to operate
+		    within the AIS runtime environment. AIS virtual machine development tools
+		    are not designed to create virtual machines for execution outside Lambda
+		    Information Server.</p>
+		    <p><font color="navy" size="4">Microchip-level Execution Speeds</font></p>
+		    <p>Analytic Information Server is primarily concerned with software Lambdas
+		    which perform high volume data analysis. Super fast execution speed is
+		    essential in such application domains. There are several levels of general
+		    computer program execution speeds. Disk based operations, such as those
+		    performed by <i>SQL</i> and other database system languages, are among the
+		    slowest executing animals in the program zoo. The next level of faster
+		    execution speed is achieved by programs performing memory to memory
+		    operations, such as those performed by <i>COBOL</i> and many other business
+		    languages. The fastest possible level of program execution is achieved by
+		    programs performing register to register operations on the microchip, such
+		    as those performed by <i>assembler</i> language.</p>
+		    <p>The AIS DRM virtual machine provides very fast native execution of
+		    Lambdas performing disk based operations, memory to memory operations, and
+		    microchip-level register to register operations. Regardless of the data
+		    analysis domain, AIS allows the development of write-once-run-anywhere
+		    Lambdas which execute at the fastest possible speeds.</p>
+		    <p>&nbsp;</p>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SArchitecture"></A>Architecture</H2></P>		
+		    <div class="h2section" id="Architecture">
+			    <p>The DRM virtual machine is based upon a register machine
+		    style architecture similar to most modern Von Neumann computer architecture
+		    designs. Because the DRM virtual machine is expected to service a
+		    database, the main machine memory has been subdivided into dynamically typed
+		    words. Hence the name, <b>D</b>ynamic typed <b>R</b>egister <b>M</b>achine. 
+			With the machine memory subdivided into
+		    dynamically typed words, data (from the database) with a wide variety of
+		    types, can be easily loaded into memory; and, since the register machine
+		    architecture is similar to the internal architecture of most modern
+		    computing equipment, it is easy to write Just-In-Time compilers for translating
+		    DRM pcodes into native binary machine code for a wide variety of computers.</p>
+		    <p>Faster runtime pcode emulation is achieved by expanding the DRM virtual
+		    machine from a byte code interpreter to a 32-bit word code interpreter. The
+		    greater width of the DRM pcode allows the central instruction loop to
+		    branch directly to the proper C emulator instruction much faster than with a
+		    byte code interpreter. Even though Analytic Information Server supports
+		    execution of Lambdas against native binary machine code, its Lambda execution
+		    times, under DRM virtual machine emulation (which is used during debugging), 
+		    are among the fastest in the industry.</p>
+		    <p>The Analytic Information Server virtual machine architecture is composed of
+		    the following components:</p>
+		    <ul>
+		      <li><b>Vector Instructions: </b>A set of vector data array instructions which
+		        allow fast parallel processing of vectored integer and floating point data.</li>
+		      <ul>
+		        <li>Vector instructions using auxilliary signal processing and graphics chips.</li>
+		        <li>Vector instructions supporting fast in-line basic linear algebra operations.</li>
+		      </ul>
+		      <li><b>Machine Registers: </b>A set of virtual machine arithmetic registers which
+		        allow fast microchip-level execution of Lambda arithmetic operations.</li>
+		      <ul>
+		        <li>A set of fifty arithmetic registers.</li>
+		        <li>A set of virtual machine instructions (<b>pcodes</b>) which control
+		          operations in the registers.</li>
+		      </ul>
+		      <li><b>Main Memory:</b> A set of virtual machine words. Each virtual
+		        machine word begins with a type tag and ends with a data item (this is
+		        known as <b>Dynamic Typing</b>).</li>
+		      <ul>
+		        <li>A set of built-in data types (Integers, Strings, Vectors,
+		          Structures, etc.) for storing common database data types in main
+		          memory and on disk.</li>
+		        <li>A set of virtual machine instructions (<b>pcodes</b>) which control
+		          operations in the main memory.</li>
+		      </ul>
+		      <li><b>Lambdas:</b> Executable, user definable, objects known as Lambdas.
+		        Lambdas can be saved and loaded from the AIS database.</li>
+		      <ul>
+		        <li>A set of built-in Lambda properties which allow all Lambdas to work
+		          together in communities to accomplish increasingly complex tasks.</li>
+		        <li>A set of built-in virtual machine functions (<b>pcodes</b>) which
+		          extend operations in main memory and on disk.</li>
+		      </ul>
+		    </ul>
+		    <h3>Machine Registers</h3>
+		    <p>The Analytic Information Server virtual machine provides a set of machine
+		    registers for fast microchip-level arithmetic operations. There are fifty
+		    arithmetic registers, and a complete set of virtual machine 
+		    instructions for register to register operations.</p>
+		    <h3>Virtual Machine Instructions</h3>
+		    <p>The Analytic Information Server virtual machine is designed to interpret
+		    Analytic Information Server Lambdas. Each Analytic Information Server Lambda
+		    contains a vector of virtual machine instructions. These virtual machine
+		    instructions control the operation of the Analytic Information Server engine.
+		    Our virtual machine instructions are similar to the internal formats used in
+		    most modern computing engines. Every effort has been made to have our
+		    interpreted pcodes approach, as close as possible, to microchip-level 
+		    register to register execution speeds.</p>
+		    <h3>Virtual Machine Words</h3>
+		    <p>Most of the memory space, set aside within the host application, for use
+		    by the Analytic Information Server subsystem is divided into a set of virtual
+		    machine words. Each virtual machine word begins with a type tag and is
+		    followed by an immediate data (Dynamic Typing). The contents of the tag
+		    inform the Analytic Information Server virtual machine about the type of data
+		    which follows.</p>
+		    <h3>Data Types</h3>
+		    <p>All data items stored in the Analytic Information Server virtual machine are
+		    typed. Some examples of Analytic Information Server data types are: Integer,
+		    Number, Boolean, String, Vector, and Structure. In the Analytic Information
+		    Server virtual machine the terms type and class are interchangeable. Lambda
+		    Information Server data types are divided into two categories: immediate
+		    (natives), and memory managed (objects). The immediate (native) types can be
+		    entirely contained within the immediate data of a single virtual machine
+		    word. The memory managed (objects) types are too large to be contained
+		    within a single virtual machine word and require extra memory which must be
+		    managed. Without exception, all of the memory managed (object) types are
+		    identified by a memory manager key (object id) contained within the
+		    immediate data of a single virtual machine word. The object id identifies a
+		    block of memory, managed by the Analytic Information Server memory manager, in
+		    which the object's data is stored.</p>		   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRegisters"></A>Registers</H2></P>		
+		    <div class="h2section" id="Registers">
+		    <h3>Arithmetic Registers</h3>
+		    <p>The DRM virtual machine supports fifty fast microchip-level arithmetic registers  
+		    (<b>R0</b> thru <b>R49</b>). An Lambda's register vector, <b>Rv</b>, contains 
+		    the variable names, assigned to arithmetic registers, for the Lambda in question. 
+		    Each of the arithmetic registers may store an Integer value, a Number value, or a
+		    Pointer value. The arithmetic registers allow fast microchip-level execution
+		    of arithmetic operations for high speed data analysis.</p>
+		    <h3>Stack Pointer</h3>
+		    <p>The DRM virtual machine supports a stack pointer register, <b>Sp</b>, which stores the current
+		    highest used word in the operations stack. The stack pointer starts at zero
+		    (0) and grows as more and more words are used in the stack. When the stack
+		    pointer exceeds the size of the operations stack, a stack overflow error
+		    occurs.</p>
+		    <h3>Instruction Pointer</h3>
+		    <p>DRM virtual machine supports an instruction pointer register, <b>Ip</b>, which
+		    stores the instruction pointer for the virtual machine instruction currently executing. 
+		    If the Just-In-Time compiler is in operation, the Ip becomes the host machine 
+		    instruction pointer register.</p>
+		    <h3>Global Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R0 with the base address of
+		    the AIS context's global variables, <b>*globals*</b>. The global variables base address register
+		    is assigned the register variable name of <b>Gv</b>. The compile function assigns
+		    Gv register offset addresses for all global variables.</p>
+		    <h3>Self object Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R1 with the base address of
+		    the Lambda's Self Object Structure, <b>Lambda.Sv</b>. The Self object base address register
+		    is assigned the register variable name of <b>Sv</b>.</p>
+		    <h3>Argument Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R2 with the base address of
+		    the Lambda's argument variables, <b>Lambda.Av</b>. The argument variables base address register
+		    is assigned the register variable name of <b>Av</b>. The compile function assigns
+		    Av register offset addresses for all argument variables.</p>
+		    <h3>Temporary Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R3 with the base address of
+		    the Lambda's temporary variables, <b>Lambda.Tv</b>. The temporary variables base address register
+		    is assigned the register variable name of <b>Tv</b>. The compile function assigns
+		    Tv register offset addresses for all temporary variables.</p>
+		    <h3>Persistant Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R4 with the base address of
+		    the Lambda's persistant variables, <b>Lambda.Pv</b>. The persistant variables base address register
+		    is assigned the register variable name of <b>Pv</b>. The compile function assigns
+		    Pv register offset addresses for all persistant variables.</p>
+		    <h3>Class Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R5 with the base address of
+		    the Lambda's class variables, <b>Lambda.Cv</b>. The class variables base address register
+		    is assigned the register variable name of <b>Cv</b>. The compile function assigns
+		    Cv register offset addresses for all class variables.</p>
+		    <h3>Register Variables Base Address Register</h3>
+		    <p>The DRM virtual machine loads arithmetic register R6 with the base address of
+		    the Lambda's register variables, <b>Lambda.Rv</b>. The register variables base address register
+		    is assigned the register variable name of <b>Rv</b>. The compile function assigns
+		    Rv register direct and register offset addresses for all register variables.</p>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SInstruction Format"></A>Instruction Format</H2></P>		
+		    <div class="h2section" id="Instruction Format">
+			<h2>Opcode</h2>
+		    <p>Each DRM virtual machine instruction (opcode) is a unique 32 bit pattern which
+		    identifies the operator and the argument modifiers for up to three inline arguments.
+		    Each DRM opcode is followed by from zero to three inline 32 bit integer arguments. 
+		    The argument modifiers (part of the pcode data)
+		    identify the format and number of arguments which follow the pcode. 
+		    A DRM instruction (opcode and inline integer arguments) may be as small as 32 bits
+		    or as large as 128 bits.</p>
+		    <p>The format of each 32 bit opcode is broken into four 8 bit quantities as follows.</p>
+		    <ul>
+		    <li><b>Opcode</b>&nbsp;&nbsp;An instruction code from 0 thru 256 (8-bits).</li>
+		    <li><b>Modifier1</b>&nbsp;&nbsp;The modifier for the first argument (8-bits).</li>
+		    <li><b>Modifier2</b>&nbsp;&nbsp;The modifier for the second argument (8-bits).</li>
+		    <li><b>Modifier3</b>&nbsp;&nbsp;The modifier for the argument argument (8-bits).</li>
+		    </ul>
+		    <h2>Instruction Modifiers</h2>
+		    <p>Each DRM virtual machine instruction modifier may contain one of fifty two distinct codes.
+		    Modifier codes 0 thru 49 indicate the specific DRM arithmetic registers (<b>R0</b> thru <b>R49</b>). 
+		    Modifier code 50 indicates <b>immediate</b> mode, and modifier code 51 indicates <b>void</b> mode.
+		    A <b>void</b> modifier indicates no inline argument. An <b>immediate</b> modifier indicates an
+		    inline integer argument. A <b>register</b> argument, in a register instruction, indicates no inline argument. 
+		    A <b>register</b> argument, in a memory instruction, indicates an inline integer displacement argument.</p>
+		    <h2>Instruction Arguments</h2>
+		    <p>Each DRM virtual machine instruction may be followed by up to three inline integer arguments.
+		    All memory variables are specified by inline register offset arguments, which are inline integer quantities
+		    to be added to the base address, in the register specified by the instruction modifier, to form the
+		    address of the memory variable. All label arguments to jump instructions are inline integer values to
+		    be loaded into the Instruction Pointer Register <b>Ip</b> if the jump is taken. Of course all immediate
+		    arguments are inline integer quantities to be taken as immediate values.</p>  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAssembling Lambdas"></A>Assembling Lambdas</H2></P>		
+		    <div class="h2section" id="Assembling Lambdas">
+		    <p>AIS Lisp performs double duty as a DRM virtual machine assembler language. 
+		    This allows Analytic Information Server to create Lambda objects from source languages other than Lisp. 
+		    For instance, here is Lisp code to create an Lambda.</p>
+		    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>(lambda (Integer:m Integer:n) (* (+ n 10) m))</b></p>
+		    <p>We can also create an equivalent Lambda via the following Lisp assembler expression.</p>
+		    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <b>(lambda (Integer:m Integer:n) regs:(Integer:t1 Integer:t2) (vmiadd 10 n t1)  (vmimul m t1 t2) (vmreturn t2))</b></p>
+		    <p>&nbsp;</p>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

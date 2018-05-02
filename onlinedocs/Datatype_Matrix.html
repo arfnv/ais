@@ -1,0 +1,207 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Matrix</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Matrix Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Matrix Overview</H4></FONT></P>
+          <p>A Matrix  is a one, two, or three dimensional array. An un-typed matrix (also known as a Normal Matrix) 
+          is a data structure containing an arbitrary number of heterogeneous data values and with a rank of 
+           one, two, or three.  </p>
+             <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>"Humpty"</td> </tr>
+               <tr><td>"Dumpty"</td> </tr>
+               <tr><td>"sat"</td> </tr>
+               <tr><td>"on"</td> </tr>
+               <tr><td>"a"</td> </tr>
+               <tr><td>"wall"</td> </tr>
+           </table>    
+          <p>The <b>Matrix</b> is a dynamic data type: it can grow to containing new elements 
+             or contract as elements are deleted.    An element is accessed by an index from 0 
+             to n-1 where n is the number of elements in the Matrix.   When an element is added, 
+             it is appended to the end.</p> 
+          <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>"Humpty"</td> </tr>
+               <tr><td>"Dumpty"</td> </tr>
+               <tr><td>"sat"</td> </tr>
+               <tr><td>"on"</td> </tr>
+               <tr><td>"a"</td> </tr>
+               <tr><td>"wall"</td> </tr>
+               <tr><td>"Humpty"</td> </tr>
+           </table> 
+           <p>Or we might sort the Matrix</p> 
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>"a"</td> </tr>
+               <tr><td>"Dumpty"</td> </tr>
+               <tr><td>"Humpty"</td> </tr>
+               <tr><td>"Humpty"</td> </tr>
+               <tr><td>"on"</td> </tr>
+               <tr><td>"sat"</td> </tr>
+               <tr><td>"wall"</td> </tr>
+           </table> 
+           <p>Or we might delete a key by specify the index of the item to be deleted (2)</p> 
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>"a"</td> </tr>
+               <tr><td>"Dumpty"</td> </tr>
+               <tr><td>"Humpty"</td> </tr>
+               <tr><td>"on"</td> </tr>
+               <tr><td>"sat"</td> </tr>
+               <tr><td>"wall"</td> </tr>
+           </table>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The <b>Matrix</b> object is useful for storing data of the  "same" types 
+            (homogeneous) or  "different" types (heterogeneous) . The Matrix object is very fast 
+            and has minimum memory overhead due to the indexed access of its values.  If you 
+            require a random access strategy or a keyed access strategy see the Dictionary or 
+            Structure data types. Within the Matrix object type there are the subtypes that store
+            homogeneous values:</p>
+          <p><blockquote>Matrix</blockquote></p>
+          <p><blockquote>NumMatrix</blockquote></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+          <p>The <b>Matrix</b> native data type has a constant form. A Matrix constant 
+          is enclosed in brackets and preceded by the sharp symbol (#).   </p>
+          <p>For Example:</p>
+          <p><b>#(mat| 0  1  2  3  4  5  6  7  8  9)</b></p>
+          <p>The constant form for Matrix allows any Analytic Information Server objects:</p>
+		  <p><b>#(mat| X:  5  #Jan,1,1996  #{Mike: "father"  Sally: "mother"}  "Hello")</b></p>
+          <p><b>#(mat| 23  34  "Testing"  -.987  #\return)</b></p>
+          <p><b>#(mat|  "Hello"  9  34.5)</b></p>
+          <p><b>#(mat| 0  1  2  3  4  5  6  7  8  9 . {a: 10 b: 20})</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>Matrix</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Matrix object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Matrix_append_007.html">Example_Matrix_append_007</A></td>
+<td><A HREF="Example_Matrix_apply_005.html">Example_Matrix_apply_005</A></td>
+<td><A HREF="Example_Matrix_apply_006.html">Example_Matrix_apply_006</A></td>
+<td><A HREF="Example_Matrix_binaryInsert_004.html">Example_Matrix_binaryInsert_004</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_binaryInsert_005.html">Example_Matrix_binaryInsert_005</A></td>
+<td><A HREF="Example_Matrix_binarySearch_005.html">Example_Matrix_binarySearch_005</A></td>
+<td><A HREF="Example_Matrix_binarySearch_006.html">Example_Matrix_binarySearch_006</A></td>
+<td><A HREF="Example_Matrix_cdr_007.html">Example_Matrix_cdr_007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_cdr_008.html">Example_Matrix_cdr_008</A></td>
+<td><A HREF="Example_Matrix_compareEQ_007.html">Example_Matrix_compareEQ_007</A></td>
+<td><A HREF="Example_Matrix_compareGE_007.html">Example_Matrix_compareGE_007</A></td>
+<td><A HREF="Example_Matrix_compareGT_007.html">Example_Matrix_compareGT_007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_compareLE_007.html">Example_Matrix_compareLE_007</A></td>
+<td><A HREF="Example_Matrix_compareLT_007.html">Example_Matrix_compareLT_007</A></td>
+<td><A HREF="Example_Matrix_compareNE_007.html">Example_Matrix_compareNE_007</A></td>
+<td><A HREF="Example_Matrix_compare_007.html">Example_Matrix_compare_007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_comparison_007.html">Example_Matrix_comparison_007</A></td>
+<td><A HREF="Example_Matrix_copy_006.html">Example_Matrix_copy_006</A></td>
+<td><A HREF="Example_Matrix_copy_007.html">Example_Matrix_copy_007</A></td>
+<td><A HREF="Example_Matrix_count_005.html">Example_Matrix_count_005</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_delete_009.html">Example_Matrix_delete_009</A></td>
+<td><A HREF="Example_Matrix_insert_005.html">Example_Matrix_insert_005</A></td>
+<td><A HREF="Example_Matrix_inside_005.html">Example_Matrix_inside_005</A></td>
+<td><A HREF="Example_Matrix_isAtom_005.html">Example_Matrix_isAtom_005</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_isEqual_005.html">Example_Matrix_isEqual_005</A></td>
+<td><A HREF="Example_Matrix_isIdentical_005.html">Example_Matrix_isIdentical_005</A></td>
+<td><A HREF="Example_Matrix_isInside_05.html">Example_Matrix_isInside_05</A></td>
+<td><A HREF="Example_Matrix_isMatrix_001.html">Example_Matrix_isMatrix_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_isMember_005.html">Example_Matrix_isMember_005</A></td>
+<td><A HREF="Example_Matrix_isNumberMatrix_001.html">Example_Matrix_isNumberMatrix_001</A></td>
+<td><A HREF="Example_Matrix_isObject_007.html">Example_Matrix_isObject_007</A></td>
+<td><A HREF="Example_Matrix_isType_009.html">Example_Matrix_isType_009</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_length_008.html">Example_Matrix_length_008</A></td>
+<td><A HREF="Example_Matrix_makeGaussianMatrix_001.html">Example_Matrix_makeGaussianMatrix_001</A></td>
+<td><A HREF="Example_Matrix_makeGramMatrix_001.html">Example_Matrix_makeGramMatrix_001</A></td>
+<td><A HREF="Example_Matrix_map_006.html">Example_Matrix_map_006</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_map_007.html">Example_Matrix_map_007</A></td>
+<td><A HREF="Example_Matrix_mapc_005.html">Example_Matrix_mapc_005</A></td>
+<td><A HREF="Example_Matrix_matrixGaussianEliminate_001.html">Example_Matrix_matrixGaussianEliminate_001</A></td>
+<td><A HREF="Example_Matrix_matrixGaussianSubstitute_001.html">Example_Matrix_matrixGaussianSubstitute_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_member_005.html">Example_Matrix_member_005</A></td>
+<td><A HREF="Example_Matrix_new_009.html">Example_Matrix_new_009</A></td>
+<td><A HREF="Example_Matrix_new_010.html">Example_Matrix_new_010</A></td>
+<td><A HREF="Example_Matrix_objectToMatrix_001.html">Example_Matrix_objectToMatrix_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_objectToNumMatrix_001.html">Example_Matrix_objectToNumMatrix_001</A></td>
+<td><A HREF="Example_Matrix_rank_001.html">Example_Matrix_rank_001</A></td>
+<td><A HREF="Example_Matrix_ref_015.html">Example_Matrix_ref_015</A></td>
+<td><A HREF="Example_Matrix_ref_016.html">Example_Matrix_ref_016</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_remove_005.html">Example_Matrix_remove_005</A></td>
+<td><A HREF="Example_Matrix_resize_005.html">Example_Matrix_resize_005</A></td>
+<td><A HREF="Example_Matrix_reverse_002.html">Example_Matrix_reverse_002</A></td>
+<td><A HREF="Example_Matrix_setCdr_005.html">Example_Matrix_setCdr_005</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_setLastCdr_005.html">Example_Matrix_setLastCdr_005</A></td>
+<td><A HREF="Example_Matrix_setq_014.html">Example_Matrix_setq_014</A></td>
+<td><A HREF="Example_Matrix_sizeof_007.html">Example_Matrix_sizeof_007</A></td>
+<td><A HREF="Example_Matrix_sort_012.html">Example_Matrix_sort_012</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_type_010.html">Example_Matrix_type_010</A></td>
+<td><A HREF="Example_Matrix_uniqueInsert_004.html">Example_Matrix_uniqueInsert_004</A></td>
+<td><A HREF="Example_Matrix_vectorFill_002.html">Example_Matrix_vectorFill_002</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

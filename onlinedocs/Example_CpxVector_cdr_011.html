@@ -1,0 +1,223 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example CpxVector cdr 011</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example shows how the the <b>cdr</b>
+                  function accesses the tail value of a CpxVector.
+	</Description>
+	
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>A CpxVector with a cdr value is defined. </Note>
+</p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq X #(cpx| 1.0 2.0 2.0 5.0 . 3.0 4.0))  </sc></Expression>
+</td>
+<td width=30% align=left> Returns: <b><Returns>#&#60CpxVector 188141&#62 </Returns>
+</b></td></tr>
+</table><p><Note>The first cdr value is returned..</Note>
+</p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(cdr X) </sc></Expression>
+</td>
+<td width=30% align=left> Returns: <b><Returns>3.0 </Returns>
+</b></td></tr>
+</table><p><Note>A CpxVector without a cdr value is defined.</Note>
+</p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (setq X (new Vector: complex: 0))</sc></Expression>
+</td>
+<td width=30% align=left> Returns: <b><Returns>#&#60CpxVector 244141&#62</Returns>
+</b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(cdr X)</sc></Expression>
+</td>
+<td width=30% align=left> Returns: <b><Returns>#void</Returns>
+</b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>Cdr returns #void if the tail of the vector has not been set to another type. </p>
+               <p>The tail can be of any type, but it is usually either void or a complex number.</p> 
+        </Hints>
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>cdr</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_cdr_010.html">BitVector cdr 010</A></td>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_CpxVector_cdr_011.html">CpxVector cdr 011</A></td>
+<td><A HREF="Example_Dictionary_cdr_003.html">Dictionary cdr 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_cdr_004.html">Directory cdr 004</A></td>
+<td><A HREF="Example_FltVector_cdr_006.html">FltVector cdr 006</A></td>
+<td><A HREF="Example_IntVector_cdr_007.html">IntVector cdr 007</A></td>
+<td><A HREF="Example_List_cdr_009.html">List cdr 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_cdr_007.html">Matrix cdr 007</A></td>
+<td><A HREF="Example_Matrix_cdr_008.html">Matrix cdr 008</A></td>
+<td><A HREF="Example_NumMatrix_cdr_011.html">NumMatrix cdr 011</A></td>
+<td><A HREF="Example_NumVector_cdr_008.html">NumVector cdr 008</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_cdr_009.html">ObjVector cdr 009</A></td>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_Structure_cdr_001.html">Structure cdr 001</A></td>
+<td><A HREF="Example_Structure_cdr_002.html">Structure cdr 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_cdr_005.html">Vector cdr 005</A></td>
+<td><A HREF="Example_Vector_cdr_006.html">Vector cdr 006</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_cdr_Builtin.html">cdr</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_ref_Builtin.html">ref(Builtin)</A></td>
+<td><A HREF="Function_refValues_Builtin.html">refValues(Builtin)</A></td>
+<td><A HREF="Function_refAttributes_Builtin.html">refAttributes(Builtin)</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="CpxVector.html">CpxVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_CpxVector_append_013.html">CpxVector append 013</A></td>
+<td><A HREF="Example_CpxVector_avg_002.html">CpxVector avg 002</A></td>
+<td><A HREF="Example_CpxVector_binaryInsert_008.html">CpxVector binaryInsert 008</A></td>
+<td><A HREF="Example_CpxVector_binarySearch_008.html">CpxVector binarySearch 008</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_cdr_011.html">CpxVector cdr 011</A></td>
+<td><A HREF="Example_CpxVector_compare_020.html">CpxVector compare 020</A></td>
+<td><A HREF="Example_CpxVector_compareEQ_020.html">CpxVector compareEQ 020</A></td>
+<td><A HREF="Example_CpxVector_compareGE_020.html">CpxVector compareGE 020</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_compareGT_020.html">CpxVector compareGT 020</A></td>
+<td><A HREF="Example_CpxVector_compareLE_020.html">CpxVector compareLE 020</A></td>
+<td><A HREF="Example_CpxVector_compareLT_020.html">CpxVector compareLT 020</A></td>
+<td><A HREF="Example_CpxVector_compareNE_020.html">CpxVector compareNE 020</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_copy_013.html">CpxVector copy 013</A></td>
+<td><A HREF="Example_CpxVector_new_015.html">CpxVector new 015</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

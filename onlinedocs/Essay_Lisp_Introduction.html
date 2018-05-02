@@ -1,0 +1,439 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lisp Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#SRule Based Programming"><FONT SIZE=2>Rule Based Programming</font></a></li><li><a href="#SArtificial Intelligence"><FONT SIZE=2>Artificial Intelligence</font></a></li><li><a href="#SInfluence of Lisp"><FONT SIZE=2>Influence of Lisp</font></a></li><li><a href="#SCommon Lisp"><FONT SIZE=2>Common Lisp</font></a></li><li><a href="#SScheme"><FONT SIZE=2>Scheme</font></a></li><li><a href="#SAIS Lisp Enhancements"><FONT SIZE=2>AIS Lisp Enhancements</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>
+          <div class="h2section" id="Introduction">
+          <p>Over the last 50 years, the Lisp programming language has become the
+          dominant computer language in the American Artificial Intelligence community.
+          John McCarthy developed Lisp, at MIT in the late 1950's, to help computers
+          cope with such problems as symblic differentiation and integration of
+          algebraic expressions. The first Lisp interpreter was implemented at MIT. Lisp
+          is the second oldest computer language (<i>Fortran is the oldest</i>).</p>
+          <p>John McCarthy built the heart of Lisp language design around Alonzo
+          Church's <i>Lambda Calculus</i> which formalized the theoretical ideas at the
+          forefront of research into computation and reasoning. Alonzo Church was born
+          on June 14, 1903 in Washington, D.C. and died Friday, August 11, 1995 in
+          Hudson, Ohio at the age of 92. He was buried in Princeton Cemetery. Church was
+          professor of mathematics at Princeton University from 1929 to 1967 when he
+          became professor of mathematics and philosophy at UCLA. His work has been
+          greatly influential in the fields of mathematical logic, recursion theory, and
+          theoretical computer science. At the time of his death, Church was widely
+          regarded as the greatest living logician in the world. His most
+          well-remembered contributions are the following: Church's Theorem (1936),
+          showing that arithmetic is undecidable; Church's Thesis, conjecturing that
+          effective computation is equivalent to the notion of a &quot;recursive&quot;
+          function; The Lambda Calculus.</p>
+          <p>Lisp is understood as the model of a functional programming language today.
+          There are people who believe that there once was a clean &quot;pure&quot;
+          language design in the functional direction which was compromised by
+          AI-programmers in search of efficiency. This view does not take into account,
+          that around the end of the fifties, nobody, including McCarthy himself,
+          seriously based his programming on the concept of mathematical function. It is
+          quite certain that McCarthy for a long time associated programming with the
+          design of stepwise executed <i>algorithms</i>.</p>
+          <p>It was McCarthy who, as the first, seemed to have developed the idea of
+          using funtional terms (in the form of &quot;function calls&quot; or
+          &quot;subroutine calls&quot;) for every partial step of a program. This idea
+          emerged more as a stylistic decision, proved to be sound and became the basis
+          for a proper way of programming - functional progamming (<i>or, as I prefer to
+          call it, function-oriented programming</i>). We should mention here that
+          McCarthy at the same time conceived the idea of logic-oriented programming,
+          that is, the idea of using logical formulae to express goals that a program
+          should try to establish and of using the prover as programming language
+          interpreter. It is an important fact that McCarthy as mathematician was
+          familiar with some formal mathematical languages but did not have a deep,
+          intimate understanding of all their details. McCarthy himself has stressed
+          this fact. His aim was to use the mathematical formalismus as languages and
+          not as calculi. This is the root of the historical fact that he never took the
+          Lambda-Calculus conversion rules as a sound basis for Lisp implementation. We
+          have to bear this in mind if we follow now the sequence of events that led to
+          Lisp. It is due to McCarthy's work that functional programming is a usable way
+          of programming today. The main practice of this programming style, done with
+          Lisp, still shows his personal mark.</p>
+          <p>It seems that McCarthy had a feeling for the importance of a programming
+          language for work in artificial intelligence already before 1955. In any case,
+          the famous proposal for the Darmouth Summer Research Project on Artificial
+          Intelligence -- dated the 31st of August 1955 - contains a research program
+          for McCarthy which is devoted to this question: <i>&quot;During next year and
+          during the Summer Research Project on Artificial Intelligence, I propose to
+          study the relation of language to intelligence ...&quot;</i></p>
+          <p>McCarthy compared (formal) logical and natural languages in this proposal
+          for his personal research program. His conclusion was: &quot; It therefore
+          seems to be desirable to attempt to construct an artificial language which a
+          computer can be programmed to use on problems and self-reference. It should
+          correspond to English in the sense that short English statements about the
+          given subject matter should have short correspondents in the language and so
+          should short arguments or conjectural arguments.&quot; His goal: &quot; I hope
+          to try to formulate language having these properties and in addition to
+          contain the notions of physical object, event, etc., with the hope that using
+          this language it will be possible to program a machine to learn to play games
+          well and do other tasks.&quot;</p>  
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRule Based Programming"></A>Rule Based Programming</H2></P> 
+         <div class="h2section" id="Rule Based Programming">
+          <p>Lisp is a productive development and delivery language for building expert
+          systems, providing a complete environment for the construction of rule based
+          expert systems.</p>
+          <p>Conventional programming languages, such as FORTRAN and C, are designed and
+          optimized for the procedural manipulation of data (such as numbers and
+          arrays). Humans, however, often solve complex problems using very abstract,
+          symbolic approaches which are not well suited for implementation in
+          conventional languages. Although abstract information can be modeled in these
+          languages, considerable programming effort is required to transform the
+          information to a format usable with procedural programming paradigms.</p>
+          <p>One of the results of research in the area of artificial intelligence has
+          been the development of techniques which allow the modeling of information at
+          higher levels of abstraction. These techniques are embodied in languages or
+          tools which allow programs to be built that closely resemble human logic in
+          their implementation and are therefore easier to develop and maintain. These
+          programs, which emulate human expertise in well defined problem domains, are
+          called expert systems. The Lisp language has greatly reduced the effort and
+          cost involved in developing an expert system.</p>
+          <p>Rule-based programming is one of the most commonly used techniques for
+          developing expert systems. In this programming paradigm, rules are used to
+          represent heuristics, or <i>rules of thumb</i>, which specify a set of actions
+          to be performed for a given situation. A rule is composed of an if portion and
+          a then portion. The if portion of a rule is a series of patterns which specify
+          the facts (or data) which cause the rule to be applicable. The process of
+          matching facts to patterns is called pattern matching. The expert system tool
+          provides a mechanism, called the inference engine, which automatically matches
+          facts against patterns and determines which rules are applicable. The if
+          portion of a rule can actually be thought of as the whenever portion of a rule
+          since pattern matching always occurs whenever changes are made to facts. The
+          then portion of a rule is the set of actions to be executed when the rule is
+          applicable. The actions of applicable rules are executed when the inference
+          engine is instructed to begin execution. The inference engine selects a rule
+          and then the actions of the selected rule are executed (which may affect the
+          list of applicable rules by adding or removing facts). The inference engine
+          then selects another rule and executes its actions. This process continues
+          until no applicable rules remain.</p>   
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SArtificial Intelligence"></A>Artificial Intelligence</H2></P>    
+             <div class="h2section" id="Artificial Intelligence">
+              <p>Artificial intelligence (AI) has been one of the most controversial domains
+              of inquiry in computer science since it was first proposed in the 1950s.
+              Defined as the part of computer science concerned with designing systems that
+              exhibit the characteristics associated with human intelligence--understanding
+              language, learning, reasoning, solving problems, and so on (Barr and
+              Feigenbaum, 1981)--the field has attracted researchers because of its
+              ambitious goals and enormous underlying intellectual challenges. The field has
+              been controversial because of its social, ethical, and philosophical
+              implications. Such controversy has affected the funding environment for AI and
+              the objectives of many research programs.</p>
+              <p>AI research is conducted by a range of scientists and technologists with
+              varying perspectives, interests, and motivations. Scientists tend to be
+              interested in understanding the underlying basis of intelligence and
+              cognition, some with an emphasis on unraveling the mysteries of human thought
+              and others examining intelligence more broadly. Engineering-oriented
+              researchers, by contrast, are interested in building systems that behave
+              intelligently. Some attempt to build systems using techniques analogous to
+              those used by humans, whereas others apply a range of techniques adopted from
+              fields such as information theory, electrical engineering, statistics, and
+              pattern recognition. Those in the latter category often do not necessarily
+              consider themselves AI researchers, but rather fall into a broader category of
+              researchers interested in machine intelligence.</p>
+              <p>The concept of AI originated in the private sector, but the growth of the
+              field, both intellectually and in the size of the research community, has
+              depended largely on public investments. Public monies have been invested in a
+              range of AI programs, from fundamental, long-term research into cognition to
+              shorter-term efforts to develop operational systems. Most of the federal
+              support has come from the Defense Advanced Research Projects Agency (DARPA,
+              known during certain periods as ARPA) and other units of the Department of
+              Defense (DOD). Other funding agencies have included the National Institutes of
+              Health, National Science Foundation, and National Aeronautics and Space
+              Administration (NASA), which have pursued AI applications of particular
+              relevance to their missions--health care, scientific research, and space
+              exploration.</p>
+              <p>The origins of AI research are intimately linked with two landmark papers
+              on chess playing by machine. They were written in 1950 by Claude E. Shannon, a
+              mathematician at Bell Laboratories who is widely acknowledged as a principal
+              creator of information theory. In the late 1930s, while still a graduate
+              student, he developed a method for symbolic analysis of switching systems and
+              networks (Shannon, 1938), which provided scientists and engineers with
+              much-improved analytical and conceptual tools. After working at Bell Labs for
+              half a decade, Shannon published a paper on information theory (Shannon,
+              1948). Shortly thereafter, he published two articles outlining the
+              construction or programming of a computer for playing chess (Shannon,
+              1950a,b).</p>
+              <p>Shannon's work inspired a young mathematician, John McCarthy, who, while a
+              research instructor in mathematics at Princeton University, joined Shannon in
+              1952 in organizing a conference on automata studies, largely to promote
+              symbolic modeling and work on the theory of machine intelligence. A year
+              later, Shannon arranged for McCarthy and another future pioneer in AI, Marvin
+              Minsky, then a graduate student in mathematics at Princeton and a participant
+              in the 1952 conference, to work with him at Bell Laboratories during 1953.</p>
+              <p>By 1955, McCarthy believed that the theory of machine intelligence was
+              sufficiently advanced, and that related work involved such a critical mass of
+              researchers, that rapid progress could be promoted by a concentrated summer
+              seminar at Dartmouth University, where he was then an assistant professor of
+              mathematics. He approached the Rockefeller Foundation's Warren Weaver, also a
+              mathematician and a promoter of cutting-edge science, as well as Shannon's
+              collaborator on information theory. Weaver and his colleague Robert S.
+              Morison, director for Biological and Medical Research, were initially
+              skeptical (Weaver, 1955). Morison pushed McCarthy and Shannon to widen the
+              range of participants and made other suggestions. McCarthy and Shannon
+              responded with a widened proposal that heeded much of Morison's advice. They
+              brought in Minsky and a well-known industrial researcher, Nathaniel Rochester
+              of IBM, as co-principal investigators for the proposal, submitted in September
+              1955. In the proposal, the four researchers declared that the summer study was
+              &quot;to proceed on the basis of the conjecture that every aspect of learning
+              or any other feature of intelligence can in principle be so precisely
+              described that a machine can be made to simulate it.&quot;</p>    
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SInfluence of Lisp"></A>Influence of Lisp</H2></P>  
+             <div class="h2section" id="Influence of Lisp">             
+             <p>Lisp has been an important programming language in AI research, and its
+              history demonstrates the more general benefits resulting from the efforts of
+              AI researchers to tackle exceptionally difficult problems. As with other
+              developments in AI, Lisp demonstrates how, in addressing problems in the
+              representation and computational treatment of knowledge, AI researchers often
+              stretched the limits of computing technology and were forced to invent new
+              techniques that found their way into mainstream application.</p>
+              <p>Early AI researchers interested in logical reasoning and problem solving
+              needed tools to represent logical formulas, proofs, plans, and computations on
+              such objects. Existing programming techniques were very awkward for this
+              purpose, inspiring the development of specialized programming languages, such
+              as list-processing languages. List structures provide a simple and universal
+              encoding of the expressions that arise in symbolic logic, formal language
+              theory, and their applications to the formalization of reasoning and natural
+              language understanding. Among early list-processing languages (the name is
+              based on that phrase), Lisp was the most effective tool for representing both
+              symbolic expressions and manipulations of them. It was also an object of study
+              in itself. Lisp can readily operate on other Lisp programs that are
+              represented as list structures, and it thus can be used for symbolic reasoning
+              on programs. Lisp is also notable because it is based on ideas of mathematical
+              logic that are of great importance in the study of computability and formal
+              systems.</p>
+              <p>Lisp was successful in niche commercial applications. For instance, Lisp is
+              the scripting language in AutoCAD, the widely used computer-aided design (CAD)
+              program from AutoDesk. But it had much broader implications for other
+              languages. Effective implementation of Lisp demanded some form of automatic
+              memory management. Thus, Lisp had critical influence far beyond AI in the
+              theory and design of programming languages, including all functional
+              programming languages as well as object-oriented languages such as Simula-67,
+              SmallTalk, and, most notably, Java. This is not just a happy accident, but
+              rather a consequence of the conceptual breakthroughs arising from the effort
+              to develop computational models of reasoning. Other examples include
+              frame-based knowledge representations, which strongly influenced the
+              development of object-oriented programming and object databases; rule-based
+              and logic-programming language ideas, which found practical applications in
+              expert systems, databases, and optimization techniques; and CAD
+              representations for reasoning with uncertainty, which have found their way
+              into manufacturing control, medical and equipment diagnosis, and
+              human-computer interfaces.</p>  
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCommon Lisp"></A>Common Lisp</H2></P>       
+              <div class="h2section" id="Common Lisp">
+              <p>Over the years, the Lisp programming language flourished in the academic
+              community. In keeping with the rich intellectual tradition of Lisp, a number
+              of experimental Lisp dialects emerged. When industry began using the language,
+              the search for a common standard Lisp dialect began. Computer scientist Guy
+              Steele, together with a group of other interested computer scientists,
+              developed the specifications for a commercial standard Lisp dialect called <i>Common
+              Lisp</i>.</p>
+              <p>Common Lisp has long been the leading language for software research and
+              advanced development projects. Its ability to tackle the biggest problems is
+              unmatched.</p>
+              <p>Common Lisp is rich in data types, supported by a high-level language model
+              and garbage collection. In Common Lisp, all data are represented as objects.
+              There are no out-of-language errors. This model encourages a high-level view
+              of programs and an exploratory programming process that make Lisp programmers
+              among the most productive in the world.</p>
+              <p>Common Lisp has grown and evolved over time, acquiring features and
+              supporting paradigms as they've entered the world of computer science. It is
+              now supported by an ANSI standard (ANSI X3.226:1994). This standard includes
+              the Common Lisp Object System (CLOS); features like multimethods and dynamic
+              class redefinition make CLOS among the most advanced object systems in the
+              world.</p>
+              <p>Among the most important features of Common Lisp are:</p>
+              <ul>
+                <li>Machine-independent language model. All operations are performed in
+                  terms of program objects, not raw bits.</li>
+                <li>Iterative design process. Common Lisp supports exploratory programming,
+                  making programmers more productive.</li>
+                <li>Dynamic patching. Common Lisp programs can be updated while they are
+                  running. The ability to install field patches without interrupting service
+                  is important for many mission-critical applications.</li>
+                <li>High-level debugging. All debugging is performed within the language
+                  model, preventing system crashes and other out-of-language errors.</li>
+                <li>Common Lisp Object System (CLOS). Common Lisp provides advanced
+                  object-oriented programming, including multiple inheritance, multimethods,
+                  class redefinition in running programs, and dynamic type creation. No
+                  other language provides an object system so rich in features.</li>
+                <li>First class functions and classes. First class higher-order functions
+                  provide control systems that are elegant and powerful.</li>
+                <li>First class classes let you manipulate the object system in running
+                  programs, giving you finer degrees of control.</li>
+                <li>Extensive data types. Objects, structures, lists, vectors, adjustable
+                  arrays, hash-tables, and symbols are just a few of Common Lisp's myriad
+                  data types.</li>
+                <li>Advanced numeric types. The Common Lisp arithmetic package includes
+                  unlimited size integers, fractions, complex numbers, and a complete
+                  floating point library. Conversion between numeric types occurs
+                  automatically.</li>
+                <li>Complete IO library. Common Lisp includes a portable interface for
+                  streams, the file system, and other IO facilities.</li>
+                <li>Extensive control structures. Complex looping, guard expressions,
+                  non-local transfer of control and lexical closures are among the control
+                  structures offered by Common Lisp.</li>
+                <li>Condition system. The Common Lisp condition system is object-based, and
+                  supports recovery as well as escape from errors and other exceptional
+                  situations.</li>
+                <li>Consistent syntax. Common Lisp uses a simple consistent syntax that is
+                  easy to learn and easy to use from day one.</li>
+                <li>Macros. A convenient macro system lets Common Lisp programmers create
+                  embedded languages, essentially turning their Lisp environment into a
+                  domain-specific problem solving tool.</li>
+                <li>Programs as data. Common Lisp is a fully reflective language, supporting
+                  genetic algorithms, evolutionary programming, and other self-referential
+                  programming techniques.</li>
+                <li>Late-bound types. By leaving type declarations to the programmer's
+                  discretion, programs can be simpler and prototyping faster.</li>
+              </ul>  
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SScheme"></A>Scheme</H2></P>         
+              <div class="h2section" id="Scheme">
+              <p>The Scheme dialect of Lisp came into existence as a <i>toy</i> Lisp
+              interpreter that Guy Steele and Gerald Sussman wrote in 1975 to study some
+              aspects of Carl Hewitt's theory of actors, an object-oriented computational
+              paradigm. Following the tradition of the AI languages &quot;Planner&quot; and
+              &quot;Conniver&quot;, Steele and Sussman named their language
+              &quot;Schemer&quot;; the name was later truncated to &quot;Scheme&quot; to fit
+              the 6-character filename limitation of the ITS operating system. This early
+              Scheme language centered around a rather compact set of concepts and was
+              composed of only a small number of language constructs and primitive data
+              types; this &quot;minimalistic&quot; design approach has continued to
+              influence the development of Scheme until today.</p>
+              <p>During the late 1970s, Scheme has been used at the MIT AI Lab as the basis
+              for a number of papers exploring semantic concepts of programming languages. A
+              first Scheme compiler (Rabbit) was written by Steele in 1978, and Scheme began
+              to be used outside MIT during that period, mainly as the framework for
+              experimentation by theoreticians (first at the University of Indiana, where
+              similar research activities were going on). As Scheme is much smaller than
+              most Lisp dialects and can be put to work on top of Lisp systems easily,
+              various Scheme implementations emerged during the early 1980s (at the
+              Universities of Yale and Indiana, and at MIT, among other sites). Also,
+              several commercial implementations of Scheme were made by existing and newly
+              founded companies in the following years, among them Chez Scheme, MacScheme
+              for the Apple Macintosh, and PC Scheme by Texas Instruments.</p>
+              <p>Scheme rapidly became popular not only among groups interested in the
+              theoretical and mathematical aspects of programming languages, but also as a
+              tool for research and as the basis for computer science curricula at
+              universities and colleges; it has even found use as a vehicle for teaching
+              liberal arts students about programming. The now classic book Structure and
+              Interpretation of Computer Programs (often referred to as <i>SICP</i>) by
+              Harold Abelson and Gerald Sussman has significantly contributed to the
+              popularity of Scheme in larger circles; the book is based on the curriculum of
+              an undergraduate computer science course at MIT for which Scheme was adopted.</p>
+              <p>The Revised Report on Scheme that was written by Steele and Sussman in 1978
+              was the first in a series of language definitions called The Revised, ...,
+              Revised Report on Scheme (the title is a running gag and is often abbreviated
+              to R^nRS). The latest in this series of reports, the Revised, Revised,
+              Revised, Revised Report on the Algorithmic Language Scheme (R^4RS), was
+              published in 1991 and provides, among other things, a formal denotational
+              semantics of the Scheme language. With the adoption of a new macro facility as
+              a (semi-official) appendix to the R^4RS, Scheme became the first programming
+              language with reliable, hygienic macros. This macro extension has been
+              inspired by a pattern-directed syntactic substitution language invented by
+              Eugen Kohlbecker in 1986 and the concept of <i>syntactic closures</i>.</p>
+              <p>In 1990 a slightly modified version of the R^3RS was adopted as an IEEE and
+              ANSI standard; the relationship between this standard and the R^nRS is that
+              the official standard corresponds to the R^n-1RS when the R^nRS is current.</p>
+              <p>The main impetus behind the evolvement of Scheme is an informally
+              constituted group of <i>Scheme authors</i> who work on the revisions of the
+              Scheme report at sporadic meetings and by electronic mail through an <i>rrrs-authors</i>
+              mailing list. New features are added to the language only if an unanimous
+              agreement can be reached within the group of Scheme authors. This rule ensures
+              that the language remains relatively stable and small. In a way, Scheme can be
+              regarded as the antithesis to Common Lisp: while many features have been added
+              to Common Lisp as the result of a compromise or to satisfy one of the
+              subgroups participating in the standardization process, a new feature is added
+              to Scheme only if it is unanimously considered a <i>Good Thing</i>.</p>   
+              </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAIS Lisp Enhancements"></A>AIS Lisp Enhancements</H2></P>      
+         <div class="h2section" id="AIS Lisp Enhancements">
+         <p>The AIS the Lisp language is a compiled dialect of Lisp, influenced by
+          Scheme, with extensions for supporting the development of <i>Lambdas</i>. The
+          AIS Lisp language is a <i>high speed</i> embedded programming language for the
+          Analytic Information Server database engine. Lambdas coded in AIS Lisp may be
+          saved into and retrieved from AIS repositories as well as distributed across
+          the Internet.</p>
+          <p>High volume data analysis Lambdas (<i>of the type popular in Lambda
+          Information Server applications</i>) place a very high premium on fast
+          execution speed. The high quantity of data and the complex nature of the more
+          advanced analysis techniques, require the fastest possible Lambda execution
+          speeds. As a programming language, Lisp has the reputation of delivering very
+          fast development times plus very low engineering costs. We wanted Lisp's very
+          fast development time; but, we also needed a Lisp which delivers ultra fast
+          microchip-level execution speeds. AIS Lisp is a mixture of high level symbolic
+          and list processing features together with microchip register to register
+          operations for the fastest possible development and execution times.</p>
+          <p>Common Lisp and Scheme lambda values are <i>function</i> objects. In AIS
+          Lisp, the lambda values are <a href="Lambda.htm">Lambda</a> objects. It is
+          already the case that the Common Lisp <i>let</i> special form creates
+          persistent variables associated with returned lambda objects, and it is
+          already the case that the Scheme <i>call-cc</i> function creates persistent
+          variables associated with returned lambda objects. In AIS Lisp, we have
+          extended this trend to allow easy declaration of Lambda persistent variables (<i>of
+          both pvars and cvars scope</i>) with the lambda, define, and defun notation.
+          It also possible, in AIS Lisp, to easily declare microchip registers as
+          variables. This allows ultra fast, register to register operations, with no
+          further changes to the normal Lisp syntax.</p>
+          <p>The list of AIS syntactic enhancements to Lisp is actually rather modest.
+          The new <i>vars</i>, <i>pvars</i>, <i>cvars</i>, <i>assembler</i>, and <i>regs</i> special
+          forms support the easy declaration of temporary, persistent, additional
+          persistent, and register variables within otherwise normal lambda notation.
+          The new <i>faces</i> special forms supports the easy proclamation of the
+          Lambda's goals, intentions, plans, and interface conventions within otherwise
+          normal lambda notation. Reference to Lambda methods, and container object
+          contents is made more convient with the addition to AIS Lisp of the standard
+          dot operator and bracket operators now common in many other programming
+          languages.</p>
+          <p>The <i>lambda</i>, <i>defun</i>, and <i>defmacro</i> special forms support
+          the development of a user defined function library in AIS Lisp (<i>for those
+          applications where a functional programming paradigm is warranted</i>).
+          The <i>defclass</i> and <i>defmethod</i> special forms support the
+          development of a user defined class library in AIS Lisp (<i>for those
+          applications where an object oriented paradigm is warranted</i>). 
+          Finally, the <i>defchild</i>, <i>defriend</i>, and the <i>deforphan</i> special
+          forms, support a wide range of possible Lambda to Lambda relationship for
+          building complex Lambda communities (<i>for those applications where an Lambda
+          oriented paradigm is warranted</i>).</p>
+          <p>The <i>defvm</i> special form supports the
+          development of user defined virtual machines in AIS Lisp (<i>for those
+          applications where an alternative virtual machine is warranted</i>).</p>
+          <p>The <i>assembler</i> virtual machine instruction special forms support the
+          development of portable assembler programs in AIS Lisp. The addition
+          of the <i>register</i> special forms, support the development of portable high volume 
+          data analysis algorithms which execute at microchip-level speeds across a wide range
+          of host computers.</p>
+          <p>Finally, the <i>regs</i> special form supports the declaration of register variables,
+          making it easy to specify microchip-level register to register operations within normal Lisp syntax. 
+          This makes AIS Lisp, in addition to its symbol and list processing features, a <i>write-once-run-anywhere</i>
+          fast execution algorithmic language.</p>   
+          </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

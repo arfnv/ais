@@ -1,0 +1,170 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Date</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Date Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Native Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Date Overview</H4></FONT></P>
+		<p class=MsoBodyText>The Date native type is a container, which
+		may hold a Date and Time of Day. Analytic Information Server supports Dates in the
+		range of 10<sup>15</sup>BC to 10<sup>15</sup>AD. This range exceeds the
+		approximate current age of the universe by a factor of 1000. At the extreme
+		ends of the Date range (10<sup>15</sup>BC or 10<sup>15</sup>AD), Time of Day
+		can be accurately recorded in Days only. At the center of the date range (10<sup>4</sup>BC
+		or 10<sup>4</sup>AD) Time of Day can be accurately recorded in microseconds. 
+		<b style='mso-bidi-font-weight:normal'></b></p>
+		<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>Using
+		the date value, you can perform calendar math and display dates in many
+		different formats. Some date functions require you to enter arguments as date
+		values; others require that date arguments be specified in text form.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p class=MsoBodyText>The Date native type is used to save Date or Time of Day values</p>         
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+			  <p class=MsoBodyText>Date constants are written as
+			#Month,Day,Year .  The # symbol is
+			mandatory; each date component is separated by a comma and no spaces are allowed.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>#Dec,12,1993   #Jan,13,56BC   #Feb,28,1994    #Jun,15,1876    #Jul,14,1786:6:10:30</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>            </b></p>
+			<p class=MsoBodyText>The valid month abbreviations are: Jan, Feb,
+			Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, and Dec. The day must be valid for
+			the specified month. The spelling of the months are case-sensitive.  The year must contain all of its digits. If
+			the year is before Christ, it must be followed by the initials BC.</p>
+			<p class=MsoBodyText> An
+			alternate form allows period symbols instead of commas as in #Month.Day.Year.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>#Dec.12.1993   #Jan.13.56BC   #Feb.28.1994    #Jun.15.1876    #Jul.14.1786:6:10:30</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Native Data Type</H4></FONT></P>
+          <p>The <b>Boolean</b> Data Type is an example of an AIS Native Data Type. </p>
+          <p> Analytic Information Server stores all of its Native Data Types in Virtual Machine Containers.  
+          All containers are stored in memory. Containers provide the basic storage mechanism for modeling 
+          data of all types. Containers provide these fundamental characteristics:      </p>
+          <p>  Ability to hold any type of data (including code) at any time.</p>     
+          <p>  Ability to know what type of data is contained.</p>  
+          <p>  Ability to be stored, retrieved and evaluated by the system.</p>  
+          <p>   Ability to handle type conversion, and memory management automatically.</p>   
+          <p> Containers come in two sizes, Large and Small. Small containers are six bytes in length, 
+          and large containers are ten bytes in length. Large containers can store larger amounts of data 
+          immediately and place less of a burden on the Heap manager. Small containers require less immediate space, 
+          but place more of a burden on the Heap manager.    </p>        
+          <p>  Large containers can store the following data types immediately and does not require the services of the Heap manager:</p>  
+         <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>                         
+          <p>  Small containers can store the following data types immediately without placing additional burden on the Heap manager:</p>  
+         <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>              
+          <p>  Analytic Information Server containers can be saved and loaded to and from persistent (database) 
+          storage at any time. Containers with immediate data are saved on disk in fixed length records equal 
+          to the size of the container. Containers with Heap object references are saved in fixed length records, 
+          which are automatically expanded to include the contents of the Heap object, and any objects referenced 
+          by the Heap object, etc. This feature is called Object Closure Management and is automatic with every 
+          Analytic Information Server container database save. Analytic Information Server containers may be loaded 
+          from any database repository record at any time. If the data in the record is immediate, the database 
+          load fills the container with the immediate data. If the data in the record is an object closure, the 
+          database load fills the container with a Heap object reference, and all of the objects in the record 
+          are loaded back into the Heap with the same referential relationships they had when they were saved.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Date object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Date_compareEQ_012.html">Example_Date_compareEQ_012</A></td>
+<td><A HREF="Example_Date_compareGE_012.html">Example_Date_compareGE_012</A></td>
+<td><A HREF="Example_Date_compareGT_012.html">Example_Date_compareGT_012</A></td>
+<td><A HREF="Example_Date_compareLE_012.html">Example_Date_compareLE_012</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_compareLT_012.html">Example_Date_compareLT_012</A></td>
+<td><A HREF="Example_Date_compareNE_012.html">Example_Date_compareNE_012</A></td>
+<td><A HREF="Example_Date_compare_012.html">Example_Date_compare_012</A></td>
+<td><A HREF="Example_Date_comparison_011.html">Example_Date_comparison_011</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_date_001.html">Example_Date_date_001</A></td>
+<td><A HREF="Example_Date_day_001.html">Example_Date_day_001</A></td>
+<td><A HREF="Example_Date_days360_001.html">Example_Date_days360_001</A></td>
+<td><A HREF="Example_Date_getTickCount_001.html">Example_Date_getTickCount_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_hour_001.html">Example_Date_hour_001</A></td>
+<td><A HREF="Example_Date_isDate_001.html">Example_Date_isDate_001</A></td>
+<td><A HREF="Example_Date_isEqual_010.html">Example_Date_isEqual_010</A></td>
+<td><A HREF="Example_Date_isEqual_011.html">Example_Date_isEqual_011</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_isIdentical_010.html">Example_Date_isIdentical_010</A></td>
+<td><A HREF="Example_Date_isType_014.html">Example_Date_isType_014</A></td>
+<td><A HREF="Example_Date_julian_001.html">Example_Date_julian_001</A></td>
+<td><A HREF="Example_Date_minute_001.html">Example_Date_minute_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_month_001.html">Example_Date_month_001</A></td>
+<td><A HREF="Example_Date_now_001.html">Example_Date_now_001</A></td>
+<td><A HREF="Example_Date_ref_020.html">Example_Date_ref_020</A></td>
+<td><A HREF="Example_Date_second_001.html">Example_Date_second_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_setq_019.html">Example_Date_setq_019</A></td>
+<td><A HREF="Example_Date_sizeof_012.html">Example_Date_sizeof_012</A></td>
+<td><A HREF="Example_Date_time_001.html">Example_Date_time_001</A></td>
+<td><A HREF="Example_Date_time_002.html">Example_Date_time_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_today_001.html">Example_Date_today_001</A></td>
+<td><A HREF="Example_Date_type_014.html">Example_Date_type_014</A></td>
+<td><A HREF="Example_Date_year_001.html">Example_Date_year_001</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

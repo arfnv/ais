@@ -1,0 +1,448 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SLinear Regression"><FONT SIZE=2>Linear Regression</font></a></li><li><a href="#SNonLinear Regression"><FONT SIZE=2>NonLinear Regression</font></a></li><li><a href="#SNeural Net Regression"><FONT SIZE=2>Neural Net Regression</font></a></li><li><a href="#SSymbolic Regression"><FONT SIZE=2>Symbolic Regression</font></a></li><li><a href="#SGrammatical Swarm Evolution"><FONT SIZE=2>Grammatical Swarm Evolution</font></a></li><li><a href="#SCombining All Of These into a Tool"><FONT SIZE=2>Combining All Of These into a Tool</font></a></li><li><a href="#SExample"><FONT SIZE=2>Example</font></a></li><li><a href="#SFAQ"><FONT SIZE=2>FAQ</font></a></li><li><a href="#SReferences"><FONT SIZE=2>References</font></a></li>
+</UL>
+
+<P><H2><A NAME="SLinear Regression"></A>Linear Regression</H2></P>
+             <P>A classic statistical problem is to try to determine the relationship between two random variables X and Y. 
+             For example, we might consider height and weight of a sample of adults. 
+             Linear regression attempts to explain this relationship with a straight line fit to the data. 
+             The linear regression model postulates that <B>Y = a + bX + e</B>.             
+             Where the "error" <B>e</B> is a random variable with mean zero.  
+             The coefficients <B>a</B> and <B>b</B> are determined by the condition that the sum of the square residuals is as small as possible.
+             </P>
+
+             <P>For instance if &nbsp; <B>X = #(1 2 3 4)</B> and &nbsp; <B>Y = #(4 5 6 7)</B>, then &nbsp; <B>a = 3.0</B>, <B>b = 1.0</B> and <B>e = 0.0</B>.
+             <BR><BR> 
+             If &nbsp; <B>X = #(1 2 3 4)</B> and &nbsp; <B>Y = #(2 4 6 8)</B>, then &nbsp; <B>a = 0.0</B>, <B>b = 2.0</B> and <B>e = 0.0</B>. 
+             <BR><BR> 
+             Also if &nbsp; <B>X = #(1 2 3 4)</B> and &nbsp; <B>Y = #(1.5 4 6.2 8)</B>, then &nbsp; <B>a = -0.5</B>, <B>b = 2.17</B> and <B>e = 0.123</B>. 
+             </P>
+
+             <P><B>Multiple Linear Regression</B>. The general purpose of multiple regression (the term was first used by Pearson, 1908) is to learn more about the relationship between several independent 
+             or predictor variables and a dependent or criterion variable. 
+             For example, a real estate Lambda might record for each listing the size of the house (in square feet), the number of bedrooms, 
+             the average income in the respective neighborhood according to census data, and a subjective rating of appeal of the house. 
+             Once this information has been compiled for various houses it would be interesting to see whether and how these measures relate to the price for which a house is sold. 
+             For example, one might learn that the number of bedrooms is a better predictor of the price for which a house sells in a particular neighborhood than how "pretty" 
+             the house is (subjective rating). One may also detect "outliers," that is, houses that should really sell for more, given their location and characteristics. 
+             </P>
+
+			 <P>Personnel professionals customarily use multiple regression procedures to determine equitable compensation.
+             One can determine a number of factors or dimensions such as "amount of responsibility" (Resp) or "number of people to supervise" (No_Super) that one believes 
+             to contribute to the value of a job. The personnel analyst then usually conducts a salary survey among comparable companies in the market, 
+             recording the salaries and respective characteristics (i.e., values on dimensions) for different positions. 
+             This information can be used in a multiple regression analysis to build a regression equation of the form: 
+             <BR><BR>
+             <B>Salary = .5*Resp + .8*No_Super</B> 
+             <BR><BR>
+             Once this so-called regression line has been determined, the analyst can now easily construct a graph of the expected (predicted) salaries 
+             and the actual salaries of job incumbents in his or her company. Thus, the analyst is able to determine which position is underpaid (below the regression line) 
+             or overpaid (above the regression line), or paid equitably. 
+             </P>
+
+             <P>In the social and natural sciences multiple regression procedures are very widely used in research. 
+             In general, multiple regression allows the researcher to ask (and hopefully answer) the general question "what is the best predictor of ...". 
+             For example, educational researchers might want to learn what are the best predictors of success in high-school. 
+             Psychologists may want to determine which personality variable best predicts social adjustment. 
+             Sociologists may want to find out which of the multiple social indicators best predict whether or not a new immigrant group will adapt and be absorbed into society. 
+             </P>
+
+             <P>The general computational problem that needs to be solved in multiple regression analysis is to fit a straight line to a number of points. 
+             </P>
+
+             <P><B>Least Squares</B>. In our problem, we have an independent or X variable, and a dependent or Y variable. 
+             These variables may, for example, represent IQ (intelligence as measured by a test) and school achievement (grade point average; GPA), respectively. 
+             Each point in the plot represents one student, that is, the respective student's IQ and GPA. 
+             The goal of linear regression procedures is to fit a line through the points. 
+             Specifically, the program will compute a line so that the squared deviations of the observed points from that line are minimized. 
+             Thus, this general procedure is sometimes also referred to as least squares estimation.
+             </P> 
+
+             <P><B>The Regression Equation</B>. A line in a two dimensional or two-variable space is defined by the equation Y=a+b*X; 
+             in full text: the Y variable can be expressed in terms of a constant (a) and a slope (b) times the X variable. 
+             The constant is also referred to as the intercept, and the slope as the regression coefficient or B coefficient. 
+             For example, GPA may best be predicted as 1+.02*IQ. 
+             Thus, knowing that a student has an IQ of 130 would lead us to predict that her GPA would be 3.6 (since, 1+.02*130=3.6).
+             In the multivariate case, when there is more than one independent variable, the regression line cannot be visualized in the two dimensional space, 
+             but can be computed just as easily. 
+             For example, if in addition to IQ we had additional predictors of achievement (e.g., Motivation, Self- discipline) we could construct 
+             a linear equation containing all those variables. 
+             In general then, multiple regression procedures will estimate a linear equation of the form: &nbsp; <B>Y = a + b1*X1 + b2*X2 + ... + bp*Xp</B> 
+             </P>
+
+             <P><B>Unique Prediction and Partial Correlation</B>. Note that in this equation, the regression coefficients (or B coefficients) represent the independent 
+             contributions of each independent variable to the prediction of the dependent variable. 
+             Another way to express this fact is to say that, for example, variable X1 is correlated with the Y variable, after controlling for all other independent variables. 
+             This type of correlation is also referred to as a partial correlation (this term was first used by Yule, 1907). 
+             Perhaps the following example will clarify this issue. One would probably find a significant negative correlation between hair length 
+             and height in the population (i.e., short people have longer hair). 
+             At first this may seem odd; however, if we were to add the variable Gender into the multiple regression equation, this correlation would probably disappear. 
+             This is because women, on the average, have longer hair than men; they also are shorter on the average than men. 
+             Thus, after we remove this gender difference by entering Gender into the equation, the relationship between hair length and height disappears 
+             because hair length does not make any unique contribution to the prediction of height, above and beyond what it shares in the prediction with variable Gender. 
+             Put another way, after controlling for the variable Gender, the partial correlation between hair length and height is zero. 
+             </P>
+
+             <P><B>Predicted and Residual Scores</B>. The regression line expresses the best prediction of the dependent variable (Y), given the independent variables (X). 
+             However, nature is rarely (if ever) perfectly predictable, and usually there is substantial variation of the observed points around the fitted regression line 
+             (as in the scatterplot shown earlier). 
+             The deviation of a particular point from the regression line (its predicted value) is called the residual value. 
+             </P>
+
+             <P><B>Residual Variance and R-square</B>. The smaller the variability of the residual values around the regression line relative to the overall variability, 
+             the better is our prediction. 
+             For example, if there is no relationship between the X and Y variables, then the ratio of the residual variability of the Y variable to the original 
+             variance is equal to 1.0. If X and Y are perfectly related then there is no residual variance and the ratio of variance would be 0.0. 
+             In most cases, the ratio would fall somewhere between these extremes, that is, between 0.0 and 1.0. 1.0 minus this ratio is referred to as R-square 
+             or the coefficient of determination. This value is immediately interpretable in the following manner. 
+             If we have an R-square of 0.4 then we know that the variability of the Y values around the regression line is 1-0.4 times the original variance; 
+             in other words we have explained 40% of the original variability, and are left with 60% residual variability. 
+             Ideally, we would like to explain most if not all of the original variability. 
+             The R-square value is an indicator of how well the model fits the data (e.g., an R-square close to 1.0 indicates that we have accounted 
+             for almost all of the variability with the variables specified in the model). 
+             </P>
+
+             <P><B>Interpreting the Correlation Coefficient R</B>. Customarily, the degree to which two or more predictors (independent or X variables) 
+             are related to the dependent (Y) variable is expressed in the correlation coefficient R, which is the square root of R-square. 
+             In multiple regression, R can assume values between 0 and 1. 
+             To interpret the direction of the relationship between variables, one looks at the signs (plus or minus) of the regression or B coefficients. 
+             If a B coefficient is positive, then the relationship of this variable with the dependent variable is positive (e.g., the greater the IQ the 
+             better the grade point average); if the B coefficient is negative then the relationship is negative (e.g., the lower the class size the better the average test scores). 
+             Of course, if the B coefficient is equal to 0 then there is no relationship between the variables. 
+             </P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNonLinear Regression"></A>NonLinear Regression</H2></P>
+             <P>Nonlinear regression in statistics is the problem of fitting a model <B>y = f(x,P) + e</B> to multidimensional x, y data, 
+             where f is a nonlinear function of x with parameters P, and where the "error" <B>e</B> is a random variable with mean zero.
+             In general, there is no algebraic expression for the best-fitting parameters <B>P</B>, as there is in linear regression. 
+             Usually numerical optimization algorithms are applied to determine the best-fitting parameters. 
+             There may be many local maxima of the goodness of fit, again in contrast to linear regression, in which there is usually a unique global maximum of the goodness of fit. 
+             To determine which maximum is to be located using numerical optimization, guess values of parameters are used.
+             Some nonlinear regression problems can be linearized if the exact solution to the guess-regression equation can be found.
+             <BR><BR>         
+             For example:
+             <BR><BR>         
+             If we take a logarithm of <B>y = A*exp(B*x)</B> and cast it as a linear regression, it will look like <B>log(y) = log(A) + B*x</B>, 
+             a usual linear regression problem of optimizing parameters log(A) and B, the exact solution of which is well known. 
+             </P>
+
+             <P>However, performing such a linearization may bias some data towards being more "relevant" than others, which may not be a desired effect.
+             More complex problems, such as transcendental regression are optimized by more complex algorithms.
+             Other nonlinear regressions may have several goodness of fit maxima, and will require the scientist to input guess values for the optimized parameters. 
+             </P>
+
+             <P>Nonlinear regression fits a mathematical model to your data, and therefore Nonlinear regression requires that you choose a model.  
+             What is a model? 
+             A mathematical model is a simple description of a physical, chemical or biological state or process. 
+             Using a model can help you think about chemical and physiological processes or mechanisms, enabling you to design better experiments and make sense of the results.           
+             Your model must be expressed as a mathematical function.
+             You can express the model as a single algebraic equation.
+             You can express the model as a set of differential equations or you can write an equation in a manner that lets you have different models for different portions of your data.
+             </P>
+
+		     <P>Choosing a model for NonLinear regression obviously requires some understanding of the problem data and some preference for one choice of model over another.
+             </P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNeural Net Regression"></A>Neural Net Regression</H2></P>
+             <P>Neural Net regression is the problem of training a neural net model <B>y = Nf(x,S,Ch,Wh,Co,Wo) + e</B> 
+             on multidimensional M-Vectors <B>x</B> in <B>X</B> and real numbers <B>y</B> in <B>Y</B>,
+             such that the trained numeric coefficients, <B>Ch</B>, <B>Wh</B>, <B>Co</B> and <B>Wo</B>, optimize the least squares error component, <B>e</B>
+             which is a random variable with mean zero. 
+             Normally, a neural net is a complex learning machine receiving M dimensional inputs <B>x</B>, containing hidden layer coefficients <B>Ch</B> and <B>Wh</B>, 
+             also containing output coefficients <B>Co</B> and <B>Wo</B>, producing hidden layer internal signals <B>S</B>, and producing one real number output signal <B>y</B>.
+             </P>
+
+             <P>A standard neural net, <B>Nf</B>, is defined by <i>M</i>, the number of input dimensions, and by <i>K</i>, the number of hidden layers.
+             There are 1 thru M inputs, 0 thru K layers (with 1 thru M internal signals produced for each layer), and one real number output signal.
+             The number of components inside the neural net learning machine is complex, and they are as follows.
+             </P>
+
+             <UL>
+               <LI><B>x</B>: The input vector with 1 thru M dimensions.</LI>
+               <LI><B>S</B>: The internal signals vector with 0 thru K rows (each containing a signal vector of 1 thru M dimensions).</LI>
+               <LI><B>Ch</B>: The internal signals axis coefficient vector with 1 thru K rows (each containing an axis coefficient vector of 1 thru M dimensions).</LI>
+               <LI><B>Wh</B>: The internal signals weight matrix of K by M elements (each containing a vector of 1 thru M dimensions).</LI>
+               <LI><B>Co</B>: The output signal axis coefficient.</LI>
+               <LI><B>Wo</B>: The output signal weight vector with 1 thru M dimensions.</LI>
+               <LI><B>y</B>: The output signal (a real number).</LI>
+             </UL>
+
+             <P>A standard Neural Net operates by generating internal signals which propagate up through each layer until the final output signal is produced.
+             The number and composition of these signals inside the neural net is complex, and they are as follows.
+             </P>
+
+             <UL>
+               <LI><B>S[0]</B> = <B>x</B> (the input vector with 1 thru M dimensions is automatically assigned as the 0th layer signals)</LI>
+               <LI><B>S[k][m]</B> = <B>tanh(sum(Ch[k,m] , dotProduct(S[k-1],Wh[k,m])))</B> (the mth internal signal for the kth layer is the dot product of its weight vector (Wh[k,m]) and all M signals from the previous layer)</LI>
+               <LI><B>y</B> = <B>sum(Co , dotProduct(S[k],Wo))</B> (the output signal is the dot product of its weight vector (Wo) and all M signals from the final layer)</LI>
+             </UL>
+
+             <P>Normally each internal signal, S[k][m], is either a weighted function of the outputs from the layer below or an original input element x[m].
+             All of the neural nets, which we will consider in this document, are fully connected neural nets, 
+             receiving M input signals, with zero or more hidden layers, and have one real number output signal.
+             </P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSymbolic Regression"></A>Symbolic Regression</H2></P>
+             <P>Symbolic regression is the induction of mathematical expressions from data. 
+             This is called symbolic regression (first mentioned by Koza in 1992), to emphasize the fact that the object of search is a symbolic description of a model, 
+             not just discovering a set of optimized coefficients in a prespecified model. 
+             This is in sharp contrast with other methods of regression, including NonLinear regression, where a specific model is assumed and often only the complexity of this model can be varied.
+             </P>
+
+             <p>For example:
+             <BR><BR>         
+             If we start with a trigonometric function <B>y = 3.56*cos((21.456*x1)-log(x2))</B> and create a training data set we might produce a three column by 1000 row matrix.
+             The first column is the independent variable X1.
+             The second column is the independent variable X2, and the third column is the dependent variable Y.
+             The number of training rows, in this case 1000, is arbitrary; but, the larger the number of rows, the better for training purposes.
+             </P>
+             
+             <P>When we present the training data set, created above, to a symbolic regression machine, we will know 
+             that the Y column can be derived from the X columns using the model: <B>y = 3.56*cos((21.456*x1)-log(x2))</B>. 
+             However, the symbolic regression machine will not know this fact.
+             We want the symbolic regression machine to discover this model relationship on its own without any further hints other than the training data set. 
+             </P>
+
+             <P>In the case of a symbolic regression machine, what is a model? 
+             For our purposes, using Analytic Information Server, 
+             a symbolic regression machine model is an AIS Lambda which inputs a number vector, <B>x</B>, and outputs a single number, <B>y</B>.
+             Furthermore we express all symbolic regression models in the <i>Estimator</i> language.
+             If our hypothetical symbolic regression machine were to discover the relationship hidden in the training data correctly,
+             it would return a model regression Lambda as follows: <B>function(x) {y = 3.56*cos((21.456*x[0])-log(x[1]))}</B>.
+             This would be a perfect score for our hypothetical symbolic regression machine. 
+             </P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SGrammatical Swarm Evolution"></A>Grammatical Swarm Evolution</H2></P>
+             <P>Grammatical Swarm Evolution is a just-in-time algorithm that can evolve <i>computer programs</i>, <i>rulesets</i>, or more generally <i>sentences</i> in any language. 
+ 			 Rulesets could be as diverse as a regression model or a trading system for a financial market.
+ 			 Rather than representing the programs as syntax trees, as in Genetic Programming, a <i>linear genome</i> representation is used in conjunction with a grammar.
+ 			 Each individual genome is a vector of integer codons each of which contains the information to select production rules from a grammar.
+ 			 The mapping from the genotype (genome) to the phenotype (computer program) is accomplished 
+ 			 by reading the genome, from first element to last element, and using each integer codon to select a grammar rule.
+ 			 Selected grammar rules are used to incrementally build a grammatically correct computer program.
+ 			 The mapping process has been engineered so that it will always terminate, either at or before the end of the genome, with a valid program.
+             </P>
+               
+             <P>For the evolutionary component of its algorithm, Grammatical Swarm Evolution, turns to a technique called Particle Swarm optimization (PSO).
+             The PSO algorithm was introduced by Kennedy and Eberhart in 1995.
+             In PSO, a swarm of particles, which encode solutions to the problem of interest, move around in an n-dimensional search space in an attempt to uncover better solutions.
+             Each of the particles has two associated properties, a current position and a velocity.
+             Each particle has a memory of the best location in the search space that it has found so far (<i>pbest</i>),
+             and knows the best location found to date by all the particles in the population (gbest).
+             At each step of the algorithm, particles move from their current location by applying a velocity vector to their current position vector.
+             The magnitude and direction of their velocity at each step is influenced by their velocity in the previous iteration of the algorithm,
+             simulating momentum, and the location of the particle relative to the location of its <i>pbest</i> and the <i>gbest</i>.
+			 Therefore, at each step, the size and direction of each particle's move is a function of its own history, and the social influence of its peer group.
+             </P>
+
+             <P>Therefore, for grammatical purposes, the genome is seen as a vector of integer codons; 
+             however, for evolutionary purposes, the genome is viewed as a discrete binary bit vector for use as a location in an n-dimensional search space.
+             The evolutionary search mechanism is performed by the discrete binary version of PSO. 
+             </P>
+             
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCombining All Of These into a Tool"></A>Combining All Of These into a Tool</H2></P>	
+             <p>The Grammatical Swarm Symbolic Regression Machine Lambda (GSM) is a learning machine which learns to
+             select and score individuals from a universe of individuals over time. Over a series  
+             of discrete time steps, a universe of individuals is collected for each timestep.
+             The individuals are things such as Stocks, People, Cities, etc. The discrete time
+             steps are weeks, days, seconds, years, microseconds, etc.</p>
+         
+             <p>Each individual followed by the system is given a unique identifier which remains
+             unique across all time periods studied (no two individuals ever have the same identifier).
+             Furthermore, each time period studied is given a unique ascending integer index (i.e. week 1,
+             week 2, etc.). So, for a series of time periods, historical information about groups of
+             individuals is collected for each time period. The historical information collected for each
+             individual for each time period is stored in a Number Vector and includes: the time period index;
+             the unique identifier of the individual; and other numeric information about the individual
+             pertinent to the current investigation. Finally, each individual in each time period is given
+             a numeric "score" which determines the value of the individual in that time period.</p>
+
+             <p>During training, the GSM is given historical information for time periods 0 through T for
+             all individuals. The GSM is also given the "score" values for each individual in each training
+             time period from 0 through T. During training the GSM attempts to "learn" any patterns in 
+             the available historical data. The machine (GSM) is free to discover static as well as time
+             varying patterns.</p>
+
+             <p>During forward prediction, the GSM is given new information for time period T+1 for
+             all individuals. The GSM is <b>NOT</b> given the "score" values for each individual in the new
+             time period T+1. During prediction the GSM attempts to use any patterns it has learned to 
+             select and score the individuals, from the universe of individuals, seen in time period T+1. 
+             Once the machine scores the individuals, in the new time period, the accuracy of the machine 
+             is determined by: (a) the least squares error on the scored individuals in time period T+1; 
+             and (b) by the "order preserving" property of the estimated scores in time period T+1 
+             (the degree to which the estimated scores preserve the natural sort ordering of the actual scores).  
+             Order preservation is a simple idea where if the estimated score for individual <b>x</b> is
+             less than the estimated score for individual <b>y</b>, then the actual score for individual <b>x</b>
+             should also be less than the actual actual score for individual <b>y</b> in time period T+1.
+             Normally these two measures should be coincident -- especially if the least squares error is excellent. 
+             However, in cases where there is insufficient information in the training data, they may not be coincident. 
+             If a tradeoff is required, the Grammatical Swarm Symbolic Regression Machine prefers that at least natural ordering be preserved.</p>
+
+             <p>A time series set of vectors, X, together with a set, Y, of scores for the vectors
+             in X are used to train a learning machine. There is also a testing set, TX and TY, of 
+             of vectors similar to those in X and Y but for the testing time period (a time period
+             not present in X or Y). After training, the machine is presented with the testing set,
+             TX and attempts to estimate TY. The learning machine returns a Vector EY, of estimates
+             for TY. Each element in EY contains a numeric estimate for the corresponding value in TY. 
+             The learning machine attempts to: (a) minimize the least squared error between EY and TY; 
+             and to, as much as possible, have the natural ordering of EY be predictive of the natural
+             ordering of TY.</p>
+
+             <p>The <i>order preservation</i> mission of the Grammatical Swarm Symbolic Regression Machine is an important
+             distinguishing feature between this learning machine and general regression learning machines.
+             The GSM is trying to fit a function to the testing data, using least squares error; but, 
+             the GSM is also trying to predict the natural order of the individuals in the testing data.</p>
+
+             <p>In many instances the Grammatical Swarm Symbolic Regression Machine may not have an exact estimate
+             for the scores of the individuals in the testing data. However, if the learning machine 
+             is able to predict the natural ordering of individuals in the testing data, then the machine
+             has been partially successful even if its estimated scores are incorrect.</p>
+
+             <p>Let X be a set of vectors such as the numeric vector x = #(num| xtime x1 x2 x3 ... xm),
+             and let Y be a numeric vector of "score" values. Let both X and Y be of length N.</p>
+
+             <p>Furthermore, let the first prefix element, xtime, of every vector, in X, contain a 
+             non-negative integer value indicating some time span of integral length, for
+             example, if the time span were weeks, a value of 1 would indicate week one, 
+             and a value of 10 would indicate week ten, etc. (i.e. the vectors contained
+             in X are time sequenced).</p>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SExample"></A>Example</H2></P>	
+             <p>An example, but by no means the only example, of X and Y would be a set of vectors
+             of stock market data taken from the Open High Low Close and Volume numbers for all
+             NASDQ traded stocks over a 52 week period. In this example we have the following:</p>
+
+		    <table>
+		      <tr align="top"><th>xtime</th> <td>The sequential index of the current week (from 1 through 52).</td></tr>
+		      <tr align="top"><th>x1</th> <td>The unique integer identifier of the stock (stocks not traded would not appear).</td></tr>
+		      <tr align="top"><th>x2</th> <td>The current week opening price.</td></tr>
+		      <tr align="top"><th>x3</th> <td>The current week high price.</td></tr>
+		      <tr align="top"><th>x4</th> <td>The current week low price.</td></tr>
+		      <tr align="top"><th>x5</th> <td>The current week closing price.</td></tr>
+		      <tr align="top"><th>x6</th> <td>The current week share volume traded.</td></tr>
+		      <tr align="top"><th>Y</th> <td>The "score" vector of next week profits (next_week_closing_price - the_current_week_closing_price).</td></tr>
+            </table>
+
+            <p>Similar examples can be constructed for oil exploration data over time, for
+            the height and weight of individuals over time, etc. However, continuing with our
+            securities example, we train our machine on the market data for four stocks
+            over a four week period as follows:</p>
+
+            <p><b>Training Data</b></p>
+
+		    <table>
+		      <tr align="top"><th><i>Time</i></th><th><i>Stock</i></th><th><i>Open</i></th><th><i>High</i></th><th><i>Low</i></th><th><i>Close</i></th><th><i>Vol</i></th><th><i>Score</i></th></tr>
+		      <tr align="top"><th>x.xtime</th><th>x.x1</th><th>x.x2</th><th>x.x3</th><th>x.x4</th><th>x.x5</th><th>x.x6</th><th>y</th></tr>
+		      <tr align="top"><th></th><th></th><th></th><th><i>(first week)</i></th><th></th><th></th><th></th><th>Note: (<i>next week's profit</i>)</th></tr>
+		      <tr align="top"><td>0</td><td>1 <i>(Apple)</i></td><td>$23.45</td><td>$25.67</td><td>$23.35</td><td>$24.56</td><td>19367</td><td>3.4%</td></tr>
+		      <tr align="top"><td>0</td><td>2 <i>(IBM)</i></td><td>$143.45</td><td>$145.27</td><td>$143.15</td><td>$144.96</td><td>894676</td><td>-1.2%</td></tr>
+		      <tr align="top"><td>0</td><td>3 <i>(Xerox)</i></td><td>$13.95</td><td>$15.27</td><td>$13.35</td><td>$14.72</td><td>56832</td><td>4.8%</td></tr>
+		      <tr align="top"><td>0</td><td>4 <i>(GM)</i></td><td>$57.15</td><td>$62.17</td><td>$53.65</td><td>$62.05</td><td>3419647</td><td>9.1%</td></tr>
+		      <tr align="top"><th></th><th></th><th></th><th><i>(second week)</i></th><th></th><th></th><th></th><th>Note: (<i>next week's profit</i>)</th></tr>
+		      <tr align="top"><td>1</td><td>1 <i>(Apple)</i></td><td>$24.56</td><td>$25.38</td><td>$22.75</td><td>$25.40</td><td>12046</td><td>1.2%</td></tr>
+		      <tr align="top"><td>1</td><td>2 <i>(IBM)</i></td><td>$144.96</td><td>$144.96</td><td>$143.15</td><td>$143.23</td><td>864023</td><td>-3.2%</td></tr>
+		      <tr align="top"><td>1</td><td>3 <i>(Xerox)</i></td><td>$14.72</td><td>$16.12</td><td>$14.39</td><td>$15.43</td><td>59204</td><td>3.4%</td></tr>
+		      <tr align="top"><td>1</td><td>4 <i>(GM)</i></td><td>$62.05</td><td>$62.05</td><td>$68.00</td><td>$67.70</td><td>3219382</td><td>6.5%</td></tr>
+		      <tr align="top"><th></th><th></th><th></th><th><i>(third week)</i></th><th></th><th></th><th></th><th>Note: (<i>next week's profit</i>)</th></tr>
+		      <tr align="top"><td>2</td><td>1 <i>(Apple)</i></td><td>$25.40</td><td>$26.98</td><td>$24.75</td><td>$25.71</td><td>22056</td><td>0.8%</td></tr>
+		      <tr align="top"><td>2</td><td>2 <i>(IBM)</i></td><td>$143.23</td><td>$143.23</td><td>$136.75</td><td>$138.64</td><td>824093</td><td>-4.3%</td></tr>
+		      <tr align="top"><td>2</td><td>3 <i>(Xerox)</i></td><td>$15.43</td><td>$16.45</td><td>$15.09</td><td>$15.96</td><td>61205</td><td>-1.4%</td></tr>
+		      <tr align="top"><td>2</td><td>4 <i>(GM)</i></td><td>$67.70</td><td>$75.35</td><td>$66.39</td><td>$72.10</td><td>3619582</td><td>7.8%</td></tr>
+            </table>
+
+            <p>We train the GSM on the training data shown above. After training, we
+            show the machine the following testing data, TX, and ask it to return an estimate
+            of the next week's profit, TY, for each of the four individuals. <u>We do not show the machine the scores, TY.</u></p>
+
+            <p><b>Testing Data</b></p>
+
+		    <table>
+		      <tr align="top"><th><i>Time</i></th><th><i>Stock</i></th><th><i>Open</i></th><th><i>High</i></th><th><i>Low</i></th><th><i>Close</i></th><th><i>Vol</i></th><th><i>Score</i></th></tr>
+		      <tr align="top"><th>tx.xtime</th><th>tx.x1</th><th>tx.x2</th><th>tx.x3</th><th>tx.x4</th><th>tx.x5</th><th>tx.x6</th><th>ty</th></tr>
+		      <tr align="top"><th></th><th></th><th></th><th><i>(fourth week)</i></th><th></th><th></th><th></th><th>Note: (<i>next week's profit</i>)</th></tr>
+		      <tr align="top"><td>3</td><td>1 <i>(Apple)</i></td><td>$25.71</td><td>$26.18</td><td>$25.55</td><td>$25.92</td><td>25046</td><td>-1.2%</td></tr>
+		      <tr align="top"><td>3</td><td>2 <i>(IBM)</i></td><td>$138.64</td><td>$139.23</td><td>$131.15</td><td>$132.67</td><td>774593</td><td>-6.1%</td></tr>
+		      <tr align="top"><td>3</td><td>3 <i>(Xerox)</i></td><td>$15.96</td><td>$16.13</td><td>$15.00</td><td>$15.73</td><td>59205</td><td>2.4%</td></tr>
+		      <tr align="top"><td>3</td><td>4 <i>(GM)</i></td><td>$72.10</td><td>$77.87</td><td>$71.39</td><td>$77.73</td><td>3710582</td><td>5.8%</td></tr>
+            </table>
+
+            <p><b>Resulting Estimates</b></p>
+
+            <p>After testing, the learning machine returns the following estimated scores, EY.</p>
+
+		    <table>
+		      <tr align="top"><th><i>Estimate</i></th><th><i>Score</i></th></tr>
+		      <tr align="top"><th>ey</th><th>ty</th></tr>
+		      <tr align="top"><td>-2.3%</td><td>-1.2%</td></tr>
+		      <tr align="top"><td>-7.6%</td><td>-6.1%</td></tr>
+		      <tr align="top"><td>1.9%</td><td>2.4%</td></tr>
+		      <tr align="top"><td>4.9%</td><td>5.8%</td></tr>
+            </table>
+
+            <p>We calculate the least squares error on the four individuals as 1.13%, so we did not a mediocre job of minimizing least squares error; 
+           however, we did a perfect job of preserving the sort order of the corresponding TY values.</p>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFAQ"></A>FAQ</H2></P>	
+             <p><font color=blue><b>Question 1:</b></font> Why must we train the learning machine on collections of individuals in each time period? 
+             Why not simply train the machine on each individual separately and perform a normal regression estimate for each individual?</p>
+
+             <p><font color=blue><b>Answer:</b></font> Many <i>real world</i> estimates cannot be made unless one is aware of the competitive land scape.</p>
+             <p>For instance, suppose one is estimating the <i>social popularity</i> of students in the senior high school class. We can perform any
+             number of individual regressions correlating high scores for <i>intelligence</i>, <i>appearance</i>, and <i>social skills</i>
+             with <i>social popularity</i>. However, all of these individual regression models are greatly skewed in the case where all
+             students in the senior high school class are male except one student who is female.</p>
+
+             <p>Also, suppose one is estimating the <i>financial popularity</i> of our Bank's Certificates of Deposit. We perform any
+             number of individual regressions correlating our Bank's previous Certificates of Deposit with their <i>financial popularity</i>.
+             However, all of these individual regression models are greatly skewed in the case where one of our competitors is advertising
+             an aggressive interest rate two percentage points higher than ours.</p>
+
+             <p><font color=blue><b>Question 2:</b></font> Why must we ask the learning machine to preserve the natural order of the individuals in the testing time period? 
+             Why not simply have the machine provide more accurate regression estimates for each individual in the testing time period?</p>
+
+             <p><font color=blue><b>Answer:</b></font> Many <i>real world</i> estimates cannot be made for all individuals; but, only for a few individuals.</p>
+             <p>For instance, suppose one is estimating currency <i>conversion rates</i>. Normally these rates have very small random daily changes.
+             However, every so often, a central bank will pre-announce its intention to buy or sell its own currency. In those special cases the 
+             learning machine will want to provide its normal estimates on most currencies; yet, make a special higher than normal estimate for the currency whose central bank has pre-announced.</p>
+
+             <p>Many <i>real world</i> situations do not allow us to accurately estimate the score of the best individuals; but, only to guess which might be the better individuals than others.</p>
+
+             <p>For instance, if ten monkeys and one five year old human child are taking a simple IQ test (this being all the information we have). 
+             We cannot, with the meager information provided, accurately estimate the IQ scores of the contestants after they take the IQ test.
+             However, we can reasonably make the guess that the human child will have the better IQ score (whatever that score may be).</p>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SReferences"></A>References</H2></P>	
+             <ol>
+             <li><b>A Discrete Binary Version of the Particle Swarm Algorithm</b>; <i>Proceedings of the Conference on Systems, Man and Cybernetics</i>; J Kennedy, R Eberhart; IEEE Press; 1997.</li>
+             <li><b>An Introduction to Genetic Algorithms</b>; Melanie Mitchell; The MIT Press, Cambridge Massachusetts; 1996.</li>
+             <li><b>Biologically Inspired Algorithms for Financial Modelling</b>; Anthony Brabazon, Michael O'Neill; Springer-Verlag, Berlin; 2005.</li>
+             <li><b>Datamining using Grammar based Genetic Programming and Applications</b>; Man Leung Wong, Kwong Sak Leung; Kluwer Academic Publishers, Dordrecht Netherlands; 2000.</li>
+             <li><b>Genetic Algorithms and Genetic Programming in Computational Finance</b>; edited by Shu-Heng Chen; Kluwer Academic Publishers, Dordrecht Netherlands; 2002.</li>
+             <li><b>Genetic Programming: On the Programming of Computers by Means of Natural Selection</b>; John R. Koza; The MIT Press, Cambridge Massachusetts; 1992.</li>
+             <li><b>Genetic Programming II: Automatic Discovery of Reusable Programs</b>; John R Koza; The MIT Press, Cambridge Massachusetts; 1994.</li>
+             <li><b>Genetic Programming III: Darwinian Invention and Problem Solving</b>; John R Koza, Forrest H Bennett III, David Andre, Martin A Keane; Morgan Kaufmann Publishers, San Francisco, California; 1999.</li>
+             <li><b>Genetic Programming IV: Routine Human-Competitive Machine Intelligence</b>; John R Koza, Martin A Keane, Mathew J Streeter, William Mydlowec, Jessen Yu, Guido Lanza; Kluwer Academic Publishers, Dordrecht Netherlands; 2003.</li>
+             <li><b>Grammatical Evolution</b>; Michael O'Neill, Conor Ryan; Kluwer Academic Publishers, Dordrecht Netherlands; 2003.</li>
+             <li><b>Particle Swarm Optimization</b>; <i>Proceedings of the IEEE International Conference on Neural Networks</i>; J Kennedy, R Eberhart; IEEE Press; December 1995.</li>
+             </ol>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

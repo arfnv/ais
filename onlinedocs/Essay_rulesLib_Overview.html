@@ -1,0 +1,164 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>rulesLib Overview</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SRule Format"><FONT SIZE=2>Rule Format</font></a></li><li><a href="#SConstant Rules"><FONT SIZE=2>Constant Rules</font></a></li><li><a href="#SWild Cards"><FONT SIZE=2>Wild Cards</font></a></li><li><a href="#SLambda Rules"><FONT SIZE=2>Lambda Rules</font></a></li><li><a href="#SAppend Output Rules"><FONT SIZE=2>Append Output Rules</font></a></li><li><a href="#SSingle Pass Mode"><FONT SIZE=2>Single Pass Mode</font></a></li><li><a href="#SAsterisk Wild Card Rules"><FONT SIZE=2>Asterisk Wild Card Rules</font></a></li><li><a href="#SAppend List Function"><FONT SIZE=2>Append List Function</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Overview">
+			  <p>The <b>rulesLib</b> is a global Lambda providing a tiny rule-based
+		    forward production engine useful in small rule-based programming applications.
+		    The rulesLib is designed to be inserted within larger parent Lambdas
+		    for small rule-based machine learning tasks. A copy of the rulesLib
+		    is inserted into the math Lambda. A copy of the rulesLib is inserted
+		    into the javaScript compiler Lambda. Compiling the javaScript compiler 
+		    automatically creates the rulesLib. The rulesLib is an important 
+		    element of the Analytic Information Server Lambda library.</p>
+		    <p>The <b>rulesLib</b> is needed by the JavaScript compiler to identify
+		    patterns during the code optimization phase of compilation. The rulesLib
+		    is needed by the math Lambda to perform symbolic math manipulations. The AIS
+		    programmer may also use the rulesLib in applications where a small set of
+		    complex list modifying rules are required. The rulesLib is not meant to be
+		    applied in applications with a large rule base.</p>
+		    <p>The <b>rulesLib</b> creates, maintains, and applies a Dictionary of <b>IF
+		    -&gt; THEN</b> list substitution rules for transforming a list and all its
+		    sub lists into a new list. Anywhere a sub list matches one of the IF rules,
+		    the THEN rule is substituted in place of the original sub list. The Lambda
+		    supports wild card substitution rules, indefinite arity pattern matching,
+		    forward chaining, user defined recognition functions, user defined
+		    substitution functions, and single or multiple pass substitution rule
+		    application.</p>
+		    <p>The rulesLib can be used for semantic analysis, algebraic reduction,
+		    parse tree optimization, theorem proving, and a host of other applications.
+		    The Lambda operates with its rule base stored in RAM memory; and, is
+		    therefore, not useful for problems requiring huge rule bases.</p> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRule Format"></A>Rule Format</H2></P>		
+		    <div class="h2section" id="Rule Format">
+			 <p>The rulesLib supports a simple rule Language of <b>IF -&gt; THEN</b>
+		    list substitution rules for transforming a list and all its sub lists into a
+		    new list. The IF - &gt; THEN rules are all entered via the assert function.
+		    This Lambda accepts and saves a set of transformation rules in its internal
+		    rules dictionary. Each rule is entered, by the programmer, in two parts --
+		    an IF form followed by a THEN form.</p>
+		    <p>&nbsp;</p>
+		    <p>An example might be:</p>
+		    <pre><b>(rulesLib.assert '(x + y)  '(addi x y))</b></pre>
+		    <p>We may then apply the above rules against an input list as follows:</p>
+		    <pre><b>(rulesLib.apply  '(x + y))</b> <i>...Returns...</i>  <b>'(addi x y)</b></pre> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SConstant Rules"></A>Constant Rules</H2></P>		
+		    <div class="h2section" id="Constant Rules">
+			<p>The simplest rule form is the constant pattern. Both the IF and the THEN
+		    forms are constant patterns, containing no wild cards, or other special
+		    characters.<br>
+		    An example might be:</p>
+		    <pre><b>(rulesLib.assert '(x + y)  '(Add x to y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(x + y))</b> <i>...Returns...</i>  <b>'(Add x to y)</b></pre>
+		    <p>Whenever an exact match occurs with the IF pattern, the THEN pattern is
+		    substituted in the output list.</p> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SWild Cards"></A>Wild Cards</H2></P>		
+		    <div class="h2section" id="Wild Cards">
+		 <p>This Lambda supports wild card variables to make rule definitions more
+		    flexible for the programmer. An example of wild card rule variables is as
+		    follows:</p>
+		    <pre><b>(rulesLib.assert '($X + $Y)  '(addi $X $Y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + 10))</b> <i>...Returns...</i>  <b>'(addi m 10)</b></pre>
+		    <p>The rules and wild card variables operate on sub lists as well as the
+		    whole list as follows:</p>
+		    <pre><b>(rulesLib.apply '((m + 10) + 20))</b> <i>...Returns...</i>  <b>'(addi (addi m 10) 20)</b></pre>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLambda Rules"></A>Lambda Rules</H2></P>		
+		    <div class="h2section" id="Lambda Rules">
+		   <p>This Lambda supports named lambda rule definitions which allow more
+		    flexible actions to be taken by the programmer during the recognition phase
+		    and also during the production phase. Some examples of named lambda rule
+		    definitions is as follows:</p>
+		    <pre><b>(rulesLib.assert $FOLD:(lambda(op x y) vars:(f) (setq f (getGlobalValue (symbol op))) (f x y)))</b></pre>
+		    <pre><b>(rulesLib.assert $NUM:(lambda(x) (if (isNumber x) x)))</b></pre>
+		    <pre><b>(rulesLib.assert $OP:(lambda(x) vars:((d #{+ addi - subi * muli / divi})) (if (isMember x d) d[x])))</b></pre>
+		    <pre><b>(rulesLib.assert '(&lt;$X=$NUM&gt; &lt;$Y=$OP&gt; &lt;$Z=$NUM&gt;) '(&lt;$FOLD&gt; $Y $X $Z))</b></pre>
+		    <pre><b>(rulesLib.assert '($X &lt;$Y=$OP&gt; $Z) '($Y $X $Z))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + 10))</b> <i>...Returns...</i> <b>'(addi m 10)</b></pre>
+		    <pre><b>(rulesLib.apply '(5 + 10))</b> <i>...Returns...</i> <b>15</b></pre>	 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAppend Output Rules"></A>Append Output Rules</H2></P>		
+		    <div class="h2section" id="Append Output Rules">
+			  <p>Using the built in &lt;$&gt; function in a THEN rule causes the
+		    appendList function to be applied to the result as follows:</p>
+		    <pre><b>(rulesLib.assert '($X + $Y) '(&lt;$&gt; + $X $Y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '((5 6 7) + (10 20)))</b> <i>...Returns...</i> <b>'(+ 5 6 7 10 20)</b></pre>
+		    <h3>Rule Precedence</h3>
+		    <p>This Lambda supports multiple rule definitions up to the limits of
+		    available memory. Rules asserted first have precedence over rules asserted
+		    later as follows:</p>
+		    <pre><b>(rulesLib.assert $OP:(lambda(x)
+		
+		&nbsp;&nbsp;&nbsp; vars:((d #{+ addi - subi * muli / divi}))
+		
+		&nbsp;&nbsp;&nbsp; (if (isMember x d) d[x])))</b></pre>
+		    <pre><b>(rulesLib.assert '($X &lt;$Y=$OP&gt; $Z) '($Y $X $Z))</b></pre>
+		    <pre><b>(rulesLib.assert '(addi $X $X) '(muli $X 2))</b></pre>
+		    <pre><b>(rulesLib.assert '(addi $X 0) '$X)</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + m))</b> <i>...Returns...</i> <b>'(addi m m)</b></pre> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSingle Pass Mode"></A>Single Pass Mode</H2></P>		
+		    <div class="h2section" id="Single Pass Mode">
+			 <p>This Lambda supports single pass mode, during rule application, as
+		    follows:</p>
+		    <pre><b>(setq rulesLib.singlePass true)</b></pre>
+		    <pre><b>(rulesLib.assert '($X + $Y) '(+ $X  $Y))</b></pre>
+		    <pre><b>(rulesLib.assert '(+ $X $X) '(* $X  2))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply '(m + m))</b> <i>...Returns...</i> <b>'(+ m m)</b></pre>
+		    <p>The second rule, converting (+ m m) into (* 2 m), was never fired,
+		    because the rulesLib was set to single pass mode.</p> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAsterisk Wild Card Rules"></A>Asterisk Wild Card Rules</H2></P>		
+		    <div class="h2section" id="Asterisk Wild Card Rules">
+			<p>This Lambda supports asterisk wild card rules anywhere within lists, as
+		    follows:</p>
+		    <pre><b>(rulesLib.assert '(min ($X*)) '(&lt;$FN&gt; min $X))</b></pre>
+		    <pre><b>(rulesLib.assert '($X* min)   '(&lt;$FN&gt; min $X))</b></pre>
+		    <pre><b>(rulesLib.assert $FN:(lambda(fn x) (append (list fn) x)))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply  '(min (2 3)))</b> <i>...Returns...</i> <b>'(min 2 3)</b></pre>
+		    <pre><b>(rulesLib.apply  '((2 3 4) min))</b> <i>...Returns...</i> <b>'(min 2 3 4)</b></pre>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAppend List Function"></A>Append List Function</H2></P>		
+		    <div class="h2section" id="Append List Function">
+			<p>The builtin appendList function allows multiple arguments to be append
+		    together to form a list. The appendList function is builtin and may be used
+		    in any IF-&gt;THEN rule by double quoting the THEN form as follows:</p>
+		    <pre><b>(rulesLib.assert '(min ($X $Y)) ''(min $X $Y))</b></pre>
+		    <p>We may then apply the above rules against a list as follows:</p>
+		    <pre><b>(rulesLib.apply  '(min (2 3) (4 5 6)))</b> <i>...Returns...</i> <b>'(min 2 3 4 5 6)</b></pre>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

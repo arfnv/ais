@@ -1,0 +1,385 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Symbol remProp 001</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example assigns a property binding to a Symbol. Then it
+
+                  displays the contents of the property list of the Symbol using the
+
+                  <b>proplist</b> function. The <b>remProp</b> function removes the specified
+                  contents in the property list.  
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(putprop  BLUE-WHALE:  OCEAN:  MAMMAL:)  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>OCEAN</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(putprop  BLUE-WHALE:  GRAY:  COLOR:)    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>GRAY</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(proplist BLUE-WHALE:)  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Pair 175610&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display #&#60Pair 175610&#62)  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>(COLOR GRAY MAMMAL OCEAN)true</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(remProp  BLUE-WHALE:  MAMMAL:)   </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>true</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(proplist BLUE-WHALE:)  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Pair 175463&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display #&#60Pair 175463&#62)  </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>(COLOR GRAY)true</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>remProp</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_Symbol_remProp_001.html">Symbol remProp 001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_remProp_Builtin.html">remProp</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_remProp_Builtin.html">remProp(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Symbol.html">Symbol</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_ByteVector_isCharAlphabetic_003.html">ByteVector isCharAlphabetic 003</A></td>
+<td><A HREF="Example_ByteVector_isCharAlphanumeric_003.html">ByteVector isCharAlphanumeric 003</A></td>
+<td><A HREF="Example_ByteVector_isCharLowercase_003.html">ByteVector isCharLowercase 003</A></td>
+<td><A HREF="Example_ByteVector_isCharName_003.html">ByteVector isCharName 003</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isCharNumeric__003.html">ByteVector isCharNumeric  003</A></td>
+<td><A HREF="Example_ByteVector_isCharUppercase_003.html">ByteVector isCharUppercase 003</A></td>
+<td><A HREF="Example_ByteVector_isCharWhitespace_003.html">ByteVector isCharWhitespace 003</A></td>
+<td><A HREF="Example_Context_debug_001.html">Context debug 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Context_getGlobalValue_001.html">Context getGlobalValue 001</A></td>
+<td><A HREF="Example_Context_getSymbolTable_001.html">Context getSymbolTable 001</A></td>
+<td><A HREF="Example_Context_globalBinding_001.html">Context globalBinding 001</A></td>
+<td><A HREF="Example_Dictionary_binarySearch_002.html">Dictionary binarySearch 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_delete_004.html">Dictionary delete 004</A></td>
+<td><A HREF="Example_Dictionary_insert_002.html">Dictionary insert 002</A></td>
+<td><A HREF="Example_Dictionary_inside_002.html">Dictionary inside 002</A></td>
+<td><A HREF="Example_Dictionary_isBound_002.html">Dictionary isBound 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+<td><A HREF="Example_Dictionary_member_002.html">Dictionary member 002</A></td>
+<td><A HREF="Example_Dictionary_new_004.html">Dictionary new 004</A></td>
+<td><A HREF="Example_Dictionary_ref_007.html">Dictionary ref 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_ref_008.html">Dictionary ref 008</A></td>
+<td><A HREF="Example_Dictionary_ref_009.html">Dictionary ref 009</A></td>
+<td><A HREF="Example_Dictionary_refAttributes_002.html">Dictionary refAttributes 002</A></td>
+<td><A HREF="Example_Dictionary_refValues_002.html">Dictionary refValues 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_remove_002.html">Dictionary remove 002</A></td>
+<td><A HREF="Example_Dictionary_setAttributes_002.html">Dictionary setAttributes 002</A></td>
+<td><A HREF="Example_Dictionary_setq_007.html">Dictionary setq 007</A></td>
+<td><A HREF="Example_Dictionary_setq_009.html">Dictionary setq 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_sort_003.html">Dictionary sort 003</A></td>
+<td><A HREF="Example_Dictionary_sort_005.html">Dictionary sort 005</A></td>
+<td><A HREF="Example_Directory_delete_006.html">Directory delete 006</A></td>
+<td><A HREF="Example_Directory_insert_003.html">Directory insert 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_inside_003.html">Directory inside 003</A></td>
+<td><A HREF="Example_Directory_isBound_003.html">Directory isBound 003</A></td>
+<td><A HREF="Example_Directory_isInside_003.html">Directory isInside 003</A></td>
+<td><A HREF="Example_Directory_isMember_003.html">Directory isMember 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_member_002.html">Directory member 002</A></td>
+<td><A HREF="Example_Directory_new_005.html">Directory new 005</A></td>
+<td><A HREF="Example_Directory_new_006.html">Directory new 006</A></td>
+<td><A HREF="Example_Directory_ref_010.html">Directory ref 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_ref_011.html">Directory ref 011</A></td>
+<td><A HREF="Example_Directory_ref_012.html">Directory ref 012</A></td>
+<td><A HREF="Example_Directory_refAttributes_003.html">Directory refAttributes 003</A></td>
+<td><A HREF="Example_Directory_refValues_003.html">Directory refValues 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_remove_003.html">Directory remove 003</A></td>
+<td><A HREF="Example_Directory_setAttributes_003.html">Directory setAttributes 003</A></td>
+<td><A HREF="Example_Directory_setq_010.html">Directory setq 010</A></td>
+<td><A HREF="Example_Directory_setq_011.html">Directory setq 011</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_sort_008.html">Directory sort 008</A></td>
+<td><A HREF="Example_Directory_sort_009.html">Directory sort 009</A></td>
+<td><A HREF="Example_FltVector_delete_009.html">FltVector delete 009</A></td>
+<td><A HREF="Example_FltVector_insert_005.html">FltVector insert 005</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_delete_010.html">IntVector delete 010</A></td>
+<td><A HREF="Example_IntVector_insert_006.html">IntVector insert 006</A></td>
+<td><A HREF="Example_Lambda_debug_001.html">Lambda debug 001</A></td>
+<td><A HREF="Example_Lambda_define(macro)_001.html">Lambda define(macro) 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_defmacro_001.html">Lambda defmacro 001</A></td>
+<td><A HREF="Example_Lambda_defmacro_002.html">Lambda defmacro 002</A></td>
+<td><A HREF="Example_Lambda_exportTab_001.html">Lambda exportTab 001</A></td>
+<td><A HREF="Example_Lambda_globalBinding_001.html">Lambda globalBinding 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_importTab_001.html">Lambda importTab 001</A></td>
+<td><A HREF="Example_Lambda_isLambda_001.html">Lambda isLambda 001</A></td>
+<td><A HREF="Example_Matrix_delete_009.html">Matrix delete 009</A></td>
+<td><A HREF="Example_Matrix_insert_005.html">Matrix insert 005</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_delete_014.html">NumMatrix delete 014</A></td>
+<td><A HREF="Example_NumMatrix_insert_009.html">NumMatrix insert 009</A></td>
+<td><A HREF="Example_NumVector_delete_011.html">NumVector delete 011</A></td>
+<td><A HREF="Example_NumVector_insert_007.html">NumVector insert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_delete_012.html">ObjVector delete 012</A></td>
+<td><A HREF="Example_ObjVector_insert_008.html">ObjVector insert 008</A></td>
+<td><A HREF="Example_ObjectRepository_delete_013.html">ObjectRepository delete 013</A></td>
+<td><A HREF="Example_ShortVector_delete_011.html">ShortVector delete 011</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_insert_007.html">ShortVector insert 007</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_setq_001.html">String setq 001</A></td>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Structure_binaryInsert_001.html">Structure binaryInsert 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_binarySearch_001.html">Structure binarySearch 001</A></td>
+<td><A HREF="Example_Structure_delete_001.html">Structure delete 001</A></td>
+<td><A HREF="Example_Structure_delete_002.html">Structure delete 002</A></td>
+<td><A HREF="Example_Structure_insert_001.html">Structure insert 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_inside_001.html">Structure inside 001</A></td>
+<td><A HREF="Example_Structure_isBound_001.html">Structure isBound 001</A></td>
+<td><A HREF="Example_Structure_isInside_001.html">Structure isInside 001</A></td>
+<td><A HREF="Example_Structure_isMember_001.html">Structure isMember 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_member_001.html">Structure member 001</A></td>
+<td><A HREF="Example_Structure_new_003.html">Structure new 003</A></td>
+<td><A HREF="Example_Structure_ref_004.html">Structure ref 004</A></td>
+<td><A HREF="Example_Structure_ref_006.html">Structure ref 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_refAttributes_001.html">Structure refAttributes 001</A></td>
+<td><A HREF="Example_Structure_refValues_001.html">Structure refValues 001</A></td>
+<td><A HREF="Example_Structure_remove_001.html">Structure remove 001</A></td>
+<td><A HREF="Example_Structure_setAttributes_001.html">Structure setAttributes 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setq_003.html">Structure setq 003</A></td>
+<td><A HREF="Example_Structure_setq_004.html">Structure setq 004</A></td>
+<td><A HREF="Example_Structure_setq_005.html">Structure setq 005</A></td>
+<td><A HREF="Example_Structure_setq_006.html">Structure setq 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_uniqueInsert_001.html">Structure uniqueInsert 001</A></td>
+<td><A HREF="Example_Structure_uniqueInsert_002.html">Structure uniqueInsert 002</A></td>
+<td><A HREF="Example_Symbol_&#42;&#60;_001.html">Symbol &#42;&#60; 001</A></td>
+<td><A HREF="Example_Symbol_&#43;&#43;_001.html">Symbol &#43;&#43; 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_&#43;&#60;_001.html">Symbol &#43;&#60; 001</A></td>
+<td><A HREF="Example_Symbol_&#45;&#45;_001.html">Symbol &#45;&#45; 001</A></td>
+<td><A HREF="Example_Symbol_&#45;&#60;_001.html">Symbol &#45;&#60; 001</A></td>
+<td><A HREF="Example_Symbol_&#47;&#60;_001.html">Symbol &#47;&#60; 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_append_003.html">Symbol append 003</A></td>
+<td><A HREF="Example_Symbol_compare_002.html">Symbol compare 002</A></td>
+<td><A HREF="Example_Symbol_compareEQ_002.html">Symbol compareEQ 002</A></td>
+<td><A HREF="Example_Symbol_compareGE_002.html">Symbol compareGE 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_compareGT_002.html">Symbol compareGT 002</A></td>
+<td><A HREF="Example_Symbol_compareLE_002.html">Symbol compareLE 002</A></td>
+<td><A HREF="Example_Symbol_compareLT_002.html">Symbol compareLT 002</A></td>
+<td><A HREF="Example_Symbol_compareNE_002.html">Symbol compareNE 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_comparison_functions_002.html">Symbol comparison functions 002</A></td>
+<td><A HREF="Example_Symbol_downcase_002.html">Symbol downcase 002</A></td>
+<td><A HREF="Example_Symbol_getGlobalValue_001.html">Symbol getGlobalValue 001</A></td>
+<td><A HREF="Example_Symbol_getGlobalValue_002.html">Symbol getGlobalValue 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_getSymbolTable_001.html">Symbol getSymbolTable 001</A></td>
+<td><A HREF="Example_Symbol_getSymbolTable_002.html">Symbol getSymbolTable 002</A></td>
+<td><A HREF="Example_Symbol_hashString_002.html">Symbol hashString 002</A></td>
+<td><A HREF="Example_Symbol_isCharAlphabetic_002.html">Symbol isCharAlphabetic 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharAlphanumeric_002.html">Symbol isCharAlphanumeric 002</A></td>
+<td><A HREF="Example_Symbol_isCharLowercase_002.html">Symbol isCharLowercase 002</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharUppercase_002.html">Symbol isCharUppercase 002</A></td>
+<td><A HREF="Example_Symbol_isCharWhitespace__002.html">Symbol isCharWhitespace  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+<td><A HREF="Example_Symbol_new_002.html">Symbol new 002</A></td>
+<td><A HREF="Example_Symbol_proplist_001.html">Symbol proplist 001</A></td>
+<td><A HREF="Example_Symbol_proprecord_001.html">Symbol proprecord 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_putprop_001.html">Symbol putprop 001</A></td>
+<td><A HREF="Example_Symbol_ref_003.html">Symbol ref 003</A></td>
+<td><A HREF="Example_Symbol_remProp_001.html">Symbol remProp 001</A></td>
+<td><A HREF="Example_Symbol_setq_001.html">Symbol setq 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_setq_002.html">Symbol setq 002</A></td>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_symbol_001.html">Symbol symbol 001</A></td>
+<td><A HREF="Example_Symbol_symbol_002.html">Symbol symbol 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+<td><A HREF="Example_Symbol_upcase_004.html">Symbol upcase 004</A></td>
+<td><A HREF="Example_Vector_delete_007.html">Vector delete 007</A></td>
+<td><A HREF="Example_Vector_delete_008.html">Vector delete 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_insert_004.html">Vector insert 004</A></td>
+<td><A HREF="Example_Vector_setAttributes_004.html">Vector setAttributes 004</A></td>
+<td><A HREF="Example_Vector_setAttributes_005.html">Vector setAttributes 005</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

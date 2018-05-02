@@ -1,0 +1,212 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Brick compare 019</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> These examples use the <b>compare</b> functions to do a 
+                  case-sensitive comparison of two objects of the same type.  An Integer value is returned.
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define nameList  (new Brick: 2 Name:Object:3))</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Brick 123456&#62  </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define customerList  (new Brick: 2 Name:Object:1))      </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Brick 234567&#62 </Returns></b></td></tr>
+</table><p><Note>The first Brick has greater value than the second Brick.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(compare nameList customerList)   </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>1</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>compare</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_Boolean_compare_009.html">Boolean compare 009</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Brick compare 019</A></td>
+<td><A HREF="Example_Character_compare_010.html">Character compare 010</A></td>
+<td><A HREF="Example_Complex_compare_021.html">Complex compare 021</A></td>
+</tr><tr>
+<td><A HREF="Example_CpxVector_compare_020.html">CpxVector compare 020</A></td>
+<td><A HREF="Example_Date_compare_012.html">Date compare 012</A></td>
+<td><A HREF="Example_FltVector_compare_014.html">FltVector compare 014</A></td>
+<td><A HREF="Example_Function_compare_013.html">Function compare 013</A></td>
+</tr><tr>
+<td><A HREF="Example_List_compare_020.html">List compare 020</A></td>
+<td><A HREF="Example_Number_compare_011.html">Number compare 011</A></td>
+<td><A HREF="Example_ObjectRepository_compare_021.html">ObjectRepository compare 021</A></td>
+<td><A HREF="Example_ObjectRepository_compare_022.html">ObjectRepository compare 022</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_compare_019.html">Pair compare 019</A></td>
+<td><A HREF="Example_String_compare_001.html">String compare 001</A></td>
+<td><A HREF="Example_Symbol_compare_002.html">Symbol compare 002</A></td>
+<td><A HREF="Example_Void_compare_008.html">Void compare 008</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_compare_Builtin.html">compare</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ(Builtin)</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE(Builtin)</A></td>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT(Builtin)</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT(Builtin)</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Brick.html">Brick</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Brick compare 019</A></td>
+<td><A HREF="Example_Brick_compareEQ_019.html">Brick compareEQ 019</A></td>
+<td><A HREF="Example_Brick_compareGT_019.html">Brick compareGT 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_compareLE_019.html">Brick compareLE 019</A></td>
+<td><A HREF="Example_Brick_compareLT_019.html">Brick compareLT 019</A></td>
+<td><A HREF="Example_Brick_compareNE_019.html">Brick compareNE 019</A></td>
+<td><A HREF="Example_Brick_comparison_019.html">Brick comparison 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_copy_012.html">Brick copy 012</A></td>
+<td><A HREF="Example_Brick_isAtom_011.html">Brick isAtom 011</A></td>
+<td><A HREF="Example_Brick_isEqual_018.html">Brick isEqual 018</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Brick isIdentical 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_isObject_014.html">Brick isObject 014</A></td>
+<td><A HREF="Example_Brick_isType_022.html">Brick isType 022</A></td>
+<td><A HREF="Example_Brick_length_017.html">Brick length 017</A></td>
+<td><A HREF="Example_Brick_new_015.html">Brick new 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_ref_036.html">Brick ref 036</A></td>
+<td><A HREF="Example_Brick_setCdr_014.html">Brick setCdr 014</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_sizeof_029.html">Brick sizeof 029</A></td>
+<td><A HREF="Example_Brick_type_026.html">Brick type 026</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

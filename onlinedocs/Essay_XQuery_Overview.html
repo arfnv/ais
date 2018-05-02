@@ -1,0 +1,1872 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>XQuery Overview</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SXQuery History"><FONT SIZE=2>XQuery History</font></a></li><li><a href="#SXQuery Data Model"><FONT SIZE=2>XQuery Data Model</font></a></li><li><a href="#SXQuery Example Data"><FONT SIZE=2>XQuery Example Data</font></a></li><li><a href="#SXQuery Basics"><FONT SIZE=2>XQuery Basics</font></a></li><li><a href="#SXPath Expressions"><FONT SIZE=2>XPath Expressions</font></a></li><li><a href="#SXQuery Predicates"><FONT SIZE=2>XQuery Predicates</font></a></li><li><a href="#SXQuery Element Constructors"><FONT SIZE=2>XQuery Element Constructors</font></a></li><li><a href="#SXQuery Iteration and sorting"><FONT SIZE=2>XQuery Iteration and sorting</font></a></li><li><a href="#SXQuery Arithmetic"><FONT SIZE=2>XQuery Arithmetic</font></a></li><li><a href="#SXQuery Operations on sequences"><FONT SIZE=2>XQuery Operations on sequences</font></a></li><li><a href="#SXQuery Conditional expressions"><FONT SIZE=2>XQuery Conditional expressions</font></a></li><li><a href="#SXQuery Quantified expressions"><FONT SIZE=2>XQuery Quantified expressions</font></a></li><li><a href="#SXQuery Functions"><FONT SIZE=2>XQuery Functions</font></a></li><li><a href="#SXQuery Types"><FONT SIZE=2>XQuery Types</font></a></li><li><a href="#SXQuery Validation"><FONT SIZE=2>XQuery Validation</font></a></li><li><a href="#SStructure of an XQuery"><FONT SIZE=2>Structure of an XQuery</font></a></li><li><a href="#SConclusion"><FONT SIZE=2>Conclusion</font></a></li><li><a href="#SAcknowledgements"><FONT SIZE=2>Acknowledgements</font></a></li><li><a href="#SReferences"><FONT SIZE=2>References</font></a></li>
+</UL>
+
+<P><H2><A NAME="SXQuery History"></A>XQuery History</H2></P>
+		    <div class="h2section" id="XQuery History">
+		    <p>The World Wide Web Consortium has convened a working group to design a
+		    query language for Extensible Markup Language (XML) data sources. This new
+		    query language, called XQuery, is still evolving and has been described in a
+		    series of drafts published by the working group. XQuery is a functional
+		    language comprised of several kinds of expressions that can be nested and
+		    composed with full generality. It is based on the type system of XML Schema
+		    and is designed to be compatible with other XML-related standards. This
+		    paper explains the need for an XML query language, provides a tutorial
+		    overview of XQuery, and includes several examples of its use.</p>
+		    <p>Increasingly, Extensible Markup Language is considered the format of
+		    choice for the exchange of information among various applications on the
+		    Internet. The popularity of XML is due in large part to its flexibility for
+		    representing many kinds of information. The use of tags makes XML data
+		    self-describing, and the extensible nature of XML makes it possible to
+		    define new kinds of documents for specialized purposes. As the importance of
+		    XML has increased, a series of standards has grown up around it, many of
+		    which were defined by the World Wide Web Consortium (W3C). For example, XML
+		    Schema provides a notation for defining new types of elements and documents;
+		    XML Path Language (XPath) provides a notation for selecting elements within
+		    an XML document; and Extensible Stylesheet Language Transformations (XSLT)
+		    provides a notation for transforming XML documents from one representation
+		    to another.</p>
+		    <p>XML makes it possible for applications to exchange data in a standard
+		    format that is independent of storage. For example, one application may use
+		    a native XML storage format, whereas another may store data in a relational
+		    database. Since XML is emerging as a standard for data exchange, it is
+		    natural that queries among applications should be expressed as queries
+		    against data in XML format. This use gives rise to a requirement for a query
+		    language designed expressly for XML data sources. In October 1999, W3C
+		    convened the XML Query Working Group for the purpose of designing such a
+		    query language, to be called XQuery.</p>
+		    <p>XML data are different from relational data in several important respects
+		    that influence the design of a query language. Relational data tend to have
+		    a regular structure, which allows the descriptive meta-data for these data
+		    to be stored in a separate catalog. XML data, in contrast, are often quite
+		    heterogeneous, and distribute their meta-data throughout the document. XML
+		    documents often contain many levels of nested elements, whereas relational
+		    data are flat. XML documents have an intrinsic order, whereas relational
+		    data are unordered except where an ordering can be derived from data values.
+		    Relational data are usually dense (nearly every column has a value), and
+		    relational systems often represent missing information by a special null
+		    value. XML data, in contrast, are often sparse and can represent missing
+		    information simply by the absence of an element. For these and other
+		    reasons, existing relational query languages are not directly suitable for
+		    querying XML data.</p>
+		    <p>The design of XQuery is still in progress. The XML Query Working Group
+		    has published working drafts of several documents that describe the current
+		    state of the design. Of these, perhaps the most important is <i>XQuery 1.0:
+		    An XML Query Language</i>, which contains a syntax and informal description
+		    of the language. The working group has also published a list of
+		    requirements, a description of the data model that underlies the language, a
+		    formal semantic description, a list of functions and operators, and a
+		    collection of use cases that illustrate applications of the language. Each
+		    of these documents is updated from time to time as the design of XQuery
+		    evolves. This paper is based on the most recent XQuery design at the time of
+		    its publication, but since this design is still changing, the documents
+		    referenced in this paragraph should be consulted for the latest
+		    developments.</p>
+		    <p>The design of XQuery has been subject to a number of influences. Perhaps
+		    the most important of these is compatibility with existing W3C standards,
+		    including Schema, XSLT, XPath, and XML itself. XPath, in particular, is so
+		    important and so closely related that XQuery is defined as a superset of
+		    XPath. The overall design of XQuery is based on a language proposal called
+		    Quilt Quilt, in turn, was influenced by the functional approach of Object
+		    Query Language (OQL), by the keyword-based syntax of Structured Query
+		    Language (SQL), and by previous XML query language proposals including XQL,
+		    XML-QL, and Lorel.</p>
+		    <p>It is an objective of the XML Query Working Group to define two syntaxes
+		    for XQuery: one that is expressed in XML, and one that is optimized for
+		    human writing and understanding. This paper describes only the
+		    human-oriented version of XQuery.</p>
+		    <p>The initial design of XQuery is focused only on information retrieval and
+		    does not provide facilities for updating existing XML documents. The XML
+		    Query Working Group may consider the addition of an update facility after
+		    completing the design of the first version of XQuery.</p>
+		    <p>This paper describes the data model on which XQuery is based, and then
+		    presents an overview of the XQuery language in the form of a series of
+		    examples. This paper is not intended to provide a rigorous or exhaustive
+		    definition of the language. The reader is referred to Reference 7 for an
+		    XQuery syntax and a more complete language description.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Data Model"></A>XQuery Data Model</H2></P>		
+		    <div class="h2section" id="XQuery Data Model">
+		    <p>Formally, the input and output of XQuery are defined in terms of a data
+		    model, described in Reference 9. The query data model provides an abstract
+		    representation of one or more XML documents or document fragments. The data
+		    model is based on the notion of a sequence. A <i>sequence </i>is an ordered
+		    collection of zero or more items. An <i>item </i>may be a node or an atomic
+		    value. An <i>atomic value </i>is an instance of one of the built-in data
+		    types defined by XML Schema, such as strings, integers, decimals, and dates.
+		    A <i>node </i>conforms to one of seven node kinds, which include element,
+		    attribute, text, document, comment, processing instruction, and namespace
+		    nodes. A node may have other nodes as children, thus forming one or more
+		    node hierarchies. Some kinds of nodes, such as element and attribute nodes,
+		    have names or typed values, or both. A <i>typed value </i>is a sequence of
+		    zero or more atomic values. Nodes have identity (that is, two nodes may be
+		    distinguishable even though their names and values are the same), but atomic
+		    values do not have identity. Among all the nodes in a hierarchy there is a
+		    total ordering called <i>document order</i>, in which each node appears
+		    before its children. Document order corresponds to the order in which the
+		    nodes would appear if the node hierarchy were represented in XML format.
+		    Document order between nodes in different hierarchies is
+		    implementation-defined but must be consistent; that is, all the nodes in one
+		    hierarchy must be ordered either before or after all the nodes in another
+		    hierarchy.</p>
+		    <p>Sequences may be heterogeneous; that is, they may contain mixtures of
+		    various types of nodes and atomic values. However, a sequence never appears
+		    as an item in another sequence. All operations that create sequences are
+		    defined to flatten their operands so that the result of the operation is a
+		    single-level sequence. There is no distinction between an item and a
+		    sequence of length one in other words, a node or atomic value is considered
+		    to be identical to a sequence of length one containing that node or atomic
+		    value.</p>
+		    <p>Sequences of length zero are valid and are sometimes used to represent
+		    missing or unknown information, in much the same way that null values are
+		    used in relational systems.</p>
+		    <p>In addition to sequences, the query data model defines a special value
+		    called the <i>error value</i>, which is the result of evaluating an
+		    expression that contains an error. An error value may not be combined in a
+		    sequence with any other value.</p>
+		    <p>Input XML documents can be transformed into the query data model by a
+		    process called <i>schema validation</i>, which parses the document,
+		    validates it against a particular schema, and represents it as a hierarchy
+		    of nodes and atomic values, labeled with type information derived from the
+		    schema. If an input document does not have a schema, it is validated against
+		    a permissive default schema that assigns generic types and nodes are labeled
+		    anyType and atomic values are labeled anySimpleType. The process of schema
+		    validation is described in more detail in Reference 3.</p>
+		    <p>The result of a query may be transformed from the query data model into
+		    an XML representation by a process called <i>serialization</i>. The details
+		    of serialization are beyond the scope of this paper. It is worth noting that
+		    the result of a query is not always a well-formed XML document. For example,
+		    a query might return an atomic value such as the number 47, or a sequence of
+		    elements with no common parent.</p>
+		  </div>		    
+	  <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Example Data"></A>XQuery Example Data</H2></P>		
+		    <div class="h2section" id="XQuery Example Data">
+		    <p>To illustrate the query data model and provide a bais for later examples,
+		    we consider a small XML database that contains data from an on-line auction,
+		    itemno seller description reservePrice endDate based loosely on Use Case R
+		    in Reference 12. The database consists of two XML documents named items.xml
+		    and bids.xml.</p>
+		    <p>The items.xml document contains a root element named items , which in
+		    turn contains an item element for each item currently for sale at the
+		    auction. Each item element has a status attribute and subelements named
+		    itemno, seller, description, reservePrice, and endDate. The reservePrice
+		    element names a minimum selling price set by the owner, and the endDate
+		    element indicates the ending date of the auction.</p>
+		    <table>
+		      <tr>
+		        <th>&lt;items&gt;</th>
+		        <td>&nbsp;</td>
+		        <td>&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&lt;item status='open'&gt;</td>
+		        <td>&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;itemno&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;seller&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;description&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;reservePrice&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;endDate&gt;</td>
+		      </tr>
+		    </table>
+		    <p>The bids.xml document contains a root element named bids , which in turn
+		    contains a bid element for each bid that has been placed for an item. Each
+		    bid element has subelements named itemno, bidder, bidAmount, and bidDate.</p>
+		    <table>
+		      <tr>
+		        <th>&lt;bids&gt;</th>
+		        <td>&nbsp;</td>
+		        <td>&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&lt;bid&gt;</td>
+		        <td>&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;itemno&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;bidder&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;bidAmount&gt;</td>
+		      </tr>
+		      <tr>
+		        <th>&nbsp;</th>
+		        <td>&nbsp;</td>
+		        <td>&lt;bidDate&gt;</td>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Basics"></A>XQuery Basics</H2></P>		
+		    <div class="h2section" id="XQuery Basics">
+		   <p>We now describe the basics of expressions in XQuery.</p>
+		    <p>Like XML and XPath, XQuery is a case-sensitive language, and all its
+		    keywords are made up of lowercase characters. Detailed rules for lexing and
+		    parsing XQuery are described in Reference 7. Characters enclosed between {--
+		    and --} are considered to be comments and are ignored during query
+		    processing (except, of course, inside a quoted string, where they are
+		    considered to be part of the string).</p>
+		    <p>XQuery is a functional language, which means that it is made up of
+		    expressions that return values and do not have side effects. XQuery has
+		    several kinds of expressions, most of which are composed from lower-level
+		    expressions, combined by operators or keywords. XQuery expressions are fully
+		    composable, that is, where an expression is expected, any kind of expression
+		    may be used. As noted earlier, the value of an expression, in general, is a
+		    heterogeneous sequence of nodes and atomic values.</p>
+		    <p>The simplest kind of XQuery expression is a <i>literal</i>, which
+		    represents an atomic value. The following are several examples of literals:</p>
+		    <table>
+		      <tr>
+		        <th>47</th>
+		        <td>is a literal of type integer</td>
+		      </tr>
+		      <tr>
+		        <th>47.3</th>
+		        <td>is a literal of type number</td>
+		      </tr>
+		      <tr>
+		        <th>4.7E3</th>
+		        <td>is a literal of type number</td>
+		      </tr>
+		      <tr>
+		        <th>&quot;47&quot;</th>
+		        <td>is a literal of type string</td>
+		      </tr>
+		      <tr>
+		        <th>'47'</th>
+		        <td>is a literal of type symbol</td>
+		      </tr>
+		      <tr>
+		        <th>true</th>
+		        <td>is a literal of type boolean</td>
+		      </tr>
+		    </table>
+		    <p>The values of many other types may be created by calling constructors. A <i>constructor
+		    </i>is a function that creates a value of a particular type from a string
+		    containing a lexical representation of the desired type. In general, a
+		    constructor has the same name as the type it constructs. The following
+		    example uses a constructor to create a value of type <i>date</i>:</p>
+		    <table>
+		      <tr>
+		        <th>date(&quot;#May,2,2003&quot;)</th>
+		      </tr>
+		    </table>
+		    <p>Any XQuery expression may be enclosed in parentheses. Parentheses are
+		    useful for making explicit the order in which an expression should be
+		    evaluated. The following examples of arithmetic expressions show how
+		    parentheses can be used to control the precedence of operators. Arithmetic
+		    expressions are discussed in more detail in a later subsection.</p>
+		    <table>
+		      <tr>
+		        <th>(2 + 4) * 5</th>
+		        <td>has the value 30 because the subexpression (2 + 4) is evaluated
+		          first</td>
+		      </tr>
+		      <tr>
+		        <th>2 + 4 * 5</th>
+		        <td>has the value 22 because * has a higher precedence than +</td>
+		      </tr>
+		    </table>
+		    <p>The comma operator concatenates two values to form a sequence. Sequences
+		    are often enclosed in parentheses as explicit delimiters, although this is
+		    not required. An empty pair of parentheses denotes an empty sequence. Since
+		    sequences cannot be nested, the comma operator constructs a sequence
+		    consisting of all the items in its left operand, followed by all the items
+		    in its right operand. A sequence can also be constructed by the to operator,
+		    which returns a sequence consisting of all the integers between its left
+		    operand and its right operand, inclusive. The following examples illustrate
+		    construction of sequences:</p>
+		    <table>
+		      <tr>
+		        <th>1, 2, 3</th>
+		        <td>is a sequence of three values</td>
+		      </tr>
+		      <tr>
+		        <th>(1, 2, 3)</th>
+		        <td>is identical to 1, 2, 3</td>
+		      </tr>
+		      <tr>
+		        <th>((1, 2), (), 3)</th>
+		        <td>is identical to 1, 2, 3</td>
+		      </tr>
+		      <tr>
+		        <th>1 to 3</th>
+		        <td>is identical to 1, 2, 3</td>
+		      </tr>
+		    </table>
+		    <p>A <i>variable </i>in XQuery is a name that begins with a dollar sign. A
+		    variable may be bound to a value and used in an expression to represent that
+		    value. One way to bind a variable is by means of a LET expression, which
+		    binds one or more variables and then evaluates an inner expression. The
+		    value of the LET expression is the result of evaluating the inner expression
+		    with the variables bound. The following example illustrates a LET expression
+		    that returns the sequence 1, 2, 3:</p>
+		    <table>
+		      <tr>
+		        <th>let $start := 1, $stop := 3</th>
+		      </tr>
+		      <tr>
+		        <th>return $start to $stop</th>
+		      </tr>
+		    </table>
+		    <p>A LET expression is a special case of a FLWR (for, let, where, return)
+		    expression, which provides additional ways to bind variables. FLWR
+		    expressions are described in more detail later.</p>
+		    <p>Another simple form of XQuery expression is a <i>function call</i>.
+		    XQuery provides a core function library, in our case the Analytic Information
+		    Server built-in functions, and a mechanism whereby users can define
+		    additional functions, described in the next section. Function calls in
+		    XQuery employ the usual notation in which the arguments of the function are
+		    enclosed in parentheses. The following example calls the core library
+		    function <i>substring</i> to extract the first six characters from a string:</p>
+		    <table>
+		      <tr>
+		        <th>substring(&quot;Martha Washington&quot;, 0, 5)</th>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXPath Expressions"></A>XPath Expressions</H2></P>		
+		    <div class="h2section" id="XPath Expressions">
+		    <p>Path expressions in XQuery are
+		    based on the syntax of XPath.
+		    A path expression consists of a series of steps, separated by the slash
+		    character. The result of each step is a sequence
+		    of nodes. The value of the path expression is the node
+		    sequence that results from the last step in the path.</p>
+		    <p>Each step is evaluated in the context of a particular
+		    node, called the <i>context node</i>. In general, a step can
+		    be any expression that returns a sequence of nodes.
+		    One important kind of step, called an <i>axis step</i>, can
+		    be thought of as beginning at the context node and
+		    moving through the node hierarchy in a particular
+		    direction, called an <i>axis</i>. As the axis step moves along
+		    the designated axis, it selects nodes that satisfy a selection 
+		    criterion. The selection criterion can select
+		    nodes based on their names, their positions with respect
+		    to the context node, or a predicate based on
+		    the value of a node. XPath defines 13 axes, and some
+		    or all of them will be supported by XQuery as well.
+		    Current plans are for XQuery to support the six axes
+		    named child, descendant, parent, attribute, self, 
+		    and descendant-or-self</p>
+		    <p>As a path expression is evaluated, the nodes selected
+		    by each step serve in turn as context nodes for the
+		    following step. If a step has several context nodes,
+		    it is evaluated for each of the context nodes in turn,
+		    and the resulting node sequences are combined by
+		    the union operator to form the result of the step. The
+		    result of a step is always a sequence of distinct nodes
+		    (without duplicates based on node identity), in document order.</p>
+		    <p>Path expressions may be written in either unabbreviated 
+		    syntax or abbreviated syntax. The unabbreviated syntax for 
+		    an axis step consists of an axis and
+		    a selection criterion, separated by two colons. 
+		    Q1 illustrates a four-step path expression using unabbreviated 
+		    syntax. The first step invokes the built-in document
+		    function, which returns the document node
+		    for the document named items.xml. The second step
+		    is an axis step that finds all children of the document
+		    node (/ selects all nodes on the given axis, which
+		    in this case is only a single element node named items). 
+		    The third step follows the child axis again to find all 
+		    the child elements at the next level that are named item
+		    and that in turn have a child named seller with the value 
+		    Smith. The result of the third step is a sequence of item
+		    element nodes. Each of these item nodes is used in turn 
+		    as the context node for the fourth step, which follows the
+		    child axis again to find the description elements that are 
+		    children of the given item. The final result of the path 
+		    expression is the result of the fourth step: a sequence of
+		    description element nodes, in document order.</p>
+		    <p><i>(Q1) List the descriptions of all items offered for sale by Smith.</i></p>
+		    <table>
+		      <tr>
+		        <th>document("items.xml")/child::/child::item[child::seller = "Smith"]/child::description</th>
+		      </tr>
+		    </table>
+		    <p>In practice, path expressions are usually written using 
+		    abbreviated syntax. Several kinds of abbreviations
+		    are provided. Perhaps the most important of these
+		    is that the axis specifier may be omitted when the child
+		    axis is used. Since child is the most commonly used axis, 
+		    this abbreviation is helpful in reducing the length of 
+		    many path expressions. For example, Q1 may be abbreviated as follows:</p>
+		    <table>
+		      <tr>
+		        <th>document("items.xml")//item[seller = "Smith"]/description</th>
+		      </tr>
+		    </table>
+		    <p>When two steps are separated by a double slash
+		    rather than by a single slash, it means that the second 
+		    step may traverse multiple levels of the hierarchy, 
+		    using the descendants axis rather than the single-level
+		    child axis. For example, Q2 searches for description
+		    elements that are descendants of the root node of a given document. 
+		    The result of Q2 is a sequence of element nodes that could, in 
+		    principle, have been found at various levels of the node
+		    hierarchy (though, in our sample document, all description
+		    nodes are found at the same level).</p>
+		    <p><i>(Q2) List all description elements found in the document items.xml.</i></p>
+		    <table>
+		      <tr>
+		        <th>document("items.xml")//description</th>
+		      </tr>
+		    </table>
+		    <p>Within a path expression, a single dot (.) refers
+		    to the context node, and two consecutive dots (..)
+		    refer to the parent of the context node. These notations 
+		    are abbreviated invocations of the self and parent
+		    axes, respectively. Names found in path expressions 
+		    are usually interpreted as names of element nodes; 
+		    however, a name prefixed by the @ character is interpreted 
+		    as the name of an attribute node. This is an abbreviation 
+		    for a step that traverses the attribute axis. 
+		    These abbreviations are illustrated by Q3, which begins at 
+		    the node that is bound to the variable $description, 
+		    traverses the parent axis to the parent item node, and then 
+		    traverses the attribute axis to find an attribute named status.
+		    The result of Q3 is a single attribute node.</p>
+		    <p><i>(Q3) Find the status attribute of the item that is the 
+		    parent of a given description.</i></p>
+		    <table>
+		      <tr>
+		        <th>$description/../@status</th>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Predicates"></A>XQuery Predicates</H2></P>		
+		    <div class="h2section" id="XQuery Predicates">
+		    <p>In XQuery, a <i>predicate </i>is an expression,
+		    enclosed in square brackets, that is used to filter a
+		    sequence of values. Predicates are often used in the
+		    steps of a path expression. For example, in the step
+		    item[seller = "Smith"], the phrase seller = "Smith" is a 
+		    predicate that is used to select certain item nodes and 
+		    discard others. We will refer to the items in the sequence 
+		    being filtered by a predicate as candidate items. 
+		    The predicate is evaluated for each candidate item, 
+		    using the candidate item as the context item for evaluating 
+		    the predicate expression. The term <i>context item</i> is a 
+		    generalization of the term <i>context node</i> and may indicate 
+		    either a node or an atomic value. Within a predicate expression,
+		    a single dot (.) indicates the context item. Each candidate 
+		    item is selected or discarded according to the following rules.</p>
+		    <p>If the predicate expression evaluates to a Boolean value, 
+		    the candidate item is selected if the value of the predicate 
+		    expression is true. This type of predicate is illustrated by 
+		    the following example, which selects item nodes that have a
+		    reservePrice child node whose value is greater than 1000:</p>
+		    <table>
+		      <tr>
+		        <th>item[reservePrice > 1000]</th>
+		      </tr>
+		    </table>
+		    <p>If the predicate expression evaluates to a number,
+		    the candidate item is selected if its ordinal position
+		    in the list of candidate items is equal to the number.
+		    This type of predicate is illustrated by the following
+		    example, which selects the fifth item node on the
+		    child axis:</p>
+		    <table>
+		      <tr>
+		        <th>item[5]</th>
+		      </tr>
+		    </table>
+		    <p>If the predicate expression evaluates to an empty sequence, 
+		    the candidate item is discarded, but if the predicate expression 
+		    evaluates to a sequence containing at least one node, the candidate 
+		    item is selected. This form of predicate can be used to test for
+		    the existence of a child node that satisfies some condition. 
+		    This is illustrated by the following example, which selects
+		    item nodes that have a reservePrice child node, regardless of its value:</p>
+		    <table>
+		      <tr>
+		        <th>item[reservePrice]</th>
+		      </tr>
+		    </table>
+		    <p>Several different kinds of operators and functions
+		    are often used inside predicates. In the following six
+		    paragraphs, some of the commonest and most useful of 
+		    these operators and functions are described.</p>
+		    <p><i>Value comparison operators</i>: eq, ne, lt, le,
+		    gt, ge. These operators can compare two scalar values, 
+		    but they raise an error if either operand is a sequence
+		    of length greater than one. If either operand is a node, 
+		    the value comparison operator extracts its value before 
+		    performing the comparison. For example, item[reservePrice gt 1000]
+		    selects an item node if it has exactly one reservePrice child node
+		    whose value is greater than 1000.</p>
+		    <p><i>General comparison operators</i>: <B>=, !=, &gt;, &gt;=, &lt;, &lt;=</b>.
+		    These operators can deal with operands that are sequences, providing 
+		    implicit <i>existential</i> semantics for both operands. 
+		    Like the value comparison operators, the general comparison operators 
+		    automatically extract values from nodes. For example, 
+		    item[reservePrice &gt; 1000] selects an item node if it has at least one
+		    reservePrice child node whose value is greater than 1000.</p>
+		    <p><i>Node comparison operators</i>: <b>is</b> and <b>isnot</b>. These operators 
+		    compare the identities of two nodes. For example, $node1 is $node2
+		    is true if the variables $node1 and $node2 are bound to the same 
+		    node (that is, the node identity is the same for both variables).</p>
+		    <p><i>Order comparison operators</i>: <b>&lt;&lt;</b> and <b>&gt;&gt;</b>. 
+		    These operators compare the positions of two nodes. For example, 
+		    $node1 &lt;&lt; $node2 is true if the node bound to $node1
+		    occurs earlier in document order than the node bound to $node2.</p>
+		    <p><i>Logical operators</i>: <b>and</b> and <b>or</b> operators can be used
+		    to combine logical conditions inside a predicate. For example, 
+		    the following predicate selects item nodes that have exactly one
+		    <i>seller</i> child element with the value "Smith", and also have at least one
+		    <i>reservePrice</i> child element with any value:</p>
+		    <table>
+		      <tr>
+		        <th>item[seller eq "Smith" and reservePrice]</th>
+		      </tr>
+		    </table>
+		    <p><i>Negation</i>: <b>not</b> is a function rather than an operator.
+		    It serves to invert a Boolean value, turning true into false
+		    and false into true. The following step uses the not function 
+		    with an existence test to find item nodes that have no
+		    reservePrice child element:</p>
+		    <table>
+		      <tr>
+		        <th>item[not(reservePrice)]</th>
+		      </tr>
+		    </table>
+		    <p>In all of the above examples, element and attribute
+		    names have been simple identifiers. However, the XML 
+		    Namespace recommendation allows elements and attributes 
+		    to have two-part names in which the first part is a namespace prefix, 
+		    followed by a colon. A name qualified by a namespace prefix is called a
+		    <i>QName</i>. Each namespace prefix must be bound to a URI
+		    (uniform resource identifier) that uniquely identifies a namespace. 
+		    This convention allows each application to define names in its own namespace
+		    without danger of colliding with names defined by other applications, 
+		    and it allows a query to unambiguously refer to names defined by various 
+		    applications. If the prefix auction namespace URI of our on-line auction 
+		    application, the step item[reservePrice &gt; 1000] might be written using 
+		    QNames as follows:</p>
+		    <table>
+		      <tr>
+		        <th>auction:item[auction:reservePrice &gt; 1000]</th>
+		      </tr>
+		    </table>
+		    <p>The process of binding a prefix to a namespace URI is described 
+		    in the next-to-last section. In most of our examples, we use one-part 
+		    names rather than QNames. This use is realistic because XQuery provides 
+		    a way to specify a default namespace for a query. Such use makes it 
+		    unnecessary for a query to use QNames unless it needs to refer to 
+		    names from multiple namespaces.</p>
+		    <p>This paper provides only a brief introduction to the
+		    path expressions available in XPath and XQuery. Like XQuery, XPath is 
+		    an evolving language. A working draft of a new version of XPath, called
+		    XPath 2.0, has recently been published jointly by the XML Query and
+		    XSLT Working Groups. It is expected that XPath 2.0 and XQuery will share not only
+		    a common syntax for path expressions and predicates
+		    but several other kinds of expressions as well.</p>
+		  </div>		    		   
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Element Constructors"></A>XQuery Element Constructors</H2></P>		
+		    <div class="h2section" id="XQuery Element Constructors">
+		    <p>Path expressions are powerful, but they have an important limitation: they can
+		    only select existing nodes. A full query language needs a facility to construct 
+		    new elements and attributes and to specify their contents and relationships. 
+		    This facility is provided in XQuery by a kind of expression called an <i>element constructor</i>.</p>
+		    <p>The simplest kind of element constructor looks exactly like the XML
+		    syntax for the element to be created. For example, the following expression 
+		    constructs an element named highbid containing one attribute named status
+		    and two child elements named itemno and bidAmount:</p>
+		    <table>
+		      <tr>
+		        <td>&lt;highbid status='pending'&gt;</td>
+		        <td></td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>&lt;itemno&gt;4871&lt;/itemno&gt;</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>&lt;bidAmount&gt;250.00&lt;/bidAmount&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/highbid&gt;</td>
+		        <td></td>
+		      </tr>
+		    </table>
+		    <p>In the example above, the values of the elements and
+		    attributes are constants. However, in many cases it
+		    is necessary to create an element or an attribute whose value is computed by some expression. 
+		    In this case, the expression is enclosed in curly braces to indicate that it is to be evaluated 
+		    rather than treated as literal text. The expression is evaluated and replaced by its value in 
+		    the element constructor. In the following example, the values of the elements and
+		    attributes are computed by expressions. The variables $s, $i, and $bids
+		    used in these expressions must be bound by some enclosing expression.</p>
+		    <table>
+		      <tr>
+		        <td>&lt;highbid status="{$s}"&gt;</td>
+		        <td></td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>&lt;itemno&gt;{$i}&lt;/itemno&gt;</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>&lt;bidAmount&gt;{max($bids[itemno = $i]/bid-amount)}&lt;/bidAmount&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/highbid&gt;</td>
+		        <td></td>
+		      </tr>
+		    </table>
+		    <p>The content of an element constructor may be any
+		    expression. In general, the expression used in an element constructor 
+		    may generate a sequence of items, including atomic values, elements, and 
+		    attributes. Attributes that are generated inside an element constructor 
+		    become attached to the constructed element. Elements and atomic values that are generated 
+		    inside an element constructor become the content of
+		    the constructed element. In the following example,
+		    an element constructor contains an expression, enclosed in curly braces, 
+		    that generates one attribute and two sub-elements. The variable $b must be bound
+		    by some enclosing expression.</p>
+		    <table>
+		      <tr>
+		        <td>&lt;highbid&gt;</td>
+		        <td></td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>{</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td></td>
+		        <td>$b/@status.</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td></td>
+		        <td>$b/itemno.</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td></td>
+		        <td>$b/bidAmount</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>}</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/highbid&gt;</td>
+		        <td></td>
+		      </tr>
+		    </table>
+		    <p>The element node produced by an element constructor is a new 
+		    node with its own node identity. If the newly constructed element has child nodes 
+		    and attributes that are derived from existing nodes, as in the above example, 
+		    the new child nodes and attributes are copies of the nodes from which they were
+		    derived, with new node identities.</p>
+		    <p>In the above examples of element constructors, even though the content 
+		    of the element may be computed, the name of the constructed element is a known 
+		    constant. However, it is sometimes necessary to construct an element whose name 
+		    as well as its content is computed. For this purpose, XQuery provides a special
+		    kind of constructor called a <i>computed element constructor</i>. A computed 
+		    element constructor consists of the keyword, followed by two expressions
+		    in curly braces the first expression computes the name of the element, 
+		    and the second expression computes the content of the element.</p>
+		    <p>For an example of the use of a computed constructor, suppose that the variable
+		    $e is bound to an element with a numeric value. We need to construct
+		    a new element that has the same name as $e and the same attributes as
+		    $e, but we want its value to be twice the value of $e. This construction can be 
+		    accomplished by the following expression, which uses the data function to 
+		    extract the numeric value of the original node:</p>
+		    <table>
+		      <tr>
+		        <td>element</td>
+		        <td></td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>{name($e)}</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>{$e/@ , data($e) 2}</td>
+		      </tr>
+		    </table>
+		    <p>Similar to a computed element constructor, XQuery provides a 
+		    <i>computed attribute constructor</i>, which consists of the keyword attribute, 
+		    followed by two expressions in curly braces the first expression computes 
+		    the name of the attribute and the second expression computes its value. 
+		    An attribute constructor can be used anywhere an attribute is valid, for
+		    example, inside an element constructor. The following attribute constructor, 
+		    based on the bound variable $p, might generate an attribute that looks like
+		    father="Frank" or mother="Mary". This example uses a conditional (if-then-else) 
+		    expression, described later.</p>
+		    <table>
+		      <tr>
+		        <td>attribute</td>
+		        <td></td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>{if $p/sex "M" then "father" else "mother"}</td>
+		      </tr>
+		      <tr>
+		        <td></td>
+		        <td>{$p/name}</td>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Iteration and sorting"></A>XQuery Iteration and sorting</H2></P>		
+		    <div class="h2section" id="XQuery Iteration and sorting">
+		    <p>Iteration is an important part of a query language. XQuery provides a way to 
+		    iterate over a sequence of values, binding a variable to each of the values in 
+		    turn and evaluating an expression for each binding of the variable.</p>
+		    <p>The simplest form of iteration in XQuery consists of a for clause that names 
+		    a variable and provides a sequence of values over which the variable is to
+		    iterate, followed by a return clause that contains the expression to be evaluated 
+		    for each variable binding. The following example illustrates this simple
+		    form of iteration:</p>
+		    <table>
+		      <tr>
+		        <td>for $n in (2, 3) return $n + 1</td>
+		      </tr>
+		    </table>
+		    <p>The result of this simple iterative expression is the sequence (3, 4).</p>
+		    <p>A for clause may specify more than one variable, with an iteration sequence for 
+		    each variable. Such a for clause produces tuples of variable bindings that form
+		    the Cartesian product of the iteration sequences. Unless otherwise specified, 
+		    the binding tuples are generated in an order that preserves the order of the
+		    iteration sequences, using the leftmost variable as the <i>outer loop</i> and 
+		    the rightmost variable as the <i>inner loop</i>. The following example illustrates a for
+		    clause that contains two variables and two iteration sequences:</p>
+		    <table>
+		      <tr>
+		        <td>for $m in (2, 3), $n in (5, 10)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;return &lt;fact&gt; {$m} times {$n} is {$m * $n} &lt;/fact&gt;</td>
+		      </tr>
+		    </table>
+		    <p>The result of this expression is the following sequence of four elements:</p>
+		    <table>
+		      <tr>
+		        <td>&lt;fact&gt; 2 times 5 is 10 &lt;/fact&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;fact&gt; 2 times 10 is 20 &lt;/fact&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;fact&gt; 3 times 5 is 15 &lt;/fact&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;fact&gt; 3 times 10 is 30 &lt;/fact&gt;</td>
+		      </tr>
+		    </table>
+		    <p>The for clauses illustrated above and the let clause illustrated earlier are 
+		    both special cases of a more general expression called a FLWR (pronounced flower) expression. 
+		    In its most general form, a FLWR expression may have multiple for clauses, multiple
+		    let clauses, an optional where clause, and a return clause.</p>
+		    <p>As we have already seen, the function of the for clause and let clause is to bind variables. 
+		    Each of these clauses contains one or more variables and an expression associated with each variable. 
+		    The expressions evaluate to sequences and may contain references to variables bound in previous clauses. 
+		    The difference between a for clause and a let clause is that a for clause iterates each variable over 
+		    the associated sequence, binding the variable in turn to each  item in the sequence, whereas a let clause binds each
+		    variable to the associated sequence as a whole. This difference is illustrated by the following pair of 
+		    clauses:</p>
+		    <table>
+		      <tr>
+		        <td>for $i in (1 to 3)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp; let $j := (1 to $i)</td>
+		      </tr>
+		    </table>
+		    <p>This pair of clauses is not a full FLWR expression because it does not have a return clause. 
+		    The for clause and let clause simply produce a sequence of binding tuples. 
+		    The clauses in the above example produce the following sequence of three binding pairs:</p>
+		    <table>
+		      <tr>
+		        <td>$i = 1, $j = 1</td>
+		      </tr>
+		      <tr>
+		        <td>$i = 2, $j = (1, 2)</td>
+		      </tr>
+		      <tr>
+		        <td>$i = 3, $j = (1, 2, 3)</td>
+		      </tr>
+		    </table>
+		    <p>In general, the number of binding tuples produced by a series of for clauses and let clauses 
+		    is equal to the product of the cardinalities of the iteration expressions in the for clauses. 
+		    A let clause without any for clause, of course, produces only a single binding tuple.</p>
+		    <p>The binding tuples produced by the for clauses and let clauses in a FLWR expression are filtered by the
+		    optional where clause. The where clause contains an expression that is evaluated for each binding tuple.
+		    If the value of the where expression is the Boolean value true or a sequence containing at least one node
+		    (an <i>existence test</i>), the binding tuple is retained; otherwise the binding tuple is discarded.</p>
+		    <p>The return clause of the FLWR expression is then executed once for each binding tuple retained by the
+		    where clause, in order. The results of these executions are concatenated into a sequence that serves
+		    as the result of the FLWR expression.</p>
+		    <p>The power of FLWR is illustrated by Q4, a query over our auction database.</p>
+		    <p><i>(Q4) For each item that has more than ten bids, generate a popular-item element 
+		    containing the item number, description, and bid count.</i></p>
+		    <table>
+		      <tr>
+		        <td>for $i in document("items.xml")/*/item</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;let $b := document("bids.xml")/*/bid[itemno = $i/itemno]</td>
+		      </tr>
+		      <tr>
+		        <td>where count &gt; ($b)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;return</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;popularItem&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$i/itemno.</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$i/description.</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bidCount&gt;{count ($b)}&lt;/bidCount&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/popularItem&gt;</td>
+		      </tr>
+		    </table>
+		    <p>The for clause and let clause produce a binding pair for each item in items.xml. 
+		    In each binding pair, $i is bound to the item and $b is bound to a sequence
+		    containing all the bids for that item. The where clause retains only those binding tuples in which
+		    $b contains more than ten bids. The return clause then generates an output element for each of these bindings,
+		    containing the item number, description, and bid count.</p>
+		    <p>By default, the order of the output sequence of a FLWR expression preserves the order of the 
+		    iteration sequences. The prefix operator unordered can be used before any expression to indicate 
+		    that the order of the result is not significant. This gives the implementation greater flexibility 
+		    to optimize the execution of the expression (for example, by iterating in a different order).</p>
+		    <p>Any sequence can be reordered by a sortby clause that contains one or more ordering expressions. 
+		    For each item in the original sequence, the ordering expressions are evaluated using the given item 
+		    as the context item. The items in the original expression are then reordered into ascending or descending 
+		    order based on the values of their ordering expressions. Of course, each ordering expression must return a
+		    single result, and these results must be comparable by the gt operator. For the purpose of a sortby clause,
+		    an empty sequence can be treated either as greater than any other value or as less than any other value,
+		    under user control.</p>
+		    <p>A sortby clause is often useful in reordering the results of a FLWR expression. 
+		    For example, if it is desired for the popularItem elements generated by Q4 
+		    to be sorted into descending order by bidCount, the following clause could be added at the end of Q4:</p>
+		    <table>
+		      <tr>
+		        <td>sortby bid-count descending</td>
+		      </tr>
+		    </table>
+		    <p>It is important to realize that sortby is not a part of a FLWR expression but 
+		    a separate kind of XQuery expression that can be used to reorder any sequence, whether generated by a
+		    FLWR expression or not. However, when a FLWR expression is followed by sortby, a smart optimizer will 
+		    realize that the reordering of the output items relaxes the usual constraints on the ordering of the 
+		    binding tuples.</p>
+		    <p>Q4 illustrates how a FLWR expression can have some of the same characteristics as a join query 
+		    in a relational database system and also some of the same characteristics as a grouping query. 
+		    Q4 is like a join query because it correlates elements found in two different XML files, named
+		    items.xml and bids.xml. It is also like a grouping query because it groups bids
+		    together by item number and computes the number of bids in each group (in SQL, 
+		    this might be expressed as <i>GROUP BY itemno</i>).</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Arithmetic"></A>XQuery Arithmetic</H2></P>		
+		    <div class="h2section" id="XQuery Arithmetic">
+		    <p>We have already seen several examples of the use of arithmetic operators. XQuery provides
+		    the usual arithmetic operators: +, -, *, div, and mod, as well as the aggregating functions
+		    sum, avg, count, max, and min, which operate on a sequence of numbers and return a numeric result. 
+		    The division operator in XQuery is called div to distinguish it from
+		    the slash that is used in path expressions. When the subtraction operator follows a name, 
+		    it must have a preceding blank to distinguish it from a hyphen, since a hyphen is a valid 
+		    name character in XML.</p>
+		    <p>Arithmetic operators are defined on numeric values (or, in the case of the aggregating functions, sequences
+		    of numeric values). Numeric values include values of type integer, decimal, float,
+		    double, or types derived from these types. When the operands of an arithmetic operator are mixed, 
+		    they are promoted to the nearest common type using the promotion hierarchy integer 3 decimal 3 
+		    float 3 double. If an operand of an arithmetic operator is a node, its typed value is automatically extracted.</p>
+		    <p>The behavior of arithmetic operators on empty sequences is an important special case. In XQuery, an
+		    empty sequence is sometimes used to represent missing or unknown information, in much the same way
+		    that a null value is used in relational systems. For this reason, the +, -, *, div, and mod operators are
+		    defined to return an empty sequence if either of their operands is an empty sequence. To illustrate the 
+		    application of this rule, suppose that the variable $emps is bound to a sequence of emp
+		    elements, each of which represents an employee and contains a name element, a salary element, 
+		    an optional commission element, and an optional bonus element. The expression in
+		    Q5 transforms this sequence into a new sequence of emp elements, each of which contains a
+		    name element and a pay element whose value is the employee's total pay. For those employees whose commission or
+		    bonus is missing ($e/commission or $e/bonus evaluates to an empty sequence), the generated
+		    pay element will be empty.</p>
+		    <p><i>(Q5) Given a sequence of emp elements, replace their salary, commission, and bonus subelements with a new
+		    pay element containing the sum of the values of the original elements, and order the resulting sequence in
+		    ascending order by the value of the pay element.</i></p>
+		    <table>
+		      <tr>
+		        <td>for $e in $emps</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;return</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;emp&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$e/name.</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;pay&gt;{$e/salary + $e/commission + $e/bonus}&lt;/pay&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/emp&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;sortby (pay)</td>
+		      </tr>
+		    </table>
+		    <p>In some cases, it may be desirable to provide a default value that can be substituted for missing 
+		    operands in an arithmetic expression. The next section of this paper illustrates how a user-defined 
+		    function can be written for this purpose.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Operations on sequences"></A>XQuery Operations on sequences</H2></P>		
+		    <div class="h2section" id="XQuery Operations on sequences">
+		    <p>In some cases, it may be desirable to provide a default value that can be substituted for missing 
+		    operands in an arithmetic expression. The next section of this paper illustrates how a user-defined 
+		    function can be written for this purpose. Operations on sequences. In a sense, all XQuery
+		    operations are operations on sequences, since every value in XQuery is either a sequence or an error.
+		    However, XQuery provides three operators that are specifically designed for combining sequences of
+		    nodes: union, intersect, and except. A union of two node sequences is a sequence containing all the
+		    nodes that occur in either of the operands. The intersect operator produces a sequence 
+		    containing all the nodes that occur in both of its operands. The except operator produces a 
+		    sequence containing all the nodes that occur in its first operand but
+		    not in its second operand.</p>
+		    <p>The union, intersect, and except operators return node sequences in document order and eliminate 
+		    duplicates from their result sequences, based on node identity. Query Q6 provides an example of the use
+		    of the intersect operator.</p>
+		    <p><i>(Q6) Construct a new element named recent-large-bids, containing copies of all the bid elements in the 
+		    document bids.xml that have a bidAmount of more than 1000 and a bidDate after January 1, 2002.</i></p>
+		    <table>
+		      <tr>
+		        <td>&lt;recentLargeBids&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;document("bids.xml")/*/bid[bidAmount &gt; 1000.00]</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;intersect</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;document("bids.xml")/*/bid[bidDate &gt; date("2002,01,01")]</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/recentLargeBids&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>sortby (pay)</td>
+		      </tr>
+		    </table>
+		    <p>Expressions that apply the union, intersect, and except
+		    operators can often be expressed in another way. For example, 
+		    the following query is equivalent to Q6:</p>
+		    <table>
+		      <tr>
+		        <td>&lt;recentLargeBids&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;document("bids.xml")/*/bid[bidAmount &gt; 1000.00 and bidDate &gt; date("2002,01,01")]</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/recentLargeBids&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>sortby (pay)</td>
+		      </tr>
+		    </table>
+		   <p>It is important to remember that intersect and except are not useful in combining sequences of
+		   nodes from different documents, since there is no possibility that two nodes in different documents
+		   could have the same node identity. For example, consider the following query:</p>
+		    <table>
+		      <tr>
+		        <td>&lt;recentLargeBids&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;document("items.xml")//itemno</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;except</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;document("bids.xml")//itemno</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/recentLargeBids&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>sortby (pay)</td>
+		      </tr>
+		    </table>
+		    <p>This query applies the except operator to two sequences of itemno
+		    nodes. Since the node sequences are selected from different documents, there is no
+		    possibility that any node in the second sequence could be identical to a node in the first sequence.
+		    Therefore, this query returns all the itemno nodes in items.xml. If the intent of the query had been to
+		    make a list of itemno elements for items that have no bids, this could have been accomplished as 
+		    follows, using the library function empty, which returns true if its operand is an empty sequence:</p>
+		    <table>
+		      <tr>
+		        <td>for $i in document("items.xml")//item</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;where empty(document("bids.xml")//bid[itemno eq $i/itemno])</td>
+		      </tr>
+		      <tr>
+		        <td>return $i/itemno</td>
+		      </tr>
+		    </table>
+		    <p>In the above example, the predicate itemno eq $i/itemno compares two itemno nodes by extracting and
+		    comparing their content rather than by their identity.</p>
+		    <p>The (|) operator, retained for compatibility with XPath 1.0, is equivalent to the
+		    union operator. These operators are sometimes used in a step of a path expression. 
+		    For example, the following path expression finds the union of all b children and c children of
+		    nodes in the sequence bound to $a; the nodes in this union then serve as context nodes for the next step
+		    in the path.</p>
+		    <table>
+		      <tr>
+		        <td>$a/(b | c)/d</td>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Conditional expressions"></A>XQuery Conditional expressions</H2></P>		
+		    <div class="h2section" id="XQuery Conditional expressions">
+		    <p>A <i>conditional expression</i> provides a way of executing one of two expressions,
+		    depending on the value of a third expression. It is written in the familiar if . . . then . . . else format 
+		    provided by many languages. In XQuery, all three clauses (if, then, and else) are required, and the
+		    expression in the if clause must be enclosed in parentheses.</p>
+		    <p>The result of a conditional expression depends on the value of the expression in the if clause, called
+		    the <i>test expression</i>. The rules are as follows:</p>
+		    <p>If the value of the test expression is the Boolean value true, or a sequence containing at least one node
+		    (serving as an existence test), the then clause is executed.</p>
+		    <p>If the value of the test expression is the Boolean value false or an empty sequence, the else clause is 
+		    executed.</p>
+		    <p>Otherwise, the conditional expression returns the error value.</p>
+		    <p>The following simple conditional expression might be used to return the price of a part, depending on
+		    the existence of an attribute named discounted (independently of the value of the attribute):</p>
+		    <table>
+		      <tr>
+		        <td>if ($part/@discounted) </td>
+		      </tr>
+		      <tr>
+		        <td>then $part/wholesale</td>
+		      </tr>
+		      <tr>
+		        <td>else $part/retail</td>
+		      </tr>
+		    </table>
+		    <p>Q7 in Figure 3 is an example of a more complex query that contains a conditional expression. 
+		    The query also illustrates several levels of nesting of FLWR expressions and element constructors.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Quantified expressions"></A>XQuery Quantified expressions</H2></P>		
+		    <div class="h2section" id="XQuery Quantified expressions">
+		    <p>Quantified expressions allow testing of some condition to see whether it is true
+		    for <i>some </i>value in a sequence (called an <i>existential quantifier</i>), or for 
+		    <i>every </i>value in a sequence (called a <i>universal quantifier</i>). 
+		    The result of a quantified expression is always true or false.</p>
+		    <p><i>(Q7) Generate a report containing the status of the bids for various items. Label each bid with 
+		    a status  OK, too small, or too late. Enclose the report in an element called bidStatusReport.</i></p>
+		    <table>
+		      <tr>
+		        <td>&lt;bidStatusReport&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;for $i in document ("items.xml")/*/item</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;return</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;item&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$i/itemno,</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for $b in document ("bids.xml")/*/bid[itemno = $i/itemno]</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bid&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$b/bidder,</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$b/bid-amount,</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;status&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($b/bid-date &gt; $i/end-date)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then "too late"</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ($b/bid-amount &lt; $i/reserve-price)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then &quot;too small&quot;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else &quot;OK&quot;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/status&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/bid&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/item&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/bidStatusReport&gt;</td>
+		      </tr>
+		    </table>
+		    <p>Like a FLWR expression, a quantified expression allows a variable to iterate over the items in a sequence,
+		    being bound in turn to each item in the sequence. For each variable binding, a test expression is 
+		    evaluated. A quantified expression that begins with <i>some</i> returns the value true
+		    if the test expression is true for <i>some</i> variable binding, as in the following example:</p>
+		    <table>
+		      <tr>
+		        <td>some $n in (5, 7, 9, 11) satisfies $n &gt; 10</td>
+		      </tr>
+		    </table>
+		    <p>A quantified expression that begins with <i>every</i>, in contrast, returns the value
+		    true if the test expression is true for <i>every </i>variable binding. For example,
+		    the following quantified expression returns the value false because the test expression is true for some
+		    but not all bindings:</p>
+		    <table>
+		      <tr>
+		        <td>every $n in (5, 7, 9, 11) satisfies $n &gt; 10</td>
+		      </tr>
+		    </table>
+		    <p>The use of a quantified expression in a query is illustrated by Q8.</p>
+		    <p><i>(Q8) Find the items in items.xml for which all the bids received were more than twice the reserve price. 
+		    Return copies of all these item elements, enclosed in a new element called underPricedItems.</i></p>
+		    <table>
+		      <tr>
+		        <td>&lt;underPricedItems&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;for $i in document("items.xml")</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;where every $b in document("bids.xml")/*/bid[itemno = $i/itemno]</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;satisfies $b/bid-amount &gt; 2 * $i/reservePrice</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;return $i</td>
+		      </tr>
+		      <tr>
+		        <td>&lt;/underPricedItems&gt;</td>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Functions"></A>XQuery Functions</H2></P>		
+		    <div class="h2section" id="XQuery Functions">
+		    <p>We have already seen several examples of functions, including the document function and aggregating
+		    functions such as avg. XQuery provides a library of predefined functions, listed in Reference 11, and also
+		    allows users to define functions of their own. A function may take zero or more parameters. A function
+		    definition must specify the name of the function and the names of its parameters. It may optionally 
+		    specify types for the parameters and the result of the function. It must also provide the body of the function,
+		    which is an expression enclosed in curly braces. When the function is called, the arguments of the function
+		    call are bound to the parameters of the function and the body is executed, producing the result of the 
+		    function call. If no type is specified for a function parameter, that parameter accepts values of any type. 
+		    If no type is specified for the result of the function, the function may return a value of any type.</p>
+		    <p>The following example defines a function named <i>highbid</i> that takes an element node as its parameter 
+		    and returns a decimal value. The function interprets its parameter as an item element and extracts 
+		    its item number; it then finds and returns the largest bidAmount that has ever been recorded for
+		    that item number. The example also illustrates a function call that invokes the highbid function on
+		    the item with item number 1234.</p>
+		    <table>
+		      <tr>
+		        <td>define function highbid(element $item)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;returns double</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;max(document("bids.xml")//bid[itemno = $item/itemno]/bidAmount)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <td>highbid(document("items.xml")//item[itemno = "1234"])</td>
+		      </tr>
+		    </table>
+		    <p>The types used as the argument types and result type of a function definition may be simple types such as
+		    number, or more complex types such as elements and attributes. The rules for declaring types in function 
+		    definitions are described in more detail in the next section.</p>
+		    <p>XQuery does not support overloading of user-defined functions; that is, it does not permit two 
+		    user-defined functions to have the same qualified name. Nevertheless, some of the XQuery built-in functions
+		    are overloaded. For example, the <i>string</i> function can convert an argument of almost any type into a string.</p>
+		    <p>The arguments of a function call must match the declared types of the function parameters. For this 
+		    purpose, a function argument of a numeric type may be promoted to the declared parameter type, using the
+		    promotion hierarchy <i>integer =&gt; float =&gt; double</i>. An argument is also considered to be a
+		    match if the type of the argument is derived from (i.e., a subtype of) the declared parameter type. If
+		    a function that expects an atomic value is called with an argument that is an element, the typed value of
+		    the element is extracted and checked for compatibility with the expected parameter type before it is
+		    passed to the function. The value produced by the body of a function must also match the return type
+		    declared in the function definition, using the same rules that are used for parameter matching.</p>
+		    <p>The following example illustrates how a user might write a function to provide a default value 
+		    for missing data. The function named defaulted takes two parameters: a (possibly missing) element node, and
+		    a default value. If the element is present and has a nonempty value, the function returns that value; but
+		    if the element is absent or empty, the function returns the default value.</p>
+		    <table>
+		      <tr>
+		        <td>define function defaulted(element? $e, anySimpleType $d)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;returns anySimpleType</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;if (empty($e))</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;then $d</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;else</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;if (empty($e/*))</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;then $d</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;else data($e)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;}</td>
+		      </tr>
+		    </table>
+		    <p>Using this function, query Q5 could be rewritten as follows. In this formulation, missing or empty 
+		    commission or bonus elements are treated as though they have the value zero:</p>
+		    <table>
+		      <tr>
+		        <td>for $e in $emps</td>
+		      </tr>
+		      <tr>
+		        <td>return</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&lt;emp&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;$e/name,</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&lt;pay&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;$e/salary</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;defaulted ($e/commission, 0)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;defaulted ($e/bonus, 0)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&lt;/pay&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&lt;/emp&gt;</td>
+		      </tr>
+		      <tr>
+		        <td>sortby (pay)</td>
+		      </tr>
+		    </table>
+		    <p>A function that invokes itself in its own body is called a <i>recursive function</i>, 
+		    and two functions whose bodies invoke each other are called <i>mutually recursive functions</i>. 
+		    Recursion is a powerful feature in function definitions, particularly in functions that are defined
+		    over a hierarchical data model such as XML. As an illustration of a recursive function, the
+		    <i>depth</i> function in the following example can be invoked on an element and returns the depth 
+		    of the element hierarchy beginning with its argument. If the argument element has no descendants, 
+		    the depth of the hierarchy is one. Otherwise, the depth of the hierarchy is one more than the 
+		    maximum depth of any hierarchy rooted in a child of the argument element; this
+		    value is computed by a recursive call to the depth function. The example also illustrates a function call
+		    that invokes the depth function to find the depth of the document named bids.xml.</p>
+		    <table>
+		      <tr>
+		        <td>define function depth(element $e)</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;returns integer</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;{</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;if (empty($e/*))</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;then 1</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;else 1 + max(for $c in $e/* return depth($c))</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;}</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <td>depth(document("bids.xml"))</td>
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Types"></A>XQuery Types</H2></P>		
+		    <div class="h2section" id="XQuery Types">
+		    <p>In writing a query, it is sometimes necessary to refer to a particular type. For example, function 
+		    definitions need to describe the types of the function parameters and result, as noted in the previous 
+		    section. Other types of XQuery expressions, described later in this section, also need to refer to 
+		    specific types.</p>
+		    <p>One way to refer to a type is by its qualified name, or QName. A QName may refer to a built-in type
+		    such as <i>xs:integer</i> or to a type that is defined in some schema, such as <i>abc:address</i>. If the QName has a
+		    namespace prefix (the part to the left of the colon), that prefix must be bound to a specific namespace
+		    URI. This binding is accomplished by a namespace declaration in the query prolog, described in the next section.</p>
+		    <p>Another way to refer to a type is by a generic keyword such as element or attribute. This keyword
+		    may optionally be followed by a QName that further restricts the name or type of the node. For example,
+		    element denotes any element; element shipto denotes an element whose name is shipto; and
+		    element of type abc:address denotes an element whose type is address as declared in the namespace
+		    abc. The keyword attribute denotes any attribute, node denotes any node, and item denotes any item
+		    (node or atomic value).</p>
+		    <p>XQuery also provides additional syntax that makes it possible to refer to other kinds of nodes and to
+		    element types that are defined in a local part of a schema. For example, element city in customer/address
+		    refers to the element named city, as defined in the schema context customer/address.</p>
+		    <p>A reference to a type may optionally be followed by one of three occurrence indicators: * means zero
+		    or more; + means one or more, and ? means zero or one. The absence of an occurrence 
+		    indicator denotes exactly one occurrence of the indicated type. The use of occurrence indicators 
+		    is illustrated by the following examples:</p>
+		    <table>
+		      <tr>
+		        <td><i>element memo?</i></td>
+		        <td>denotes an optional occurrence of an element with the name memo</td>
+		      </tr>
+		      <tr>
+		        <td><i>element of type order</i></td>
+		        <td>denotes one or more elements with the type order</td>
+		      </tr>
+		      <tr>
+		        <td><i>element*</i></td>
+		        <td>denotes zero or more unrestricted elements</td>
+		      </tr>
+		      <tr>
+		        <td><i>attribute?</i></td>
+		        <td>denotes an optional attribute of any name or type</td>                   
+		      </tr>
+		      <tr>
+		        <td><i>attribute?</i></td>
+		        <td>denotes an optional attribute of any name or type</td>                   
+		      </tr>
+		    </table>
+		    <p>Type references occur not only in function definitions but also in several other places in XQuery. 
+		    One of these places is the second operand of instance of, a binary operator that returns true
+		    if its first operand is an instance of the type named in its second operand. The following examples 
+		    illustrate usage of the instance of operator, presuming that the prefix xs is bound to the schema 
+		    namespace, http://www.w3.org/2001/XMLSchema:</p>
+		    <table>
+		      <tr>
+		        <td><i>49 instance of xs:integer</i></td>
+		        <td><b>returns</b></td>
+		        <td>true</td>
+		      </tr>
+		      <tr>
+		        <td><i>"Hello" instance of xs:integer</i></td>
+		        <td><b>returns</b></td>
+		        <td>false</td>
+		      </tr>
+		      <tr>
+		        <td><i>&lt;partno&gt;369&lt;/partno&gt; instance of element*</i></td>
+		        <td><b>returns</b></td>
+		        <td>true</td>
+		      </tr>
+		      <tr>
+		        <td><i>$a instance of element shipto</i></td>
+		        <td><b>returns</b></td>
+		        <td>true (if $a is bound to an element of type shipto)</td>
+		      </tr>
+		    </table>
+		    <p>Occasionally it may be necessary for a query to process an expression in a way that depends on the 
+		    dynamic (run-time) type of the expression. For example, a query might be preparing mailing labels and
+		    might need to extract geographical information from various types of addresses. For such applications,
+		    XQuery provides an expression called <i>typeswitch</i>, which is loosely modeled on the switch
+		    statement of the C or Java languages. The first part of a typeswitch consists of the expression whose type is
+		    being tested, called the <i>operand expression</i>, and optionally a variable that is bound to the value of the
+		    operand expression. This is followed by one or more case clauses, each of which contains a type and an
+		    expression. The operand expression is tested against the type named in each of the case clauses in turn.
+		    The first case clause for which the operand expression is an instance of the named type is called the
+		    <i>effective case</i>; the expression in this case clause is evaluated and serves as the result of the
+		    typeswitch. If the operand expression does not conform to any of the types named by the case clauses, the result of
+		    typeswitch is taken from a final default clause.</p>
+		    <p>The use of a typeswitch expression is illustrated by the following example. This expression might occur
+		    inside a loop in which the variable $customer iterates over a set of customer elements, each of which
+		    has a subelement named billingAddress. The billingAddress subelements are of several different types, 
+		    each of which needs to be handled in its own way. In the example, $a is bound to a billingAddress
+		    and then one of several expressions is evaluated, depending on the dynamic type of $a.
+		    Within each case clause, $a has a specific type, for example, in the first case clause, the type of
+		    $a is known to be element of type USAddress. If a billingAddress element is encountered that does
+		    not conform to one of the expected types, the result of this example expression is <i>unknown</i>.</p>
+		    <table>
+		      <tr>
+		        <td>typeswitch($customer/billingAddress) as $a</td>
+		      </tr>
+		      <tr>
+		        <td>case element of type USAddress</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;return $a/state</td>                    
+		      </tr>
+		      <tr>
+		        <td>case element of type CanadaAddress</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;return $a/province</td>                    
+		      </tr>
+		      <tr>
+		        <td>case element of type JapanAddress</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;return $a/prefecture</td>                    
+		      </tr>
+		      <tr>
+		        <td>default</td>
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;return "unknown"</td>                    
+		      </tr>
+		    </table>
+		    <p>Type names are also used in three similar-looking XQuery expressions called <i>cast</i>, <i>treat</i>, and
+		    <i>assert</i>. Each of these expressions consists of a keyword, a reference to a type, and an expression enclosed in
+		    parentheses.</p>
+		    <p>A cast expression is used to convert the result of an expression into one of the built-in types of
+		    XML Schema. A predefined set of casts is supported. For example, the result of the expression
+		    $x div 5 could >be cast to the xs:double type by the expression <i>cast as xs:double($x div 5)</i>.
+		    A cast may return an error value if it is unsuccessful. For example, <i>cast as xs:integer($mystring)</i>
+		    will be successful if $mystring is a string representation of an integer, but it will return an error if
+		    $mystring has the value "Hello". The cast expression cannot be used to cast
+		    a value into a user-defined type; however, a user can write a function for this purpose.</p>
+		    <p>A treat expression is used to ensure that the dynamic (run-time) type of an expression 
+		    conforms to an expected type. For example, suppose that the static (compile-time) type of the expression
+		    $customer/shippingAddress is Address. A certain subexpression may be meaningful only for values that conform
+		    to a subtype of Address, such as USAddress. The writer of the subexpression may use a treat
+		    expression to declare the expected type of the subexpression, as in the following example:</p>
+		    <table>
+		      <tr>
+		        <td>treat as USAddress($customer/billingAddress)</td>
+		      </tr>
+		    </table>
+		    <p>Unlike a cast expression, a treat expression does not actually change the type of its operand. Instead,
+		    its effect is twofold: (1) it assigns a specific static type to its operand, which can be used for type-checking
+		    when the query is compiled; and (2) at execution time, if the actual value of the expression does not
+		    conform to the named type, it returns an error value.</p>
+		    <p>To see how a query processor might make use of the information provided by a treat expression, consider
+		    the following example:</p>
+		    <table>
+		      <tr>
+		        <td>$customer/billingAddress/zipcode</td>                    
+		      </tr>
+		    </table>
+		    <p>A type-checking XQuery compiler might consider the above example to be a type error, since the static
+		    type of $customer/billingAddress is Address, and the Address type does not in general have a
+		    zipcode subelement. However, in the following reformulation of the example, the static type 
+		    of the expression is changed to USAddress, which has a zipcode subelement, and the type error is removed:</p>
+		    <table>
+		      <tr>
+		        <td>(treat as USAddress ($customer/billingAddress))/zipcode</td>                    
+		      </tr>
+		    </table>
+		    <p>Like treat, assert is used to provide a query processor with information that may be useful for type-checking. An
+		    assert expression serves as an asser>tion to the query processor that its operand
+		    expression has a particular static type. If the processor is checking a query for static type-safety, it may
+		    raise an error if it cannot verify that the given expression conforms to the asserted type. An
+		    assert expression is more strict than a treat expression, because it pertains to the static type of the expression, and
+		    therefore it is independent of input data and can be checked before execution of the query. A
+		    treat expression, in contrast, pertains to the dynamic type of the expression, and therefore depends on input
+		    data and can only be checked during query processing.</p>
+		    <p>The following example, unlike the similar treat expression discussed above, will generate a 
+		    compile-time type error if the static type of $customer/billingAddress is Address:</p>
+		    <table>
+		      <tr>
+		        <td>(assert as USAddress ($customer/billingAddress))/zipcode</td>                    
+		      </tr>
+		    </table>
+		    <p>XQuery does not require an implementation to provide static type-checking. For a query processor that
+		    does not provide static type-checking, an assert expression is equivalent to a treat expression.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SXQuery Validation"></A>XQuery Validation</H2></P>		
+		    <div class="h2section" id="XQuery Validation">
+		   <p>The process of schema validation is defined in Reference 3. Schema validation may be applied to an
+		    XML document or to a part of a document such as an individual element. The material being validated
+		    is compared with the definitions in a given schema, which describes a particular kind of document. The
+		    validation process may label an element as valid or invalid; it may also assign a specific type to an 
+		    element and provide additional information such as default values for certain attributes. For example,
+		    validation of an element named shipto might assign it the specific type USAddress and might provide a
+		    default value for its carrier attribute.</p>
+		    <p>Schema validation is applied to input documents as part of the process of representing them in the query
+		    data model. In addition, schema validation can be invoked explicitly on a query result or on some 
+		    intermediate expression within a query.</p>
+		    <p>The query data model associates a type annotation with each element node. A type annotation indicates
+		    that an element has been validated as conforming to a specific named type. Elements that have not been
+		    validated or that do not conform to a named type have the generic type annotation
+		    anyType. For example, an element that is created by an element constructor has the type annotation
+		    anyType until it is given a more specific type by a validate expression.
+		    The following example constructs an element and validates it against the schema(s) that are named in
+		    the query prolog:</p>
+		    <table>
+		      <tr>
+		        <td>validate</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;{</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;shipto&gt;</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;street&gt;123 Elm St.&lt;/street&gt;</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;city&gt;Elko, NV&lt;/city&gt;</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;zipcode&gt;85039&lt;/zipcode&gt;</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/shipto&gt;</td>                    
+		      </tr>
+		      <tr>
+		        <td>&nbsp;&nbsp;}</td>                    
+		      </tr>
+		    </table>
+		    <p>Type annotations are used by expressions such as instance of and typeswitch
+		    that test the type of an element, and by expressions such as function calls
+		    that require an element of a particular type. For example, validation of the
+		    shipto element above might assign it a type annotation of USAddress, which might
+		    enable it to be used as an argument to a function whose parameter type is
+		    element of type USAddress.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SStructure of an XQuery"></A>Structure of an XQuery</H2></P>		
+		    <div class="h2section" id="Structure of an XQuery">
+		    <p>In XQuery, a query consists of two parts called the <i>query prolog </i>
+		    and the <i>query body</i>. The query prolog contains a series of declarations that define the 
+		    environment for processing the query body. The query body is simply an expression whose value defines the
+		    result of the query.</p>
+		    <p>The query prolog is needed only if the query body depends on one or more namespaces, schemas, or
+		    functions. If such a dependency exists, the object(s) that the query body depends on must be declared
+		    in the query prolog. We will discuss declarations for namespaces, schemas, and functions separately.</p>
+		    <p>A namespace declaration defines a namespace prefix and associates it with a namespace 
+		    URI. The prefix can be any identifier. For example, the following
+		    namespace declaration defines the prefix xyz and associates it with a specific URI:</p>
+		    <table>
+		      <tr>
+		        <td>namespace xyz = "http://www.xyz.com/example/names"</td>                    
+		      </tr>
+		    </table>
+		    <p>This declaration enables the prefix xyz to be used in QNames in the query body. 
+		    It associates the prefix with the URI of a specific namespace and serves
+		    as a unique qualifier for names of elements, attributes, and types. For example,
+		    xyz:billingAddress might uniquely identify the billingAddress element defined in the namespace
+		    "http://www.xyz.com/example/names". If desired, multiple
+		    namespace prefixes can be associated with the same namespace.</p>
+		    <p>The query prolog can declare a default namespace that applies to all unqualified element and type
+		    names and another default namespace that applies to all unqualified function names. The syntax for 
+		    declaring default namespaces is illustrated in the following example:</p>
+		    <table>
+		      <tr>
+		        <td>default element namespace = "http://www.xyz.com/example/names"</td>                    
+		      </tr>
+		      <tr>
+		        <td>default function namespace = "http://www.xyz.com/example/functions"</td>                    
+		      </tr>
+		    </table>
+		    <p>If no default namespaces are provided, unqualified names of elements, types, and functions are 
+		    considered to be in no namespace. Unqualified attribute names are always considered to be in no namespace.</p>
+		    <p>In addition to namespace declarations, a query prolog can contain one or more schema imports. 
+		    A schema import identifies a schema by its URI and optionally provides a second
+		    that specifies the location where the schema file can be found. The purpose of the 
+		    schema import is to make available to the query processor the definitions of elements, 
+		    attributes, and types that are declared in the named schema. The query processor can use these 
+		    definitions for validating newly constructed elements, for optimization, and for doing static 
+		    type analysis on a query.</p>
+		    <p>A schema usually defines a set of elements, attributes, and types in a particular namespace, 
+		    called its <i>target namespace</i>, but it does not define a namespace prefix. 
+		    Therefore, a schema import may specify a namespace prefix to be bound to the target
+		    namespace of the given schema. For example, the following schema import binds the namespace 
+		    prefix xhtml to the target namespace of a particular schema and also provides the system 
+		    with a nonbinding hint for where this schema can be found:</p>
+		    <table>
+		      <tr>
+		        <td>schema namespace xhtml = "http://www.w3.org/1999/xhtml" at "http://www.w3.org/1999/xhtml/xhtml.xsd"</td>                    
+		      </tr>
+		    </table>
+		    <p>In addition to namespace declarations and schema imports, a query prolog may contain one or more
+		    function definitions. We have seen examples of function definitions in an earlier section. The functions
+		    defined in the query prolog may be used in the query body or in the bodies of other functions. 
+		    It is expected that the query prolog will also provide a means of importing function definitions 
+		    from an external function library.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SConclusion"></A>Conclusion</H2></P>		
+		    <div class="h2section" id="Conclusion">
+		   <p>XQuery is a functional language consisting of several types of expressions that can be composed with
+		    full generality. XQuery expression-types include path expressions, element constructors, function calls,
+		    arithmetic and logical expressions, conditional expressions, quantified expressions, expressions on 
+		    sequences, and expressions on types.</p>
+		    <p>XQuery is defined in terms of a data model based on heterogeneous sequences of nodes and atomic
+		    values. An instance of this data model may contain one or more XML documents or fragments of 
+		    documents. A query provides a mapping from one instance of the data model to another instance of the
+		    data model. A query consists of a prolog that establishes the processing environment, and an 
+		    expression that generates the result of the query.</p>
+		    <p>Currently, XQuery is defined only by a series of working drafts, and design of the language is an ongoing
+		    activity of the W3C XML Query Working Group. The working group is actively discussing the XQuery type
+		    system and how it is mapped to and from the type system of XML Schema. It is also discussing full-text
+		    search functions, serialization of query results, error-handling, and a number of other issues. It is likely
+		    that the final XQuery specification will include multiple conformance levels; for example, it may define
+		    how static type-checking is done but not require that it be done by every conforming implementation. 
+		    It is also expected that a subset of XQuery will be designated as XPath Version 2.0 and will be made 
+		    available for embedding in other languages such as XSLT.</p>
+		    <p>This paper has presented an overview of XQuery, illustrated with some example queries. For a more
+		    complete description of XQuery and a BNF (Backus-Naur Form) grammar for the language, the reader
+		    is referred to Reference 7. The document at this URI will be updated periodically to contain the latest
+		    XQuery specification as the language continues to evolve.</p>
+		    <p>Just as XML is emerging as an application-independent format for exchange of information on the 
+		    Internet, XQuery is designed to serve as an application-independent format for exchange of queries. 
+		    If XQuery is successful in providing a standard way to retrieve information from XML data sources, it will
+		    help XML to realize its potential as a universal information representation.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAcknowledgements"></A>Acknowledgements</H2></P>		
+		    <div class="h2section" id="Acknowledgements">
+		    <p>This XQuery overview was edited from an article by Don Chamberlin in the IBM SYSTEMS JOURNAL, VOL 41, NO 4, 2002</P>
+		    <p>Don Chamberlin <i>IBM Research Division, Almaden Research Center, 650 Harry Road, San Jose, California 95120
+		    (electronic mail: chamberlin@almaden.ibm.com). </i> Dr. Chamberlin is best known as co-inventor of the SQL 
+		    database language and as author of two books on IBM's relational database products. He holds a B.S.
+		    degree in engineering from Harvey Mudd College and a Ph.D. degree in electrical engineering from Stanford University. 
+		    He is an ACM Fellow and a member of the National Academy of Engineering and the IBM Academy of Technology. 
+		    Dr. Chamberlin is currently a research staff member at the Almaden Research Center, where his work is focused 
+		    on relational database technology, document processing, and XML. He serves as one of IBM's representatives 
+		    to the W3C XML Query Working Group and as an editor of the XQuery language specification.</p>
+		    <p><u><b>Note</b></u>: The editing performed on this overview focused on making Dr. Chamberlin's excellent overview
+		    relevant to the XQuery dialect implemented on the Analytic Information Server database system.</p>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SReferences"></A>References</H2></P>		
+		    <div class="h2section" id="References">
+		    <table>
+		      <tr>
+		        <th>1.</th>                    
+		        <td><i>Extensible Markup Language (XML) 1.0 (Second Edition)</i>, 
+		        W3C Recommendation (6 October 2000), see http://www.w3.org/TR/REC-xml.</td>                    
+		      </tr>
+		      <tr>
+		        <th>2.</th>                    
+		        <td>World Wide Web Consortium (W3C), see http://www.w3.org.</td>                    
+		      </tr>
+		      <tr>
+		        <th>3.</th>                    
+		        <td><i>XML Schema, Parts 0, 1, and 2</i>, W3C Recommendation (2May 2001), 
+		        see http://www.w3.org/TR/xmlschema-0, http://www.w3.org/TR/xmlschema-1 
+		        and http://www.w3.org/TR/xmlschema-2.</td>                    
+		      </tr>
+		      <tr>
+		        <th>4.</th>                    
+		        <td><i>XML Path Language (XPath) Version 1.0</i>, W3C Recommendation (16 November 1999), see http://www.w3.org/TR/xpath.</td>                    
+		      </tr>
+		      <tr>
+		        <th>5.</th>                    
+		        <td><i>XSL Transformation (XSLT) Version 1.0</i>, W3C Recommendation (16 November 1999), see http://www.w3.org/TR/xslt.</td>                    
+		      </tr>
+		      <tr>
+		        <th>6.</th>                    
+		        <td>W3C XML Query Working Group, see http://www.w3.org/XML/Query.</td>                    
+		      </tr>
+		      <tr>
+		        <th>7.</th>                    
+		        <td><i>XQuery 1.0: An XML Query Language</i>, W3C Working Draft (16 August 2002), see http://www.w3.org/TR/xquery.</td>                    
+		      </tr>
+		      <tr>
+		        <th>8.</th>                    
+		        <td><i>XML Query Requirements</i>, W3C Working Draft (15 February 2001), see http://www.w3.org/TR/xmlquery-req.</td>                    
+		      </tr>
+		      <tr>
+		        <th>9.</th>                    
+		        <td><i>XQuery 1.0 and XPath 2.0 Data Model</i>, W3C Working Draft (16 August 2002), see http://www.w3.org/TR/query-datamodel.</td>                    
+		      </tr>
+		      <tr>
+		        <th>10.</th>                    
+		        <td><i>XQuery 1.0 Formal Semantics</i>, W3C Working Draft (16 August 2002), see http://www.w3.org/TR/query-semantics.</td>                    
+		      </tr>
+		      <tr>
+		        <th>11.</th>                    
+		        <td><i>XQuery 1.0 and XPath 2.0 Functions and Operators</i>, W3C Working Draft (16 August 2002), see http://www.w3.org/TR/xquery-operators.</td>                    
+		      </tr>
+		      <tr>
+		        <th>12.</th>                    
+		        <td><i>XML Query Use Cases</i>, W3C Working Draft (16 August 2002), see http://www.w3.org/TR/xmlquery-use-cases.</td>                    
+		      </tr>
+		      <tr>
+		        <th>13.</th>                    
+		        <td>D. Chamberlin, J. Robie, and D. Florescu, Quilt: An XML
+		        Query Language for Heterogeneous Data Sources, <i>Lecture Notes in Computer Science</i>, 
+		        Springer-Verlag (December 2000), see also http://www.almaden.ibm.com/cs/people/chamberlin/quilt.html.</td>                    
+		      </tr>
+		      <tr>
+		        <th>14.</th>                    
+		        <td>T. Atwood, D. Barry, J. Duhl, J. Eastman, G. Ferran, D. Jordan, M. Loomis, and D. Wade, 
+		        <i>The Object Database Standard: ODMG-93, Release 1.2</i>, R. G. C. Catell, Editor, 
+		        Morgan Kaufmann Publishers, San Francisco, CA (1996).</td>                    
+		      </tr>
+		      <tr>
+		        <th>15.</th>                    
+		        <td><i>Information Technology-Database Language SQL</i>, Standard No. ISO/IEC 9075, 
+		        International Organization for Standardization (ISO) (1999); available from American National 
+		        Standards Institute, New York, NY 10036, (212) 642-4900.</td>                    
+		      </tr>
+		      <tr>
+		        <th>16.</th>                    
+		        <td>J. Robie, J. Lapp, and D. Schach, <i>XML Query Language (XQL)</i>, see http://www.w3.org/TandS/QL/QL98/pp/xql.html.</td>                    
+		      </tr>
+		      <tr>
+		        <th>17.</th>                    
+		        <td>A. Deutsch, M. Fernandez, D. Florescu, A. Levy, and D. Suciu, <i>A Query Language for XML</i>, 
+		        see http://www.research.att.com/~mff/files/final.html.</td>                    
+		      </tr>
+		      <tr>
+		        <th>18.</th>                    
+		        <td>S. Abiteboul, D. Quass, J. McHugh, J. Widom, and J. Wiener, The Lorel Query Language for Semistructured Data,
+		        <i>International Journal on Digital Libraries </i><b>1</b>, No. 1, 68-88 (April 1997), 
+		        see http://www-db.stanford.edu/ widom/pubs.html.</td>                    
+		      </tr>
+		      <tr>
+		        <th>19.</th>                    
+		        <td><i>Namespaces in XML</i>, W3C Recommendation (14 January 1999), see http://www.w3.org/TR/REC-xml-names.</td>                    
+		      </tr>
+		      <tr>
+		        <th>20.</th>                    
+		        <td><i>XML Path Language (XPath) 2.0</i>, W3C Working Draft (20 December 2001), see http://www.w3.org/TR/xpath20.</td>                    
+		      </tr>
+		    </table>		    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

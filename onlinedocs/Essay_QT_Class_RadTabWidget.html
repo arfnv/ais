@@ -1,0 +1,188 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Class RadTabWidget</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sdelete"><FONT SIZE=2>delete</font></a></li><li><a href="#SaddTab"><FONT SIZE=2>addTab</font></a></li><li><a href="#SinsertTab"><FONT SIZE=2>insertTab</font></a></li><li><a href="#SremoveTab"><FONT SIZE=2>removeTab</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+        <div class="h2section" id="Overview">
+
+        <p>The <b>RadTabWidget</b> class inherits from the QTabWidget class ...
+        </p>
+
+       <p>The <b>RadTabWidget</b> class provides a stack of tabbed widgets in a window pane
+        </p>
+    
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>        
+        <div class="h2section" id="new">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>new</b> function creates a new RadTabWidget object and returns a pointer to the newly created object. The RadTabWidget object allows specification of position of the tabs with tabPosition argument, their shape by tabShape.
+        The RadTabWidget: symbol is one of the class key words accepted by the <b>qt</b> new: function.
+        There can be many RadTabWidgets.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>    (setq radTabWidgetPtr (qt new: RadTabWidget: tabPosition tabShape))  ;; Create a new RadTabWidget</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>radTabPosition</b></td><td>radTabPosition must be between 0 and 3.The value 0 specifies that the tab be drawn above the pages, 1 specifies tab position below the pages, 2 specifies tab on the left position, 3 specifies right position </td></tr>
+        <tr><td><b>radTabShape</b></td><td>radTabShape must be between 0 and 1.A radTabShape value 0 means square tabs (default shape), a value 1 means triagular shaped tabs </td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))            ;; Set the main window title<br>
+        (setq radLabelPtr (qt new: RadLabel: "Hello World"))                        ;; Create a new RadLabel object<br>
+        (setq radTabWidgetPtr (qt new: RadTabWidget: 2 1))                          ;; create a new RadTabWidgetObject left of pane with square shaped tabs<br>   
+        (setq tabIndex (qt radTabWidgetPtr addTab: radLabelPtr "SubTab" editMgr ))     ;; Add a new tab to the main window left tab bar<br>
+        (setq tabIndex (qt mainWindow: addTab: radTabWidgetPtr "MyTab" editMgr ))      ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdelete"></A>delete</H2></P>        
+        <div class="h2section" id="delete">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>delete</b> function destroys a RadTabWidget object and returns a null pointer.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt delete: radTabWidgetPtr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>radTabWidgetPtr</b></td><td>The pointer to the radTabWidgetPtr object to be destroyed.</td></tr>
+        <tr><td><b>nullPtr</b></td><td>Always returns a null pointer.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (setq radTabWidgetPtr (qt new: RadTabWidget: 0  1)) ;; Create a RadTabWidget object.<br>
+        (setq radWidgetPtr (qt delete: radTabWidgetPtr)) ;; Destroy the RadTabWidget object.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaddTab"></A>addTab</H2></P>        
+        <div class="h2section" id="addTab">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTabWidget <b>addTab</b> function Add a new tab to the RadTabWidget which is appended to the right .
+        </p>
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTabWidgetPtr addTab: title tabMgr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>title</b></td><td> A string describing the Tab</td></tr>
+        <tr><td><b>tabMgr</b></td><td> The name of the Tab manager function</td></tr>
+        <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+ 
+         (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))                 ;; Set the main window title<br>
+        (setq radLabelPtr1 (qt new: RadLabel: "Hello World"))                            ;; Create a new RadLabel object<br>
+        (setq radLabelPtr2 (qt new: RadLabel: "Goodbye World"))                          ;; Create a new RadLabel object<br>
+        (setq radTabWidgetPtr (qt new: RadTabWidget: 2 1))                               ;; create a new RadTabWidgetObject left of pane with square shaped tabs<br>   
+        (setq tabIndex (qt radTabWidgetPtr addTab: radLabelPtr1 "SubTab0" editMgr ))     ;; Add a new tab to the main window left tab bar<br> 
+        (setq tabIndex (qt radTabWidgetPtr addTab: radLabelPtr2 "SubTab1" editMgr ))     ;; Add a new tab to the main window left tab bar<br>
+        (setq tabIndex (qt mainWindow: addTab: radTabWidgetPtr "MyTab" editMgr ))        ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SinsertTab"></A>insertTab</H2></P>        
+        <div class="h2section" id="insertTab">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTabWidget <b>insertTab</b> function Insert a new tab to the RadTabWidget.  The new tab is appended to the right.
+        </p>
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTabWidgetPtr insertTab:tabIndex radWidgetPtr title tabMgr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td> The position to insert the new tab</td></tr>
+        <tr><td><b>radWidgetPtr</b></td><td> The parent widget object (of the tabWidget) </td></tr>
+        <tr><td><b>title</b></td><td> A string describing the Tab</td></tr>
+        <tr><td><b>tabMgr</b></td><td> The name of the Tab manager function</td></tr>
+        <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+         (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))            ;; Set the main window title<br>
+        (setq radLabelPtr (qt new: RadLabel: "Hello World"))                        ;; Create a new RadLabel object<br>
+        (setq radTabWidgetPtr (qt new: RadTabWidget: 2 1))                          ;; create a new RadTabWidgetObject left of pane with square shaped tabs<br>   
+        (setq tabIndex (qt radTabWidgetPtr addTab: radLabelPtr "Sub1Tab" editMgr ))     ;; Add a new tab to the main window left tab bar<br>
+        (setq tabIndex (qt mainWindow: addTab: radTabWidgetPtr "MyTab" editMgr ))      ;; Add a new tab to the main window horizontal tab bar<br>
+        (setq tabIndex (qt radTabWidgetPtr insertTab: 0 radLabelPtr "Sub0Tab" editMgr))     ;; Insert a new tab in the 0th position in the horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SremoveTab"></A>removeTab</H2></P>        
+        <div class="h2section" id="removeTab">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTabWidget <b>removeTab</b> function removes a tab from the RadTabWidget.
+        </p>
+
+      
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTabWidgetPtr removeTab: tabIndex)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>tabIndex</b></td><td> The position of the tab to remove</td></tr>
+         <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+ 
+      (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))            ;; Set the main window title<br>
+        (setq radLabelPtr1 (qt new: RadLabel: "Hello World"))                        ;; Create a new RadLabel object<br>
+        (setq radLabelPtr2 (qt new: RadLabel: "Goodbye World"))                        ;; Create a new RadLabel object<br>
+        (setq radTabWidgetPtr (qt new: RadTabWidget: 2 1))                          ;; create a new RadTabWidgetObject left of pane with square shaped tabs<br>   
+        (setq tabIndex (qt radTabWidgetPtr addTab: radLabelPtr1 "SubTab0" editMgr ))     ;; Add a new tab to the main window left tab bar<br> 
+        (setq tabIndex (qt radTabWidgetPtr addTab: radLabelPtr2 "SubTab1" editMgr ))     ;; Add a new tab to the main window left tab bar<br>
+        (setq tabIndex (qt mainWindow: addTab: radTabWidgetPtr "MyTabDemo" editMgr ))      ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (sleep 5000) ;; wait
+        (qt radTabWidgetPtr removeTab: 1)    
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

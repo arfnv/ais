@@ -1,0 +1,905 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>SQL Language Structure</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SStrings"><FONT SIZE=2>Strings</font></a></li><li><a href="#SNumbers"><FONT SIZE=2>Numbers</font></a></li><li><a href="#SHexadecimal Values"><FONT SIZE=2>Hexadecimal Values</font></a></li><li><a href="#SBoolean Values"><FONT SIZE=2>Boolean Values</font></a></li><li><a href="#SBit-Field Values"><FONT SIZE=2>Bit-Field Values</font></a></li><li><a href="#SNULL Values"><FONT SIZE=2>NULL Values</font></a></li><li><a href="#SSchema Object Names"><FONT SIZE=2>Schema Object Names</font></a></li><li><a href="#SIdentifier Qualifiers"><FONT SIZE=2>Identifier Qualifiers</font></a></li><li><a href="#SIdentifier Case Sensitivity"><FONT SIZE=2>Identifier Case Sensitivity</font></a></li><li><a href="#SMapping of Identifiers to Filenames"><FONT SIZE=2>Mapping of Identifiers to Filenames</font></a></li><li><a href="#SFunction Name Parsing and Resolution"><FONT SIZE=2>Function Name Parsing and Resolution</font></a></li><li><a href="#SReserved Words"><FONT SIZE=2>Reserved Words</font></a></li><li><a href="#SUser-Defined Variables"><FONT SIZE=2>User-Defined Variables</font></a></li><li><a href="#SComment Syntax"><FONT SIZE=2>Comment Syntax</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		   <p>This chapter discusses the rules for writing the following elements of SQL statements:</p>
+
+           <ul>
+             <li>Literal values such as strings and numbers</li>
+             <li>Identifiers such as database, table, and column names</li>
+             <li>Reserved words</li>
+             <li>User-defined and system variables</li>
+             <li>Comments</li>
+           </ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SStrings"></A>Strings</H2></P>		
+		   <p>A string is a sequence of bytes or characters, enclosed within either single quote (') or double quote (") characters. Examples: 
+              </p>
+
+           <ul>
+             <li>'a string'</li>
+             <li>"another string"</li>
+           </ul>
+
+           <p>A binary string is a string of bytes that has no character set or collation. 
+              A non-binary string is a string of characters that has a character set and collation. 
+              For both types of strings, comparisons are based on the numeric values of the string unit. 
+              For binary strings, the unit is the byte. 
+              For non-binary strings the unit is the character and some character sets allow multi-byte characters. 
+             Character value ordering is a function of the string collation.
+             </p> 
+
+           <p>String literals may have an optional character set introducer and COLLATE clause: [_charset_name]'string' [COLLATE collation_name]. Examples:
+              </p>
+
+           <ul>
+             <li>SELECT _latin1'string'</li>
+             <li>SELECT _latin1'string' COLLATE latin1_danish_ci</li>
+           </ul>
+
+           <p>You can use N'literal' (or n'literal') to create a string in the national character set. These statements are equivalent:
+              </p>
+
+           <ul>
+             <li>SELECT N'some text'</li>
+             <li>SELECT n'some text'</li>
+             <li>SELECT _utf8'some text'</li>
+           </ul>
+
+
+           <p>Within a string, certain sequences have special meaning. 
+              Each of these sequences begins with a backslash (?\?), known as the escape character.  
+              SQL recognizes the following escape sequences: 
+              </p>
+
+           <ul>
+             <li>\0  An ASCII 0 (NUL) character.</li>
+             <li>\'  A single quote (?'?) character.</li>
+             <li>\"  A double quote (?"?) character.</li>
+             <li>\b  A backspace character.</li>
+             <li>\n  A newline (linefeed) character.</li>
+             <li>\r  A carriage return character.</li>
+             <li>\t  A tab character.</li>
+             <li>\Z  ASCII 26 (Control-Z). See note following the table.</li>
+             <li>\\  A backslash (?\?) character.</li>
+             <li>\%  A ?%? character. See note following the table.</li>
+             <li>\_  A ?_? character. See note following the table.</li>
+           </ul>
+
+           <p>For all other escape sequences, backslash is ignored. 
+              That is, the escaped character is interpreted as if it was not escaped. 
+              For example, ?\x? is just ?x?.  
+              These sequences are case sensitive. 
+              For example, ?\b? is interpreted as a backspace, but ?\B? is interpreted as ?B?.
+              The ASCII 26 character can be encoded as ?\Z? to enable you to work around the problem that ASCII 26 stands for END-OF-FILE on Windows. A
+              ASCII 26 within a file causes problems if you try to use mysql db_name &lt; file_name. 
+              Escape processing is done according to the character set indicated by the character_set_connection system variable. 
+              This is true even for strings that are preceded by an introducer that indicates a different character set.
+              The ?\%? and ?\_? sequences are used to search for literal instances of ?%? and ?_? in pattern-matching contexts where they would otherwise be interpreted as wildcard characters.
+              See the description of the LIKE operator. 
+              If you use ?\%? or ?\_? in non-pattern-matching contexts, they evaluate to the strings ?\%? and ?\_?, not to ?%? and ?_?. 
+              There are several ways to include quote characters within a string:  
+              </p>
+
+           <ul>
+             <li>A ?'? inside a string quoted with ?'? may be written as ?''?.</li>
+             <li>A ?"? inside a string quoted with ?"? may be written as ?""?.</li>
+             <li>Precede the quote character by an escape character (?\?).</li>
+             <li>A ?'? inside a string quoted with ?"? needs no special treatment and need not be doubled or escaped. 
+                 In the same way, ?"? inside a string quoted with ?'? needs no special treatment.</li>
+           </ul>
+
+           <p>The following SELECT statements demonstrate how quoting and escaping work:</p>
+
+           <ul><li>(sql sqlHandle {select 'hello', '"hello"', '""hello""', 'hel''lo', '\'hello'})</li></ul>
+           <table>
+             <tr><td>hello</td><td>"hello"</td><td>""hello""</td><td>hel'lo</td><td>'hello</td></tr>
+           </table>
+
+           <ul><li>(sql sqlHandle {select "hello", "'hello'", "''hello''", "hel""lo", "\"hello"})</li></ul>
+           <table>
+             <tr><td>hello</td><td>'hello'</td><td>''hello''</td><td>hel"lo</td><td>"hello</td></tr>
+           </table>
+
+           <p>If you want to insert binary data into a string column (such as a BLOB column), the following characters must be represented by escape sequences:</p>
+
+           <ul>
+             <li>NUL NUL byte (ASCII 0). Represent this character by ?\0? (a backslash followed by an ASCII ?0? character). </li>
+             <li>\ Backslash (ASCII 92). Represent this character by ?\\?.</li>
+             <li>' Single quote (ASCII 39). Represent this character by ?\'?.</li>
+             <li>" Double quote (ASCII 34). Represent this character by ?\"?.</li>
+           </ul>
+
+           <p>When writing application programs, any string that might contain any of these special characters must be properly escaped before the string is used as a data value in an SQL statement that is sent to the MySQL server. 
+              You can do this in two ways: 
+              Process the string with a function that escapes the special characters. 
+              In a C program, you can use the mysql_real_escape_string() C API function to escape characters. 
+              The Perl DBI interface provides a quote method to convert special characters to the proper escape sequences. 
+              Other language interfaces may provide a similar capability. 
+              As an alternative to explicitly escaping special characters, many SQL APIs provide a placeholder capability that enables you to insert special markers into a statement string, and then bind data values to them when you issue the statement. 
+              In this case, the API takes care of escaping special characters in the values for you.   
+              </p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNumbers"></A>Numbers</H2></P>	
+
+        <p>Integers are represented as a sequence of digits. 
+           Floats use "." as a decimal separator. 
+           Either type of number may be preceded by "-" or "+" to indicate a negative or positive value, respectively. 
+	       </p>
+ 
+        <p>Examples of valid integers:
+           </p>
+
+           <ul>
+             <li>1221</li>
+             <li>0</li>
+             <li>-2926</li>
+             <li>+926</li>
+           </ul>
+ 
+        <p>Examples of valid floating-point numbers:
+           </p>
+
+           <ul>
+             <li>12.21</li>
+             <li>0.0</li>
+             <li>-32032.6809e+10</li>
+             <li>-926.1248</li>
+           </ul>
+
+        <p>An integer may be used in a floating-point context; it is interpreted as the equivalent floating-point number.
+           </p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHexadecimal Values"></A>Hexadecimal Values</H2></P>	
+
+        <p>SQL supports hexadecimal values, written using X'val', x'val', or 0xval format, where val contains hexadecimal digits (0..9, A..F). 
+           Lettercase of the digits does not matter. For values written using X'val' or x'val' format, val must contain an even number of digits. 
+           For values written using 0xval syntax, values that contain an odd number of digits are treated as having an extra leading 0. 
+           For example, 0x0a and 0xaaa are interpreted as 0x0a and 0x0aaa. In numeric contexts, hexadecimal values act like integers (64-bit precision). 
+           In string contexts, they act like binary strings, where each pair of hex digits is converted to a character: 
+	       </p>
+ 
+           <ul>
+             <li>(sql sqlHandle {select X'4D7953514C'}) <b>Returns</b> "MySQL"</li>
+             <li>(sql sqlHandle {select 0x0a+0}) <b>Returns</b> 10</li>
+             <li>(sql sqlHandle {select 0x5061756c}) <b>Returns</b> "Paul"</li>
+           </ul>
+ 
+        <p>The default type of a hexadecimal value is a string. If you want to ensure that the value is treated as a number, you can use CAST(... AS UNSIGNED): 
+           </p>
+
+           <ul>
+             <li>(sql sqlHandle {select 0x41, cast(0x41 as unsigned)}) <b>Returns</b> "A", 65</li>
+           </ul>
+
+        <p>The X'hexstring' syntax is based on standard SQL. 
+           The 0x syntax is based on ODBC. 
+           Hexadecimal strings are often used by ODBC to supply values for BLOB columns. 
+           You can convert a string or a number to a string in hexadecimal format with the HEX() function: 
+           </p>
+
+           <ul>
+             <li>(sql sqlHandle {select hex('cat')}) <b>Returns</b> "636174"</li>
+             <li>(sql sqlHandle {select 0x636174}) <b>Returns</b> "cat"</li>
+           </ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBoolean Values"></A>Boolean Values</H2></P>	
+
+        <p>The constants TRUE and FALSE evaluate to 1 and 0, respectively. The constant names can be written in any lettercase. 
+	       </p>
+ 
+           <ul>
+             <li>(sql sqlHandle {SELECT TRUE, true, FALSE, false}) <b>Returns</b> 1, 1, 0, 0</li>
+           </ul>
+ 	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBit-Field Values"></A>Bit-Field Values</H2></P>	
+
+        <p>Bit-field values can be written using b'value' or 0bvalue notation. 
+           Value is a binary value written using zeros and ones. 
+           Bit-field notation is convenient for specifying values to be assigned to BIT columns: 
+           </p>
+ 
+           <ul>
+             <li>(sql sqlHandle {create table t (b bit(8))})</li>
+             <li>(sql sqlHandle {insert into t set b = b'11111111'})</li>
+             <li>(sql sqlHandle {insert into t set b = b'1010'})</li>
+             <li>(sql sqlHandle {insert into t set b = b'0101'})</li>
+           </ul>
+
+        <p>Bit values are returned as binary values. 
+           To display them in printable form, add 0 or use a conversion function such as BIN(). 
+           High-order 0 bits are not displayed in the converted value. 
+	       </p>
+
+        <ul><li>(sql sqlHandle {select b+0, bin(b+0), oct(b+0), hex(b+0) from t})</li></ul>
+        <table><colgroup><col><col><col><col></colgroup>
+          <tr><th align=left>b+0</th><th align=left>BIN(b+0)</th><th align=left>OCT(b+0)</th><th align=left>HEX(b+0)</th></tr>
+          <tr><td>25</td><td>11111111</td><td>377</td><td>FF</td></tr>
+          <tr><td>10</td><td>1010</td><td>12</td><td>A</td></tr>
+          <tr><td>5</td><td>101</td><td>5</td><td>5</td></tr>
+        </table>
+
+        <p>Bit values assigned to user variables are treated as binary strings. 
+           To assign a bit value as a number to a user variable, use CAST() or +0:  
+	       </p>
+
+        <ul><li>(sql sqlHandle {set @v1 = b'1000001'})</li></ul>
+        <ul><li>(sql sqlHandle {set @v2 = cast(b'1000001' as unsigned), @v3 = b'1000001'+0})</li></ul>
+        <ul><li>(sql sqlHandle {select @v1, @v2, @v3})</li></ul>
+        <table><colgroup><col><col><col></colgroup>
+          <tr><th align=left>@v1</th><th align=left>@v2</th><th align=left>@v3</th></tr>
+          <tr><td>A</td><td>65</td><td>65</td></tr>
+        </table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SNULL Values"></A>NULL Values</H2></P>	
+
+        <p>The NULL value means "no data.", and is the SQL equivalent of #void in Lisp.           
+           NULL can be written in any lettercase. 
+           A synonym is \N (case sensitive). 
+           For text file import or export operations performed with LOAD DATA INFILE or SELECT ... INTO OUTFILE, NULL is represented by the \N sequence. 
+           Be aware that the NULL value is different from values such as 0 for numeric types or the empty string for string types. 
+           </p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSchema Object Names"></A>Schema Object Names</H2></P>	
+
+        <p>Certain objects within SQL, including database, table, index, column, alias, view, stored procedure, partition, tablespace, and other object names are known as identifiers. 
+           This section describes the allowable syntax for identifiers in SQL. 
+           An identifier may be quoted or unquoted. 
+           If an identifier contains special characters or is a reserved word, you must quote it whenever you refer to it. 
+           The set of alphanumeric characters from the current character set, "_", and "$" are not special. 
+           The identifier quote character is the backtick ("`"): 
+           </p>
+
+        <ul><li>(sql sqlHandle {select * from `select` where `select`.id > 100})</li></ul>
+
+        <p>Identifier quote characters can be included within an identifier if you quote the identifier. 
+           If the character to be included within the identifier is the same as that used to quote the identifier itself, then you need to double the character. 
+           The following statement creates a table named a`b that contains a column named c"d: 
+           </p>
+
+        <ul><li>(sql sqlHandle {create table `a``b` (`c"d` int)})</li></ul>
+
+        <p>Aliases may be quoted either as identifiers or as strings: 
+           </p>
+
+        <ul><li>(sql sqlHandle {select 1 as `one`, 2 as 'two'})</li></ul>
+        <table><colgroup><col><col></colgroup>
+          <tr><th align=left>one</th><th align=left>two</th></tr>
+          <tr><td>1</td><td>2</td></tr>
+        </table>
+ 
+        <p>Identifiers may begin with a digit but unless quoted may not consist solely of digits. 
+           It is recommended that you do not use names of the form Me or MeN, where M and N are integers. 
+           For example, avoid using 1e or 2e2 as identifiers, because an expression such as 1e+3 is ambiguous. 
+           Depending on context, it might be interpreted as the expression 1e + 3 or as the number 1e+3. 
+           Be careful when using MD5() to produce table names because it can produce names in illegal or ambiguous formats such as those just described. 
+           A user variable cannot be used directly in an SQL statement as an identifier or as part of an identifier. 
+           There are some restrictions on the characters that may appear in identifiers: 
+           </p>
+
+        <ul>
+         <li>No identifier can contain ASCII 0 (0x00) or a byte with a value of 255.</li>
+         <li>Database, table, and column names should not end with space characters.</li>
+         <li>Database and table names cannot contain "/", "\", ".", or characters that are not allowed in filenames.</li>
+        </ul>
+ 
+        <p>The following table describes the maximum length for each type of identifier.
+           </p>
+
+        <table><colgroup><col><col></colgroup>
+          <tr><th align=left>Identifier</th><th align=left>Maximum Length (characters)</th></tr>
+          <tr><td>Database</td><td>64</td></tr>
+          <tr><td>table</td><td>64</td></tr>
+          <tr><td>column</td><td>64</td></tr>
+          <tr><td>index</td><td>64</td></tr>
+          <tr><td>Stored Function or Procedure</td><td>64</td></tr>
+          <tr><td>Trigger</td><td>64</td></tr>
+          <tr><td>View</td><td>64</td></tr>
+          <tr><td>Event</td><td>64</td></tr>
+          <tr><td>Tablespace</td><td>64</td></tr>
+          <tr><td>Log File Group</td><td>64</td></tr>
+          <tr><td>Alias</td><td>255</td></tr>
+        </table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SIdentifier Qualifiers"></A>Identifier Qualifiers</H2></P>	
+
+        <p>SQL allows names that consist of a single identifier or multiple identifiers. 
+           The components of a multiple-part name must be separated by period (".") characters. 
+           The initial parts of a multiple-part name act as qualifiers that affect the context within which the final identifier is interpreted.
+        </p>
+
+        <p>
+           In SQL, you can refer to a table column using any of the following forms:  
+        </p>
+ 
+        <table><colgroup><col><col></colgroup>
+          <tr><th align=left>Column Reference</th><th align=left>Meaning</th></tr>
+          <tr><td>col_name</td><td>The column col_name from whichever table used in the statement contains a column of that name.</td></tr>
+          <tr><td>tbl_name.col_name</td><td>The column col_name from table tbl_name of the default database.</td></tr>
+          <tr><td>db_name.tbl_name.col_name</td><td>The column col_name from table tbl_name of the database db_name.</td></tr>
+        </table>
+
+        <p>If any components of a multiple-part name require quoting, quote them individually rather than quoting the name as a whole. 
+           For example, write `my-table`.`my-column`, not `my-table.my-column`. 
+           A reserved word that follows a period in a qualified name must be an identifier, so in that context it need not be quoted. 
+           You need not specify a tbl_name or db_name.tbl_name prefix for a column reference in a statement unless the reference would be ambiguous. 
+           Suppose that tables t1 and t2 each contain a column c, and you retrieve c in a SELECT statement that uses both t1 and t2. 
+           In this case, c is ambiguous because it is not unique among the tables used in the statement. 
+           You must qualify it with a table name as t1.c or t2.c to indicate which table you mean. 
+           Similarly, to retrieve from a table t in database db1 and from a table t in database db2 in the same statement, 
+           you must refer to columns in those tables as db1.t.col_name and db2.t.col_name. 
+           The syntax .tbl_name means the table tbl_name in the default database. 
+           This syntax is accepted for ODBC compatibility because some ODBC programs prefix table names with a "." character.  
+           </p>
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SIdentifier Case Sensitivity"></A>Identifier Case Sensitivity</H2></P>	
+
+		<p>In SQL, databases correspond to directories within the data directory. 
+		   Each table within a database corresponds to at least one file within the database directory (and possibly more, depending on the storage engine).
+		   Triggers also correspond to files. Consequently, the case sensitivity of the underlying operating system plays a part in the case sensitivity of database and table names.
+		   This means database, table, and trigger names are not case sensitive in Windows, but are case sensitive in most varieties of Unix. 
+		   One notable exception is Mac OS X, which is Unix-based but uses a default filesystem type (HFS+) that is not case sensitive. 
+		   However, Mac OS X also supports UFS volumes, which are case sensitive just as on any Unix.
+		   The lower_case_table_names system variable also affects how the server handles identifier case sensitivity.
+		</p>
+
+		<p>Although database, table, and trigger names are not case sensitive on some platforms, you should not refer to one of these using different cases within the same statement.
+		   The following statement would not work because it refers to a table both as my_table and as MY_TABLE:
+		</p>
+		
+		<ul><li>(sql sqlHandle {SELECT * FROM my_table WHERE MY_TABLE.col=1})</li></ul>
+		
+		<p>Column, index, stored routine, and event names are not case sensitive on any platform, nor are column aliases.</p>
+		
+		<p>However, names of triggers and logfile groups are case sensitive. This differs from standard SQL.</p>
+		
+		<p>By default, table aliases are case sensitive on Unix, but not so on Windows or Mac OS X.
+		   The following statement would not work on Unix, because it refers to the alias both as a and as A:
+		</p>
+		
+		<ul><li>(sql sqlHandle {SELECT col_name FROM tbl_name AS a WHERE a.col_name = 1 OR A.col_name = 2})</li></ul>
+		
+		<p>However, this same statement is permitted on Windows. To avoid problems caused by such differences, it is best to adopt a consistent convention, 
+		   such as always creating and referring to databases and tables using lowercase names. This convention is recommended for maximum portability and ease of use.
+		</p>
+		
+		<p>How table and database names are stored on disk and used in SQL is affected by the lower_case_table_names system variable, which you can set when starting mysqld. 
+		   lower_case_table_names can take the values shown in the following table. 
+		   This variable does not affect case sensitivity of trigger identifiers. 
+		   On Unix, the default value of lower_case_table_names is 0. On Windows the default value is 1. On Mac OS X, the default value is 2.
+		</p>
+		
+        <table>
+			<tr>
+				<th align=left>Value</th>
+			    <th align=left>Meaning</th>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td>Table and database names are stored on disk using the lettercase specified in the CREATE TABLE or CREATE DATABASE statement.
+								Name comparisons are case sensitive.
+								Note that if you force this variable to 0 with --lower-case-table-names=0 on a case-insensitive filesystem and access MyISAM tablenames using different lettercases,
+								index corruption may result.
+				</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Table names are stored in lowercase on disk and name comparisons are not case sensitive.
+								SQL converts all table names to lowercase on storage and lookup.
+								This behavior also applies to database names and table aliases.
+				</td>
+				</tr>
+			<tr>
+			<td>2</td>
+			<td>Table and database names are stored on disk using the lettercase specified in the CREATE TABLE or CREATE DATABASE statement, but MySQL converts them to lowercase on lookup.
+							Name comparisons are not case sensitive. 
+							This works only on filesystems that are not case sensitive! InnoDB table names are stored in lowercase, as for lower_case_table_names=1.
+			</td>
+			</tr>
+        </table>
+		
+		<p>If you are using SQL on only one platform, you do not normally have to change the lower_case_table_names variable from its default value.
+			However, you may encounter difficulties if you want to transfer tables between platforms that differ in filesystem case sensitivity.
+			For example, on Unix, you can have two different tables named my_table and MY_TABLE, but on Windows these two names are considered identical.
+			To avoid data transfer problems arising from lettercase of database or table names, you have two options:
+		</p>
+
+		<ul>
+			<li>Use lower_case_table_names=1 on all systems.
+				The main disadvantage with this is that when you use SHOW TABLES or SHOW DATABASES, you do not see the names in their original lettercase.
+			</li>
+			<li>Use lower_case_table_names=0 on Unix and lower_case_table_names=2 on Windows. This preserves the lettercase of database and table names.
+				The disadvantage of this is that you must ensure that your statements always refer to your database and table names with the correct lettercase on Windows.
+				If you transfer your statements to Unix, where lettercase is significant, they do not work if the lettercase is incorrect.
+			</li>
+		</ul>
+
+		<p>Exception: If you are using InnoDB tables and you are trying to avoid these data transfer problems, you should set lower_case_table_names to 1 on all platforms to force names to be converted to lowercase.</p>
+
+		<p>If you plan to set the lower_case_table_names system variable to 1 on Unix, you must first convert your old database and table names to lowercase before stopping mysqld and restarting it with the new variable setting.</p>
+
+		<p>Object names may be considered duplicates if their uppercase forms are equal according to a binary collation.
+			That is true for names of cursors, conditions, functions, procedures, savepoints, and routine local variables.
+			It is not true for names of columns, constraints, databases, partitions, statements prepared with PREPARE, tables, triggers, users, and user-defined variables.
+		</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMapping of Identifiers to Filenames"></A>Mapping of Identifiers to Filenames</H2></P>
+		<p>There is a correspondence between database and table identifiers and names in the filesystem. 
+			For the basic structure, SQL represents each database as a directory in the data directory, and each table by one or more files in the appropriate database directory.
+			For the table format files (.FRM), the data is always stored in this structure and location.
+		</p>
+
+		<p>For the data and index files, the exact representation on disk is storage engine specific. 
+			These files may be stored in the same location as the FRM files, or the information may be stored separate file.
+			InnoDB data is stored in the InnoDB data files. If you are using tablespaces with InnoDB, then the specific tablespace files you create are used instead.
+		</p>
+		
+		<p>Any character is legal in database or table identifiers except ASCII NUL (0x00). 
+		   SQL encodes any characters that are problematic in the corresponding filesystem objects when it creates database directories or table files:</p>
+		   
+		<ul>
+			<li>Basic Latin letters (a..zA..Z) and digits (0..9) are encoded as is. Consequently, their case sensitivity directly depends on filesystem</li>
+			<li>
+			<p>
+			All other national letters from alphabets that have uppercase/lowercase mapping are encoded as follows:
+			<pre>Code range Pattern            Number   Used Unused  Blocks
+-----------------------------------------------------------------------------
+00C0..017F [@][0..4][g..z] 5*20= 100   97     3  Latin1 Supplement + Ext A
+0370..03FF [@][5..9][g..z] 5*20= 100   88    12  Greek + Coptic
+0400..052F [@][g..z][0..6] 20*7= 140  140   137  Cyrillic
+0530..058F [@][g..z][7..8] 20*2=  40   38     2  Armenian
+2160..217F [@][g..z][9]    20*1=  20   16     4  Number Forms
+0180..02AF [@][g..z][a..k] 28*11=220  203    17  Latin Ext B + IPA
+1E00..0EFF [@][g..z][l..r] 20*7= 140  136     4  Latin Additional Extended
+1F00..1FFF [@][g..z][s..z] 20*8= 160  144    16  Greek Extended
+....  .... [@][a..f][g..z] 6*20= 120    0   120  RESERVED
+24B6..24E9 [@][@][a..z]           26   26     0  Enclosed Alphanumerics
+FF21..FF5A [@][a..z][@]           26   26     0  Full Width forms</pre>
+			</p>
+			<p>
+			One of the bytes in the sequence encodes lettercase. 
+			For example: LATIN CAPITAL LETTER A WITH GRAVE is encoded as @0G, whereas LATIN SMALL LETTER A WITH GRAVE is encoded as @0g.
+			Here the third byte (G or g) indicates lettercase. (On a case-insensitive filesystem, both letters will be treated as the same.)
+			</p>
+			<p>
+			For some blocks, such as Cyrillic, the second byte determines lettercase.
+			For other blocks, such as Latin1 Supplement, the third byte determines lettercase.
+			If two bytes in the sequence are letters (as in Greek Extended), the leftmost letter character stands for lettercase.
+			All other letter bytes must be in lowercase.
+			</p>
+			</li>
+			<li>
+			<p>
+			All non-letter characters, as well as letters from alphabets that do not have uppercase/lowercase mapping (such as Hebrew) are encoded using hexadecimal representation using lowercase letters for hex digits a..f:
+			<pre>0x003F -> @003f
+0xFFFF -> @ffff</pre>
+			</p>
+			<p>
+			The hexadecimal values correspond to character values in the ucs2 double-byte character set.
+			</p>
+			</li>
+		</ul>
+
+		<p>
+		On Windows, some names such as nul, prn, and aux cannot be used as filenames because they are reserved as device names.
+		These are allowable names in SQL. They are encoded by appending @@@ to the name when the server creates the corresponding file or directory.
+		This occurs on all platforms for portability of the corresponding database object between platforms.
+		</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFunction Name Parsing and Resolution"></A>Function Name Parsing and Resolution</H2></P>
+		<p>SQL supports built-in (native) functions, user-defined functions (UDFs), and stored functions.
+			This section describes how the server recognizes whether the name of a built-in function is used as a function call or as an identifier,
+			and how the server determines which function to use in cases when functions of different types exist with a given name.
+		</p>
+		
+		<b>Built-In Function Name Parsing</b>
+		<p>The parser uses default rules for parsing names of built-in functions. These rules can be changed by enabling the IGNORE_SPACE SQL mode.</p>
+		<p>When the parser encounters a word that is the name of a built-in function,
+			it must determine whether the name signifies a function call or is instead a non-expression reference to an identifier such as a table or column name.
+			For example, in the following statements, the first reference to count is a function call, whereas the second reference is a table name:</p>
+
+		<pre>(sql sqlHandle {SELECT COUNT(*) FROM mytable})
+(sql sqlHandle {CREATE TABLE count (i INT)})</pre>
+
+		<p>The parser should recognize the name of a built-in function as indicating a function call only when parsing what is expected to be an expression.
+			That is, in non-expression context, function names are permitted as identifiers.</p>
+
+		<p>However, some built-in functions have special parsing or implementation considerations,
+			so the parser uses the following rules by default to distinguish whether their names are being used as function calls or as identifiers in non-expression context:</p>
+			
+		<ul>
+			<li>To use the name as a function call in an expression, there must be no whitespace between the name and the following "(" parenthesis character.</li>
+			<li>Conversely, to use the function name as an identifier, it must not be followed immediately by a parenthesis.</li>
+		</ul>
+		
+		<p>The requirement that function calls be written with no whitespace between the name and the parenthesis applies only to the built-in functions that have special considerations.
+			COUNT is one such name. The exact list of function names for which following whitespace determines their interpretation are those listed in the sql_functions[] array of the sql/lex.h source file.</p>
+		
+		<p>For functions not listed in the sql_functions[]) array, whitespace does not matter.
+			They are interpreted as function calls only when used in expression context and may be used freely as identifiers otherwise. ASCII is one such name.
+			However, for these non-affected function names, interpretation may vary in expression context: func_name () is interpreted as a built-in function if there is one with the given name;
+			if not, func_name () is interpreted as a user-defined function or stored function if one exists with that name.
+		</p>
+		
+		<p>The IGNORE_SPACE SQL mode can be used to modify how the parser treats function names that are whitespace-sensitive:</p>
+		
+		<ul>
+			<li>
+			<p>With IGNORE_SPACE disabled, the parser interprets the name as a function call when there is no whitespace between the name and the following parenthesis.
+				This occurs even when the function name is used in non-expression context:</p>
+
+			<pre>(sql sqlHandle {CREATE TABLE count(i INT)}) <b>Returns</b> You have an error in your SQL syntax ... near 'count(i INT)'</pre>
+
+			<p>To eliminate the error and cause the name to be treated as an identifier, either use whitespace following the name or write it as a quoted identifier (or both):</p>
+			
+			<pre>(sql sqlHandle {CREATE TABLE count (i INT)})
+(sql sqlHandle {CREATE TABLE `count`(i INT)})
+(sql sqlHandle {CREATE TABLE `count` (i INT)});</pre>
+
+			</li>
+			<li>
+			<p>With IGNORE_SPACE enabled, the parser loosens the requirement that there be no whitespace between the function name and the following parenthesis.
+				This provides more flexibility in writing function calls. For example, either of the following function calls are legal:</p>
+				
+			<pre>(sql sqlHandle {SELECT COUNT(*) FROM mytable})
+(sql sqlHandle {SELECT COUNT (*) FROM mytable})</pre>
+
+			<p>However, enabling IGNORE_SPACE also has the side effect that the parser treats the affected function names as reserved words 
+				(see Section on "Reserved Words"). This means that a space following the name no longer signifies its use as an identifier.
+				The name can be used in function calls with or without following whitespace, but causes a syntax error in non-expression context unless it is quoted.
+				For example, with IGNORE_SPACE enabled, both of the following statements fail with a syntax error because the parser interprets count as a reserved word:</p>
+				
+			<pre>(sql sqlHandle {CREATE TABLE count(i INT)})
+(sql sqlHandle {CREATE TABLE count (i INT)})</pre>
+
+			<p>To use the function name in non-expression context, write it as a quoted identifier:</p>
+			
+			<pre>(sql sqlHandle {CREATE TABLE `count`(i INT)})
+(sql sqlHandle {CREATE TABLE `count` (i INT)})</pre>
+			</li>
+		</ul>
+		
+		<p>To enable the IGNORE_SPACE SQL mode, use this statement:</p>
+		<pre>(sql sqlHandle {SET sql_mode = 'IGNORE_SPACE'})</pre>
+		<p>IGNORE_SPACE is also enabled by certain other composite modes such as ANSI that include it in their value:</p>
+		<pre>(sqp sqlHandle {SET sql_mode = 'ANSI'})</pre>
+		
+		<p>To minimize the dependency of SQL code on the IGNORE_SPACE setting, use these guidelines:</p>
+		
+		<ul>
+			<li>Avoid creating UDFs or stored functions that have the same name as a built-in function.</li>
+			<li>
+			<p>Avoid using function names in non-expression context.
+				For example, these statements use count (one of the affected function names affected by IGNORE_SPACE),
+				so they fail with or without whitespace following the name if IGNORE_SPACE is enabled:</p>
+
+			<pre>(sql sqlHandle {CREATE TABLE count(i INT)})
+(sql sqlHandle {CREATE TABLE count (i INT)})</pre>
+				
+			<p>If you must use a function name in non-expression context, write it as a quoted identifier:</p>
+			
+			<pre>(sql sqlHandle {CREATE TABLE `count`(i INT)})
+(sql sqlHandle {CREATE TABLE `count` (i INT)})</pre>
+			</li>
+		</ul>
+		
+		<b>Function Name Resolution</b>
+		
+		<p>The following rules describe how the server resolves references to function names for function creation and invocation:</p>
+		
+		<ul>
+			<li>
+				<p>Built-in functions and user-defined functions</p>
+				<p>an error occurs if you try to create a UDF with the same name as a built-in function</p>
+			</li>
+			<li>
+				<p>Built-in functions and stored functions</p>
+				<p>It is possible to create a stored function with the same name as a built-in function, but to invoke the stored function it is necessary to qualify it with a schema name.
+					For example, if you create a stored function named PI in the test schema, you invoke it as test.PI() because the server resolves PI() as a reference to the built-in function. 
+					The server creates a warning if the stored function name collides with a built-in function name. The warning can be displayed with SHOW WARNINGS.</p>
+			</li>
+			<li>
+				<p>User-defined functions and stored functions</p>
+				<p>User-defined functions and stored functions share the same namespace, so you cannot create a UDF and a stored function with the same name.</p>
+			</li>
+		</ul>
+		
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SReserved Words"></A>Reserved Words</H2></P>	
+		<p>Certain words such as SELECT, DELETE, or BIGINT are reserved and require special treatment for use as identifiers such as table and column names.
+			This may also be true for the names of built-in functions.</p>
+			
+		<p>Reserved words are permitted as identifiers if you quote them.</p>
+
+		<pre>(sql sqlHandle {CREATE TABLE interval (begin INT, end INT)}) <b>Returns</b>You have an error in your SQL syntax ... near 'interval (begin INT, end INT)'</pre>
+
+		<pre>(sql sqlHandle {CREATE TABLE `interval` (begin INT, end INT)})</pre>
+
+		<p>Exception: A word that follows a period in a qualified name must be an identifier, so it need not be quoted even if it is reserved:</p>
+		
+		<pre>(sql sqlHandle {CREATE TABLE mydb.interval (begin INT, end INT)})</pre>
+
+		<p>Names of built-in functions are permitted as identifiers but may require care to be used as such.
+			For example, COUNT is acceptable as a column name.
+			However, by default, no whitespace is allowed in function invocations between the function name and the following "(" character.
+			This requirement enables the parser to distinguish whether the name is used in a function call or in non-function context.</p>
+			
+		<p>The words in the following table are explicitly reserved in SQL. Most of the words in the table are forbidden by standard SQL as column or table names (for example, GROUP).
+			A few are reserved because MySQL needs them and uses a yacc parser. A reserved word can be used as an identifier if you quote it.</p>
+		
+		<table>
+			<tr><td>ACCESSIBLE</td><td>ADD</td><td>ALL</td></tr>
+			<tr><td>ALTER</td><td>ANALYZE</td><td>AND</td></tr>
+			<tr><td>AS</td><td>ASC</td><td>ASENSITIVE</td></tr>
+			<tr><td>BEFORE</td><td>BETWEEN</td><td>BIGINT</td></tr>
+			<tr><td>BINARY</td><td>BLOB</td><td>BOTH</td></tr>
+			<tr><td>BY</td><td>CALL</td><td>CASCADE</td></tr>
+			<tr><td>CASE</td><td>CHANGE</td><td>CHAR</td></tr>
+			<tr><td>CHARACTER</td><td>CHECK</td><td>COLLATE</td></tr>
+			<tr><td>COLUMN</td><td>CONDITION</td><td>CONSTRAINT</td></tr>
+			<tr><td>CONTINUE</td><td>CONVERT</td><td>CREATE</td></tr>
+			<tr><td>CROSS</td><td>CURRENT_DATE</td><td>CURRENT_TIME</td></tr>
+			<tr><td>CURRENT_TIMESTAMP</td><td>CURRENT_USER</td><td>CURSOR</td></tr>
+			<tr><td>DATABASE</td><td>DATABASES</td><td>DAY_HOUR</td></tr>
+			<tr><td>DAY_MICROSECOND</td><td>DAY_MINUTE</td><td>DAY_SECOND</td></tr>
+			<tr><td>DEC</td><td>DECIMAL</td><td>DECLARE</td></tr>
+			<tr><td>DEFAULT</td><td>DELAYED</td><td>DELETE</td></tr>
+			<tr><td>DESC</td><td>DESCRIBE</td><td>DETERMINISTIC</td></tr>
+			<tr><td>DISTINCT</td><td>DISTINCTROW</td><td>DIV</td></tr>
+			<tr><td>DOUBLE</td><td>DROP</td><td>DUAL</td></tr>
+			<tr><td>EACH</td><td>ELSE</td><td>ELSEIF</td></tr>
+			<tr><td>ENCLOSED</td><td>ESCAPED</td><td>EXISTS</td></tr>
+			<tr><td>EXIT</td><td>EXPLAIN</td><td>FALSE</td></tr>
+			<tr><td>FETCH</td><td>FLOAT</td><td>FLOAT4</td></tr>
+			<tr><td>FLOAT8</td><td>FOR</td><td>FORCE</td></tr>
+			<tr><td>FOREIGN</td><td>FROM</td><td>FULLTEXT</td></tr>
+			<tr><td>GRANT</td><td>GROUP</td><td>HAVING</td></tr>
+			<tr><td>HIGH_PRIORITY</td><td>HOUR_MICROSECOND</td><td>HOUR_MINUTE</td></tr>
+			<tr><td>HOUR_SECOND</td><td>IF</td><td>IGNORE</td></tr>
+			<tr><td>IN</td><td>INDEX</td><td>INFILE</td></tr>
+			<tr><td>INNER</td><td>INOUT</td><td>INSENSITIVE</td></tr>
+			<tr><td>INSERT</td><td>INT</td><td>INT1</td></tr>
+			<tr><td>INT2</td><td>INT3</td><td>INT4</td></tr>
+			<tr><td>INT8</td><td>INTEGER</td><td>INTERVAL</td></tr>
+			<tr><td>INTO</td><td>IS</td><td>ITERATE</td></tr>
+			<tr><td>JOIN</td><td>KEY</td><td>KEYS</td></tr>
+			<tr><td>KILL</td><td>LEADING</td><td>LEAVE</td></tr>
+			<tr><td>LEFT</td><td>LIKE</td><td>LIMIT</td></tr>
+			<tr><td>LINEAR</td><td>LINES</td><td>LOAD</td></tr>
+			<tr><td>LOCALTIME</td><td>LOCALTIMESTAMP</td><td>LOCK</td></tr>
+			<tr><td>LONG</td><td>LONGBLOB</td><td>LONGTEXT</td></tr>
+			<tr><td>LOOP</td><td>LOW_PRIORITY</td><td>MASTER_SSL_VERIFY_SERVER_CERT</td></tr>
+			<tr><td>MATCH</td><td>MEDIUMBLOB</td><td>MEDIUMINT</td></tr>
+			<tr><td>MEDIUMTEXT</td><td>MIDDLEINT</td><td>MINUTE_MICROSECOND</td></tr>
+			<tr><td>MINUTE_SECOND</td><td>MOD</td><td>MODIFIES</td></tr>
+			<tr><td>NATURAL</td><td>NOT</td><td>NO_WRITE_TO_BINLOG</td></tr>
+			<tr><td>NULL</td><td>NUMERIC</td><td>ON</td></tr>
+			<tr><td>OPTIMIZE</td><td>OPTION</td><td>OPTIONALLY</td></tr>
+			<tr><td>OR</td><td>ORDER</td><td>OUT</td></tr>
+			<tr><td>OUTER</td><td>OUTFILE</td><td>PRECISION</td></tr>
+			<tr><td>PRIMARY</td><td>PROCEDURE</td><td>PURGE</td></tr>
+			<tr><td>RANGE</td><td>READ</td><td>READS</td></tr>
+			<tr><td>READ_WRITE</td><td>REAL</td><td>REFERENCES</td></tr>
+			<tr><td>REGEXP</td><td>RELEASE</td><td>RENAME</td></tr>
+			<tr><td>REPEAT</td><td>REPLACE</td><td>REQUIRE</td></tr>
+			<tr><td>RESTRICT</td><td>RETURN</td><td>REVOKE</td></tr>
+			<tr><td>RIGHT</td><td>RLIKE</td><td>SCHEMA</td></tr>
+			<tr><td>SCHEMAS</td><td>SECOND_MICROSECOND</td><td>SELECT</td></tr>
+			<tr><td>SENSITIVE</td><td>SEPARATOR</td><td>SET</td></tr>
+			<tr><td>SHOW</td><td>SMALLINT</td><td>SPATIAL</td></tr>
+			<tr><td>SPECIFIC</td><td>SQL</td><td>SQLEXCEPTION</td></tr>
+			<tr><td>SQLSTATE</td><td>SQLWARNING</td><td>SQL_BIG_RESULT</td></tr>
+			<tr><td>SQL_CALC_FOUND_ROWS</td><td>SQL_SMALL_RESULT</td><td>SSL</td></tr>
+			<tr><td>STARTING</td><td>STRAIGHT_JOIN</td><td>TABLE</td></tr>
+			<tr><td>TERMINATED</td><td>THEN</td><td>TINYBLOB</td></tr>
+			<tr><td>TINYINT</td><td>TINYTEXT</td><td>TO</td></tr>
+			<tr><td>TRAILING</td><td>TRIGGER</td><td>TRUE</td></tr>
+			<tr><td>UNDO</td><td>UNION</td><td>UNIQUE</td></tr>
+			<tr><td>UNLOCK</td><td>UNSIGNED</td><td>UPDATE</td></tr>
+			<tr><td>USAGE</td><td>USE</td><td>USING</td></tr>
+			<tr><td>UTC_DATE</td><td>UTC_TIME</td><td>UTC_TIMESTAMP</td></tr>
+			<tr><td>VALUES</td><td>VARBINARY</td><td>VARCHAR</td></tr>
+			<tr><td>VARCHARACTER</td><td>VARYING</td><td>WHEN</td></tr>
+			<tr><td>WHERE</td><td>WHILE</td><td>WITH</td></tr>
+			<tr><td>WRITE</td><td>XOR</td><td>YEAR_MONTH</td></tr>
+			<tr><td>ZEROFILL</td><td> </td><td> </td></tr>
+		</table>
+		
+		<p>The following are new reserved words in SQL</p>
+		
+		<table>
+			<tr><td>ACCESSIBLE</td><td>LINEAR</td><td>MASTER_SSL_VERIFY_SERVER_CERT</td></tr>
+			<tr><td>RANGE</td><td>READ_ONLY</td><td>READ_WRITE</td></tr>
+		</table>
+		
+		<p>SQL allows some keywords to be used as unquoted identifiers because many people previously used them. Examples are those in the following list:</p>
+		
+		<ul>
+			<li>ACTION</li>
+			<li>BIT</li>
+			<li>DATE</li>
+			<li>ENUM</li>
+			<li>NO</li>
+			<li>TEXT</li>
+			<li>TIME</li>
+			<li>TIMESTAMP</li>
+		</ul>
+		
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SUser-Defined Variables"></A>User-Defined Variables</H2></P>	
+		<p>You can store a value in a user-defined variable and then refer to it later.
+			This enables you to pass values from one statement to another.
+			User-defined variables are connection-specific.
+			That is, a user variable defined by one client cannot be seen or used by other clients.
+			All variables for a given client connection are automatically freed when that client exits.</p>
+			
+		<p>User variables are written as @var_name, where the variable name var_name may consist of alphanumeric characters from the current character set, ".", "_", and "$".
+			The default character set is latin1 (cp1252 West European).
+			This may be changed with the --character-set-server option to mysqld.
+			A user variable name can contain other characters if you quote it as a string or identifier (for example, @'my-var', @"my-var", or @`my-var`).</p>
+			
+		<p>Note: User variable names not case sensitive.</p>
+		
+		<p>One way to set a user-defined variable is by issuing a SET statement:</p>
+		
+		<pre>SET @var_name = expr [, @var_name = expr] ...</pre>
+		
+		<p>For SET, either = or := can be used as the assignment operator.
+			The expr assigned to each variable can evaluate to an integer, decimal, floating-point, string, or NULL value.
+			However, if the value of the variable is selected in a result set, it is returned to the client as a string.
+			Assignment of decimal and real values does not preserve the precision or scale of the value.</p>
+			
+		<p>You can also assign a value to a user variable in statements other than SET.
+			In this case, the assignment operator must be := and not = because = is treated as a comparison operator in non-SET statements:</p>
+			
+		<pre>(sql sqlHandle {SET @t1=0, @t2=0, @t3=0})
+(sql sqlHandle {SELECT @t1:=(@t2:=1)+@t3:=4,@t1,@t2,@t3})
++----------------------+------+------+------+
+| @t1:=(@t2:=1)+@t3:=4 | @t1  | @t2  | @t3  |
++----------------------+------+------+------+
+|                    5 |    5 |    1 |    4 |
++----------------------+------+------+------+</pre>
+
+		<p>User variables may be used in contexts where expressions are allowed.
+			This does not currently include contexts that explicitly require a literal value,
+			such as in the LIMIT clause of a SELECT statement, or the IGNORE N LINES clause of a LOAD DATA statement.</p>
+		
+		<p>User variables are intended to provide data values.
+			They cannot be used to supply identifiers, such as in contexts where a table or database name is expected, or reserved words such as SELECT.
+			An exception to this principle is that if you are constructing a string for use as a prepared statement to be executed later,
+			user variables can be referenced to provide any part of the statement.</p>
+
+		<p>If a user variable is assigned a string value, it has the same character set and collation as the string.
+			The coercibility of user variables is implicit. (This is the same coercibility as for table column values.)</p>
+
+		<p>If you refer to a variable that has not been initialized, it has a value of NULL and a type of string.</p>
+		
+		<p>Bit values assigned to user variables are treated as binary strings. To assign a bit value as a number to a user variable, use CAST() or +0:</p>
+		
+		<pre>(sql sqlHandle {SET @v1 = b'1000001'})
+(sql sqlHandle {SET @v2 = CAST(b'1000001' AS UNSIGNED), @v3 = b'1000001'+0})
+(sql sqlHandle {SELECT @v1, @v2, @v3})
++------+------+------+
+| @v1  | @v2  | @v3  |
++------+------+------+
+| A    |   65 |   65 | 
++------+------+------+</pre>
+
+		<p>Note: In a SELECT statement, each expression is evaluated only when sent to the client.
+			This means that in a HAVING, GROUP BY, or ORDER BY clause, you cannot refer to an expression that involves variables that are set in the SELECT list.
+			For example, the following statement does not work as expected:</p>
+			
+		<pre>(sql sqlHandle {SELECT (@aa:=id) AS a, (@aa+3) AS b FROM tbl_name HAVING b=5})</pre>
+		
+		<p>The reference to b in the HAVING clause refers to an alias for an expression in the SELECT list that uses @aa.
+			This does not work as expected: @aa contains the value of id from the previous selected row, not from the current row.</p>
+			
+		<p>The order of evaluation for user variables is undefined and may change based on the elements contained within a given query.
+			In SELECT @a, @a := @a+1 ..., you might think that SQL will evaluate @a first and then do an assignment second,
+			but changing the query (for example, by adding a GROUP BY, HAVING, or ORDER BY clause) may change the order of evaluation.</p>
+			
+		<p>The general rule is never to assign a value to a user variable in one part of a statement and use the same variable in some other part of the same statement.
+			You might get the results you expect, but this is not guaranteed.</p>
+			
+		<p>Another issue with setting a variable and using it in the same statement is that the default result type of a variable is based on the type of the variable at the start of the statement.
+			The following example illustrates this:</p>
+		
+		<pre>(sql sqlHandle {SET @a='test'})
+(sql sqlHandle {SELECT @a,(@a:=20) FROM tbl_name})</pre>
+
+		<p>For this SELECT statement, SQL reports to the client that column one is a string and converts all accesses of @a to strings, even though @a is set to a number for the second row.
+			After the SELECT statement executes, @a is regarded as a number for the next statement.</p>
+			
+		<p>To avoid problems with this behavior, either do not set and use the same variable within a single statement, or else set the variable to 0, 0.0, or '' to define its type before you use it.</p>
+		
+		<p>A user variable cannot be used directly in an SQL statement as an identifier or as part of an identifier, even if it is set off with backticks.
+			This is shown in the following example:</p>
+		
+		<pre>(sql sqlHandle {SELECT c1 FROM t})
++----+
+| c1 |
++----+
+|  0 |
++----+
+|  1 |
++----+</pre>
+
+		<pre>(sql sqlHandle {SET @col = "c1"})
+(sql sqlHandle {SELECT @col FROM t})
++------+
+| @col |
++------+
+| c1   |
++------+</pre>
+
+		<pre>(sql sqlHandle {SELECT `@col` FROM t}) <b>Returns</b> Unknown column '@col' in 'field list'</pre>
+		<pre>(sql sqlHandle {SET @col = "`c1`"})</pre>
+		<pre>(sql sqlHandle {SELECT @col FROM t})
++------+
+| @col |
++------+
+| `c1` |
++------+</pre>
+
+		<p>One way to work around this problem is to assemble a string for the query in application code.</p>
+		
+		<p>It is also possible to perform such operations using prepared statements, without the need to concatenate strings of SQL in client code.
+		This example illustrates how this can be done:</p>
+		
+		<pre>(sql sqlHandle {SET @c = "c1"})
+(sql sqlHandle {SET @s = CONCAT("SELECT ", @c, " FROM t")})
+(sql sqlHandle {PREPARE stmt FROM @s})
+(sql sqlHandle {EXECUTE stmt})
++----+
+| c1 |
++----+
+|  0 |
++----+
+|  1 |
++----+
+(sql sqlHandle {DEALLOCATE PREPARE stmt})</pre>
+
+		<p>You cannot use a placeholder for an identifier (such as the name of a database, table, or column) in an SQL prepared statement.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SComment Syntax"></A>Comment Syntax</H2></P>	
+
+		<p>SQL supports three comment styles:</p>
+		<ul>
+			<li>From a "#" character to the end of the line.</li>
+			<li>From a "-- " sequence to the end of the line.
+				In SQL, the "-- " (double-dash) comment style requires the second dash to be followed by at least one whitespace or control character (such as a space, tab, newline, and so on).
+				This syntax differs slightly from standard SQL comment syntax, as discussed in Section 1.8.5.6, "'--' as the Start of a Comment".</li>
+			<li>From a /* sequence to the following */ sequence, as in the C programming language.
+				This syntax allows a comment to extend over multiple lines because the beginning and closing sequences need not be on the same line.</li>	
+		</ul>
+		
+		<p>The following example demonstrates all three comment styles:</p>
+		
+		<pre>(sql sqlHandle {SELECT 1+1;     # This comment continues to the end of line})
+(sql sqlHandle {SELECT 1+1;     -- This comment continues to the end of line})
+(sql sqlHandle {SELECT 1 /* this is an in-line comment */ + 1;})</pre>
+
+		<p>Nested comments are not supported.</p>
+		
+		<p>SQL Server supports some variants of C-style comments.
+			These enable you to write code that includes SQL extensions, but is still portable, by using comments of the following form:</p>
+			
+		<pre>/*! MySQL-specific code */</pre>
+		
+		<p>In this case, SQL parses and executes the code within the comment as it would any other SQL statement,
+			but other SQL servers will ignore the extensions.
+			For example, SQL Server recognizes the STRAIGHT_JOIN keyword in the following statement, but other servers will not:</p>
+		
+		<pre>SELECT /*! STRAIGHT_JOIN */ col1 FROM table1,table2 WHERE ...</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

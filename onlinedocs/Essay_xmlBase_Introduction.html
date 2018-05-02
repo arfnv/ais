@@ -1,0 +1,59 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>xmlBase Introduction</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>
+		    <div class="h2section" id="Introduction">
+		    <p>As Analytic Information Server (AIS)
+		    matures, an increasing number of Lambdas (for instance the Alice chat robot)
+		    are reading, indexing, and semantically interpreting XML/HTML documents
+		    from the world wide web. 
+		    As these Lambdas traverse the world wide web, reading XML/HTML documents, and
+		    occassionally bringing the important documents home, a mechanism for storing
+		    these documents becomes increasingly important. 
+		    The <b>xmlBase</b> Lambda is designed to service
+		    the growing AIS need for storing and retrieving large numbers of XML/HTML documents.</p>
+		    <p>XML databases can be quite large, easily exceeding the storage limits placed on a single
+		    AIS repository. Therefore, xmlBase is designed to manage multiple repositories.
+		    Each repository is registered to xmlBase either at application launch time
+		    or dynamically during the course of running the application. The database is designed
+		    such that multiple repositories merge seemlessly together to form a single large XML database</p>  
+		    <p>Each XML repository contains two distinct components: the <i>index set</i>; and the <i>record set</i>.
+		    The index set is always a collection of word phrases, for example: "PARENTS NAMES", 
+		    "STATES AND THEIR CAPITALS", OR "THIS IS THE STUFF MARY ASKED ME TO SAVE FOR HER".
+		    The record set is always a collection of XML documents which are saved and retrieved 
+		    using the word phrases found in the index.</p>
+		    <p>When multiple XML repositories are registered to xmlBase,
+		    their index sets and record sets are seamlessly merged so that the user perceives just one
+		    larger index set and record set. If multiple repositories contain identical index word phrases,
+		    then upon retrieval, multiple hierarchically-merged XML documents will be returned.</p>  
+		    <p>XML documents are stored in the database using a specific word phrase index. Each XML
+		    document can be directly retrieved by using the exact word phrase index with which it was saved.
+		    Additionally, XML documents can be retrieved, from the database, using AIS XQuery
+		    (a dialect of the XML Query Language currently in design in the World Wide Web Consortium).
+		    An excellent overview of the XQuery Language is included in this reference guide.</p>  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

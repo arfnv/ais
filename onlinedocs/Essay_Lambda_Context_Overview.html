@@ -1,0 +1,78 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lambda Context Overview</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Overview">
+		<p>Lambdas are not independent objects. They
+		must have a context to function properly. Each copy of Analytic Information Server
+		may open one or more Lambda contexts in which any number of Lambdas may operate.
+		When an Lambda context is opened, a request is made for workspace memory and
+		stack memory. The Lambda context is the environment in which the individual
+		Lambdas will operate.</p>
+		<p>&nbsp;</p>
+		<h3><a name="_Toc377187244"></a><a name="_Toc378041080"></a><a name="_Toc57026706">Memory
+		Management</a></h3>
+		<p class=MsoBodyText>While Analytic Information Server is primarily
+		an Lambda-oriented database, there is a significant memory management component
+		in every Analytic Information Server application. Often, hundreds of megabytes of
+		RAM memory is required to run the Lambda context of a complex application. So
+		while the disk component often involves many gigabytes of Lambda repositories,
+		the memory management component is often not insignificant. Analytic Information
+		Server uses the latest in advanced memory management strategies, supporting
+		full garbage collection, freeing the Lambdas from such concerns. </p>
+		<p class=MsoBodyText>The complete contents of an Lambda context's
+		RAM memory, known as its Workspace, can be saved and loaded (see the <b style='mso-bidi-font-weight:normal'>loadWorkspace</b> and <b style='mso-bidi-font-weight:
+		normal'>saveWorkspace</b> built-in functions). The Workspace can be cleared to
+		start loading fresh new Lambdas, and certain global variables, in the Lambda
+		context, can be <i style='mso-bidi-font-style:normal'>locked</i> to protect
+		them from inadvertent clearing.</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<h3><a name="_Toc57026707">Built-in Functions</a></h3>
+		<p class=MsoBodyText>At context startup, Analytic Information Server
+		loads all of its built-in functions into RAM memory. This includes the Lisp
+		compiler, the Virtual Machine, the Memory Manager, the core Repository Manager,
+		etc. Each built-in function is made available in one or more global symbols.</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<h3><a name="_Toc57026708">Global Symbols</a></h3>
+		<p class=MsoBodyText>All of the basic building blocks of Lambda
+		Information Server are contained in its global symbols. In addition, Lambda
+		Information Server supports user defined global symbols, allowing the user to
+		assign any valid Analytic Information Server object to the newly created global
+		symbol.  User defined global symbols
+		behave just like their built-in cousins; however, Analytic Information Server even
+		allows the user to redefine any of the Analytic Information Server built-in
+		Function symbols.</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<h3><a name="_Toc57026709">System Variables</a></h3>
+		<p class=MsoBodyText>System variables always begin with the
+		underscore character  <b style='mso-bidi-font-weight:normal'>_</b>
+		to distinguish them from standard built-in functions or user defined
+		global symbols. Many system variables contain important system configuration information.
+		Other system variables are delivered empty, and are provided, by convention,
+		for the server side Lambdas to store important coordinating information.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

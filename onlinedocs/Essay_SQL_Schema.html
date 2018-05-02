@@ -1,0 +1,1312 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>SQL Schema</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SThe INFORMATION_SCHEMA SCHEMATA Table"><FONT SIZE=2>The INFORMATION_SCHEMA SCHEMATA Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA TABLES Table"><FONT SIZE=2>The INFORMATION_SCHEMA TABLES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA COLUMNS Table"><FONT SIZE=2>The INFORMATION_SCHEMA COLUMNS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA STATISTICS Table"><FONT SIZE=2>The INFORMATION_SCHEMA STATISTICS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA USER_PRIVILEGES Table"><FONT SIZE=2>The INFORMATION_SCHEMA USER_PRIVILEGES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table"><FONT SIZE=2>The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA TABLE_PRIVILEGES Table"><FONT SIZE=2>The INFORMATION_SCHEMA TABLE_PRIVILEGES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA COLUMN_PRIVILEGES Table"><FONT SIZE=2>The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA CHARACTER_SETS Table"><FONT SIZE=2>The INFORMATION_SCHEMA CHARACTER_SETS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA COLLATIONS Table"><FONT SIZE=2>The INFORMATION_SCHEMA COLLATIONS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table"><FONT SIZE=2>The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA TABLE_CONSTRAINTS Table"><FONT SIZE=2>The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA KEY_COLUMN_USAGE Table"><FONT SIZE=2>The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA ROUTINES Table"><FONT SIZE=2>The INFORMATION_SCHEMA ROUTINES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA VIEWS Table"><FONT SIZE=2>The INFORMATION_SCHEMA VIEWS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA TRIGGERS Table"><FONT SIZE=2>The INFORMATION_SCHEMA TRIGGERS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA PLUGINS Table"><FONT SIZE=2>The INFORMATION_SCHEMA PLUGINS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA ENGINES Table"><FONT SIZE=2>The INFORMATION_SCHEMA ENGINES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA PARTITIONS Table"><FONT SIZE=2>The INFORMATION_SCHEMA PARTITIONS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA EVENTS Table"><FONT SIZE=2>The INFORMATION_SCHEMA EVENTS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA FILES Table"><FONT SIZE=2>The INFORMATION_SCHEMA FILES Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA PROCESSLIST Table"><FONT SIZE=2>The INFORMATION_SCHEMA PROCESSLIST Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table"><FONT SIZE=2>The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table</font></a></li><li><a href="#SThe INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables"><FONT SIZE=2>The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables</font></a></li><li><a href="#SThe INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables"><FONT SIZE=2>The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables</font></a></li><li><a href="#SExtensions to SHOW Statements"><FONT SIZE=2>Extensions to SHOW Statements</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		<p>INFORMATION_SCHEMA provides access to database metadata.</p>
+		<p>Metadata is data about the data, such as the name of a database or table, the data type of a column, or access privileges.
+			Other terms that sometimes are used for this information are data dictionary and system catalog.</p>
+		<p>INFORMATION_SCHEMA is the information database, the place that stores information about all the other databases that the MySQL server maintains.
+			Inside INFORMATION_SCHEMA there are several read-only tables. They are actually views, not base tables, so there are no files associated with them.</p>
+		<p>In effect, we have a database named INFORMATION_SCHEMA, although the server does not create a database directory with that name.
+			It is possible to select INFORMATION_SCHEMA as the default database with a USE statement, but it is possible only to read the contents of tables.
+			You cannot insert into them, update them, or delete from them.</p>
+		<p>Here is an example of a statement that retrieves information from INFORMATION_SCHEMA:</p>
+		<pre>SELECT table_name, table_type, engine FROM information_schema.tables WHERE table_schema = 'db5' ORDER BY table_name DESC <b>Returns</b>
++------------+------------+--------+
+| table_name | table_type | engine |
++------------+------------+--------+
+| v56        | VIEW       | NULL   |
+| v3         | VIEW       | NULL   |
+| v2         | VIEW       | NULL   |
+| v          | VIEW       | NULL   |
+| tables     | BASE TABLE | MyISAM |
+| t7         | BASE TABLE | MyISAM |
+| t3         | BASE TABLE | MyISAM |
+| t2         | BASE TABLE | MyISAM |
+| t          | BASE TABLE | MyISAM |
+| pk         | BASE TABLE | InnoDB |
+| loop       | BASE TABLE | MyISAM |
+| kurs       | BASE TABLE | MyISAM |
+| k          | BASE TABLE | MyISAM |
+| into       | BASE TABLE | MyISAM |
+| goto       | BASE TABLE | MyISAM |
+| fk2        | BASE TABLE | InnoDB |
+| fk         | BASE TABLE | InnoDB |
++------------+------------+--------+</pre>
+		<p>Explanation: The statement requests a list of all the tables in database db5, in reverse alphabetical order, showing just three pieces of information: the name of the table, its type, and its storage engine.</p>
+		<p>Each MySQL user has the right to access these tables, but can see only the rows in the tables that correspond to objects for which the user has the proper access privileges.
+			In some cases (for example, the ROUTINE_DEFINITION column in the INFORMATION_SCHEMA.ROUTINES table), users who have insufficient privileges will see NULL.</p>
+		<p>The SELECT ... FROM INFORMATION_SCHEMA statement is intended as a more consistent way to provide access to the information provided by the various SHOW statements that MySQL supports (SHOW DATABASES, SHOW TABLES, and so forth).
+			Using SELECT has these advantages, compared to SHOW:</p>
+		<ul>
+			<li>
+				<p>It conforms to Codd's rules. That is, all access is done on tables.</p>
+			</li>
+			<li>
+				<p>Nobody needs to learn a new statement syntax. Because they already know how SELECT works, they only need to learn the object names.</p>
+			</li>
+			<li>
+				<p>The implementor need not worry about adding keywords.</p>
+			</li>
+			<li>
+				<p>There are millions of possible output variations, instead of just one. This provides more flexibility for applications that have varying requirements about what metadata they need.</p>
+			</li>
+			<li>
+				<p>Migration is easier because every other DBMS does it this way.</p>
+			</li>
+		</ul>
+		<p>However, because SHOW is popular with MySQL employees and users, and because it might be confusing were it to disappear, the advantages of conventional syntax are not a sufficient reason to eliminate SHOW.
+			In fact, along with the implementation of INFORMATION_SCHEMA, there are enhancements to SHOW as well.</p>
+		<p>There is no difference between the privileges required for SHOW statements and those required to select information from INFORMATION_SCHEMA.
+			In either case, you have to have some privilege on an object in order to see information about it.</p>
+		<p>The implementation for the INFORMATION_SCHEMA table structures in MySQL follows the ANSI/ISO SQL:2003 standard Part 11 Schemata.
+			Our intent is approximate compliance with SQL:2003 core feature F021 Basic information schema.</p>
+		<p>Users of SQL Server 2000 (which also follows the standard) may notice a strong similarity. However, MySQL has omitted many columns that are not relevant for our implementation,
+			and added columns that are MySQL-specific. One such column is the ENGINE column in the INFORMATION_SCHEMA.TABLES table.</p>
+		<p>Although other DBMSs use a variety of names, like syscat or system, the standard name is INFORMATION_SCHEMA.</p>
+		<p>The following sections describe each of the tables and columns that are in INFORMATION_SCHEMA. For each column, there are three pieces of information:</p>
+		<ul>
+			<li>
+				<p>“INFORMATION_SCHEMA Name” indicates the name for the column in the INFORMATION_SCHEMA table. This corresponds to the standard SQL name unless the “Remarks” field says “MySQL extension.”</p>
+			</li>
+			<li>
+				<p>“SHOW Name” indicates the equivalent field name in the closest SHOW statement, if there is one.</p>
+			</li>
+			<li>
+				<p>“Remarks” provides additional information where applicable. If this field is NULL, it means that the value of the column is always NULL.
+					If this field says “MySQL extension,” the column is a MySQL extension to standard SQL.</p>
+			</li>
+		</ul>
+		<p>To avoid using any name that is reserved in the standard or in DB2, SQL Server, or Oracle, we changed the names of some columns marked “MySQL extension”.
+			(For example, we changed COLLATION to TABLE_COLLATION in the TABLES table.)</p>
+		<p>The definition for character columns (for example, TABLES.TABLE_NAME) is generally VARCHAR(N) CHARACTER SET utf8 where N is at least 64.
+			MySQL uses the default collation for this character set (utf8_general_ci) for all searches, sorts, comparisons, and other string operations on such columns.
+			If the default collation is not correct for your needs, you can force a suitable collation with a COLLATE clause.</p>
+		<p>Each section indicates what SHOW statement is equivalent to a SELECT that retrieves information from INFORMATION_SCHEMA, if there is such a statement.
+			For SHOW statements that display information for the current database if you omit a FROM db_name clause,
+			you can often select information for the current database by adding an AND TABLE_SCHEMA = CURRENT_SCHEMA() condition to the WHERE clause of a query that retrieves information from an INFORMATION_SCHEMA table.</p>
+		<p>Note :At present, there are some missing columns and some columns out of order. We are working on this and updating the documentation as changes are made.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA SCHEMATA Table"></A>The INFORMATION_SCHEMA SCHEMATA Table</H2></P>
+		<p>A schema is a database, so the SCHEMATA table provides information about databases.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>CATALOG_NAME</td><td> </td><td>NULL</td></tr>
+			<tr><td>SCHEMA_NAME</td><td> </td><td>Database</td></tr>
+			<tr><td>DEFAULT_CHARACTER_SET_NAME</td><td> </td><td> </td></tr>
+			<tr><td>DEFAULT_COLLATION_NAME</td><td> </td><td> </td></tr>
+			<tr><td>SQL_PATH</td><td> </td><td>NULL</td></tr>
+		</table>
+		<p>The following statements are equivalent:</p>
+		<pre>SELECT SCHEMA_NAME AS `Database`
+  FROM INFORMATION_SCHEMA.SCHEMATA
+  [WHERE SCHEMA_NAME LIKE 'wild']</pre>
+  
+		<pre>SHOW DATABASES
+  [LIKE 'wild']</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA TABLES Table"></A>The INFORMATION_SCHEMA TABLES Table</H2></P>
+		<p>The TABLES table provides information about tables in databases.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td>Table_...</td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td>Table_...</td><td> </td></tr>
+			<tr><td>TABLE_TYPE</td><td> </td><td> </td></tr>
+			<tr><td>ENGINE</td><td>Engine</td><td>MySQL extension</td></tr>
+			<tr><td>VERSION</td><td>Version</td><td>The version number of the table's frm file, MySQL extension</td></tr>
+			<tr><td>ROW_FORMAT</td><td>Row_format</td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_ROWS</td><td>Rows</td><td>MySQL extension</td></tr>
+			<tr><td>AVG_ROW_LENGTH</td><td>Avg_row_length</td><td>MySQL extension</td></tr>
+			<tr><td>DATA_LENGTH</td><td>Data_length</td><td>MySQL extension</td></tr>
+			<tr><td>MAX_DATA_LENGTH</td><td>Max_data_length</td><td>MySQL extension</td></tr>
+			<tr><td>INDEX_LENGTH</td><td>Index_length</td><td>MySQL extension</td></tr>
+			<tr><td>DATA_FREE</td><td>Data_free</td><td>MySQL extension</td></tr>
+			<tr><td>AUTO_INCREMENT</td><td>Auto_increment</td><td>MySQL extension</td></tr>
+			<tr><td>CREATE_TIME</td><td>Create_time</td><td>MySQL extension</td></tr>
+			<tr><td>UPDATE_TIME</td><td>Update_time</td><td>MySQL extension</td></tr>
+			<tr><td>CHECK_TIME</td><td>Check_time</td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_COLLATION</td><td>Collation</td><td>MySQL extension</td></tr>
+			<tr><td>CHECKSUM</td><td>Checksum</td><td>MySQL extension</td></tr>
+			<tr><td>CREATE_OPTIONS</td><td>Create_options</td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_COMMENT</td><td>Comment</td><td>MySQL extension</td></tr>
+		</table>
+		
+		<p>Notes:</p>
+		<ul>
+			<li><p>TABLE_SCHEMA and TABLE_NAME are a single field in a SHOW display, for example Table_in_db1.</p></li>
+			<li><p>TABLE_TYPE should be BASE TABLE or VIEW. Currently, the TABLES table does not list TEMPORARY tables.</p></li>
+			<li><p>For partitioned tables, beginning with MySQL 5.1.9, the ENGINE column shows the name of the storage engine used by all partitions. (Previously, this column showed PARTITION for such tables.)</p></li>
+			<li><p>The TABLE_ROWS column is NULL if the table is in the INFORMATION_SCHEMA database. For InnoDB tables, the row count is only a rough estimate used in SQL optimization.</p></li>
+			<li><p>For tables using the NDBCLUSTER storage engine, beginning with MySQL 5.1.12, the DATA_LENGTH column reflects the true amount of storage for variable-width columns.</p>
+				<p>Note: Because MySQL Cluster allocates storage for variable-width columns in 10-page extents of 32 kilobytes each, space usage for such columns is reported in increments of 320 KB.</p>
+			</li>
+			<li><p>Beginning with MySQL 5.1.28, the DATA_FREE column shows the free space in bytes for InnoDB tables.</p></li>
+			<li><p>We have nothing for the table's default character set. TABLE_COLLATION is close, because collation names begin with a character set name.</p></li>
+			<li><p>Beginning with MySQL 5.1.9, the CREATE_OPTIONS column shows partitioned if the table is partitioned.</p></li>
+		</ul>
+		<p>The following statements are equivalent:</p>
+		
+		<pre>SELECT table_name FROM INFORMATION_SCHEMA.TABLES
+  WHERE table_schema = 'db_name'
+  [AND table_name LIKE 'wild']</pre>
+  
+		<pre>SHOW TABLES
+  FROM db_name
+  [LIKE 'wild']</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA COLUMNS Table"></A>The INFORMATION_SCHEMA COLUMNS Table</H2></P>
+		<p>The COLUMNS table provides information about columns in tables.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>COLUMN_NAME</td><td>Field</td><td> </td></tr>
+			<tr><td>ORDINAL_POSITION</td><td> </td><td>see notes</td></tr>
+			<tr><td>COLUMN_DEFAULT</td><td>Default</td><td> </td></tr>
+			<tr><td>IS_NULLABLE</td><td>Null</td><td> </td></tr>
+			<tr><td>DATA_TYPE</td><td>Type</td><td> </td></tr>
+			<tr><td>CHARACTER_MAXIMUM_LENGTH</td><td>Type</td><td> </td></tr>
+			<tr><td>CHARACTER_OCTET_LENGTH</td><td> </td><td> </td></tr>
+			<tr><td>NUMERIC_PRECISION</td><td>Type</td><td> </td></tr>
+			<tr><td>NUMERIC_SCALE</td><td>Type</td><td> </td></tr>
+			<tr><td>CHARACTER_SET_NAME</td><td> </td><td> </td></tr>
+			<tr><td>COLLATION_NAME</td><td>Collation</td><td> </td></tr>
+			<tr><td>COLUMN_TYPE</td><td>Type</td><td>MySQL extension</td></tr>
+			<tr><td>COLUMN_KEY</td><td>Key</td><td>MySQL extension</td></tr>
+			<tr><td>EXTRA</td><td>Extra</td><td>MySQL extension</td></tr>
+			<tr><td>PRIVILEGES</td><td>Privileges</td><td>MySQL extension</td></tr>
+			<tr><td>COLUMN_COMMENT</td><td>Comment</td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li><p>In SHOW, the Type display includes values from several different COLUMNS columns.</p></li>
+			<li><p>ORDINAL_POSITION is necessary because you might want to say ORDER BY ORDINAL_POSITION. Unlike SHOW, SELECT does not have automatic ordering.</p></li>
+			<li><p>CHARACTER_OCTET_LENGTH should be the same as CHARACTER_MAXIMUM_LENGTH, except for multi-byte character sets.</p></li>
+			<li><p>CHARACTER_SET_NAME can be derived from Collation. For example, if you say SHOW FULL COLUMNS FROM t, and you see in the Collation column a value of latin1_swedish_ci, the character set is what's before the first underscore: latin1.</p></li>
+		</ul>
+		<p>The following statements are nearly equivalent:</p>
+		<pre>SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT
+  FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE table_name = 'tbl_name'
+  [AND table_schema = 'db_name']
+  [AND column_name LIKE 'wild']</pre>
+
+		<pre>SHOW COLUMNS
+  FROM tbl_name
+  [FROM db_name]
+  [LIKE 'wild']</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA STATISTICS Table"></A>The INFORMATION_SCHEMA STATISTICS Table</H2></P>
+		<p>The STATISTICS table provides information about table indexes.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td>= Database</td></tr>
+			<tr><td>TABLE_NAME</td><td>Table</td><td> </td></tr>
+			<tr><td>NON_UNIQUE</td><td>Non_unique</td><td> </td></tr>
+			<tr><td>INDEX_SCHEMA</td><td> </td><td>= Database</td></tr>
+			<tr><td>INDEX_NAME</td><td>Key_name</td><td> </td></tr>
+			<tr><td>SEQ_IN_INDEX</td><td>Seq_in_index</td><td> </td></tr>
+			<tr><td>COLUMN_NAME</td><td>Column_name</td><td> </td></tr>
+			<tr><td>COLLATION</td><td>Collation</td><td> </td></tr>
+			<tr><td>CARDINALITY</td><td>Cardinality</td><td> </td></tr>
+			<tr><td>SUB_PART</td><td>Sub_part</td><td>MySQL extension</td></tr>
+			<tr><td>PACKED</td><td>Packed</td><td>MySQL extension</td></tr>
+			<tr><td>NULLABLE</td><td>Null</td><td>MySQL extension</td></tr>
+			<tr><td>INDEX_TYPE</td><td>Index_type</td><td>MySQL extension</td></tr>
+			<tr><td>COMMENT</td><td>Comment</td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li><p>There is no standard table for indexes. The preceding list is similar to what SQL Server 2000 returns for sp_statistics,
+				except that we replaced the name QUALIFIER with CATALOG and we replaced the name OWNER with SCHEMA.</p>
+				<p>Clearly, the preceding table and the output from SHOW INDEX are derived from the same parent. So the correlation is already close.</p>
+			</li>
+		</ul>
+		<p>The following statements are equivalent:</p>
+		<pre>SELECT * FROM INFORMATION_SCHEMA.STATISTICS
+  WHERE table_name = 'tbl_name'
+  AND table_schema = 'db_name'</pre>
+  
+		<pre>SHOW INDEX
+  FROM tbl_name
+  FROM db_name</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA USER_PRIVILEGES Table"></A>The INFORMATION_SCHEMA USER_PRIVILEGES Table</H2></P>
+		<p>The USER_PRIVILEGES table provides information about global privileges. This information comes from the mysql.user grant table.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>GRANTEE</td><td> </td><td>'<i>user_name</i>'@'<i>host_name</i>' value, MySQL extension</td></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL, MySQL extension</td></tr>
+			<tr><td>PRIVILEGE_TYPE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>IS_GRANTABLE</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>This is a non-standard table. It takes its values from the mysql.user table.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table"></A>The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table</H2></P>
+		<p>The SCHEMA_PRIVILEGES table provides information about schema (database) privileges. This information comes from the mysql.db grant table.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>GRANTEE</td><td> </td><td>'<i>user_name</i>'@'<i>host_name</i>' value, MySQL extension</td></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL, MySQL extension</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PRIVILEGE_TYPE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>IS_GRANTABLE</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>This is a non-standard table. It takes its values from the mysql.db table.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA TABLE_PRIVILEGES Table"></A>The INFORMATION_SCHEMA TABLE_PRIVILEGES Table</H2></P>
+		<p>The TABLE_PRIVILEGES table provides information about table privileges. This information comes from the mysql.tables_priv grant table.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>GRANTEE</td><td> </td><td>'<i>user_name</i>'@'<i>host_name</i>' value</td></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>PRIVILEGE_TYPE</td><td> </td><td> </td></tr>
+			<tr><td>IS_GRANTABLE</td><td> </td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>PRIVILEGE_TYPE can contain one (and only one) of these values: SELECT, INSERT, UPDATE, REFERENCES, ALTER, INDEX, DROP, CREATE VIEW.</li>
+		</ul>
+		<p>The following statements are not equivalent:</p>
+		<pre>SELECT ... FROM INFORMATION_SCHEMA.TABLE_PRIVILEGES</pre>
+		<pre>SHOW GRANTS ...</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA COLUMN_PRIVILEGES Table"></A>The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table</H2></P>
+		<p>The COLUMN_PRIVILEGES table provides information about column privileges. This information comes from the mysql.columns_priv grant table.</p>
+		<table>
+		    <tr><td>INFORMATION_SCHEMA Name</td><td>SHOW Name</td><td>Remarks</td></tr>
+			<tr><td>GRANTEE</td><td> </td><td>'<i>user_name</i>'@'<i>ihost_name</i>' value</td></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>COLUMN_NAME</td><td> </td><td> </td></tr>
+			<tr><td>PRIVILEGE_TYPE</td><td> </td><td> </td></tr>
+			<tr><td>IS_GRANTABLE</td><td> </td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>In the output from SHOW FULL COLUMNS, the privileges are all in one field and in lowercase, for example, select,insert,update,references. In COLUMN_PRIVILEGES, there is one privilege per row, in uppercase.</li>
+			<li>PRIVILEGE_TYPE can contain one (and only one) of these values: SELECT, INSERT, UPDATE, REFERENCES.</li>
+			<li>If the user has GRANT OPTION privilege, IS_GRANTABLE should be YES. Otherwise, IS_GRANTABLE should be NO. The output does not list GRANT OPTION as a separate privilege.</li>
+		</ul>
+		<p>The following statements are not equivalent:</p>
+		<pre>SELECT ... FROM INFORMATION_SCHEMA.COLUMN_PRIVILEGES</pre>
+		<pre>SHOW GRANTS ...</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA CHARACTER_SETS Table"></A>The INFORMATION_SCHEMA CHARACTER_SETS Table</H2></P>
+		<p>The CHARACTER_SETS table provides information about available character sets.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>CHARACTER_SET_NAME</td><td>Charset</td><td> </td></tr>
+			<tr><td>DEFAULT_COLLATE_NAME</td><td>Default collation</td><td> </td></tr>
+			<tr><td>DESCRIPION</td><td>Description</td><td>MySQL extension</td></tr>
+			<tr><td>MAXLEN</td><td>Maxlen</td><td>MySQL extension</td></tr>
+		</table>
+		<p>The following statements are equivalent:</p>
+		<pre>SELECT * FROM INFORMATION_SCHEMA.CHARACTER_SETS
+  [WHERE name LIKE 'wild']</pre>
+		<pre>SHOW CHARACTER SET
+  [LIKE 'wild']</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA COLLATIONS Table"></A>The INFORMATION_SCHEMA COLLATIONS Table</H2></P>
+		<p>The COLLATIONS table provides information about collations for each character set.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>COLLATION_NAME</td><td>Collation</td><td> </td></tr>
+			<tr><td>CHARACTER_SET_NAME</td><td>Charset</td><td>MySQL extension</td></tr>
+			<tr><td>ID</td><td>Id</td><td>MySQL extension</td></tr>
+			<tr><td>IS_DEFAULT</td><td>Default</td><td>MySQL extension</td></tr>
+			<tr><td>IS_COMPILED</td><td>Compiled</td><td>MySQL extension</td></tr>
+			<tr><td>SORTLEN</td><td>Sortlen</td><td>MySQL extension</td></tr>
+		</table>
+		<p>The following statements are equivalent:</p>
+		<pre>SELECT COLLATION_NAME FROM INFORMATION_SCHEMA.COLLATIONS
+  [WHERE collation_name LIKE 'wild']</pre>
+		<pre>SHOW COLLATION
+  [LIKE 'wild']</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table"></A>The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table</H2></P>
+		<p>The COLLATION_CHARACTER_SET_APPLICABILITY table indicates what character set is applicable for what collation.
+			The columns are equivalent to the first two display fields that we get from SHOW COLLATION.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>COLLATION_NAME</td><td>Collation</td><td> </td></tr>
+			<tr><td>CHARACTER_SET_NAME</td><td>Charset</td><td> </td></tr>
+		</table>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA TABLE_CONSTRAINTS Table"></A>The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table</H2></P>
+		<p>The TABLE_CONSTRAINTS table describes which tables have constraints.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>CONSTRAINT_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>CONSTRAINT_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>CONSTRAINT_NAME</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>CONSTRAINT_TYPE</td><td> </td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>
+				<p>The CONSTRAINT_TYPE value can be UNIQUE, PRIMARY KEY, or FOREIGN KEY.</p>
+			</li>
+			<li>
+				<p>The UNIQUE and PRIMARY KEY information is about the same as what you get from the Key_name field in the output from SHOW INDEX when the Non_unique field is 0.</p>
+			</li>
+			<li>
+				<p>The CONSTRAINT_TYPE column can contain one of these values: UNIQUE, PRIMARY KEY, FOREIGN KEY, CHECK. This is a CHAR (not ENUM) column. The CHECK value is not available until we support CHECK.</p>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA KEY_COLUMN_USAGE Table"></A>The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table</H2></P>
+		<p>The KEY_COLUMN_USAGE table describes which key columns have constraints.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>CONSTRAINT_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>CONSTRAINT_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>CONSTRAINT_NAME</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>COLUMN_NAME</td><td> </td><td> </td></tr>
+			<tr><td>ORDINAL_POSITION</td><td> </td><td> </td></tr>
+			<tr><td>POSITION_IN_UNIQUE_CONSTRAINT</td><td> </td><td> </td></tr>
+			<tr><td>REFERENCED_TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>REFERENCED_TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>REFERENCED_COLUMN_NAME</td><td> </td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>If the constraint is a foreign key, then this is the column of the foreign key, not the column that the foreign key references.</li>
+			<li>The value of ORDINAL_POSITION is the column's position within the constraint, not the column's position within the table. Column positions are numbered beginning with 1.</li>
+			<li>
+				<p>The value of POSITION_IN_UNIQUE_CONSTRAINT is NULL for unique and primary-key constraints.
+					For foreign-key constraints, it is the ordinal position in key of the table that is being referenced.</p>
+				<p>For example, suppose that there are two tables name t1 and t3 that have the following definitions:</p>
+				<pre>CREATE TABLE t1
+(
+    s1 INT,
+    s2 INT,
+    s3 INT,
+    PRIMARY KEY(s3)
+) ENGINE=InnoDB;</pre>
+
+				<pre>CREATE TABLE t3
+(
+    s1 INT,
+    s2 INT,
+    s3 INT,
+    KEY(s1),
+    CONSTRAINT CO FOREIGN KEY (s2) REFERENCES t1(s3)
+) ENGINE=InnoDB;</pre>
+				<p>For those two tables, the KEY_COLUMN_USAGE table has two rows:</p>
+				<ul>
+					<li>One row with CONSTRAINT_NAME = 'PRIMARY', TABLE_NAME = 't1', COLUMN_NAME = 's3', ORDINAL_POSITION = 1, POSITION_IN_UNIQUE_CONSTRAINT = NULL.</li>
+					<li>One row with CONSTRAINT_NAME = 'CO', TABLE_NAME = 't3', COLUMN_NAME = 's2', ORDINAL_POSITION = 1, POSITION_IN_UNIQUE_CONSTRAINT = 1.</li>
+				</ul>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA ROUTINES Table"></A>The INFORMATION_SCHEMA ROUTINES Table</H2></P>
+		<p>The ROUTINES table provides information about stored routines (both procedures and functions). The ROUTINES table does not include user-defined functions (UDFs) at this time.</p>
+		<p>The column named “mysql.proc name” indicates the mysql.proc table column that corresponds to the INFORMATION_SCHEMA.ROUTINES table column, if any.</p>
+		
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>mysql.proc Name</th><th>Remarks</th></tr>
+			<tr><td>SPECIFIC_NAME</td><td>specific_name</td><td> </td></tr>
+			<tr><td>ROUTINE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>ROUTINE_SCHEMA</td><td>db</td><td> </td></tr>
+			<tr><td>ROUTINE_NAME</td><td>name</td><td> </td></tr>
+			<tr><td>ROUTINE_TYPE</td><td>type</td><td>{PROCEDURE|FUNCTION}</td></tr>
+			<tr><td>DTD_IDENTIFIER</td><td> </td><td>data type descriptor</td></tr>
+			<tr><td>ROUTINE_BODY</td><td> </td><td>SQL</td></tr>
+			<tr><td>ROUTINE_DEFINITION</td><td>body</td><td> </td></tr>
+			<tr><td>EXTERNAL_NAME</td><td> </td><td>NULL</td></tr>
+			<tr><td>EXTERNAL_LANGUAGE</td><td>language</td><td>NULL</td></tr>
+			<tr><td>PARAMETER_STYLE</td><td> </td><td>SQL</td></tr>
+			<tr><td>IS_DETERMINISTIC</td><td>is_deterministic</td><td> </td></tr>
+			<tr><td>SQL_DATA_ACCESS</td><td>sql_data_access</td><td> </td></tr>
+			<tr><td>SQL_PATH</td><td> </td><td>NULL</td></tr>
+			<tr><td>SECURITY_TYPE</td><td>security_type</td><td> </td></tr>
+			<tr><td>CREATED</td><td>created</td><td> </td></tr>
+			<tr><td>LAST_ALTERED</td><td>modified</td><td> </td></tr>
+			<tr><td>SQL_MODE</td><td>sql_mode</td><td>MySQL extension</td></tr>
+			<tr><td>ROUTINE_COMMENT</td><td>comment</td><td>MySQL extension</td></tr>
+			<tr><td>DEFINER</td><td>definer</td><td>MySQL extension</td></tr>
+			<tr><td>CHARACTER_SET_CLIENT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>COLLATION_CONNECTION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATABASE_COLLATION</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		
+		<p>Notes:</p>
+		<ul>
+			<li>MySQL calculates EXTERNAL_LANGUAGE thus:</li>
+			<ul>
+				<li>If mysql.proc.language='SQL', EXTERNAL_LANGUAGE is NULL</li>
+				<li>Otherwise, EXTERNAL_LANGUAGE is what is in mysql.proc.language. However, we do not have external languages yet, so it is always NULL.</li>
+			</ul>
+			<li>CHARACTER_SET_CLIENT is the session value of the character_set_client system variable when the routine was created.
+				COLLATION_CONNECTION is the session value of the collation_connection system variable when the routine was created.
+				DATABASE_COLLATION is the collation of the database with which the routine is associated. These columns were added in MySQL 5.1.21.
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA VIEWS Table"></A>The INFORMATION_SCHEMA VIEWS Table</H2></P>
+		<p>The VIEWS table provides information about views in databases. You must have the SHOW VIEW privilege to access this table.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>VIEW_DEFINITION</td><td> </td><td> </td></tr>
+			<tr><td>CHECK_OPTION</td><td> </td><td> </td></tr>
+			<tr><td>IS_UPDATABLE</td><td> </td><td> </td></tr>
+			<tr><td>DEFINER</td><td> </td><td> </td></tr>
+			<tr><td>SECURITY_TYPE</td><td> </td><td> </td></tr>
+			<tr><td>CHARACTER_SET_CLIENT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>COLLATION_CONNECTION</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>
+				<p>The VIEW_DEFINITION column has most of what you see in the Create Table field that SHOW CREATE VIEW produces. Skip the words before SELECT and skip the words WITH CHECK OPTION. Suppose that the original statement was:</p>
+				<pre>CREATE VIEW v AS
+  SELECT s2,s1 FROM t
+  WHERE s1 &gt; 5
+  ORDER BY s1
+  WITH CHECK OPTION;</pre>
+				<p>Then the view definition looks like this:</p>
+				<pre>SELECT s2,s1 FROM t WHERE s1 &gt; 5 ORDER BY s1</pre>
+			</li>
+			<li>
+				<p>The CHECK_OPTION column has a value of NONE, CASCADE, or LOCAL.</p>
+			</li>
+			<li>
+				<p>MySQL sets a flag, called the view updatability flag, at CREATE VIEW time. The flag is set to YES (true) if UPDATE and DELETE (and similar operations) are legal for the view.
+					Otherwise, the flag is set to NO (false). The IS_UPDATABLE column in the VIEWS table displays the status of this flag. It means that the server always knows whether a view is updatable.
+					If the view is not updatable, statements such UPDATE, DELETE, and INSERT are illegal and will be rejected.
+					(Note that even if a view is updatable, it might not be possible to insert into it;)</p>
+			</li>
+			<li>
+				<p>The DEFINER column indicates who defined the view. SECURITY_TYPE has a value of DEFINER or INVOKER.</p>
+			</li>
+			<li>
+				<p>CHARACTER_SET_CLIENT is the session value of the character_set_client system variable when the view was created.
+					COLLATION_CONNECTION is the session value of the collation_connection system variable when the view was created. These columns were added in MySQL 5.1.21.</p>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA TRIGGERS Table"></A>The INFORMATION_SCHEMA TRIGGERS Table</H2></P>
+		<p>The TRIGGERS table provides information about triggers. You must have the TRIGGER privilege to access this table (prior to MySQL 5.1.22, you must have the SUPER privilege).</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>TRIGGER_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>TRIGGER_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>TRIGGER_NAME</td><td>Trigger</td><td> </td></tr>
+			<tr><td>EVENT_MANIPULATION</td><td>Event</td><td> </td></tr>
+			<tr><td>EVENT_OBJECT_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>EVENT_OBJECT_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>EVENT_OBJECT_TABLE</td><td>Table</td><td> </td></tr>
+			<tr><td>ACTION_ORDER</td><td> </td><td>0</td></tr>
+			<tr><td>ACTION_CONDITION</td><td> </td><td>NULL</td></tr>
+			<tr><td>ACTION_STATEMENT</td><td>Statement</td><td> </td></tr>
+			<tr><td>ACTION_ORIENTATION</td><td> </td><td>ROW</td></tr>
+			<tr><td>ACTION_TIMING</td><td>Timing</td><td> </td></tr>
+			<tr><td>ACTION_REFERENCE_OLD_TABLE</td><td> </td><td>NULL</td></tr>
+			<tr><td>ACTION_REFERENCE_NEW_TABLE</td><td> </td><td>NULL</td></tr>
+			<tr><td>ACTION_REFERENCE_OLD_ROW</td><td> </td><td>OLD</td></tr>
+			<tr><td>ACTION_REFERENCE_NEW_ROW</td><td> </td><td>NEW</td></tr>
+			<tr><td>CREATED</td><td> </td><td>NULL (0)</td></tr>
+			<tr><td>SQL_MODE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DEFINER</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CHARACTER_SET_CLIENT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>COLLATION_CONNECTION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATABASE_COLLATION</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The TRIGGER_SCHEMA and TRIGGER_NAME columns contain the name of the database in which the trigger occurs and the trigger name, respectively.</li>
+			<li>The EVENT_MANIPULATION column contains one of the values 'INSERT', 'DELETE', or 'UPDATE'.</li>
+			<li>Every trigger is associated with exactly one table. The EVENT_OBJECT_SCHEMA and EVENT_OBJECT_TABLE columns contain the database in which this table occurs, and the table's name.</li>
+			<li>The ACTION_ORDER statement contains the ordinal position of the trigger's action within the list of all similar triggers on the same table.
+				Currently, this value is always 0, because it is not possible to have more than one trigger with the same EVENT_MANIPULATION and ACTION_TIMING on the same table.</li>
+			<li>The ACTION_STATEMENT column contains the statement to be executed when the trigger is invoked.
+				This is the same as the text displayed in the Statement column of the output from SHOW TRIGGERS. Note that this text uses UTF-8 encoding.</li>
+			<li>The ACTION_ORIENTATION column always contains the value 'ROW'.</li>
+			<li>The ACTION_TIMING column contains one of the two values 'BEFORE' or 'AFTER'.</li>
+			<li>The columns ACTION_REFERENCE_OLD_ROW and ACTION_REFERENCE_NEW_ROW contain the old and new column identifiers, respectively.
+				This means that ACTION_REFERENCE_OLD_ROW always contains the value 'OLD' and ACTION_REFERENCE_NEW_ROW always contains the value 'NEW'.</li>
+			<li>The SQL_MODE column shows the server SQL mode that was in effect at the time when the trigger was created (and thus which remains in effect for this trigger whenever it is invoked,
+				regardless of the current server SQL mode). The possible range of values for this column is the same as that of the sql_mode system variable.</li>
+			<li>The DEFINER column was added in MySQL 5.1.2. DEFINER indicates who defined the trigger.</li>
+			<li>CHARACTER_SET_CLIENT is the session value of the character_set_client system variable when the trigger was created.
+				COLLATION_CONNECTION is the session value of the collation_connection system variable when the trigger was created.
+				DATABASE_COLLATION is the collation of the database with which the trigger is associated. These columns were added in MySQL 5.1.21.</li>
+			<li>The following columns currently always contain NULL: TRIGGER_CATALOG, EVENT_OBJECT_CATALOG, ACTION_CONDITION, ACTION_REFERENCE_OLD_TABLE, ACTION_REFERENCE_NEW_TABLE, and CREATED.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA PLUGINS Table"></A>The INFORMATION_SCHEMA PLUGINS Table</H2></P>
+		<p>The PLUGINS table provides information about server plugins.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>PLUGIN_NAME</td><td>Name</td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_VERSION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_STATUS</td><td>Status</td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_TYPE</td><td>Type</td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_TYPE_VERSION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_LIBRARY</td><td>Library</td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_LIBRARY_VERSION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_AUTHOR</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_DESCRIPTION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PLUGIN_LICENSE</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The PLUGINS table is a non-standard table. It was added in MySQL 5.1.5.</li>
+			<li>The PLUGIN_LICENSE column was added in MySQL 5.1.12.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA ENGINES Table"></A>The INFORMATION_SCHEMA ENGINES Table</H2></P>
+		<p>The PLUGINS table provides information about storage engines.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>ENGINE</td><td>Engine</td><td>MySQL extension</td></tr>
+			<tr><td>SUPPORT</td><td>Support</td><td>MySQL extension</td></tr>
+			<tr><td>COMMENT</td><td>Comment</td><td>MySQL extension</td></tr>
+			<tr><td>TRANSACTIONS</td><td>Transactions</td><td>MySQL extension</td></tr>
+			<tr><td>XA</td><td>XA</td><td>MySQL extension</td></tr>
+			<tr><td>SAVEPOINTS</td><td>Savepoints</td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The ENGINES table is a non-standard table. It was added in MySQL 5.1.5.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA PARTITIONS Table"></A>The INFORMATION_SCHEMA PARTITIONS Table</H2></P>
+		<p>The PARTITIONS table provides information about table partitions.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PARTITION_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>SUBPARTITION_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PARTITION_ORDINAL_POSITION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>SUBPARTITION_ORDINAL_POSITION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PARTITION_METHOD</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>SUBPARTITION_METHOD</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PARTITION_EXPRESSION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>SUBPARTITION_EXPRESSION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PARTITION_DESCRIPTION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_ROWS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>AVG_ROW_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATA_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>MAX_DATA_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>INDEX_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATA_FREE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CREATE_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>UPDATE_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CHECK_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CHECKSUM</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>PARTITION_COMMENT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>NODEGROUP</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLESPACE_NAME</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>
+				<p>The PARTITIONS table is a non-standard table. It was added in MySQL 5.1.6.</p>
+				<p>Each record in this table corresponds to an individual partition or subpartition of a partitioned table.</p>
+			</li>
+			<li>	
+				<p>TABLE_CATALOG: This column is always NULL.</p>
+			</li>
+			<li>
+				<p>TABLE_SCHEMA: This column contains the name of the database to which the table belongs.</p>
+			</li>
+			<li>
+				<p>TABLE_NAME: This column contains the name of the table containing the partition.</p>
+			</li>
+			<li>
+				<p>PARTITION_NAME: The name of the partition.</p>
+			</li>
+			<li>
+				<p>SUBPARTITION_NAME: If the PARTITIONS table record represents a subpartition, then this column contains the name of subpartition; otherwise it is NULL.</p>
+			</li>
+			<li>
+				<p>PARTITION_ORDINAL_POSITION: All partitions are indexed in the same order as they are defined, with 1 being the number assigned to the first partition.
+					The indexing can change as partitions are added, dropped, and reorganized; the number shown is this column reflects the current order, taking into account any indexing changes.</p>
+			</li>
+			<li>
+				<p>SUBPARTITION_ORDINAL_POSITION: Subpartitions within a given partition are also indexed and reindexed in the same manner as partitions are indexed within a table.</p>
+			</li>
+			<li>
+				<p>PARTITION_METHOD: One of the values RANGE, LIST, HASH, LINEAR HASH, KEY, or LINEAR KEY;</p>
+			</li>
+			<li>
+				<p>SUBPARTITION_METHOD: One of the values HASH, LINEAR HASH, KEY, or LINEAR KEY;</p>
+			</li>
+			<li>
+				<p>PARTITION_EXPRESSION: This is the expression for the partitioning function used in the CREATE TABLE or ALTER TABLE statement that created the table's current partitioning scheme.</p>
+				<p>For example, consider a partitioned table created in the test database using this statement:</p>
+				<pre>CREATE TABLE tp (
+    c1 INT,
+    c2 INT,
+    c3 VARCHAR(25) 
+)
+PARTITION BY HASH(c1 + c2)
+PARTITIONS 4;</pre>
+				<p>The PARTITION_EXPRESSION column in a PARTITIONS table record for a partition from this table displays c1 + c2, as shown here:</p>
+				<pre>SELECT DISTINCT PARTITION_EXPRESSION FROM INFORMATION_SCHEMA.PARTITIONS WHERE TABLE_NAME='tp' AND TABLE_SCHEMA='test' <b>Returns</b>
++----------------------+
+| PARTITION_EXPRESSION |
++----------------------+
+| c1 + c2              |
++----------------------+</pre>
+			</li>
+			<li>
+				<p>SUBPARTITION_EXPRESSION: This works in the same fashion for the subpartitioning expression that defines the subpartitioning for a table
+					as PARTITION_EXPRESSION does for the partitioning expression used to define a table's partitioning.</p>
+				<p>If the table has no subpartitions, then this column is NULL.</p>
+			</li>
+			<li>
+				<p>PARTITION_DESCRIPTION: This column is used for RANGE and LIST partitions. For a RANGE partition, it contains the value set in the partition's VALUES LESS THAN clause,
+					which can be either an integer or MAXVALUE. For a LIST partition, this column contains the values defined in the partition's VALUES IN clause, which is a comma-separated list of integer values.</p>
+				<p>For partitions whose PARTITION_METHOD is other than RANGE or LIST, this column is always NULL.</p>
+			</li>
+			<li>
+				<p>TABLE_ROWS: The number of table rows in the partition.</p>
+			</li>
+			<li>
+				<p>AVG_ROW_LENGTH: The average length of the rows stored in this partition or subpartition, in bytes.</p>
+				<p>This is the same as DATA_LENGTH divided by TABLE_ROWS.</p>
+			</li>
+			<li>
+				<p>DATA_LENGTH: The total length of all rows stored in this partition or subpartition, in bytes — that is, the total number of bytes stored in the partition or subpartition.</p>
+			</li>
+			<li>
+				<p>MAX_DATA_LENGTH: The maximum number of bytes that can be stored in this partition or subpartition.</p>
+			</li>
+			<li>
+				<p>INDEX_LENGTH: The length of the index file for this partition or subpartition, in bytes.</p>
+			</li>
+			<li>
+				<p>DATA_FREE: The number of bytes allocated to the partition or subpartition but not used.</p>
+			</li>
+			<li>
+				<p>CREATE_TIME: The time of the partition's or subpartition's creation.</p>
+			</li>
+			<li>
+				<p>UPDATE_TIME: The time that the partition or subpartition was last modified.</p>
+			</li>
+			<li>
+				<p>CHECK_TIME: The last time that the table to which this partition or subpartition belongs was checked.</p>
+				<p>Note: Some storage engines do not update this time; for tables using these storage engines, this value is always NULL.</p>
+			</li>
+			<li>
+				<p>CHECKSUM: The checksum value, if any; otherwise, this column is NULL.</p>
+			</li>
+			<li>
+				<p>PARTITION_COMMENT: This column contains the text of any comment made for the partition.</p>
+				<p>The default value for this column is an empty string.</p>
+			</li>
+			<li>
+				<p>NODEGROUP: This is the nodegroup to which the partition belongs. This is relevant only to MySQL Cluster tables; otherwise the value of this column is always 0.</p>
+			</li>
+			<li>
+				<p>TABLESPACE_NAME: This column contains the name of tablespace to which the partition belongs. In MySQL 5.1, the value of this column is always DEFAULT.</p>
+				<p>Important: If any partitioned tables created in a MySQL version prior to MySQL 5.1.6 are present following an upgrade to MySQL 5.1.6 or later,
+					it is not possible to SELECT from, SHOW, or DESCRIBE the PARTITIONS table.</p>
+			</li>
+			<li>
+				<p>A non-partitioned table has one record in INFORMATION_SCHEMA.PARTITIONS; however, the values of the PARTITION_NAME, SUBPARTITION_NAME,
+					PARTITION_ORDINAL_POSITION, SUBPARTITION_ORDINAL_POSITION, PARTITION_METHOD, SUBPARTITION_METHOD, PARTITION_EXPRESSION, SUBPARTITION_EXPRESSION, and PARTITION_DESCRIPTION columns are all NULL.
+					(The PARTITION_COMMENT column in this case is blank.)</p>
+				<p>In MySQL 5.1, there is also only one record in the PARTITIONS table for a table using the NDBCLUSTER storage engine. The same columns are also NULL (or empty) as for a non-partitioned table.</p>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA EVENTS Table"></A>The INFORMATION_SCHEMA EVENTS Table</H2></P>
+		<p>The EVENTS table provides information about scheduled events.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>EVENT_CATALOG</td><td> </td><td>NULL, MySQL extension</td></tr>
+			<tr><td>EVENT_SCHEMA</td><td>Db</td><td>MySQL extension</td></tr>
+			<tr><td>EVENT_NAME</td><td>Name</td><td>MySQL extension</td></tr>
+			<tr><td>DEFINER</td><td>Definer</td><td>MySQL extension</td></tr>
+			<tr><td>TIME_ZONE</td><td>Time zone</td><td>MySQL extension</td></tr>
+			<tr><td>EVENT_BODY</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>EVENT_DEFINITION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>EVENT_TYPE</td><td>Type</td><td>MySQL extension</td></tr>
+			<tr><td>EXECUTE_AT</td><td>Execute at</td><td>MySQL extension</td></tr>
+			<tr><td>INTERVAL_VALUE</td><td>Interval value</td><td>MySQL extension</td></tr>
+			<tr><td>INTERVAL_FIELD</td><td>Interval field</td><td>MySQL extension</td></tr>
+			<tr><td>SQL_MODE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>STARTS</td><td>Starts</td><td>MySQL extension</td></tr>
+			<tr><td>ENDS</td><td>Ends</td><td>MySQL extension</td></tr>
+			<tr><td>STATUS</td><td>Status</td><td>MySQL extension</td></tr>
+			<tr><td>ON_COMPLETION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CREATED</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>LAST_ALTERED</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>LAST_EXECUTED</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>EVENT_COMMENT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>ORIGINATOR</td><td>Originator</td><td>MySQL extension</td></tr>
+			<tr><td>CHARACTER_SET_CLIENT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>COLLATION_CONNECTION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATABASE_COLLATION</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The EVENTS table is a non-standard table. It was added in MySQL 5.1.6.</li>
+			<li>EVENT_CATALOG: The value of this column is always NULL.</li>
+			<li>EVENT_SCHEMA: The name of the schema (database) to which this event belongs.</li>
+			<li>EVENT_NAME: The name of the event.</li>
+			<li>DEFINER: The user who created the event. Always displayed in 'user_name'@'host_name' format.</li>
+			<li>
+				<p>TIME_ZONE: The time zone in effect when schedule for the event was last modified.
+					If the event's schedule has not been modified since the event was created, then this is the time zone that was in effect at the event's creation. The default value is SYSTEM.</p>
+				<p>This column was added in MySQL 5.1.17.</p>
+			</li>
+			<li>
+				<p>EVENT_BODY: The language used for the statements in the event's DO clause; in MySQL 5.1, this is always SQL.</p>
+				<p>This column was added in MySQL 5.1.12. It is not to be confused with the column of the same name (now named EVENT_DEFINITION) that existed in earlier MySQL versions.</p>
+			</li>
+			<li>
+				<p>EVENT_DEFINITION: The text of the SQL statement making up the event's DO clause; in other words, the statement executed by this event.</p>
+				<p>Note: Prior to MySQL 5.1.12, this column was named EVENT_BODY.</p>
+			</li>
+			<li>
+				<p>EVENT_TYPE: One of the two values ONE TIME or RECURRING.</p>
+			</li>
+			<li>
+				<p>EXECUTE_AT: For a one-time event, this is the DATETIME value specified in the AT clause of the CREATE EVENT statement used to create the event,
+					or of the last ALTER EVENT statement that modified the event. The value shown in this column reflects the addition or subtraction of any INTERVAL value included in the event's AT clause.
+					For example, if an event is created using ON SCHEDULE AT CURRENT_TIMESTAMP + '1:6' DAY_HOUR, and the event was created at 2006-02-09 14:05:30, the value shown in this column would be '2006-02-10 20:05:30'.</p>
+				<p>If the event's timing is determined by an EVERY clause instead of an AT clause (that is, if the event is recurring), the value of this column is NULL.</p>
+			</li>
+			<li>
+				<p>INTERVAL_VALUE: For recurring events, this column contains the numeric portion of the event's EVERY clause.</p>
+				<p>For a one-time event (that is, an event whose timing is determined by an AT clause), this column's value is NULL.</p>
+			</li>
+			<li>
+				<p>INTERVAL_FIELD: For recurring events, this column contains the units portion of the EVERY clause governing the timing of the event. Thus, this column contains a value such as 'YEAR', 'QUARTER', 'DAY', and so on.</p>
+				<p>Note: In early MySQL 5.1 releases, this value was prefixed with 'INTERVAL_', and was displayed as 'INTERVAL_YEAR', 'INTERVAL_QUARTER', 'INTERVAL_DAY', and so on.</p>
+				<p>For a one-time event (that is, an event whose timing is determined by an AT clause), this column's value is NULL.</p>
+			</li>
+			<li>
+				<p>SQL_MODE: The SQL mode in effect at the time the event was created or altered.</p>
+			</li>
+			<li>
+				<p>STARTS: For a recurring event whose definition includes a STARTS clause, this column contains the corresponding DATETIME value. As with the EXECUTE_AT column, this value resolves any expressions used.</p>
+				<p>If there is no STARTS clause affecting the timing of the event, this column is empty. (Prior to MySQL 5.1.8, it contained NULL in such cases.)</p>
+			</li>
+			<li>
+				<p>ENDS: For a recurring event whose definition includes a ENDS clause, this column contains the corresponding DATETIME value. As with the EXECUTE_AT column (see previous example), this value resolves any expressions used.</p>
+				<p>If there is no ENDS clause affecting the timing of the event, this column contains NULL.</p>
+			</li>
+			<li>
+				<p>STATUS: One of the three values ENABLED, DISABLED, or SLAVESIDE_DISABLED.</p>
+			</li>
+			<li>
+				<p>SLAVESIDE_DISABLED was added to the list of possible values for this column in MySQL 5.1.18.
+					This value indicates that the creation of the event occurred on another MySQL server acting as a replication master and was replicated to the current MySQL server which is acting as a slave,
+					but the event is not presently being executed on the slave.</p>
+			</li>
+			<li>
+				<p>ON_COMPLETION: One of the two values PRESERVE or NOT PRESERVE.</p>
+			</li>
+			<li>
+				<p>CREATED: The date and time when the event was created. This is a DATETIME value.</p>
+			</li>
+			<li>
+				<p>LAST_ALTERED: The date and time when the event was last modified. This is a DATETIME value. If the event has not been modified since its creation, this column holds the same value as the CREATED column.</p>
+			</li>
+			<li>
+				<p>LAST_EXECUTED: The date and time when the event last executed. A DATETIME value. If the event has never executed, this column's value is NULL.</p>
+				<p>Before MySQL 5.1.23, LAST_EXECUTED indicates when event finished executing. As of 5.1.23, LAST_EXECUTED instead indicates when the event started. As a result, the ENDS column is never less than LAST_EXECUTED.</p>
+			</li>
+			<li>
+				<p>EVENT_COMMENT: The text of a comment, if the event has one. If there is no comment, the value of this column is an empty string.</p>
+			</li>
+			<li>
+				<p>ORIGINATOR: The server ID of the MySQL server on which the event was created; used in replication. The default value is 0. This column was added in MySQL 5.1.18.</p>
+			</li>
+			<li>
+				<p>CHARACTER_SET_CLIENT is the session value of the character_set_client system variable when the event was created. COLLATION_CONNECTION is the session value of the collation_connection system variable when the event was created.
+					DATABASE_COLLATION is the collation of the database with which the event is associated. These columns were added in MySQL 5.1.21.</p>
+			</li>
+		</ul>
+		<p>Example: Suppose the user jon@ghidora creates an event named e_daily, and then modifies it a few minutes later using an ALTER EVENT statement, as shown here:</p>
+		<pre>DELIMITER |
+
+CREATE EVENT e_daily
+    ON SCHEDULE
+      EVERY 1 DAY
+    COMMENT 'Saves total number of sessions then clears the table each day'
+    DO
+      BEGIN
+        INSERT INTO site_activity.totals (time, total)
+          SELECT CURRENT_TIMESTAMP, COUNT(*) 
+            FROM site_activity.sessions;
+        DELETE FROM site_activity.sessions;
+      END |
+
+DELIMITER ;
+
+ALTER EVENT e_daily
+    ENABLED;</pre>
+		<p>(Note that comments can span multiple lines.)</p>
+		<p>This user can then run the following SELECT statement, and obtain the output shown:</p>
+		<pre>SELECT * FROM INFORMATION_SCHEMA.EVENTS
+     &gt; WHERE EVENT_NAME = 'e_daily' 
+     &gt; AND EVENT_SCHEMA = 'myschema'\G
+*************************** 1. row ***************************
+       EVENT_CATALOG: NULL
+        EVENT_SCHEMA: test
+          EVENT_NAME: e_daily
+             DEFINER: paul@localhost
+           TIME_ZONE: SYSTEM
+          EVENT_BODY: SQL
+    EVENT_DEFINITION: BEGIN
+        INSERT INTO site_activity.totals (time, total)
+          SELECT CURRENT_TIMESTAMP, COUNT(*) 
+            FROM site_activity.sessions;
+        DELETE FROM site_activity.sessions;
+      END
+          EVENT_TYPE: RECURRING
+          EXECUTE_AT: NULL
+      INTERVAL_VALUE: 1
+      INTERVAL_FIELD: DAY
+            SQL_MODE: 
+              STARTS: 2008-09-03 12:13:39
+                ENDS: NULL
+              STATUS: ENABLED
+       ON_COMPLETION: NOT PRESERVE
+             CREATED: 2008-09-03 12:13:39
+        LAST_ALTERED: 2008-09-03 12:13:39
+       LAST_EXECUTED: NULL
+       EVENT_COMMENT: Saves total number of sessions then clears the
+                      table each day
+          ORIGINATOR: 1
+CHARACTER_SET_CLIENT: latin1
+COLLATION_CONNECTION: latin1_swedish_ci
+  DATABASE_COLLATION: latin1_swedish_ci
+			</pre>
+			<p>Prior to MySQL 5.1.17, the times displayed in the STARTS, ENDS, and LAST_EXECUTED columns were given in terms of Universal Time (GMT or UTC),
+				regardless of the server's time zone setting (Bug#16420). Beginning with MySQL 5.1.17, these times are all given in terms of local time as determined by the MySQL server's time_zone setting.
+				(The same was true of the starts, ends, and last_executed columns of the mysql.event table as well as the Starts and Ends columns in the output of SHOW [FULL] EVENTS.)</p>
+			<p>The CREATED and LAST_ALTERED columns use the server time zone (as do the created and last_altered columns of the mysql.event table).</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA FILES Table"></A>The INFORMATION_SCHEMA FILES Table</H2></P>
+		<p>The FILES table provides information about the files in which MySQL NDB Disk Data tables are stored.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>FILE_ID</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>FILE_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>FILE_TYPE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLESPACE_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_CATALOG</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_SCHEMA</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>LOGFILE_GROUP_NAME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>LOGFILE_GROUP_NUMBER</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>ENGINE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>FULLTEXT_KEYS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DELETED_ROWS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>UPDATE_COUNT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>FREE_EXTENTS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TOTAL_EXTENTS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>EXTENT_SIZE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>INITIAL_SIZE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>MAXIMUM_SIZE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>AUTOEXTEND_SIZE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CREATION_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>LAST_UPDATE_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>LAST_ACCESS_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>RECOVER_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TRANSACTION_COUNTER</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>VERSION</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>ROW_FORMAT</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>TABLE_ROWS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>AVG_ROW_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATA_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>MAX_DATA_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>INDEX_LENGTH</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>DATA_FREE</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CREATE_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>UPDATE_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CHECK_TIME</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>CHECKSUM</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>STATUS</td><td> </td><td>MySQL extension</td></tr>
+			<tr><td>EXTRA</td><td> </td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>FILE_ID column values are auto-generated.</li>
+			<li>FILE_NAME is the name of an UNDO log file created by CREATE LOGFILE GROUP or ALTER LOGFILE GROUP, or of a data file created by CREATE TABLESPACE or ALTER TABLESPACE.</li>
+			<li>FILE_TYPE is one of the values UNDOFILE or DATAFILE.</li>
+			<li>TABLESPACE_NAME is the name of the tablespace with which the file is associated.</li>
+			<li>In MySQL 5.1, the value of the TABLESPACE_CATALOG column is always NULL.</li>
+			<li>TABLE_NAME is the name of the Disk Data table with which the file is associated, if any.</li>
+			<li>The LOGFILE_GROUP_NAME column gives the name of the log file group to which the log file or data file belongs.</li>
+			<li>For an UNDO log file, the LOGFILE_GROUP_NUMBER contains the auto-generated ID number of the log file group to which the log file belongs.</li>
+			<li>For a MySQL Cluster Disk Data log file or data file, the value of the ENGINE column is always NDB or NDBCLUSTER.</li>
+			<li>For a MySQL Cluster Disk Data log file or data file, the value of the FULLTEXT_KEYS column is always empty.</li>
+			<li>
+				<p>The FREE EXTENTS column displays the number of extents which have not yet been used by the file. The TOTAL EXTENTS column show the total number of extents allocated to the file.</p>
+				<p>The difference between these two columns is the number of extents currently in use by the file:</p>
+				<pre>SELECT TOTAL_EXTENTS - FREE_EXTENTS AS extents_used
+    FROM INFORMATION_SCHEMA.FILES
+    WHERE FILE_NAME = 'myfile.dat';</pre>
+				<p>You can approximate the amount of disk space in use by the file by multiplying this difference by the value of the EXTENT_SIZE column, which gives the size of an extent for the file in bytes:</p>
+				<pre>SELECT (TOTAL_EXTENTS - FREE_EXTENTS) * EXTENT_SIZE AS bytes_used
+    FROM INFORMATION_SCHEMA.FILES
+    WHERE FILE_NAME = 'myfile.dat';</pre>
+				<p>Similarly, you can estimate the amount of space that remains available in a given file by multiplying FREE_EXTENTS by EXTENT_SIZE:</p>
+				<pre>SELECT FREE_EXTENTS * EXTENT_SIZE AS bytes_free
+    FROM INFORMATION_SCHEMA.FILES
+    WHERE FILE_NAME = 'myfile.dat';</pre>
+				<p>Important: The byte values produced by the preceding queries are approximations only, and their precision is inversely proportional to the value of EXTENT_SIZE.
+					That is, the larger EXTENT_SIZE becomes, the less accurate the approximations are.</p>
+				<p>It is also important to remember that once an extent is used, it cannot be freed again without dropping the data file of which it is a part.
+					This means that deletes from a Disk Data table do not release disk space.</p>
+				<p>The extent size can be set in a CREATE TABLESPACE statement.</p>
+			</li>
+			<li>
+				<p>The INITIAL_SIZE column shows the size in bytes of the file. This is the same value that was used in the INITIAL_SIZE clause of the CREATE LOGFILE GROUP,
+					ALTER LOGFILE GROUP, CREATE TABLESPACE, or ALTER TABLESPACE statement used to create the file.</p>
+				<p>For MySQL 5.1 Cluster Disk Data files, the value of the MAXIMUM_SIZE column is always the same as INITIAL_SIZE, and the AUTOEXTEND_SIZE column is always empty.</p>
+			</li>
+			<li>
+				<p>The CREATION_TIME column shows the date and time when the file was created. The LAST_UPDATE_TIME column displays the date and time when the file was last modified.
+					The LAST_ACCESSED column provides the date and time when the file was last accessed by the server.</p>
+				<p>Currently, the values of these columns are as reported by the operating system, and are not supplied by the NDB storage engine.
+					Where no value is provided by the operating system, these columns display 0000-00-00 00:00:00.</p>
+			</li>
+			<li>
+				<p>For MySQL Cluster Disk Data files, the value of the RECOVER_TIME and TRANSACTION_COUNTER columns is always 0.</p>
+			</li>
+			<li>
+				<p>For MySQL 5.1 Cluster Disk Data files, the following columns are always NULL:</p>
+				<ul>
+					<li>VERSION</li>
+					<li>ROW_FORMAT</li>
+					<li>TABLE_ROWS</li>
+					<li>AVG_ROW_LENGTH</li>
+					<li>DATA_LENGTH</li>
+					<li>MAX_DATA_LENGTH</li>
+					<li>INDEX_LENGTH</li>
+					<li>DATA_FREE</li>
+					<li>CREATE_TIME</li>
+					<li>UPDATE_TIME</li>
+					<li>CHECK_TIME</li>
+					<li>CHECKSUM</li>
+				</ul>
+			</li>
+			<li>
+				<p>For MySQL Cluster Disk Data files, the value of the STATUS column is always NORMAL.</p>
+			</li>
+			<li>
+				<p>For MySQL Cluster Disk Data files, the EXTRA column shows which data node the file belongs to, as each data node has its own copy of the file.
+					For example, suppose you use this statement on a MySQL Cluster with four data nodes:</p>
+				<pre>CREATE LOGFILE GROUP mygroup
+    ADD UNDOFILE 'new_undo.dat'
+    INITIAL_SIZE 2G
+    ENGINE NDB;</pre>
+				<p>After running the CREATE LOGFILE GROUP statement successfully, you should see a result similar to the one shown here for this query against the FILES table:</p>
+				<pre>SELECT LOGFILE_GROUP_NAME, FILE_TYPE, EXTRA FROM INFORMATION_SCHEMA.FILES WHERE FILE_NAME = 'new_undo.dat' <b>Returns</b>
++--------------------+-------------+----------------+
+| LOGFILE_GROUP_NAME | FILE_TYPE   | EXTRA          |
++--------------------+-------------+----------------+
+| mygroup            | UNDO FILE   | CLUSTER_NODE=3 |
+| mygroup            | UNDO FILE   | CLUSTER_NODE=4 |
+| mygroup            | UNDO FILE   | CLUSTER_NODE=5 |
+| mygroup            | UNDO FILE   | CLUSTER_NODE=6 |
++--------------------+-------------+----------------+</pre>
+			</li>
+			<li>
+				<p>The FILES table is a non-standard table. It was added in MySQL 5.1.6.</p>
+			</li>
+			<li>
+				<p>Beginning with MySQL 5.1.14, an additional row is present in the FILES table following the creation of a logfile group.
+					This row has NULL for the value of the FILE_NAME column. For this row, the value of the FILE_ID column is always 0,
+					that of the FILE_TYPE column is always UNDO FILE, and that of the STATUS column is always NORMAL. In MySQL 5.1 the value of the ENGINE column is always ndbcluster.</p>
+				<p>This row shows in the FREE_EXTENTS column the total number of free extents available to all undo files belonging to a given log file group whose name and number
+					are shown in the LOGFILE_GROUP_NAME and LOGFILE_GROUP_NUMBER columns, respectively.</p>
+				<p>Suppose there are no existing log file groups on your MySQL Cluster, and you create one using the following statement:</p>
+				<pre>CREATE LOGFILE GROUP lg1 ADD UNDOFILE 'undofile.dat' INITIAL_SIZE = 16M UNDO_BUFFER_SIZE = 1M ENGINE = NDB</pre>
+				<p>You can now see this NULL row when you query the FILES table:</p>
+				<pre>SELECT DISTINCT
+	FILE_NAME AS File,
+    FREE_EXTENTS AS Free,
+    TOTAL_EXTENTS AS Total,
+    EXTENT_SIZE AS Size,
+    INITIAL_SIZE AS Initial
+    FROM INFORMATION_SCHEMA.FILES <b>Returns</b>
++--------------+---------+---------+------+----------+
+| File         | Free    | Total   | Size | Initial  |
++--------------+---------+---------+------+----------+
+| undofile.dat |    NULL | 4194304 |    4 | 16777216 |
+| NULL         | 4184068 |    NULL |    4 |     NULL |
++--------------+---------+---------+------+----------+</pre>
+				<p>The total number of free extents available for undo logging is always somewhat less than the sum of the TOTAL_EXTENTS column values for all undo files in
+					the log file group due to overhead required for maintaining the undo files. This can be seen by adding a second undo file to the log file group, then repeating the previous query against the FILES table:</p>
+				<pre>ALTER LOGFILE GROUP lg1
+    ADD UNDOFILE 'undofile02.dat'
+    INITIAL_SIZE = 4M
+    ENGINE = NDB;</pre>
+	
+				<pre>SELECT DISTINCT
+    FILE_NAME AS File,
+    FREE_EXTENTS AS Free,
+    TOTAL_EXTENTS AS Total,
+    EXTENT_SIZE AS Size,
+    INITIAL_SIZE AS Initial
+    FROM INFORMATION_SCHEMA.FILES <b>Returns</b>
++----------------+---------+---------+------+----------+
+| File           | Free    | Total   | Size | Initial  |
++----------------+---------+---------+------+----------+
+| undofile.dat   |    NULL | 4194304 |    4 | 16777216 |
+| undofile02.dat |    NULL | 1048576 |    4 |  4194304 |
+| NULL           | 5223944 |    NULL |    4 |     NULL |
++----------------+---------+---------+------+----------+</pre>
+
+				<p>The amount of free space in bytes which is available for undo logging by Disk Data tables using this log file group can be approximated by multiplying the number of free extents by the initial size:</p>
+				<pre>SELECT
+    FREE_EXTENTS AS 'Free Extents',
+    FREE_EXTENTS * EXTENT_SIZE AS 'Free Bytes'
+    FROM INFORMATION_SCHEMA.FILES
+    WHERE LOGFILE_GROUP_NAME = 'lg1'
+    AND FILE_NAME IS NULL <b>Returns</b>
++--------------+------------+
+| Free Extents | Free Bytes |
++--------------+------------+
+|      5223944 |   20895776 |
++--------------+------------+</pre>
+
+				<p>If you create a Disk Data table and then insert some rows into it, you can see approximately how much space remains for undo logging afterwards, for example:</p>
+				<pre>CREATE TABLESPACE ts1
+    ADD DATAFILE 'data1.dat'
+    USE LOGFILE GROUP lg1
+    INITIAL_SIZE 512M
+    ENGINE = NDB</pre>
+
+				<pre>CREATE TABLE dd (
+    c1 INT NOT NULL PRIMARY KEY,
+    c2 INT,
+    c3 DATE
+    )
+    TABLESPACE ts1 STORAGE DISK
+    ENGINE = NDB</pre>
+	
+				<pre>INSERT INTO dd VALUES
+    (NULL, 1234567890, '2007-02-02'),
+    (NULL, 1126789005, '2007-02-03'),
+    (NULL, 1357924680, '2007-02-04'),
+    (NULL, 1642097531, '2007-02-05')</pre>
+	
+				<pre>SELECT
+    FREE_EXTENTS AS 'Free Extents',
+    FREE_EXTENTS * EXTENT_SIZE AS 'Free Bytes'
+    FROM INFORMATION_SCHEMA.FILES
+    WHERE LOGFILE_GROUP_NAME = 'lg1'
+    AND FILE_NAME IS NULL <b>Returns</b>
++--------------+------------+
+| Free Extents | Free Bytes |
++--------------+------------+
+|      5207565 |   20830260 |
++--------------+------------+</pre>
+			</li>
+			<li>
+				<p>There are no SHOW commands associated with the FILES table.</p>
+			</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA PROCESSLIST Table"></A>The INFORMATION_SCHEMA PROCESSLIST Table</H2></P>
+		<p>The PROCESSLIST table provides information about which threads are running.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>ID</td><td>Id</td><td>MySQL extension</td></tr>
+			<tr><td>USER</td><td>User</td><td>MySQL extension</td></tr>
+			<tr><td>HOST</td><td>Host</td><td>MySQL extension</td></tr>
+			<tr><td>DB</td><td>db</td><td>MySQL extension</td></tr>
+			<tr><td>COMMAND</td><td>Command</td><td>MySQL extension</td></tr>
+			<tr><td>TIME</td><td>Time</td><td>MySQL extension</td></tr>
+			<tr><td>STATE</td><td>State</td><td>MySQL extension</td></tr>
+			<tr><td>INFO</td><td>Info</td><td>MySQL extension</td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The PROCESSLIST table is a non-standard table. It was added in MySQL 5.1.7.</li>
+			<li>Like the output from the corresponding SHOW statement, the PROCESSLIST table will only show information about your own threads, unless you have the PROCESS privilege,
+				in which case you will see information about other threads, too. As an anonymous user, you cannot see any rows at all.</li>
+			<li>If an SQL statement refers to INFORMATION_SCHEMA.PROCESSLIST, then MySQL will populate the entire table once, when statement execution begins, so there is read consistency during the statement.
+				There is no read consistency for a multi-statement transaction, though.</li>
+		</ul>
+		<p>The following statements are equivalent:</p>
+		<pre>SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST</pre>
+		<pre>SHOW FULL PROCESSLIST</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table"></A>The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table</H2></P>
+		<p>The REFERENTIAL_CONSTRAINTS table provides information about foreign keys.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>CONSTRAINT_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>CONSTRAINT_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>CONSTRAINT_NAME</td><td> </td><td> </td></tr>
+			<tr><td>UNIQUE_CONSTRAINT_CATALOG</td><td> </td><td>NULL</td></tr>
+			<tr><td>UNIQUE_CONSTRAINT_SCHEMA</td><td> </td><td> </td></tr>
+			<tr><td>UNIQUE_CONSTRAINT_NAME</td><td> </td><td> </td></tr>
+			<tr><td>MATCH_OPTION</td><td> </td><td> </td></tr>
+			<tr><td>UPDATE_RULE</td><td> </td><td> </td></tr>
+			<tr><td>DELETE_RULE</td><td> </td><td> </td></tr>
+			<tr><td>TABLE_NAME</td><td> </td><td> </td></tr>
+			<tr><td>REFERENCED_TABLE_NAME</td><td> </td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The REFERENTIAL_CONSTRAINTS table was added in MySQL 5.1.10. The REFERENCED_TABLE_NAME column was added in MySQL 5.1.16.</li>
+			<li>TABLE_NAME has the same value as TABLE_NAME in INFORMATION_SCHEMA.TABLE_CONSTRAINTS.</li>
+			<li>CONSTRAINT_SCHEMA and CONSTRAINT_NAME identify the foreign key.</li>
+			<li>UNIQUE_CONSTRAINT_SCHEMA, UNIQUE_CONSTRAINT_NAME, and REFERENCED_TABLE_NAME identify the referenced key. (Note: Before MySQL 5.1.16, UNIQUE_CONSTRAINT_NAME incorrectly named the referenced table, not the constraint.)</li>
+			<li>The only valid value at this time for MATCH_OPTION is NONE.</li>
+			<li>The possible values for UPDATE_RULE or DELETE_RULE are CASCADE, SET NULL, SET DEFAULT, RESTRICT, NO ACTION.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables"></A>The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables</H2></P>
+		<p>The GLOBAL_STATUS and SESSION_STATUS tables provide information about server status variables. Their contents correspond to the information produced by the SHOW GLOBAL STATUS and SHOW SESSION STATUS statements.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>VARIABLE_NAME</td><td>Variable_name</td><td> </td></tr>
+			<tr><td>VARIABLE_VALUE</td><td>Value</td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The GLOBAL_STATUS and SESSION_STATUS tables were added in MySQL 5.1.12.</li>
+			<li>Beginning with MySQL 5.1.19, the VARIABLE_VALUE column for each of these tables is defined as VARCHAR(20480).
+				Previously, this column had the data type DECIMAL(22,7), but was changed to avoid loss of data when working with status variables whose values were strings.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SThe INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables"></A>The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables</H2></P>
+		<p>The GLOBAL_VARIABLES and SESSION_VARIABLES tables provide information about server status variables. Their contents correspond to the information produced by the SHOW GLOBAL VARIABLES and SHOW SESSION VARIABLES statements.</p>
+		<table>
+			<tr><th>INFORMATION_SCHEMA Name</th><th>SHOW Name</th><th>Remarks</th></tr>
+			<tr><td>VARIABLE_NAME</td><td>Variable_name</td><td> </td></tr>
+			<tr><td>VARIABLE_VALUE</td><td>Value</td><td> </td></tr>
+		</table>
+		<p>Notes:</p>
+		<ul>
+			<li>The GLOBAL_VARIABLES and SESSION_VARIABLES tables were added in MySQL 5.1.12.</li>
+			<li>Beginning with MySQL 5.1.19, the VARIABLE_VALUE column for each of these tables is defined as VARCHAR(20480).
+				Previously, this column had the data type LONGTEXT; this was changed in order to make these tables consistent with the GLOBAL_STATUS and SESSION_STATUS tables,
+				whose definitions had been changed in that version.</li>
+		</ul>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SExtensions to SHOW Statements"></A>Extensions to SHOW Statements</H2></P>
+		<p>Some extensions to SHOW statements accompany the implementation of INFORMATION_SCHEMA:</p>
+		<ul>
+			<li>SHOW can be used to get information about the structure of INFORMATION_SCHEMA itself.</li>
+			<li>Several SHOW statements accept a WHERE clause that provides more flexibility in specifying which rows to display.</li>
+		</ul>
+		<p>INFORMATION_SCHEMA is an information database, so its name is included in the output from SHOW DATABASES. Similarly, SHOW TABLES can be used with INFORMATION_SCHEMA to obtain a list of its tables:</p>
+		<pre>SHOW TABLES FROM INFORMATION_SCHEMA <b>Returns</b>
++---------------------------------------+
+| Tables_in_INFORMATION_SCHEMA          |
++---------------------------------------+
+| CHARACTER_SETS                        |
+| COLLATIONS                            |
+| COLLATION_CHARACTER_SET_APPLICABILITY |
+| COLUMNS                               |
+| COLUMN_PRIVILEGES                     |
+| ENGINES                               |
+| EVENTS                                |
+| FILES                                 |
+| GLOBAL_STATUS                         |
+| GLOBAL_VARIABLES                      |
+| KEY_COLUMN_USAGE                      |
+| PARTITIONS                            |
+| PLUGINS                               |
+| PROCESSLIST                           |
+| REFERENTIAL_CONSTRAINTS               |
+| ROUTINES                              |
+| SCHEMATA                              |
+| SCHEMA_PRIVILEGES                     |
+| SESSION_STATUS                        |
+| SESSION_VARIABLES                     |
+| STATISTICS                            |
+| TABLES                                |
+| TABLE_CONSTRAINTS                     |
+| TABLE_PRIVILEGES                      |
+| TRIGGERS                              |
+| USER_PRIVILEGES                       |
+| VIEWS                                 |
++---------------------------------------+</pre>
+			<p>SHOW COLUMNS and DESCRIBE can display information about the columns in individual INFORMATION_SCHEMA tables.</p>
+			<p>SHOW statements that accept a LIKE clause to limit the rows displayed also allow a WHERE clause that enables specification of more general conditions that selected rows must satisfy:</p>
+			
+			<pre>SHOW CHARACTER SET
+SHOW COLLATION
+SHOW COLUMNS
+SHOW DATABASES
+SHOW FUNCTION STATUS
+SHOW INDEX
+SHOW OPEN TABLES
+SHOW PROCEDURE STATUS
+SHOW STATUS
+SHOW TABLE STATUS
+SHOW TABLES
+SHOW TRIGGERS
+SHOW VARIABLES</pre>
+			
+			<p>The WHERE clause, if present, is evaluated against the column names displayed by the SHOW statement. For example, the SHOW CHARACTER SET statement produces these output columns:</p>
+			<pre>SHOW CHARACTER SET <b>Returns</b>
++----------+-----------------------------+---------------------+--------+
+| Charset  | Description                 | Default collation   | Maxlen |
++----------+-----------------------------+---------------------+--------+
+| big5     | Big5 Traditional Chinese    | big5_chinese_ci     |      2 |
+| dec8     | DEC West European           | dec8_swedish_ci     |      1 |
+| cp850    | DOS West European           | cp850_general_ci    |      1 |
+| hp8      | HP West European            | hp8_english_ci      |      1 |
+| koi8r    | KOI8-R Relcom Russian       | koi8r_general_ci    |      1 |
+| latin1   | cp1252 West European        | latin1_swedish_ci   |      1 |
+| latin2   | ISO 8859-2 Central European | latin2_general_ci   |      1 |
+...</pre>
+
+			<p>To use a WHERE clause with SHOW CHARACTER SET, you would refer to those column names.
+				As an example, the following statement displays information about character sets for which the default collation contains the string 'japanese':</p>
+			<pre>SHOW CHARACTER SET WHERE `Default collation` LIKE '%japanese%' <b>Returns</b>
++---------+---------------------------+---------------------+--------+
+| Charset | Description               | Default collation   | Maxlen |
++---------+---------------------------+---------------------+--------+
+| ujis    | EUC-JP Japanese           | ujis_japanese_ci    |      3 |
+| sjis    | Shift-JIS Japanese        | sjis_japanese_ci    |      2 |
+| cp932   | SJIS for Windows Japanese | cp932_japanese_ci   |      2 |
+| eucjpms | UJIS for Windows Japanese | eucjpms_japanese_ci |      3 |
++---------+---------------------------+---------------------+--------+</pre>
+
+			<p>This statement displays the multi-byte character sets:</p>
+			<pre>SHOW CHARACTER SET WHERE Maxlen &gt; 1 <b>Returns</b>
++---------+---------------------------+---------------------+--------+
+| Charset | Description               | Default collation   | Maxlen |
++---------+---------------------------+---------------------+--------+
+| big5    | Big5 Traditional Chinese  | big5_chinese_ci     |      2 |
+| ujis    | EUC-JP Japanese           | ujis_japanese_ci    |      3 |
+| sjis    | Shift-JIS Japanese        | sjis_japanese_ci    |      2 |
+| euckr   | EUC-KR Korean             | euckr_korean_ci     |      2 |
+| gb2312  | GB2312 Simplified Chinese | gb2312_chinese_ci   |      2 |
+| gbk     | GBK Simplified Chinese    | gbk_chinese_ci      |      2 |
+| utf8    | UTF-8 Unicode             | utf8_general_ci     |      3 |
+| ucs2    | UCS-2 Unicode             | ucs2_general_ci     |      2 |
+| cp932   | SJIS for Windows Japanese | cp932_japanese_ci   |      2 |
+| eucjpms | UJIS for Windows Japanese | eucjpms_japanese_ci |      3 |
++---------+---------------------------+---------------------+--------+</pre>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

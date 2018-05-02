@@ -1,0 +1,619 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>qt</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+		<p>The <b>qt</b> function provides a <i>Lisp-aware</i> interface to the underlying
+           Embedded <i>QT</i> C++ library. The QT C++ library is a very popular,
+           widely used library of C++ classes. The qt function supports a lisp-aware subset 
+           of the available QT Classes. The return type of the function depends 
+           entirely on the arguments passed.</p>
+
+		<p>The QT C++ library supports a wide variety of useful C++ classes
+           for all types of applications. The qt function allows messages to be
+           sent to some of these QT C++ classes. The QT classes surfaced via the
+           qt function can be found in the 
+           <A HREF="Document_Lambda_QT.html"><FONT SIZE="3"COLOR="#0000FF"><B>QT Document</B></FONT></A>.</p>
+
+		<p>The qt function surfaces a set of useful QT C++ classes specially designed
+           to interface with Lisp. The qt function allows the Lisp programmer to send
+           messages to and from these C++ classes more or less directly. The messages
+           are always Symbols of some specific content (<i>the messages</i>), and the 
+           receivers of the messages are always these special <i>Lisp-aware</i> 
+           QT C++ classes.</p> 
+
+		<p>The qt function surfaces three static <i>Lisp-aware</i> QT C++ classes: 
+           <b>new</b>, <b>console</b>, and <b>mainWindow</b>. There is one and only
+           one instance of these static classes, so they must always be referenced by
+           their symbolic name. All other Lisp-aware QT C++ classes can have multiple
+           instances and must be referenced by their C++ object pointer.</p>
+   
+		<p>A complete list of the Lisp-aware QT C++ classes surfaced by the qt function
+           can be found in the 
+           <A HREF="Document_Lambda_QT.html"><FONT SIZE="3"COLOR="#0000FF"><B>QT Document</B></FONT></A>.
+           A brief list of a few of the available Lisp-aware QT C++ classes is as follows.</p>
+
+           <ul>
+             <li>new</li>
+             <li>console</li>
+             <li>mainWindow</li>
+             <li>RadObject</li>
+             <li>RadWidget</li>
+             <li>RadTabWidget</li>
+             <li>RadLabel</li>
+             <li>RadLineEdit</li>
+             <li>RadTextEdit</li>
+             <li>RadPushButton</li>
+             <li>RadVLayoutBox</li>
+             <li>RadHLayoutBox</li>
+             <li>RadDialog</li>
+             <li>RadCheckBox</li>
+             <li>RadComboBox</li>
+           </ul>
+
+		<p>The qt function always has a <b>receiver</b> followed by a <b>message</b>. The receiver is either
+           a Symbol, if one of the three static Lisp-aware classes, or a C++ object pointer for all other classes.
+           The remaining arguments to the qt function and the value returned by the qt function are entirely
+           dependent upon the receiver and the message.</p>  
+        </Overview>
+ <p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+             <p> The <b>qt</b> function is used to send messages to Lisp-aware QT C++ classes. 
+             </p>
+             <p>For instance the following Lisp code shows how to create a RadPushButton object, and
+                how to receive notification when the object's button is pushed.
+             </p> 
+			 <code>
+                (defun myButton(String:title) ;; Lisp function to make a button and permanently store the resulting C++ pointer<br>
+                &nbsp;&nbsp;pvars:(buttonPtr) ;; The C++ object pointer must be permanently stored as C++ does NOT suport garabge collection<br>
+                &nbsp;&nbsp;(defun press() (writeln "my button has been pressed"));; The RadPushButton object calls this function whenever its button is pressed<br>
+		 	    &nbsp;&nbsp;;; Create the RadPushButton C++ object and use myself as the Button's event manager.<br>
+		 	    &nbsp;&nbsp;(setq buttonPtr (qt new: RadPushButton: title (myself))) ;; Create the new button with the specified title and event manager<br>
+		 	    &nbsp;&nbsp;buttonPtr)<br>
+		 	    (myButton "Press Me") ;; Create a new QT RadPushButton object and store the C++ object pointer to the button<br>
+             </code>
+             <p>More comprehensive examples of the qt function usage can be found in the Tutorial_Console folder
+                in the Ais folder.</p>
+        </Usage>
+ 
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>(qt receiver message ...)</Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>receiver</b></td><td><FONT COLOR=blue><i>Symbol Pointer</i></FONT></td>
+<td>The QT class receiving the message (must be new, console, mainWindow, or a Pointer)</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>message</b></td><td><FONT COLOR=blue><i>Symbol</i></FONT></td>
+<td>The message sent to the QT Lisp-aware receiver class</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>...</b></td><td><FONT COLOR=blue><i>Word</i></FONT></td>
+<td>none or more argument depending upon the message and the QT Lisp-aware receiver class</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>The value returned is entirely dependent upon the message and the QT Lisp-aware receiver class</Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_Symbol.html">Symbol</A></td>
+<td><A HREF="Datatype_String.html">String</A></td>
+<td><A HREF="Datatype_Text.html">Text</A></td>
+<td><A HREF="Datatype_Integer.html">Integer</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Date.html">Date</A></td>
+<td><A HREF="Datatype_ByteVector.html">ByteVector</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_(sym)add1_Builtin.html">&#43&#43</A></td>
+<td><A HREF="Function_(sym)addValue_Builtin.html">&#43&#61</A></td>
+<td><A HREF="Function_(sym)add_Builtin.html">&#43</A></td>
+<td><A HREF="Function_(sym)divValue_Builtin.html">&#47&#61</A></td>
+</tr><tr>
+<td><A HREF="Function_(sym)div_Builtin.html">&#47</A></td>
+<td><A HREF="Function_(sym)mulValue_Builtin.html">&#42&#61</A></td>
+<td><A HREF="Function_(sym)mul_Builtin.html">&#42</A></td>
+<td><A HREF="Function_(sym)sub1_Builtin.html">&#45&#45</A></td>
+</tr><tr>
+<td><A HREF="Function_(sym)subValue_Builtin.html">&#45&#61</A></td>
+<td><A HREF="Function_(sym)sub_Builtin.html">&#45</A></td>
+<td><A HREF="Function_addi_Builtin.html">addi</A></td>
+<td><A HREF="Function_appendWriteln_Builtin.html">appendWriteln</A></td>
+</tr><tr>
+<td><A HREF="Function_append_Builtin.html">append</A></td>
+<td><A HREF="Function_apply_Builtin.html">apply</A></td>
+<td><A HREF="Function_avg_Builtin.html">avg</A></td>
+<td><A HREF="Function_badd_Builtin.html">badd</A></td>
+</tr><tr>
+<td><A HREF="Function_balance_Builtin.html">balance</A></td>
+<td><A HREF="Function_bdiv_Builtin.html">bdiv</A></td>
+<td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td>
+<td><A HREF="Function_binaryNand_Builtin.html">binaryNand</A></td>
+</tr><tr>
+<td><A HREF="Function_binaryNor_Builtin.html">binaryNor</A></td>
+<td><A HREF="Function_binaryNot_Builtin.html">binaryNot</A></td>
+<td><A HREF="Function_binaryNxor_Builtin.html">binaryNxor</A></td>
+<td><A HREF="Function_binarySearch_Builtin.html">binarySearch</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseAnd_Builtin.html">bitwiseAnd</A></td>
+<td><A HREF="Function_bitwiseNand_Builtin.html">bitwiseNand</A></td>
+<td><A HREF="Function_bitwiseNor_Builtin.html">bitwiseNor</A></td>
+<td><A HREF="Function_bitwiseNot_Builtin.html">bitwiseNot</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseNxor_Builtin.html">bitwiseNxor</A></td>
+<td><A HREF="Function_bitwiseOr_Builtin.html">bitwiseOr</A></td>
+<td><A HREF="Function_bitwiseShiftLeft_Builtin.html">bitwiseShiftLeft</A></td>
+<td><A HREF="Function_bitwiseShiftRight_Builtin.html">bitwiseShiftRight</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseXor_Builtin.html">bitwiseXor</A></td>
+<td><A HREF="Function_bmod_Builtin.html">bmod</A></td>
+<td><A HREF="Function_bmul_Builtin.html">bmul</A></td>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+</tr><tr>
+<td><A HREF="Function_cadd_Builtin.html">cadd</A></td>
+<td><A HREF="Function_cdiv_Builtin.html">cdiv</A></td>
+<td><A HREF="Function_cdr_Builtin.html">cdr</A></td>
+<td><A HREF="Function_char_Builtin.html">char</A></td>
+</tr><tr>
+<td><A HREF="Function_character_Builtin.html">character</A></td>
+<td><A HREF="Function_clean_Builtin.html">clean</A></td>
+<td><A HREF="Function_closeLog_Builtin.html">closeLog</A></td>
+<td><A HREF="Function_cmod_Builtin.html">cmod</A></td>
+</tr><tr>
+<td><A HREF="Function_cmul_Builtin.html">cmul</A></td>
+<td><A HREF="Function_code_Builtin.html">code</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+</tr><tr>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+</tr><tr>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+<td><A HREF="Function_compress_Builtin.html">compress</A></td>
+<td><A HREF="Function_cons_Builtin.html">cons</A></td>
+</tr><tr>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+<td><A HREF="Function_csub_Builtin.html">csub</A></td>
+<td><A HREF="Function_date_Builtin.html">date</A></td>
+<td><A HREF="Function_day_Builtin.html">day</A></td>
+</tr><tr>
+<td><A HREF="Function_days360_Builtin.html">days360</A></td>
+<td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td>
+<td><A HREF="Function_debugDetective_Builtin.html">debugDetective</A></td>
+<td><A HREF="Function_debugEval_Builtin.html">debugEval</A></td>
+</tr><tr>
+<td><A HREF="Function_debug_Builtin.html">debug</A></td>
+<td><A HREF="Function_decode_Builtin.html">decode</A></td>
+<td><A HREF="Function_defchild_Builtin.html">defchild</A></td>
+<td><A HREF="Function_defclass_Builtin.html">defclass</A></td>
+</tr><tr>
+<td><A HREF="Function_define(macro)_Builtin.html">define(macro)</A></td>
+<td><A HREF="Function_define_Builtin.html">define</A></td>
+<td><A HREF="Function_defmacro_Builtin.html">defmacro</A></td>
+<td><A HREF="Function_defmethod_Builtin.html">defmethod</A></td>
+</tr><tr>
+<td><A HREF="Function_deforphan_Builtin.html">deforphan</A></td>
+<td><A HREF="Function_defriend_Builtin.html">defriend</A></td>
+<td><A HREF="Function_defun_Builtin.html">defun</A></td>
+<td><A HREF="Function_deleteRows_Builtin.html">deleteRows</A></td>
+</tr><tr>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+<td><A HREF="Function_dimension_Builtin.html">dimension</A></td>
+<td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+</tr><tr>
+<td><A HREF="Function_divi_Builtin.html">divi</A></td>
+<td><A HREF="Function_downcase_Builtin.html">downcase</A></td>
+<td><A HREF="Function_encode_Builtin.html">encode</A></td>
+<td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td>
+</tr><tr>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+<td><A HREF="Function_fact_Builtin.html">fact</A></td>
+</tr><tr>
+<td><A HREF="Function_fdisplay_Builtin.html">fdisplay</A></td>
+<td><A HREF="Function_fileClose_Builtin.html">fileClose</A></td>
+<td><A HREF="Function_fileDir_Builtin.html">fileDir</A></td>
+<td><A HREF="Function_fileDisplay_Builtin.html">fileDisplay</A></td>
+</tr><tr>
+<td><A HREF="Function_fileEraseDir_Builtin.html">fileEraseDir</A></td>
+<td><A HREF="Function_fileErase_Builtin.html">fileErase</A></td>
+<td><A HREF="Function_fileExists_Builtin.html">fileExists</A></td>
+<td><A HREF="Function_fileMakeDir_Builtin.html">fileMakeDir</A></td>
+</tr><tr>
+<td><A HREF="Function_fileOpen_Builtin.html">fileOpen</A></td>
+<td><A HREF="Function_fileReadAll_Builtin.html">fileReadAll</A></td>
+<td><A HREF="Function_fileReadRecord_Builtin.html">fileReadRecord</A></td>
+<td><A HREF="Function_fileRead_Builtin.html">fileRead</A></td>
+</tr><tr>
+<td><A HREF="Function_fileResize_Builtin.html">fileResize</A></td>
+<td><A HREF="Function_fileSeek_Builtin.html">fileSeek</A></td>
+<td><A HREF="Function_fileWriteAll_Builtin.html">fileWriteAll</A></td>
+<td><A HREF="Function_fileWrite_Builtin.html">fileWrite</A></td>
+</tr><tr>
+<td><A HREF="Function_filewriteln_Builtin.html">filewriteln</A></td>
+<td><A HREF="Function_findBlock_Builtin.html">findBlock</A></td>
+<td><A HREF="Function_find_Builtin.html">find</A></td>
+<td><A HREF="Function_floor_Builtin.html">floor</A></td>
+</tr><tr>
+<td><A HREF="Function_fraction_Builtin.html">fraction</A></td>
+<td><A HREF="Function_freeBlock_Builtin.html">freeBlock</A></td>
+<td><A HREF="Function_gc_Builtin.html">gc</A></td>
+<td><A HREF="Function_gcd_Builtin.html">gcd</A></td>
+</tr><tr>
+<td><A HREF="Function_getGlobalValue_Builtin.html">getGlobalValue</A></td>
+<td><A HREF="Function_getRecursionCount_Builtin.html">getRecursionCount</A></td>
+<td><A HREF="Function_getSymbolTable_Builtin.html">getSymbolTable</A></td>
+<td><A HREF="Function_globalBinding_Builtin.html">globalBinding</A></td>
+</tr><tr>
+<td><A HREF="Function_hashString_Builtin.html">hashString</A></td>
+<td><A HREF="Function_hour_Builtin.html">hour</A></td>
+<td><A HREF="Function_iadd_Builtin.html">iadd</A></td>
+<td><A HREF="Function_icompareEQ_Builtin.html">icompareEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_icompareGE_Builtin.html">icompareGE</A></td>
+<td><A HREF="Function_icompareGT_Builtin.html">icompareGT</A></td>
+<td><A HREF="Function_icompareLE_Builtin.html">icompareLE</A></td>
+<td><A HREF="Function_icompareLT_Builtin.html">icompareLT</A></td>
+</tr><tr>
+<td><A HREF="Function_icompareNE_Builtin.html">icompareNE</A></td>
+<td><A HREF="Function_idiv_Builtin.html">idiv</A></td>
+<td><A HREF="Function_imod_Builtin.html">imod</A></td>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+</tr><tr>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+<td><A HREF="Function_imul_Builtin.html">imul</A></td>
+<td><A HREF="Function_insertRows_Builtin.html">insertRows</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert</A></td>
+</tr><tr>
+<td><A HREF="Function_inside_Builtin.html">inside</A></td>
+<td><A HREF="Function_inspect_Builtin.html">inspect</A></td>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+</tr><tr>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td>
+<td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td>
+<td><A HREF="Function_isBound_Builtin.html">isBound</A></td>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharAlphabetic_Builtin.html">isCharAlphabetic</A></td>
+<td><A HREF="Function_isCharAlphanumeric_Builtin.html">isCharAlphanumeric</A></td>
+<td><A HREF="Function_isCharLowercase_Builtin.html">isCharLowercase</A></td>
+<td><A HREF="Function_isCharName_Builtin.html">isCharName</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharNumeric_Builtin.html">isCharNumeric</A></td>
+<td><A HREF="Function_isCharUppercase_Builtin.html">isCharUppercase</A></td>
+<td><A HREF="Function_isCharWhitespace_Builtin.html">isCharWhitespace</A></td>
+<td><A HREF="Function_isChar_Builtin.html">isChar</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+<td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td>
+</tr><tr>
+<td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+<td><A HREF="Function_isEven_Builtin.html">isEven</A></td>
+</tr><tr>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+<td><A HREF="Function_isInside_Builtin.html">isInside</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+<td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td>
+<td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember</A></td>
+</tr><tr>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+<td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+</tr><tr>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td>
+</tr><tr>
+<td><A HREF="Function_isString_Builtin.html">isString</A></td>
+<td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td>
+<td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td>
+<td><A HREF="Function_isText_Builtin.html">isText</A></td>
+</tr><tr>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+<td><A HREF="Function_isVector_Builtin.html">isVector</A></td>
+<td><A HREF="Function_isub_Builtin.html">isub</A></td>
+<td><A HREF="Function_julian_Builtin.html">julian</A></td>
+</tr><tr>
+<td><A HREF="Function_kurtosis_Builtin.html">kurtosis</A></td>
+<td><A HREF="Function_lcm_Builtin.html">lcm</A></td>
+<td><A HREF="Function_left_Builtin.html">left</A></td>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+</tr><tr>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+<td><A HREF="Function_loadObject_Builtin.html">loadObject</A></td>
+<td><A HREF="Function_loadWorkspace_Builtin.html">loadWorkspace</A></td>
+<td><A HREF="Function_lock_Builtin.html">lock</A></td>
+</tr><tr>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_makeQuotedSymbol_Builtin.html">makeQuotedSymbol</A></td>
+<td><A HREF="Function_max_Builtin.html">max</A></td>
+</tr><tr>
+<td><A HREF="Function_median_Builtin.html">median</A></td>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+<td><A HREF="Function_methodsOf_Builtin.html">methodsOf</A></td>
+<td><A HREF="Function_mid_Builtin.html">mid</A></td>
+</tr><tr>
+<td><A HREF="Function_min_Builtin.html">min</A></td>
+<td><A HREF="Function_minute_Builtin.html">minute</A></td>
+<td><A HREF="Function_mod_Builtin.html">mod</A></td>
+<td><A HREF="Function_modi_Builtin.html">modi</A></td>
+</tr><tr>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+<td><A HREF="Function_month_Builtin.html">month</A></td>
+<td><A HREF="Function_muli_Builtin.html">muli</A></td>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+</tr><tr>
+<td><A HREF="Function_now_Builtin.html">now</A></td>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+<td><A HREF="Function_objectToMatrix_Builtin.html">objectToMatrix</A></td>
+<td><A HREF="Function_objectToNumMatrix_Builtin.html">objectToNumMatrix</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToNumVector_Builtin.html">objectToNumVector</A></td>
+<td><A HREF="Function_offset_Builtin.html">offset</A></td>
+<td><A HREF="Function_openLog_Builtin.html">openLog</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+</tr><tr>
+<td><A HREF="Function_parent_Builtin.html">parent</A></td>
+<td><A HREF="Function_parse_Builtin.html">parse</A></td>
+<td><A HREF="Function_pointer_Builtin.html">pointer</A></td>
+<td><A HREF="Function_preAllocateFixedMemoryBlocks_Builtin.html">preAllocateFixedMemoryBlocks</A></td>
+</tr><tr>
+<td><A HREF="Function_product_Builtin.html">product</A></td>
+<td><A HREF="Function_proplist_Builtin.html">proplist</A></td>
+<td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td>
+<td><A HREF="Function_putprop_Builtin.html">putprop</A></td>
+</tr><tr>
+<td><A HREF="Function_qt_Builtin.html">qt</A></td>
+<td><A HREF="Function_random_Builtin.html">random</A></td>
+<td><A HREF="Function_randomize_Builtin.html">randomize</A></td>
+<td><A HREF="Function_range_Builtin.html">range</A></td>
+</tr><tr>
+<td><A HREF="Function_rank_Builtin.html">rank</A></td>
+<td><A HREF="Function_refAttributes_Builtin.html">refAttributes</A></td>
+<td><A HREF="Function_refValues_Builtin.html">refValues</A></td>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+</tr><tr>
+<td><A HREF="Function_remProp_Builtin.html">remProp</A></td>
+<td><A HREF="Function_remove_Builtin.html">remove</A></td>
+<td><A HREF="Function_rename_Builtin.html">rename</A></td>
+<td><A HREF="Function_replace_Builtin.html">replace</A></td>
+</tr><tr>
+<td><A HREF="Function_rept_Builtin.html">rept</A></td>
+<td><A HREF="Function_resize_Builtin.html">resize</A></td>
+<td><A HREF="Function_right_Builtin.html">right</A></td>
+<td><A HREF="Function_round_Builtin.html">round</A></td>
+</tr><tr>
+<td><A HREF="Function_run_Builtin.html">run</A></td>
+<td><A HREF="Function_saveImmediate_Builtin.html">saveImmediate</A></td>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+<td><A HREF="Function_saveRepository_Builtin.html">saveRepository</A></td>
+</tr><tr>
+<td><A HREF="Function_saveWorkspace_Builtin.html">saveWorkspace</A></td>
+<td><A HREF="Function_second_Builtin.html">second</A></td>
+<td><A HREF="Function_setAttributes_Builtin.html">setAttributes</A></td>
+<td><A HREF="Function_setBlock_Builtin.html">setBlock</A></td>
+</tr><tr>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+<td><A HREF="Function_set_Builtin.html">set</A></td>
+</tr><tr>
+<td><A HREF="Function_setf_Builtin.html">setf</A></td>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_skew_Builtin.html">skew</A></td>
+</tr><tr>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+<td><A HREF="Function_sql_Builtin.html">sql</A></td>
+<td><A HREF="Function_sqrt_Builtin.html">sqrt</A></td>
+<td><A HREF="Function_srandom_Builtin.html">srandom</A></td>
+</tr><tr>
+<td><A HREF="Function_stdev_Builtin.html">stdev</A></td>
+<td><A HREF="Function_stdevp_Builtin.html">stdevp</A></td>
+<td><A HREF="Function_stringCiEQ_Builtin.html">stringCiEQ</A></td>
+<td><A HREF="Function_stringCiGE_Builtin.html">stringCiGE</A></td>
+</tr><tr>
+<td><A HREF="Function_stringCiGT_Builtin.html">stringCiGT</A></td>
+<td><A HREF="Function_stringCiLE_Builtin.html">stringCiLE</A></td>
+<td><A HREF="Function_stringCiLT_Builtin.html">stringCiLT</A></td>
+<td><A HREF="Function_stringCiNE_Builtin.html">stringCiNE</A></td>
+</tr><tr>
+<td><A HREF="Function_stringFill_Builtin.html">stringFill</A></td>
+<td><A HREF="Function_stringToBVector_Builtin.html">stringToBVector</A></td>
+<td><A HREF="Function_stringToVector_Builtin.html">stringToVector</A></td>
+<td><A HREF="Function_string_Builtin.html">string</A></td>
+</tr><tr>
+<td><A HREF="Function_subi_Builtin.html">subi</A></td>
+<td><A HREF="Function_submit_Builtin.html">submit</A></td>
+<td><A HREF="Function_substitute_Builtin.html">substitute</A></td>
+<td><A HREF="Function_substringCiEQ_Builtin.html">substringCiEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiGE_Builtin.html">substringCiGE</A></td>
+<td><A HREF="Function_substringCiGT_Builtin.html">substringCiGT</A></td>
+<td><A HREF="Function_substringCiLE_Builtin.html">substringCiLE</A></td>
+<td><A HREF="Function_substringCiLT_Builtin.html">substringCiLT</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiNE_Builtin.html">substringCiNE</A></td>
+<td><A HREF="Function_substringEQ_Builtin.html">substringEQ</A></td>
+<td><A HREF="Function_substringFill_Builtin.html">substringFill</A></td>
+<td><A HREF="Function_substringGE_Builtin.html">substringGE</A></td>
+</tr><tr>
+<td><A HREF="Function_substringGT_Builtin.html">substringGT</A></td>
+<td><A HREF="Function_substringLE_Builtin.html">substringLE</A></td>
+<td><A HREF="Function_substringLT_Builtin.html">substringLT</A></td>
+<td><A HREF="Function_substringNE_Builtin.html">substringNE</A></td>
+</tr><tr>
+<td><A HREF="Function_substring_Builtin.html">substring</A></td>
+<td><A HREF="Function_sum_Builtin.html">sum</A></td>
+<td><A HREF="Function_sumsqr_Builtin.html">sumsqr</A></td>
+<td><A HREF="Function_svmRegression_Builtin.html">svmRegression</A></td>
+</tr><tr>
+<td><A HREF="Function_symbolToTypeCode_Builtin.html">symbolToTypeCode</A></td>
+<td><A HREF="Function_symbol_Builtin.html">symbol</A></td>
+<td><A HREF="Function_system_Builtin.html">system</A></td>
+<td><A HREF="Function_text_Builtin.html">text</A></td>
+</tr><tr>
+<td><A HREF="Function_time_Builtin.html">time</A></td>
+<td><A HREF="Function_today_Builtin.html">today</A></td>
+<td><A HREF="Function_trim_Builtin.html">trim</A></td>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+</tr><tr>
+<td><A HREF="Function_uncompress_Builtin.html">uncompress</A></td>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td>
+<td><A HREF="Function_upcase_Builtin.html">upcase</A></td>
+<td><A HREF="Function_var_Builtin.html">var</A></td>
+</tr><tr>
+<td><A HREF="Function_varp_Builtin.html">varp</A></td>
+<td><A HREF="Function_vectorBinaryInnerProduct_Builtin.html">vectorBinaryInnerProduct</A></td>
+<td><A HREF="Function_vectorBipolarInnerProduct_Builtin.html">vectorBipolarInnerProduct</A></td>
+<td><A HREF="Function_vectorCosineInnerProduct_Builtin.html">vectorCosineInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorCubeInnerProduct_Builtin.html">vectorCubeInnerProduct</A></td>
+<td><A HREF="Function_vectorDelete_Builtin.html">vectorDelete</A></td>
+<td><A HREF="Function_vectorExpInnerProduct_Builtin.html">vectorExpInnerProduct</A></td>
+<td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorInnerProduct_Builtin.html">vectorInnerProduct</A></td>
+<td><A HREF="Function_vectorLogInnerProduct_Builtin.html">vectorLogInnerProduct</A></td>
+<td><A HREF="Function_vectorQuartInnerProduct_Builtin.html">vectorQuartInnerProduct</A></td>
+<td><A HREF="Function_vectorQuintInnerProduct_Builtin.html">vectorQuintInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorSigmoidInnerProduct_Builtin.html">vectorSigmoidInnerProduct</A></td>
+<td><A HREF="Function_vectorSineInnerProduct_Builtin.html">vectorSineInnerProduct</A></td>
+<td><A HREF="Function_vectorSquareInnerProduct_Builtin.html">vectorSquareInnerProduct</A></td>
+<td><A HREF="Function_vectorTanInnerProduct_Builtin.html">vectorTanInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorTanhInnerProduct_Builtin.html">vectorTanhInnerProduct</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+<td><A HREF="Function_year_Builtin.html">year</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

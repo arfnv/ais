@@ -1,0 +1,215 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Brick cdr 010</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> <p>These examples show the <b>cdr</b> function retrieve the cdr
+                   value in the Brick. </p>
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define nameList  (new Brick: 1 Name:Object:3)) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Brick 123456&#62  </Returns></b></td></tr>
+</table><p><Note>This sets the cdr value.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setCdr  nameList  "This is a note")      </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Brick 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Retrieves the cdr value.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(cdr nameList)   </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>This is a note </Returns></b></td></tr>
+</table><p><Note>Retrieves the cdr value.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(length nameList) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>The cdr value is not accessible by the length function. </Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>The <b>cdr</b> is not reachable by the dot or bracket operators.</p></Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>cdr</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_cdr_010.html">BitVector cdr 010</A></td>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_CpxVector_cdr_011.html">CpxVector cdr 011</A></td>
+<td><A HREF="Example_Dictionary_cdr_003.html">Dictionary cdr 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_cdr_004.html">Directory cdr 004</A></td>
+<td><A HREF="Example_FltVector_cdr_006.html">FltVector cdr 006</A></td>
+<td><A HREF="Example_IntVector_cdr_007.html">IntVector cdr 007</A></td>
+<td><A HREF="Example_List_cdr_009.html">List cdr 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_cdr_007.html">Matrix cdr 007</A></td>
+<td><A HREF="Example_Matrix_cdr_008.html">Matrix cdr 008</A></td>
+<td><A HREF="Example_NumMatrix_cdr_011.html">NumMatrix cdr 011</A></td>
+<td><A HREF="Example_NumVector_cdr_008.html">NumVector cdr 008</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_cdr_009.html">ObjVector cdr 009</A></td>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_Structure_cdr_001.html">Structure cdr 001</A></td>
+<td><A HREF="Example_Structure_cdr_002.html">Structure cdr 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_cdr_005.html">Vector cdr 005</A></td>
+<td><A HREF="Example_Vector_cdr_006.html">Vector cdr 006</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_cdr_Builtin.html">cdr</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Brick.html">Brick</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Brick compare 019</A></td>
+<td><A HREF="Example_Brick_compareEQ_019.html">Brick compareEQ 019</A></td>
+<td><A HREF="Example_Brick_compareGT_019.html">Brick compareGT 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_compareLE_019.html">Brick compareLE 019</A></td>
+<td><A HREF="Example_Brick_compareLT_019.html">Brick compareLT 019</A></td>
+<td><A HREF="Example_Brick_compareNE_019.html">Brick compareNE 019</A></td>
+<td><A HREF="Example_Brick_comparison_019.html">Brick comparison 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_copy_012.html">Brick copy 012</A></td>
+<td><A HREF="Example_Brick_isAtom_011.html">Brick isAtom 011</A></td>
+<td><A HREF="Example_Brick_isEqual_018.html">Brick isEqual 018</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Brick isIdentical 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_isObject_014.html">Brick isObject 014</A></td>
+<td><A HREF="Example_Brick_isType_022.html">Brick isType 022</A></td>
+<td><A HREF="Example_Brick_length_017.html">Brick length 017</A></td>
+<td><A HREF="Example_Brick_new_015.html">Brick new 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_ref_036.html">Brick ref 036</A></td>
+<td><A HREF="Example_Brick_setCdr_014.html">Brick setCdr 014</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_sizeof_029.html">Brick sizeof 029</A></td>
+<td><A HREF="Example_Brick_type_026.html">Brick type 026</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

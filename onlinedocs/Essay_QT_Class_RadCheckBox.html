@@ -1,0 +1,293 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Class RadCheckBox</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sdelete"><FONT SIZE=2>delete</font></a></li><li><a href="#SgetCheckState"><FONT SIZE=2>getCheckState</font></a></li><li><a href="#SsetCheckState"><FONT SIZE=2>setCheckState</font></a></li><li><a href="#SgetText"><FONT SIZE=2>getText</font></a></li><li><a href="#SsetText"><FONT SIZE=2>setText</font></a></li><li><a href="#SsetMgr"><FONT SIZE=2>setMgr</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+        <div class="h2section" id="Overview">
+
+        <p>The <b>RadCheckBox</b> class inherits from the QCheckBox class.</p>
+        <p>The QCheckBox widget provides a checkbox with a text label.</p>
+        <p>A QCheckBox is an option button that can be switched on (checked) or off (unchecked). 
+           Checkboxes are typically used to represent features in an application that can be enabled or disabled without affecting others, 
+           but different types of behavior can be implemented. For example, a QButtonGroup can be used to group check buttons logically, 
+           allowing exclusive checkboxes. However, QButtonGroup does not provide any visual representation.
+        </p>
+
+        <p><font color='red'>...under construction...</font> 
+        <ul>
+          <li>Source code complete</li>
+          <li>Documentation not yet started</li>          
+          <li>See source code for detailed information</li>
+        </ul> 
+        </p>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>        
+        <div class="h2section" id="new">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>new</b> function creates a new RadCheckBox object and returns a pointer to the newly created object.
+        The RadCheckBox is one of the class key words accepted by the <b>qt</b> new: function.
+        There can be many RadCheckBox objects.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt new: RadCheckBox: checkboxlabel CheckBoxMgr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>checkboxlabel</b></td><td>A string describing the checkbox.</td></tr>
+        <tr><td><b>CheckBoxMgr</b></td><td>The checkbox manager lambda to manage the RadCheckBox object.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns a pointer to the newly created RadCheckBox object.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun tabMgr(...) true)                                                          ;; Perform noop tab managment<br>
+        (defun checkBoxCAPSMgr(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "caps")                                      ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "CAPS")                                      ;; Perform  CAPS checkbox requests<br>
+              )                                                                           ;; Perform  CAPS checkbox requests<br>
+           true)                                                                          ;; Perform  CAPS checkbox requests<br>
+        ;; <br>
+        (qt mainWindow: setTitle: (append "My QT CheckBox Demo"))                         ;; Set the main window title<br>
+        (setq radCheckBoxCAPPtr (qt new: RadCheckBox: "caps" checkBoxCAPSMgr))            ;; Create a new RadCheckBox object labeled "CAPS"<br>
+        (setq tabIndex (qt mainWindow: addTab: radCheckBoxCAPPtr "CheckBox" tabMgr))      ;; Add a new checkbox to the main window<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdelete"></A>delete</H2></P>        
+        <div class="h2section" id="delete">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>delete</b> function destroys a RadCheckBox object and returns a null pointer.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt delete: RadCheckBoxPtr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>radCheckBoxPtr</b></td><td>The pointer to the RadCheckBox object to be destroyed.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns a null pointer.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (setq radCheckBoxPtr (qt new: RadCheckBox: "BLUE" Bluetextmgr)) ;; Create a RadCheckBox object.<br>
+        (setq radCheckBoxPtr (qt delete: radCheckBoxPtr))               ;; Destroy the RadCheckBox object.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetCheckState"></A>getCheckState</H2></P>        
+        <div class="h2section" id="getCheckState">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadCheckBox <b>getCheckState</b> function returns the state of the checkbox. It can either be unchecked (0), partially checked (1), or checked (2).
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myCheckState (qt radCheckBoxPtr getCheckState:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myCheckState</b></td><td>Returns 0 if unchecked, Returns 1 if partially checked or Returns 2 if checked.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun tabMgr(...) true)                                                          ;; Perform nothing if Tab is clicked -- tab managment<br>
+        (defun checkBoxCAPSMgr(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "caps")                                      ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "CAPS")                                      ;; Perform  CAPS checkbox requests<br>
+              )                                                                           ;; Perform  CAPS checkbox requests<br>
+           true)                                                                          ;; Perform  CAPS checkbox requests<br>
+        ;; <br>
+        (qt mainWindow: setTitle: (append "My QT CheckBox Demo"))                         ;; Set the main window title<br>
+        (setq radCheckBoxCAPPtr (qt new: RadCheckBox: "caps" checkBoxCAPSMgr))            ;; Create a new RadCheckBox object labeled "caps"<br>
+        (setq tabIndex (qt mainWindow: addTab: radCheckBoxCAPPtr "CheckBox" tabMgr))      ;; Add a new checkbox to the main window<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetCheckState"></A>setCheckState</H2></P>        
+        <div class="h2section" id="setCheckState">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadCheckBox <b>setCheckState</b> function sets the state of the checkbox. It can either be set to unchecked (0), partially checked (1), or checked (2).
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radCheckBoxPtr setCheckState: state)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>state</b></td><td>The state can either be a 0 to indicate unchecked or 1 to indicate partially checked or 2 to indicate checked.</td></tr>
+        <tr><td><b>true</b></td><td>Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun tabMgr(...) true)                                                          ;; Perform nothing if Tab is clicked -- tab managment<br>
+        (defun checkBoxCAPSMgr(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "caps")                                      ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "CAPS")                                      ;; Perform  CAPS checkbox requests<br>
+              )                                                                           ;; Perform  CAPS checkbox requests<br>
+           true)                                                                          ;; Perform  CAPS checkbox requests<br>
+        ;; <br>
+        (qt mainWindow: setTitle: (append "My QT CheckBox Demo"))                         ;; Set the main window title<br>
+        (setq radCheckBoxCAPPtr (qt new: RadCheckBox: "caps" checkBoxCAPSMgr))            ;; Create a new RadCheckBox object labeled "caps"<br>
+        (setq tabIndex (qt mainWindow: addTab: radCheckBoxCAPPtr "CheckBox" tabMgr))      ;; Add a new checkbox to the main window<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        (sleep 10000.0)                                                                   ;; Wait<br>
+        (qt radCheckBoxCAPPtr setCheckState: 2)                                           ;; Set the checkbox labeled "CAPS" to "checked" 
+        (checkBoxCAPSMgr)                                                                 ;; Set the checkbox labeled "CAPS" to "checked" 
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetText"></A>getText</H2></P>        
+        <div class="h2section" id="getText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadCheckBox <b>setText</b> function gets the text contents of the display pane next to the checkbox.
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myTextPtr (qt radCheckBoxPtr getText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myTextPtr</b></td><td> Always returns check box text pointer </td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun tabMgr(...) true)                                                          ;; Perform nothing if Tab is clicked -- tab management<br>
+        (defun checkBoxCAPSMgr(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; If checkbox is unchecked, then leave as is <br>
+              (qt radCheckBoxCAPPtr setText: "caps")                                      ;; leave the checkbox label as is "caps" <br>
+              (qt radCheckBoxCAPPtr setText: "CAPS")                                      ;; else change the checkbox label to "CAPS: <br>
+              )                                                                           ;; <br>
+           true)                                                                          ;; Return true<br>
+        ;; <br>
+        (qt mainWindow: setTitle: (append "My QT CheckBox Demo"))                         ;; Set the main window title<br>
+        (setq radCheckBoxCAPPtr (qt new: RadCheckBox: "Original" checkBoxCAPSMgr))        ;; Create a new RadCheckBox object labeled "original"<br>
+        (setq tabIndex (qt mainWindow: addTab: radCheckBoxCAPPtr "CheckBox" tabMgr))      ;; Add a new checkbox to the main window labeled "original"<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        (sleep 10000.0)                                                                   ;; Wait<br>
+        (setq myText (qt radCheckBoxCAPPtr getText:))                                     ;; get the checkbox label 
+        (qt radCheckBoxCAPPtr setCheckState: (integer (= myText "Original")))             ;; get the checkbox label 
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetText"></A>setText</H2></P>        
+        <div class="h2section" id="setText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadCheckBox <b>setText</b> function sets a descriptive Text next to the checkbox.
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radCheckBoxPtr setText: text)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>text</b></td><td> A string describing the checkbox</td></tr>
+        <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun tabMgr(...) true)                                                          ;; Perform nothing if Tab is clicked -- tab managment<br>
+        (defun checkBoxCAPSMgr(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "caps")                                      ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "CAPS")                                      ;; Perform  CAPS checkbox requests<br>
+              )                                                                           ;; Perform  CAPS checkbox requests<br>
+           true)                                                                          ;; Perform  CAPS checkbox requests<br>
+        ;; <br>
+        (qt mainWindow: setTitle: (append "My QT CheckBox Demo"))                         ;; Set the main window title<br>
+        (setq radCheckBoxCAPPtr (qt new: RadCheckBox: "caps" checkBoxCAPSMgr))            ;; Create a new RadCheckBox object labeled "caps"<br>
+        (setq tabIndex (qt mainWindow: addTab: radCheckBoxCAPPtr "CheckBox" tabMgr))      ;; Add a new checkbox to the main window<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        (sleep 10000.0)                                                                   ;; Wait<br>
+        (qt radCheckBoxCAPPtr setCheckState: 2)                                           ;; Set the checkbox labeled "CAPS" to "checked" 
+        (checkBoxCAPSMgr)                                                                 ;; Set the checkbox labeled "CAPS" to "checked" 
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetMgr"></A>setMgr</H2></P>        
+        <div class="h2section" id="setMgr">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadCheckBox <b>setMgr</b> function sets a lisp function name to manage the behavior of a checked box.
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt setMgr: mgrLambda)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>mgrLambda</b></td><td> A name of a lambda function</td></tr>
+        <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun tabMgr(...) true)                                                          ;; Perform nothing if Tab is clicked -- tab managment<br>
+        (defun checkBoxCAPSMgr(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "caps")                                      ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "CAPS")                                      ;; Perform  CAPS checkbox requests<br>
+              )                                                                           ;; Perform  CAPS checkbox requests<br>
+           true)                                                                          ;; Perform  CAPS checkbox requests<br>
+        ;; <br>
+        (qt mainWindow: setTitle: (append "My QT CheckBox Demo"))                         ;; Set the main window title<br>
+        (setq radCheckBoxCAPPtr (qt new: RadCheckBox: "caps" checkBoxCAPSMgr))            ;; Create a new RadCheckBox object labeled "caps"<br>
+        (setq tabIndex (qt mainWindow: addTab: radCheckBoxCAPPtr "CheckBox" tabMgr))      ;; Add a new checkbox to the main window<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        (sleep 10000.0)                                                                   ;; Wait<br>
+        ;; <br>
+        (defun checkBoxCAPSMgr2(...)                                                       ;; Perform  CAPS checkbox requests<br>
+          (if (= (qt radCheckBoxCAPPtr getCheckState:) 0)                                 ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "new mgr")                                      ;; Perform  CAPS checkbox requests<br>
+              (qt radCheckBoxCAPPtr setText: "NEW MGR")                                      ;; Perform  CAPS checkbox requests<br>
+              )                                                                           ;; Perform  CAPS checkbox requests<br>
+           true)                                                                          ;; Perform  CAPS checkbox requests<br>
+        ;; <br>
+        (qt radCheckBoxCAPPtr setMgr: checkBoxCAPSMgr2)                                   ;; Set the checkbox labeled "CAPS" to "checked" 
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

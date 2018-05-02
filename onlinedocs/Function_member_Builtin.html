@@ -1,0 +1,976 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>member</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+      
+		<p>The <b>member</b> function searches the Vector argument <b>{vector}</b>  for the match of 
+           the search object argument <b>{obj}</b> and returns  the index  where <b>{obj}</b> 
+           was found. If the <b>{obj}</b> was not found, false is returned. The <b>member</b> 
+           function uses the <b>isEqual</b> predicate.   </p>
+        
+    <h3>Structure</h3>
+
+		<p> The <b>member</b> function takes a key as an argument and a Structure as a second argument and returns the index where the key was found.  If the key was not found, 
+            the <b>member</b> function returns false. The <b>member</b>
+            function uses the <b>isEqual</b> predicate.      </p>
+        
+    <h3>Dictionary</h3>
+
+		<p> The <b>member</b> function takes a key as an argument and a Dictionary   as a second argument and returns the index where the key was found.  If the key was not found, 
+            the <b>member</b> function returns false. The <b>member</b> 
+            function uses the <b>isEqual</b> predicate.      </p>
+        
+    <h3>Directory</h3>
+
+		<p> The <b>member</b> function takes a key as an argument and a  
+            Directory  as a second argument and returns the index where the key was found.  If the key was not found, 
+            the <b>member</b> function returns false. The <b>member</b> 
+            function uses the <b>isEqual</b> predicate.      </p>
+        
+    <h3>Matrix</h3>
+
+		<p> The <b>member</b> function searches the Matrix argument <b>{Matrix}</b>  for the match of 
+           the search object argument <b>{obj}</b> and returns  the index  where <b>{obj}</b> 
+           was found. If the <b>{obj}</b> was not found, false is returned. The <b>member</b> 
+           function uses the <b>isEqual</b> predicate.
+        </p>
+        
+    <h3>NumMatrix</h3>
+
+		<p> The <b>member</b> function searches the NumMatrix argument <b>{NumMatrix}</b>  for the match of 
+           the search object argument <b>{obj}</b> and returns  the index  where <b>{obj}</b> 
+           was found. If the <b>{obj}</b> was not found, false is returned. The <b>member</b> 
+           function uses the <b>isEqual</b> predicate.
+        </p>
+        
+    <h3>List</h3>
+
+		<p> The <b>member</b> function searches the List argument <b>{list}</b>  for the match of 
+           the search object argument <b>{obj}</b> and returns  the index  where <b>{obj}</b> 
+           was found. If the <b>{obj}</b> was not found, false is returned. The <b>member</b> 
+           function uses the <b>isEqual</b> predicate.
+        </p>
+        
+    </Overview>
+ <p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+      
+        <p>Use the <b>member</b> function if you want to locate the position of a certain member 
+           (object) in a Vector.  If you just want to know if a member is in the Vector but 
+           do not care where it is located if it is found, use the <b>isMember</b> function, 
+            which returns a Boolean true or false.
+        </p>
+        
+          <h3>Structure</h3>
+
+        <p>Use the <b>member</b> function if you want to locate the position of a certain member 
+           (key) in a Structure object.  If you just want to know if a member is 
+             in the Structure but 
+           do not care where it is located if it is found, use the <b>isMember</b> function, 
+            which returns a Boolean true or false.
+        </p>
+        
+          <h3>Dictionary</h3>
+
+        <p>Use the <b>member</b> function if you want to locate the position of a certain member 
+           (key) in a Dictionary object.  If you just want to know if a member is 
+             in the Dictionary but 
+           do not care where it is located if it is found, use the <b>isMember</b> function, 
+            which returns a Boolean true or false.
+        </p>
+        
+          <h3>Directory</h3>
+
+        <p>Use the <b>member</b> function if you want to locate the position of a certain member 
+           (key) in a Directory object.  If you just want to know if a member is 
+             in the Directory but 
+           do not care where it is located if it is found, use the <b>isMember</b> function, 
+            which returns a Boolean true or false.
+        </p>
+        
+          <h3>Matrix</h3>
+
+        <p>Use the <b>member</b> function if you want to locate the position of a certain member 
+           (object) in a Matrix.  If you just want to know if a member is in the Matrix but 
+           do not care where it is located if it is found, use the <b>isMember</b> function, 
+            which returns a Boolean true or false.
+        </p>
+        
+          <h3>NumMatrix</h3>
+
+        <p>Use the <b>member</b> function if you want to locate the position of a certain member 
+           (object) in a NumMatrix.  If you just want to know if a member is in the NumMatrix but 
+           do not care where it is located if it is found, use the <b>isMember</b> function, 
+            which returns a Boolean true or false.
+        </p>
+        
+          <h3>List</h3>
+
+        <p>The <b>member</b> function is used to find an object <b>{obj}</b> in a List <b>{list}</b>. 
+           Since the <b>member</b> function returns the location of the <b>{obj}</b>, 
+           the <b>member</b> function makes it convenient to perform some operation on the <b>{obj}</b> .  
+           An alternate function, the <b>isMember</b> function, is used when a Boolean value of 
+           either true or false is sufficient.
+        </p>
+        
+    </Usage>
+ 
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member obj vector) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>obj</b></td><td><FONT COLOR=blue><i>Character String Symbol Vector BitVector ByteVector IntVector
+                       FltVector ObjVector Structure Dictionary Directory
+                       Matrix NumMatrix Integer Float Number Complex Boolean</i></FONT></td>
+<td>The object you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>vector</b></td><td><FONT COLOR=blue><i>Vector ShortVector  NumVector ObjVector  BitVector</i></FONT></td>
+<td>The vector to be searched</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>Returns the index of the member if it is found, otherwise it returns false.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member key  struct) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>key</b></td><td><FONT COLOR=blue><i>Symbol</i></FONT></td>
+<td>The key(member) you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>struct</b></td><td><FONT COLOR=blue><i>Structure </i></FONT></td>
+<td>The target structure. </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+      
+	    <p>Returns the index of the member if it is found, otherwise it returns false.
+
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member key  dictionary) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>key</b></td><td><FONT COLOR=blue><i>Symbol</i></FONT></td>
+<td>The key(member) you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>dictionary</b></td><td><FONT COLOR=blue><i>Dictionary </i></FONT></td>
+<td>The target dictionary. </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>Returns the index of the member if it is found, otherwise it returns false.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member key  directory) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>key</b></td><td><FONT COLOR=blue><i>Symbol</i></FONT></td>
+<td>The key(member) you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>directory</b></td><td><FONT COLOR=blue><i>Directory </i></FONT></td>
+<td>The target directory. </td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>Returns the index of the member if it is found, otherwise it returns false.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member obj matrix) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>obj</b></td><td><FONT COLOR=blue><i>Character String Symbol Vector BitVector ByteVector IntVector
+                       FltVector ObjVector Structure Dictionary Directory
+                       Matrix NumMatrix Integer Float Number Complex Boolean</i></FONT></td>
+<td>The object you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>matrix</b></td><td><FONT COLOR=blue><i>Matrix </i></FONT></td>
+<td>The matrix to be searched</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>Returns false if the object is not present. Returns an integer representing the index 
+           into the Matrix where the object was found.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member obj nummatrix) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>obj</b></td><td><FONT COLOR=blue><i>Character String Symbol Vector BitVector ByteVector IntVector
+                       FltVector ObjVector Structure Dictionary Directory
+                       Matrix NumMatrix Integer Float Number Complex Boolean</i></FONT></td>
+<td>The object you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>nummatrix</b></td><td><FONT COLOR=blue><i>NumMatrix </i></FONT></td>
+<td>The nummatrix to be searched</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>Returns false if the object is not present. Returns an integer representing the index 
+           into the NumMatrix where the object was found.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+<hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression>
+      <p>    (member obj list) </p>
+    </Expression>
+ </b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>obj</b></td><td><FONT COLOR=blue><i>Character String Symbol Vector BitVector ByteVector IntVector
+                       FltVector ObjVector Structure Dictionary Directory
+                       Matrix NumMatrix Integer Float Number Complex Boolean</i></FONT></td>
+<td>The object you wish to locate.</td></tr><tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>list</b></td><td><FONT COLOR=blue><i>List </i></FONT></td>
+<td>The List to be searched</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+       
+	    <p>Returns false if the object is not present. Returns an integer representing the index 
+           into the List where the object was found.
+        </p>
+	    
+    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_Structure.html">Structure</A></td>
+<td><A HREF="Datatype_DictionaryDirectory.html">DictionaryDirectory</A></td>
+<td><A HREF="Datatype_Boolean.html">Boolean</A></td>
+<td><A HREF="Datatype_Integer.html">Integer</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Structure.html">Structure</A></td>
+<td><A HREF="Datatype_Dictionary.html">Dictionary</A></td>
+<td><A HREF="Datatype_Directory.html">Directory</A></td>
+<td><A HREF="Datatype_Boolean.html">Boolean</A></td>
+</tr><tr>
+<td><A HREF="Datatype_IntegerStructure.html">IntegerStructure</A></td>
+<td><A HREF="Datatype_Dictionary.html">Dictionary</A></td>
+<td><A HREF="Datatype_Directory.html">Directory</A></td>
+<td><A HREF="Datatype_Boolean.html">Boolean</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Integer.html">Integer</A></td>
+<td><A HREF="Datatype_Character.html">Character</A></td>
+<td><A HREF="Datatype_String.html">String</A></td>
+<td><A HREF="Datatype_Symbol.html">Symbol</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Vector.html">Vector</A></td>
+<td><A HREF="Datatype_BitVector.html">BitVector</A></td>
+<td><A HREF="Datatype_ByteVector.html">ByteVector</A></td>
+<td><A HREF="Datatype_IntVector.html">IntVector</A></td>
+</tr><tr>
+<td><A HREF="Datatype_ShortVector.html">ShortVector</A></td>
+<td><A HREF="Datatype_FltVector.html">FltVector</A></td>
+<td><A HREF="Datatype_ObjVector.html">ObjVector</A></td>
+<td><A HREF="Datatype_Structure.html">Structure</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Dictionary.html">Dictionary</A></td>
+<td><A HREF="Datatype_Directory.html">Directory</A></td>
+<td><A HREF="Datatype_Pair.html">Pair</A></td>
+<td><A HREF="Datatype_List.html">List</A></td>
+</tr><tr>
+<td><A HREF="Datatype_NumMatrix.html">NumMatrix</A></td>
+<td><A HREF="Datatype_Matrix.html">Matrix</A></td>
+<td><A HREF="Datatype_NumMatrix.html">NumMatrix</A></td>
+<td><A HREF="Datatype_Integer.html">Integer</A></td>
+</tr><tr>
+<td><A HREF="Datatype_Float.html">Float</A></td>
+<td><A HREF="Datatype_Number.html">Number</A></td>
+<td><A HREF="Datatype_Complex.html">Complex</A></td>
+<td><A HREF="Datatype_Boolean.html">Boolean</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_(sym)add1_Builtin.html">&#43&#43</A></td>
+<td><A HREF="Function_(sym)addValue_Builtin.html">&#43&#61</A></td>
+<td><A HREF="Function_(sym)add_Builtin.html">&#43</A></td>
+<td><A HREF="Function_(sym)divValue_Builtin.html">&#47&#61</A></td>
+</tr><tr>
+<td><A HREF="Function_(sym)div_Builtin.html">&#47</A></td>
+<td><A HREF="Function_(sym)mulValue_Builtin.html">&#42&#61</A></td>
+<td><A HREF="Function_(sym)mul_Builtin.html">&#42</A></td>
+<td><A HREF="Function_(sym)sub1_Builtin.html">&#45&#45</A></td>
+</tr><tr>
+<td><A HREF="Function_(sym)subValue_Builtin.html">&#45&#61</A></td>
+<td><A HREF="Function_(sym)sub_Builtin.html">&#45</A></td>
+<td><A HREF="Function_abortTransaction_Builtin.html">abortTransaction</A></td>
+<td><A HREF="Function_abs_Builtin.html">abs</A></td>
+</tr><tr>
+<td><A HREF="Function_acos_Builtin.html">acos</A></td>
+<td><A HREF="Function_add1_Builtin.html">add1</A></td>
+<td><A HREF="Function_addi_Builtin.html">addi</A></td>
+<td><A HREF="Function_appendWriteln_Builtin.html">appendWriteln</A></td>
+</tr><tr>
+<td><A HREF="Function_append_Builtin.html">append</A></td>
+<td><A HREF="Function_apply_Builtin.html">apply</A></td>
+<td><A HREF="Function_argument_Builtin.html">argument</A></td>
+<td><A HREF="Function_arithmetic_Builtin.html">arithmetic</A></td>
+</tr><tr>
+<td><A HREF="Function_asin_Builtin.html">asin</A></td>
+<td><A HREF="Function_associate_Builtin.html">associate</A></td>
+<td><A HREF="Function_atan_Builtin.html">atan</A></td>
+<td><A HREF="Function_avg_Builtin.html">avg</A></td>
+</tr><tr>
+<td><A HREF="Function_badd_Builtin.html">badd</A></td>
+<td><A HREF="Function_balance_Builtin.html">balance</A></td>
+<td><A HREF="Function_bcompareEQ_Builtin.html">bcompareEQ</A></td>
+<td><A HREF="Function_bcompareGE_Builtin.html">bcompareGE</A></td>
+</tr><tr>
+<td><A HREF="Function_bcompareGT_Builtin.html">bcompareGT</A></td>
+<td><A HREF="Function_bcompareLE_Builtin.html">bcompareLE</A></td>
+<td><A HREF="Function_bcompareLT_Builtin.html">bcompareLT</A></td>
+<td><A HREF="Function_bcompareNE_Builtin.html">bcompareNE</A></td>
+</tr><tr>
+<td><A HREF="Function_bdiv_Builtin.html">bdiv</A></td>
+<td><A HREF="Function_beginTransaction_Builtin.html">beginTransaction</A></td>
+<td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td>
+<td><A HREF="Function_binaryNand_Builtin.html">binaryNand</A></td>
+</tr><tr>
+<td><A HREF="Function_binaryNor_Builtin.html">binaryNor</A></td>
+<td><A HREF="Function_binaryNot_Builtin.html">binaryNot</A></td>
+<td><A HREF="Function_binaryNxor_Builtin.html">binaryNxor</A></td>
+<td><A HREF="Function_binarySearch_Builtin.html">binarySearch</A></td>
+</tr><tr>
+<td><A HREF="Function_bitToIntegerVector_Builtin.html">bitToIntegerVector</A></td>
+<td><A HREF="Function_bitToNumberVector_Builtin.html">bitToNumberVector</A></td>
+<td><A HREF="Function_bitwiseAnd_Builtin.html">bitwiseAnd</A></td>
+<td><A HREF="Function_bitwiseNand_Builtin.html">bitwiseNand</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseNor_Builtin.html">bitwiseNor</A></td>
+<td><A HREF="Function_bitwiseNot_Builtin.html">bitwiseNot</A></td>
+<td><A HREF="Function_bitwiseNxor_Builtin.html">bitwiseNxor</A></td>
+<td><A HREF="Function_bitwiseOr_Builtin.html">bitwiseOr</A></td>
+</tr><tr>
+<td><A HREF="Function_bitwiseShiftLeft_Builtin.html">bitwiseShiftLeft</A></td>
+<td><A HREF="Function_bitwiseShiftRight_Builtin.html">bitwiseShiftRight</A></td>
+<td><A HREF="Function_bitwiseXor_Builtin.html">bitwiseXor</A></td>
+<td><A HREF="Function_bmod_Builtin.html">bmod</A></td>
+</tr><tr>
+<td><A HREF="Function_bmul_Builtin.html">bmul</A></td>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+<td><A HREF="Function_c::r_Builtin.html">c::r</A></td>
+<td><A HREF="Function_cadd_Builtin.html">cadd</A></td>
+</tr><tr>
+<td><A HREF="Function_car_Builtin.html">car</A></td>
+<td><A HREF="Function_ccompareEQ_Builtin.html">ccompareEQ</A></td>
+<td><A HREF="Function_ccompareGE_Builtin.html">ccompareGE</A></td>
+<td><A HREF="Function_ccompareGT_Builtin.html">ccompareGT</A></td>
+</tr><tr>
+<td><A HREF="Function_ccompareLE_Builtin.html">ccompareLE</A></td>
+<td><A HREF="Function_ccompareLT_Builtin.html">ccompareLT</A></td>
+<td><A HREF="Function_ccompareNE_Builtin.html">ccompareNE</A></td>
+<td><A HREF="Function_cdiv_Builtin.html">cdiv</A></td>
+</tr><tr>
+<td><A HREF="Function_cdr_Builtin.html">cdr</A></td>
+<td><A HREF="Function_char_Builtin.html">char</A></td>
+<td><A HREF="Function_character_Builtin.html">character</A></td>
+<td><A HREF="Function_checkPointTransaction_Builtin.html">checkPointTransaction</A></td>
+</tr><tr>
+<td><A HREF="Function_class_Builtin.html">class</A></td>
+<td><A HREF="Function_clean_Builtin.html">clean</A></td>
+<td><A HREF="Function_clear_Builtin.html">clear</A></td>
+<td><A HREF="Function_closeLog_Builtin.html">closeLog</A></td>
+</tr><tr>
+<td><A HREF="Function_cmod_Builtin.html">cmod</A></td>
+<td><A HREF="Function_cmul_Builtin.html">cmul</A></td>
+<td><A HREF="Function_code_Builtin.html">code</A></td>
+<td><A HREF="Function_commitTransaction_Builtin.html">commitTransaction</A></td>
+</tr><tr>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+</tr><tr>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+</tr><tr>
+<td><A HREF="Function_compile_Builtin.html">compile</A></td>
+<td><A HREF="Function_complex_Builtin.html">complex</A></td>
+<td><A HREF="Function_compress_Builtin.html">compress</A></td>
+<td><A HREF="Function_conjugate_Builtin.html">conjugate</A></td>
+</tr><tr>
+<td><A HREF="Function_cons_Builtin.html">cons</A></td>
+<td><A HREF="Function_copy_Builtin.html">copy</A></td>
+<td><A HREF="Function_cos_Builtin.html">cos</A></td>
+<td><A HREF="Function_cosh_Builtin.html">cosh</A></td>
+</tr><tr>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+<td><A HREF="Function_csub_Builtin.html">csub</A></td>
+<td><A HREF="Function_date_Builtin.html">date</A></td>
+<td><A HREF="Function_day_Builtin.html">day</A></td>
+</tr><tr>
+<td><A HREF="Function_days360_Builtin.html">days360</A></td>
+<td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td>
+<td><A HREF="Function_debugDetective_Builtin.html">debugDetective</A></td>
+<td><A HREF="Function_debugEval_Builtin.html">debugEval</A></td>
+</tr><tr>
+<td><A HREF="Function_debug_Builtin.html">debug</A></td>
+<td><A HREF="Function_decode_Builtin.html">decode</A></td>
+<td><A HREF="Function_defchild_Builtin.html">defchild</A></td>
+<td><A HREF="Function_defclass_Builtin.html">defclass</A></td>
+</tr><tr>
+<td><A HREF="Function_define(macro)_Builtin.html">define(macro)</A></td>
+<td><A HREF="Function_define_Builtin.html">define</A></td>
+<td><A HREF="Function_defmacro_Builtin.html">defmacro</A></td>
+<td><A HREF="Function_defmethod_Builtin.html">defmethod</A></td>
+</tr><tr>
+<td><A HREF="Function_deforphan_Builtin.html">deforphan</A></td>
+<td><A HREF="Function_defriend_Builtin.html">defriend</A></td>
+<td><A HREF="Function_defun_Builtin.html">defun</A></td>
+<td><A HREF="Function_deg_Builtin.html">deg</A></td>
+</tr><tr>
+<td><A HREF="Function_deleteRows_Builtin.html">deleteRows</A></td>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+<td><A HREF="Function_dimension_Builtin.html">dimension</A></td>
+<td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td>
+</tr><tr>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+<td><A HREF="Function_divi_Builtin.html">divi</A></td>
+<td><A HREF="Function_downcase_Builtin.html">downcase</A></td>
+<td><A HREF="Function_encode_Builtin.html">encode</A></td>
+</tr><tr>
+<td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_exp_Builtin.html">exp</A></td>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+</tr><tr>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+<td><A HREF="Function_expt_Builtin.html">expt</A></td>
+<td><A HREF="Function_fact_Builtin.html">fact</A></td>
+<td><A HREF="Function_fdisplay_Builtin.html">fdisplay</A></td>
+</tr><tr>
+<td><A HREF="Function_fieldsOf_Builtin.html">fieldsOf</A></td>
+<td><A HREF="Function_fileClose_Builtin.html">fileClose</A></td>
+<td><A HREF="Function_fileDir_Builtin.html">fileDir</A></td>
+<td><A HREF="Function_fileDisplay_Builtin.html">fileDisplay</A></td>
+</tr><tr>
+<td><A HREF="Function_fileEraseDir_Builtin.html">fileEraseDir</A></td>
+<td><A HREF="Function_fileErase_Builtin.html">fileErase</A></td>
+<td><A HREF="Function_fileExists_Builtin.html">fileExists</A></td>
+<td><A HREF="Function_fileMakeDir_Builtin.html">fileMakeDir</A></td>
+</tr><tr>
+<td><A HREF="Function_fileOpen_Builtin.html">fileOpen</A></td>
+<td><A HREF="Function_fileReadAll_Builtin.html">fileReadAll</A></td>
+<td><A HREF="Function_fileReadRecord_Builtin.html">fileReadRecord</A></td>
+<td><A HREF="Function_fileRead_Builtin.html">fileRead</A></td>
+</tr><tr>
+<td><A HREF="Function_fileResize_Builtin.html">fileResize</A></td>
+<td><A HREF="Function_fileSeek_Builtin.html">fileSeek</A></td>
+<td><A HREF="Function_fileWriteAll_Builtin.html">fileWriteAll</A></td>
+<td><A HREF="Function_fileWrite_Builtin.html">fileWrite</A></td>
+</tr><tr>
+<td><A HREF="Function_filewriteln_Builtin.html">filewriteln</A></td>
+<td><A HREF="Function_findBlock_Builtin.html">findBlock</A></td>
+<td><A HREF="Function_find_Builtin.html">find</A></td>
+<td><A HREF="Function_floor_Builtin.html">floor</A></td>
+</tr><tr>
+<td><A HREF="Function_fraction_Builtin.html">fraction</A></td>
+<td><A HREF="Function_freeBlock_Builtin.html">freeBlock</A></td>
+<td><A HREF="Function_gc_Builtin.html">gc</A></td>
+<td><A HREF="Function_gcd_Builtin.html">gcd</A></td>
+</tr><tr>
+<td><A HREF="Function_getGlobalValue_Builtin.html">getGlobalValue</A></td>
+<td><A HREF="Function_getRecursionCount_Builtin.html">getRecursionCount</A></td>
+<td><A HREF="Function_getSymbolTable_Builtin.html">getSymbolTable</A></td>
+<td><A HREF="Function_getTickCount_Builtin.html">getTickCount</A></td>
+</tr><tr>
+<td><A HREF="Function_globalBinding_Builtin.html">globalBinding</A></td>
+<td><A HREF="Function_hashString_Builtin.html">hashString</A></td>
+<td><A HREF="Function_hour_Builtin.html">hour</A></td>
+<td><A HREF="Function_iadd_Builtin.html">iadd</A></td>
+</tr><tr>
+<td><A HREF="Function_icompareEQ_Builtin.html">icompareEQ</A></td>
+<td><A HREF="Function_icompareGE_Builtin.html">icompareGE</A></td>
+<td><A HREF="Function_icompareGT_Builtin.html">icompareGT</A></td>
+<td><A HREF="Function_icompareLE_Builtin.html">icompareLE</A></td>
+</tr><tr>
+<td><A HREF="Function_icompareLT_Builtin.html">icompareLT</A></td>
+<td><A HREF="Function_icompareNE_Builtin.html">icompareNE</A></td>
+<td><A HREF="Function_idiv_Builtin.html">idiv</A></td>
+<td><A HREF="Function_imaginary_Builtin.html">imaginary</A></td>
+</tr><tr>
+<td><A HREF="Function_imod_Builtin.html">imod</A></td>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+<td><A HREF="Function_imul_Builtin.html">imul</A></td>
+</tr><tr>
+<td><A HREF="Function_insertRows_Builtin.html">insertRows</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert</A></td>
+<td><A HREF="Function_inside_Builtin.html">inside</A></td>
+<td><A HREF="Function_inspect_Builtin.html">inspect</A></td>
+</tr><tr>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+<td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td>
+<td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td>
+</tr><tr>
+<td><A HREF="Function_isBound_Builtin.html">isBound</A></td>
+<td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td>
+<td><A HREF="Function_isCharAlphabetic_Builtin.html">isCharAlphabetic</A></td>
+<td><A HREF="Function_isCharAlphanumeric_Builtin.html">isCharAlphanumeric</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharLowercase_Builtin.html">isCharLowercase</A></td>
+<td><A HREF="Function_isCharName_Builtin.html">isCharName</A></td>
+<td><A HREF="Function_isCharNumeric_Builtin.html">isCharNumeric</A></td>
+<td><A HREF="Function_isCharUppercase_Builtin.html">isCharUppercase</A></td>
+</tr><tr>
+<td><A HREF="Function_isCharWhitespace_Builtin.html">isCharWhitespace</A></td>
+<td><A HREF="Function_isChar_Builtin.html">isChar</A></td>
+<td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td>
+<td><A HREF="Function_isClass_Builtin.html">isClass</A></td>
+</tr><tr>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+<td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td>
+<td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td>
+</tr><tr>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+<td><A HREF="Function_isEven_Builtin.html">isEven</A></td>
+<td><A HREF="Function_isExact_Builtin.html">isExact</A></td>
+</tr><tr>
+<td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+<td><A HREF="Function_isImmediate_Builtin.html">isImmediate</A></td>
+<td><A HREF="Function_isInexact_Builtin.html">isInexact</A></td>
+</tr><tr>
+<td><A HREF="Function_isInside_Builtin.html">isInside</A></td>
+<td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+<td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td>
+</tr><tr>
+<td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td>
+<td><A HREF="Function_isMember_Builtin.html">isMember</A></td>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+<td><A HREF="Function_isNegative_Builtin.html">isNegative</A></td>
+</tr><tr>
+<td><A HREF="Function_isNull_Builtin.html">isNull</A></td>
+<td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td>
+<td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+</tr><tr>
+<td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+<td><A HREF="Function_isOdd_Builtin.html">isOdd</A></td>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+</tr><tr>
+<td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td>
+<td><A HREF="Function_isPositive_Builtin.html">isPositive</A></td>
+<td><A HREF="Function_isString_Builtin.html">isString</A></td>
+<td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td>
+</tr><tr>
+<td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td>
+<td><A HREF="Function_isText_Builtin.html">isText</A></td>
+<td><A HREF="Function_isTransaction_Builtin.html">isTransaction</A></td>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+</tr><tr>
+<td><A HREF="Function_isVector_Builtin.html">isVector</A></td>
+<td><A HREF="Function_isZero_Builtin.html">isZero</A></td>
+<td><A HREF="Function_isub_Builtin.html">isub</A></td>
+<td><A HREF="Function_julian_Builtin.html">julian</A></td>
+</tr><tr>
+<td><A HREF="Function_kurtosis_Builtin.html">kurtosis</A></td>
+<td><A HREF="Function_last_Builtin.html">last</A></td>
+<td><A HREF="Function_lcm_Builtin.html">lcm</A></td>
+<td><A HREF="Function_left_Builtin.html">left</A></td>
+</tr><tr>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+<td><A HREF="Function_lisp_Builtin.html">lisp</A></td>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+<td><A HREF="Function_loadObject_Builtin.html">loadObject</A></td>
+</tr><tr>
+<td><A HREF="Function_loadRepository_Builtin.html">loadRepository</A></td>
+<td><A HREF="Function_loadWorkspace_Builtin.html">loadWorkspace</A></td>
+<td><A HREF="Function_lock_Builtin.html">lock</A></td>
+<td><A HREF="Function_log10_Builtin.html">log10</A></td>
+</tr><tr>
+<td><A HREF="Function_log2_Builtin.html">log2</A></td>
+<td><A HREF="Function_logConsole_Builtin.html">logConsole</A></td>
+<td><A HREF="Function_log_Builtin.html">log</A></td>
+<td><A HREF="Function_logbase_Builtin.html">logbase</A></td>
+</tr><tr>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeDictionary_Builtin.html">makeDictionary</A></td>
+<td><A HREF="Function_makeGaussianMatrix_Builtin.html">makeGaussianMatrix</A></td>
+<td><A HREF="Function_makeGramMatrix_Builtin.html">makeGramMatrix</A></td>
+</tr><tr>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_makeQuotedSymbol_Builtin.html">makeQuotedSymbol</A></td>
+<td><A HREF="Function_makeStructure_Builtin.html">makeStructure</A></td>
+<td><A HREF="Function_map_Builtin.html">map</A></td>
+</tr><tr>
+<td><A HREF="Function_mapc_Builtin.html">mapc</A></td>
+<td><A HREF="Function_matrixGaussianEliminate_Builtin.html">matrixGaussianEliminate</A></td>
+<td><A HREF="Function_matrixGaussianSubstitute_Builtin.html">matrixGaussianSubstitute</A></td>
+<td><A HREF="Function_max_Builtin.html">max</A></td>
+</tr><tr>
+<td><A HREF="Function_median_Builtin.html">median</A></td>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+<td><A HREF="Function_methodsOf_Builtin.html">methodsOf</A></td>
+<td><A HREF="Function_mid_Builtin.html">mid</A></td>
+</tr><tr>
+<td><A HREF="Function_min_Builtin.html">min</A></td>
+<td><A HREF="Function_minute_Builtin.html">minute</A></td>
+<td><A HREF="Function_mod_Builtin.html">mod</A></td>
+<td><A HREF="Function_modi_Builtin.html">modi</A></td>
+</tr><tr>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+<td><A HREF="Function_month_Builtin.html">month</A></td>
+<td><A HREF="Function_morph_Builtin.html">morph</A></td>
+<td><A HREF="Function_muli_Builtin.html">muli</A></td>
+</tr><tr>
+<td><A HREF="Function_nadd_Builtin.html">nadd</A></td>
+<td><A HREF="Function_ncompareEQ_Builtin.html">ncompareEQ</A></td>
+<td><A HREF="Function_ncompareGE_Builtin.html">ncompareGE</A></td>
+<td><A HREF="Function_ncompareGT_Builtin.html">ncompareGT</A></td>
+</tr><tr>
+<td><A HREF="Function_ncompareLE_Builtin.html">ncompareLE</A></td>
+<td><A HREF="Function_ncompareLT_Builtin.html">ncompareLT</A></td>
+<td><A HREF="Function_ncompareNE_Builtin.html">ncompareNE</A></td>
+<td><A HREF="Function_ndiv_Builtin.html">ndiv</A></td>
+</tr><tr>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+<td><A HREF="Function_nmod_Builtin.html">nmod</A></td>
+<td><A HREF="Function_nmul_Builtin.html">nmul</A></td>
+<td><A HREF="Function_now_Builtin.html">now</A></td>
+</tr><tr>
+<td><A HREF="Function_nsub_Builtin.html">nsub</A></td>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+<td><A HREF="Function_objectToDictionary_Builtin.html">objectToDictionary</A></td>
+<td><A HREF="Function_objectToDirectory_Builtin.html">objectToDirectory</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToList_Builtin.html">objectToList</A></td>
+<td><A HREF="Function_objectToMatrix_Builtin.html">objectToMatrix</A></td>
+<td><A HREF="Function_objectToNumMatrix_Builtin.html">objectToNumMatrix</A></td>
+<td><A HREF="Function_objectToNumVector_Builtin.html">objectToNumVector</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToStructure_Builtin.html">objectToStructure</A></td>
+<td><A HREF="Function_objectToVector_Builtin.html">objectToVector</A></td>
+<td><A HREF="Function_offset_Builtin.html">offset</A></td>
+<td><A HREF="Function_onError_Builtin.html">onError</A></td>
+</tr><tr>
+<td><A HREF="Function_openLog_Builtin.html">openLog</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+<td><A HREF="Function_parent_Builtin.html">parent</A></td>
+<td><A HREF="Function_parse_Builtin.html">parse</A></td>
+</tr><tr>
+<td><A HREF="Function_pi_Builtin.html">pi</A></td>
+<td><A HREF="Function_pointer_Builtin.html">pointer</A></td>
+<td><A HREF="Function_preAllocateFixedMemoryBlocks_Builtin.html">preAllocateFixedMemoryBlocks</A></td>
+<td><A HREF="Function_product_Builtin.html">product</A></td>
+</tr><tr>
+<td><A HREF="Function_proplist_Builtin.html">proplist</A></td>
+<td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td>
+<td><A HREF="Function_putprop_Builtin.html">putprop</A></td>
+<td><A HREF="Function_qt_Builtin.html">qt</A></td>
+</tr><tr>
+<td><A HREF="Function_quit_Builtin.html">quit</A></td>
+<td><A HREF="Function_quote_Builtin.html">quote</A></td>
+<td><A HREF="Function_rad_Builtin.html">rad</A></td>
+<td><A HREF="Function_random_Builtin.html">random</A></td>
+</tr><tr>
+<td><A HREF="Function_randomize_Builtin.html">randomize</A></td>
+<td><A HREF="Function_range_Builtin.html">range</A></td>
+<td><A HREF="Function_rank_Builtin.html">rank</A></td>
+<td><A HREF="Function_real_Builtin.html">real</A></td>
+</tr><tr>
+<td><A HREF="Function_refAttributes_Builtin.html">refAttributes</A></td>
+<td><A HREF="Function_refValues_Builtin.html">refValues</A></td>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_remProp_Builtin.html">remProp</A></td>
+</tr><tr>
+<td><A HREF="Function_remove_Builtin.html">remove</A></td>
+<td><A HREF="Function_rename_Builtin.html">rename</A></td>
+<td><A HREF="Function_replace_Builtin.html">replace</A></td>
+<td><A HREF="Function_rept_Builtin.html">rept</A></td>
+</tr><tr>
+<td><A HREF="Function_reset_Builtin.html">reset</A></td>
+<td><A HREF="Function_resize_Builtin.html">resize</A></td>
+<td><A HREF="Function_reverse_Builtin.html">reverse</A></td>
+<td><A HREF="Function_right_Builtin.html">right</A></td>
+</tr><tr>
+<td><A HREF="Function_round_Builtin.html">round</A></td>
+<td><A HREF="Function_run_Builtin.html">run</A></td>
+<td><A HREF="Function_saveImmediate_Builtin.html">saveImmediate</A></td>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+</tr><tr>
+<td><A HREF="Function_saveRepository_Builtin.html">saveRepository</A></td>
+<td><A HREF="Function_saveWorkspace_Builtin.html">saveWorkspace</A></td>
+<td><A HREF="Function_second_Builtin.html">second</A></td>
+<td><A HREF="Function_send_Builtin.html">send</A></td>
+</tr><tr>
+<td><A HREF="Function_setAttributes_Builtin.html">setAttributes</A></td>
+<td><A HREF="Function_setBlock_Builtin.html">setBlock</A></td>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+<td><A HREF="Function_set_Builtin.html">set</A></td>
+<td><A HREF="Function_setf_Builtin.html">setf</A></td>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+</tr><tr>
+<td><A HREF="Function_sigmoid_Builtin.html">sigmoid</A></td>
+<td><A HREF="Function_sign_Builtin.html">sign</A></td>
+<td><A HREF="Function_sin_Builtin.html">sin</A></td>
+<td><A HREF="Function_sinh_Builtin.html">sinh</A></td>
+</tr><tr>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_skew_Builtin.html">skew</A></td>
+<td><A HREF="Function_sleep_Builtin.html">sleep</A></td>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+</tr><tr>
+<td><A HREF="Function_sql_Builtin.html">sql</A></td>
+<td><A HREF="Function_sqrt_Builtin.html">sqrt</A></td>
+<td><A HREF="Function_srandom_Builtin.html">srandom</A></td>
+<td><A HREF="Function_stdev_Builtin.html">stdev</A></td>
+</tr><tr>
+<td><A HREF="Function_stdevp_Builtin.html">stdevp</A></td>
+<td><A HREF="Function_stringCiEQ_Builtin.html">stringCiEQ</A></td>
+<td><A HREF="Function_stringCiGE_Builtin.html">stringCiGE</A></td>
+<td><A HREF="Function_stringCiGT_Builtin.html">stringCiGT</A></td>
+</tr><tr>
+<td><A HREF="Function_stringCiLE_Builtin.html">stringCiLE</A></td>
+<td><A HREF="Function_stringCiLT_Builtin.html">stringCiLT</A></td>
+<td><A HREF="Function_stringCiNE_Builtin.html">stringCiNE</A></td>
+<td><A HREF="Function_stringFill_Builtin.html">stringFill</A></td>
+</tr><tr>
+<td><A HREF="Function_stringToBVector_Builtin.html">stringToBVector</A></td>
+<td><A HREF="Function_stringToVector_Builtin.html">stringToVector</A></td>
+<td><A HREF="Function_string_Builtin.html">string</A></td>
+<td><A HREF="Function_sub1_Builtin.html">sub1</A></td>
+</tr><tr>
+<td><A HREF="Function_subi_Builtin.html">subi</A></td>
+<td><A HREF="Function_submit_Builtin.html">submit</A></td>
+<td><A HREF="Function_substitute_Builtin.html">substitute</A></td>
+<td><A HREF="Function_substringCiEQ_Builtin.html">substringCiEQ</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiGE_Builtin.html">substringCiGE</A></td>
+<td><A HREF="Function_substringCiGT_Builtin.html">substringCiGT</A></td>
+<td><A HREF="Function_substringCiLE_Builtin.html">substringCiLE</A></td>
+<td><A HREF="Function_substringCiLT_Builtin.html">substringCiLT</A></td>
+</tr><tr>
+<td><A HREF="Function_substringCiNE_Builtin.html">substringCiNE</A></td>
+<td><A HREF="Function_substringEQ_Builtin.html">substringEQ</A></td>
+<td><A HREF="Function_substringFill_Builtin.html">substringFill</A></td>
+<td><A HREF="Function_substringGE_Builtin.html">substringGE</A></td>
+</tr><tr>
+<td><A HREF="Function_substringGT_Builtin.html">substringGT</A></td>
+<td><A HREF="Function_substringLE_Builtin.html">substringLE</A></td>
+<td><A HREF="Function_substringLT_Builtin.html">substringLT</A></td>
+<td><A HREF="Function_substringNE_Builtin.html">substringNE</A></td>
+</tr><tr>
+<td><A HREF="Function_substring_Builtin.html">substring</A></td>
+<td><A HREF="Function_sum_Builtin.html">sum</A></td>
+<td><A HREF="Function_sumsqr_Builtin.html">sumsqr</A></td>
+<td><A HREF="Function_super_Builtin.html">super</A></td>
+</tr><tr>
+<td><A HREF="Function_svmRegression_Builtin.html">svmRegression</A></td>
+<td><A HREF="Function_symbolToTypeCode_Builtin.html">symbolToTypeCode</A></td>
+<td><A HREF="Function_symbol_Builtin.html">symbol</A></td>
+<td><A HREF="Function_systemCheck_Builtin.html">systemCheck</A></td>
+</tr><tr>
+<td><A HREF="Function_system_Builtin.html">system</A></td>
+<td><A HREF="Function_tan_Builtin.html">tan</A></td>
+<td><A HREF="Function_tanh_Builtin.html">tanh</A></td>
+<td><A HREF="Function_text_Builtin.html">text</A></td>
+</tr><tr>
+<td><A HREF="Function_time_Builtin.html">time</A></td>
+<td><A HREF="Function_trim_Builtin.html">trim</A></td>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+<td><A HREF="Function_uncompress_Builtin.html">uncompress</A></td>
+</tr><tr>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td>
+<td><A HREF="Function_upcase_Builtin.html">upcase</A></td>
+<td><A HREF="Function_var_Builtin.html">var</A></td>
+<td><A HREF="Function_varp_Builtin.html">varp</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorBinaryInnerProduct_Builtin.html">vectorBinaryInnerProduct</A></td>
+<td><A HREF="Function_vectorBipolarInnerProduct_Builtin.html">vectorBipolarInnerProduct</A></td>
+<td><A HREF="Function_vectorCosineInnerProduct_Builtin.html">vectorCosineInnerProduct</A></td>
+<td><A HREF="Function_vectorCubeInnerProduct_Builtin.html">vectorCubeInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorDelete_Builtin.html">vectorDelete</A></td>
+<td><A HREF="Function_vectorExpInnerProduct_Builtin.html">vectorExpInnerProduct</A></td>
+<td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td>
+<td><A HREF="Function_vectorInnerProduct_Builtin.html">vectorInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorLogInnerProduct_Builtin.html">vectorLogInnerProduct</A></td>
+<td><A HREF="Function_vectorQuartInnerProduct_Builtin.html">vectorQuartInnerProduct</A></td>
+<td><A HREF="Function_vectorQuintInnerProduct_Builtin.html">vectorQuintInnerProduct</A></td>
+<td><A HREF="Function_vectorSigmoidInnerProduct_Builtin.html">vectorSigmoidInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorSineInnerProduct_Builtin.html">vectorSineInnerProduct</A></td>
+<td><A HREF="Function_vectorSquareInnerProduct_Builtin.html">vectorSquareInnerProduct</A></td>
+<td><A HREF="Function_vectorTanInnerProduct_Builtin.html">vectorTanInnerProduct</A></td>
+<td><A HREF="Function_vectorTanhInnerProduct_Builtin.html">vectorTanhInnerProduct</A></td>
+</tr><tr>
+<td><A HREF="Function_version_Builtin.html">version</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+<td><A HREF="Function_year_Builtin.html">year</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

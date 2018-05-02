@@ -1,0 +1,236 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Precompiler</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#Sprecompiler"><FONT SIZE=2>precompiler</font></a></li><li><a href="#S#define"><FONT SIZE=2>#define</font></a></li><li><a href="#S#ifdef"><FONT SIZE=2>#ifdef</font></a></li><li><a href="#S#ifndef"><FONT SIZE=2>#ifndef</font></a></li><li><a href="#S#if"><FONT SIZE=2>#if</font></a></li><li><a href="#S#else"><FONT SIZE=2>#else</font></a></li><li><a href="#S#endif"><FONT SIZE=2>#endif</font></a></li><li><a href="#SevalPlisp"><FONT SIZE=2>evalPlisp</font></a></li><li><a href="#SrunPScript"><FONT SIZE=2>runPScript</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>
+		  <div class="h2section" id="Introduction">
+		  <p>The precompiler is a Lisp function Library which provides the services
+          of a tiny C preprocessor to Lisp programs.</p>
+          <p>The precompiler adds C-like pre-compiler directives
+             to any source file. This allows C-like conditional compilation 
+             of Lisp source files depending upon the settings of global
+             variables in the workspace.</p>
+             <br>
+             <h3>Example</h3>
+             <p>
+             <code>
+             #define _MSWIN true<br>
+             #if _MSWIN<br>
+             (callMSWindows arg1 arg2 arg3) ;; Do something in MSWindows only if we're in Windows<br>
+             #endif<br>
+             </code>
+             </p>
+             <br>
+             <p>The precompiler directives use Lisp S-expressions everywhere.
+                This makes the precompiler directives easy and simple to use for Lisp programmers.
+                Each compiler directive MUST start at the very beginning 
+                of the source line or it will NOT be recognized as a precompiler directive.
+                For those precompiler directives requiring Lisp S-expressions,
+                The entire remainder of the line is considered the Lisp S-expression.
+                This means that, with the exceptions of Lisp comments, nothing else
+                but the precompiler directive and the Lisp S-expression can be on the line.</p>
+             <h3>Directives</h3>
+             <p>The precompiler provides the following C-like precompiler directives
+                to any source file.</p> 
+             <ul>
+               <li>#define name S-expression</li>
+               <li>#ifdef S-expression</li>
+               <li>#ifndef S-expression</li>
+               <li>#if S-expression</li>
+               <li>#else</li>
+               <li>#endif</li>             
+             </ul>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sprecompiler"></A>precompiler</H2></P> 
+		 <div class="h2section" id="precompiler">
+		  <p>The precompiler <b>precompiler</b> function provides the C-like precompiler
+             services to the Lisp compiler. The precompiler may be found in the Lisp
+             function Libraries accompanying AIS. Once the precompiler Library has been 
+             compiled, the workspace is now ready to provide precompiler services.</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>(precompiler lispSource)</b></p>
+          <br>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S#define"></A>#define</H2></P> 
+		 <div class="h2section" id="#define">
+		  <p>The precompiler <b>#define</b> directive defines a Lisp global variable
+             during the prcompilation phase.</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>#define name S-expression</b></p>
+          <br>
+		  <p>When the precompiler encounters a #define directive, it evaluates the
+             Lisp S-expression and sets the name equal to the result. For example,
+             the directive <b>#define _64Bit (= (expt 2.0 62) (* (expt 2.0 31) (expt 2.0 31)))</b>
+             sets the workspace global variable _64Bit to true or false depending
+             upon whether or not the current context is running on a 64 bit or 32 bit
+             computer.</p>  
+          <br>
+		  <p>The #define variable assignment happens immediately as soon as the directive
+             is encountered. So the assignment is ready and available for the precompiler
+             directives which may follow in the Lisp source code.</p>  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S#ifdef"></A>#ifdef</H2></P> 
+		 <div class="h2section" id="#ifdef">
+		  <p>The precompiler <b>#ifdef</b> directive checks to see whether the
+             specified global variable is #void. If NOT, the code following the
+             #ifdef directive up to the next #endif directive is included; 
+             otherwise the code following the ifdef directive up to the 
+             next #endif directive is excluded</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>#ifdef name</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          #define _MSWIN true<br>
+          #ifdef _MSWIN<br>
+          (callMSWindows arg1 arg2 arg3) ;; Do something in MSWindows only if we're in Windows<br>
+          #endif<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S#ifndef"></A>#ifndef</H2></P> 
+		 <div class="h2section" id="#ifndef">
+		  <p>The precompiler <b>#ifndef</b> directive checks to see whether the
+             specified global variable is #void. If so, the code following the
+             #ifndef directive up to the next #endif directive is included; 
+             otherwise the code following the ifndef directive up to the 
+             next #endif directive is excluded</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>#ifndef name</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          #ifndef _MSWIN<br>
+          (callLinux arg1 arg2 arg3) ;; Do something in Linux only if we're NOT in Windows<br>
+          #endif<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S#if"></A>#if</H2></P> 
+		 <div class="h2section" id="#if">
+		  <p>The precompiler <b>#if</b> directive checks to see whether the
+             specified S-expression is true. If true, the code following the
+             #if directive up to the next #endif directive is included; 
+             otherwise the code following the if directive up to the 
+             next #endif directive is excluded</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>#if S-expression</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          #define #define _64Bit (= (expt 2.0 62) (* (expt 2.0 31) (expt 2.0 31)))<br>
+          #if _64Bit<br>
+          (callTimer64 arg1) ;; Do something in 64bits only if we're in a 64 bit environment<br>
+          #endif<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S#else"></A>#else</H2></P> 
+		 <div class="h2section" id="#else">
+		  <p>The precompiler <b>#else</b> adds if then else capability to the
+             #if, #ifdef, and #ifndef directives. If the #else directive is 
+             present, then the code following the #else directive up to the next
+             #endif directive is included or excluded as the else option.</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>#else</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          #define _MSWIN true<br>
+          #ifdef _MSWIN<br>
+          (callMSWindows arg1 arg2 arg3) ;; Do something in MSWindows only if we're in Windows<br>
+          #else<br>
+          (callLinux arg1 arg2 arg3)     ;; Do something in Linux only if we're not in Windows<br>
+          #endif<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S#endif"></A>#endif</H2></P> 
+		 <div class="h2section" id="#endif">
+		  <p>The precompiler <b>#endif</b> terminates the #if, #ifdef, and #ifndef directives. 
+             And incooperation with the #else directive is provides if then else capabilities
+             to the #if, #ifdef, and #ifndef directives.</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>#endif</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          #define #define _64Bit (= (expt 2.0 62) (* (expt 2.0 31) (expt 2.0 31)))<br>
+          #if _64Bit<br>
+          (callTimer64 arg1) ;; Do something in 64bits only if we're in a 64 bit environment<br>
+          #else<br>
+          (callTimer32 arg1) ;; Do something in 32bits only if we're NOT in a 64 bit environment<br>
+          #endif<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SevalPlisp"></A>evalPlisp</H2></P> 
+		 <div class="h2section" id="evalPlisp">
+		  <p>The function <b>evalPlisp</b> runs the specified Lisp source code through the
+             preprocessor and then runs the Lisp compiler. The evalPLisp function is defined
+             when the precompiler Library is compiled.</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>(evalPLisp lispSource)</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          (setq lispSource (fileReadAll sourceFileName)<br>
+          (evalPLisp lispSource) ;; Run the code through the precompiler then evaluate<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrunPScript"></A>runPScript</H2></P> 
+		 <div class="h2section" id="runPScript">
+		  <p>The function <b>runPScript</b> loads the specified Lisp source file into memory,
+             then runs the specified Lisp source code through the
+             preprocessor and then runs the Lisp compiler. The runPScript function is defined
+             when the precompiler Library is compiled.</p>
+          <br>
+          <h3>Syntax</h3>
+		  <p><b>(runPScript lispSource)</b></p>
+          <br>
+          <h3>Example</h3>
+          <p>
+          <code>
+          (runPScript sourceFileName) ;; Run the code through the precompiler then evaluate<br>
+          </code>
+          </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

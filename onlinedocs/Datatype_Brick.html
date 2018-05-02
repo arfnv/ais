@@ -1,0 +1,180 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Brick</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Brick Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Creating Records</font></a></li><li><a href="#S5"><FONT SIZE=2>Brick References</font></a></li><li><a href="#S6"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Brick Overview</H4></FONT></P>
+        <p> A Brick is a vector of rows and each row is a collection of fields. Each row is identical
+        to all other rows in the fields it contains.</p>
+
+        <p><b>(new Brick: rowCount FieldDeclaration ... FieldDeclaration)</b></p>
+
+        <p>Each brick field may store data of a different type and each field may repeat more than once
+        (the field repetition is separate and distinct from the repetition of rows in the Brick). 
+         A brick field declaration contains three important elements:</p>
+        <p><b>Name:Type:Repeats</b></p>       
+        <p> An example of a brick field declaration is as follows:</p>
+        <p><b>Distance:Number:20</b></p>  
+        <p> A Brick is a collection of fields as in the following example:</p>
+        <p><b>(new Brick: 1</b></p> 
+        <p><b>Address:Character:40</b></p> 
+        <p><b>State:Character:20</b></p>
+        <p><b>Name:Character:40</b></p>
+        <p><b>City:Character:40</b></p>
+        <p><b>Salary:Number:1)</b></p> 
+        <p> A picture of this Brick might appear as in the following example:</p>    
+          <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>Address</td> <td>184 Anywhere St.</td> </tr>
+               <tr><td>State</td> <td>California</td>  </tr>
+               <tr><td>Name</td> <td>John Doe</td> </tr>
+               <tr><td>City</td> <td> Los Angeles</td>  </tr>   
+               <tr><td>Salary</td> <td> $55000</td>  </tr>                                 
+           </table>        
+         <p> The valid brick field type names are as follows:</p>   
+         <p><b>Boolean</b></p> 
+         <p><b>Character</b></p>   
+         <p><b>CharPointer</b></p>
+         <p><b>Float</b></p>
+         <p><b>FloatPointer</b></p>
+         <p><b>Integer</b></p>
+         <p><b>IntPointer</b></p> 
+         <p><b>JumpPointer</b></p>
+         <p><b>Long</b></p>
+         <p><b>LongPointer</b></p>
+         <p><b>Number </b></p>
+         <p><b>NumPointer</b></p>  
+         <p><b>Object</b></p>
+         <p><b>Short</b></p>
+         <p><b>ShortPointer</b></p>
+         <p><b>Word</b></p> 
+         <p><b>WordPointer </b></p>     
+         <p> In Analytic Information Server, a single brick may grow up to 
+         65564 characters in length, and there may be up to two billion rows.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The Brick object is very useful for storing heterogeneous values to be accessed 
+          by symbolic keys. Although Records can be used for many purposes, a common use is 
+          the creation of user defined data structures of complex design.</p> 
+         <p>While the alternate data types exist (Structures, Dictionaries and object Dictionaries) 
+         that support access by key, the Brick data type, does not have the overhead of storing 
+         all data fields in the same format. Since Records have the property of being fast and 
+         having keyed access, a Brick may be more preferable than a Structure, Dictionary or 
+         Directory if it is vital if the data be maintained in different formats.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+          <p>The Brick object type supports a constant template form. The whole Brick constant is enclosed 
+          in parentheses and preceded by the sharp symbol (#). The constant form of the example Brick 
+          is as follows: </p>
+          <p><b>#(brk| Address:Character:40 State:Character:20 Name:Character:40 City:Character:40  Salary:Number:1)</b></p>
+          <p><b>#(brk[2]| Address:Character:40 State:Character:20 Name:Character:40 City:Character:40  Salary:Number:1)</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Creating Records</H4></FONT></P>
+          <p>The Brick object can be created via the new function as follows: </p>
+          <p><b>(new Brick: Address:Character:40 State:Character:20 Name:Character:40 City:Character:40  Salary:Number:1)</b></p>
+          <p><b>(new Brick: 2 Address:Character:40 State:Character:20 Name:Character:40 City:Character:40  Salary:Number:1)</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Brick References</H4></FONT></P>
+          <p>The Brick object can be referenced via the ref function, the dot operator, and the bracket [] operator, as follows:</p>
+          <p><b>(setq x (new Brick: 2 Address:Character:40 State:Character:20 Name:Character:40 City:Character:40  Salary:Number:10))</b></p>
+          <p><b>x.Salary</b></p>
+          <p><b>x[Salary:]</b></p>
+          <p><b>(ref x Salary:)</b></p>
+          <p><b>(ref x Salary:)</b></p>
+          <p><b>(ref x Salary: 6)</b></p>
+          <p><b>(ref x Salary: 6 0)</b></p>
+          <p><b>x[1]</b></p>
+          <p><b>x[1].Salary</b></p>
+          <p><b>x[1].Salary[3]</b></p>
+          <p><b>x[Salary: 6 1]</b></p>
+          <p><b>x[Salary: 6 1]</b></p>
+          <p><b>x[4 6 1]</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S6"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>Brick</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Brick object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Brick_cdr_010.html">Example_Brick_cdr_010</A></td>
+<td><A HREF="Example_Brick_compareEQ_019.html">Example_Brick_compareEQ_019</A></td>
+<td><A HREF="Example_Brick_compareGE_019.html">Example_Brick_compareGE_019</A></td>
+<td><A HREF="Example_Brick_compareGT_019.html">Example_Brick_compareGT_019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_compareLT_019.html">Example_Brick_compareLT_019</A></td>
+<td><A HREF="Example_Brick_compareNE_019.html">Example_Brick_compareNE_019</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Example_Brick_compare_019</A></td>
+<td><A HREF="Example_Brick_comparison_019.html">Example_Brick_comparison_019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_copy_012.html">Example_Brick_copy_012</A></td>
+<td><A HREF="Example_Brick_isAtom_011.html">Example_Brick_isAtom_011</A></td>
+<td><A HREF="Example_Brick_isEqual_018.html">Example_Brick_isEqual_018</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Example_Brick_isIdentical_020</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_isObject_014.html">Example_Brick_isObject_014</A></td>
+<td><A HREF="Example_Brick_isType_022.html">Example_Brick_isType_022</A></td>
+<td><A HREF="Example_Brick_length_017.html">Example_Brick_length_017</A></td>
+<td><A HREF="Example_Brick_new_015.html">Example_Brick_new_015</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_ref_035.html">Example_Brick_ref_035</A></td>
+<td><A HREF="Example_Brick_ref_036.html">Example_Brick_ref_036</A></td>
+<td><A HREF="Example_Brick_setCdr_014.html">Example_Brick_setCdr_014</A></td>
+<td><A HREF="Example_Brick_setq_028.html">Example_Brick_setq_028</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_setq_029.html">Example_Brick_setq_029</A></td>
+<td><A HREF="Example_Brick_sizeof_029.html">Example_Brick_sizeof_029</A></td>
+<td><A HREF="Example_Brick_type_026.html">Example_Brick_type_026</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

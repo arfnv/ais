@@ -1,0 +1,349 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Matrix reverse 002</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> These examples use the <b>reverse</b> function to rearrange
+
+                  the elements of the Matrix.  The Matrix, with its elements in
+
+                  reverse order is returned.                  
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>The elements of the Matrix will be returned in reverse order.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(reverse  #(mat| 1  2  3  4))   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Matrix 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display #&#60Matrix 123456&#62)   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(mat| 4.0 3.0 2.0 1.0 ) </Returns></b></td></tr>
+</table><p><Note>The elements of the Number Matrix will be returned in reverse order.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(reverse  #(nummat| 1.54  2  3.53  -4))   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60NumMatrix 123456&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display #&#60NumMatrix 123456&#62)   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#(nummat| -4 3.53 2 1.54 )</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>reverse</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_reverse_007.html">BitVector reverse 007</A></td>
+<td><A HREF="Example_FltVector_reverse_003.html">FltVector reverse 003</A></td>
+<td><A HREF="Example_IntVector_reverse_004.html">IntVector reverse 004</A></td>
+<td><A HREF="Example_List_reverse_003.html">List reverse 003</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_reverse_002.html">Matrix reverse 002</A></td>
+<td><A HREF="Example_NumMatrix_reverse_004.html">NumMatrix reverse 004</A></td>
+<td><A HREF="Example_NumVector_reverse_005.html">NumVector reverse 005</A></td>
+<td><A HREF="Example_ObjVector_reverse_006.html">ObjVector reverse 006</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_reverse_005.html">ShortVector reverse 005</A></td>
+<td><A HREF="Example_Vector_reverse_001.html">Vector reverse 001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_reverse_Builtin.html">reverse</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert(Builtin)</A></td>
+<td><A HREF="Function_insert_Builtin.html">insert(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Matrix.html">Matrix</A></td>
+<td><A HREF="NumMatrix.html">NumMatrix</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+<td><A HREF="Example_Lambda_ref_017.html">Lambda ref 017</A></td>
+<td><A HREF="Example_Matrix_append_007.html">Matrix append 007</A></td>
+<td><A HREF="Example_Matrix_apply_005.html">Matrix apply 005</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_apply_006.html">Matrix apply 006</A></td>
+<td><A HREF="Example_Matrix_binaryInsert_005.html">Matrix binaryInsert 005</A></td>
+<td><A HREF="Example_Matrix_binarySearch_005.html">Matrix binarySearch 005</A></td>
+<td><A HREF="Example_Matrix_binarySearch_006.html">Matrix binarySearch 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_cdr_007.html">Matrix cdr 007</A></td>
+<td><A HREF="Example_Matrix_cdr_008.html">Matrix cdr 008</A></td>
+<td><A HREF="Example_Matrix_compare_007.html">Matrix compare 007</A></td>
+<td><A HREF="Example_Matrix_compareEQ_007.html">Matrix compareEQ 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_compareGE_007.html">Matrix compareGE 007</A></td>
+<td><A HREF="Example_Matrix_compareLE_007.html">Matrix compareLE 007</A></td>
+<td><A HREF="Example_Matrix_compareNE_007.html">Matrix compareNE 007</A></td>
+<td><A HREF="Example_Matrix_comparison_functions_007.html">Matrix comparison functions 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_copy_006.html">Matrix copy 006</A></td>
+<td><A HREF="Example_Matrix_copy_007.html">Matrix copy 007</A></td>
+<td><A HREF="Example_Matrix_count_005.html">Matrix count 005</A></td>
+<td><A HREF="Example_Matrix_delete_009.html">Matrix delete 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_insert_005.html">Matrix insert 005</A></td>
+<td><A HREF="Example_Matrix_inside_005.html">Matrix inside 005</A></td>
+<td><A HREF="Example_Matrix_isAtom_005.html">Matrix isAtom 005</A></td>
+<td><A HREF="Example_Matrix_isEqual_005.html">Matrix isEqual 005</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_isIdentical_005.html">Matrix isIdentical 005</A></td>
+<td><A HREF="Example_Matrix_isMatrix_001.html">Matrix isMatrix 001</A></td>
+<td><A HREF="Example_Matrix_isNumberMatrix__001.html">Matrix isNumberMatrix  001</A></td>
+<td><A HREF="Example_Matrix_isObject_007.html">Matrix isObject 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_isType_009.html">Matrix isType 009</A></td>
+<td><A HREF="Example_Matrix_length_008.html">Matrix length 008</A></td>
+<td><A HREF="Example_Matrix_makeGaussianMatrix_001.html">Matrix makeGaussianMatrix 001</A></td>
+<td><A HREF="Example_Matrix_makeGramMatrix__001.html">Matrix makeGramMatrix  001</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_map_006.html">Matrix map 006</A></td>
+<td><A HREF="Example_Matrix_map_007.html">Matrix map 007</A></td>
+<td><A HREF="Example_Matrix_mapc_005.html">Matrix mapc 005</A></td>
+<td><A HREF="Example_Matrix_matrixGaussianEliminate_001.html">Matrix matrixGaussianEliminate 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_matrixGaussianSubstitute_001.html">Matrix matrixGaussianSubstitute 001</A></td>
+<td><A HREF="Example_Matrix_member_005.html">Matrix member 005</A></td>
+<td><A HREF="Example_Matrix_new_009.html">Matrix new 009</A></td>
+<td><A HREF="Example_Matrix_new_010.html">Matrix new 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_objectToMatrix_001.html">Matrix objectToMatrix 001</A></td>
+<td><A HREF="Example_Matrix_objectToNumMatrix_001.html">Matrix objectToNumMatrix 001</A></td>
+<td><A HREF="Example_Matrix_rank_001.html">Matrix rank 001</A></td>
+<td><A HREF="Example_Matrix_ref_015.html">Matrix ref 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_ref_016.html">Matrix ref 016</A></td>
+<td><A HREF="Example_Matrix_remove_005.html">Matrix remove 005</A></td>
+<td><A HREF="Example_Matrix_resize_005.html">Matrix resize 005</A></td>
+<td><A HREF="Example_Matrix_reverse_002.html">Matrix reverse 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_setCdr_005.html">Matrix setCdr 005</A></td>
+<td><A HREF="Example_Matrix_setLastCdr_005.html">Matrix setLastCdr 005</A></td>
+<td><A HREF="Example_Matrix_setq_014.html">Matrix setq 014</A></td>
+<td><A HREF="Example_Matrix_sizeof_007.html">Matrix sizeof 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_sort_012.html">Matrix sort 012</A></td>
+<td><A HREF="Example_Matrix_type_010.html">Matrix type 010</A></td>
+<td><A HREF="Example_Matrix_uniqueInsert_004.html">Matrix uniqueInsert 004</A></td>
+<td><A HREF="Example_Matrix_vectorFill_002.html">Matrix vectorFill 002</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_append_012.html">NumMatrix append 012</A></td>
+<td><A HREF="Example_NumMatrix_apply_009.html">NumMatrix apply 009</A></td>
+<td><A HREF="Example_NumMatrix_binaryInsert_007.html">NumMatrix binaryInsert 007</A></td>
+<td><A HREF="Example_NumMatrix_binarySearch_007.html">NumMatrix binarySearch 007</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_cdr_011.html">NumMatrix cdr 011</A></td>
+<td><A HREF="Example_NumMatrix_compare_023.html">NumMatrix compare 023</A></td>
+<td><A HREF="Example_NumMatrix_compareEQ_023.html">NumMatrix compareEQ 023</A></td>
+<td><A HREF="Example_NumMatrix_compareGE_023.html">NumMatrix compareGE 023</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_compareGT_023.html">NumMatrix compareGT 023</A></td>
+<td><A HREF="Example_NumMatrix_compareLE_023.html">NumMatrix compareLE 023</A></td>
+<td><A HREF="Example_NumMatrix_compareLT_023.html">NumMatrix compareLT 023</A></td>
+<td><A HREF="Example_NumMatrix_compareNE_023.html">NumMatrix compareNE 023</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_comparison_functions_023.html">NumMatrix comparison functions 023</A></td>
+<td><A HREF="Example_NumMatrix_copy_011.html">NumMatrix copy 011</A></td>
+<td><A HREF="Example_NumMatrix_count_009.html">NumMatrix count 009</A></td>
+<td><A HREF="Example_NumMatrix_delete_014.html">NumMatrix delete 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_insert_009.html">NumMatrix insert 009</A></td>
+<td><A HREF="Example_NumMatrix_inside_009.html">NumMatrix inside 009</A></td>
+<td><A HREF="Example_NumMatrix_isAtom_012.html">NumMatrix isAtom 012</A></td>
+<td><A HREF="Example_NumMatrix_isEqual_020.html">NumMatrix isEqual 020</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_isIdentical_020.html">NumMatrix isIdentical 020</A></td>
+<td><A HREF="Example_NumMatrix_isNumberMatrix__001.html">NumMatrix isNumberMatrix  001</A></td>
+<td><A HREF="Example_NumMatrix_isObject_014.html">NumMatrix isObject 014</A></td>
+<td><A HREF="Example_NumMatrix_isType_022.html">NumMatrix isType 022</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_length_017.html">NumMatrix length 017</A></td>
+<td><A HREF="Example_NumMatrix_makeGaussianMatrix_001.html">NumMatrix makeGaussianMatrix 001</A></td>
+<td><A HREF="Example_NumMatrix_makeGramMatrix__001.html">NumMatrix makeGramMatrix  001</A></td>
+<td><A HREF="Example_NumMatrix_map_010.html">NumMatrix map 010</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_mapc_009.html">NumMatrix mapc 009</A></td>
+<td><A HREF="Example_NumMatrix_matrixGaussianEliminate_001.html">NumMatrix matrixGaussianEliminate 001</A></td>
+<td><A HREF="Example_NumMatrix_matrixGaussianSubstitute_001.html">NumMatrix matrixGaussianSubstitute 001</A></td>
+<td><A HREF="Example_NumMatrix_member_009.html">NumMatrix member 009</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_new_015.html">NumMatrix new 015</A></td>
+<td><A HREF="Example_NumMatrix_rank_002.html">NumMatrix rank 002</A></td>
+<td><A HREF="Example_NumMatrix_ref_035.html">NumMatrix ref 035</A></td>
+<td><A HREF="Example_NumMatrix_remove_008.html">NumMatrix remove 008</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_resize_011.html">NumMatrix resize 011</A></td>
+<td><A HREF="Example_NumMatrix_reverse_004.html">NumMatrix reverse 004</A></td>
+<td><A HREF="Example_NumMatrix_setCdr_013.html">NumMatrix setCdr 013</A></td>
+<td><A HREF="Example_NumMatrix_setLastCdr_012.html">NumMatrix setLastCdr 012</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_sizeof_028.html">NumMatrix sizeof 028</A></td>
+<td><A HREF="Example_NumMatrix_sort_020.html">NumMatrix sort 020</A></td>
+<td><A HREF="Example_NumMatrix_type_025.html">NumMatrix type 025</A></td>
+<td><A HREF="Example_NumMatrix_uniqueInsert_005.html">NumMatrix uniqueInsert 005</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_vectorFill_008.html">NumMatrix vectorFill 008</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_parse_001.html">String parse 001</A></td>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+<td><A HREF="Example_Void_compare_008.html">Void compare 008</A></td>
+<td><A HREF="Example_Void_compareEQ_008.html">Void compareEQ 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Void_compareGT_008.html">Void compareGT 008</A></td>
+<td><A HREF="Example_Void_compareNE_008.html">Void compareNE 008</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

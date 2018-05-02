@@ -1,0 +1,178 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Class RadLabel</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sdelete"><FONT SIZE=2>delete</font></a></li><li><a href="#SsetLabel"><FONT SIZE=2>setLabel</font></a></li><li><a href="#SgetLabel"><FONT SIZE=2>getLabel</font></a></li><li><a href="#SsetTextFormat"><FONT SIZE=2>setTextFormat</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+        <div class="h2section" id="Overview">
+
+        <p>The <b>RadLabel</b> class inherits from the QLabel class and is the principal
+        tool for AIS Lisp to display text or an image. Implements the RadIde Label pane. 
+        RadLabel panes come standard with a support for rich text.
+        The RadLabel is one of the key words accepted by the <b>qt</b> new: function.
+        There can be many RadLabel objects.
+        </p>
+
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>        
+        <div class="h2section" id="new">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>new</b> function creates a new RadLabel object and returns a pointer to the newly created object.
+        The RadLabel is one of the class key words accepted by the <b>qt</b> new: function.
+        There can be many RadLabelobjects.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt new: RadLabel: LabelDescriptor)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>LabelDescriptor</b></td><td>A descriptive string for the new Label object.</td></tr>
+        <tr><td><b>radLabelPtr</b></td><td>Always returns a pointer to the newly created RadLabel object.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radLabelPtr (qt new: RadLabel: "Hello World"))    ;; Create a new RadLabel object<br>
+        (setq tabIndex (qt mainWindow: addTab: radLabelPtr "MyTab" editMgr )) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdelete"></A>delete</H2></P>        
+        <div class="h2section" id="delete">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>delete</b> function destroys a RadLabel object and returns a null pointer.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt delete: radLabelPtr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>radLabelPtr</b></td><td>The pointer to the radLabelPtr object to be destroyed.</td></tr>
+        <tr><td><b>nullPtr</b></td><td>Always returns a null pointer.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (setq radLabelPtr (qt new: RadLabel:)) ;; Create a RadLabel object.<br>
+        (setq radLabelPtr (qt delete: radLabelPtr)) ;; Destroy the RadLabel object.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetLabel"></A>setLabel</H2></P>        
+        <div class="h2section" id="setLabel">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The radLabel <b>setText</b> function sets a descriptive label in the pane.
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radLabelPtr setText: text)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>text</b></td><td> A descriptive label string</td></tr>
+        <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true)                                                         ;; Don't do anything special when the tab is clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))                  ;; Set the main window title<br>
+        (setq radLabelPtr (qt new: RadLabel: "Hello World"))                              ;; Create a new RadLabel object with a descriptive label<br>
+        (setq tabIndex (qt mainWindow: addTab: radLabelPtr "MyTab" editMgr ))             ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        (sleep 10000.0)                                                                   ;; Wait<br>
+        (qt radLabelPtr setText: "Goodbye World")                                         ;; Set a new descriptive label to an existing radLabel object" <br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetLabel"></A>getLabel</H2></P>        
+        <div class="h2section" id="getLabel">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The radLabel <b>getText</b> function gets the pointer to descriptive label string for an existing radLabel object widget.
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myLabelTextPtr(qt radLabelPtr getText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myLabelTextPtr</b></td><td> Always returns the label of the radLabel Object</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+       (defun editMgr(...) true)                                                         ;; Don't do anything special when the tab is clicked<br>  
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))                  ;; Set the main window title <br>
+        (setq radLabelPtr (qt new: RadLabel: "Hello World"))                              ;; Create a new RadLabel object with a descriptive label<br>
+        (setq myLabelPtr(qt radLabelPtr getText:))                                        ;; Get the descriptive label to an existing radLabel object" <br>        
+        (setq tabIndex (qt mainWindow: addTab: radLabelPtr myLabelPtr editMgr ))          ;; Use the retrieved name as the title for the tab<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>  
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTextFormat"></A>setTextFormat</H2></P>        
+        <div class="h2section" id="setTextFormat">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The radLabel <b>setTextFormat</b> function sets the format rule for the label; It can be set to Plain text if value of the argument is 0 or Rich Text if the value is 1.
+        </p>
+
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radLabelPtr setText: textFormat)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>TextFormatRule</b></td><td> An Integer (0=Plain Text, 1=Rich Text)</td></tr>
+        <tr><td><b>true</b></td><td> Always returns true</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true)                                                         ;; Create a tab manager that does nothing when clicked <br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo."))                  ;; Set the main window title<br>
+        (setq radLabelPtr (qt new: RadLabel: "Hello World"))                              ;; Create a new RadLabel object with a descriptive label<br>
+        (setq tabIndex (qt mainWindow: addTab: radLabelPtr "MyTab" editMgr ))             ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:)                                                        ;; Display the main window<br>
+        (setq myLabelPtr(qt radLabelPtr getText:))                                        ;; Get the descriptive label to an existing radLabel object" <br>
+        (sleep 10000.0)                                                                   ;; Wait<br>
+        (qt radLabelPtr setTextFormat: 1)                                                 ;; Force the label field to interpret Rich Text<br>
+        (qt radLabelPtr setText: "<i>Goodbye World</i>")                                  ;; Set a new rich text descriptive label for the radLabel object" <br>     
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

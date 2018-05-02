@@ -1,0 +1,266 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lisp Assembler</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#SArchitecture"><FONT SIZE=2>Architecture</font></a></li><li><a href="#SVirtual Machine Instructions"><FONT SIZE=2>Virtual Machine Instructions</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>
+          <div class="h2section" id="Assembler">
+		  <p>The Lisp language is designed to be used as an assembler language for the DRM virtual machine.
+		  For each virtual machine instruction there is a Lisp builtin form. These vm forms cannot be
+		  executed directly. They can only be executed within the context of a compiled Lambda object.
+		  All Lisp assembler special forms are prefixed with the <b>vm</b> letters, and are understood only by 
+		  the Lisp compiler.</p>
+		    <p>The Lambda
+		    Information Server<b> </b>database
+		    engine comes with a built in virtual machine (<b>DRM</b>)
+		    for managing distributed intelligent Lambda execution. Analytic Information
+		    Server also supports multiple virtual machines (as many as one per Lambda),
+		    and execution of Lambdas on native binary machine code.</p>
+		    <p>The DRM
+		    virtual machine instruction set, which is machine independent and
+		    computationally complete, is designed for fast execution. The design goal is
+		    to come as close as possible to compiled C execution speeds, while still
+		    retaining portability. The Analytic Information Server engine does not force
+		    the user to choose an Lambda source language syntax, instead compilers are
+		    supplied for Lisp, JavaScript, and even natural language.</p>
+		    <p>The Lambda
+		    Information Server engine performs its own state of the art object
+		    management for all Lambda objects supervised by the database engine. Lambda
+		    Information Server manages all of its own object tables to maximize
+		    execution speed.&nbsp; The Lambda
+		    Information Server engine supports: fully automated mark and sweep garbage
+		    collection; a user extendible type system; dynamic object creation;
+		    optimized object messaging; both object and Lambda inheritance; mixed or
+		    interleaved execution of intelligent Lambdas and host functions, line by line
+		    source code debugging of Lambdas, and full object, Lambda, and code level
+		    browsing.</p>
+		    <p><font color="navy" size="4">Multiple Virtual Machines</font></p>
+		    <p>AIS Lambdas are designed to be write-once-run-anywhere executable objects.
+		    This is accomplished via the virtual machine concept of software Lambda
+		    execution. Lambda virtual machines are designed to be mapped onto the actual
+		    host microchip at the server location, providing faithful Lambda execution
+		    wherever the Lambda may travel on the Internet. There are currently several
+		    virtual machines operating within Analytic Information Server. The DRM
+		    virtual machine uses a <i>Dynamically typed Register Machine</i>
+		    model to provide portable Lambda execution from high level dynamically typed
+		    instructions all the way to super fast microchip-level register execution.
+		    The DRM virtual machine runs in emulation mode during the testing and
+		    debug phases of Lambda development, and there is an AIS Lambda debugger
+		    available for Lambdas running on this virtual machine. During the final
+		    release phases of Lambda development, DRM virtual machine Lambdas are
+		    automatically converted to the NATIVE virtual machine on the host computer,
+		    using the just-in-time compiler. The NATIVE virtual
+		    machine is a faithful machine language translation of the execution rules in
+		    the DRM virtual machine onto the actual host microchip at the server
+		    location. NATIVE virtual machine execution runs at microchip-level execution
+		    speeds.</p>
+		    <p>Analytic Information Server is <i>agnostic</i> in the choice of Lambda
+		    virtual machine. It is certainly possible, and is currently often the
+		    practice to have communities of Lambdas which are not all running on the same
+		    virtual machine. It is often the case that one virtual machine model is
+		    preferable for certain data analysis applications while yet another virtual
+		    machine model is preferable for other data analysis applications. AIS comes
+		    equipped with several Lambda virtual machines and loadable library tools for
+		    the easy creation of additional user-defined Lambda virtual machines. The
+		    only caveat is that popular virtual machines (<i>such as the Python, Java,
+		    or Smalltalk virtual machines</i>) implemented in Analytic Information Server
+		    must be tailored to execute our executable Lambda objects, and to operate
+		    within the AIS runtime environment. AIS virtual machine development tools
+		    are not designed to create virtual machines for execution outside Lambda
+		    Information Server.</p>
+		    <p><font color="navy" size="4">Microchip-level Execution Speeds</font></p>
+		    <p>Analytic Information Server is primarily concerned with software Lambdas
+		    which perform high volume data analysis. Super fast execution speed is
+		    essential in such application domains. There are several levels of general
+		    computer program execution speeds. Disk based operations, such as those
+		    performed by <i>SQL</i> and other database system languages, are among the
+		    slowest executing animals in the program zoo. The next level of faster
+		    execution speed is achieved by programs performing memory to memory
+		    operations, such as those performed by <i>COBOL</i> and many other business
+		    languages. The fastest possible level of program execution is achieved by
+		    programs performing register to register operations on the microchip, such
+		    as those performed by <i>assembler</i> language.</p>
+		    <p>The AIS DRM virtual machine provides very fast native execution of
+		    Lambdas performing disk based operations, memory to memory operations, and
+		    microchip-level register to register operations. Regardless of the data
+		    analysis domain, AIS allows the development of write-once-run-anywhere
+		    Lambdas which execute at the fastest possible speeds.</p>
+		    <p>&nbsp;</p>
+            </div>				
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SArchitecture"></A>Architecture</H2></P>
+           <div class="h2section" id="Architecture">
+			<p>The DRM virtual machine is a register machine architecture similar to most modern Von Neumann computer architectures.
+		    Because the DRM virtual machine is expected to service a database, 
+		    the virtual machine memory has been subdivided into dynamically typed words. 
+		    Hence the name, <b>D</b>ynamic typed <b>R</b>egister <b>M</b>achine.
+		    With the machine memory subdivided into dynamically typed words, data (from the database)
+		    with a wide variety of types, can be easily loaded into memory; and, 
+		    since the register machine architecture is similar to the internal
+		    architecture of most modern computing equipment, it is easy to write
+		    just-in-time compilers from DRM pcodes into native binary machine code for a
+		    wide variety of computers.</p>
+		    <p>The DRM virtual machine supports a number of registers,
+		    including an Instruction Pointer register, a Stack Register, and fifty general purpose Arithmetic Registers.
+		    Each general purpose arithmetic register can store Integer, IEEE floating point, or memory address data. 
+		    Virtual machine instructions can operate directly on the contents of registers or on memory locations pointed to by addresses in registers.
+		    Memory references can be made: (a) directly from addresses in registers; 
+		    (b) indirectly from addresses in registers indexed by integers in an index register; 
+		    or (c) indirectly from addresses in registers plus an inline integer displacement.
+		    The virtual machine instructions operate on the following data types: 
+		    </p>
+		    <ul>
+		    	<li>Character <i>(8-bit ASCII)</i></li>
+		    	<li>Boolean <i>(8-bit true or false)</i></li>
+		    	<li>Float <i>(IEEE single precision floating point)</i></li>
+		    	<li>Integer <i>(64-bit signed integer - {may be 32-bit on smaller computers})</i></li>
+		    	<li>Long <i>(32-bit signed integer)</i></li>
+		    	<li>Number <i>(IEEE double precision floating point)</i></li>
+		    	<li>Object <i>(a pointer to an AIS HEAP object {there are many different object types} such as String, Vector, Lambda, etc.)</i></li>
+		    	<li>Short <i>(16-bit signed integer)</i></li>
+		    	<li>Text <i>(up to 10 characters of null-terminated ASCII codes)</i></li>
+		    	<li>Word <i>(128-bit dynamically typed container capable of holding any of the previous data types)</i></li>
+		    </ul>
+		  <h3>Word Format</h3>
+		    <p>The AIS Word is a 128-bit dynamically typed container capable of holding any of the AIS native data types (shown above).
+		    Each Word begins with an 80-bit data area capable of holding up to ten bytes of null-terminated ASCII text,
+		    or any one of these other native AIS data types: Character, Boolean, Float, Integer, Long, Number, Object, or Short.
+		    Immediately following the Word's 80-bit data area, is the Word's tail (a 32-bit signed integer). 
+		    The tail is a general purpose data field used for linking words to other words, keeping word counts, or any other purpose.
+		    Immediately following the Word's tail, is the Word's Declared Type (an 8-bit data type  announcing the user's preferred data type for this Word).
+		    Immediately following the Word's Declared Type, is the Word's Current Type (an 8-bit data type announcing the type of data contained in the Word's 80-bit data area). 
+		    The format of each AIS Word is as follows.
+		    </p>
+		    <ul>
+		      <li><b>Vector Instructions: </b>A set of vector data array instructions which
+		        allow fast parallel processing of vectored integer and floating point data.</li>
+		      <ul>
+		        <li>Vector instructions using auxilliary signal processing and graphics chips.</li>
+		        <li>Vector instructions supporting fast in-line basic linear algebra operations.</li>
+		      </ul>
+		      <li><b>Machine Registers: </b>A set of virtual machine arithmetic registers which
+		        allow fast microchip-level execution of Lambda arithmetic operations.</li>
+		      <ul>
+		        <li>A set of fifty arithmetic registers.</li>
+		        <li>A set of virtual machine instructions (<b>pcodes</b>) which control
+		          operations in the registers.</li>
+		      </ul>
+		      <li><b>Main Memory:</b> A set of virtual machine words. Each virtual
+		        machine word begins with a type tag and ends with a data item (this is
+		        known as <b>Dynamic Typing</b>).</li>
+		      <ul>
+		        <li>A set of built-in data types (Integers, Strings, Vectors,
+		          Structures, etc.) for storing common database data types in main
+		          memory and on disk.</li>
+		        <li>A set of virtual machine instructions (<b>pcodes</b>) which control
+		          operations in the main memory.</li>
+		      </ul>
+		      <li><b>Lambdas:</b> Executable, user definable, objects known as Lambdas.
+		        Lambdas can be saved and loaded from the AIS database.</li>
+		      <ul>
+		        <li>A set of built-in Lambda properties which allow all Lambdas to work
+		          together in communities to accomplish increasingly complex tasks.</li>
+		        <li>A set of built-in virtual machine functions (<b>pcodes</b>) which
+		          extend operations in main memory and on disk.</li>
+		      </ul>
+		    </ul>
+		    <h3>Assembler</h3>
+		    <p>For each virtual machine instruction there is a Lisp special form which generates the specified vm instruction. 
+		    This allows Lisp to perform double duty as a vm assembler language.
+		    As the Analytic Information Server (AIS) virtual machine is ported from machine to machine, 
+		    AIS Lisp becomes a write-once-run-anywhere assembler language.
+		    </p>
+            </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SVirtual Machine Instructions"></A>Virtual Machine Instructions</H2></P>
+          <div class="h2section" id="Virtual Machine Instructions">
+		  <p>AIS Lambdas are designed to be write-once-run-anywhere executable objects. 
+             This is accomplished via the virtual machine concept of software Lambda execution. 
+             Lambda virtual machines are designed to be mapped onto the actual host microchip 
+             at the server location, providing faithful Lambda execution wherever the Lambda may 
+             travel on the Internet. There are currently several virtual machines operating 
+             within Analytic Information Server. The DRM virtual machine uses a Dynamically typed Register 
+             Machine model to provide portable Lambda execution from high level dynamically typed instructions 
+             all the way to super fast microchip-level register execution. The DRM virtual machine runs in 
+             emulation mode during the testing and debug phases of Lambda development, and there is an 
+             AIS Lambda debugger available for Lambdas running on this virtual machine. During the final 
+             release phases of Lambda development, DRM virtual machine Lambdas are automatically converted 
+             to the NATIVE virtual machine on the host computer, using the just-in-time compiler. 
+             The NATIVE virtual machine is a faithful machine language translation of the execution
+             rules in the DRM virtual machine onto the actual host microchip at the server location. 
+             NATIVE virtual machine execution runs at microchip-level execution speeds. </p>
+             <P>
+             <table width="100%"><tr>
+<td><A HREF="VMInstruction_vmadd.html#topage">vmadd</A></td><td><A HREF="VMInstruction_vmaddi.html#topage">vmaddi</A></td><td><A HREF="VMInstruction_vmaddn.html#topage">vmaddn</A></td><td><A HREF="VMInstruction_vmand.html#topage">vmand</A></td><td><A HREF="VMInstruction_vmapply.html#topage">vmapply</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmargcount.html#topage">vmargcount</A></td><td><A HREF="VMInstruction_vmargfetch.html#topage">vmargfetch</A></td><td><A HREF="VMInstruction_vmcadd.html#topage">vmcadd</A></td><td><A HREF="VMInstruction_vmcall.html#topage">vmcall</A></td><td><A HREF="VMInstruction_vmcallarg.html#topage">vmcallarg</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmcdiv.html#topage">vmcdiv</A></td><td><A HREF="VMInstruction_vmcmul.html#topage">vmcmul</A></td><td><A HREF="VMInstruction_vmcsub.html#topage">vmcsub</A></td><td><A HREF="VMInstruction_vmdebugger.html#topage">vmdebugger</A></td><td><A HREF="VMInstruction_vmdiv.html#topage">vmdiv</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmdivi.html#topage">vmdivi</A></td><td><A HREF="VMInstruction_vmdivn.html#topage">vmdivn</A></td><td><A HREF="VMInstruction_vmdivr.html#topage">vmdivr</A></td><td><A HREF="VMInstruction_vmdivri.html#topage">vmdivri</A></td><td><A HREF="VMInstruction_vmiadd.html#topage">vmiadd</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmiand.html#topage">vmiand</A></td><td><A HREF="VMInstruction_vmiandb.html#topage">vmiandb</A></td><td><A HREF="VMInstruction_vmidiv.html#topage">vmidiv</A></td><td><A HREF="VMInstruction_vmidivr.html#topage">vmidivr</A></td><td><A HREF="VMInstruction_vmimul.html#topage">vmimul</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmior.html#topage">vmior</A></td><td><A HREF="VMInstruction_vmiorb.html#topage">vmiorb</A></td><td><A HREF="VMInstruction_vmisub.html#topage">vmisub</A></td><td><A HREF="VMInstruction_vmixor.html#topage">vmixor</A></td><td><A HREF="VMInstruction_vmixorb.html#topage">vmixorb</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmjump.html#topage">vmjump</A></td><td><A HREF="VMInstruction_vmjumpcc.html#topage">vmjumpcc</A></td><td><A HREF="VMInstruction_vmmove.html#topage">vmmove</A></td><td><A HREF="VMInstruction_vmmovei.html#topage">vmmovei</A></td><td><A HREF="VMInstruction_vmmoven.html#topage">vmmoven</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmmul.html#topage">vmmul</A></td><td><A HREF="VMInstruction_vmmuli.html#topage">vmmuli</A></td><td><A HREF="VMInstruction_vmmuln.html#topage">vmmuln</A></td><td><A HREF="VMInstruction_vmnadd.html#topage">vmnadd</A></td><td><A HREF="VMInstruction_vmnatAddInteger.html#topage">vmnatAddInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatAddNumber.html#topage">vmnatAddNumber</A></td><td><A HREF="VMInstruction_vmnatAndInteger.html#topage">vmnatAndInteger</A></td><td><A HREF="VMInstruction_vmnatDivInteger.html#topage">vmnatDivInteger</A></td><td><A HREF="VMInstruction_vmnatDivNumber.html#topage">vmnatDivNumber</A></td><td><A HREF="VMInstruction_vmnatDivrInteger.html#topage">vmnatDivrInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatDivrNumber.html#topage">vmnatDivrNumber</A></td><td><A HREF="VMInstruction_vmnatJumpCCInteger.html#topage">vmnatJumpCCInteger</A></td><td><A HREF="VMInstruction_vmnatJumpCCNumber.html#topage">vmnatJumpCCNumber</A></td><td><A HREF="VMInstruction_vmnatLoadCharacter.html#topage">vmnatLoadCharacter</A></td><td><A HREF="VMInstruction_vmnatLoadFloat.html#topage">vmnatLoadFloat</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatLoadInteger.html#topage">vmnatLoadInteger</A></td><td><A HREF="VMInstruction_vmnatLoadLong.html#topage">vmnatLoadLong</A></td><td><A HREF="VMInstruction_vmnatLoadNumber.html#topage">vmnatLoadNumber</A></td><td><A HREF="VMInstruction_vmnatLoadObject.html#topage">vmnatLoadObject</A></td><td><A HREF="VMInstruction_vmnatLoadShort.html#topage">vmnatLoadShort</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatMulInteger.html#topage">vmnatMulInteger</A></td><td><A HREF="VMInstruction_vmnatMulNumber.html#topage">vmnatMulNumber</A></td><td><A HREF="VMInstruction_vmnatOrInteger.html#topage">vmnatOrInteger</A></td><td><A HREF="VMInstruction_vmnatSaveCharacter.html#topage">vmnatSaveCharacter</A></td><td><A HREF="VMInstruction_vmnatSaveFloat.html#topage">vmnatSaveFloat</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatSaveInteger.html#topage">vmnatSaveInteger</A></td><td><A HREF="VMInstruction_vmnatSaveLong.html#topage">vmnatSaveLong</A></td><td><A HREF="VMInstruction_vmnatSaveNumber.html#topage">vmnatSaveNumber</A></td><td><A HREF="VMInstruction_vmnatSaveObject.html#topage">vmnatSaveObject</A></td><td><A HREF="VMInstruction_vmnatSaveShort.html#topage">vmnatSaveShort</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatShlInteger.html#topage">vmnatShlInteger</A></td><td><A HREF="VMInstruction_vmnatShrInteger.html#topage">vmnatShrInteger</A></td><td><A HREF="VMInstruction_vmnatSubInteger.html#topage">vmnatSubInteger</A></td><td><A HREF="VMInstruction_vmnatSubNumber.html#topage">vmnatSubNumber</A></td><td><A HREF="VMInstruction_vmnatXorInteger.html#topage">vmnatXorInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmndiv.html#topage">vmndiv</A></td><td><A HREF="VMInstruction_vmndivr.html#topage">vmndivr</A></td><td><A HREF="VMInstruction_vmnmul.html#topage">vmnmul</A></td><td><A HREF="VMInstruction_vmnop.html#topage">vmnop</A></td><td><A HREF="VMInstruction_vmnsub.html#topage">vmnsub</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmonerror.html#topage">vmonerror</A></td><td><A HREF="VMInstruction_vmopt.html#topage">vmopt</A></td><td><A HREF="VMInstruction_vmor.html#topage">vmor</A></td><td><A HREF="VMInstruction_vmpop.html#topage">vmpop</A></td><td><A HREF="VMInstruction_vmpush.html#topage">vmpush</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmref.html#topage">vmref</A></td><td><A HREF="VMInstruction_vmrefbitvector.html#topage">vmrefbitvector</A></td><td><A HREF="VMInstruction_vmrefbytevector.html#topage">vmrefbytevector</A></td><td><A HREF="VMInstruction_vmrefdickey.html#topage">vmrefdickey</A></td><td><A HREF="VMInstruction_vmrefdicvalue.html#topage">vmrefdicvalue</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmrefdirkey.html#topage">vmrefdirkey</A></td><td><A HREF="VMInstruction_vmrefdirvalue.html#topage">vmrefdirvalue</A></td><td><A HREF="VMInstruction_vmreffltvector.html#topage">vmreffltvector</A></td><td><A HREF="VMInstruction_vmrefintvector.html#topage">vmrefintvector</A></td><td><A HREF="VMInstruction_vmreflongvector.html#topage">vmreflongvector</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmrefmatrix.html#topage">vmrefmatrix</A></td><td><A HREF="VMInstruction_vmrefnummatrix.html#topage">vmrefnummatrix</A></td><td><A HREF="VMInstruction_vmrefnumvector.html#topage">vmrefnumvector</A></td><td><A HREF="VMInstruction_vmrefobjvector.html#topage">vmrefobjvector</A></td><td><A HREF="VMInstruction_vmrefpcdvector.html#topage">vmrefpcdvector</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmrefshortvector.html#topage">vmrefshortvector</A></td><td><A HREF="VMInstruction_vmrefstring.html#topage">vmrefstring</A></td><td><A HREF="VMInstruction_vmrefstrkey.html#topage">vmrefstrkey</A></td><td><A HREF="VMInstruction_vmrefstrvalue.html#topage">vmrefstrvalue</A></td><td><A HREF="VMInstruction_vmrefsymbol.html#topage">vmrefsymbol</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmreftext.html#topage">vmreftext</A></td><td><A HREF="VMInstruction_vmrefvector.html#topage">vmrefvector</A></td><td><A HREF="VMInstruction_vmregAbsNumber.html#topage">vmregAbsNumber</A></td><td><A HREF="VMInstruction_vmregAddImmediate.html#topage">vmregAddImmediate</A></td><td><A HREF="VMInstruction_vmregAddInteger.html#topage">vmregAddInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregAddNumber.html#topage">vmregAddNumber</A></td><td><A HREF="VMInstruction_vmregAddPointer.html#topage">vmregAddPointer</A></td><td><A HREF="VMInstruction_vmregAndImmediate.html#topage">vmregAndImmediate</A></td><td><A HREF="VMInstruction_vmregAndInteger.html#topage">vmregAndInteger</A></td><td><A HREF="VMInstruction_vmregCosNumber.html#topage">vmregCosNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregDivImmediate.html#topage">vmregDivImmediate</A></td><td><A HREF="VMInstruction_vmregDivInteger.html#topage">vmregDivInteger</A></td><td><A HREF="VMInstruction_vmregDivNumber.html#topage">vmregDivNumber</A></td><td><A HREF="VMInstruction_vmregDivrImmediate.html#topage">vmregDivrImmediate</A></td><td><A HREF="VMInstruction_vmregDivrInteger.html#topage">vmregDivrInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregDivrNumber.html#topage">vmregDivrNumber</A></td><td><A HREF="VMInstruction_vmregIncPointer.html#topage">vmregIncPointer</A></td><td><A HREF="VMInstruction_vmregInteger.html#topage">vmregInteger</A></td><td><A HREF="VMInstruction_vmregJump.html#topage">vmregJump</A></td><td><A HREF="VMInstruction_vmregJumpCCImmediate.html#topage">vmregJumpCCImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregJumpCCInteger.html#topage">vmregJumpCCInteger</A></td><td><A HREF="VMInstruction_vmregJumpCCNumber.html#topage">vmregJumpCCNumber</A></td><td><A HREF="VMInstruction_vmregLoadAddress.html#topage">vmregLoadAddress</A></td><td><A HREF="VMInstruction_vmregLoadDclType.html#topage">vmregLoadDclType</A></td><td><A HREF="VMInstruction_vmregLoadInteger.html#topage">vmregLoadInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregLoadJmpPointer.html#topage">vmregLoadJmpPointer</A></td><td><A HREF="VMInstruction_vmregLoadNumber.html#topage">vmregLoadNumber</A></td><td><A HREF="VMInstruction_vmregLoadTail.html#topage">vmregLoadTail</A></td><td><A HREF="VMInstruction_vmregLoadType.html#topage">vmregLoadType</A></td><td><A HREF="VMInstruction_vmregLogNumber.html#topage">vmregLogNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregMoveImmediate.html#topage">vmregMoveImmediate</A></td><td><A HREF="VMInstruction_vmregMoveInteger.html#topage">vmregMoveInteger</A></td><td><A HREF="VMInstruction_vmregMoveNumber.html#topage">vmregMoveNumber</A></td><td><A HREF="VMInstruction_vmregMulImmediate.html#topage">vmregMulImmediate</A></td><td><A HREF="VMInstruction_vmregMulInteger.html#topage">vmregMulInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregMulNumber.html#topage">vmregMulNumber</A></td><td><A HREF="VMInstruction_vmregNumber.html#topage">vmregNumber</A></td><td><A HREF="VMInstruction_vmregObjLength.html#topage">vmregObjLength</A></td><td><A HREF="VMInstruction_vmregObjPointer.html#topage">vmregObjPointer</A></td><td><A HREF="VMInstruction_vmregOrImmediate.html#topage">vmregOrImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregOrInteger.html#topage">vmregOrInteger</A></td><td><A HREF="VMInstruction_vmregPwrNumber.html#topage">vmregPwrNumber</A></td><td><A HREF="VMInstruction_vmregRefCharacter.html#topage">vmregRefCharacter</A></td><td><A HREF="VMInstruction_vmregRefFloat.html#topage">vmregRefFloat</A></td><td><A HREF="VMInstruction_vmregRefInteger.html#topage">vmregRefInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregRefLong.html#topage">vmregRefLong</A></td><td><A HREF="VMInstruction_vmregRefNumber.html#topage">vmregRefNumber</A></td><td><A HREF="VMInstruction_vmregRefShort.html#topage">vmregRefShort</A></td><td><A HREF="VMInstruction_vmregRefWord.html#topage">vmregRefWord</A></td><td><A HREF="VMInstruction_vmregRefXCharacter.html#topage">vmregRefXCharacter</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregRefXFloat.html#topage">vmregRefXFloat</A></td><td><A HREF="VMInstruction_vmregRefXInteger.html#topage">vmregRefXInteger</A></td><td><A HREF="VMInstruction_vmregRefXLong.html#topage">vmregRefXLong</A></td><td><A HREF="VMInstruction_vmregRefXNumber.html#topage">vmregRefXNumber</A></td><td><A HREF="VMInstruction_vmregRefXShort.html#topage">vmregRefXShort</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregRefXWord.html#topage">vmregRefXWord</A></td><td><A HREF="VMInstruction_vmregRunInHarware.html#topage">vmregRunInHarware</A></td><td><A HREF="VMInstruction_vmregSaveDeclType.html#topage">vmregSaveDeclType</A></td><td><A HREF="VMInstruction_vmregSaveDeclTypeImmediate.html#topage">vmregSaveDeclTypeImmediate</A></td><td><A HREF="VMInstruction_vmregSaveInteger.html#topage">vmregSaveInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSaveNumber.html#topage">vmregSaveNumber</A></td><td><A HREF="VMInstruction_vmregSaveTail.html#topage">vmregSaveTail</A></td><td><A HREF="VMInstruction_vmregSaveTailImmediate.html#topage">vmregSaveTailImmediate</A></td><td><A HREF="VMInstruction_vmregSetCharImmediate.html#topage">vmregSetCharImmediate</A></td><td><A HREF="VMInstruction_vmregSetCharacter.html#topage">vmregSetCharacter</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetFloat.html#topage">vmregSetFloat</A></td><td><A HREF="VMInstruction_vmregSetIntImmediate.html#topage">vmregSetIntImmediate</A></td><td><A HREF="VMInstruction_vmregSetInteger.html#topage">vmregSetInteger</A></td><td><A HREF="VMInstruction_vmregSetLong.html#topage">vmregSetLong</A></td><td><A HREF="VMInstruction_vmregSetLongImmediate.html#topage">vmregSetLongImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetNumber.html#topage">vmregSetNumber</A></td><td><A HREF="VMInstruction_vmregSetShort.html#topage">vmregSetShort</A></td><td><A HREF="VMInstruction_vmregSetShortImmediate.html#topage">vmregSetShortImmediate</A></td><td><A HREF="VMInstruction_vmregSetWord.html#topage">vmregSetWord</A></td><td><A HREF="VMInstruction_vmregSetXCharImmediate.html#topage">vmregSetXCharImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetXCharacter.html#topage">vmregSetXCharacter</A></td><td><A HREF="VMInstruction_vmregSetXFloat.html#topage">vmregSetXFloat</A></td><td><A HREF="VMInstruction_vmregSetXIntImmediate.html#topage">vmregSetXIntImmediate</A></td><td><A HREF="VMInstruction_vmregSetXInteger.html#topage">vmregSetXInteger</A></td><td><A HREF="VMInstruction_vmregSetXLong.html#topage">vmregSetXLong</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetXLongImmediate.html#topage">vmregSetXLongImmediate</A></td><td><A HREF="VMInstruction_vmregSetXNumber.html#topage">vmregSetXNumber</A></td><td><A HREF="VMInstruction_vmregSetXShort.html#topage">vmregSetXShort</A></td><td><A HREF="VMInstruction_vmregSetXShortImmediate.html#topage">vmregSetXShortImmediate</A></td><td><A HREF="VMInstruction_vmregSetXWord.html#topage">vmregSetXWord</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregShlImmediate.html#topage">vmregShlImmediate</A></td><td><A HREF="VMInstruction_vmregShlInteger.html#topage">vmregShlInteger</A></td><td><A HREF="VMInstruction_vmregShrImmediate.html#topage">vmregShrImmediate</A></td><td><A HREF="VMInstruction_vmregShrInteger.html#topage">vmregShrInteger</A></td><td><A HREF="VMInstruction_vmregSinNumber.html#topage">vmregSinNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSqrtNumber.html#topage">vmregSqrtNumber</A></td><td><A HREF="VMInstruction_vmregStringCompare.html#topage">vmregStringCompare</A></td><td><A HREF="VMInstruction_vmregStringiCompare.html#topage">vmregStringiCompare</A></td><td><A HREF="VMInstruction_vmregSubImmediate.html#topage">vmregSubImmediate</A></td><td><A HREF="VMInstruction_vmregSubInteger.html#topage">vmregSubInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSubNumber.html#topage">vmregSubNumber</A></td><td><A HREF="VMInstruction_vmregSubPointer.html#topage">vmregSubPointer</A></td><td><A HREF="VMInstruction_vmregTanNumber.html#topage">vmregTanNumber</A></td><td><A HREF="VMInstruction_vmregXorImmediate.html#topage">vmregXorImmediate</A></td><td><A HREF="VMInstruction_vmregXorInteger.html#topage">vmregXorInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregmoven.html#topage">vmregmoven</A></td><td><A HREF="VMInstruction_vmreturn.html#topage">vmreturn</A></td><td><A HREF="VMInstruction_vmself.html#topage">vmself</A></td><td><A HREF="VMInstruction_vmsend.html#topage">vmsend</A></td><td><A HREF="VMInstruction_vmset.html#topage">vmset</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetbitvector.html#topage">vmsetbitvector</A></td><td><A HREF="VMInstruction_vmsetbytevector.html#topage">vmsetbytevector</A></td><td><A HREF="VMInstruction_vmsetdickey.html#topage">vmsetdickey</A></td><td><A HREF="VMInstruction_vmsetdicvalue.html#topage">vmsetdicvalue</A></td><td><A HREF="VMInstruction_vmsetdirkey.html#topage">vmsetdirkey</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetdirvalue.html#topage">vmsetdirvalue</A></td><td><A HREF="VMInstruction_vmsetfltvector.html#topage">vmsetfltvector</A></td><td><A HREF="VMInstruction_vmsetintvector.html#topage">vmsetintvector</A></td><td><A HREF="VMInstruction_vmsetlongvector.html#topage">vmsetlongvector</A></td><td><A HREF="VMInstruction_vmsetmatrix.html#topage">vmsetmatrix</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetnummatrix.html#topage">vmsetnummatrix</A></td><td><A HREF="VMInstruction_vmsetnumvector.html#topage">vmsetnumvector</A></td><td><A HREF="VMInstruction_vmsetobjvector.html#topage">vmsetobjvector</A></td><td><A HREF="VMInstruction_vmsetpcdvector.html#topage">vmsetpcdvector</A></td><td><A HREF="VMInstruction_vmsetshortvector.html#topage">vmsetshortvector</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetstring.html#topage">vmsetstring</A></td><td><A HREF="VMInstruction_vmsetstrkey.html#topage">vmsetstrkey</A></td><td><A HREF="VMInstruction_vmsetstrvalue.html#topage">vmsetstrvalue</A></td><td><A HREF="VMInstruction_vmsetvector.html#topage">vmsetvector</A></td><td><A HREF="VMInstruction_vmshl.html#topage">vmshl</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmshr.html#topage">vmshr</A></td><td><A HREF="VMInstruction_vmsmovei.html#topage">vmsmovei</A></td><td><A HREF="VMInstruction_vmsub.html#topage">vmsub</A></td><td><A HREF="VMInstruction_vmsubi.html#topage">vmsubi</A></td><td><A HREF="VMInstruction_vmsubn.html#topage">vmsubn</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmtestescape.html#topage">vmtestescape</A></td><td><A HREF="VMInstruction_vmvecBinary.html#topage">vmvecBinary</A></td><td><A HREF="VMInstruction_vmvecInitialize.html#topage">vmvecInitialize</A></td><td><A HREF="VMInstruction_vmvecLoop.html#topage">vmvecLoop</A></td><td><A HREF="VMInstruction_vmvecNumScalar.html#topage">vmvecNumScalar</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmvecNumVector.html#topage">vmvecNumVector</A></td><td><A HREF="VMInstruction_vmvecPop.html#topage">vmvecPop</A></td><td><A HREF="VMInstruction_vmvecPopNumber.html#topage">vmvecPopNumber</A></td><td><A HREF="VMInstruction_vmvecPush.html#topage">vmvecPush</A></td><td><A HREF="VMInstruction_vmvecPushNumber.html#topage">vmvecPushNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmvecSetIncrements.html#topage">vmvecSetIncrements</A></td><td><A HREF="VMInstruction_vmvecSetPointers.html#topage">vmvecSetPointers</A></td><td><A HREF="VMInstruction_vmvecSwapCC.html#topage">vmvecSwapCC</A></td><td><A HREF="VMInstruction_vmvecUnary.html#topage">vmvecUnary</A></td><td><A HREF="VMInstruction_vmxor.html#topage">vmxor</A></td></table></tr>
+
+             </P>
+           </div>		
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

@@ -1,0 +1,282 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example ShortVector copy 008</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example shows how a Vector may be modified destructively or
+
+
+                   non-destructively  using the  
+
+
+                   the <b>copy</b> and <b>setq</b> function. 
+
+
+
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>The original Vector.  </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define x #(short| 11 12 ))  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 123456&#62 </Returns></b></td></tr>
+</table><p><Note>The copied Vector using the copy function.  </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq z (copy x))  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 234567&#62 </Returns></b></td></tr>
+</table><p><Note>The copied Vector using the setq function.  </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq twin x)   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 345678&#62 </Returns></b></td></tr>
+</table><p><Note>The container named z is a copy of x (both are Vectors) and z has a separate 
+
+
+              memory space.  However, the containers named x and twin point to the same memory 
+
+
+              spaces on the heap.  Therefore </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq twin[1] 3 )   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ShortVector 123456&#62</Returns></b></td></tr>
+</table><p><Note>The setq command results in the contents of both twin and x being both the same. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>twin[1]   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>3 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>x[1]   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>3</Returns></b></td></tr>
+</table><p><Note>Since z points to a different memory space, it still retained the original value
+
+
+              which was copied from x before the values of x were modified.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>z[1]   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> 12 </Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints>Using the setq function results in objects having the same object id.
+
+
+
+
+               But the object that is being assigned the copied object has a
+
+
+
+
+              different object id than original object.  In this example twin and 
+
+
+
+
+              x have the same object id while z has a different object id. </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>copy</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_copy_011.html">BitVector copy 011</A></td>
+<td><A HREF="Example_Brick_copy_012.html">Brick copy 012</A></td>
+<td><A HREF="Example_CpxVector_copy_013.html">CpxVector copy 013</A></td>
+<td><A HREF="Example_Dictionary_copy_002.html">Dictionary copy 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_copy_003.html">Directory copy 003</A></td>
+<td><A HREF="Example_FltVector_copy_006.html">FltVector copy 006</A></td>
+<td><A HREF="Example_IntVector_copy_007.html">IntVector copy 007</A></td>
+<td><A HREF="Example_Lambda_copy_008.html">Lambda copy 008</A></td>
+</tr><tr>
+<td><A HREF="Example_List_copy_010.html">List copy 010</A></td>
+<td><A HREF="Example_Matrix_copy_006.html">Matrix copy 006</A></td>
+<td><A HREF="Example_Matrix_copy_007.html">Matrix copy 007</A></td>
+<td><A HREF="Example_NumMatrix_copy_011.html">NumMatrix copy 011</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_copy_008.html">NumVector copy 008</A></td>
+<td><A HREF="Example_ObjVector_copy_009.html">ObjVector copy 009</A></td>
+<td><A HREF="Example_Pair_copy_009.html">Pair copy 009</A></td>
+<td><A HREF="Example_PcodeVector_copy_010.html">PcodeVector copy 010</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_copy_008.html">ShortVector copy 008</A></td>
+<td><A HREF="Example_Structure_copy_001.html">Structure copy 001</A></td>
+<td><A HREF="Example_Vector_copy_004.html">Vector copy 004</A></td>
+<td><A HREF="Example_Vector_copy_005.html">Vector copy 005</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_copy_Builtin.html">copy</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_setq_Builtin.html">setq(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="ShortVector.html">ShortVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_ShortVector_append_008.html">ShortVector append 008</A></td>
+<td><A HREF="Example_ShortVector_apply_007.html">ShortVector apply 007</A></td>
+<td><A HREF="Example_ShortVector_binaryInsert_006.html">ShortVector binaryInsert 006</A></td>
+<td><A HREF="Example_ShortVector_binarySearch_007.html">ShortVector binarySearch 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_cdr_008.html">ShortVector cdr 008</A></td>
+<td><A HREF="Example_ShortVector_compare_016.html">ShortVector compare 016</A></td>
+<td><A HREF="Example_ShortVector_compareEQ_015.html">ShortVector compareEQ 015</A></td>
+<td><A HREF="Example_ShortVector_compareGE_015.html">ShortVector compareGE 015</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_compareGT_015.html">ShortVector compareGT 015</A></td>
+<td><A HREF="Example_ShortVector_compareLE_015.html">ShortVector compareLE 015</A></td>
+<td><A HREF="Example_ShortVector_compareLT_015.html">ShortVector compareLT 015</A></td>
+<td><A HREF="Example_ShortVector_compareNE_015.html">ShortVector compareNE 015</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_comparison_functions_015.html">ShortVector comparison functions 015</A></td>
+<td><A HREF="Example_ShortVector_copy_008.html">ShortVector copy 008</A></td>
+<td><A HREF="Example_ShortVector_delete_011.html">ShortVector delete 011</A></td>
+<td><A HREF="Example_ShortVector_insert_007.html">ShortVector insert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_inside_006.html">ShortVector inside 006</A></td>
+<td><A HREF="Example_ShortVector_isAtom_007.html">ShortVector isAtom 007</A></td>
+<td><A HREF="Example_ShortVector_isEqual_015.html">ShortVector isEqual 015</A></td>
+<td><A HREF="Example_ShortVector_isIdentical_014.html">ShortVector isIdentical 014</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_isObject_009.html">ShortVector isObject 009</A></td>
+<td><A HREF="Example_ShortVector_length_010.html">ShortVector length 010</A></td>
+<td><A HREF="Example_ShortVector_map_007.html">ShortVector map 007</A></td>
+<td><A HREF="Example_ShortVector_mapc_007.html">ShortVector mapc 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_member_006.html">ShortVector member 006</A></td>
+<td><A HREF="Example_ShortVector_new_011.html">ShortVector new 011</A></td>
+<td><A HREF="Example_ShortVector_ref_024.html">ShortVector ref 024</A></td>
+<td><A HREF="Example_ShortVector_remove_006.html">ShortVector remove 006</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_resize_008.html">ShortVector resize 008</A></td>
+<td><A HREF="Example_ShortVector_reverse_005.html">ShortVector reverse 005</A></td>
+<td><A HREF="Example_ShortVector_setCdr_008.html">ShortVector setCdr 008</A></td>
+<td><A HREF="Example_ShortVector_setq_021.html">ShortVector setq 021</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_sizeof_016.html">ShortVector sizeof 016</A></td>
+<td><A HREF="Example_ShortVector_sort_015.html">ShortVector sort 015</A></td>
+<td><A HREF="Example_ShortVector_type_018.html">ShortVector type 018</A></td>
+<td><A HREF="Example_ShortVector_uniqueInsert_007.html">ShortVector uniqueInsert 007</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_vectorFill_005.html">ShortVector vectorFill 005</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

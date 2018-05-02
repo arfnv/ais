@@ -1,0 +1,238 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>quote</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+       	<p>The <b>quote</b> lexical form expands its arguments without evaluation of symbols, 
+            numbers, constants, or lists.  The <b>quote</b>  lexical form returns  a List 
+            constructed from the specified argument  expression <b>{expression}</b>.  
+            The newly constructed list is always returned.  The <b>quote</b> lexical form 
+            returns its argument <b>{expression}</b> unevaluated. </p>
+        </Overview>
+<p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+		<p>Use the form <b>(quote expression)</b> when the form is NOT to be treated as a 
+           function invocation. For instance, one would express a List constant with a quoted 
+           form. Leaving off the quote would cause the List to be treated as a function invocation.
+        </p>
+        </Usage>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression><p><b>   (quote expression) </b></p> </Expression>
+</b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>expression</b></td><td><FONT COLOR=blue><i>Word</i></FONT></td>
+<td>Any Analytic Information Server expression</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return>
+	    <p>A List derived from the expression (unevaluated).</p>
+	    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_List.html">List</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_apply_Builtin.html">apply</A></td>
+<td><A HREF="Function_associate_Builtin.html">associate</A></td>
+<td><A HREF="Function_boolean_Builtin.html">boolean</A></td>
+<td><A HREF="Function_c::r_Builtin.html">c::r</A></td>
+</tr><tr>
+<td><A HREF="Function_car_Builtin.html">car</A></td>
+<td><A HREF="Function_cdr_Builtin.html">cdr</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+</tr><tr>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+</tr><tr>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+<td><A HREF="Function_compile_Builtin.html">compile</A></td>
+<td><A HREF="Function_copy_Builtin.html">copy</A></td>
+<td><A HREF="Function_count_Builtin.html">count</A></td>
+</tr><tr>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+<td><A HREF="Function_display_Builtin.html">display</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+<td><A HREF="Function_integer_Builtin.html">integer</A></td>
+</tr><tr>
+<td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+<td><A HREF="Function_isDate_Builtin.html">isDate</A></td>
+<td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td>
+</tr><tr>
+<td><A HREF="Function_isError_Builtin.html">isError</A></td>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+<td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td>
+<td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td>
+</tr><tr>
+<td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td>
+<td><A HREF="Function_isObject_Builtin.html">isObject</A></td>
+<td><A HREF="Function_isPair_Builtin.html">isPair</A></td>
+<td><A HREF="Function_isType_Builtin.html">isType</A></td>
+</tr><tr>
+<td><A HREF="Function_last_Builtin.html">last</A></td>
+<td><A HREF="Function_length_Builtin.html">length</A></td>
+<td><A HREF="Function_lisp_Builtin.html">lisp</A></td>
+<td><A HREF="Function_list_Builtin.html">list</A></td>
+</tr><tr>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td>
+<td><A HREF="Function_map_Builtin.html">map</A></td>
+<td><A HREF="Function_mapc_Builtin.html">mapc</A></td>
+</tr><tr>
+<td><A HREF="Function_member_Builtin.html">member</A></td>
+<td><A HREF="Function_money_Builtin.html">money</A></td>
+<td><A HREF="Function_morph_Builtin.html">morph</A></td>
+<td><A HREF="Function_number_Builtin.html">number</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToList_Builtin.html">objectToList</A></td>
+<td><A HREF="Function_objectToMatrix_Builtin.html">objectToMatrix</A></td>
+<td><A HREF="Function_objectToNumMatrix_Builtin.html">objectToNumMatrix</A></td>
+<td><A HREF="Function_objectToNumVector_Builtin.html">objectToNumVector</A></td>
+</tr><tr>
+<td><A HREF="Function_objectToVector_Builtin.html">objectToVector</A></td>
+<td><A HREF="Function_pair_Builtin.html">pair</A></td>
+<td><A HREF="Function_proplist_Builtin.html">proplist</A></td>
+<td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td>
+</tr><tr>
+<td><A HREF="Function_putprop_Builtin.html">putprop</A></td>
+<td><A HREF="Function_quote_Builtin.html">quote</A></td>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_remProp_Builtin.html">remProp</A></td>
+</tr><tr>
+<td><A HREF="Function_reverse_Builtin.html">reverse</A></td>
+<td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td>
+<td><A HREF="Function_setCar_Builtin.html">setCar</A></td>
+<td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td>
+</tr><tr>
+<td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_sort_Builtin.html">sort</A></td>
+</tr><tr>
+<td><A HREF="Function_type_Builtin.html">type</A></td>
+<td><A HREF="Function_writelg_Builtin.html">writelg</A></td>
+<td><A HREF="Function_writeln_Builtin.html">writeln</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

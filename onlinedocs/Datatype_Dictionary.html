@@ -1,0 +1,201 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Dictionary</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Dictionary Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>Dictionary Illustration</font></a></li><li><a href="#S3"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S4"><FONT SIZE=2>Visual Basic Comparison</font></a></li><li><a href="#S5"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S6"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Dictionary Overview</H4></FONT></P>
+        <p> A Dictionary is an Object containing an arbitrary number of bindings.  A binding 
+            consists of a key and value pair. A Dictionary key can only be can any Object 
+            type such as Symbol (Unquoted or Quoted), List, Pair (Unquoted or Quoted), all
+             Vector types, Structure, Dictionary, Repository, or Lambda.</p>
+        <p>Analytic Information Server Structure Objects and Dictionary objects share common 
+            properties: they both contain an arbitrary number of bindings, values can be 
+            referenced by key or index, or two indices, keys can only be objects.  
+           However, Dictionary Object keys are always maintained in ascending sort order.  
+           There are no sort functions for sorting keys in a Dictionary, nor can Dictionaries 
+           be sorted by value.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>Dictionary Illustration</H4></FONT></P>
+        <p> A Dictionary Object is analogous to a table containing exactly two columns and an 
+            arbitrary number of rows.  The left column contains a key (must be an Object type:
+            Symbol, List, Pair , any Vector type, Structure, Dictionary, Repository, or  Lambda ) 
+            , and the right column contains the value associated with its key. Any given row 
+            in a table is analogous to a Dictionary binding: Key/Value pair.</p>
+                 <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>Aardvark</td> <td>"Animal with long snout"</td> </tr>
+               <tr><td>Armadillo</td> <td>"Animal with a protective shell"</td>  </tr>
+               <tr><td>Baboon</td> <td>"A simian found in the jungle"</td> </tr>
+               <tr><td>Cheetah</td> <td> "A fast running animal"</td>  </tr>      
+               <tr><td>Platypus</td> <td>"A mammal with a bill"</td> </tr>              
+           </table>    
+          <p>Or delete the key, <b>Baboon:</b></p>
+           <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>Aardvark</td> <td>"Animal with long snout"</td> </tr>
+               <tr><td>Armadillo</td> <td>"Animal with a protective shell"</td>  </tr>            
+               <tr><td>Cheetah</td> <td> "A fast running animal"</td>  </tr>      
+               <tr><td>Platypus</td> <td>"A mammal with a bill"</td> </tr>              
+           </table>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>When to Use</H4></FONT></P>
+          <p>Dictionaries are like Structures, in that they are convenient for storing 
+             Key/ Value pairs.  However, they have a maintenance overhead keeping the keys
+            in sorted order.  An application that requires sorted keys would best be 
+            served by using a Dictionary. </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Visual Basic Comparison</H4></FONT></P>
+          <p>An Analytic Information Server Dictionary is similar to the user-defined type of 
+           Visual Basic. The Visual Basic user defined type is created at compile time, 
+           whereas the Analytic Information Server structure is created, expanded, or contracted 
+           dynamically at run time. The main difference is that the Visual Basic user defined 
+           type is static and the Analytic Information Server structure is dynamic, has its object 
+           keys and values available maintained in sorted order, and the object keys offer a 
+           wider range of values.</p>
+          <p><b>Type Employee</b></p>
+          <p><b>Name  As Variant   <blockquote>' Name of the employee.  </blockquote>  </b></p>
+          <p><b> Salary As Variant    <blockquote>' Salary  of the employee.  </blockquote>  </b></p>
+           <p><b>Address   As Variant   <blockquote>' Address  of the employee.  </blockquote>  </b></p>
+           <p><b>City   As Variant   <blockquote>' City  of the employee.  </blockquote>  </b></p>
+           <p><b>State   As Variant   <blockquote>' State  of the employee.  </blockquote>  </b></p>
+         <p><b>End Type</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Constant Form</H4></FONT></P>
+          <p>The Dictionary native data type supports a constant form. The whole Dictionary 
+            constant is enclosed in braces and preceded by the sharp symbol, brace, and the 
+           dic| symbol (<b>#{dic|</b>). Some Dictionary constant examples: </p>
+          <p><b>#{dic| Name:  "John Doe"  Address: "184 Anywhere Street" City: "Los Angeles" State: "California"}</b></p>
+    <p>The constant form for dictionaries allows using the constant prefix,  <b>#{dic||</b> with two bars, to specify 
+             creating "as is" in unsorted order as follows:</p>
+          <p><b>#{dic|| Z:  5  Y:  #{Mike: "father"  Sally: "mother"}  X:  "Hello"}</b></p>
+          <p>The constant form for dictionaries allows embedded Analytic Information Server objects
+            for the values or keys as follows:</p>
+          <p><b>#{dic| X:  5  Y:  #{Mike: "father"  Sally: "mother"}  Z:  "Hello"}</b></p>
+          <p><b>#{dic| #Jan,1 ,1972   {Name: Joe Eyes: Blue}  #Sept, 3 ,1969 {Name: Jan Eyes: Brown}}</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S6"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>Dictionary</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Dictionary object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Dictionary_binarySearch_002.html">Example_Dictionary_binarySearch_002</A></td>
+<td><A HREF="Example_Dictionary_cdr_003.html">Example_Dictionary_cdr_003</A></td>
+<td><A HREF="Example_Dictionary_compareEQ_004.html">Example_Dictionary_compareEQ_004</A></td>
+<td><A HREF="Example_Dictionary_compareGE_004.html">Example_Dictionary_compareGE_004</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_compareGT_004.html">Example_Dictionary_compareGT_004</A></td>
+<td><A HREF="Example_Dictionary_compareLE_004.html">Example_Dictionary_compareLE_004</A></td>
+<td><A HREF="Example_Dictionary_compareLT_004.html">Example_Dictionary_compareLT_004</A></td>
+<td><A HREF="Example_Dictionary_compareNE_004.html">Example_Dictionary_compareNE_004</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_compare_003.html">Example_Dictionary_compare_003</A></td>
+<td><A HREF="Example_Dictionary_compare_004.html">Example_Dictionary_compare_004</A></td>
+<td><A HREF="Example_Dictionary_comparison_004.html">Example_Dictionary_comparison_004</A></td>
+<td><A HREF="Example_Dictionary_copy_002.html">Example_Dictionary_copy_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_count_002.html">Example_Dictionary_count_002</A></td>
+<td><A HREF="Example_Dictionary_delete_003.html">Example_Dictionary_delete_003</A></td>
+<td><A HREF="Example_Dictionary_delete_004.html">Example_Dictionary_delete_004</A></td>
+<td><A HREF="Example_Dictionary_insert_002.html">Example_Dictionary_insert_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_inside_002.html">Example_Dictionary_inside_002</A></td>
+<td><A HREF="Example_Dictionary_isAtom_002.html">Example_Dictionary_isAtom_002</A></td>
+<td><A HREF="Example_Dictionary_isBound_002.html">Example_Dictionary_isBound_002</A></td>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Example_Dictionary_isDictionary_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_isDictionary_002.html">Example_Dictionary_isDictionary_002</A></td>
+<td><A HREF="Example_Dictionary_isEqual_002.html">Example_Dictionary_isEqual_002</A></td>
+<td><A HREF="Example_Dictionary_isIdentical_002.html">Example_Dictionary_isIdentical_002</A></td>
+<td><A HREF="Example_Dictionary_isInside_002.html">Example_Dictionary_isInside_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_isMember_002.html">Example_Dictionary_isMember_002</A></td>
+<td><A HREF="Example_Dictionary_isObject_004.html">Example_Dictionary_isObject_004</A></td>
+<td><A HREF="Example_Dictionary_isType_006.html">Example_Dictionary_isType_006</A></td>
+<td><A HREF="Example_Dictionary_length_005.html">Example_Dictionary_length_005</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_makeDictionary_001.html">Example_Dictionary_makeDictionary_001</A></td>
+<td><A HREF="Example_Dictionary_map_002.html">Example_Dictionary_map_002</A></td>
+<td><A HREF="Example_Dictionary_mapc_002.html">Example_Dictionary_mapc_002</A></td>
+<td><A HREF="Example_Dictionary_member_002.html">Example_Dictionary_member_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_new_004.html">Example_Dictionary_new_004</A></td>
+<td><A HREF="Example_Dictionary_objectToDictionary_001.html">Example_Dictionary_objectToDictionary_001</A></td>
+<td><A HREF="Example_Dictionary_objectToDictionary_002.html">Example_Dictionary_objectToDictionary_002</A></td>
+<td><A HREF="Example_Dictionary_objectToDictionary_003.html">Example_Dictionary_objectToDictionary_003</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_objectToDictionary_004.html">Example_Dictionary_objectToDictionary_004</A></td>
+<td><A HREF="Example_Dictionary_refAttributes_002.html">Example_Dictionary_refAttributes_002</A></td>
+<td><A HREF="Example_Dictionary_refValues_002.html">Example_Dictionary_refValues_002</A></td>
+<td><A HREF="Example_Dictionary_ref_007.html">Example_Dictionary_ref_007</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_ref_008.html">Example_Dictionary_ref_008</A></td>
+<td><A HREF="Example_Dictionary_ref_009.html">Example_Dictionary_ref_009</A></td>
+<td><A HREF="Example_Dictionary_remove_002.html">Example_Dictionary_remove_002</A></td>
+<td><A HREF="Example_Dictionary_resize_002.html">Example_Dictionary_resize_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_setAttributes_002.html">Example_Dictionary_setAttributes_002</A></td>
+<td><A HREF="Example_Dictionary_setCdr_002.html">Example_Dictionary_setCdr_002</A></td>
+<td><A HREF="Example_Dictionary_setCdr_003.html">Example_Dictionary_setCdr_003</A></td>
+<td><A HREF="Example_Dictionary_setq_007.html">Example_Dictionary_setq_007</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_setq_009.html">Example_Dictionary_setq_009</A></td>
+<td><A HREF="Example_Dictionary_sizeof_004.html">Example_Dictionary_sizeof_004</A></td>
+<td><A HREF="Example_Dictionary_sort_004.html">Example_Dictionary_sort_004</A></td>
+<td><A HREF="Example_Dictionary_sort_005.html">Example_Dictionary_sort_005</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_sort_006.html">Example_Dictionary_sort_006</A></td>
+<td><A HREF="Example_Dictionary_type_007.html">Example_Dictionary_type_007</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

@@ -1,0 +1,465 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example NumVector vectorSineInnerProduct 001</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description>  The <b>vectorSineInnerProduct</b> function returns the sine inner product 
+
+                of the two Number Vector arguments x1 and x2.
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq x1  #(num| 1 2 3))       </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60NumVector 123456&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq x2  #(num| 6 8 9))</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60NumVector 234567&#62 </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(vectorSineInnerProduct   x1 x2)    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>-0.9537526527595</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>The inner or dot product of two number vectors, of length N, is defined as follows:</p>
+               <p><b>(setq innerProduct 0)</b></p>
+               <p><b>(loop for n from 0 until N do (setq innerProduct  (+ innerProduct (* x1[n] x2[n]))))</b></p>
+        </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>vectorSineInnerProduct</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_NumVector_vectorSineInnerProduct_001.html">NumVector vectorSineInnerProduct 001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_vectorSineInnerProduct_Builtin.html">vectorSineInnerProduct</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_vectorBinaryInnerProduct_Builtin.html">vectorBinaryInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorBipolarInnerProduct_Builtin.html">vectorBipolarInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorCubeInnerProduct_Builtin.html">vectorCubeInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorExpInnerProduct_Builtin.html">vectorExpInnerProduct(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_svmRegression_Builtin.html">svmRegression(Builtin)</A></td>
+<td><A HREF="Function_vectorInnerProduct_Builtin.html">vectorInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorLogInnerProduct_Builtin.html">vectorLogInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorQuartInnerProduct_Builtin.html">vectorQuartInnerProduct(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorSigmoidInnerProduct_Builtin.html">vectorSigmoidInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorCosineInnerProduct_Builtin.html">vectorCosineInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorQuintInnerProduct_Builtin.html">vectorQuintInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorSquareInnerProduct_Builtin.html">vectorSquareInnerProduct(Builtin)</A></td>
+</tr><tr>
+<td><A HREF="Function_vectorTanInnerProduct_Builtin.html">vectorTanInnerProduct(Builtin)</A></td>
+<td><A HREF="Function_vectorTanhInnerProduct_Builtin.html">vectorTanhInnerProduct(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="NumVector.html">NumVector</A></td>
+<td><A HREF="Number.html">Number</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_bitToNumberVector_001.html">BitVector bitToNumberVector 001</A></td>
+<td><A HREF="Example_BitVector_inside_007.html">BitVector inside 007</A></td>
+<td><A HREF="Example_BitVector_setq_024.html">BitVector setq 024</A></td>
+<td><A HREF="Example_Complex_&#42;_002.html">Complex &#42; 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Complex_&#47;_002.html">Complex &#47; 002</A></td>
+<td><A HREF="Example_Complex_compare_021.html">Complex compare 021</A></td>
+<td><A HREF="Example_Complex_cos_002.html">Complex cos 002</A></td>
+<td><A HREF="Example_Complex_exp_002.html">Complex exp 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Complex_expt_002.html">Complex expt 002</A></td>
+<td><A HREF="Example_Complex_log_002.html">Complex log 002</A></td>
+<td><A HREF="Example_Complex_mod_002.html">Complex mod 002</A></td>
+<td><A HREF="Example_Complex_sqrt_002.html">Complex sqrt 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Complex_tan_002.html">Complex tan 002</A></td>
+<td><A HREF="Example_Date_date_001.html">Date date 001</A></td>
+<td><A HREF="Example_Date_day_001.html">Date day 001</A></td>
+<td><A HREF="Example_Date_days360_001.html">Date days360 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_getTickCount_001.html">Date getTickCount 001</A></td>
+<td><A HREF="Example_Date_hour_001.html">Date hour 001</A></td>
+<td><A HREF="Example_Date_isType_014.html">Date isType 014</A></td>
+<td><A HREF="Example_Date_julian_001.html">Date julian 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_minute_001.html">Date minute 001</A></td>
+<td><A HREF="Example_Date_month_001.html">Date month 001</A></td>
+<td><A HREF="Example_Date_now_001.html">Date now 001</A></td>
+<td><A HREF="Example_Date_second_001.html">Date second 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_setq_019.html">Date setq 019</A></td>
+<td><A HREF="Example_Date_sizeof_012.html">Date sizeof 012</A></td>
+<td><A HREF="Example_Date_time_001.html">Date time 001</A></td>
+<td><A HREF="Example_Date_time_002.html">Date time 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_today_001.html">Date today 001</A></td>
+<td><A HREF="Example_Date_year_001.html">Date year 001</A></td>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+<td><A HREF="Example_FltVector_setq_019.html">FltVector setq 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Function_isType_015.html">Function isType 015</A></td>
+<td><A HREF="Example_Function_sizeof_013.html">Function sizeof 013</A></td>
+<td><A HREF="Example_IntVector_setq_020.html">IntVector setq 020</A></td>
+<td><A HREF="Example_Integer_binaryNand_001.html">Integer binaryNand 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_binaryNor_001.html">Integer binaryNor 001</A></td>
+<td><A HREF="Example_Integer_binaryNxor_001.html">Integer binaryNxor 001</A></td>
+<td><A HREF="Example_Integer_bitwiseAnd_001.html">Integer bitwiseAnd 001</A></td>
+<td><A HREF="Example_Integer_bitwiseNand_001.html">Integer bitwiseNand 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_bitwiseNor_001.html">Integer bitwiseNor 001</A></td>
+<td><A HREF="Example_Integer_bitwiseNxor_001.html">Integer bitwiseNxor 001</A></td>
+<td><A HREF="Example_Integer_bitwiseOr_001.html">Integer bitwiseOr 001</A></td>
+<td><A HREF="Example_Integer_bitwiseShiftLeft_001.html">Integer bitwiseShiftLeft 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Integer_bitwiseShiftRight_001.html">Integer bitwiseShiftRight 001</A></td>
+<td><A HREF="Example_Integer_bitwiseXor_001.html">Integer bitwiseXor 001</A></td>
+<td><A HREF="Example_Integer_fact_001.html">Integer fact 001</A></td>
+<td><A HREF="Example_Integer_isInteger_001.html">Integer isInteger 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_append_008.html">NumVector append 008</A></td>
+<td><A HREF="Example_NumVector_apply_007.html">NumVector apply 007</A></td>
+<td><A HREF="Example_NumVector_binaryInsert_006.html">NumVector binaryInsert 006</A></td>
+<td><A HREF="Example_NumVector_binarySearch_007.html">NumVector binarySearch 007</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_bitToNumberVector_002.html">NumVector bitToNumberVector 002</A></td>
+<td><A HREF="Example_NumVector_cdr_008.html">NumVector cdr 008</A></td>
+<td><A HREF="Example_NumVector_compare_016.html">NumVector compare 016</A></td>
+<td><A HREF="Example_NumVector_compareEQ_014.html">NumVector compareEQ 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_compareGE_014.html">NumVector compareGE 014</A></td>
+<td><A HREF="Example_NumVector_compareGT_014.html">NumVector compareGT 014</A></td>
+<td><A HREF="Example_NumVector_compareLE_014.html">NumVector compareLE 014</A></td>
+<td><A HREF="Example_NumVector_compareLT_014.html">NumVector compareLT 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_compareNE_014.html">NumVector compareNE 014</A></td>
+<td><A HREF="Example_NumVector_comparison_014.html">NumVector comparison 014</A></td>
+<td><A HREF="Example_NumVector_copy_008.html">NumVector copy 008</A></td>
+<td><A HREF="Example_NumVector_delete_011.html">NumVector delete 011</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_insert_007.html">NumVector insert 007</A></td>
+<td><A HREF="Example_NumVector_inside_006.html">NumVector inside 006</A></td>
+<td><A HREF="Example_NumVector_isAtom_007.html">NumVector isAtom 007</A></td>
+<td><A HREF="Example_NumVector_isEqual_015.html">NumVector isEqual 015</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_isIdentical_014.html">NumVector isIdentical 014</A></td>
+<td><A HREF="Example_NumVector_isNumberVector__001.html">NumVector isNumberVector  001</A></td>
+<td><A HREF="Example_NumVector_isObject_009.html">NumVector isObject 009</A></td>
+<td><A HREF="Example_NumVector_isType_018.html">NumVector isType 018</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_length_010.html">NumVector length 010</A></td>
+<td><A HREF="Example_NumVector_map_007.html">NumVector map 007</A></td>
+<td><A HREF="Example_NumVector_mapc_007.html">NumVector mapc 007</A></td>
+<td><A HREF="Example_NumVector_member_006.html">NumVector member 006</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_new_011.html">NumVector new 011</A></td>
+<td><A HREF="Example_NumVector_objectToNumVector_001.html">NumVector objectToNumVector 001</A></td>
+<td><A HREF="Example_NumVector_ref_024.html">NumVector ref 024</A></td>
+<td><A HREF="Example_NumVector_remove_006.html">NumVector remove 006</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_resize_008.html">NumVector resize 008</A></td>
+<td><A HREF="Example_NumVector_reverse_005.html">NumVector reverse 005</A></td>
+<td><A HREF="Example_NumVector_setCdr_008.html">NumVector setCdr 008</A></td>
+<td><A HREF="Example_NumVector_setLastCdr_008.html">NumVector setLastCdr 008</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_setq_021.html">NumVector setq 021</A></td>
+<td><A HREF="Example_NumVector_sizeof_016.html">NumVector sizeof 016</A></td>
+<td><A HREF="Example_NumVector_sort_015.html">NumVector sort 015</A></td>
+<td><A HREF="Example_NumVector_svmRegression_001.html">NumVector svmRegression 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_type_018.html">NumVector type 018</A></td>
+<td><A HREF="Example_NumVector_uniqueInsert_006.html">NumVector uniqueInsert 006</A></td>
+<td><A HREF="Example_NumVector_vectorBinaryInnerProduct_001.html">NumVector vectorBinaryInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorBipolarInnerProduct_001.html">NumVector vectorBipolarInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorCosineInnerProduct_001.html">NumVector vectorCosineInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorCubeInnerProduct_001.html">NumVector vectorCubeInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorExpInnerProduct_001.html">NumVector vectorExpInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorFill_005.html">NumVector vectorFill 005</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorInnerProduct_001.html">NumVector vectorInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorLogInnerProduct_001.html">NumVector vectorLogInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorQuartInnerProduct_001.html">NumVector vectorQuartInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorQuintInnerProduct_001.html">NumVector vectorQuintInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorSigmoidInnerProduct_001.html">NumVector vectorSigmoidInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorSineInnerProduct_001.html">NumVector vectorSineInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorSquareInnerProduct_001.html">NumVector vectorSquareInnerProduct 001</A></td>
+<td><A HREF="Example_NumVector_vectorTanInnerProduct_001.html">NumVector vectorTanInnerProduct 001</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_vectorTanhInnerProduct_001.html">NumVector vectorTanhInnerProduct 001</A></td>
+<td><A HREF="Example_Number_&#42;_001.html">Number &#42; 001</A></td>
+<td><A HREF="Example_Number_&#43;_001.html">Number &#43; 001</A></td>
+<td><A HREF="Example_Number_&#45;_001.html">Number &#45; 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_&#47;_001.html">Number &#47; 001</A></td>
+<td><A HREF="Example_Number_abs_001.html">Number abs 001</A></td>
+<td><A HREF="Example_Number_add1_001.html">Number add1 001</A></td>
+<td><A HREF="Example_Number_addi_001.html">Number addi 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_asin_001.html">Number asin 001</A></td>
+<td><A HREF="Example_Number_atan_001.html">Number atan 001</A></td>
+<td><A HREF="Example_Number_avg_001.html">Number avg 001</A></td>
+<td><A HREF="Example_Number_compare_011.html">Number compare 011</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_compareEQ_011.html">Number compareEQ 011</A></td>
+<td><A HREF="Example_Number_compareGE_011.html">Number compareGE 011</A></td>
+<td><A HREF="Example_Number_compareGT_011.html">Number compareGT 011</A></td>
+<td><A HREF="Example_Number_compareLE_011.html">Number compareLE 011</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_compareLT_011.html">Number compareLT 011</A></td>
+<td><A HREF="Example_Number_compareNE_011.html">Number compareNE 011</A></td>
+<td><A HREF="Example_Number_comparison_010.html">Number comparison 010</A></td>
+<td><A HREF="Example_Number_cos_001.html">Number cos 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_cosh_001.html">Number cosh 001</A></td>
+<td><A HREF="Example_Number_deg_001.html">Number deg 001</A></td>
+<td><A HREF="Example_Number_divi_001.html">Number divi 001</A></td>
+<td><A HREF="Example_Number_exp_001.html">Number exp 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_expt_001.html">Number expt 001</A></td>
+<td><A HREF="Example_Number_fact_001.html">Number fact 001</A></td>
+<td><A HREF="Example_Number_floor_001.html">Number floor 001</A></td>
+<td><A HREF="Example_Number_fraction_001.html">Number fraction 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isEqual_009.html">Number isEqual 009</A></td>
+<td><A HREF="Example_Number_isEven_001.html">Number isEven 001</A></td>
+<td><A HREF="Example_Number_isExact_001.html">Number isExact 001</A></td>
+<td><A HREF="Example_Number_isIdentical_009.html">Number isIdentical 009</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isInexact_001.html">Number isInexact 001</A></td>
+<td><A HREF="Example_Number_isMoney_001.html">Number isMoney 001</A></td>
+<td><A HREF="Example_Number_isNegative_001.html">Number isNegative 001</A></td>
+<td><A HREF="Example_Number_isNull_001.html">Number isNull 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isNumber_001.html">Number isNumber 001</A></td>
+<td><A HREF="Example_Number_isOdd_001.html">Number isOdd 001</A></td>
+<td><A HREF="Example_Number_isPositive_001.html">Number isPositive 001</A></td>
+<td><A HREF="Example_Number_isType_013.html">Number isType 013</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_isZero_001.html">Number isZero 001</A></td>
+<td><A HREF="Example_Number_kurtosis_001.html">Number kurtosis 001</A></td>
+<td><A HREF="Example_Number_log_001.html">Number log 001</A></td>
+<td><A HREF="Example_Number_log10_001.html">Number log10 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_log2_001.html">Number log2 001</A></td>
+<td><A HREF="Example_Number_logbase_001.html">Number logbase 001</A></td>
+<td><A HREF="Example_Number_max_001.html">Number max 001</A></td>
+<td><A HREF="Example_Number_median_001.html">Number median 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_min_001.html">Number min 001</A></td>
+<td><A HREF="Example_Number_mod_001.html">Number mod 001</A></td>
+<td><A HREF="Example_Number_modi_001.html">Number modi 001</A></td>
+<td><A HREF="Example_Number_muli_001.html">Number muli 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_nadd_001.html">Number nadd 001</A></td>
+<td><A HREF="Example_Number_ncompareGE_001.html">Number ncompareGE 001</A></td>
+<td><A HREF="Example_Number_ncompareGT_001.html">Number ncompareGT 001</A></td>
+<td><A HREF="Example_Number_ncompareLE_001.html">Number ncompareLE 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_ncompareLT_001.html">Number ncompareLT 001</A></td>
+<td><A HREF="Example_Number_ndiv_001.html">Number ndiv 001</A></td>
+<td><A HREF="Example_Number_nmod_001.html">Number nmod 001</A></td>
+<td><A HREF="Example_Number_nmul_001.html">Number nmul 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_nsub_001.html">Number nsub 001</A></td>
+<td><A HREF="Example_Number_number_001.html">Number number 001</A></td>
+<td><A HREF="Example_Number_pi_001.html">Number pi 001</A></td>
+<td><A HREF="Example_Number_product_001.html">Number product 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_rad_001.html">Number rad 001</A></td>
+<td><A HREF="Example_Number_random_001.html">Number random 001</A></td>
+<td><A HREF="Example_Number_randomize__001.html">Number randomize  001</A></td>
+<td><A HREF="Example_Number_range_001.html">Number range 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_ref_019.html">Number ref 019</A></td>
+<td><A HREF="Example_Number_round_001.html">Number round 001</A></td>
+<td><A HREF="Example_Number_setq_018.html">Number setq 018</A></td>
+<td><A HREF="Example_Number_sign_001.html">Number sign 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_sin_001.html">Number sin 001</A></td>
+<td><A HREF="Example_Number_sinh_001.html">Number sinh 001</A></td>
+<td><A HREF="Example_Number_sizeof_011.html">Number sizeof 011</A></td>
+<td><A HREF="Example_Number_skew_001.html">Number skew 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_sqrt_001.html">Number sqrt 001</A></td>
+<td><A HREF="Example_Number_srandom_001.html">Number srandom 001</A></td>
+<td><A HREF="Example_Number_stdev_001.html">Number stdev 001</A></td>
+<td><A HREF="Example_Number_stdevp_001.html">Number stdevp 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_sub1_001.html">Number sub1 001</A></td>
+<td><A HREF="Example_Number_subi_001.html">Number subi 001</A></td>
+<td><A HREF="Example_Number_sumsqr_001.html">Number sumsqr 001</A></td>
+<td><A HREF="Example_Number_tan_001.html">Number tan 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Number_tanh_001.html">Number tanh 001</A></td>
+<td><A HREF="Example_Number_type_013.html">Number type 013</A></td>
+<td><A HREF="Example_Number_var_001.html">Number var 001</A></td>
+<td><A HREF="Example_Number_varp_001.html">Number varp 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_cdr_009.html">ObjVector cdr 009</A></td>
+<td><A HREF="Example_ObjVector_setq_022.html">ObjVector setq 022</A></td>
+<td><A HREF="Example_ObjVector_sort_016.html">ObjVector sort 016</A></td>
+<td><A HREF="Example_PcodeVector_setq_023.html">PcodeVector setq 023</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_setq_021.html">ShortVector setq 021</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_parse_001.html">String parse 001</A></td>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,331 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example ObjectRepository refLibrarian 001</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description><p>This example shows how the <b>refLibrarian</b> return the libarian Lambda's Object ID.</p>
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Create a new Object Repository </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq gor (new ObjectRepository: "myarchive.odb"))          </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60ObjectRepository 123456&#62 </Returns></b></td></tr>
+</table><p><Note> This assumes that a librarian Lambda has been defined. If it has been
+
+              defined, this command causes the ObjectRepository to be managed by a librarian Lambda.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(attachLibrarian gor aLibrarian)        </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> ---  </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>...    </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>---</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>...    </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>---</Returns> </b></td></tr>
+</table><p><Note>Returns the Librarian Lambda's object Id. </Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(refLibrarian gor)     </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Lambda 123456&#62 </Returns></b></td></tr>
+</table><p><Note>This causes the ObjectRepository to be a simple associative memory.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(detachLibrarian gor)        </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns> --- </Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>...    </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>---</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>...    </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>---</Returns> </b></td></tr>
+</table><p><Note>There is no exisitng librarian Lambda becuase of the detachLibrarian function.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(refLibrarian gor)     </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#void</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>A librarian Lambda completely controls how an ObjectRepository is viewed by 
+
+                         the other intelligent Lambdas, end users, and by Analytic Information Server. Normally an 
+
+                         ObjectRepository has a simple associative memory database schema, but attaching a 
+
+                        librarian Lambda can give the ObjectRepository an entirely different database schema 
+                        
+                        (see the <b>attachLibrarian</b> function). </p>
+                
+       </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>delete</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_Dictionary_delete_003.html">Dictionary delete 003</A></td>
+<td><A HREF="Example_Dictionary_delete_004.html">Dictionary delete 004</A></td>
+<td><A HREF="Example_Directory_delete_005.html">Directory delete 005</A></td>
+<td><A HREF="Example_Directory_delete_006.html">Directory delete 006</A></td>
+</tr><tr>
+<td><A HREF="Example_FltVector_delete_009.html">FltVector delete 009</A></td>
+<td><A HREF="Example_IntVector_delete_010.html">IntVector delete 010</A></td>
+<td><A HREF="Example_Matrix_delete_009.html">Matrix delete 009</A></td>
+<td><A HREF="Example_NumMatrix_delete_014.html">NumMatrix delete 014</A></td>
+</tr><tr>
+<td><A HREF="Example_NumVector_delete_011.html">NumVector delete 011</A></td>
+<td><A HREF="Example_ObjVector_delete_012.html">ObjVector delete 012</A></td>
+<td><A HREF="Example_ObjectRepository_delete_013.html">ObjectRepository delete 013</A></td>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">ObjectRepository detachLibrarian 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">ObjectRepository refLibrarian 001</A></td>
+<td><A HREF="Example_ShortVector_delete_011.html">ShortVector delete 011</A></td>
+<td><A HREF="Example_Structure_delete_001.html">Structure delete 001</A></td>
+<td><A HREF="Example_Structure_delete_002.html">Structure delete 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_delete_007.html">Vector delete 007</A></td>
+<td><A HREF="Example_Vector_delete_008.html">Vector delete 008</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_delete_Builtin.html">delete</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_attachLibrarian_Builtin.html">attachLibrarian(Builtin)</A></td>
+<td><A HREF="Function_detachLibrarian_Builtin.html">detachLibrarian(Builtin)</A></td>
+<td><A HREF="Function_new_Builtin.html">new(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="ObjectRepository.html">ObjectRepository</A></td>
+<td><A HREF="Lambda.html">Lambda</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Context_debug_001.html">Context debug 001</A></td>
+<td><A HREF="Example_Context_debugBrowsableProcs_001.html">Context debugBrowsableProcs 001</A></td>
+<td><A HREF="Example_Context_disassemble_001.html">Context disassemble 001</A></td>
+<td><A HREF="Example_Context_globalBinding_001.html">Context globalBinding 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Context_inspect_001.html">Context inspect 001</A></td>
+<td><A HREF="Example_Lambda_argCount_001.html">Lambda argCount 001</A></td>
+<td><A HREF="Example_Lambda_argFetch_001.html">Lambda argFetch 001</A></td>
+<td><A HREF="Example_Lambda_balance_001.html">Lambda balance 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_callcc_001.html">Lambda callcc 001</A></td>
+<td><A HREF="Example_Lambda_compare_008.html">Lambda compare 008</A></td>
+<td><A HREF="Example_Lambda_compareEQ_008.html">Lambda compareEQ 008</A></td>
+<td><A HREF="Example_Lambda_compareGE_008.html">Lambda compareGE 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_compareGT_008.html">Lambda compareGT 008</A></td>
+<td><A HREF="Example_Lambda_compareLT_008.html">Lambda compareLT 008</A></td>
+<td><A HREF="Example_Lambda_compareNE_004.html">Lambda compareNE 004</A></td>
+<td><A HREF="Example_Lambda_compile_001.html">Lambda compile 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_copy_008.html">Lambda copy 008</A></td>
+<td><A HREF="Example_Lambda_debug_001.html">Lambda debug 001</A></td>
+<td><A HREF="Example_Lambda_debugBrowsableProcs_001.html">Lambda debugBrowsableProcs 001</A></td>
+<td><A HREF="Example_Lambda_defchild_001.html">Lambda defchild 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_define_001.html">Lambda define 001</A></td>
+<td><A HREF="Example_Lambda_define(macro)_001.html">Lambda define(macro) 001</A></td>
+<td><A HREF="Example_Lambda_defmacro_001.html">Lambda defmacro 001</A></td>
+<td><A HREF="Example_Lambda_defmacro_002.html">Lambda defmacro 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_deforphan_001.html">Lambda deforphan 001</A></td>
+<td><A HREF="Example_Lambda_defriend_001.html">Lambda defriend 001</A></td>
+<td><A HREF="Example_Lambda_defun_001.html">Lambda defun 001</A></td>
+<td><A HREF="Example_Lambda_defun_002.html">Lambda defun 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_disassemble_001.html">Lambda disassemble 001</A></td>
+<td><A HREF="Example_Lambda_eval_001.html">Lambda eval 001</A></td>
+<td><A HREF="Example_Lambda_exportTab_001.html">Lambda exportTab 001</A></td>
+<td><A HREF="Example_Lambda_globalBinding_001.html">Lambda globalBinding 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_importTab_001.html">Lambda importTab 001</A></td>
+<td><A HREF="Example_Lambda_inspect_001.html">Lambda inspect 001</A></td>
+<td><A HREF="Example_Lambda_isLambda_001.html">Lambda isLambda 001</A></td>
+<td><A HREF="Example_Lambda_lambda_001.html">Lambda lambda 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_makeLambda_001.html">Lambda makeLambda 001</A></td>
+<td><A HREF="Example_Lambda_myself_001.html">Lambda myself 001</A></td>
+<td><A HREF="Example_Lambda_new_001.html">Lambda new 001</A></td>
+<td><A HREF="Example_Lambda_new_002.html">Lambda new 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_new_003.html">Lambda new 003</A></td>
+<td><A HREF="Example_Lambda_onError_001.html">Lambda onError 001</A></td>
+<td><A HREF="Example_Lambda_setq_015.html">Lambda setq 015</A></td>
+<td><A HREF="Example_Lambda_type_011.html">Lambda type 011</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_abortTransaction_001.html">ObjectRepository abortTransaction 001</A></td>
+<td><A HREF="Example_ObjectRepository_attachLibrarian_001.html">ObjectRepository attachLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_beginTransaction_001.html">ObjectRepository beginTransaction 001</A></td>
+<td><A HREF="Example_ObjectRepository_checkPointTransaction_001.html">ObjectRepository checkPointTransaction 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_clear_002.html">ObjectRepository clear 002</A></td>
+<td><A HREF="Example_ObjectRepository_commitTransaction__001.html">ObjectRepository commitTransaction  001</A></td>
+<td><A HREF="Example_ObjectRepository_compare_021.html">ObjectRepository compare 021</A></td>
+<td><A HREF="Example_ObjectRepository_compare_022.html">ObjectRepository compare 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareEQ_021.html">ObjectRepository compareEQ 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareEQ_022.html">ObjectRepository compareEQ 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_021.html">ObjectRepository compareGE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGE_022.html">ObjectRepository compareGE 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareGT_021.html">ObjectRepository compareGT 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareGT_022.html">ObjectRepository compareGT 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_021.html">ObjectRepository compareLE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLE_022.html">ObjectRepository compareLE 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_compareLT_021.html">ObjectRepository compareLT 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareLT_022.html">ObjectRepository compareLT 022</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_021.html">ObjectRepository compareNE 021</A></td>
+<td><A HREF="Example_ObjectRepository_compareNE_022.html">ObjectRepository compareNE 022</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_comparison_021.html">ObjectRepository comparison 021</A></td>
+<td><A HREF="Example_ObjectRepository_comparison_022.html">ObjectRepository comparison 022</A></td>
+<td><A HREF="Example_ObjectRepository_delete_013.html">ObjectRepository delete 013</A></td>
+<td><A HREF="Example_ObjectRepository_detachLibrarian_001.html">ObjectRepository detachLibrarian 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_exportTab_001.html">ObjectRepository exportTab 001</A></td>
+<td><A HREF="Example_ObjectRepository_importTab_001.html">ObjectRepository importTab 001</A></td>
+<td><A HREF="Example_ObjectRepository_inspect_002.html">ObjectRepository inspect 002</A></td>
+<td><A HREF="Example_ObjectRepository_isIdentical_019.html">ObjectRepository isIdentical 019</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_isImmediate_001.html">ObjectRepository isImmediate 001</A></td>
+<td><A HREF="Example_ObjectRepository_length_016.html">ObjectRepository length 016</A></td>
+<td><A HREF="Example_ObjectRepository_loadRepository_001.html">ObjectRepository loadRepository 001</A></td>
+<td><A HREF="Example_ObjectRepository_new_014.html">ObjectRepository new 014</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_030.html">ObjectRepository ref 030</A></td>
+<td><A HREF="Example_ObjectRepository_ref_031.html">ObjectRepository ref 031</A></td>
+<td><A HREF="Example_ObjectRepository_ref_032.html">ObjectRepository ref 032</A></td>
+<td><A HREF="Example_ObjectRepository_ref_033.html">ObjectRepository ref 033</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_034.html">ObjectRepository ref 034</A></td>
+<td><A HREF="Example_ObjectRepository_refLibrarian_001.html">ObjectRepository refLibrarian 001</A></td>
+<td><A HREF="Example_ObjectRepository_rename_001.html">ObjectRepository rename 001</A></td>
+<td><A HREF="Example_ObjectRepository_saveImmediate_001.html">ObjectRepository saveImmediate 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_saveRepository_001.html">ObjectRepository saveRepository 001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_001.html">ObjectRepository setf 001</A></td>
+<td><A HREF="Example_ObjectRepository_setf_002.html">ObjectRepository setf 002</A></td>
+<td><A HREF="Example_ObjectRepository_setq_027.html">ObjectRepository setq 027</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_sizeof_027.html">ObjectRepository sizeof 027</A></td>
+<td><A HREF="Example_ObjectRepository_type_024.html">ObjectRepository type 024</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

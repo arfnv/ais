@@ -1,0 +1,648 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>QT Class RadTextEdit</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sdelete"><FONT SIZE=2>delete</font></a></li><li><a href="#Scopy"><FONT SIZE=2>copy</font></a></li><li><a href="#Sfind"><FONT SIZE=2>find</font></a></li><li><a href="#SgetHtmlText"><FONT SIZE=2>getHtmlText</font></a></li><li><a href="#SgetText"><FONT SIZE=2>getText</font></a></li><li><a href="#SgetSelectedText"><FONT SIZE=2>getSelectedText</font></a></li><li><a href="#SgetSelectionEnd"><FONT SIZE=2>getSelectionEnd</font></a></li><li><a href="#SgetSelectionStart"><FONT SIZE=2>getSelectionStart</font></a></li><li><a href="#Spaste"><FONT SIZE=2>paste</font></a></li><li><a href="#SselectAll"><FONT SIZE=2>selectAll</font></a></li><li><a href="#SsetAcceptRichText"><FONT SIZE=2>setAcceptRichText</font></a></li><li><a href="#SsetFocus"><FONT SIZE=2>setFocus</font></a></li><li><a href="#SsetHtmlText"><FONT SIZE=2>setHtmlText</font></a></li><li><a href="#SsetMgr"><FONT SIZE=2>setMgr</font></a></li><li><a href="#SsetReadOnly"><FONT SIZE=2>setReadOnly</font></a></li><li><a href="#SsetSelectedText"><FONT SIZE=2>setSelectedText</font></a></li><li><a href="#SsetTabsOff"><FONT SIZE=2>setTabsOff</font></a></li><li><a href="#SsetTabsOn"><FONT SIZE=2>setTabsOn</font></a></li><li><a href="#SsetText"><FONT SIZE=2>setText</font></a></li><li><a href="#SsetWordWrapOff"><FONT SIZE=2>setWordWrapOff</font></a></li><li><a href="#SsetWordWrapOn"><FONT SIZE=2>setWordWrapOn</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>        
+        <div class="h2section" id="Overview">
+
+        <p>The <b>RadTextEdit</b> class inherits from the QTextEdit class and is the principal
+        tool for AIS Lisp to surface text edit pane functionality.
+        The RadTextEdit is one of the key words accepted by the <b>qt</b> new: function.
+        There can be many RadTextEdit objects.
+        </p>
+
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>        
+        <div class="h2section" id="new">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>new</b> function creates a new RadTextEdit object and returns a pointer to the newly created object.
+        The RadTextEdit is one of the class key words accepted by the <b>qt</b> new: function.
+        There can be many RadTextEdit objects.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt new: RadTextEdit:)</blockquote></b></p>
+        <p><b><blockquote>(qt new: RadTextEdit: keyMgr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>keyMgr</b></td><td>(Optional)The key manager lambda to manage the RADTextEDIT object's key strokes.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns a pointer to the newly created RadTextEdit object.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdelete"></A>delete</H2></P>        
+        <div class="h2section" id="delete">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The <b>delete</b> function destroys a RadTextEdit object and returns a null pointer.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt delete: radTextEditPtr)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>radTextEditPtr</b></td><td>The pointer to the RadTextEdit object to be destroyed.</td></tr>
+        <tr><td><b>Returns</b></td><td>Always returns a null pointer.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a RadTextEdit object.<br>
+        (setq radTextEditPtr (qt delete: radTextEditPtr)) ;; Destroy the RadTextEdit object.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scopy"></A>copy</H2></P>        
+        <div class="h2section" id="copy">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>copy</b> function copies the currently selected (<i>highlights</i>) text in the RadTextEdit display pane to the main window clipboard.
+        The copy function alwats returns #void.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr copy:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>result</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to "Hello world".<br>
+        (setq return (qt radTextEditPtr find: "Hello" false true false))  ;; Select and highlight the "Hello" text in the RadTextEdit pane.<br>
+        (qt radTextEditPtr copy:)  ;; Copy the selected text to the main window clipboard.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sfind"></A>find</H2></P>        
+        <div class="h2section" id="find">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>find</b> function locates and selects (<i>highlights</i>) the next occurance of the specified text in the RadTextEdit display pane.
+        The find can be case sensitive, backwards or forewards, and search for whole words only depending on the specified switches.
+        Once found the matching text is selected (<i>highlighted</i>) in the RadTextEdit display pane.
+        The find function returns true if the specified text was found and selected.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq result (qt radTextEditPtr find: text caseInSensitiveSW backWardsSW wholeWordSW))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>text</b></td><td>The text to be matched in the RadTextEdit display pane.</td></tr>
+        <tr><td><b>caseInSensitiveSW</b></td><td>True if the find is to be case sensitive.</td></tr>
+        <tr><td><b>backWardsSW</b></td><td>True if the find is to be backwards from the current cursor location.</td></tr>
+        <tr><td><b>wholeWordSW</b></td><td>True if the find is to be for whole words only.</td></tr>
+        <tr><td><b>result</b></td><td>Always returns the true if the find was successful.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to "Hello world".<br>
+        (setq return (qt radTextEditPtr find: "Hello" false true false))  ;; Select and highlight the "Hello" text in the RadTextEdit pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetHtmlText"></A>getHtmlText</H2></P>        
+        <div class="h2section" id="getHtmlText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>getHtmlText</b> function returns the entire contents of the RadTextEdite display pane as an HTML markup string.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myHtml (qt radTextEditPtr getHtmlText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myHtml</b></td><td>Always returns the entire contents of the RadTextEdit display pane as an HTML markup string.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setHtmlText: "<b>Hello</b> <i>world</i>")) ;; Set the RadTextEdit display pane to specified HTML text.<br>
+        (setq return (qt radTextEditPtr getHtmlText:))  ;; Return the HTML text in the RadTextEdit pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetText"></A>getText</H2></P>        
+        <div class="h2section" id="getText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>getText</b> function returns the entire contents of the RadTextEdit display pane as an ASCII string.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt radTextEditPtr getText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>Always returns the entire contents of the RadTextEdit display pane as an ADCII string.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (setq return (qt radTextEditPtr getText:))  ;; Return the ASCII text in the RadTextEdit pane.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSelectedText"></A>getSelectedText</H2></P>        
+        <div class="h2section" id="getSelectedText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>getSelectedText</b> function returns the entire contents of currently selected text in the RadTextEdit display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq myText (qt radTextEditPtr getSelectedText:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>Always returns the entire contents of currently selected text in the RadTextEdit display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (setq result (qt radTextEditPtr find: "world" false true false))   ;; Select and highlight the "world" text on the RadTextEdit pane.<br>
+        (setq result (qt radTextEditPtr getSelectedText:))                ;; Return the text selected by the find.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSelectionEnd"></A>getSelectionEnd</H2></P>        
+        <div class="h2section" id="getSelectionEnd">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>getSelectionEnd</b> function returns the end position of the currently selected text in the RadTextEdit display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq pos (qt radTextEditPtr getSelectionEnd:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>pos</b></td><td>Always returns the end position of the currently selected text in the RadTextEdit display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (setq result (qt radTextEditPtr find: "world" false true false))   ;; Select and highlight the "world" text on the RadTextEdit pane.<br>
+        (setq result (qt radTextEditPtr getSelectedEnd:))                ;; Return the selected text ending position of 10.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetSelectionStart"></A>getSelectionStart</H2></P>        
+        <div class="h2section" id="getSelectionStart">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>getSelectionStart</b> function returns the start position of the currently selected text in the RadTextEdit display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(setq pos (qt radTextEditPtr getSelectionStart:))</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>pos</b></td><td>Always returns the start position of the currently selected text in the RadTextEdit display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (setq result (qt radTextEditPtr find: "world" false true false))   ;; Select and highlight the "world" text on the RadTextEdit pane.<br>
+        (setq result (qt radTextEditPtr getSelectedStart:))                ;; Return the selected text starting position of 6.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Spaste"></A>paste</H2></P>        
+        <div class="h2section" id="paste">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>paste</b> function copies the main window clipboard contents into the currently selected (<i>highlighted</i>) text in the RadTextEdit display pane.
+        The copy function alwats returns #void.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr paste:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>result</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to "Hello world".<br>
+        (setq return (qt radTextEditPtr find: "Hello" false true false))  ;; Select and highlight the "Hello" text in the RadTextEdit pane.<br>
+        (qt mainWindow: setClipboardText: "Bye")  ;; Copy the text "Byen" into the main window clipboard.<br>
+        (qt radTextEditPtr paste:)  ;; Copy the text "Bye" over the selected text in the RadTextEdit pane which now reads "Bye world".<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SselectAll"></A>selectAll</H2></P>        
+        <div class="h2section" id="selectAll">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>selectAll</b> function selects <i>highlights</i> all text in the RadTextEdit display pane.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr selectAll:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr selectAll:))   ;; Select and highlight all text in the RadTextEdit pane.<br>
+        (setq result (qt radTextEditPtr getSelectedText:))    ;; Return the text selected which is "Hello world".<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetAcceptRichText"></A>setAcceptRichText</H2></P>        
+        <div class="h2section" id="setAcceptRichText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setAcceptRichText</b> function sets the RadTextEdit to accept rich text (true) or not (false).
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setAcceptRichText: switch)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>switch</b></td><td>The switch to accept rich text (true) or not (false).</td></tr>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Horizontal Tab Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setAcceptRichText: false))   ;; Set the RadTextEdit pane NOT tp accept rich text.<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetFocus"></A>setFocus</H2></P>        
+        <div class="h2section" id="setFocus">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setFocus</b> function sets the RadTextEdit to have the focus.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setFocus:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setAcceptRichText: false))   ;; Set the RadTextEdit pane NOT tp accept rich text.<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr setFocus:)) ;; Sets the RadTextEdit display pane to have the focus.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetHtmlText"></A>setHtmlText</H2></P>        
+        <div class="h2section" id="setHtmlText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setHtmlText</b> function sets the entire contents of the RadTextEdit display pane to the specified HTML text.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setHtmlText: myText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>The ASCII text value to be set in the RadTextEdit display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setHtmlText: "<b>Hello</b> <i>world</i>")) ;; Set the RadTextEdit display pane to specified HTML text.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetMgr"></A>setMgr</H2></P>        
+        <div class="h2section" id="setMgr">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setMgr</b> function sets the RadTextEdit key stroke manager name - where (defun mgrLambdaName(command) ...lisp code...)
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setMgr: mgrLambdaName)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>mgrLambdaName</b></td><td>The RadTextEdit key stroke manager name - where (defun mgrLambdaName(command) ...lisp code...).</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setHtmlText: "<b>Hello</b> <i>world</i>")) ;; Set the RadTextEdit display pane to specified HTML text.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetReadOnly"></A>setReadOnly</H2></P>        
+        <div class="h2section" id="setReadOnly">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setReadOnly</b> function sets the RadTextEdit to read only mode (true).
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setReadOnly: switch)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>switch</b></td><td>The RadTextEdit read only switch (true) or (false) if editing allowed.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setHtmlText: "<b>Hello</b> <i>world</i>") ;; Set the RadTextEdit display pane to specified HTML text.<br>
+        (qt radTextEditPtr setReadOnly: true) ;; Set the RadTextEdit display pane to read only mode.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetSelectedText"></A>setSelectedText</H2></P>        
+        <div class="h2section" id="setSelectedText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setSelectedText</b> function sets the currently selected text based on the command (all, line, word).
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setSelectedText: command)</blockquote></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setSelectedText: start end)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>command</b></td><td>The the command (all, line, word) for selecting the text around the current cursor position.</td></tr>
+        <tr><td><b>start</b></td><td>The starting position for selecting the text in the RadTextEdit display pane.</td></tr>
+        <tr><td><b>end</b></td><td>The ending position for selecting the text in the RadTextEdit display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world") ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr setSelectedText: word) ;; Set the RadTextEdit selected text to highlight the word "world".<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTabsOff"></A>setTabsOff</H2></P>        
+        <div class="h2section" id="setTabsOff">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setTabsOff</b> function sets the RADTextEdit not to accept tabs.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setTabsOff:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world") ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr setTabsOff:) ;; Set the RadTextEdit not to accept tabs.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetTabsOn"></A>setTabsOn</H2></P>        
+        <div class="h2section" id="setTabsOn">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setTabsOn</b> function sets the RADTextEdit to accept tabs.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setTabsOn:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world") ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr setTabsOn:) ;; Set the RadTextEdit to accept tabs.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetText"></A>setText</H2></P>        
+        <div class="h2section" id="setDsetTextisplayText">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setText</b> function sets the entire contents of the RadTextEdit display pane to the specified ASCII text.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setText: myText)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>myText</b></td><td>The ASCII text value to be set in the RadTextEdit display pane.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit:)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world")) ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetWordWrapOff"></A>setWordWrapOff</H2></P>        
+        <div class="h2section" id="setWordWrapOff">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setWordWrapOff</b> function sets the RADTextEdit not to wrap words at the end of the dispaly pane width.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setWordWrapOff:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world") ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr setWordWrapOff:) ;; Set the RadTextEdit not to wrap words at the end of the dispaly pane width.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetWordWrapOn"></A>setWordWrapOn</H2></P>        
+        <div class="h2section" id="setWordWrapOn">
+
+        <p><b><u>Overview</u></b></p>
+        <p>The RadTextEdit <b>setWordWrapOn</b> function sets the RADTextEdit to wrap words at the end of the dispaly pane width.
+        </p>
+
+        <p>&nbsp;</p>
+        <p><b><u>Syntax</u></b></p>
+        <p><b><blockquote>(qt radTextEditPtr setWordWrapOn:)</blockquote></b></p>
+        <p><b><u>Arguments</u></b></p>
+        <table>
+        <tr><td><b>returns</b></td><td>Always returns #void.</td></tr>
+        </table>
+
+        <p>&nbsp;</p>
+        <p><b><u>Example1</u></b></p>
+        <code><b>
+        (defun editMgr(...) true) ;; Don't do anything special when the tab is clicked<br>
+        (qt mainWindow: setTitle: (append "My QT Edit Demo.")) ;; Set the main window title<br>
+        (setq radTextEditPtr (qt new: RadTextEdit: editMgr)) ;; Create a QT TextEdit object (a GUI descentant of RadWidget).<br>
+        (setq tabIndex (qt mainWindow: addTab: radTextEditPtr "Edit" editMgr)) ;; Add a new tab to the main window horizontal tab bar<br>
+        (qt mainWindow: maximize:) ;; Display the main window<br>
+        (qt radTextEditPtr setText: "Hello world") ;; Set the RadTextEdit display pane to specified ASCII text.<br>
+        (qt radTextEditPtr setWordWrapOn:) ;; Set the RadTextEdit to wrap words at the end of the dispaly pane width.<br>
+        </b></code>
+        </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

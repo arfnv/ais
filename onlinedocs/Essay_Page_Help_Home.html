@@ -1,0 +1,402 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>AIS New Help Home</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroducing: Analytic Information Server&amp;trade"><FONT SIZE=2>Introducing: Analytic Information Server&amp;trade</font></a></li><li><a href="#SInternet Services"><FONT SIZE=2>Internet Services</font></a></li><li><a href="#SFast Virtual Machine"><FONT SIZE=2>Fast Virtual Machine</font></a></li><li><a href="#SHow does Analytic Information Server&amp;trade work?"><FONT SIZE=2>How does Analytic Information Server&amp;trade work?</font></a></li><li><a href="#SAnalytic Information Server&amp;trade Engine Architecture"><FONT SIZE=2>Analytic Information Server&amp;trade Engine Architecture</font></a></li><li><a href="#SAdaptive Intelligence: Why You Need It"><FONT SIZE=2>Adaptive Intelligence: Why You Need It</font></a></li><li><a href="#SBuilt-in Functions"><FONT SIZE=2>Built-in Functions</font></a></li><li><a href="#SBuilt-in Object"><FONT SIZE=2>Built-in Object</font></a></li><li><a href="#SVirtual Machine Instructions"><FONT SIZE=2>Virtual Machine Instructions</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroducing: Analytic Information Server&amp;trade"></A>Introducing: Analytic Information Server&amp;trade</H2></P>
+			<P>
+			Analytic Information Server&trade;(AIS) is an analytic database designed to store massive amounts of heterogeneous data, 
+			upon which complex computer science algorithms are to be employed.  
+			The goal is to convert data, whose information content is a mystery, into data whose information content is understood.
+			</P>
+			<P>
+			The principle component of data analysis is the "Lambda". 
+			AIS is a database designed specifically for the easy storing and retrieval of Lambdas. 
+			AIS Lambdas are Internet aware programs, which are Internet mobile across copies of the AIS engine. 
+			Upon execution, within an instance of the AIS engine, 
+			Lambdas execute at near native machine register speeds - greatly exceeding the execution speeds of C programs.
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SInternet Services"></A>Internet Services</H2></P>
+			<P>
+			Each instance of the AIS engine attaches to a user defined TCP/IP port, 
+			making each instance of the AIS engine a web analytic server. 
+			AIS Lambdas can serve their analytic reports directly to a web browser or to any other program, 
+			which can open a TCP/IP connection. Pure HTML, XML, or a proprietary binary protocol is supported; 
+			and, each of these protocols can be used to invoke individual Lambdas residing on available AIS engines. 
+			Furthermore, Lambdas in one instance of the AIS engine can invoke Lambdas in any other available AIS engine connected by TCP/IP. 
+			Each instance of the AIS engine can support multiple Lambda contexts, each running on its own machine thread.
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFast Virtual Machine"></A>Fast Virtual Machine</H2></P>
+			<P>
+			AIS supports an ultra-fast register virtual machine with a proprietary Just-In-Time compiler (JIT). 
+			The AIS virtual machine is designed to support fast algorithm development as well as ultra-fast algorithm execution. 
+			The VM accommodates these two design goals by supporting four well-defined instruction sets.
+			</P>
+			<ul>
+				<li>1.&nbsp;&nbsp;&nbsp;Generic Instructions for rapid algorithm development (which execute at 1/10th the speed of C).</li>
+				<li>2.&nbsp;&nbsp;&nbsp;Native Instructions (which execute at near the speed of C).</li>
+				<li>3.&nbsp;&nbsp;&nbsp;Register Instructions (which execute at 3 to ten times the speed of C). </li>
+				<li>4.&nbsp;&nbsp;&nbsp;Vector Processor Instructions (which execute at 7 to fifteen times the speed of C).</li>
+			</ul>
+			<P>
+			AIS Lambda development begins with the generic instructions until the algorithm "proof of concept" is attained 
+			followed by conversion of the bottleneck routines into native, register, or vector instructions for ultra-fast algorithm execution.
+			The AIS JIT's drawback is Lambda bloat. 
+			A great deal more information is saved about each Lambda than in a standard C binary program executable. 
+			This is not a terrible problem, since AIS is a high volume database, the data size dwarfs any possible code bloat. 
+			Another drawback is that Lambda invocation runs at approximately 50% of the speed of C function invocation 
+			- more information means there is a longer set up time to invoke an Lambda than a C binary function. 
+			This is not a terrible problem, since most ultra-fast algorithms must be code generated in linear layout, 
+			without too many embedded function calls, to avoid cache hits. For extremely fast algorithm execution, 
+			algorithms should fill up registers, L1, L2, and L3 cache with as few interruptions as possible.
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SHow does Analytic Information Server&amp;trade work?"></A>How does Analytic Information Server&amp;trade work?</H2></P>
+			<P>
+			AIS supports an ultra-fast register virtual machine with a proprietary Just-In-Time compiler (JIT). 
+			The AIS virtual machine is designed to support fast algorithm development as well as ultra-fast algorithm execution. 
+			The VM accommodates these two design goals by supporting four well-defined instruction sets.
+			</P>
+			<ul>
+				<li>1.&nbsp;&nbsp;&nbsp;Generic Instructions for rapid algorithm development (which execute at 1/10th the speed of C).</li>
+				<li>2.&nbsp;&nbsp;&nbsp;Native Instructions (which execute at near the speed of C).</li>
+				<li>3.&nbsp;&nbsp;&nbsp;Register Instructions (which execute at 3 to ten times the speed of C). </li>
+				<li>4.&nbsp;&nbsp;&nbsp;Vector Processor Instructions (which execute at 7 to fifteen times the speed of C).</li>
+			</ul>
+			<P>
+			AIS Lambda development begins with the generic instructions until the algorithm "proof of concept" is attained 
+			followed by conversion of the bottleneck routines into native, register, or vector instructions for ultra-fast algorithm execution.
+			The AIS JIT's drawback is Lambda bloat. 
+			A great deal more information is saved about each Lambda than in a standard C binary program executable. 
+			This is not a terrible problem, since AIS is a high volume database, the data size dwarfs any possible code bloat. 
+			Another drawback is that Lambda invocation runs at approximately 50% of the speed of C function invocation 
+			- more information means there is a longer set up time to invoke an Lambda than a C binary function. 
+			This is not a terrible problem, since most ultra-fast algorithms must be code generated in linear layout, 
+			without too many embedded function calls, to avoid cache hits. For extremely fast algorithm execution, 
+			algorithms should fill up registers, L1, L2, and L3 cache with as few interruptions as possible.
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAnalytic Information Server&amp;trade Engine Architecture"></A>Analytic Information Server&amp;trade Engine Architecture</H2></P>
+			<P>
+			Analytic Information Server&trade; supports multiple concurrent users, transaction rollback with no arbitrary 
+			limitation on the size of a transaction, password protected data security with automatic record 
+			compression and encryption, data recovery, and a runtime dynamic database schema at each location.
+			</P>
+			<P>
+			AIS is agnostic concerning programming paradigms, virtual machines, and programming languages. 
+			AIS provides a built-in AIS Lisp compiler. Multiple virtual machines are supported, 
+			in fact a parent Lambda can run on one virtual machine while its child Lambda can run on another. 
+			Also, an Lambda can serve as a virtual machine for any other Lambda. 
+			There is built-in support for functional programming, object oriented programming, rule based programming, and Lambda oriented programming. 
+			Also supplied is an AIS JavaScript compiler, and an AIS HTML/XML compiler.
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAdaptive Intelligence: Why You Need It"></A>Adaptive Intelligence: Why You Need It</H2></P>
+			<P>
+			AIS technology represents a significant step forward in the use of  "Intelligent Lambdas" 
+			in integrating both existing and new distributed applications with "Adaptive Intelligence".
+			Adaptive Intelligence allows applications to identify previous patterns and relationships 
+			in a user's interaction history and then use this new information to alter the application's 
+			responses for a more effective, personal user experience. It's the key to retaining customers 
+			and ensuring a greater share of their business over time by developing personalized relationships.  
+			Increased knowledge about users quickly translates to better customer service, more opportunities 
+			to cross sell services and products, and ultimately improved results.
+			</P>
+			<P>
+			An application with a personalized, responsive interface is compelling. People will 
+			return to a Web site which is different with each visit. Static web pages bore people. 
+			Students proceed at a faster rate when the application reconfigures as the person learns. 
+			Data mining is more accurate when the mining application adapts to feedback results. 
+			Kids retain interest in games which constantly reconfigure to match the player's skill 
+			level and past game experiences.
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBuilt-in Functions"></A>Built-in Functions</H2></P>
+			<P>
+			Here are links to AIS Built-in Functions grouped according to Data Type.
+			</P>
+			<P>
+			<table width="100%" >
+<tr><td><A HREF="Function_(sym)add_Builtin.html">&#43</A></td><td><A HREF="Function_(sym)add1_Builtin.html">&#43&#43</A></td><td><A HREF="Function_(sym)addValue_Builtin.html">&#43&#61</A></td><td><A HREF="Function_(sym)div_Builtin.html">&#47</A></td><td><A HREF="Function_(sym)divValue_Builtin.html">&#47&#61</A></td></tr>
+
+<tr><td><A HREF="Function_(sym)mul_Builtin.html">&#42</A></td><td><A HREF="Function_(sym)mulValue_Builtin.html">&#42&#61</A></td><td><A HREF="Function_(sym)sub_Builtin.html">&#45</A></td><td><A HREF="Function_(sym)sub1_Builtin.html">&#45&#45</A></td><td><A HREF="Function_(sym)subValue_Builtin.html">&#45&#61</A></td></tr>
+
+<tr><td><A HREF="Function_abortTransaction_Builtin.html">abortTransaction</A></td><td><A HREF="Function_abs_Builtin.html">abs</A></td><td><A HREF="Function_acos_Builtin.html">acos</A></td><td><A HREF="Function_add1_Builtin.html">add1</A></td><td><A HREF="Function_addi_Builtin.html">addi</A></td></tr>
+
+<tr><td><A HREF="Function_append_Builtin.html">append</A></td><td><A HREF="Function_appendWriteln_Builtin.html">appendWriteln</A></td><td><A HREF="Function_apply_Builtin.html">apply</A></td><td><A HREF="Function_argCount_Builtin.html">argCount</A></td><td><A HREF="Function_argFetch_Builtin.html">argFetch</A></td></tr>
+
+<tr><td><A HREF="Function_argument_Builtin.html">argument</A></td><td><A HREF="Function_arithmetic_Builtin.html">arithmetic</A></td><td><A HREF="Function_asin_Builtin.html">asin</A></td><td><A HREF="Function_associate_Builtin.html">associate</A></td><td><A HREF="Function_atan_Builtin.html">atan</A></td></tr>
+
+<tr><td><A HREF="Function_attachLibrarian_Builtin.html">attachLibrarian</A></td><td><A HREF="Function_avg_Builtin.html">avg</A></td><td><A HREF="Function_badd_Builtin.html">badd</A></td><td><A HREF="Function_balance_Builtin.html">balance</A></td><td><A HREF="Function_bcompareEQ_Builtin.html">bcompareEQ</A></td></tr>
+
+<tr><td><A HREF="Function_bcompareGE_Builtin.html">bcompareGE</A></td><td><A HREF="Function_bcompareGT_Builtin.html">bcompareGT</A></td><td><A HREF="Function_bcompareLE_Builtin.html">bcompareLE</A></td><td><A HREF="Function_bcompareLT_Builtin.html">bcompareLT</A></td><td><A HREF="Function_bcompareNE_Builtin.html">bcompareNE</A></td></tr>
+
+<tr><td><A HREF="Function_bdiv_Builtin.html">bdiv</A></td><td><A HREF="Function_beginTransaction_Builtin.html">beginTransaction</A></td><td><A HREF="Function_binaryInsert_Builtin.html">binaryInsert</A></td><td><A HREF="Function_binaryNand_Builtin.html">binaryNand</A></td><td><A HREF="Function_binaryNor_Builtin.html">binaryNor</A></td></tr>
+
+<tr><td><A HREF="Function_binaryNot_Builtin.html">binaryNot</A></td><td><A HREF="Function_binaryNxor_Builtin.html">binaryNxor</A></td><td><A HREF="Function_binarySearch_Builtin.html">binarySearch</A></td><td><A HREF="Function_bitToIntegerVector_Builtin.html">bitToIntegerVector</A></td><td><A HREF="Function_bitToNumberVector_Builtin.html">bitToNumberVector</A></td></tr>
+
+<tr><td><A HREF="Function_bitwiseAnd_Builtin.html">bitwiseAnd</A></td><td><A HREF="Function_bitwiseNand_Builtin.html">bitwiseNand</A></td><td><A HREF="Function_bitwiseNor_Builtin.html">bitwiseNor</A></td><td><A HREF="Function_bitwiseNot_Builtin.html">bitwiseNot</A></td><td><A HREF="Function_bitwiseNxor_Builtin.html">bitwiseNxor</A></td></tr>
+
+<tr><td><A HREF="Function_bitwiseOr_Builtin.html">bitwiseOr</A></td><td><A HREF="Function_bitwiseShiftLeft_Builtin.html">bitwiseShiftLeft</A></td><td><A HREF="Function_bitwiseShiftRight_Builtin.html">bitwiseShiftRight</A></td><td><A HREF="Function_bitwiseXor_Builtin.html">bitwiseXor</A></td><td><A HREF="Function_bmod_Builtin.html">bmod</A></td></tr>
+
+<tr><td><A HREF="Function_bmul_Builtin.html">bmul</A></td><td><A HREF="Function_boolean_Builtin.html">boolean</A></td><td><A HREF="Function_c::r_Builtin.html">c::r</A></td><td><A HREF="Function_cadd_Builtin.html">cadd</A></td><td><A HREF="Function_callcc_Builtin.html">callcc</A></td></tr>
+
+<tr><td><A HREF="Function_car_Builtin.html">car</A></td><td><A HREF="Function_ccompareEQ_Builtin.html">ccompareEQ</A></td><td><A HREF="Function_ccompareGE_Builtin.html">ccompareGE</A></td><td><A HREF="Function_ccompareGT_Builtin.html">ccompareGT</A></td><td><A HREF="Function_ccompareLE_Builtin.html">ccompareLE</A></td></tr>
+
+<tr><td><A HREF="Function_ccompareLT_Builtin.html">ccompareLT</A></td><td><A HREF="Function_ccompareNE_Builtin.html">ccompareNE</A></td><td><A HREF="Function_cdiv_Builtin.html">cdiv</A></td><td><A HREF="Function_cdr_Builtin.html">cdr</A></td><td><A HREF="Function_char_Builtin.html">char</A></td></tr>
+
+<tr><td><A HREF="Function_character_Builtin.html">character</A></td><td><A HREF="Function_checkEscape_Builtin.html">checkEscape</A></td><td><A HREF="Function_checkPointTransaction_Builtin.html">checkPointTransaction</A></td><td><A HREF="Function_class_Builtin.html">class</A></td><td><A HREF="Function_clean_Builtin.html">clean</A></td></tr>
+
+<tr><td><A HREF="Function_clear_Builtin.html">clear</A></td><td><A HREF="Function_closeLog_Builtin.html">closeLog</A></td><td><A HREF="Function_cmod_Builtin.html">cmod</A></td><td><A HREF="Function_cmul_Builtin.html">cmul</A></td><td><A HREF="Function_code_Builtin.html">code</A></td></tr>
+
+<tr><td><A HREF="Function_commitTransaction_Builtin.html">commitTransaction</A></td><td><A HREF="Function_compare_Builtin.html">compare</A></td><td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td><td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td><td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td></tr>
+
+<tr><td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td><td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td><td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td><td><A HREF="Function_comparison_Builtin.html">comparison</A></td><td><A HREF="Function_compile_Builtin.html">compile</A></td></tr>
+
+<tr><td><A HREF="Function_complex_Builtin.html">complex</A></td><td><A HREF="Function_compress_Builtin.html">compress</A></td><td><A HREF="Function_conjugate_Builtin.html">conjugate</A></td><td><A HREF="Function_cons_Builtin.html">cons</A></td><td><A HREF="Function_copy_Builtin.html">copy</A></td></tr>
+
+<tr><td><A HREF="Function_cos_Builtin.html">cos</A></td><td><A HREF="Function_cosh_Builtin.html">cosh</A></td><td><A HREF="Function_count_Builtin.html">count</A></td><td><A HREF="Function_csub_Builtin.html">csub</A></td><td><A HREF="Function_date_Builtin.html">date</A></td></tr>
+
+<tr><td><A HREF="Function_day_Builtin.html">day</A></td><td><A HREF="Function_days360_Builtin.html">days360</A></td><td><A HREF="Function_debug_Builtin.html">debug</A></td><td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td><td><A HREF="Function_debugDetective_Builtin.html">debugDetective</A></td></tr>
+
+<tr><td><A HREF="Function_debugEval_Builtin.html">debugEval</A></td><td><A HREF="Function_decode_Builtin.html">decode</A></td><td><A HREF="Function_defchild_Builtin.html">defchild</A></td><td><A HREF="Function_defclass_Builtin.html">defclass</A></td><td><A HREF="Function_define_Builtin.html">define</A></td></tr>
+
+<tr><td><A HREF="Function_define(macro)_Builtin.html">define(macro)</A></td><td><A HREF="Function_defmacro_Builtin.html">defmacro</A></td><td><A HREF="Function_defmethod_Builtin.html">defmethod</A></td><td><A HREF="Function_deforphan_Builtin.html">deforphan</A></td><td><A HREF="Function_defriend_Builtin.html">defriend</A></td></tr>
+
+<tr><td><A HREF="Function_defun_Builtin.html">defun</A></td><td><A HREF="Function_deg_Builtin.html">deg</A></td><td><A HREF="Function_delete_Builtin.html">delete</A></td><td><A HREF="Function_deleteRows_Builtin.html">deleteRows</A></td><td><A HREF="Function_detachLibrarian_Builtin.html">detachLibrarian</A></td></tr>
+
+<tr><td><A HREF="Function_dimension_Builtin.html">dimension</A></td><td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td><td><A HREF="Function_display_Builtin.html">display</A></td><td><A HREF="Function_divi_Builtin.html">divi</A></td><td><A HREF="Function_downcase_Builtin.html">downcase</A></td></tr>
+
+<tr><td><A HREF="Function_encode_Builtin.html">encode</A></td><td><A HREF="Function_error_Builtin.html">error</A></td><td><A HREF="Function_errorTrap_Builtin.html">errorTrap</A></td><td><A HREF="Function_eval_Builtin.html">eval</A></td><td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td></tr>
+
+<tr><td><A HREF="Function_exp_Builtin.html">exp</A></td><td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td><td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td><td><A HREF="Function_expt_Builtin.html">expt</A></td><td><A HREF="Function_fact_Builtin.html">fact</A></td></tr>
+
+<tr><td><A HREF="Function_fdisplay_Builtin.html">fdisplay</A></td><td><A HREF="Function_fieldsOf_Builtin.html">fieldsOf</A></td><td><A HREF="Function_fileClose_Builtin.html">fileClose</A></td><td><A HREF="Function_fileDir_Builtin.html">fileDir</A></td><td><A HREF="Function_fileDisplay_Builtin.html">fileDisplay</A></td></tr>
+
+<tr><td><A HREF="Function_fileErase_Builtin.html">fileErase</A></td><td><A HREF="Function_fileEraseDir_Builtin.html">fileEraseDir</A></td><td><A HREF="Function_fileExists_Builtin.html">fileExists</A></td><td><A HREF="Function_fileMakeDir_Builtin.html">fileMakeDir</A></td><td><A HREF="Function_fileOpen_Builtin.html">fileOpen</A></td></tr>
+
+<tr><td><A HREF="Function_fileRead_Builtin.html">fileRead</A></td><td><A HREF="Function_fileReadAll_Builtin.html">fileReadAll</A></td><td><A HREF="Function_fileReadRecord_Builtin.html">fileReadRecord</A></td><td><A HREF="Function_fileResize_Builtin.html">fileResize</A></td><td><A HREF="Function_fileSeek_Builtin.html">fileSeek</A></td></tr>
+
+<tr><td><A HREF="Function_fileWrite_Builtin.html">fileWrite</A></td><td><A HREF="Function_fileWriteAll_Builtin.html">fileWriteAll</A></td><td><A HREF="Function_filewriteln_Builtin.html">filewriteln</A></td><td><A HREF="Function_find_Builtin.html">find</A></td><td><A HREF="Function_findBlock_Builtin.html">findBlock</A></td></tr>
+
+<tr><td><A HREF="Function_floor_Builtin.html">floor</A></td><td><A HREF="Function_fraction_Builtin.html">fraction</A></td><td><A HREF="Function_freeBlock_Builtin.html">freeBlock</A></td><td><A HREF="Function_gc_Builtin.html">gc</A></td><td><A HREF="Function_gcd_Builtin.html">gcd</A></td></tr>
+
+<tr><td><A HREF="Function_getGlobalValue_Builtin.html">getGlobalValue</A></td><td><A HREF="Function_getRecursionCount_Builtin.html">getRecursionCount</A></td><td><A HREF="Function_getSymbolTable_Builtin.html">getSymbolTable</A></td><td><A HREF="Function_getTickCount_Builtin.html">getTickCount</A></td><td><A HREF="Function_globalBinding_Builtin.html">globalBinding</A></td></tr>
+
+<tr><td><A HREF="Function_hashString_Builtin.html">hashString</A></td><td><A HREF="Function_hour_Builtin.html">hour</A></td><td><A HREF="Function_iadd_Builtin.html">iadd</A></td><td><A HREF="Function_icompareEQ_Builtin.html">icompareEQ</A></td><td><A HREF="Function_icompareGE_Builtin.html">icompareGE</A></td></tr>
+
+<tr><td><A HREF="Function_icompareGT_Builtin.html">icompareGT</A></td><td><A HREF="Function_icompareLE_Builtin.html">icompareLE</A></td><td><A HREF="Function_icompareLT_Builtin.html">icompareLT</A></td><td><A HREF="Function_icompareNE_Builtin.html">icompareNE</A></td><td><A HREF="Function_idiv_Builtin.html">idiv</A></td></tr>
+
+<tr><td><A HREF="Function_imaginary_Builtin.html">imaginary</A></td><td><A HREF="Function_imod_Builtin.html">imod</A></td><td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td><td><A HREF="Function_importTab_Builtin.html">importTab</A></td><td><A HREF="Function_imul_Builtin.html">imul</A></td></tr>
+
+<tr><td><A HREF="Function_insert_Builtin.html">insert</A></td><td><A HREF="Function_insertRows_Builtin.html">insertRows</A></td><td><A HREF="Function_inside_Builtin.html">inside</A></td><td><A HREF="Function_inspect_Builtin.html">inspect</A></td><td><A HREF="Function_integer_Builtin.html">integer</A></td></tr>
+
+<tr><td><A HREF="Function_isAtom_Builtin.html">isAtom</A></td><td><A HREF="Function_isBitVector_Builtin.html">isBitVector</A></td><td><A HREF="Function_isBoolean_Builtin.html">isBoolean</A></td><td><A HREF="Function_isBound_Builtin.html">isBound</A></td><td><A HREF="Function_isByteVector_Builtin.html">isByteVector</A></td></tr>
+
+<tr><td><A HREF="Function_isChar_Builtin.html">isChar</A></td><td><A HREF="Function_isCharAlphabetic_Builtin.html">isCharAlphabetic</A></td><td><A HREF="Function_isCharAlphanumeric_Builtin.html">isCharAlphanumeric</A></td><td><A HREF="Function_isCharLowercase_Builtin.html">isCharLowercase</A></td><td><A HREF="Function_isCharName_Builtin.html">isCharName</A></td></tr>
+
+<tr><td><A HREF="Function_isCharNumeric_Builtin.html">isCharNumeric</A></td><td><A HREF="Function_isCharUppercase_Builtin.html">isCharUppercase</A></td><td><A HREF="Function_isCharWhitespace_Builtin.html">isCharWhitespace</A></td><td><A HREF="Function_isCharacter_Builtin.html">isCharacter</A></td><td><A HREF="Function_isClass_Builtin.html">isClass</A></td></tr>
+
+<tr><td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td><td><A HREF="Function_isDate_Builtin.html">isDate</A></td><td><A HREF="Function_isDictionary_Builtin.html">isDictionary</A></td><td><A HREF="Function_isDirectory_Builtin.html">isDirectory</A></td><td><A HREF="Function_isEqual_Builtin.html">isEqual</A></td></tr>
+
+<tr><td><A HREF="Function_isError_Builtin.html">isError</A></td><td><A HREF="Function_isEven_Builtin.html">isEven</A></td><td><A HREF="Function_isExact_Builtin.html">isExact</A></td><td><A HREF="Function_isFloatVector_Builtin.html">isFloatVector</A></td><td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td></tr>
+
+<tr><td><A HREF="Function_isImmediate_Builtin.html">isImmediate</A></td><td><A HREF="Function_isInexact_Builtin.html">isInexact</A></td><td><A HREF="Function_isInside_Builtin.html">isInside</A></td><td><A HREF="Function_isInteger_Builtin.html">isInteger</A></td><td><A HREF="Function_isIntegerVector_Builtin.html">isIntegerVector</A></td></tr>
+
+<tr><td><A HREF="Function_isLambda_Builtin.html">isLambda</A></td><td><A HREF="Function_isMatrix_Builtin.html">isMatrix</A></td><td><A HREF="Function_isMember_Builtin.html">isMember</A></td><td><A HREF="Function_isMoney_Builtin.html">isMoney</A></td><td><A HREF="Function_isNegative_Builtin.html">isNegative</A></td></tr>
+
+<tr><td><A HREF="Function_isNull_Builtin.html">isNull</A></td><td><A HREF="Function_isNumber_Builtin.html">isNumber</A></td><td><A HREF="Function_isNumberMatrix_Builtin.html">isNumberMatrix</A></td><td><A HREF="Function_isNumberVector_Builtin.html">isNumberVector</A></td><td><A HREF="Function_isObject_Builtin.html">isObject</A></td></tr>
+
+<tr><td><A HREF="Function_isObjectVector_Builtin.html">isObjectVector</A></td><td><A HREF="Function_isOdd_Builtin.html">isOdd</A></td><td><A HREF="Function_isPair_Builtin.html">isPair</A></td><td><A HREF="Function_isPcodeVector_Builtin.html">isPcodeVector</A></td><td><A HREF="Function_isPositive_Builtin.html">isPositive</A></td></tr>
+
+<tr><td><A HREF="Function_isString_Builtin.html">isString</A></td><td><A HREF="Function_isStructure_Builtin.html">isStructure</A></td><td><A HREF="Function_isSymbol_Builtin.html">isSymbol</A></td><td><A HREF="Function_isText_Builtin.html">isText</A></td><td><A HREF="Function_isTransaction_Builtin.html">isTransaction</A></td></tr>
+
+<tr><td><A HREF="Function_isType_Builtin.html">isType</A></td><td><A HREF="Function_isVector_Builtin.html">isVector</A></td><td><A HREF="Function_isZero_Builtin.html">isZero</A></td><td><A HREF="Function_isub_Builtin.html">isub</A></td><td><A HREF="Function_julian_Builtin.html">julian</A></td></tr>
+
+<tr><td><A HREF="Function_kurtosis_Builtin.html">kurtosis</A></td><td><A HREF="Function_lambda_Builtin.html">lambda</A></td><td><A HREF="Function_last_Builtin.html">last</A></td><td><A HREF="Function_lcm_Builtin.html">lcm</A></td><td><A HREF="Function_left_Builtin.html">left</A></td></tr>
+
+<tr><td><A HREF="Function_length_Builtin.html">length</A></td><td><A HREF="Function_lisp_Builtin.html">lisp</A></td><td><A HREF="Function_list_Builtin.html">list</A></td><td><A HREF="Function_loadObject_Builtin.html">loadObject</A></td><td><A HREF="Function_loadRepository_Builtin.html">loadRepository</A></td></tr>
+
+<tr><td><A HREF="Function_loadWorkspace_Builtin.html">loadWorkspace</A></td><td><A HREF="Function_lock_Builtin.html">lock</A></td><td><A HREF="Function_log_Builtin.html">log</A></td><td><A HREF="Function_log10_Builtin.html">log10</A></td><td><A HREF="Function_log2_Builtin.html">log2</A></td></tr>
+
+<tr><td><A HREF="Function_logConsole_Builtin.html">logConsole</A></td><td><A HREF="Function_logbase_Builtin.html">logbase</A></td><td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td><td><A HREF="Function_makeDictionary_Builtin.html">makeDictionary</A></td><td><A HREF="Function_makeGaussianMatrix_Builtin.html">makeGaussianMatrix</A></td></tr>
+
+<tr><td><A HREF="Function_makeGramMatrix_Builtin.html">makeGramMatrix</A></td><td><A HREF="Function_makeLambda_Builtin.html">makeLambda</A></td><td><A HREF="Function_makeQuotedList_Builtin.html">makeQuotedList</A></td><td><A HREF="Function_makeQuotedSymbol_Builtin.html">makeQuotedSymbol</A></td><td><A HREF="Function_makeStructure_Builtin.html">makeStructure</A></td></tr>
+
+<tr><td><A HREF="Function_map_Builtin.html">map</A></td><td><A HREF="Function_mapc_Builtin.html">mapc</A></td><td><A HREF="Function_matrixGaussianEliminate_Builtin.html">matrixGaussianEliminate</A></td><td><A HREF="Function_matrixGaussianSubstitute_Builtin.html">matrixGaussianSubstitute</A></td><td><A HREF="Function_max_Builtin.html">max</A></td></tr>
+
+<tr><td><A HREF="Function_median_Builtin.html">median</A></td><td><A HREF="Function_member_Builtin.html">member</A></td><td><A HREF="Function_methodsOf_Builtin.html">methodsOf</A></td><td><A HREF="Function_mid_Builtin.html">mid</A></td><td><A HREF="Function_min_Builtin.html">min</A></td></tr>
+
+<tr><td><A HREF="Function_minute_Builtin.html">minute</A></td><td><A HREF="Function_mod_Builtin.html">mod</A></td><td><A HREF="Function_modi_Builtin.html">modi</A></td><td><A HREF="Function_money_Builtin.html">money</A></td><td><A HREF="Function_month_Builtin.html">month</A></td></tr>
+
+<tr><td><A HREF="Function_morph_Builtin.html">morph</A></td><td><A HREF="Function_muli_Builtin.html">muli</A></td><td><A HREF="Function_myself_Builtin.html">myself</A></td><td><A HREF="Function_nadd_Builtin.html">nadd</A></td><td><A HREF="Function_ncompareEQ_Builtin.html">ncompareEQ</A></td></tr>
+
+<tr><td><A HREF="Function_ncompareGE_Builtin.html">ncompareGE</A></td><td><A HREF="Function_ncompareGT_Builtin.html">ncompareGT</A></td><td><A HREF="Function_ncompareLE_Builtin.html">ncompareLE</A></td><td><A HREF="Function_ncompareLT_Builtin.html">ncompareLT</A></td><td><A HREF="Function_ncompareNE_Builtin.html">ncompareNE</A></td></tr>
+
+<tr><td><A HREF="Function_ndiv_Builtin.html">ndiv</A></td><td><A HREF="Function_new_Builtin.html">new</A></td><td><A HREF="Function_nmod_Builtin.html">nmod</A></td><td><A HREF="Function_nmul_Builtin.html">nmul</A></td><td><A HREF="Function_now_Builtin.html">now</A></td></tr>
+
+<tr><td><A HREF="Function_nsub_Builtin.html">nsub</A></td><td><A HREF="Function_number_Builtin.html">number</A></td><td><A HREF="Function_objectToDictionary_Builtin.html">objectToDictionary</A></td><td><A HREF="Function_objectToDirectory_Builtin.html">objectToDirectory</A></td><td><A HREF="Function_objectToList_Builtin.html">objectToList</A></td></tr>
+
+<tr><td><A HREF="Function_objectToMatrix_Builtin.html">objectToMatrix</A></td><td><A HREF="Function_objectToNumMatrix_Builtin.html">objectToNumMatrix</A></td><td><A HREF="Function_objectToNumVector_Builtin.html">objectToNumVector</A></td><td><A HREF="Function_objectToStructure_Builtin.html">objectToStructure</A></td><td><A HREF="Function_objectToVector_Builtin.html">objectToVector</A></td></tr>
+
+<tr><td><A HREF="Function_offset_Builtin.html">offset</A></td><td><A HREF="Function_onError_Builtin.html">onError</A></td><td><A HREF="Function_openLog_Builtin.html">openLog</A></td><td><A HREF="Function_pair_Builtin.html">pair</A></td><td><A HREF="Function_parent_Builtin.html">parent</A></td></tr>
+
+<tr><td><A HREF="Function_parse_Builtin.html">parse</A></td><td><A HREF="Function_pi_Builtin.html">pi</A></td><td><A HREF="Function_pointer_Builtin.html">pointer</A></td><td><A HREF="Function_preAllocateFixedMemoryBlocks_Builtin.html">preAllocateFixedMemoryBlocks</A></td><td><A HREF="Function_product_Builtin.html">product</A></td></tr>
+
+<tr><td><A HREF="Function_proplist_Builtin.html">proplist</A></td><td><A HREF="Function_proprecord_Builtin.html">proprecord</A></td><td><A HREF="Function_putprop_Builtin.html">putprop</A></td><td><A HREF="Function_qt_Builtin.html">qt</A></td><td><A HREF="Function_quit_Builtin.html">quit</A></td></tr>
+
+<tr><td><A HREF="Function_quote_Builtin.html">quote</A></td><td><A HREF="Function_rad_Builtin.html">rad</A></td><td><A HREF="Function_random_Builtin.html">random</A></td><td><A HREF="Function_randomize_Builtin.html">randomize</A></td><td><A HREF="Function_range_Builtin.html">range</A></td></tr>
+
+<tr><td><A HREF="Function_rank_Builtin.html">rank</A></td><td><A HREF="Function_real_Builtin.html">real</A></td><td><A HREF="Function_ref_Builtin.html">ref</A></td><td><A HREF="Function_refAttributes_Builtin.html">refAttributes</A></td><td><A HREF="Function_refLibrarian_Builtin.html">refLibrarian</A></td></tr>
+
+<tr><td><A HREF="Function_refValues_Builtin.html">refValues</A></td><td><A HREF="Function_remProp_Builtin.html">remProp</A></td><td><A HREF="Function_remove_Builtin.html">remove</A></td><td><A HREF="Function_rename_Builtin.html">rename</A></td><td><A HREF="Function_replace_Builtin.html">replace</A></td></tr>
+
+<tr><td><A HREF="Function_rept_Builtin.html">rept</A></td><td><A HREF="Function_reset_Builtin.html">reset</A></td><td><A HREF="Function_resize_Builtin.html">resize</A></td><td><A HREF="Function_reverse_Builtin.html">reverse</A></td><td><A HREF="Function_right_Builtin.html">right</A></td></tr>
+
+<tr><td><A HREF="Function_round_Builtin.html">round</A></td><td><A HREF="Function_run_Builtin.html">run</A></td><td><A HREF="Function_saveImmediate_Builtin.html">saveImmediate</A></td><td><A HREF="Function_saveObject_Builtin.html">saveObject</A></td><td><A HREF="Function_saveRepository_Builtin.html">saveRepository</A></td></tr>
+
+<tr><td><A HREF="Function_saveWorkspace_Builtin.html">saveWorkspace</A></td><td><A HREF="Function_second_Builtin.html">second</A></td><td><A HREF="Function_send_Builtin.html">send</A></td><td><A HREF="Function_set_Builtin.html">set</A></td><td><A HREF="Function_setAttributes_Builtin.html">setAttributes</A></td></tr>
+
+<tr><td><A HREF="Function_setBlock_Builtin.html">setBlock</A></td><td><A HREF="Function_setCar_Builtin.html">setCar</A></td><td><A HREF="Function_setCdr_Builtin.html">setCdr</A></td><td><A HREF="Function_setLastCdr_Builtin.html">setLastCdr</A></td><td><A HREF="Function_setf_Builtin.html">setf</A></td></tr>
+
+<tr><td><A HREF="Function_setq_Builtin.html">setq</A></td><td><A HREF="Function_sigmoid_Builtin.html">sigmoid</A></td><td><A HREF="Function_sign_Builtin.html">sign</A></td><td><A HREF="Function_sin_Builtin.html">sin</A></td><td><A HREF="Function_sinh_Builtin.html">sinh</A></td></tr>
+
+<tr><td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td><td><A HREF="Function_skew_Builtin.html">skew</A></td><td><A HREF="Function_sleep_Builtin.html">sleep</A></td><td><A HREF="Function_sort_Builtin.html">sort</A></td><td><A HREF="Function_sql_Builtin.html">sql</A></td></tr>
+
+<tr><td><A HREF="Function_sqrt_Builtin.html">sqrt</A></td><td><A HREF="Function_srandom_Builtin.html">srandom</A></td><td><A HREF="Function_stdev_Builtin.html">stdev</A></td><td><A HREF="Function_stdevp_Builtin.html">stdevp</A></td><td><A HREF="Function_string_Builtin.html">string</A></td></tr>
+
+<tr><td><A HREF="Function_stringCiEQ_Builtin.html">stringCiEQ</A></td><td><A HREF="Function_stringCiGE_Builtin.html">stringCiGE</A></td><td><A HREF="Function_stringCiGT_Builtin.html">stringCiGT</A></td><td><A HREF="Function_stringCiLE_Builtin.html">stringCiLE</A></td><td><A HREF="Function_stringCiLT_Builtin.html">stringCiLT</A></td></tr>
+
+<tr><td><A HREF="Function_stringCiNE_Builtin.html">stringCiNE</A></td><td><A HREF="Function_stringFill_Builtin.html">stringFill</A></td><td><A HREF="Function_stringToBVector_Builtin.html">stringToBVector</A></td><td><A HREF="Function_stringToVector_Builtin.html">stringToVector</A></td><td><A HREF="Function_sub1_Builtin.html">sub1</A></td></tr>
+
+<tr><td><A HREF="Function_subi_Builtin.html">subi</A></td><td><A HREF="Function_submit_Builtin.html">submit</A></td><td><A HREF="Function_substitute_Builtin.html">substitute</A></td><td><A HREF="Function_substring_Builtin.html">substring</A></td><td><A HREF="Function_substringCiEQ_Builtin.html">substringCiEQ</A></td></tr>
+
+<tr><td><A HREF="Function_substringCiGE_Builtin.html">substringCiGE</A></td><td><A HREF="Function_substringCiGT_Builtin.html">substringCiGT</A></td><td><A HREF="Function_substringCiLE_Builtin.html">substringCiLE</A></td><td><A HREF="Function_substringCiLT_Builtin.html">substringCiLT</A></td><td><A HREF="Function_substringCiNE_Builtin.html">substringCiNE</A></td></tr>
+
+<tr><td><A HREF="Function_substringEQ_Builtin.html">substringEQ</A></td><td><A HREF="Function_substringFill_Builtin.html">substringFill</A></td><td><A HREF="Function_substringGE_Builtin.html">substringGE</A></td><td><A HREF="Function_substringGT_Builtin.html">substringGT</A></td><td><A HREF="Function_substringLE_Builtin.html">substringLE</A></td></tr>
+
+<tr><td><A HREF="Function_substringLT_Builtin.html">substringLT</A></td><td><A HREF="Function_substringNE_Builtin.html">substringNE</A></td><td><A HREF="Function_sum_Builtin.html">sum</A></td><td><A HREF="Function_sumsqr_Builtin.html">sumsqr</A></td><td><A HREF="Function_super_Builtin.html">super</A></td></tr>
+
+<tr><td><A HREF="Function_svmRegression_Builtin.html">svmRegression</A></td><td><A HREF="Function_symbol_Builtin.html">symbol</A></td><td><A HREF="Function_symbolToTypeCode_Builtin.html">symbolToTypeCode</A></td><td><A HREF="Function_system_Builtin.html">system</A></td><td><A HREF="Function_systemCheck_Builtin.html">systemCheck</A></td></tr>
+
+<tr><td><A HREF="Function_tan_Builtin.html">tan</A></td><td><A HREF="Function_tanh_Builtin.html">tanh</A></td><td><A HREF="Function_text_Builtin.html">text</A></td><td><A HREF="Function_time_Builtin.html">time</A></td><td><A HREF="Function_today_Builtin.html">today</A></td></tr>
+
+<tr><td><A HREF="Function_trim_Builtin.html">trim</A></td><td><A HREF="Function_type_Builtin.html">type</A></td><td><A HREF="Function_uncompress_Builtin.html">uncompress</A></td><td><A HREF="Function_uniqueInsert_Builtin.html">uniqueInsert</A></td><td><A HREF="Function_upcase_Builtin.html">upcase</A></td></tr>
+
+<tr><td><A HREF="Function_var_Builtin.html">var</A></td><td><A HREF="Function_varp_Builtin.html">varp</A></td><td><A HREF="Function_vectorBinaryInnerProduct_Builtin.html">vectorBinaryInnerProduct</A></td><td><A HREF="Function_vectorBipolarInnerProduct_Builtin.html">vectorBipolarInnerProduct</A></td><td><A HREF="Function_vectorCosineInnerProduct_Builtin.html">vectorCosineInnerProduct</A></td></tr>
+
+<tr><td><A HREF="Function_vectorCubeInnerProduct_Builtin.html">vectorCubeInnerProduct</A></td><td><A HREF="Function_vectorDelete_Builtin.html">vectorDelete</A></td><td><A HREF="Function_vectorExpInnerProduct_Builtin.html">vectorExpInnerProduct</A></td><td><A HREF="Function_vectorFill_Builtin.html">vectorFill</A></td><td><A HREF="Function_vectorInnerProduct_Builtin.html">vectorInnerProduct</A></td></tr>
+
+<tr><td><A HREF="Function_vectorLogInnerProduct_Builtin.html">vectorLogInnerProduct</A></td><td><A HREF="Function_vectorQuartInnerProduct_Builtin.html">vectorQuartInnerProduct</A></td><td><A HREF="Function_vectorQuintInnerProduct_Builtin.html">vectorQuintInnerProduct</A></td><td><A HREF="Function_vectorSigmoidInnerProduct_Builtin.html">vectorSigmoidInnerProduct</A></td><td><A HREF="Function_vectorSineInnerProduct_Builtin.html">vectorSineInnerProduct</A></td></tr>
+
+<tr><td><A HREF="Function_vectorSquareInnerProduct_Builtin.html">vectorSquareInnerProduct</A></td><td><A HREF="Function_vectorTanInnerProduct_Builtin.html">vectorTanInnerProduct</A></td><td><A HREF="Function_vectorTanhInnerProduct_Builtin.html">vectorTanhInnerProduct</A></td><td><A HREF="Function_version_Builtin.html">version</A></td><td><A HREF="Function_writelg_Builtin.html">writelg</A></td></tr>
+
+<tr><td><A HREF="Function_writeln_Builtin.html">writeln</A></td><td><A HREF="Function_year_Builtin.html">year</A></td></tr>
+
+</table>
+
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBuilt-in Object"></A>Built-in Object</H2></P>
+			<P>
+			Here are links to the functions of the AIS Built-in Objects.
+			</P>
+			<P>
+			<table width="100%"><tr>
+<td><A HREF="Datatype_BitVector.html">BitVector</A></td><td><A HREF="Datatype_Boolean.html">Boolean</A></td><td><A HREF="Datatype_Brick.html">Brick</A></td><td><A HREF="Datatype_ByteVector.html">ByteVector</A></td><td><A HREF="Datatype_Character.html">Character</A></td></tr><tr>
+<td><A HREF="Datatype_Complex.html">Complex</A></td><td><A HREF="Datatype_CpxVector.html">CpxVector</A></td><td><A HREF="Datatype_Date.html">Date</A></td><td><A HREF="Datatype_Dictionary.html">Dictionary</A></td><td><A HREF="Datatype_Directory.html">Directory</A></td></tr><tr>
+<td><A HREF="Datatype_Error.html">Error</A></td><td><A HREF="Datatype_FltVector.html">FltVector</A></td><td><A HREF="Datatype_Function.html">Function</A></td><td><A HREF="Datatype_IntVector.html">IntVector</A></td><td><A HREF="Datatype_Integer.html">Integer</A></td></tr><tr>
+<td><A HREF="Datatype_Lambda.html">Lambda</A></td><td><A HREF="Datatype_List.html">List</A></td><td><A HREF="Datatype_LongVector.html">LongVector</A></td><td><A HREF="Datatype_Matrix.html">Matrix</A></td><td><A HREF="Datatype_NumMatrix.html">NumMatrix</A></td></tr><tr>
+<td><A HREF="Datatype_NumVector.html">NumVector</A></td><td><A HREF="Datatype_Number.html">Number</A></td><td><A HREF="Datatype_ObjVector.html">ObjVector</A></td><td><A HREF="Datatype_ObjectRepository.html">ObjectRepository</A></td><td><A HREF="Datatype_Pair.html">Pair</A></td></tr><tr>
+<td><A HREF="Datatype_ShortVector.html">ShortVector</A></td><td><A HREF="Datatype_String.html">String</A></td><td><A HREF="Datatype_Structure.html">Structure</A></td><td><A HREF="Datatype_Symbol.html">Symbol</A></td><td><A HREF="Datatype_Text.html">Text</A></td></tr><tr>
+<td><A HREF="Datatype_Vector.html">Vector</A></td><td><A HREF="Datatype_Void.html">Void</A></td></table></tr>
+
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SVirtual Machine Instructions"></A>Virtual Machine Instructions</H2></P>
+			<P>
+			AIS Lambdas are designed to be write-once-run-anywhere executable objects. 
+			This is accomplished via the virtual machine concept of software Lambda execution. 
+			Lambda virtual machines are designed to be mapped onto the actual host microchip at the server location, 
+			providing faithful Lambda execution wherever the Lambda may travel on the Internet. 
+			There are currently several virtual machines operating within Analytic Information Server. 
+			The DRM virtual machine uses a Dynamically typed Register Machine model to provide portable Lambda execution 
+			from high level dynamically typed instructions all the way to super fast microchip-level register execution. 
+			The DRM virtual machine runs in emulation mode during the testing and debug phases of Lambda development, 
+			and there is an AIS Lambda debugger available for Lambdas running on this virtual machine. 
+			During the final release phases of Lambda development, DRM virtual machine Lambdas are automatically converted 
+			to the NATIVE virtual machine on the host computer, using the just-in-time compiler. 
+			The NATIVE virtual machine is a faithful machine language translation of the execution rules in the DRM virtual machine 
+			onto the actual host microchip at the server location. 
+			NATIVE virtual machine execution runs at microchip-level execution speeds.
+			</P>			
+			<P>
+			<table width="100%"><tr>
+<td><A HREF="VMInstruction_vmadd.html#topage">vmadd</A></td><td><A HREF="VMInstruction_vmaddi.html#topage">vmaddi</A></td><td><A HREF="VMInstruction_vmaddn.html#topage">vmaddn</A></td><td><A HREF="VMInstruction_vmand.html#topage">vmand</A></td><td><A HREF="VMInstruction_vmapply.html#topage">vmapply</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmargcount.html#topage">vmargcount</A></td><td><A HREF="VMInstruction_vmargfetch.html#topage">vmargfetch</A></td><td><A HREF="VMInstruction_vmcadd.html#topage">vmcadd</A></td><td><A HREF="VMInstruction_vmcall.html#topage">vmcall</A></td><td><A HREF="VMInstruction_vmcallarg.html#topage">vmcallarg</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmcdiv.html#topage">vmcdiv</A></td><td><A HREF="VMInstruction_vmcmul.html#topage">vmcmul</A></td><td><A HREF="VMInstruction_vmcsub.html#topage">vmcsub</A></td><td><A HREF="VMInstruction_vmdebugger.html#topage">vmdebugger</A></td><td><A HREF="VMInstruction_vmdiv.html#topage">vmdiv</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmdivi.html#topage">vmdivi</A></td><td><A HREF="VMInstruction_vmdivn.html#topage">vmdivn</A></td><td><A HREF="VMInstruction_vmdivr.html#topage">vmdivr</A></td><td><A HREF="VMInstruction_vmdivri.html#topage">vmdivri</A></td><td><A HREF="VMInstruction_vmiadd.html#topage">vmiadd</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmiand.html#topage">vmiand</A></td><td><A HREF="VMInstruction_vmiandb.html#topage">vmiandb</A></td><td><A HREF="VMInstruction_vmidiv.html#topage">vmidiv</A></td><td><A HREF="VMInstruction_vmidivr.html#topage">vmidivr</A></td><td><A HREF="VMInstruction_vmimul.html#topage">vmimul</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmior.html#topage">vmior</A></td><td><A HREF="VMInstruction_vmiorb.html#topage">vmiorb</A></td><td><A HREF="VMInstruction_vmisub.html#topage">vmisub</A></td><td><A HREF="VMInstruction_vmixor.html#topage">vmixor</A></td><td><A HREF="VMInstruction_vmixorb.html#topage">vmixorb</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmjump.html#topage">vmjump</A></td><td><A HREF="VMInstruction_vmjumpcc.html#topage">vmjumpcc</A></td><td><A HREF="VMInstruction_vmmove.html#topage">vmmove</A></td><td><A HREF="VMInstruction_vmmovei.html#topage">vmmovei</A></td><td><A HREF="VMInstruction_vmmoven.html#topage">vmmoven</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmmul.html#topage">vmmul</A></td><td><A HREF="VMInstruction_vmmuli.html#topage">vmmuli</A></td><td><A HREF="VMInstruction_vmmuln.html#topage">vmmuln</A></td><td><A HREF="VMInstruction_vmnadd.html#topage">vmnadd</A></td><td><A HREF="VMInstruction_vmnatAddInteger.html#topage">vmnatAddInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatAddNumber.html#topage">vmnatAddNumber</A></td><td><A HREF="VMInstruction_vmnatAndInteger.html#topage">vmnatAndInteger</A></td><td><A HREF="VMInstruction_vmnatDivInteger.html#topage">vmnatDivInteger</A></td><td><A HREF="VMInstruction_vmnatDivNumber.html#topage">vmnatDivNumber</A></td><td><A HREF="VMInstruction_vmnatDivrInteger.html#topage">vmnatDivrInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatDivrNumber.html#topage">vmnatDivrNumber</A></td><td><A HREF="VMInstruction_vmnatJumpCCInteger.html#topage">vmnatJumpCCInteger</A></td><td><A HREF="VMInstruction_vmnatJumpCCNumber.html#topage">vmnatJumpCCNumber</A></td><td><A HREF="VMInstruction_vmnatLoadCharacter.html#topage">vmnatLoadCharacter</A></td><td><A HREF="VMInstruction_vmnatLoadFloat.html#topage">vmnatLoadFloat</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatLoadInteger.html#topage">vmnatLoadInteger</A></td><td><A HREF="VMInstruction_vmnatLoadLong.html#topage">vmnatLoadLong</A></td><td><A HREF="VMInstruction_vmnatLoadNumber.html#topage">vmnatLoadNumber</A></td><td><A HREF="VMInstruction_vmnatLoadObject.html#topage">vmnatLoadObject</A></td><td><A HREF="VMInstruction_vmnatLoadShort.html#topage">vmnatLoadShort</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatMulInteger.html#topage">vmnatMulInteger</A></td><td><A HREF="VMInstruction_vmnatMulNumber.html#topage">vmnatMulNumber</A></td><td><A HREF="VMInstruction_vmnatOrInteger.html#topage">vmnatOrInteger</A></td><td><A HREF="VMInstruction_vmnatSaveCharacter.html#topage">vmnatSaveCharacter</A></td><td><A HREF="VMInstruction_vmnatSaveFloat.html#topage">vmnatSaveFloat</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatSaveInteger.html#topage">vmnatSaveInteger</A></td><td><A HREF="VMInstruction_vmnatSaveLong.html#topage">vmnatSaveLong</A></td><td><A HREF="VMInstruction_vmnatSaveNumber.html#topage">vmnatSaveNumber</A></td><td><A HREF="VMInstruction_vmnatSaveObject.html#topage">vmnatSaveObject</A></td><td><A HREF="VMInstruction_vmnatSaveShort.html#topage">vmnatSaveShort</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmnatShlInteger.html#topage">vmnatShlInteger</A></td><td><A HREF="VMInstruction_vmnatShrInteger.html#topage">vmnatShrInteger</A></td><td><A HREF="VMInstruction_vmnatSubInteger.html#topage">vmnatSubInteger</A></td><td><A HREF="VMInstruction_vmnatSubNumber.html#topage">vmnatSubNumber</A></td><td><A HREF="VMInstruction_vmnatXorInteger.html#topage">vmnatXorInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmndiv.html#topage">vmndiv</A></td><td><A HREF="VMInstruction_vmndivr.html#topage">vmndivr</A></td><td><A HREF="VMInstruction_vmnmul.html#topage">vmnmul</A></td><td><A HREF="VMInstruction_vmnop.html#topage">vmnop</A></td><td><A HREF="VMInstruction_vmnsub.html#topage">vmnsub</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmonerror.html#topage">vmonerror</A></td><td><A HREF="VMInstruction_vmopt.html#topage">vmopt</A></td><td><A HREF="VMInstruction_vmor.html#topage">vmor</A></td><td><A HREF="VMInstruction_vmpop.html#topage">vmpop</A></td><td><A HREF="VMInstruction_vmpush.html#topage">vmpush</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmref.html#topage">vmref</A></td><td><A HREF="VMInstruction_vmrefbitvector.html#topage">vmrefbitvector</A></td><td><A HREF="VMInstruction_vmrefbytevector.html#topage">vmrefbytevector</A></td><td><A HREF="VMInstruction_vmrefdickey.html#topage">vmrefdickey</A></td><td><A HREF="VMInstruction_vmrefdicvalue.html#topage">vmrefdicvalue</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmrefdirkey.html#topage">vmrefdirkey</A></td><td><A HREF="VMInstruction_vmrefdirvalue.html#topage">vmrefdirvalue</A></td><td><A HREF="VMInstruction_vmreffltvector.html#topage">vmreffltvector</A></td><td><A HREF="VMInstruction_vmrefintvector.html#topage">vmrefintvector</A></td><td><A HREF="VMInstruction_vmreflongvector.html#topage">vmreflongvector</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmrefmatrix.html#topage">vmrefmatrix</A></td><td><A HREF="VMInstruction_vmrefnummatrix.html#topage">vmrefnummatrix</A></td><td><A HREF="VMInstruction_vmrefnumvector.html#topage">vmrefnumvector</A></td><td><A HREF="VMInstruction_vmrefobjvector.html#topage">vmrefobjvector</A></td><td><A HREF="VMInstruction_vmrefpcdvector.html#topage">vmrefpcdvector</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmrefshortvector.html#topage">vmrefshortvector</A></td><td><A HREF="VMInstruction_vmrefstring.html#topage">vmrefstring</A></td><td><A HREF="VMInstruction_vmrefstrkey.html#topage">vmrefstrkey</A></td><td><A HREF="VMInstruction_vmrefstrvalue.html#topage">vmrefstrvalue</A></td><td><A HREF="VMInstruction_vmrefsymbol.html#topage">vmrefsymbol</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmreftext.html#topage">vmreftext</A></td><td><A HREF="VMInstruction_vmrefvector.html#topage">vmrefvector</A></td><td><A HREF="VMInstruction_vmregAbsNumber.html#topage">vmregAbsNumber</A></td><td><A HREF="VMInstruction_vmregAddImmediate.html#topage">vmregAddImmediate</A></td><td><A HREF="VMInstruction_vmregAddInteger.html#topage">vmregAddInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregAddNumber.html#topage">vmregAddNumber</A></td><td><A HREF="VMInstruction_vmregAddPointer.html#topage">vmregAddPointer</A></td><td><A HREF="VMInstruction_vmregAndImmediate.html#topage">vmregAndImmediate</A></td><td><A HREF="VMInstruction_vmregAndInteger.html#topage">vmregAndInteger</A></td><td><A HREF="VMInstruction_vmregCosNumber.html#topage">vmregCosNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregDivImmediate.html#topage">vmregDivImmediate</A></td><td><A HREF="VMInstruction_vmregDivInteger.html#topage">vmregDivInteger</A></td><td><A HREF="VMInstruction_vmregDivNumber.html#topage">vmregDivNumber</A></td><td><A HREF="VMInstruction_vmregDivrImmediate.html#topage">vmregDivrImmediate</A></td><td><A HREF="VMInstruction_vmregDivrInteger.html#topage">vmregDivrInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregDivrNumber.html#topage">vmregDivrNumber</A></td><td><A HREF="VMInstruction_vmregIncPointer.html#topage">vmregIncPointer</A></td><td><A HREF="VMInstruction_vmregInteger.html#topage">vmregInteger</A></td><td><A HREF="VMInstruction_vmregJump.html#topage">vmregJump</A></td><td><A HREF="VMInstruction_vmregJumpCCImmediate.html#topage">vmregJumpCCImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregJumpCCInteger.html#topage">vmregJumpCCInteger</A></td><td><A HREF="VMInstruction_vmregJumpCCNumber.html#topage">vmregJumpCCNumber</A></td><td><A HREF="VMInstruction_vmregLoadAddress.html#topage">vmregLoadAddress</A></td><td><A HREF="VMInstruction_vmregLoadDclType.html#topage">vmregLoadDclType</A></td><td><A HREF="VMInstruction_vmregLoadInteger.html#topage">vmregLoadInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregLoadJmpPointer.html#topage">vmregLoadJmpPointer</A></td><td><A HREF="VMInstruction_vmregLoadNumber.html#topage">vmregLoadNumber</A></td><td><A HREF="VMInstruction_vmregLoadTail.html#topage">vmregLoadTail</A></td><td><A HREF="VMInstruction_vmregLoadType.html#topage">vmregLoadType</A></td><td><A HREF="VMInstruction_vmregLogNumber.html#topage">vmregLogNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregMoveImmediate.html#topage">vmregMoveImmediate</A></td><td><A HREF="VMInstruction_vmregMoveInteger.html#topage">vmregMoveInteger</A></td><td><A HREF="VMInstruction_vmregMoveNumber.html#topage">vmregMoveNumber</A></td><td><A HREF="VMInstruction_vmregMulImmediate.html#topage">vmregMulImmediate</A></td><td><A HREF="VMInstruction_vmregMulInteger.html#topage">vmregMulInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregMulNumber.html#topage">vmregMulNumber</A></td><td><A HREF="VMInstruction_vmregNumber.html#topage">vmregNumber</A></td><td><A HREF="VMInstruction_vmregObjLength.html#topage">vmregObjLength</A></td><td><A HREF="VMInstruction_vmregObjPointer.html#topage">vmregObjPointer</A></td><td><A HREF="VMInstruction_vmregOrImmediate.html#topage">vmregOrImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregOrInteger.html#topage">vmregOrInteger</A></td><td><A HREF="VMInstruction_vmregPwrNumber.html#topage">vmregPwrNumber</A></td><td><A HREF="VMInstruction_vmregRefCharacter.html#topage">vmregRefCharacter</A></td><td><A HREF="VMInstruction_vmregRefFloat.html#topage">vmregRefFloat</A></td><td><A HREF="VMInstruction_vmregRefInteger.html#topage">vmregRefInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregRefLong.html#topage">vmregRefLong</A></td><td><A HREF="VMInstruction_vmregRefNumber.html#topage">vmregRefNumber</A></td><td><A HREF="VMInstruction_vmregRefShort.html#topage">vmregRefShort</A></td><td><A HREF="VMInstruction_vmregRefWord.html#topage">vmregRefWord</A></td><td><A HREF="VMInstruction_vmregRefXCharacter.html#topage">vmregRefXCharacter</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregRefXFloat.html#topage">vmregRefXFloat</A></td><td><A HREF="VMInstruction_vmregRefXInteger.html#topage">vmregRefXInteger</A></td><td><A HREF="VMInstruction_vmregRefXLong.html#topage">vmregRefXLong</A></td><td><A HREF="VMInstruction_vmregRefXNumber.html#topage">vmregRefXNumber</A></td><td><A HREF="VMInstruction_vmregRefXShort.html#topage">vmregRefXShort</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregRefXWord.html#topage">vmregRefXWord</A></td><td><A HREF="VMInstruction_vmregRunInHarware.html#topage">vmregRunInHarware</A></td><td><A HREF="VMInstruction_vmregSaveDeclType.html#topage">vmregSaveDeclType</A></td><td><A HREF="VMInstruction_vmregSaveDeclTypeImmediate.html#topage">vmregSaveDeclTypeImmediate</A></td><td><A HREF="VMInstruction_vmregSaveInteger.html#topage">vmregSaveInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSaveNumber.html#topage">vmregSaveNumber</A></td><td><A HREF="VMInstruction_vmregSaveTail.html#topage">vmregSaveTail</A></td><td><A HREF="VMInstruction_vmregSaveTailImmediate.html#topage">vmregSaveTailImmediate</A></td><td><A HREF="VMInstruction_vmregSetCharImmediate.html#topage">vmregSetCharImmediate</A></td><td><A HREF="VMInstruction_vmregSetCharacter.html#topage">vmregSetCharacter</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetFloat.html#topage">vmregSetFloat</A></td><td><A HREF="VMInstruction_vmregSetIntImmediate.html#topage">vmregSetIntImmediate</A></td><td><A HREF="VMInstruction_vmregSetInteger.html#topage">vmregSetInteger</A></td><td><A HREF="VMInstruction_vmregSetLong.html#topage">vmregSetLong</A></td><td><A HREF="VMInstruction_vmregSetLongImmediate.html#topage">vmregSetLongImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetNumber.html#topage">vmregSetNumber</A></td><td><A HREF="VMInstruction_vmregSetShort.html#topage">vmregSetShort</A></td><td><A HREF="VMInstruction_vmregSetShortImmediate.html#topage">vmregSetShortImmediate</A></td><td><A HREF="VMInstruction_vmregSetWord.html#topage">vmregSetWord</A></td><td><A HREF="VMInstruction_vmregSetXCharImmediate.html#topage">vmregSetXCharImmediate</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetXCharacter.html#topage">vmregSetXCharacter</A></td><td><A HREF="VMInstruction_vmregSetXFloat.html#topage">vmregSetXFloat</A></td><td><A HREF="VMInstruction_vmregSetXIntImmediate.html#topage">vmregSetXIntImmediate</A></td><td><A HREF="VMInstruction_vmregSetXInteger.html#topage">vmregSetXInteger</A></td><td><A HREF="VMInstruction_vmregSetXLong.html#topage">vmregSetXLong</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSetXLongImmediate.html#topage">vmregSetXLongImmediate</A></td><td><A HREF="VMInstruction_vmregSetXNumber.html#topage">vmregSetXNumber</A></td><td><A HREF="VMInstruction_vmregSetXShort.html#topage">vmregSetXShort</A></td><td><A HREF="VMInstruction_vmregSetXShortImmediate.html#topage">vmregSetXShortImmediate</A></td><td><A HREF="VMInstruction_vmregSetXWord.html#topage">vmregSetXWord</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregShlImmediate.html#topage">vmregShlImmediate</A></td><td><A HREF="VMInstruction_vmregShlInteger.html#topage">vmregShlInteger</A></td><td><A HREF="VMInstruction_vmregShrImmediate.html#topage">vmregShrImmediate</A></td><td><A HREF="VMInstruction_vmregShrInteger.html#topage">vmregShrInteger</A></td><td><A HREF="VMInstruction_vmregSinNumber.html#topage">vmregSinNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSqrtNumber.html#topage">vmregSqrtNumber</A></td><td><A HREF="VMInstruction_vmregStringCompare.html#topage">vmregStringCompare</A></td><td><A HREF="VMInstruction_vmregStringiCompare.html#topage">vmregStringiCompare</A></td><td><A HREF="VMInstruction_vmregSubImmediate.html#topage">vmregSubImmediate</A></td><td><A HREF="VMInstruction_vmregSubInteger.html#topage">vmregSubInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregSubNumber.html#topage">vmregSubNumber</A></td><td><A HREF="VMInstruction_vmregSubPointer.html#topage">vmregSubPointer</A></td><td><A HREF="VMInstruction_vmregTanNumber.html#topage">vmregTanNumber</A></td><td><A HREF="VMInstruction_vmregXorImmediate.html#topage">vmregXorImmediate</A></td><td><A HREF="VMInstruction_vmregXorInteger.html#topage">vmregXorInteger</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmregmoven.html#topage">vmregmoven</A></td><td><A HREF="VMInstruction_vmreturn.html#topage">vmreturn</A></td><td><A HREF="VMInstruction_vmself.html#topage">vmself</A></td><td><A HREF="VMInstruction_vmsend.html#topage">vmsend</A></td><td><A HREF="VMInstruction_vmset.html#topage">vmset</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetbitvector.html#topage">vmsetbitvector</A></td><td><A HREF="VMInstruction_vmsetbytevector.html#topage">vmsetbytevector</A></td><td><A HREF="VMInstruction_vmsetdickey.html#topage">vmsetdickey</A></td><td><A HREF="VMInstruction_vmsetdicvalue.html#topage">vmsetdicvalue</A></td><td><A HREF="VMInstruction_vmsetdirkey.html#topage">vmsetdirkey</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetdirvalue.html#topage">vmsetdirvalue</A></td><td><A HREF="VMInstruction_vmsetfltvector.html#topage">vmsetfltvector</A></td><td><A HREF="VMInstruction_vmsetintvector.html#topage">vmsetintvector</A></td><td><A HREF="VMInstruction_vmsetlongvector.html#topage">vmsetlongvector</A></td><td><A HREF="VMInstruction_vmsetmatrix.html#topage">vmsetmatrix</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetnummatrix.html#topage">vmsetnummatrix</A></td><td><A HREF="VMInstruction_vmsetnumvector.html#topage">vmsetnumvector</A></td><td><A HREF="VMInstruction_vmsetobjvector.html#topage">vmsetobjvector</A></td><td><A HREF="VMInstruction_vmsetpcdvector.html#topage">vmsetpcdvector</A></td><td><A HREF="VMInstruction_vmsetshortvector.html#topage">vmsetshortvector</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmsetstring.html#topage">vmsetstring</A></td><td><A HREF="VMInstruction_vmsetstrkey.html#topage">vmsetstrkey</A></td><td><A HREF="VMInstruction_vmsetstrvalue.html#topage">vmsetstrvalue</A></td><td><A HREF="VMInstruction_vmsetvector.html#topage">vmsetvector</A></td><td><A HREF="VMInstruction_vmshl.html#topage">vmshl</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmshr.html#topage">vmshr</A></td><td><A HREF="VMInstruction_vmsmovei.html#topage">vmsmovei</A></td><td><A HREF="VMInstruction_vmsub.html#topage">vmsub</A></td><td><A HREF="VMInstruction_vmsubi.html#topage">vmsubi</A></td><td><A HREF="VMInstruction_vmsubn.html#topage">vmsubn</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmtestescape.html#topage">vmtestescape</A></td><td><A HREF="VMInstruction_vmvecBinary.html#topage">vmvecBinary</A></td><td><A HREF="VMInstruction_vmvecInitialize.html#topage">vmvecInitialize</A></td><td><A HREF="VMInstruction_vmvecLoop.html#topage">vmvecLoop</A></td><td><A HREF="VMInstruction_vmvecNumScalar.html#topage">vmvecNumScalar</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmvecNumVector.html#topage">vmvecNumVector</A></td><td><A HREF="VMInstruction_vmvecPop.html#topage">vmvecPop</A></td><td><A HREF="VMInstruction_vmvecPopNumber.html#topage">vmvecPopNumber</A></td><td><A HREF="VMInstruction_vmvecPush.html#topage">vmvecPush</A></td><td><A HREF="VMInstruction_vmvecPushNumber.html#topage">vmvecPushNumber</A></td></tr><tr>
+<td><A HREF="VMInstruction_vmvecSetIncrements.html#topage">vmvecSetIncrements</A></td><td><A HREF="VMInstruction_vmvecSetPointers.html#topage">vmvecSetPointers</A></td><td><A HREF="VMInstruction_vmvecSwapCC.html#topage">vmvecSwapCC</A></td><td><A HREF="VMInstruction_vmvecUnary.html#topage">vmvecUnary</A></td><td><A HREF="VMInstruction_vmxor.html#topage">vmxor</A></td></table></tr>
+
+			</P>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

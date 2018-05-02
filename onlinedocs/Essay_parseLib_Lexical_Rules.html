@@ -1,0 +1,499 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lexical Rules</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SDefault Lexical Analyzer"><FONT SIZE=2>Default Lexical Analyzer</font></a></li><li><a href="#SLexical Features"><FONT SIZE=2>Lexical Features</font></a></li><li><a href="#SLexical Rules"><FONT SIZE=2>Lexical Rules</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Lexical Rules Overview">
+		    <p class="MsoBodyText">The <b>parseLib</b> provides both a default lexical analyzer, 
+            for those who do not want to write lexical rules, and a rule based lexical sub-language for those 
+			who need to specify their own lexical rules. The lexical rule facility is feature rich with BNF notation, 
+			argument passing, repeating rules, etc. The main purpose of the lexical analyzer is to parse the 
+			input string into a vector of feature rich tokens (usually the tokens are Structures with the Structure 
+			attributes representing the features). This vector of feature rich tokens is then passed to the syntax analyzer. </p>
+		    <p class="MsoBodyText">It is possible to use the lexical analyzer for one??s own purposes. One might 
+		    eliminate the syntax and semantic rules with the lexical rules producing the final output; or, one might eliminate 
+		    the lexical rules entirely so the resulting compiler becomes a stand alone syntax analyzer or semantic 
+		    analyzer.</p>
+		    <p class="MsoBodyText">This section contains initial working notes on the design of the lexical definition sub-language. 
+		    The lexical definition sub-language is a combination of the lexical analysis ideas in [1.3.3] and the 
+		    feature based grammar ideas in [2.7]. The main theme of this section is: <b><i>input string in ?? vector of feature 
+		    rich tokens out.</i></b></p>   
+		    <h3> $ch </h3>
+		     <p class="MsoBodyText">The <b>$ch</b> variable contains the current input character location, at the start of this lexical rule,
+		      during lexical analysis. The <b>$ch</b> variable can be used in connection with user defined condition rules, action rules, 
+		      and in user defined functions, for example:      </p>
+		     <p class="code"> (writeln (mid $IN $ch 20))  </p>    
+		     <p class="MsoBodyText">The Lisp expression, shown above, will display the 20 characters, from the 
+		     input source string, starting with the current token.     </p>  
+		     <h3> $$this </h3>
+		     <p class="MsoBodyText">The <b>$this</b> variable contains the current input character, 
+		     at each invocation of a lexical rule with the + and * BNF command modifiers, 
+		     during lexical analysis. The <b>$this</b> variable can be used in connection with user 
+		     defined condition rules, for example:</p>
+		     <p class="code"> MAIN: Any{(isNumber $this)}*  </p>  
+		     <h3> $IN</h3>
+		     <p class="MsoBodyText">The <b>$IN</b> variable contains the current input to the new compiler. 
+		     The <b>$IN</b> variable can be used in connection user defined condition rules, action rules, and in user 
+		     defined functions, for example:</p>
+		     <p class="code">  (writeln (mid $IN $ch 20)) </p>    
+		     <p class="MsoBodyText">The Lisp expression, shown above, will display the 20 characters, from the input 
+		     source string, starting with the current token.</p>    
+		     <h3> $LIST</h3>
+		     <p class="MsoBodyText">The <b>$LIST</b> variable contains the current vector of feature rich tokens 
+		     produced by the lexical analyzer rules. At the beginning of the lexical phase, the <b>$LIST</b> variable is an empty 
+		     vector. At the end of the lexical phase, the <b>$LIST</b> variable should contain the feature rich tokens recognized by the 
+		     lexer. The <b>$LIST</b> variable is usually returned by the final rule in the lexer, for example:</p>
+		     <p class="code">    FINALRULE:    <i>??conditions?? </i>   :: $LIST ::</p>    
+		     <p class="MsoBodyText">The Lisp expression, shown above, will look ahead one character in the input source string, 
+		     eating up input characters until the next character is a lower case ??y??.</p> 
+		     <p class="MsoBodyText">The final lexical rule, shown above, returns a vector of feature rich tokens to the new compiler 
+		     for use in the syntax analysis phase.</p> 
+		     <h3> $OUT</h3>
+		     <p class="MsoBodyText">The <b>$OUT</b> function provides a convient way to put feature rich tokens, produced by the 
+		     lexical analyzer rules, into the <b>$LIST</b> vector, for example:</p>
+		     <p class="code">    NAME: Letter AlphaNum*   :: ($OUT $ch (append $1 $2) Name: true) ::</p>    
+		     <p class="MsoBodyText">The NAME lexical rule, shown above, recognizes any name beginning with a letter 
+		     and continuing with none or more letters or digits. The <b>$OUT</b> function works in connection with the 
+		     Syntax Features defined in the syntax analyzer (remember that the syntax analyzer is the customer 
+		     of the lexical analyzer). </p> 
+		     <p class="MsoBodyText">The <b>$OUT</b> function must receive two or more arguments.  The first argument is the 
+		     character position, in the input string <b>$IN</b>, which relates to this token (tokens without a Charpos feature
+		      will cause the generated compiler to abort in the syntax analyzer). The second argument is the Value feature of the 
+		      token (tokens without a Value feature will cause the generated compiler to abort in the syntax analyzer).</p>  
+		      <p class="MsoBodyText">The remaining arguments to the <b>$OUT</b> function (if any) must be in pairs (unpaired arguments 
+		      will cause the generated compiler to abort in the lexical analyzer). Each argument pair begins with the feature name 
+		      (feature names must begin with an uppercase letter and must contain one or more lowercase letters), 
+		      and is followed by the feature??s value. </p>  
+		      <p class="MsoBodyText">The <b>$OUT</b> function uses the <b>Value</b> argument as a key into the directory of Syntax 
+		      Features (see the Syntax chapter). If found, the remaining arguments beyond Charpos and Value are 
+		      ignored and the new token defaults to the features defined in the Syntax Features directory; otherwise, 
+		      the remaining arguments are added to the token as additional features.</p>
+		       <h3> $ASIS</h3>
+		     <p class="MsoBodyText">The <b>$ASIS</b> function provides a convient way to put feature rich tokens, produced by 
+		     the lexical analyzer rules, into the <b>$LIST</b> vector, for example:</p>
+		     <p class="code">    NAME: Letter AlphaNum*   :: ($ASIS $ch (append $1 $2) Name: true) ::</p>    
+		     <p class="MsoBodyText">The NAME lexical rule, shown above, recognizes any name beginning with a letter 
+		     and continuing with none or more letters or digits. The $ASIS function IGNORES the Syntax Features 
+		     defined in the syntax analyzer (remember that the syntax analyzer is the customer of the lexical 
+		     analyzer). </p> 
+		     <p class="MsoBodyText">The <b>$ASIS</b> function must receive two or more arguments.  The first 
+		     argument is the character position, in the input string $IN, which relates to this token (tokens 
+		     without a Charpos feature will cause the generated compiler to abort in the syntax analyzer). 
+		     The second argument is the Value feature of the token (tokens without a Value feature will cause the 
+		     generated compiler to abort in the syntax analyzer).</p>   
+		     <p class="MsoBodyText">The remaining arguments to the <b>$ASIS</b> function (if any) must be in pairs 
+		     (unpaired arguments will cause the generated compiler to abort in the lexical analyzer). Each argument 
+		     pair begins with the feature name (feature names must begin with an uppercase letter and must contain 
+		     one or more lowercase letters), and is followed by the feature??s value. </p>      
+		      <p class="MsoBodyText">The <b>$ASIS</b> function IGNORES the directory of Syntax Features (see the 
+		      Syntax chapter). The user supplied feature arguments are added to the token as features. The directory 
+		      of Syntax Features is IGNORED.</p> 
+		  </div>	  
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDefault Lexical Analyzer"></A>Default Lexical Analyzer</H2></P>
+          <div class="h2section" id="Default Lexical Analyzer"> 
+           <p class="MsoBodyText"> The <b>parseLib</b> provides a default lexical analyzer, for those who do not 
+           want to write lexical. The default lexical analyzer attempts to parse the input stream into names, 
+           numbers, operators, and special characters. The main purpose of the default lexical analyzer is to 
+           parse the input string into a vector of feature rich tokens. This vector of feature rich tokens is 
+           then passed to the syntax analyzer. If there are no Lexical Rules specified, then the default lexical 
+           analyzer is in effect.</p>
+          <h3> Attributing Tokens</h3>
+           <p class="MsoBodyText">  The default lexical analyzer automatically converts the list of lexical tokens, 
+           output from the lisp function, into a list of attributed structures. The attributed structures are said 
+           to give the tokens features. At the very minimum, each token is converted into a structure with a <b>Value</b> 
+           attribute set equal to the original token.</p>
+           <p class="code"> t<sub>1</sub>         #{Value: t<sub>1</sub>}  </p>
+           <p class="MsoBodyText">  Where t<sub>1</sub> is a lexical token output from the lisp function, and <b>#{Value: t<sub>1</sub>}</b> 
+           is a structure containing at minimum the attribute <b>Value</b>. Obviously an attributed token may contain
+            more than one feature. A token may contain the features of Verb, Noun, etc as follows.</p>     
+           <p class="code"> t<sub>1</sub>          #{Verb: true  Noun: true  Value: t<sub>1</sub>} </p>
+           <p class="MsoBodyText"> The classes of lexical tokens which are automatically recognized by the system, 
+           and which attributes they are given, is defined in the <u>Syntax</u> section. In the event that a lexical 
+           token cannot be automatically recognized by the system, the token is passed to the default token rule 
+           for attributing.</p>  
+           <p class="MsoBodyText"> Note:    All attribute names must begin with an uppercase character and must 
+           contain at least one non uppercase character.</p>    
+           <h3> Default Tokens</h3>
+           <p class="MsoBodyText">  The vocabulary of lexical tokens which are automatically recognized by the 
+           system, and which attributes they are given, is defined in the <u>Syntax</u> section of the parseLib 
+           definition language. In the event that a lexical token is not defined in the <u>Syntax</u> section, 
+           it cannot be automatically attributed by the system. All undefined lexical tokens are sent to the 
+           default token rule for attributing.</p>
+           <p class="code"> t<sub>1</sub> (defaultTokenRule  t<sub>1</sub> )</p>          
+           <h3>defaultTokenRule</h3>       
+           <p class="MsoBodyText">  The default token rule is a user defined child Lambda, of the resulting 
+           compiler and can be overridden in the #UserFunction# section of the %DEFINITION file.</p> 
+           <p class="MsoBodyText">  If the default token rule is not specified, the generated compiler will output 
+           a simple structure, with a Value attribute, for every unrecognized token encountered. The default 
+           token rule is a user defined child Lambda, of the resulting compiler, which accepts one argument and 
+           always returns a structure as in the following example:</p> 
+           <blockquote>
+           <p class="code">
+           <pre>  
+           ;; Default token attributing function.
+			(defchild theparent:defaultTokenRule(token)
+			pvars:(tokenDirectory)
+			vars:(ret)
+            (cond
+              ;; Recognize numeric tokens.
+              ((isNumber token)
+              (setq ret (new Structure: Number: true)))
+               ;; Recognize name tokens.
+              ((and (isSymbol token) (isCharAlphanumeric token))
+              (setq ret (new Structure: Name: true)))
+              ;; Recognize operator tokens.
+              ((isSymbol token)
+              (setq ret (new Structure: Operator: true)))
+              ;; Output an error token.
+              (else
+                   (setq ret (new Structure: Error: "Illegal token")))
+            ) ; end cond
+            ret) ; end defaultTokenRule
+            </pre>
+           </p> 
+           </blockquote>  
+            <h3>defaultLexer.turnFractionsOnOff</h3>       
+           <p class="MsoBodyText">  The <b>turnFractionsOnOff</b> function allows the user, usually as a part 
+           of his/her startRule code, to tell the lexical analyzer whether or not to recognize fractions. 
+           If fraction recognition is turned off, the following lexical sequence:</p>
+           <p class="code">  23.456 </p>
+           <p class="MsoBodyText">  will be recognized as one integer and a period symbol followed by another 
+           integer.</p>     
+            <h3>defaultLexer.lowerCaseSW</h3>       
+           <p class="MsoBodyText">  The <b>lowerCaseSW</b> variable allows the user, usually as a part of his/her 
+           <b>startRule code</b>, to tell the lexical analyzer whether or not to convert all recognized names to 
+           lower case. If lower case conversion is turned on, the following lexical sequence:</p>
+           <p class="code"> HeLp </p>
+           <p class="MsoBodyText"> will be converted into the following sequence:</p>     
+           <p class="code"> help </p>
+           <h3>defaultLexer.keepWhitespaceSW</h3>       
+           <p class="MsoBodyText">  The <b>keepWhitespaceSW</b> variable allows the user, usually as a part of 
+           his/her <b>startRule</b> code, to tell the lexical analyzer whether or not to keep all recognized 
+           whitespace strings. If keep whitespace is not turned on, all delimited strings with beginning with 
+           the name <i>"Whitespace??"</i> will be thrown away.</p>         
+           <h3>Delimited Strings</h3>       
+           <p class="MsoBodyText">  The default lexical analyzer supports user defined delimited strings
+            in the compiler definition as follows:</p>  
+           <blockquote>
+           <p class="code">
+           #DelimitedStrings#  <br>
+		  Whitespace:  {;}  _eol   <br>
+          String:  {"}  {"}   <br>
+          #End#
+		  </p> 
+           </blockquote> 
+          <p class="MsoBodyText">  The default lexical analyzer allows any number of valid delimited string 
+          definitions between the <b>#DelimitedStrings#</b> header and the <b>#End#</b> terminator. User defined 
+          delimited strings are attributed with the specified name preceeding the start end end delimiters, 
+          and with Constant = true.</p>    
+          <p class="MsoBodyText">  Note: The Whitespace name has a special meaning to the compiler 
+          (see <b>keepWhitespaceSW</b> shown variable). All delimited strings with name beginning with 
+          Whitespace (i.e. Whitespace, Whitespace1, Whitespace2, etc.) are ignored by the defaultLexer function 
+          and are removed from the parse tree. This means the _getToken function will never see them and user 
+          defined rules do not have to take whitespace tokens into consideration.</p> 
+          <p class="MsoBodyText">  Note: The Delimited Strings definitions are <b><u>only meaningful</u></b> if the 
+          default lexical analyzer <b>IS</b> in effect. If there are any lexical rules defined, the delimited strings 
+          declarations are ignored.</p>           
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLexical Features"></A>Lexical Features</H2></P>
+            <div class="h2section" id="Lexical Features">
+			<p class="MsoBodyText">Collections of single characters can be grouped into sets to form
+			 lexical features as follows: </p>   
+			<blockquote>
+			<p class="code">
+			  #LexicalFeatures#
+              Digit: [ |"0"-"9"| ]
+              Alphanum: [ |a-z| |A-Z| |"0"-"9"|]
+              Name: [ |a-z| |A-Z| |"0"-"9"| _ ]
+              CharData:  [ |0-255| ~ &#60 &#62  "[" 34]
+              #End#
+             </p>
+			</blockquote>  
+			<p class="MsoBodyText"> In the example, shown above, a character has the feature ??Digit?? iff it is a 
+			0 through a 9. Similarly a character has the feature ??AlphaNum?? iff it is a letter or a digit. 
+			Specifying lexical features allows one to check for whole sets of characters with a single test in 
+			the lexical rules, for example:</p>  
+			<p class="code"> NAME: Letter AlphaNum*   :: ($OUT $ch (append $1 $2) Name: true) ::</p>    
+			<p class="MsoBodyText"> The NAME lexical rule, shown above, recognizes any name beginning with a 
+			letter and continuing with none or more letters or digits.</p>    
+			 <h3>Numbers</h3>       
+           <p class="MsoBodyText">  Numbers, specified in a lexical feature declaration, are always considered 
+           to be ascii character codes, not ascii characters (one must surround numbers with quotes ??8?? if one 
+           wishes to declared the character value, for example:</p>  
+          <p class="code"> LineFeed: [ 10 ]       </p>  
+          <h3>Not (~)</h3>       
+           <p class="MsoBodyText">  The not symbol ~, specified in a lexical feature declaration, indicates 
+           that all following charaters are NOT included in the set, for example:</p>  
+          <p class="code"> Whitespace: [ |0-32| ~ 13 ]      </p>    
+          <p class="MsoBodyText">  The Whitespace feature, shown above, includes all ascii codes between
+          1 and 32, but does not include the carriage return code.</p>        
+          <h3>Ranges</h3>       
+           <p class="MsoBodyText">  Character ranges can be specified by enclosing two character 
+           declarations between vertical bar, for example:</p>  
+          <p class="code"> Alphanum: [ |a-z| |A-Z| |??0??-??9??|]     </p> 
+          <h3>Quotes</h3>       
+           <p class="MsoBodyText">  Characters can be quoted whenever they are numbers or special characters, 
+           for example:</p>  
+          <p class="code"> Digit: [|??0??-??9??|]   </p>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLexical Rules"></A>Lexical Rules</H2></P>
+		    <div class="h2section" id="Lexical Rules">
+		<p class=MsoBodyText>The default
+		lexical analyzer can be overridden by specifying Lexical Rules, which will
+		perform the parsing operation. Reference [<b style='mso-bidi-font-weight:normal'>1</b>.3.3]
+		uses syntax definition from regular definitions of the form: </p>
+		 <blockquote>
+		<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>d<sub>1</sub></b>   <b style='mso-bidi-font-weight:normal'>:</b>     <b style='mso-bidi-font-weight:normal'>r<sub>1</sub>  ||  c<sub>1  </sub>|| :: a<sub>1 </sub>::</b></p>
+		<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>d<sub>2</sub></b>   <b style='mso-bidi-font-weight:normal'>:</b>     <b style='mso-bidi-font-weight:normal'>r<sub>2</sub>  ||  c<sub>2  </sub>|| :: a<sub>2</sub> ::</b></p>
+		<p class=code style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>
+		.  .  . </b></p>
+		<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>d<sub>n</sub></b>   <b style='mso-bidi-font-weight:normal'>:</b>    <b style='mso-bidi-font-weight:normal'>r<sub>n</sub>  ||  c<sub>n  </sub>|| :: a<sub>1</sub> ::</b></p>
+		 </blockquote>
+		<p class=MsoBodyText>Where each <b style='mso-bidi-font-weight:normal'>d<sub>i</sub></b> is a rule name, each <b style='mso-bidi-font-weight:normal'>r<sub>i</sub></b> is a rule expression,
+		each <b style='mso-bidi-font-weight:normal'>c<sub>i</sub></b> is a Lisp
+		conditional expression, and each <b style='mso-bidi-font-weight:normal'>a<sub>i</sub></b>
+		is a Lisp action expression. The syntax for Lexical Rule definition is as
+		follows:</p>
+		<blockquote>
+		<p class=code><b style='mso-bidi-font-weight:normal'>#LexicalRules#</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>NUMBER: Sign? Digit+ Period? Digit+  || (&lt;&gt; (number $2) 0) || :: (number
+		(append $1 $2 $3 $4)) ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>NUMBER: LONGHAND+ :: (number (apply append
+		$1)) ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>LONGHAND: Whitespace* &lt;&lt; true &gt;&gt;</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>LONGHAND: "one" :: 1 ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>LONGHAND: "two" :: 2 ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>LONGHAND: "three" :: 3 ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>#End#</b></p>     
+		</blockquote>
+		<p class=MsoBodyText>The Lisp
+		condition rule is optional. If present, it must be enclosed by the <b style='mso-bidi-font-weight:normal'>||</b> symbol. The Lisp action rule is
+		mandatory. It must be enclosed by the <b style='mso-bidi-font-weight:normal'>::</b>
+		symbol. The rule variable <b style='mso-bidi-font-weight:normal'>$0</b> is the
+		default return value initialized by the rule automatically to <b style='mso-bidi-font-weight:normal'>#void</b>. The rule variables <b style='mso-bidi-font-weight:normal'>$1</b> through <b style='mso-bidi-font-weight:
+		normal'>$9</b> correspond to the respective token expressions in the rule body.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note1</b>:  All
+		rule names must contain only uppercase characters and must contain no
+		non-uppercase characters, numerals, or underscores.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note2</b>:  The
+		<b style='mso-bidi-font-weight:normal'>$</b> symbol must not be used in an
+		argument phrase, action, or condition rule anywhere except as a rule variable
+		identifier <b style='mso-bidi-font-weight:normal'>$0</b> through <b style='mso-bidi-font-weight:normal'>$9</b>. If the condition or action rule
+		requires a <b style='mso-bidi-font-weight:normal'>$</b> symbol, for instance
+		inside a string constant, place the <b style='mso-bidi-font-weight:normal'>$</b>
+		symbol in a user defined function which is called by the argument phrase,
+		action, or condition rule.</p>
+		<h3> BNF
+		Notation</h3>
+		<p class=MsoBodyText>Lexical rule
+		names, lexical feature names, but not constants, may have trailing BNF operators
+		of <b style='mso-bidi-font-weight:normal'>"*"</b> or <b style='mso-bidi-font-weight:
+		normal'>"+"</b> or <b style='mso-bidi-font-weight:normal'>"?"</b>. For example:</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>NUMBER: Sign? Digit+
+		Period? Digit+  || (&lt;&gt; (number $2)
+		0) || :: (number (append $1 $2 $3 $4)) ::</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>NUMBER: LONGHAND+ ::
+		(number (apply append $1)) ::</b></p>
+		<p class=MsoBodyText>Any lexical rule
+		name and any lexical feature name (other than the special <b style='mso-bidi-font-weight:
+		normal'>Eof</b> and <b style='mso-bidi-font-weight:normal'>Nop</b> features)
+		may have trailing BNF operators. The user is required to make sure that the
+		resulting rule does not cause the new compiler to loop endlessly on the input
+		string. The BNF operators have the following meanings:</p>
+		<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo5;
+		tab-stops:list .5in'>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		The <b style='mso-bidi-font-weight:normal'>"*"</b>
+		operator signifies none or more (<i style='mso-bidi-font-style:normal'>may
+		cause endless looping if specified inappropriately</i>). </p>
+		<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo5;
+		tab-stops:list .5in'>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		The <b style='mso-bidi-font-weight:normal'>"+"</b>
+		operator signifies one or more. </p>
+		<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo5;
+		tab-stops:list .5in'>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		The <b style='mso-bidi-font-weight:normal'>"?"</b>
+		operator signifies none or one.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note1</b>:  For
+		lexical features, the BNF operators return a character string of each
+		repetition character append together. </p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note2</b>:  For
+		lexical rules, the BNF operators return a vector of each repetition result.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+		<h3> Argument Passing </h3>
+		<p class=MsoBodyText>User defined
+		rules may be passed arguments. A Lisp argument phrase, enclosed with the <b style='mso-bidi-font-weight:normal'>( )</b>
+		symbol pair, will cause the user defined rule to receive the specified
+		argument. Within a user defined rule definition, the <b style='mso-bidi-font-weight:
+		normal'>%0</b> thru <b style='mso-bidi-font-weight:normal'>%9</b> variables
+		represent any arguments which may have been passed to the rule as follows:</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>QUALIFY:  DotOperator
+		Name  QUALIFY(  (setq $0.Value (append |ref|: %0 $2)) )  :: $3 ::</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>QUALIFY:  DotOperator
+		Name  :: (setq $0 (append |ref|:
+		%0 $2)) ::</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>TERM: Name QUALIFY($1) ::
+		$2 ::</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>TERM: Name :: $1 ::</b></p>
+		<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>TERM</b> rule will recognize all input of
+		the form <b style='mso-bidi-font-weight:normal'>Name.Name.Name ...</b>  The rule returns when a Dot Operator no
+		longer qualifies the name. </p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    The
+		<b style='mso-bidi-font-weight:normal'>%</b> symbol must not be used in an
+		argument phrase, action, or condition rule anywhere except as a rule variable
+		identifier <b style='mso-bidi-font-weight:normal'>%0</b> through <b style='mso-bidi-font-weight:normal'>%9</b>. If the argument phrase, action, or
+		condition rule requires a <b style='mso-bidi-font-weight:normal'>%</b> symbol,
+		for instance inside a string constant, place the <b style='mso-bidi-font-weight:
+		normal'>%</b> symbol in a user defined function which is called by the argument
+		phrase, action, or condition rule.</p>
+		<h3>Iterative Rules</h3>
+		<p class=MsoBodyText>User defined
+		rules may be repeated interatively. A Lisp action rule, enclosed with the <b style='mso-bidi-font-weight:normal'>&lt;&lt;
+		&gt;&gt;</b>  symbol pair, will
+		cause the user defined rule to repeat. The contents of the $0 variable remain
+		intact. The builtin <b style='mso-bidi-font-weight:normal'>Eof</b> attribute
+		name allows a rule to test for <u>End Of File</u> in the following rule:</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>SEXPR: Term Operator
+		Term  &lt;&lt; ($OUT $ch (list $2 $1 $3)
+		BinaryOperator: true) &gt;&gt;</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>SEXPR: Eof :: $0 ::</b></p>
+		<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>SEXPR</b> rule will recognize all input of
+		the form <b style='mso-bidi-font-weight:normal'>Term Operator Term ...</b>  The rule returns when the End Of File is
+		reached.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    The
+		<b style='mso-bidi-font-weight:normal'>$n</b> symbol contains the repetition
+		count for the rule. During the first iteration through the rule, the $n
+		variable is set to 1.</p>
+		<h3> Term Conditions </h3>
+		<p class=MsoBodyText>User defined
+		rules may be also have user defined conditions attached. A Lisp condition
+		phrase, enclosed with the <b style='mso-bidi-font-weight:normal'>{ }</b>  symbol pair, will cause the user defined
+		rule to receive the specified condition. Within a user defined rule condition,
+		the <b style='mso-bidi-font-weight:normal'>%0</b> thru <b style='mso-bidi-font-weight:
+		normal'>%9</b> variables represent any arguments which may have been passed to
+		the rule, while the <b style='mso-bidi-font-weight:normal'>$0</b> thru <b style='mso-bidi-font-weight:normal'>$9</b> variables represent any terms which
+		may have been recognized by the rule.</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>STRING:  Quote{(= $n 1)}  &lt;&lt;  true  &gt;&gt;</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>STRING:  Any
+		&lt;&lt;  (setq $0 (appendList $0
+		$1)  &gt;&gt;</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>STRING:
+		Quote{(&gt; $n 1)}  :: ($OUT $ch
+		$0 String: true)   ::</b></p>
+		<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>STRING</b> rule will recognize all input
+		tokens inclosed within two quotes  The
+		rule returns only when the second quote is recognized. User defined rules may
+		have both argument passing and user defined conditions attached. The suer
+		defined condition is always last, as follows.</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>TERM:  NAME(%0){(isLowerCase $1)}  ::
+		$1  ::</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    The
+		<b style='mso-bidi-font-weight:normal'>%</b> symbol must not be used in an
+		argument phrase, action, or condition rule anywhere except as a rule variable
+		identifier <b style='mso-bidi-font-weight:normal'>%0</b> through <b style='mso-bidi-font-weight:normal'>%9</b>. If the argument phrase, action, or
+		condition rule requires a <b style='mso-bidi-font-weight:normal'>%</b> symbol,
+		for instance inside a string constant, place the <b style='mso-bidi-font-weight:
+		normal'>%</b> symbol in a user defined function which is called by the argument
+		phrase, action, or condition rule.</p>
+		<h3> MAIN Rule </h3>
+		<p class=MsoBodyText>The user must
+		define a <b style='mso-bidi-font-weight:normal'>MAIN</b> rule in the Lexical
+		Rule definitions. The MAIN rule is the rule which the new compiler will invoke
+		to start the lexical analysis phase. If there is no MAIN rule defined, the
+		default lexical analyzer will be in effect.</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>MAIN: STATEMENT Semicolon
+		&lt;&lt; ($OUT $ch $1 Statement: true) &gt;&gt;</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>MAIN:
+		Eof  :: $LIST   ::</b></p>
+		<p class=MsoBodyText>This sample <b style='mso-bidi-font-weight:normal'>MAIN</b> rule will recognize all syntax of
+		the form <b style='mso-bidi-font-weight:normal'>statement; statement;
+		statement; ...</b>  The rule returns when
+		the End Of File is reached. </p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    Remember
+		to avoid excessive recursion errors by making strategic rules iterative instead
+		of right recursive.</p>
+		<h3> Special Rule Syntax</h3>
+		<h4><b style='mso-bidi-font-weight:
+		normal'>Any</b></h4>
+		<p class=MsoBodyText>If a rule is to
+		accept any token, use the  <b style='mso-bidi-font-weight:normal'>Any</b>
+		attribute. For example:</p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>
+		;;  This rule recognizes a plus
+		sign between anything</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Any  + Any
+		:: ($OUT $ch (list $2 $1 $3) BinaryOperator: true) ::</b></p>
+		<h4><b style='mso-bidi-font-weight:
+		normal'>Eof</b></h4>
+		<p class=MsoBodyText>If a rule is to
+		test for end of file, use the  <b style='mso-bidi-font-weight:normal'>Eof</b>
+		attribute. For example:</p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>
+		;;  This rule recognizes an end
+		of file condition</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Eof  :: $0 ::</b></p>
+		<h4><b style='mso-bidi-font-weight:
+		normal'>Nop</b></h4>
+		<p class=MsoBodyText>The special <b style='mso-bidi-font-weight:normal'>Nop</b> attribute always returns a constant
+		token of #void. The <b style='mso-bidi-font-weight:normal'>Nop</b> attribute is
+		designed to provide a test which always is true, but does not promote the input
+		pointer (i.e. a no-operation rule). </p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>MAIN: STATEMENT Semicolon
+		&lt;&lt; ($OUT $ch $1 Statement: true) &gt;&gt;</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>MAIN: Eof
+		:: $LIST   ::</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>MAIN: Nop :: (error "If
+		we get here we have an invalid token") ::</b></p>
+		<p class=MsoBodyText>This sample <b style='mso-bidi-font-weight:normal'>MAIN</b> rule will recognize all syntax of
+		the form <b style='mso-bidi-font-weight:normal'>statement; statement;
+		statement; ...</b>  However, if the MAIN
+		rule encounters anything else (other than <b style='mso-bidi-font-weight:normal'>statement;</b>),
+		then an error message will be returned. The rule returns when the End Of File
+		is reached, or an error is generated.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>: If the <b style='mso-bidi-font-weight:
+		normal'>Nop</b> test is used, <u>user ordering</u> of the specified rule is
+		almost always required.</p>
+		<h4><b style='mso-bidi-font-weight:
+		normal'>$N</b></h4>
+		<p class=MsoBodyText>We may use a
+		previously recognized parser variable to indicate a test for equality. For
+		example:</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            ;;  These two rules are equivalent</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Any  $1 :: $0 ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+		Any{(= $2 $1)}  :: $0 ::</b></p>
+		<h4><b style='mso-bidi-font-weight:
+		normal'>%N</b></h4>
+		<p class=MsoBodyText>We may use a
+		previously passed parser argument variable to indicate a test for equality. For
+		example:</p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            ;;  These two rules are equivalent</b></p>
+		<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Any  %0
+		:: $0 ::</b></p>
+		<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+		Any{(= $2 %0)}  :: $0 ::</b></p>    
+			</div>	
+       <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

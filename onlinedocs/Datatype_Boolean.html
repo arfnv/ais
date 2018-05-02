@@ -1,0 +1,143 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Boolean</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Boolean Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Native Data Type</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Boolean Overview</H4></FONT></P>
+		 <p class=MsoBodyText>Analytic supports Boolean Native data type.  The Boolean type can contain one of two 
+		 constants: <b>true</b> and <b>false</b>. The values <b>true</b> and <b>false</b> are reserved, and 
+		 therefore cannot be used in any other context. </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The Boolean Native data type is suitable for situations in which can only have two values.   
+          Example situations may include a state: ?on? or ?off? . The state values must be mapped to the 
+          Boolean values such as on = true, off = false.   Another example is a situation that may have two 
+          state values: yes, no.   Again, the state values must be mapped to the Boolean values such as yes = true, 
+          no = false. </p>          
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+          <p>The Boolean Native data type is a container that may hold one of two constants: <b>true</b> and <b>false</b>.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Native Data Type</H4></FONT></P>
+          <p>The <b>Boolean</b> Data Type is an example of an AIS Native Data Type. </p>
+          <p> Analytic Information Server stores all of its Native Data Types in Virtual Machine Containers.  
+          All containers are stored in memory. Containers provide the basic storage mechanism for modeling 
+          data of all types. Containers provide these fundamental characteristics:      </p>
+          <p>  Ability to hold any type of data (including code) at any time.</p>     
+          <p>  Ability to know what type of data is contained.</p>  
+          <p>  Ability to be stored, retrieved and evaluated by the system.</p>  
+          <p>   Ability to handle type conversion, and memory management automatically.</p>   
+          <p> Containers come in two sizes, Large and Small. Small containers are six bytes in length, 
+          and large containers are ten bytes in length. Large containers can store larger amounts of data 
+          immediately and place less of a burden on the Heap manager. Small containers require less immediate space, 
+          but place more of a burden on the Heap manager.    </p>        
+          <p>  Large containers can store the following data types immediately and does not require the services of the Heap manager:</p>  
+          <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>                             
+          <p>  Small containers can store the following data types immediately without placing additional burden on the Heap manager:</p>  
+          <ul>
+          <li> #void</li>  
+          <li> error</li>
+          <li> Boolean</li>
+          <li> Character</li>
+          <li> Integer</li>
+          <li> Number</li>
+          <li> Money</li>
+          <li> Percent</li>
+          <li> String</li>
+          <li> Text</li>
+          <li> Character</li>
+          <li> ...heap object references...</li> 
+          </ul>           
+          <p>  Analytic Information Server containers can be saved and loaded to and from persistent (database) 
+          storage at any time. Containers with immediate data are saved on disk in fixed length records equal 
+          to the size of the container. Containers with Heap object references are saved in fixed length records, 
+          which are automatically expanded to include the contents of the Heap object, and any objects referenced 
+          by the Heap object, etc. This feature is called Object Closure Management and is automatic with every 
+          Analytic Information Server container database save. Analytic Information Server containers may be loaded 
+          from any database repository record at any time. If the data in the record is immediate, the database 
+          load fills the container with the immediate data. If the data in the record is an object closure, the 
+          database load fills the container with a Heap object reference, and all of the objects in the record 
+          are loaded back into the Heap with the same referential relationships they had when they were saved.</p>   
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Boolean object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Boolean_bcompareEQ_001.html">Example_Boolean_bcompareEQ_001</A></td>
+<td><A HREF="Example_Boolean_bcompareGE_001.html">Example_Boolean_bcompareGE_001</A></td>
+<td><A HREF="Example_Boolean_bcompareGT_001.html">Example_Boolean_bcompareGT_001</A></td>
+<td><A HREF="Example_Boolean_bcompareLE_001.html">Example_Boolean_bcompareLE_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Boolean_bcompareLT_001.html">Example_Boolean_bcompareLT_001</A></td>
+<td><A HREF="Example_Boolean_bcompareNE_001.html">Example_Boolean_bcompareNE_001</A></td>
+<td><A HREF="Example_Boolean_boolean_001.html">Example_Boolean_boolean_001</A></td>
+<td><A HREF="Example_Boolean_compareEQ_009.html">Example_Boolean_compareEQ_009</A></td>
+</tr><tr>
+<td><A HREF="Example_Boolean_compareGE_009.html">Example_Boolean_compareGE_009</A></td>
+<td><A HREF="Example_Boolean_compareGT_001.html">Example_Boolean_compareGT_001</A></td>
+<td><A HREF="Example_Boolean_compareLE_001.html">Example_Boolean_compareLE_001</A></td>
+<td><A HREF="Example_Boolean_compareLT_001.html">Example_Boolean_compareLT_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Boolean_compareNE_009.html">Example_Boolean_compareNE_009</A></td>
+<td><A HREF="Example_Boolean_compare_009.html">Example_Boolean_compare_009</A></td>
+<td><A HREF="Example_Boolean_comparison_009.html">Example_Boolean_comparison_009</A></td>
+<td><A HREF="Example_Boolean_isBoolean_001.html">Example_Boolean_isBoolean_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Boolean_isEqual_007.html">Example_Boolean_isEqual_007</A></td>
+<td><A HREF="Example_Boolean_isIdentical_007.html">Example_Boolean_isIdentical_007</A></td>
+<td><A HREF="Example_Boolean_isType_011.html">Example_Boolean_isType_011</A></td>
+<td><A HREF="Example_Boolean_ref_018.html">Example_Boolean_ref_018</A></td>
+</tr><tr>
+<td><A HREF="Example_Boolean_setq_016.html">Example_Boolean_setq_016</A></td>
+<td><A HREF="Example_Boolean_sizeof_009.html">Example_Boolean_sizeof_009</A></td>
+<td><A HREF="Example_Boolean_type_011.html">Example_Boolean_type_011</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

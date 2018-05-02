@@ -1,0 +1,114 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>ByteVector</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>ByteVector Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S3"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S4"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>ByteVector Overview</H4></FONT></P>
+        <p> A Byte Vector <i>(ByteVector)</i> is a Heap object containing zero or more 8 bit data values. 
+            The <b>ByteVector</b> object is NOT restricted to ASCII data and may contain any configuration
+              of 8 bit data values</p>
+          <p>The <b>ByteVector</b> is a dynamic data type: it can grow to containing new elements 
+
+             or contract as elements are deleted.    An element is accessed by an index from 0 
+
+             to n-1 where n is the number of elements in the <b>ByteVector</b>.   When an element is added, 
+
+             it is appended to the end.</p>
+          <p class="code">(setq newBytes (new Vector: Byte: 100)) <br>
+                (appendWriteln newBytes {An example of a ByteVector}) </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>When to Use</H4></FONT></P>
+          <p>The <b>ByteVector</b> is a subtype of the Vector Data Type. The 
+
+            FltVector object is useful for storing ASCII data  and 8 bit data values
+            such as String and Text.  </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>Constant Form</H4></FONT></P>
+          <p>The <b>ByteVector</b> data type has no constant form unlike other Vector subtypes.
+           A <b>ByteVector</b> is diplayed as is.  </p>
+          <p>For Example:</p>
+           <p class="code">(setq newBytes (new Vector: Byte: 100)) <br>
+                (appendWriteln newBytes {An example of a ByteVector}) <br>
+                (display newBytes) <br>
+                Returns: An example of a ByteVector </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>ByteVector</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The ByteVector object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_ByteVector_appendWriteln_001.html">Example_ByteVector_appendWriteln_001</A></td>
+<td><A HREF="Example_ByteVector_compress_001.html">Example_ByteVector_compress_001</A></td>
+<td><A HREF="Example_ByteVector_isByteVector_001.html">Example_ByteVector_isByteVector_001</A></td>
+<td><A HREF="Example_ByteVector_isCharAlphabetic_003.html">Example_ByteVector_isCharAlphabetic_003</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isCharAlphanumeric_003.html">Example_ByteVector_isCharAlphanumeric_003</A></td>
+<td><A HREF="Example_ByteVector_isCharLowercase_003.html">Example_ByteVector_isCharLowercase_003</A></td>
+<td><A HREF="Example_ByteVector_isCharName_003.html">Example_ByteVector_isCharName_003</A></td>
+<td><A HREF="Example_ByteVector_isCharNumeric_003.html">Example_ByteVector_isCharNumeric_003</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isCharUppercase_003.html">Example_ByteVector_isCharUppercase_003</A></td>
+<td><A HREF="Example_ByteVector_isCharWhitespace_003.html">Example_ByteVector_isCharWhitespace_003</A></td>
+<td><A HREF="Example_ByteVector_isObject_013.html">Example_ByteVector_isObject_013</A></td>
+<td><A HREF="Example_ByteVector_new_015.html">Example_ByteVector_new_015</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_sizeof_020.html">Example_ByteVector_sizeof_020</A></td>
+<td><A HREF="Example_ByteVector_type_022.html">Example_ByteVector_type_022</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

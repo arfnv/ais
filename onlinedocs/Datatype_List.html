@@ -1,0 +1,272 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>List</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>List Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>List Illustration</font></a></li><li><a href="#S3"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S4"><FONT SIZE=2>Visual Basic Comparison</font></a></li><li><a href="#S5"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>List Overview</H4></FONT></P>
+		 <p class=MsoBodyText>The original Lisp was billed as a list
+		processing language. It is one of the oldest computer languages in use today,
+		and was one of the first to implement true Artificial Intelligence techniques.
+		It is the strength of it's list processing features and functionality that
+		makes Lisp the language of choice, in the United States, for such applications
+		as parsing, semantic analysis, and natural language processing. Pairs and Lists
+		together with all of the functions available to manipulate them greatly expand
+		the analytic power of the Analytic Information Server programmer.</p>
+		<p class=MsoBodyText>The most difficult aspect of Pairs and Lists
+		is their simplest aspect. Pairs are things. Lists are not things. Lists are one
+		way of chaining Pairs together. Lists are not even the only way of chaining
+		Pairs together (albeit an important way but not the only way). Some similar
+		examples from everyday experience would include rain and crowds. Water droplets
+		are things. Rain is not a thing. It is a collection of falling water droplets.
+		There are collections of water droplets that are not rain. Rain is only one way
+		of configuring lots of water droplets. People are things. Crowds are not
+		things. They are collections of people under certain circumstances. Crowds are
+		not the only configuration of lots of people. There are other ways lots of
+		people can be collected together, villages, cities, clubs, etc.  </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>List Illustration</H4></FONT></P>
+		<p class=MsoBodyText>A List is a special way of chaining Pairs
+		together.  There are many ways of
+		chaining Pairs together. A List is only one way (albeit a very useful way). A
+		List must contain one or more Pairs. There is no such thing as an empty list.
+		This would be #void, as follows:</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>'( )        =&gt;        #void</b></p>
+		<p class=MsoBodyText>In a List, the cdr of the first Pair must
+		point to another Pair, whose cdr must point to another Pair, until the final
+		Pair has a cdr which contains #void, as follows:</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText><IMG SRC="Image_List_004.gif" WIDTH="297" HEIGHT="96" ALIGN="center" ALT="List Image 004" BORDER="0"></p>
+		<p class=MsoBodyText>A collection of Pairs, which contain no
+		terminating Pair, is NOT a List, as follows:</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText style='margin-left:58.5pt;text-indent:-.75in'><b style='mso-bidi-font-weight:normal'> <IMG SRC="Image_List_003.gif" WIDTH="288" HEIGHT="149" ALIGN="center" ALT="List Image 003" BORDER="0"></b></p>
+		<p class=MsoBodyText>Lists can be constructed from Pair
+		constants, but there is also a special constant for building Lists. For
+		instance, the following constants are equivalent.</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>'(1 .
+		(2 . (3 . #void)))</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>'(1  2  3)</b></p>
+		<p class=MsoBodyText>Any symbol inside of a list constant is
+		automatically converted to a quoted symbol.
+		The List <b style='mso-bidi-font-weight:normal'>`(a b c) </b>is
+		equivalent to<b style='mso-bidi-font-weight:normal'> `(a: b: c: )</b> and is
+		also equivalent to <b style='mso-bidi-font-weight:normal'>`(`a `b `c).</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>`(a b
+		c)</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>`(*  (+ 1
+		3 )  9  )</b></p>
+		<p class=MsoBodyText>A List is made up of Pairs chained together.
+		Each Pair has a car  and cdr.  Each car
+		is an element in the List .  A
+		symbol The following diagram show how the List `<b style='mso-bidi-font-weight:
+		normal'>(a b c)</b> is represented in Lisp:</p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText style='margin-left:1.0in;text-indent:.5in'><b style='mso-bidi-font-weight:normal'>`( a b c )</b></p>
+		<p class=MsoBodyText>&nbsp;</p>
+		<p class=MsoBodyText><IMG SRC="Image_List_002.gif" WIDTH="297" HEIGHT="95" ALIGN="center" ALT="List Image 002" BORDER="0">The List <b style='mso-bidi-font-weight:normal'>( a b c ) </b>is composed of a chain of 3
+		Pairs:</p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>First
+		Pair:        car  = a:           cdr = `(
+		b  c )</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Second
+		Pair:    car  = b:           cdr = `( c )</b></p>
+		<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Third
+		Pair:       car  = c:           cdr = #void</b></p>
+		<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>&nbsp;</p>
+		<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>The
+		first car value in a List is known as the head of the List.  The symbol <b style='mso-bidi-font-weight:
+		normal'>a: </b>is the head of the List<b style='mso-bidi-font-weight:normal'>`(
+		a b c )</b>.  The symbol  <b style='mso-bidi-font-weight:normal'>b:</b>  is the head of List  <b style='mso-bidi-font-weight:normal'>`( b
+		c )</b>  and  the symbol  <b style='mso-bidi-font-weight:normal'>c:</b>
+		is the head of the List<b style='mso-bidi-font-weight:normal'>`( c ). </b></p>
+		<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'>The
+		first cdr value in a List points to the tail of the List.  The List <b style='mso-bidi-font-weight:
+		normal'>'( b c ) </b>is the tail of the List <b style='mso-bidi-font-weight:
+		normal'>`( a b c )</b>.  The List <b style='mso-bidi-font-weight:normal'>`( c )</b> is the tail of the List<b style='mso-bidi-font-weight:normal'>`( b c )</b>  and  the List <b style='mso-bidi-font-weight:normal'>`( c ) </b>has no tail. It's tail is #void.<b style='mso-bidi-font-weight:normal'><u></u></b></p>
+		<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'><b style='mso-bidi-font-weight:normal'><u>&nbsp;</u></b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>When to Use</H4></FONT></P>
+			<p class=MsoBodyText>Use Lists to represent data structures,
+			which have a lot of unplanned or irregular twists, turns, and changes of
+			direction. One such example is the parse tree for a computer language. The <b style='mso-bidi-font-weight:normal'>lisp</b> function parses strings into Lists
+			of symbolic, string, and numeric tokens as follows:</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(lisp  &quot;x = ((2 + 3) / 4)&quot;)                        =&gt;        '(x = ((2 + 3) / 4))</b></p>
+			<p class=MsoBodyText>Here is a drawing representing the List
+			shown above:</p>
+			<p class=MsoBodyText>&nbsp;</p>
+			<IMG SRC="Image_List_001.gif" ALIGN="center" ALT="List Image 001" BORDER="0">
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+			<p class=MsoBodyText>Notice how irregular the shape of the List
+			is. Adding another operator to the input string, or another numeric argument,
+			may change the shape of the output in unpredictable ways. Lists are excellent
+			tools for storing such irregular structures. Vectors and Structures are not
+			ideal for this application.</p>
+			<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'><b style='mso-bidi-font-weight:normal'><u>&nbsp;</u></b></p>
+			<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'><b style='mso-bidi-font-weight:normal'><u>Visual Basic
+			Comparison                     </u></b></p>
+			<p class=MsoBodyText>The Pair and List constructs do not have a
+			Visual Basic equivalent.   Visual Basic
+			is not suitable for List processing applications</p>
+			<p class=MsoBodyText>&nbsp;</p>
+			<p class=MsoBodyText style='line-height:117%;page-break-after:avoid'><b style='mso-bidi-font-weight:normal'><u>Example1                     </u></b></p>
+			<p class=MsoBodyText>A List is a useful construct to simplify
+			accessing an element in a pair.  Lists
+			allow accessing an element via an integer index.  For example:</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(setq
+			X  `( a
+			b  c  d ) )              </b></p>
+			<p class=MsoBodyText>Results in the container X containing
+			the  4 pairs:</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>` ( a
+			. ( b  c d ) )</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>` (b
+			. ( c  d )  )</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>`( c
+			. ( d ) )</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>`( d
+			. #void)</b></p>
+			<p class=MsoBodyText>To access each element of X</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(car
+			X)                                     </b>Returns<b style='mso-bidi-font-weight:normal'> a</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(car
+			(cdr X) )                            </b>Returns<b style='mso-bidi-font-weight:normal'> b</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(car
+			( cdr (cdr X ) ) )                </b>Returns<b style='mso-bidi-font-weight:normal'> c</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>(car
+			(cdr ( cdr (cdr  X ) ) ) )      </b>Returns<b style='mso-bidi-font-weight:
+			normal'> d</b></p>
+			<p class=MsoBodyText>However, since X is a List, the elements may
+			be accessed more simply as</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>X[0]                                          </b>Returns<b style='mso-bidi-font-weight:normal'> a          </b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>X[1]                                          </b>Returns<b style='mso-bidi-font-weight:normal'> b          </b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>X[2]                                          </b>Returns<b style='mso-bidi-font-weight:normal'> c          </b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>X[3]                                          </b>Returns<b style='mso-bidi-font-weight:normal'> d          </b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'><u>&nbsp;</u></b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Visual Basic Comparison</H4></FONT></P>
+          <p>The Pair and List constructs do not have a Visual Basic equivalent.   Visual Basic is not suitable for List processing applications.</p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>List</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The List object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_List_associate_001.html">Example_List_associate_001</A></td>
+<td><A HREF="Example_List_c::r_001.html">Example_List_c::r_001</A></td>
+<td><A HREF="Example_List_c::r_002.html">Example_List_c::r_002</A></td>
+<td><A HREF="Example_List_car_001.html">Example_List_car_001</A></td>
+</tr><tr>
+<td><A HREF="Example_List_cdr_009.html">Example_List_cdr_009</A></td>
+<td><A HREF="Example_List_compareEQ_020.html">Example_List_compareEQ_020</A></td>
+<td><A HREF="Example_List_compareGE_020.html">Example_List_compareGE_020</A></td>
+<td><A HREF="Example_List_compareGT_020.html">Example_List_compareGT_020</A></td>
+</tr><tr>
+<td><A HREF="Example_List_compareLE_020.html">Example_List_compareLE_020</A></td>
+<td><A HREF="Example_List_compareLT_020.html">Example_List_compareLT_020</A></td>
+<td><A HREF="Example_List_compareNE_020.html">Example_List_compareNE_020</A></td>
+<td><A HREF="Example_List_compare_020.html">Example_List_compare_020</A></td>
+</tr><tr>
+<td><A HREF="Example_List_comparison_020.html">Example_List_comparison_020</A></td>
+<td><A HREF="Example_List_compile_002.html">Example_List_compile_002</A></td>
+<td><A HREF="Example_List_copy_010.html">Example_List_copy_010</A></td>
+<td><A HREF="Example_List_count_007.html">Example_List_count_007</A></td>
+</tr><tr>
+<td><A HREF="Example_List_count_008.html">Example_List_count_008</A></td>
+<td><A HREF="Example_List_eval_002.html">Example_List_eval_002</A></td>
+<td><A HREF="Example_List_eval_003.html">Example_List_eval_003</A></td>
+<td><A HREF="Example_List_inside_008.html">Example_List_inside_008</A></td>
+</tr><tr>
+<td><A HREF="Example_List_isAtom_011.html">Example_List_isAtom_011</A></td>
+<td><A HREF="Example_List_isEqual_019.html">Example_List_isEqual_019</A></td>
+<td><A HREF="Example_List_isIdentical_018.html">Example_List_isIdentical_018</A></td>
+<td><A HREF="Example_List_isInside_010.html">Example_List_isInside_010</A></td>
+</tr><tr>
+<td><A HREF="Example_List_isMember_009.html">Example_List_isMember_009</A></td>
+<td><A HREF="Example_List_isObject_015.html">Example_List_isObject_015</A></td>
+<td><A HREF="Example_List_isPair_002.html">Example_List_isPair_002</A></td>
+<td><A HREF="Example_List_last_001.html">Example_List_last_001</A></td>
+</tr><tr>
+<td><A HREF="Example_List_length_015.html">Example_List_length_015</A></td>
+<td><A HREF="Example_List_list_001.html">Example_List_list_001</A></td>
+<td><A HREF="Example_List_makeQuotedList_001.html">Example_List_makeQuotedList_001</A></td>
+<td><A HREF="Example_List_map_009.html">Example_List_map_009</A></td>
+</tr><tr>
+<td><A HREF="Example_List_member_009.html">Example_List_member_009</A></td>
+<td><A HREF="Example_List_morph_001.html">Example_List_morph_001</A></td>
+<td><A HREF="Example_List_morph_002.html">Example_List_morph_002</A></td>
+<td><A HREF="Example_List_objectToList_001.html">Example_List_objectToList_001</A></td>
+</tr><tr>
+<td><A HREF="Example_List_quote_001.html">Example_List_quote_001</A></td>
+<td><A HREF="Example_List_quote_002.html">Example_List_quote_002</A></td>
+<td><A HREF="Example_List_quote_003.html">Example_List_quote_003</A></td>
+<td><A HREF="Example_List_ref_028.html">Example_List_ref_028</A></td>
+</tr><tr>
+<td><A HREF="Example_List_ref_029.html">Example_List_ref_029</A></td>
+<td><A HREF="Example_List_reverse_003.html">Example_List_reverse_003</A></td>
+<td><A HREF="Example_List_setCar_002.html">Example_List_setCar_002</A></td>
+<td><A HREF="Example_List_setCdr_011.html">Example_List_setCdr_011</A></td>
+</tr><tr>
+<td><A HREF="Example_List_setLastCdr_011.html">Example_List_setLastCdr_011</A></td>
+<td><A HREF="Example_List_setq_025.html">Example_List_setq_025</A></td>
+<td><A HREF="Example_List_setq_026.html">Example_List_setq_026</A></td>
+<td><A HREF="Example_List_sizeof_022.html">Example_List_sizeof_022</A></td>
+</tr><tr>
+<td><A HREF="Example_List_sort_018.html">Example_List_sort_018</A></td>
+<td><A HREF="Example_List_sort_019.html">Example_List_sort_019</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

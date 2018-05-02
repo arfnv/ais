@@ -1,0 +1,237 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>detachLibrarian</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Overview</FONT></A></LI>
+<LI><A HREF="#SYNTAX"><FONT SIZE=2>Syntax</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Overview</H4></FONT>
+<P>
+<font color=black>
+<Overview>
+		<p>The <b>detachLibrarian</b> function removes the specified ObjectRepository database archive file <b>{aGor}</b>
+		 from its librarian Lambda. After the <b>detachLibrarian</b> function has returned, the ObjectRepository database 
+		 archive has no librarian associated with it, and all further references to the ObjectRepository are managed 
+		 according to the rules of the native associative memory database schema. </p> 
+        </Overview>
+<p><FONT COLOR="#0000ff"><u><b> Usage </b></u></FONT></p><Usage>
+        <p>Use the <b>detachLibrarian</b> function to remove attached libriarian Lambda from the Object Repository.
+		</p>
+        </Usage>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="SYNTAX"></A>Syntax</H4></FONT>
+<P>
+<font color=black><hr align=left color=blue width=80% size="1">
+<table>
+<tr><th><font color=blue>Expression:</font></th><td><b><Expression><p>(detachLibrarian aGor) </p></Expression>
+</b></td></tr>
+</table><br><table>
+<tr><td><FONT COLOR=blue><b>Arguments</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Name</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Type</b></FONT></td>
+                                           <td><FONT COLOR=blue><b>Description</b></FONT></td></tr> 
+<tr><th><FONT COLOR=blue>Argument:</FONT></th><td><b>aGor</b></td><td><FONT COLOR=blue><i>ObjectRepository</i></FONT></td>
+<td>The ObjectRepository whose librarian Lambda is to be removed.</td></tr></table><br><table>
+<tr><th><FONT COLOR=blue><b>Returns:</b></FONT></th>
+<FONT COLOR=black><td><Return> 
+	    <p>Returns the Boolean value true, or an error value if an error occurred.
+        </p>
+	    </Return></td></tr></FONT></table><br> 
+<hr align=left color=blue width=80% size="1">
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Examples</H4></FONT>
+<P>
+Here are a number of links to Lambda coding examples which contain this instruction in various use cases.
+</P>
+<P>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+ 
+<P>
+<p>Here are the links to the data types of the function arguments.  </p>
+<table width="100%"><tr>
+<td><A HREF="Datatype_ObjectRepository.html">ObjectRepository</A></td>
+<td><A HREF="Datatype_Lambda.html">Lambda</A></td>
+</tr>
+</table>
+<p>Here are also a number of links to functions having arguments with any of these data types. </p>
+<table width="100%"><tr>
+<td><A HREF="Function_abortTransaction_Builtin.html">abortTransaction</A></td>
+<td><A HREF="Function_argCount_Builtin.html">argCount</A></td>
+<td><A HREF="Function_argFetch_Builtin.html">argFetch</A></td>
+<td><A HREF="Function_attachLibrarian_Builtin.html">attachLibrarian</A></td>
+</tr><tr>
+<td><A HREF="Function_balance_Builtin.html">balance</A></td>
+<td><A HREF="Function_beginTransaction_Builtin.html">beginTransaction</A></td>
+<td><A HREF="Function_callcc_Builtin.html">callcc</A></td>
+<td><A HREF="Function_checkPointTransaction_Builtin.html">checkPointTransaction</A></td>
+</tr><tr>
+<td><A HREF="Function_class_Builtin.html">class</A></td>
+<td><A HREF="Function_commitTransaction_Builtin.html">commitTransaction</A></td>
+<td><A HREF="Function_compareEQ_Builtin.html">compareEQ</A></td>
+<td><A HREF="Function_compareGE_Builtin.html">compareGE</A></td>
+</tr><tr>
+<td><A HREF="Function_compareGT_Builtin.html">compareGT</A></td>
+<td><A HREF="Function_compareLE_Builtin.html">compareLE</A></td>
+<td><A HREF="Function_compareLT_Builtin.html">compareLT</A></td>
+<td><A HREF="Function_compareNE_Builtin.html">compareNE</A></td>
+</tr><tr>
+<td><A HREF="Function_compare_Builtin.html">compare</A></td>
+<td><A HREF="Function_comparison_Builtin.html">comparison</A></td>
+<td><A HREF="Function_compile_Builtin.html">compile</A></td>
+<td><A HREF="Function_copy_Builtin.html">copy</A></td>
+</tr><tr>
+<td><A HREF="Function_debugBrowsableProcs_Builtin.html">debugBrowsableProcs</A></td>
+<td><A HREF="Function_debug_Builtin.html">debug</A></td>
+<td><A HREF="Function_defchild_Builtin.html">defchild</A></td>
+<td><A HREF="Function_defclass_Builtin.html">defclass</A></td>
+</tr><tr>
+<td><A HREF="Function_define(macro)_Builtin.html">define(macro)</A></td>
+<td><A HREF="Function_define_Builtin.html">define</A></td>
+<td><A HREF="Function_defmacro_Builtin.html">defmacro</A></td>
+<td><A HREF="Function_defmethod_Builtin.html">defmethod</A></td>
+</tr><tr>
+<td><A HREF="Function_deforphan_Builtin.html">deforphan</A></td>
+<td><A HREF="Function_defriend_Builtin.html">defriend</A></td>
+<td><A HREF="Function_defun_Builtin.html">defun</A></td>
+<td><A HREF="Function_delete_Builtin.html">delete</A></td>
+</tr><tr>
+<td><A HREF="Function_detachLibrarian_Builtin.html">detachLibrarian</A></td>
+<td><A HREF="Function_disassemble_Builtin.html">disassemble</A></td>
+<td><A HREF="Function_evalInSyncLocalContext_Builtin.html">evalInSyncLocalContext</A></td>
+<td><A HREF="Function_eval_Builtin.html">eval</A></td>
+</tr><tr>
+<td><A HREF="Function_exportCsv_Builtin.html">exportCsv</A></td>
+<td><A HREF="Function_exportTab_Builtin.html">exportTab</A></td>
+<td><A HREF="Function_globalBinding_Builtin.html">globalBinding</A></td>
+<td><A HREF="Function_importCsv_Builtin.html">importCsv</A></td>
+</tr><tr>
+<td><A HREF="Function_importTab_Builtin.html">importTab</A></td>
+<td><A HREF="Function_inspect_Builtin.html">inspect</A></td>
+<td><A HREF="Function_isClass_Builtin.html">isClass</A></td>
+<td><A HREF="Function_isComplex_Builtin.html">isComplex</A></td>
+</tr><tr>
+<td><A HREF="Function_isIdentical_Builtin.html">isIdentical</A></td>
+<td><A HREF="Function_isImmediate_Builtin.html">isImmediate</A></td>
+<td><A HREF="Function_isTransaction_Builtin.html">isTransaction</A></td>
+<td><A HREF="Function_lambda_Builtin.html">lambda</A></td>
+</tr><tr>
+<td><A HREF="Function_lisp_Builtin.html">lisp</A></td>
+<td><A HREF="Function_loadRepository_Builtin.html">loadRepository</A></td>
+<td><A HREF="Function_macroReplace_Builtin.html">macroReplace</A></td>
+<td><A HREF="Function_makeLambda_Builtin.html">makeLambda</A></td>
+</tr><tr>
+<td><A HREF="Function_methodsOf_Builtin.html">methodsOf</A></td>
+<td><A HREF="Function_myself_Builtin.html">myself</A></td>
+<td><A HREF="Function_new_Builtin.html">new</A></td>
+<td><A HREF="Function_onError_Builtin.html">onError</A></td>
+</tr><tr>
+<td><A HREF="Function_refLibrarian_Builtin.html">refLibrarian</A></td>
+<td><A HREF="Function_ref_Builtin.html">ref</A></td>
+<td><A HREF="Function_rename_Builtin.html">rename</A></td>
+<td><A HREF="Function_saveImmediate_Builtin.html">saveImmediate</A></td>
+</tr><tr>
+<td><A HREF="Function_saveRepository_Builtin.html">saveRepository</A></td>
+<td><A HREF="Function_send_Builtin.html">send</A></td>
+<td><A HREF="Function_set_Builtin.html">set</A></td>
+<td><A HREF="Function_setf_Builtin.html">setf</A></td>
+</tr><tr>
+<td><A HREF="Function_setq_Builtin.html">setq</A></td>
+<td><A HREF="Function_sizeof_Builtin.html">sizeof</A></td>
+<td><A HREF="Function_super_Builtin.html">super</A></td>
+</tr>
+</table>
+
+</P> 
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+ 
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

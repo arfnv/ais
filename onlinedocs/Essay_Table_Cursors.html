@@ -1,0 +1,1067 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Table Cursors</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#STable Cursors Overview"><FONT SIZE=2>Table Cursors Overview</font></a></li><li><a href="#SMemory Cursors"><FONT SIZE=2>Memory Cursors</font></a></li><li><a href="#SDisk &amp; Static Cursors"><FONT SIZE=2>Disk &amp; Static Cursors</font></a></li><li><a href="#SappendToMetaTable"><FONT SIZE=2>appendToMetaTable</font></a></li><li><a href="#Saverage"><FONT SIZE=2>average</font></a></li><li><a href="#SaverageForAll"><FONT SIZE=2>averageForAll</font></a></li><li><a href="#ScolCount"><FONT SIZE=2>colCount</font></a></li><li><a href="#ScreateMemoryCursorFromView"><FONT SIZE=2>createMemoryCursorFromView</font></a></li><li><a href="#Sdelete"><FONT SIZE=2>delete</font></a></li><li><a href="#SdelimitedCells"><FONT SIZE=2>delimitedCells</font></a></li><li><a href="#Sdeviation"><FONT SIZE=2>deviation</font></a></li><li><a href="#Sdrop"><FONT SIZE=2>drop</font></a></li><li><a href="#SdropView"><FONT SIZE=2>dropView</font></a></li><li><a href="#SexportTab"><FONT SIZE=2>exportTab</font></a></li><li><a href="#SgetColumnHeaders"><FONT SIZE=2>getColumnHeaders</font></a></li><li><a href="#SgetNewRecord"><FONT SIZE=2>getNewRecord</font></a></li><li><a href="#SimportTab"><FONT SIZE=2>importTab</font></a></li><li><a href="#Sinsert"><FONT SIZE=2>insert</font></a></li><li><a href="#SisView"><FONT SIZE=2>isView</font></a></li><li><a href="#Smaximum"><FONT SIZE=2>maximum</font></a></li><li><a href="#Sminimum"><FONT SIZE=2>minimum</font></a></li><li><a href="#SmyCursorNotes"><FONT SIZE=2>myCursorNotes</font></a></li><li><a href="#SmyCursorScore"><FONT SIZE=2>myCursorScore</font></a></li><li><a href="#SmyMemoPad"><FONT SIZE=2>myMemoPad</font></a></li><li><a href="#Somit"><FONT SIZE=2>omit</font></a></li><li><a href="#Sread"><FONT SIZE=2>read</font></a></li><li><a href="#SrecordCount"><FONT SIZE=2>recordCount</font></a></li><li><a href="#SrefExport"><FONT SIZE=2>refExport</font></a></li><li><a href="#SrefImport"><FONT SIZE=2>refImport</font></a></li><li><a href="#Sreset"><FONT SIZE=2>reset</font></a></li><li><a href="#Srestore"><FONT SIZE=2>restore</font></a></li><li><a href="#SrestoreView"><FONT SIZE=2>restoreView</font></a></li><li><a href="#Srun"><FONT SIZE=2>run</font></a></li><li><a href="#Ssave"><FONT SIZE=2>save</font></a></li><li><a href="#SsaveView"><FONT SIZE=2>saveView</font></a></li><li><a href="#Ssearch"><FONT SIZE=2>search</font></a></li><li><a href="#SsetImport"><FONT SIZE=2>setImport</font></a></li><li><a href="#Ssharpe"><FONT SIZE=2>sharpe</font></a></li><li><a href="#Sshow"><FONT SIZE=2>show</font></a></li><li><a href="#Ssort"><FONT SIZE=2>sort</font></a></li><li><a href="#Stile"><FONT SIZE=2>tile</font></a></li><li><a href="#Stotal"><FONT SIZE=2>total</font></a></li><li><a href="#StotalForAll"><FONT SIZE=2>totalForAll</font></a></li><li><a href="#Struncate"><FONT SIZE=2>truncate</font></a></li><li><a href="#SupdateView"><FONT SIZE=2>updateView</font></a></li><li><a href="#SviewMath"><FONT SIZE=2>viewMath</font></a></li><li><a href="#Swrite"><FONT SIZE=2>write</font></a></li>
+</UL>
+
+<P><H2><A NAME="STable Cursors Overview"></A>Table Cursors Overview</H2></P>		
+		    <div class="h2section" id="Table Cursors Overview">
+		 <P>The dataMineLib provides the application with an API to create, manipulate
+		and destroy tables. Use the dataMineLib.createTable function to create a
+		table. Once a table has been created you will most often use a table cursor to
+		access its contents. Table cursors come in three flavors; memory, disk and
+		static. Create a cursor using the dataMineLib.open function.</P>
+		<P>Memory cursors open a table and read its entire contents into memory. Static
+		cursors provide buffered read only access to a table. Disk cursors provide
+		buffered read and unbuffered write access to a table. You can open multiple
+		concurrent cursors on the same table with the restriction that only one disk
+		cursor may be open on that table. Note that disk and static cursors opened on
+		the same table share the same buffer. </P>
+		<H3>Views</H3>
+		<P>Cursors provide you the ability to view subsets of the information in the
+		table by running filtering operations against the cursor. Filtering operations
+		are applied to the current view and result in a new current view. Filtering
+		does not affect the underlying table data and the current view can be restored
+		to match the underlying table data with the cursor.restore or cursor.reset
+		functions. Use the cursor.saveView function to save the current view, by name,
+		into the table's view directory. Use the cursor.restoreView function to make a
+		saved view the current view. Note that the view directory is saved in the
+		object repository as part of the collection of table objects reachable through
+		the table schema object. Note that the current view is contained in the cursors
+		rowVector property and you will see reference to rowVector in this document.
+		The bckVector contains the unfiltered content of the cursor's underlying table.
+		The cursor.reset function mentioned above essentially create a rowVector that
+		references all of the rows in bckVector in bckVector order to restore an
+		unfiltered view of the table.</P>
+		<H3>Side Effects</H3>
+		<P>This implementation of tables has been optimized for datamining operations
+		where bulk load and read/filtering access performance is given priority over
+		other possible table operations. For this reason, individual row writes and row
+		deletes are expensive and have significant side affects. For instance, a row
+		delete or row insert will have the following side effects: </P>
+		<OL>
+		<LI>Current view will reflect table content after operation. (Any filtering
+		will have been discarded) </LI>
+		<LI>All views in view directory will be discarded. </LI>
+		<LI>If the operation was applied on a disk cursor then all static cursors,
+		opened on the same table, will be similarly affected. </LI>
+		</OL>
+		<H3>API Consistency</H3>
+		<P>All cursors share the same basic API. However, not all functions are
+		available on each cursor type and not all operations return exactly the same
+		type of result. In addition, some cursor function options are not available for
+		all cursor types. These differences are documented in the function
+		documentation.</P>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMemory Cursors"></A>Memory Cursors</H2></P>		
+		<div class="h2section" id="Memory Cursors">
+		<P>Use the dataMineLib.open function to create a memory cursor object. The
+		memory cursor object loads the entire contents of a specified table into
+		memory. This allows very fast manipulation of the table at the expense of
+		memory usage. The following example opens a memory cursor on a table named
+		myTable. myTable must already exist for a cursor to be opened on it.</P>
+		<p>(setq myCursor (dataMineLib.open myTable: memory:))</p>
+		<P>When you filter a memory cursor, a copy of the table content is made in
+		memory and then the undesired rows are removed from the copy to generate the
+		current view. Use cursor.viewSave to save the current view in the cursors
+		viewDirectory. Note that each view saved in the view directory contains the
+		complete content of the rows contained in the view. Take care to account for
+		the memory usage incurred by view creation in a memory cursor. </P>
+		<P>Use the <B>cursor.save</B> function to save the current contents of a memory
+		cursor to disk, overwriting the original table. Opening a memory cursors dose
+		not increment the transaction count of the repository extent the table exists
+		in. However, when you use cursor.save, an atomic transaction occurs. The view
+		directory is cleared when you save a memory cursor. Note that the cursor.save
+		function will fail if there is an open disk cursor on the same table.</P>
+		<P>Multiple memory cursors may be opened concurrently on the same table. Each
+		cursor is independent of the others and a fresh copy of the table content is
+		loaded into memory each time.</P>
+		<P>To load a subset of table columns into memory, pass a columns specification
+		during the open on a memory cursor . This technique can be useful in creating
+		indexing tables and reports. Note that a subsequent cursor.save of a memory
+		cursor, opened with a subset of columns specified, will cause the table schema
+		to be permanently changed to reflect only those columns contained in the memory
+		cursor.</P>
+		<P>Unlike disk and static cursors, you can access the rows of a memory cursor
+		directly using <B>cursor.rowVector[i]</B>, where <B>i</B> is the index of the
+		row you want to access. This makes retrieval of memory cursor row objects very
+		fast. In general, this optimization should be avoided unless there is a great
+		need for fast access. Use the cursor.read function instead.</P>    
+		</div>      
+		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDisk &amp; Static Cursors"></A>Disk &amp; Static Cursors</H2></P>		
+		<div class="h2section" id="Disk Cursors">
+ 		<P>Use dataMineLib.open to create a disk or static cursor. A static cursor
+		provides buffered read only access to a table. A disk cursor provides buffered
+		read, unbuffered write access to a table. Multiple concurrent cursors can be
+		opened on the same table with the restriction that only one of these may be a
+		disk cursor.</P>
+		<P>Unlike a memory cursor, the disk and static cursors do not load the entire
+		table into memory when they are opened. Instead, records are read into memory
+		only when they are requested. When a disk cursor and one or more static cursors
+		are opened on the same table, they share the bckVector for that table and a
+		buffer vector holding references to any buffered row objects. These two vectors
+		are cursor.recordCount in length. In addition, any buffered records will also
+		be in memory. In addition, each individual disk or static cursor contains a
+		rowVector with a length equal to cursor.recordCount. The rowVector is a vector
+		of integer values. Each of these integer values are an index into the bckVector
+		shared by these cursors.</P>
+		<P>Use the dataMineLib.open argument bufSize to set a buffer size for a
+		cursor. The buffer size is specified in number of rows and it is up to the
+		caller to ensure that the buffer size specified does not result in excessive
+		memory usage. Pass a bufSize of 0 to dataMineLib.open when you want a cursor
+		to use the bufSize previously set by another, open, cursor. To open a cursor
+		that will not use the buffer, even if the buffer already exists to service
+		other open cursors, pass a bufSize argument of -1. The absolute size of a table
+		opened with a static or disk cursor is limited by available memory. However,
+		the limit on maximum table size is much larger than that of a table opened with
+		a memory cursor. Use a disk or static cursor to open large tables that cannot
+		be opened using a memory cursor.</P>
+		<P>Disk and Static cursors may be filtered and sorted to create new current
+		views. These views are essentially manipulations of the cursor's rowVector and
+		do not affect the shared bckVector. Use the cursor.saveView function to save
+		the current view into the cursors viewDirectory under a specified name. Saving
+		views in disk and static cursors is a much less memory expensive operation in
+		these cursors, compared to memory cursors, as the rowVector saved in the view
+		is only a vector of integers.</P>
+		<P>Since disk and static cursors share a common bckVector and buffer some
+		operations on the writable disk cursor will affect any static cursors open on
+		the same table. Essentially any operation that modifies the bckVector will
+		cause an internal resync of the static cursors. This resync clears each static
+		cursors view directory and resets the current view (rowVector) of the static
+		cursor to match the modified bckVector.</P>         
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SappendToMetaTable"></A>appendToMetaTable</H2></P>		
+		    <div class="h2section" id="appendToMetaTable">
+		<P>The <B>appendToMetaTable</B> function appends a new member table to an
+		existing meta table.<BR>
+		Type: Function<BR>
+		Syntax: (myCursor.appendToMetaTable tableKey tableName)<BR>
+		Transaction: Atomic</P>
+		<TABLE>
+		<TR>
+		<TD><B>tableKey</B></TD>
+		<TD>A value of any type that will serve to uniquely
+		identify the member table in the meta table. This key must sort higher than all
+		previously supplied member table keys.</TD>
+		</TR>
+		<TR>
+		<TD><B>tableName</B></TD>
+		<TD>A symbol or string containing the name of the
+		existin table that will become a member table of the currently opened meta
+		table.</TD>
+		</TR>
+		<TR>
+		<TD><B>Returns</B>&nbsp;</TD>
+		<TD>true&nbsp;</TD>
+		</TR>
+		</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Saverage"></A>average</H2></P>		
+		    <div class="h2section" id="average">
+		<P>The <B>average</B> function computes the average value of a numeric Lambda
+		over each record in the current view. The numeric Lambda must be a function
+		expecting one argument (a single table row).<BR>
+		Type: Function<BR>
+		Syntax: (myCursor.average numericLambda)<BR>
+		Transaction: NA</P>
+		<H3>Example1</H3>
+		<p> ;; Returns the average Salary for the current view.    <br>
+		(myCursor.average (lambda(x) x.Salary) )</p>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SaverageForAll"></A>averageForAll</H2></P>		
+		    <div class="h2section" id="averageForAll">
+			<P>The <B>averageForAll</B> function computes the average value of a numeric
+			Lambda over ALL rows in the table. The numeric Lambda must be a function
+			expecting one argument (a single table row).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.averageForAll numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p>
+			;; Returns the average Salary for the table  <br>
+			(myCursor.averageForAll (lambda(x) x.Salary))</p> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScolCount"></A>colCount</H2></P>		
+		    <div class="h2section" id="colCount">
+			<P>The <B>colCount</B> property contains the number of columns contained in
+			cursor.<BR>
+			Type: Property - read only<BR>
+			Syntax: myCursor.colCount<BR>
+			Transaction: NA</P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="ScreateMemoryCursorFromView"></A>createMemoryCursorFromView</H2></P>		
+		    <div class="h2section" id="createMemoryCursorFromView">
+			<P>The <B>createMemoryCursorFromView</B> function creates and returns a memory
+			cursor on the current table. The memory cursor contains only those records
+			contined in the current view.<BR>
+			Type: function<BR>
+			Syntax: myCursor.createMemoryCursorFromView<BR>
+			Transaction: NA</P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdelete"></A>delete</H2></P>		
+		    <div class="h2section" id="delete">
+			 <P>The <B>delete</B> function deletes the specified row from the table's
+			bckVector. The cursor is reset. Delete is only available on a disk or memory
+			cursor. Delete is not available on a meta table or on all but the last added
+			member tables.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.delete rowIndex)<BR>
+			Transaction: NA<BR>
+			Side Effect: Cursor is reset. Remember that reset clears any filtering from the
+			current view and the cursor's view directory is cleared. If delete is called on
+			a disk cursor then all static cursors opened on same table are also reset.</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowIndex</B></TD>
+			<TD>Row index, in bckVector, of row to be
+			deleted.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdelimitedCells"></A>delimitedCells</H2></P>		
+		    <div class="h2section" id="delimitedCells">
+			 <P>The <B>delimitedCells</B> function returns an ASCII tab delimited string
+			from the cursor, containing the values in the specified block of cells. The
+			result is a tab-delimited string.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.delimitedCells startRow endRow startCol endCol)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>startRow</B></TD>
+			<TD>The table cursor row (beginning with 0) where the
+			first cell value is to be obtained.</TD>
+			</TR>
+			<TR>
+			<TD><B>endRow</B></TD>
+			<TD>The table cursor row (beginning with 0) where the
+			last cell value is to be obtained.</TD>
+			</TR>
+			<TR>
+			<TD><B>startCol</B></TD>
+			<TD>The table column (beginning with 0) where the
+			first cell value is to be obtained.</TD>
+			</TR>
+			<TR>
+			<TD><B>endCol</B></TD>
+			<TD>The table column (beginning with 0) where the last
+			cell value is to be obtained.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>A tab delimited string of cell values from the
+			specified rows and columns (the first row of the tab delimited string contains
+			the column names).</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdeviation"></A>deviation</H2></P>		
+		    <div class="h2section" id="deviation">
+			 <P>The <B>deviation</B> function computes the standard deviation value of a
+			numeric Lambda over each record in the current view. The numeric Lambda must be a
+			function expecting one argument (a single table row).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.deviation numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p>;; Returns the standard deviation of profit for the table     <br>
+			(myCursor.deviation (lambda(x) x.Profit) ) </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdrop"></A>drop</H2></P>		
+		    <div class="h2section" id="drop">
+			<P>The <B>drop</B> function removes all rows from the cursor's bckVector. The
+			cursor is reset. The drop function is only available on the disk and memory
+			cursors. Delete is not available on a meta tables or all but the last member
+			member table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.drop)<BR>
+			Transaction: NA<BR>
+			Side Effect: Side Effect: Cursor is reset. Remember that reset clears any
+			filtering from the current view and the cursor's view directory is cleared. If
+			drop is called on a disk cusor then all static cursors opened on same table are
+			also reset.</P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SdropView"></A>dropView</H2></P>		
+		    <div class="h2section" id="dropView">
+			 <P>The <B>dropView</B> function drops the current record view identified by the
+			specified name from the cursors view directory.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.dropView name)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>name</B></TD>
+			<TD>A symbol or string containing the name that is the
+			key of the view in the view directory.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SexportTab"></A>exportTab</H2></P>		
+		    <div class="h2section" id="exportTab - cursors">
+			 <P>The <B>exportTab</B> function exports the cursor's current view to a
+			specified ASCII tab delimited file. The column names will be the first row in
+			the ASCII tab delimited data file.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.exportTab asciiFile)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>asciiFile</B></TD>
+			<TD>A string containing the path and file name of the
+			ASCII tab delimited export data file to be created (the first row will contain
+			the column names).</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetColumnHeaders"></A>getColumnHeaders</H2></P>		
+		    <div class="h2section" id="getColumnHeaders">
+			 <P>The <B>getColumnHeaders</B> function returns a tab-delimited string of
+			column names from the cursor.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.getColumnHeaders startCol endCol)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>startCol</B></TD>
+			<TD>Zero-based index of the first column to be
+			returned.</TD>
+			</TR>
+			<TR>
+			<TD><B>endCol</B></TD>
+			<TD>Zero-based index of the last column to be
+			returned.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>A tab-delimited string of column names.</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SgetNewRecord"></A>getNewRecord</H2></P>		
+		    <div class="h2section" id="getNewRecord">
+			 <P>The <B>getNewRecord</B> function returns a new blank row record Vector ready
+			for data. <BR>
+			Type: Function<BR>
+			Syntax: (myCursor.getNewRecord)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>A blank new row record Vector ready for data.</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SimportTab"></A>importTab</H2></P>		
+		    <div class="h2section" id="importTab">
+			<P>The <B>importTab</B> function imports the specified ASCII tab delimited file
+			into the cursor's bckVector. The column names must be the first row in the
+			ASCII data file, they may <B>not</B> be in a separate header file, nor may they
+			be passed as a Structure. importTab is not available static cursors or on meta
+			tables or on all but the last member table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.importTab asciiFile)<BR>
+			Transaction: NA<BR>
+			Side Effect: Side Effect: Cursor is reset. Remember that reset clears any
+			filtering from the current view and the cursor's view directory is cleared. If
+			importTab is called on a disk cusor then all static cursors opened on same
+			table are also reset.</P>
+			<TABLE>
+			<TR>
+			<TD><B>asciiFile</B></TD>
+			<TD>The path and file name of the ASCII tab delimited
+			import data (the first row must contain the column names).</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sinsert"></A>insert</H2></P>		
+		    <div class="h2section" id="insert">
+			<P>The <B>insert</B> function inserts the record before the specified row in
+			the cursor's bckVector. The insert function is available only on memory and
+			disk cursors. insert is not available on a meta table or on all but the last
+			member table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.insert row record)<BR>
+			Transaction: NA<BR>
+			Side Effect: Cursor is reset. Remember that reset clears any filtering from the
+			current view and the cursor's view directory is cleared. If insert is called on
+			a disk cusor then all static cursors opened on same table are also reset.</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowIndex</B></TD>
+			<TD>Row index of row before which to insert.</TD>
+			</TR>
+			<TR>
+			<TD><B>record</B></TD>
+			<TD>Vector containing row record to insert.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+			<P>Note: Use the cursor getNewRecord function to get the Vector for the row to
+			be passed to insert. </P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SisView"></A>isView</H2></P>		
+		    <div class="h2section" id="isView">
+			<P>The <B>isView</B> function returns true if the specified name is a saved
+			view in the cursor's view directory.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.isView viewName)</P>
+			<TABLE>
+			<TR>
+			<TD><B>viewName</B></TD>
+			<TD>A symbol or string containing the name of the view
+			previously saved with the <B>saveView</B> function.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Returns true if the key is a saved table view of
+			this cursor.</TD>
+			</TR>
+			</TABLE>      
+			<P>The <B>isView</B> function is related to the saveView function, which allows
+			the current record view to be saved under a specified name in the cursors view
+			directory.</P>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smaximum"></A>maximum</H2></P>		
+		    <div class="h2section" id="maximum">
+			<P>The <B>maximum</B> function computes the maximum value of a numeric Lambda
+			over each row in the current view. The numeric Lambda must be a function
+			expecting one argument (a single table row).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.maximum numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p>
+			;; Returns the maximum profit for the table  <br>
+			(myCursor.maximum (lambda(x) x.Profit) ) </p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sminimum"></A>minimum</H2></P>		
+		    <div class="h2section" id="minimum">
+			<P>The <B>minimum</B> function computes the minimum value of a numeric Lambda
+			over each row in the current view. The numeric Lambda must be a function
+			expecting one argument (a single table row).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.minimum numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p>;; Returns the minimum profit for the table    <br>
+			(myCursor.minimum (lambda(x) x.Profit) ) 
+			</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SmyCursorNotes"></A>myCursorNotes</H2></P>		
+		    <div class="h2section" id="myCursorNotes">
+			 <P>The <B>myCursorNotes</B> property contains the current notes Dictionary of
+			the cursor. If there are no notes available, the myCursorNotes property will
+			contain an empty Dictionary. The myCursorNotes property is not persistent and
+			will never be saved into the object repository.<BR>
+			Type: Property<BR>
+			Syntax: myCursor.myCursorNotes</P>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SmyCursorScore"></A>myCursorScore</H2></P>		
+		    <div class="h2section" id="myCursorScore">
+			 <P>The <B>myCursorScore</B> property contains the current score of this data
+			mine table cursor. If there is not score available, the myCursorScore property
+			will contain #void. The myCursorScore property is not persistent and will never
+			be saved into the object repository.<BR>
+			Type: Property<BR>
+			Syntax: myCursor.myCursorScore</P>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SmyMemoPad"></A>myMemoPad</H2></P>		
+		    <div class="h2section" id="myMemoPad">
+			<P>The <B>myMemoPad</B> property contains the current memo pad Dictionary of
+			the cursor. If there are no memos available, the myMemoPad variable will
+			contain an empty Dictionary.<BR>
+			Type: Property<BR>
+			Syntax: myCursor.myMemoPad</P>
+			<P>The memo pad is used to store any non-relational data along with the table
+			to the object repository. The memo pad is saved when a disk cursor is closed
+			and any update activity has occurred on the disk cusor. To force a save of the
+			memo pad, pass the save: option argument to the cursor close function.</P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Somit"></A>omit</H2></P>		
+		    <div class="h2section" id="omit">
+			 <P>The <B>omit</B> function deletes all rows from the cursor's bckVector for
+			which the specified truncate Lambda returns true. The omit function is only
+			available on memory and disk cursors. omit is not available on meta tables or
+			all but the last member table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.omit truncateLambda)<BR>
+			Transaction: NA<BR>
+			Side Effect: Cursor is reset. Remember that reset clears any filtering from the
+			current view and the cursor's view directory is cleared. If omit is called on a
+			disk cusor then all static cursors opened on same table are also reset.</P>
+			<TABLE>
+			<TR>
+			<TD><B>truncateLambda</B></TD>
+			<TD>The lambda predicate (returns a Boolean result) of
+			one argument which deletes a row whenever the predicate returns a value of
+			true.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Record count of resulting cursor.</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sread"></A>read</H2></P>		
+		    <div class="h2section" id="read">
+			<P>The <B>read</B> function reads the specified row from the cursor's current
+			view.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.read rowIndex)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowIndex</B></TD>
+			<TD>Row index of the row to read.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Memory cursor: Reference to row record object in
+			the cursor's rowVector. Disk or static cursor: Copy of row record object.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example 1</H3>
+			<P> Note: It is important to understand the difference between the return value
+			of read for memory and disk or static cursors. Consider the example below:</P>     
+			<blockquote>
+			<p>;;Using read on a memory cursor      <br>
+			(setq record (myCursor.read 5)); read the sixth record from the current view     <br>
+			;;record now points to the same row record object pointed to at myCursor.rowVector[5]   <br>
+			;;if you modify record you will modify the table's current view. If the current view  <br>
+			;;has not been filtered then rowVector is the same as bckVector.    <br>
+			;;Using read on a disk or static cursor                    <br>
+			(setq record (myCusor.read 5)); read the sixth record of the current view     <br>
+			;;record now points to a copy of the row record object in the cursors buffer   <br>
+			;;if you modify the object pointed to by record no changes will be made to the    
+			;;cursors buffer.</p> 
+			</blockquote>  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrecordCount"></A>recordCount</H2></P>		
+		    <div class="h2section" id="recordCount">
+			  <P>The <B>recordCount</B> property contains the number of records contained in
+			the cursors current view.<BR>
+			Type: Function<BR>
+			Syntax: myCursor.recordCount<BR>
+			Transaction: NA</P>   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrefExport"></A>refExport</H2></P>		
+		    <div class="h2section" id="refExport">
+			 <P>The <B>refExport</B> function returns a specified row from the cursor's
+			current view. The primary client of the function is the
+			<B>dataMineLib.exportTab</B> function.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.refExport row)</P>
+			<TABLE>
+			<TR>
+			<TD><B>row</B></TD>
+			<TD>The row to return.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>A row from the cursor.</TD>
+			</TR>
+			</TABLE>
+			<P> The refExport function differs from the read function. It logically
+			preprends a new row to the beginning of the table to contain the names of the
+			column in the table. For instance, (setq record (myCursor.refExport 0)) will
+			set record to a row object containing column names. (setq record
+			(myCursor.refExport 1)) will return the first row of data from the cursor.</P>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrefImport"></A>refImport</H2></P>		
+		    <div class="h2section" id="refImport">
+			<P>The <B>refImport</B> function returns a data object to be filled in by the
+			caller. If the row argument is zero, then an empty Vector is returned for
+			column names. Otherwise, an empty record Vector is returned.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.refImport rowIndex)</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowIndex</B></TD>
+			<TD>0 for empty vector for column names. Non zero
+			returns an empty row record Vector is returned.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>An empty vector if row is zero, otherwise an empty
+			row record Vector.</TD>
+			</TR>
+			</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sreset"></A>reset</H2></P>		
+		    <div class="h2section" id="reset">
+			 <P>The <B>reset</B> function clears any filtering from the current view and
+			deletes any saved views from the view directory. <BR>
+			Type: Function<BR>
+			Syntax: (myCursor.reset)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+			<P> Note: Reset makes the rows referenced in the current view (contained in the
+			cursors rowVector) the same as the rows referenced in the cursor's bckVector. 
+			</P>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Srestore"></A>restore</H2></P>		
+		    <div class="h2section" id="restore">
+			 <P>The <B>restore</B> function clears any filtering from the current view.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.restore)</P>
+			<TABLE>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+			<P>Note: Reset makes the rows referenced in the current view (contained in the
+			cursors rowVector) the same as the rows referenced in the cursor's bckVector 
+			</P>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SrestoreView"></A>restoreView</H2></P>		
+		    <div class="h2section" id="restoreView">
+			<P>The <B>restoreView</B> function restores the named view, from the cursor's
+			view directory, to the cursor's current view. <BR>
+			Type: Function<BR>
+			Syntax: (myCursor.restoreView viewName)</P>
+			<TABLE>
+			<TR>
+			<TD><B>viewName</B></TD>
+			<TD>A symbol or string containing the name of the view
+			in the view directory.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE> 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Srun"></A>run</H2></P>		
+		    <div class="h2section" id="run">
+			<P>The <B>run</B> function runs the specified javaScript Lambda against the
+			cursor.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.run filterString)</P>
+			<TABLE>
+			<TR>
+			<TD><B>filterString</B></TD>
+			<TD>The javaScript string to be compiled and run
+			against this cursor.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+			<P><B>Note</B>: The javaScript string is first compiled using
+			dataMineLib.compileLambda.</P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Ssave"></A>save</H2></P>		
+		    <div class="h2section" id="save">
+			 <P>The <B>save</B> function overwrites the contents of a table with the current
+			view of a memory cursor. The save function performs no function on the disk or
+			static cursors. The save function is not available on memory cursors opened on
+			member tables.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.save)<BR>
+			Transaction: Atomic</P>
+			<TABLE>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsaveView"></A>saveView</H2></P>		
+		    <div class="h2section" id="saveView">
+			<P>The <B>saveView</B> function saves the current view under the specified name
+			in the cursor's view directory.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.saveView viewName)</P>
+			<TABLE>
+			<TR>
+			<TD><B>viewName</B></TD>
+			<TD>A symbol or string containing the name of the
+			view.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Ssearch"></A>search</H2></P>		
+		    <div class="h2section" id="search">
+			<P>The <B>search</B> function returns the row index for the first record, in
+			the current view, where the specified search predicate is true. If no record
+			meets these conditions, then <B>false</B> is returned. The starting row, for
+			the search, may also be specified. If no starting row is specified, it is
+			assumed to be zero.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.search searchLambda <I>startRowIndex</I>)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>searchLambda</B></TD>
+			<TD>The lambda predicate (returns a Boolean result) of
+			one argument which returns true when the correct row is found.</TD>
+			</TR>
+			<TR>
+			<TD><B><I>startRowIndex</I></B></TD>
+			<TD>An optional argument specifying the starting row
+			index for the search (if omitted, zero is assumed).</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>The row index for the first record where the
+			search predicate is true or #void.</TD>
+			</TR>
+			</TABLE>
+			<P>Syntax: (myCursor.search searchColumn searchValue startRowIndex)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>searchColumn</B></TD>
+			<TD>The name of the column to search.</TD>
+			</TR>
+			<TR>
+			<TD><B>searchValue</B></TD>
+			<TD>The value to search for in the specified
+			column.</TD>
+			</TR>
+			<TR>
+			<TD><B>startRowIndex</B></TD>
+			<TD>(Optional)The starting row index for the search
+			(if omitted, zero is assumed).</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>The row index for the first record where the
+			search predicate is true or #void.</TD>
+			</TR>
+			</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SsetImport"></A>setImport</H2></P>		
+		    <div class="h2section" id="setImport">
+			<P>The <B>setImport</B> function receives a single record from the
+			<B>importTab</B> function into the bckVector of the cursor. The setImport
+			function is only available on memory and disk cursors. setImport is not
+			available on a meta table or all but the last member table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.setImport rowIndex recordVector)<BR>
+			Transaction: NA<BR>
+			Side Effect: Cursor is reset. Remember that reset clears any filtering from the
+			current view and the cursor's view directory is cleared. If setImport is called
+			on a disk cusor then all static cursors opened on same table are also reset. 
+			</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowIndex</B></TD>
+			<TD>Row index of the row to write to.</TD>
+			</TR>
+			<TR>
+			<TD><B>recordVector</B></TD>
+			<TD>Vector of values to write to the specified
+			row.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>
+			<P> The setImport function differs from the write function. It examines the
+			rowIndex value and if it is zero it expects to collect and process column names
+			from this row. If the table has no columns defined the it will use the columns
+			specified in the first process row as the table columns. If columns are already
+			defined, then setImport will compare them with those passed in the first
+			processed row to ensure they match.</P>		 
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Ssharpe"></A>sharpe</H2></P>		
+		    <div class="h2section" id="sharpe">
+			 <P>The <B>sharpe</B> function computes the sharpe ratio value of a numeric
+			Lambda over the rows in the current view. The numeric Lambda must be a function
+			expecting one argument (a single table row).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.sharpe numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p>(myCursor.sharpe (lambda(x) x.Profit) ) ;; Returns the sharpe ratio of
+			profit for the table</p>  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sshow"></A>show</H2></P>		
+		    <div class="h2section" id="show">
+			 <P>The <B>show</B> function displays a limited number of rows, beginning with a
+			specified row number from the cursor's current view, on the system console.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.show startRow)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>startRow</B></TD>
+			<TD>Row index of row to start on.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Ssort"></A>sort</H2></P>		
+		    <div class="h2section" id="sort">
+			 <P>Use the<B>sort</B> function to sort either the current view or with the
+			optional <B>backup:</B> argument the bckVector. You can sort the bckVector only
+			for memory and disk cursors. The sort function on the bckVector is not
+			available for meta tables or all but the last member table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.sort sortLambda <I>backup:</I>)<BR>
+			Transaction: NA<BR>
+			Side Effect: If <B>backup:</B> argument is supplied then the cursor is reset.
+			Remember that reset clears any filtering from the current view and the cursor's
+			view directory is cleared. If sort with backup: is called on a disk cusor then
+			all static cursors opened on same table are also reset.</P>
+			<TABLE>
+			<TR>
+			<TD><B>sortLambda</B></TD>
+			<TD>The sort lambda predicate designed to compare two
+			records.</TD>
+			</TR>
+			<TR>
+			<TD><B><I>backup:</I></B></TD>
+			<TD>An optional argument. A symbol requesting the sort
+			be performed on the bckVector.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>   
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Stile"></A>tile</H2></P>		
+		    <div class="h2section" id="tile">
+			 <P>The <B>tile</B> function reduces the set of rows, in the current view, to the nth tile of N tiles. 
+			<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.tile tileCount tileIndex)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>tileCount</B></TD>
+			<TD>The count of tiles into which the current cursor rows are to be divided. 
+			For instance, if we wanted to divide the current cursor rows into percentiles, then tileCount == 100.
+			</TD>
+			</TR>
+			<TR>
+			<TD><B>tileIndex</B></TD>
+			<TD>The index of the tile from the current cursor rows to be returned. 
+			For instance, if we wanted to see the 6th percentile, then tileIndex == 6.
+			</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Record count of resulting cursor.</TD>
+			</TR>
+			</TABLE>
+			<P>Syntax: (myCursor.truncate rowCount)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowCount</B></TD>
+			<TD>The cursor is truncated so that only the specified
+			number of rows remain.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Record count of resulting cursor.</TD>
+			</TR>
+			</TABLE>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Stotal"></A>total</H2></P>		
+		    <div class="h2section" id="total">
+			 <P>The <B>total</B> function computes the total value of a numeric Lambda over
+			each row of the current view. The numeric Lambda must be a function expecting
+			one argument (a single table record).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.total numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p>(myCursor.total  (lambda(x) x.Sales)  )  ;; Returns the total Sales for the table</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="StotalForAll"></A>totalForAll</H2></P>		
+		    <div class="h2section" id="totalForAll">
+			<P>The <B>totalForAll</B> function computes the total value of a numeric Lambda
+			over all rows in the bckVector. The numeric Lambda must be a function expecting
+			one argument (a single table record).<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.totalForAll numericLambda)<BR>
+			Transaction: NA</P>
+			<H3>Example1</H3>
+			<p> (myCursor.totalForAll  (lambda(x) x.Sales)  )  ;; Returns the total Sales for the table</p>    
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Struncate"></A>truncate</H2></P>		
+		    <div class="h2section" id="truncate">
+			<P>The <B>truncate</B> function truncates a set of rows from the current view. 
+			<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.truncate truncateLambda)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>truncateLambda</B></TD>
+			<TD>The lambda predicate (returns a Boolean result) of
+			one argument which truncates a row whenever the predicate returns a value of
+			false.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Record count of resulting cursor.</TD>
+			</TR>
+			</TABLE>
+			<P>Syntax: (myCursor.truncate rowCount)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowCount</B></TD>
+			<TD>The cursor is truncated so that only the specified
+			number of rows remain.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Record count of resulting cursor.</TD>
+			</TR>
+			</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SupdateView"></A>updateView</H2></P>		
+		    <div class="h2section" id="updateView">
+			<P>The <B>updateView</B> function updates the set of records in the memory
+			cursor's current view. The updateView function is not available on the disk or
+			static cursors. You may also pass the optional <B>reset:</B> argument to clear
+			any filtering in the current view after the update.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.updateView updateLambda <I>reset:</I>)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>updateLambda</B></TD>
+			<TD>The lambda function (updates each record) of one
+			argument which updates a record in the current view.</TD>
+			</TR>
+			<TR>
+			<TD><I><B>reset:</B></I></TD>
+			<TD>An optional symbol argument to cause any current
+			view filtering to be cleared.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true.</TD>
+			</TR>
+			</TABLE>
+			<P>The updateView function allows you to filter the current view and then call
+			updateView to modify only those rows contained in the current view. Note: The
+			rows in the current view (rowVector) in a memory cursor point to the same row
+			record objects pointed to by the bckVector. This means that the updates
+			performed by updateView affect the row record objects shared by the cursors
+			bckVector.</P>
+			<P>The reset: option is a convenience to allow the full row set to be restored
+			at the end of the update operation.</P>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SviewMath"></A>viewMath</H2></P>		
+		    <div class="h2section" id="viewMath">
+			<P>The <B>viewMath</B> function performs the logical operations of,
+			<B>and:</B>, <B>or:</B>, and <B>xor:</B>, on the specified views in the cursors
+			view directory. Use the saveView function save views in the cursor's
+			viewDirectory. The <B>viewMath</B> function creates a new current view by
+			logically combining two previously saved views.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.viewMath operator viewName1 viewName2)<BR>
+			Transaction: NA</P>
+			<TABLE>
+			<TR>
+			<TD><B>operator</B></TD>
+			<TD>A symbol name of the logical operator;
+			<B>and:</B>, <B>or:</B>, <B>xor:</B>.</TD>
+			</TR>
+			<TR>
+			<TD><B>viewName1</B></TD>
+			<TD>A symbol or string containing the name of the
+			first view.</TD>
+			</TR>
+			<TR>
+			<TD><B>viewName2</B></TD>
+			<TD>A symbol or string containing the name of the
+			second view.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>Record count of resulting combined view.</TD>
+			</TR>
+			</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Swrite"></A>write</H2></P>		
+		    <div class="h2section" id="write">
+			<P>The <B>write</B> function writes the specified row to the cursor's
+			bckVector. The write function is available only on the memory and disk cursor.
+			Write can not be used to extend the meta table or all but the last member
+			table.<BR>
+			Type: Function<BR>
+			Syntax: (myCursor.write row record)<BR>
+			Transaction: NA<BR>
+			Side Effect: Cursor is reset. Remember that reset clears any filtering from the
+			current view and the cursor's view directory is cleared. If write is called on
+			a disk cusor then all static cursors opened on same table are also reset.</P>
+			<TABLE>
+			<TR>
+			<TD><B>rowIndex</B></TD>
+			<TD>Row index in the bckVector of row to update.</TD>
+			</TR>
+			<TR>
+			<TD><B>record</B></TD>
+			<TD>Vector of values to update the row with.</TD>
+			</TR>
+			<TR>
+			<TD><B>Returns</B></TD>
+			<TD>true</TD>
+			</TR>
+			</TABLE>     
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

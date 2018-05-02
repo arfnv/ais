@@ -1,0 +1,503 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>ContextClient Lambda Overview</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SIntroduction"><FONT SIZE=2>Introduction</font></a></li><li><a href="#SMessage Handling"><FONT SIZE=2>Message Handling</font></a></li><li><a href="#SAMP Message Return Structure"><FONT SIZE=2>AMP Message Return Structure</font></a></li><li><a href="#SContext Client Request Call Chain"><FONT SIZE=2>Context Client Request Call Chain</font></a></li>
+</UL>
+
+<P><H2><A NAME="SIntroduction"></A>Introduction</H2></P>		
+		    <div class="h2section" id="Introduction">
+			<p>
+			Instances of the contextClient Lambda provide a general purpose connection to AIS Servers.
+			The Lambda allows a context (the &quot;local context&quot;) to connect to an AIS server as
+			a remote client reaching the server through the AIS appPort. The AIS appPort is the
+			port used by the AIS Remote IDE (RIDE). Typically, you use a contextClient Lambda instance 
+			to establish a connection to an AIS server. Use the connection to logon to the server, open 
+			a session on a running context and then execute AMP Lambdas in that context. With appropriate 
+			security levels, you may use a contextClient Lambda instance to open and close contexts on 
+			an AIS server. </p>
+			<h3>Terms:</h3>
+			<P>A Remote Client, a Local Context, and a Remote Context may be instantiated on a single machine or
+			each one may be running on a separate machine in a separate part of the world. In the remote case,
+			these programs communicate over TCP/IP internet connections using a variety protocols (HTTP, XML,
+			and AIS). The Local Context and the Remote Context must run on AIS servers.  The Remote Client is a
+			client application that can issue requests using one of the standard internet protocols such as HTTP.
+			Examples are a browser such as Internet Explorer, or a Macromedia Flash plug-in.    The HTTP protocol
+			requires that the client receives exactly one response to each request.  The other protocols support
+			messages originating from the server with no corresponding outstanding request.</P>
+			<table cellspacing="2" cellpadding="2" border="0">
+			<tr>
+			    <td>Remote Client</td>
+			    <td>A client connected to an AIS port that runs a Client application.  The client is an internet aware
+			    application that uses any of the AIS supported TCP-oriented interface.  For example,  a Macromedia
+			    flash application, a Remote IDE written in C++, or an HTML application running Javascript may
+			    serve as a Remote Client.  The instance of the program running in this application  is referred to as
+			    the Client Program</td>
+			</tr>
+			<tr>
+			    <td>Local Context</td>
+			    <td>The context instantiating the contextClient Lambda.  The instance of the aisLisp program being
+			     executed in this context is referred to as the Local Lambda.</td>
+			</tr>
+			<tr>
+			    <td>Remote Context Session</td>
+			    <td>The context session that  the Local Lambda opens on the remote AIS server.  The instance of
+			    the aisLisp program being executed in this session is referred to as the Remote Lambda.</td>
+			</tr>
+			</table>
+			<p>
+			The terms &quot;Local&quot; and &quot;Remote&quot; are relative.  In a complex application, any one of
+			the contexts may play the role of a Local Context or a Remote Context.  In fact, a context may even
+			play both roles.</p>
+			<h3>Lambda Execution in Remote Context Sessions</h3>
+			<p>
+			The usual reason for using contextClient is to open a remote context session and execute 
+			Lambdas in that context. It is an error to open a context session on the same context that
+			instantiated the contextClient - in other words &quot;don't try talking to yourself&quot;. It is
+			legal for the Remote Client, the Local Context and/or the Remote Context to be on the same server.</p>
+			<p>
+			The primary reason contextClient exists is to support the farm Lambda. The farm Lambda
+			implements a distributed processing architecture. You will find numerous references 
+			and examples in this documentation to the use of contextClient by the farm Lambda. It is
+			recommended that you read the farm documentation as a supplement to this documentation
+			on the contextClient. The farm.selfTest Lambda is a particularly good source of information
+			on advanced usage of contextClient. The contextClient.selfTest Lambda is a good example
+			of less advanced usage.</p>
+			<p>
+			Before getting into the more advanced use of contextClient by the farm Lambda, lets look at 
+			the more rudimentary usage of contextClient in an local Lambda.</p>
+			<p>
+			Lets say you have an local Lambda that needs to execute an Lambda in a remote context. Here 
+			is one approach your application could take:</p>
+			<ul>
+			<li>Use (setq myContextClient (new contextClient hostAddress appPort)) to create an Lambda instance.</li>
+			<li>Use (myContextClient.openConnect) to establish a connection with the AIS server.</li>
+			<li>Use (myContextClient.logon) to get validated on the AIS server you have connected to.</li>
+			<li>Use (myContextClient.openSession) to open the Remote Context Session.</li>
+			<li>Use (setq result (myContextClient.eval ampMessage)) to submit a &quot;remote&quot; request for processing in the
+			Remote Context Session.  Wait for the &quot;remote&quot; result to be returned from the RemoteContext Session
+			(more on this later).  When the remote result is returned to the Lambda, the execution of the Local Lambda resumes.  If the Lambda was
+			invoked by a remote client, then the Lambda will return a result back to the Remote Client. </li>
+			<li>Use (myContextClient.closeSession) to close the Remote Context Session.</li>
+			<li>Use (setq myContextclient #void) to destroy the contextClient Lambda instance.</li>
+			</ul>
+			<p>
+			The advantage of this approach is that it is very simple. However, it is a synchronous process because
+			the local context will have to wait for a return result to be returned from the myContextClient.eval call.</p>
+			<p>
+			If you desire an asynchronous execution of an Lambda in a remote context session, call myContextClient.eval with
+			returnType and notifyType options that cause the return result from the remote context session to be sent back to the
+			local context as an event message. A numeric  is immediately returned from the call to myContextClient.eval.
+			The local Lambda should use this RequestID to keep track of a request that has been submitted to a remote context session. 
+			Event messages are AMP messages that specify the contextClient.notify Lambda be executed in the local context. 
+			The event message contains a &quot;Remote Result&quot; element which will carry the value of the return result from the Lambda executed 
+			in the remote context. The event message has a &quot;RequestID&quot; element that carries the same value as was returned 
+			from the original myContextClient.eval call.<br>
+			Consider the following steps:</p>
+			<ul>
+			<li>Use (setq myContextClient (new contextClient hostAddress appPort)) to create an Lambda instance.</li>
+			<li>Use (myContextclient.openConnection) to establish a connection with the AIS Server.</li>
+			<li>Use (myContextClient.logon) to get validated on the AIS server you have connected to.</li>
+			<li>Use (myContextClient.openSession) to open the Remote Context Session.</li>
+			<li>Use (myContextClient.notifyRegister localLambda) to specify what Lambda should receive event messages
+			from the remote context.</li>
+			<li>Use (setq result (myContextClient.eval ampMessage 1 1)) to submit an AMP request for processing in the Remote Context
+			Session.  Note the numeric arguments. The first numeric argument, 1, specifies a ReturnType of &quot;NoReturn&quot;. The second
+			numeric argument, 1,  specifies a NotifyType of &quot;FullNotify&quot;. The values of the ReturnType and FullNotify arguments
+			are explained in more detail later in this documentation.</li>
+			<li>The local Lambda makes a note of the  returned in from the call to eval.  If the request was launched  from a remote
+			client, an acknowledgement is returned to the requesting client that includes the RequestID.</li>
+			<li>The local Lambda quits execution (either right away or at a future more convenient time as per the
+			application's needs).</li>
+			<li>An Event Message arrives on the request queue of the local context from the remote context session. This event message
+			specifies the target Lambda &quot;contextClient&quot; and speech act &quot;notify&quot;. Since we registered the
+			application Lambda &quot;localLambda&quot; in an earlier step, the contextClient.notify Lambda will execute
+			localLambda, passing the event message structure as an argument.</li>
+			<li>A remote client may query the  for a result to its original request.  Further, if the remote client is capable of receiving
+			&quot;pushed&quot; output, then localLambda could also forward the remote result back  to the calling client..</li>
+			<li>Use (myContextClient.closeSession) to close the Remote Context Session.</li>
+			<li>Use (setq myContextclient #void) to destroy the contextClient Lambda instance.</li>
+			</ul>
+			<p>The advantage of this approach is that it allows you to create event-driven applications or applications that check for
+			return results at convenient times. Note that only the myContextClient.eval Lambda used non default values for ReturnType and
+			NotifyType. While ReturnType and NotifyType are valid options on most contextClient child Lambdas, they are most commonly 
+			used on the contextClient.eval Lambda.</p>
+			<p>
+			The typical advanced usage of a contextClient Lambda instance is found in its use by the
+			farm agency. The farm agency allows one context, the farm context, to receive 
+			requests from one or more remote clients that are forwarded for execution in one or
+			more worker contexts. The farm context acts as a traffic cop. It knows what each 
+			worker context can do and how busy each worker context is. The farm agency's usage
+			of contextClient instances is briefly illustrated (and oversimplified) in the following steps:</p>
+			<ul>
+			<li>The farm Lambda creates a contextClient Lambda instance for each worker context.</li>
+			<li>Remote clients submit requests to the farm context.</li>
+			<li>The farm context redirects the request to a worker context and makes a note
+			as which worker is performing the request. Note that the farm context does NOT
+			wait for a return response from the request submission made to the worker context. The farm context
+			returns an acknowledgement  to the remote client indicating that the request is being processed.</li>
+			<li>A worker context finishes executing a remote request and a remote result is sent back to the farm
+			context. It is delivered to the farm context as an Notification Message on the farm context's
+			request queue.</li>
+			<li>The farm Lambda stores the remote result included in the Notification Message for later
+			retrieval by the remote client.</li>
+			</ul>
+			<p>
+			The scenario above is only one of many possible ways that contextClient Lambda instances 
+			may be used. The key to using contextClient Lambda instances successfully lies in a complete
+			understanding of the ReturnType and NotifyType options. These options are described below in
+			some detail and then a variety of use cases are explored to more fully explain their usage.</p>
+			<h3>Request ID</h3>
+			<p>
+			As noted in the Function descriptions below, calls to the contextClient return a request ID.  The
+			request ID is a unique integer (incrementing from 1 since the local context was started).  The same
+			request ID is also included in messages returned later along with the return result from the context client.
+			The request ID provides the mechanism for associating asynchronous events with the originating request.
+			This mechanism is essential in those cases where asynchronous events from multiple outstanding requests
+			must be sorted out by the local context or the remote client.</p>
+			<h3>Remote Client</h3>
+			<p>
+			It is possible for a local Lambda to issue remote requests to a remote client without a remote client involved.  This simpler case
+			is shown in some of the figures below.  In this case, the ReturnRemote ReturnType is not applicable.  It is possible
+			for the localClient to issue a remote request and then wait for a return from the remote server or the localClient may
+			issue a remote request, return immediately to do other tasks and then receive a notification when a long-running
+			remote task finishes.</p>
+			<p>
+			It is also possible for the localLambda to act as an intermediary between a remote client and a remote server.  This case
+			is shown in all of the figures below.  Here, a request from the remote client is forwarded on to the remote server.
+			If  the ReturnType is NoReturn, and acknowledgement is returned immediately from the localLambda back to the remote client.
+			In the other cases, a result is either returned directly from the remote server or a result is returned back by the localLambda
+			to the remote client after the local Lambda receives the remote .  In this last case, the localLambda is frozen in a loop waiting
+			for the response from the remote server. </p>
+			<h3>ReturnType and NotifyType</h3>
+			<p>
+			As mentioned earlier most contextClient child Lambdas allow the specification of ReturnType and NotifyType.
+			For instance, the logon, openSession, eval, and closeSession contextClient child Lambdas all allow you to
+			specify a ReturnType and NotifyType. In theory, you could code a local context application to handle all of the steps
+			in the previous examples in a fully event-driven manner by keeping state information about the contextClient calls
+			made and then picking up where each call left off as the event messages are processed. In practice, there is little
+			to gain in using the ReturnType and NotifyType options for calls that execute quickly so only the contextClient eval
+			child Lambda is normally executed with these options set to anything other than the default values of ReturnType=Wait
+			and NotifyType=NoNotify.</p>
+			<p>
+			So far we have only discussed the Local Context and the Remote Context Session. The contextClient can also manage the
+			output of display information and return results to a Remote Client active on the Local Context. The contextClient
+			Lambda can make return results and output, from the execution of an Lambda in a Remote Context Session, appear to be
+			coming from the Local Context directly to the Remote Client. This facility is very useful for building distributed
+			processing applications.</p>
+			<p>
+			As a brief review of this more complex relationship: The Remote Client submits requests for processing to the
+			Local Context.   The Local Context submits requests for processing in the Remote Context. The Remote Context send
+			return results and display output to either the Local Context or the Remote Client or both as defined by the ReturnType and
+			NotifyType options specified during the Local Context's submission of the request to the Remote Context.</p>
+			<p>ReturnType options:</p>>
+			<ol start=0>
+			<li><strong>Wait:</strong> (default) Wait for remote execution to complete. The polling loop is in the SBGlue layer. 
+					Local context receives remote context return result in return from contextClient call.
+					Remote client receives local context return result.
+					Remote context display is sent to the remote client.</li>
+			<li><strong>NoReturn:</strong> Return result is discarded. Use FullNotify to post the return result into local context.
+					Remote context display may be cached for later retrieval by the local context.</li>
+			<li><strong>ReturnRemote:</strong>
+					Local context return result is discarded (not sent back to remote client). Request stays on
+					request queue until return result is received from remote context execution.
+					Remote context display  output is sent back to the remote client.
+					Remote client receives remote context return result when it is returned from the remote context session.</li>
+			</ol>
+			<p>
+			NotifyType options: </p>
+			<ol start=0>
+			<li><strong>NoNotify:</strong> (default) No Notification Message is generated.</li>
+			<li><strong>FullNotify:</strong>
+					Local context receives a Notification Message on completion of request. Return result is included.</li>
+			<li><strong>Notify:</strong>
+					Local context receives a Notification Message on successful completion of request. Return result is 
+					not included in message.</li>
+			</ol>
+			<p>
+			 The following are some Return/Notify combinations when calling contextClient.eval to submit a
+			 request on a remote context.</p>
+			<p>
+			 <strong>Wait/NoNotify.</strong>	This acts just like a regular local execution of the message. Note that the
+			 local context's thread is doing no work while it waits for a return result from the remote context that
+			 is executing the AMP message. This option combo offers no distributed processing utility because the 
+			 local context thread is tied up while it waits for the remote context to finish its work.
+			 Display output from the remote context will be sent to the remote client as if they were
+			 generated in the local context. </p>
+	        <img src="Image_ContextClient1.gif">
+	        <p>
+			 <strong>Wait/Notify</strong>.	Since the local Lambda is frozen until the remote result is returned from the
+			 remote context session, there is very little reason to ever include a notify option.</p>
+			<p>
+			<strong> ReturnRemote/NoNotify</strong> - This option combo causes a request to be evaluated in a remote
+			 context and when the return result arrives at the local context, it will be forwarded directly to the
+			 remote client (shown as a direct return in the diagram below).  The queue entry on the local context
+			 is cleared at this time.  The return result from the currently executing Lambda in the local context will
+			 be discarded. Usually, you should return from the executing Lambda (in the local context) immediately
+			 after making the submission to the remote context to allow the processing of the next request in the local
+			 context's request queue.<br>
+			 This option combo provides full distributed processing if the requests, submitted by remote clients,
+			 result only in submissions to remote contexts. This option combo does not provide the local context 
+			 with enough information to directly monitor the successful completion of requests in remote contexts. 
+			 Display information from the remote context is sent to the remote client directly.</p> 
+			<img src="Image_ContextClient2.gif">
+			<p>
+			 <strong>ReturnRemote/Notify</strong> - This option combo is the same as ReturnRemote/NoNotify with 
+			 one added step. When a result is returned from execution in a remote context, 
+			 a Notification Message is also placed in the local context's request queue. This message contains 
+			 the  associated with the submission to the remote context. If, in the original Lambda making a
+			 submission to the remote context, a record of that submission's RequestID was made then it is possible 
+			 to match up the the information in the message with this record. Use ReturnRemote/Notify or ReturnRemote/FullNofify
+			 if you are building a distributed processing model where the local context will be &quot;monitoring&quot; the completion 
+			 of requests submitted to remote contexts. Display information from the remote context is sent to the remote client
+			 directly.</p>
+			<p>
+			 Note: The Notification Message is submitted to the local context on the context's admin session. Any return 
+			 result from the execution of the message in the local context will be thrown away - there is nowhere 
+			 for it to go. This is desirable behavior as it allows the construction of &quot;event-driven&quot; applications. </p>
+			 <img src="Image_ContextClient3.gif">
+			 <p>
+			 <strong>NoReturn/NoNotify</strong>.	In this case, the remote client gets an acknowledgement
+			 back from the local Lambda when the remote request is submitted to the remote context session, but neither the local
+			 context or the remote client would ever get a remote result from the remote context session.  Since the work done
+			 in the remote context session is lost,  this pair of options is never used.</p>
+			<p>
+			 <strong>NoReturn,FullNotify</strong> - A remote request is submitted to the remote context session by the localLambda.
+			 The local Lambda returns immediately.  If this request was initiated by a call from a remote client, an acknowledgement
+			 containing the RequestID is returned to the remote client.  When the remote client completes the request, a remote
+			 result is placed in a Notification Message that is returned to the local context.
+			 Just as for all Notify options, this message is placed in the local context's request queue.
+			 This message will contain the RequestID of the submission to the remote context as well as the full return
+			 result of the submission. This option does not automatically send the return result from the remote 
+			 request back to the remote client.  This option combo makes it
+			 possible for the local context to manage the returned results generated by execution of Lambdas in a remote
+			 context. For instance, suppose a remote client submits a request to the local context that results in a long
+			 running task on the remote context. In this model, the remote client is informed of a successful &quot;job start&quot;
+			 and might check back later to see if the job had completed. If the remote client was on a asynchronous
+			 port, say the XML port, occasional messages could be sent to the remote client informing the client of changes
+			 in the job status, including the final result returned from the remote context. This model requires a high level of application
+			  level code as the contextClient itself does not provide these higher-level functions.</p>
+			 <p> 
+			 In addition, because the local context would be handling the return result and generating additional messages to the 
+			 remote client, this model would provide lower overall throughput of requests in the local context.<br>
+			 Display information from the remote context will be ignored by default. You can set options 
+			 to have display  information from the remote context cached for later retrieval by the local 
+			 context.</p>
+			<p> 
+			Note: The Notification Message is submitted to the local context on the context's admin session. Any return 
+			 result from the execution of the message in the local context will be thrown away - there is nowhere 
+			 for it to go. This is desirable behavior as it allows the construction of &quot;event-driven&quot; applications.</p>
+	     	<img src="Image_ContextClient4.gif">
+			<h3>Implementation</h3>
+			 <p>
+			 The flow of data in AIS is shown in the following diagram:</p>
+			 <img src="Image_ContextClient5.gif">
+			 <p>
+			 The local Lambda is written in AisLisp and is the API that you use. This Lambda makes calls to the 
+			 _ContextClient function which in turn creates and makes calls on the AContextClient object. The _ContextClient 
+			 function is implemented in the SBGlue layer as a C function. The AContextClient object is implemented in the
+			 AIS server in C++. </p>
+			 <p>
+			 When you create a new contextClient instance, a corresponding AContextClient C++ object is created. Calls
+			 to child Lambdas of the contextClient Lambda instance result in corresponding calls to the
+			 member functions of the C++ AContextClient object instance. All of these calls are
+			 made through the _ContextClient function. The C++ object will always be destroyed when the contextClient
+			 Lambda that created it is garbage collected.</p>
+			 <p>
+			  <strong>Wait/NoNotify.</strong>	A simplified version of the above diagram is shown below for the wait/no notify
+			  case.  SBGlue_ContextClient eval request generates a remote request and then falls into a wait loop.  Display from
+			  the remote server is routed directly back to the remote client, iff a remote client generated the request.    The result
+			  from the remote server is returned to waiting SBGlue_ContextClient eval function which then exits from the wait
+			  loop to return the result back to the Lisp Engine.  Note that this context is not able to process any incoming requests
+			  while it is waiting for a return.</p>
+	        <img src="Image_ContextClient6.gif">
+	        <p>
+			  <strong>ReturnRemote/NoNotify.</strong>	A simplified version of the Figure 5 is shown below for the return
+			  remote/no notify case.  SBGlue_ContextClient eval request generates a remote request and then returns immediately.
+			  Display from the remote server is routed directly back to the remote client.    Later, the result from the remote server
+			   is also returned  back to the waiting client.  The local context is unaware of the returned result.</p>
+	        <img src="Image_ContextClient7.gif">
+	         <p>
+			  <strong>NoRetun/Notify.</strong>	A simplified version of Figure 5 is shown below for the no return/ notify or
+			  full notify  case.  SBGlue_ContextClient eval request generates a remote request and then returns immediately.  Display from
+			  the remote server is discarded.    The result from the remote server is submitted as an event on the local context's input
+			  request queue.  This event on is processed in the Lisp Engine by a notify Lambda.  The notify Lambda is a part of the application
+			  code.  It may record the event in a table, send a response back to the client, or generate new requests based upon the
+			  returned result.</p>
+	        <img src="Image_ContextClient8.gif">
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SMessage Handling"></A>Message Handling</H2></P>		
+		    <div class="h2section" id="Message Handling">
+		<p>
+		This section provides an overview of how an application can implement message handling when using the
+		contextClient Lambda.</p>
+		<p>
+		Most calls to contextClient child Lambdas allow Return Type and Notify Type arguments. The Return Type argument
+		affects the type of return received from the child Lambda call. A Return Type of Wait will cause the child Lambda to
+		return an AMP message structure, discussed later in this section, while all other Return Types cause the return of
+		a numeric RequestID and optionally a Notification Message as specified by the NotifyType argument.</p>
+		<p>
+		The NotifyType argument determines if a Notification Message is generated, in the request queue of the
+		local context, when the return result is received from the remote context. Notification Messages are AMP messages.</p>
+		<p>
+		To illustrate the power of contextClient messaging we will examine the way calls with the NoReturn/FullNotify
+		combination can be handled by an application. This will introduce the use of the contextClient.notifyRegister
+		child Lambda.</p>
+		<p>
+		First, lets review the NoReturn/FullNotify combination example from the Introduction:<br/>>
+		 <strong>NoReturn,FullNotify</strong> - This option combo causes the return result generated by execution of Lambdas 
+		in a remote context (a remote Lambda request) to arrive as a Notification Message in the local context's request queue.
+		as shown in Figure 4 above.</p>
+		<p>
+		The Notification Message is an AMP message with a target Lambda of contextClient and a speech act of
+		notify. Thus, the contextClient.notify child Lambda is executed with the AMP message structure passed
+		to it as an argument. Review the AMP documentation for more information on the AMP protocol.</p>
+		<p>
+		The contextClient.notify child Lambda is responsible for passing Notification Messages to zero or 
+		more &quot;subscribers&quot;. Applications call contextClient.registerNotify to specify which Lambdas should
+		be notified when a Notification Message is received by contextClient - these Lambdas are called 
+		notification subscribers.</p>
+		<p>
+		So far we have discussed the following Lambdas: local Lambda, contextClient,
+		contextClient.notify Lambda, contextClient.registerNotify Lambda, remote Lambda. The following
+		list provides a somewhat abbreviated example of when and how these Lambdas are created and used.</p>
+		<ul>
+		<li>Remote Lambdas are loaded into the Remote Context by its startup script.</li>
+		<li>Local Lambdas and the contextClient Lambda are loaded into the Local Context by its startup script.</li>
+		<li>The application Lambda calls contextClient.notifyRegister to register a child Lambda as a subscriber to
+		Notification Messages.</li>
+		<li>The local Lambda creates an instance of contextClient, called myContextClient, and makes 
+		myContextClient.logon and myContextClient.openSession calls to create a context session on the Remote Context. </li>
+		<li>The Remote Client submits a request to the Local Context to run a local Lambda. The local Lambda
+		uses myContextClient.eval to start the execution of a remote Lambda in the Remote Context. The application Lambda
+		returns a RequestID to the Remote Client. At this point, the Local Context is idle and the Remote Context is
+		processing the remote Lambda request.</li>
+		<li>The remote Lambda execution completes and a return response is returned to the Local Context as a Notification
+		Message in the Local Context Request queue. The Notification Message is addressed to the contextClient.notify child
+		Lambda.</li>
+		<li>The Local Context thread picks up the Notification Message request and calls contextClient.notify, passing the
+		Notification Message, which is an AMP message, to contextClient.notify as an argument.</li>
+		<li>The contextClient.notify Lambda calls the application's subscriber Lambda, passing the Notification Message as
+		an argument. The application subscriber Lambda performs some application specific processing using the information
+		in the Notification Message and then returns.</li>
+		<li>The contextClient.notify Lambda returns.</li>
+		<li>The Local Context return result from contextClient.notify is dropped. Notification Message return results
+		are not returned to anyone. Notification Messages are EVENTS and thus have no return result target.</li>
+		</ul>	  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAMP Message Return Structure"></A>AMP Message Return Structure</H2></P>		
+		    <div class="h2section" id="AMP Message Return Structure">
+			<p>
+			Most contextClient child Lambdas return AMP Message Return structures - either immediately 
+			or as an Notification Message. See the Messaging section for a more detailed discussion of Notification
+			Messages.</p>
+			<p>The AMP Message return structure has the following elements:</p>
+			<ul>
+			<li>contextClient: The value of this element is &quot;notify&quot;</li>
+			<li>RequestID: This is the RequestID generated by a myContextClient call.</li>
+			<li>AisOut: This is the string return result from the execution of an Lambda in the Remote Context.</li>
+			<li>NumValue: This is the numeric return result from the execution of an Lambda in the Remote Context.</li>
+			<li>Error: This is a string containing any error message from the execution of an Lambda in the Remote Context.</li>
+			</ul>		  
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SContext Client Request Call Chain"></A>Context Client Request Call Chain</H2></P>		
+		    <div class="h2section" id="Context Client Call Chain">
+			<p>
+			<strong>Local Context.</strong> This level of detail is of little interest to users of the Context Client.  It is here just for developers
+			who need to maintain or enhance the Context Client.	Figure 9  below shows in more detail the sequence of calls and transmissions
+			 that carry the message from one context to another and back again. The process is initiated by an Lambda that sends an execution
+			 string and an object  to a remote client that is responsible for using the execution string to operate on the object in the remote
+			 context.  After a byte array has been filled with a serialized representation of the object closure, this request results in a call to
+			 ASBGlue_ContextClient with a reference to the execution string.  The task to be performed is specified by a function handle.  In
+			 this case, the function handle specifies a write operation.  After the call is made, ASBGlue_ContextClient falls into a loop that
+			 waits from a flag named mComplete to be set in a task structure when  the result is finally returned from the remote context.  The
+			request and a reference to the byte vector is passed to AContextClient and then via AAppClient to the remote context.  If both
+			contexts are in-process, a direct function call is made to the remote context; otherwise, the request and the byte array are
+			 transmitted as a serial byte stream over a TCP connection to the remote context.  If a TCP connection is required, the ownership
+			 of the byte array is transferred to ASocket which deletes the byte array after it is transmitted to the remote context.  The entire
+			 call chain is carried out on the local context's thread.  This is made possible by the recent addition of an event loop in Qt's thread
+			  implementation.</p>
+			 <p>
+			 <strong>Remote Context.</strong> No matter which method was used, in-proc or TCP, the exact same sequence of operations
+			 are made from the AAppSvr's submit method  through the rest of the call chain.   In the case of a  TCP connection, a new byte
+			 array is created and a reference to this array is passed on in  the same fashion  as for the in-process case.  In the case of a
+			 TCP connection, the call chain is executed on the main thread; else, the call  chain continues to execute on the local context's
+			 thread.  In ASessionMgr's submit method, the request and a reference to the byte array is placed in a request structure that is,
+			 in turn, placed in a request queue.  Later, the processNextRequest method is called on the remote context's thread which
+			 then removes the oldest request from the queue and then hands the execution string and byte array to ASBGlue_Eval for
+			 evaluation.</p>
+			    <img src="Image_ContextClient9.gif">
+			 <H3>Context Client Return Output Call Chain</H3>
+			 <p>
+			<strong>Remote Context.</strong> Figure 10 above shows in more detail the sequence of calls and transmissions that carry the
+			result back from the remote context to the waiting local context. In some cases, such as a read request from ASBGlue_ContextClient,
+			a byte array may also be returned containing a requested serialized object closure.  The return output call chain is initiated on the
+			remote context's thread.  ASessionMgr's cbReturnResult generates an event that is caught by AAisMgr's event handler, named
+			event.  This event handler is running in the remote server's main thread.</p>
+			<p>
+			<strong>Local Context</strong>  Just as described above for the request call chain, the result and its byte array, if any,
+			are passed back to the local context.  In either case, the AAppClient's returnOutput method receives the same inputs.
+			In this case, returnOutput is running on the main thread of the local server.  AContextClient is an instance of an AppClient.
+			Its postMessage method places the return result and byte array reference in the task structure created when the
+			request was first initiated by ASBGlue_ContextClient.   Finally, postMessage sets	the mComplete in this task structure.
+			Meanwhile, back at the ranch,  the local context thread that is still stuck in a wait loop calls getReturnResult and	discovers that
+			the mComplete flag is set.  Then, ASBGlue_ContextClient proceeds to return from  back to the caller with the returned result and
+			byteArray.  Ownership of the byte array that arrived with the return result is transferred to ASBGlue_ContextClient.  It deletes
+			the byte array after it has been processed by loadObject in the engine.</p>
+			<p>
+			<strong>Source Code.</strong>To delve into this process even deeper,  consult the extensive source-code documentation
+			for each class shown in the above figures.  The table below shows the project name for every class shown in the above
+			diagram.  You can open the aisdev or aiswip solution in Visual Studio and then view the projects in the solution explorer.
+			Open the project shown in the table and then view the class source file to examine the source-code documentation for
+			the method shown in the class nodes in the above diagram.</p>
+			<table cellspacing="2" cellpadding="2" border="0">
+			<tr>
+			    <th>Class</th>
+			    <th>Project</th>
+			</tr>
+			<tr><td>ASBGlue</td><td>glue</td></tr>
+			<tr><td>AContextClient</td><td>asessionmgr</td></tr>
+			<tr><td>AAppClient</td><td>appclient</td></tr>
+			<tr><td>ASocket</td><td>appclient</td></tr>
+			<tr><td>AAppSvr</td><td>appsvr</td></tr>
+			<tr><td>AAisSvr</td><td>aissvr</td></tr>
+			<tr><td>AAisMgr</td><td>aismgr</td></tr>
+			<tr><td>ASessionMgr</td><td>asessionmgr</td></tr>
+			</table>
+			<p>
+			<strong>General Request Case.</strong> The flow diagram shown in Figure 9 also applies to the general case.  A request 
+			may be initiated by any remote client by calling the AAppclient submit method.  The request follows the rest of the call chain
+			from this point. Even other protocol servers, such as AHttpSvr and AXmlSvr, call the AAppSvr submit method and then the
+			request follows the  rest of the call chain.</p>
+			<p>
+			<strong>General Return Case.</strong> The flow diagram shown in Figure 10 also applies to the general case.  Results
+			generated by smtbase are  returned by calling the ASessionMgr cbReturnResult method.  The return output follows the rest
+			 of the call chain back to the AAppClient returnOutput method. From there, the AAppClient returnMsg method returns the
+			 result back to the remote client.</p>
+			 <p>
+			 <strong>Other Protocols.</strong>  Even in the case of other protocol servers, such as AHttpSvr and AXmlSvr, the result
+			 is handled in exactly the way up to AAppClient's returnMsg.  AAppClient returnMsg  returns the result back to the
+			 protocol server's returnOutput method which formats and returns the result back to the remote client.  Some restrictions
+			 apply.  For example, these protocol servers do not currently have the capability to return serialized objects.</p>
+		  </div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

@@ -1,0 +1,295 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Brick ref 036</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> These examples show the <b>ref</b> function retrieve a
+                  value from the Brick field.  The syntax for referencing is as follows: ref RecordName[ Column Repeat Row ]
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Create a new Brick, named Contestant, and give it 5 Rows each containing two Columns(Name and Score). 
+               The second column(Score) repeats 20 times for each row.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant  (new Brick:  5 Name:Object:1 Score:Number:20))</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Name field as a Vector for the first row's first repeat.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[0 0 0] #("Anna Smith"))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Name field as a Vector for the second row.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[0 0 1] #("John Doe"))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Name field as a Vector for the third row. This example uses a symbol(Name:) instead of an integer index</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[Name: 0 2] #("Jane Baker"))           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the first row and first repeat as 100.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 0 0] 100.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the first row and second repeat as 99.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 1 0] 99.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the second row and first repeat as 99.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 0 1] 99.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the second row and second repeat as 100.0.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[1 1 1] 100.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the third row and first repeat as 75.0. This example uses a symbol(Score:) instead of an integer index.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[Score: 0 2] 75.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Sets the value of the Score field for the third row and second repeat as 75.0. This example uses a symbol(Score:) instead of an integer index.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(setq Contestant[Score: 1 2] 75.0)           </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Record 123456&#62  </Returns></b></td></tr>
+</table><p><Note>Displays contents of the first Brick field on the first row and first repeat. In this example the Name field as
+              a set Vector value.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[0 0 0]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Vector 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Displays contents of the first Brick field on the first row and first repeat.  This example uses a symbol(Name:) instead of an integer index.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[Name: 0 0]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Vector 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Displays the Brick content returned by any of the previous two examples.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display #&#60Vector 123456&#62  ) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>#("Anna Smith" )</Returns></b></td></tr>
+</table><p><Note>Displays contents of the second Brick field on the first row and first repeat.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[1 0 0]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>100.0</Returns></b></td></tr>
+</table><p><Note>Displays contents of the second Brick field on the first row and first repeat. This example uses a symbol(Score:) instead of an integer index.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[Score: 0 0]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>100.0</Returns></b></td></tr>
+</table><p><Note>Displays contents of the second Brick field on the first row and second repeat.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[Score: 1 0]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>100.0</Returns></b></td></tr>
+</table><p><Note>Displays contents of the second Brick field on the second row and first repeat.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[Score: 0 1]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>100.0</Returns></b></td></tr>
+</table><p><Note>Displays contents of the second Brick field on the third row and second repeat.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(ref Contestant[Score: 1 2]) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>75.0</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>ref</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_BitVector_ref_027.html">BitVector ref 027</A></td>
+<td><A HREF="Example_Boolean_ref_018.html">Boolean ref 018</A></td>
+<td><A HREF="Example_Brick_ref_036.html">Brick ref 036</A></td>
+<td><A HREF="Example_Date_ref_020.html">Date ref 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_ref_007.html">Dictionary ref 007</A></td>
+<td><A HREF="Example_Dictionary_ref_008.html">Dictionary ref 008</A></td>
+<td><A HREF="Example_Dictionary_ref_009.html">Dictionary ref 009</A></td>
+<td><A HREF="Example_Directory_ref_010.html">Directory ref 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_ref_011.html">Directory ref 011</A></td>
+<td><A HREF="Example_Directory_ref_012.html">Directory ref 012</A></td>
+<td><A HREF="Example_FltVector_ref_022.html">FltVector ref 022</A></td>
+<td><A HREF="Example_Function_ref_021.html">Function ref 021</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_ref_023.html">IntVector ref 023</A></td>
+<td><A HREF="Example_Lambda_ref_017.html">Lambda ref 017</A></td>
+<td><A HREF="Example_List_ref_028.html">List ref 028</A></td>
+<td><A HREF="Example_Matrix_ref_015.html">Matrix ref 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_ref_016.html">Matrix ref 016</A></td>
+<td><A HREF="Example_NumMatrix_ref_035.html">NumMatrix ref 035</A></td>
+<td><A HREF="Example_NumVector_ref_024.html">NumVector ref 024</A></td>
+<td><A HREF="Example_Number_ref_019.html">Number ref 019</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_ref_025.html">ObjVector ref 025</A></td>
+<td><A HREF="Example_ObjectRepository_ref_030.html">ObjectRepository ref 030</A></td>
+<td><A HREF="Example_ObjectRepository_ref_031.html">ObjectRepository ref 031</A></td>
+<td><A HREF="Example_ObjectRepository_ref_032.html">ObjectRepository ref 032</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjectRepository_ref_033.html">ObjectRepository ref 033</A></td>
+<td><A HREF="Example_ObjectRepository_ref_034.html">ObjectRepository ref 034</A></td>
+<td><A HREF="Example_PcodeVector_ref_026.html">PcodeVector ref 026</A></td>
+<td><A HREF="Example_ShortVector_ref_024.html">ShortVector ref 024</A></td>
+</tr><tr>
+<td><A HREF="Example_String_ref_001.html">String ref 001</A></td>
+<td><A HREF="Example_String_ref_002.html">String ref 002</A></td>
+<td><A HREF="Example_Structure_ref_004.html">Structure ref 004</A></td>
+<td><A HREF="Example_Structure_ref_006.html">Structure ref 006</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_ref_003.html">Symbol ref 003</A></td>
+<td><A HREF="Example_Vector_ref_013.html">Vector ref 013</A></td>
+<td><A HREF="Example_Vector_ref_014.html">Vector ref 014</A></td>
+<td><A HREF="Example_Void_ref_017.html">Void ref 017</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_ref_Builtin.html">ref</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_setq_Builtin.html">setq(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Brick.html">Brick</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Brick_cdr_010.html">Brick cdr 010</A></td>
+<td><A HREF="Example_Brick_compare_019.html">Brick compare 019</A></td>
+<td><A HREF="Example_Brick_compareEQ_019.html">Brick compareEQ 019</A></td>
+<td><A HREF="Example_Brick_compareGT_019.html">Brick compareGT 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_compareLE_019.html">Brick compareLE 019</A></td>
+<td><A HREF="Example_Brick_compareLT_019.html">Brick compareLT 019</A></td>
+<td><A HREF="Example_Brick_compareNE_019.html">Brick compareNE 019</A></td>
+<td><A HREF="Example_Brick_comparison_019.html">Brick comparison 019</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_copy_012.html">Brick copy 012</A></td>
+<td><A HREF="Example_Brick_isAtom_011.html">Brick isAtom 011</A></td>
+<td><A HREF="Example_Brick_isEqual_018.html">Brick isEqual 018</A></td>
+<td><A HREF="Example_Brick_isIdentical_020.html">Brick isIdentical 020</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_isObject_014.html">Brick isObject 014</A></td>
+<td><A HREF="Example_Brick_isType_022.html">Brick isType 022</A></td>
+<td><A HREF="Example_Brick_length_017.html">Brick length 017</A></td>
+<td><A HREF="Example_Brick_new_015.html">Brick new 015</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_ref_036.html">Brick ref 036</A></td>
+<td><A HREF="Example_Brick_setCdr_014.html">Brick setCdr 014</A></td>
+<td><A HREF="Example_Brick_setq_029.html">Brick setq 029</A></td>
+<td><A HREF="Example_Brick_setq_28.html">Brick setq 28</A></td>
+</tr><tr>
+<td><A HREF="Example_Brick_sizeof_029.html">Brick sizeof 029</A></td>
+<td><A HREF="Example_Brick_type_026.html">Brick type 026</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

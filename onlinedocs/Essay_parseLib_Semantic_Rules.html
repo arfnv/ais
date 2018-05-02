@@ -1,0 +1,376 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>parseLib Semantic Rules</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SSemantic Rules "><FONT SIZE=2>Semantic Rules </font></a></li><li><a href="#SSemantic Rule Definitions"><FONT SIZE=2>Semantic Rule Definitions</font></a></li><li><a href="#SBNF Notation  "><FONT SIZE=2>BNF Notation  </font></a></li><li><a href="#S$this"><FONT SIZE=2>$this</font></a></li><li><a href="#SArgument Passing"><FONT SIZE=2>Argument Passing</font></a></li><li><a href="#SIterative Rules "><FONT SIZE=2>Iterative Rules </font></a></li><li><a href="#STerm Conditions "><FONT SIZE=2>Term Conditions </font></a></li><li><a href="#SSpecial Rule Syntax"><FONT SIZE=2>Special Rule Syntax</font></a></li><li><a href="#SAppend List Function "><FONT SIZE=2>Append List Function </font></a></li><li><a href="#SRule Precedence"><FONT SIZE=2>Rule Precedence</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>		
+		    <div class="h2section" id="Semantic Overview">
+			<p class=MsoBodyText>This section
+			contains initial working notes on the design of the semantic rules and features
+			definition language. The semantic definition sublanguage is a combination of
+			the lexical analysis ideas in [<b style='mso-bidi-font-weight:normal'>1</b>.3.3]
+			and the feature based grammar ideas in [<b style='mso-bidi-font-weight:normal'>2</b>.7].
+			</p>
+			</div>
+	     <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSemantic Rules "></A>Semantic Rules </H2></P>		
+		    <div class="h2section" id="Semantic Rules ">
+			<p class=MsoBodyText>The parseLib
+			supports compiled forward production rules similar to the rulesLib (see the
+			rulesLib documentation for an explanation of forward production list
+			morphing) The similar rules syntax is used for semantic rules as for
+			recognition rules. The rule names for each semantic pass are defined as
+			follows:</p>
+			<p class=code style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>#SemanticPasses#</b></p>
+			<p class=code style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>OPTIMIZATION  true</b></p>
+			<p class=code style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>SYNTAX
+			false</b></p>
+			<p class=code style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>#End#</b></p>
+			<p class=MsoBodyText>Each semantic
+			rule name is defined as single pass (<b style='mso-bidi-font-weight:normal'>false</b>)
+			or multiple pass (<b style='mso-bidi-font-weight:normal'>true</b>). Multiple
+			rule passes operate in the same manner as with rulesLib. Each semantic rule
+			name assumes it is receiving a directed acyclic graph expressed as a List. This
+			DAG may contain nodes in direct mode or feature based nodes. With feature based
+			nodes, the features may refer forward and backward (creating a general chart or
+			graph) even though the List must be a DAG.</p>
+		    </div>
+		 <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSemantic Rule Definitions"></A>Semantic Rule Definitions</H2></P> 
+            <div class="h2section" id="Semantic Rule Definitions">
+              		<p class=MsoBodyText>Reference [<b style='mso-bidi-font-weight:normal'>1</b>.3.3] uses syntax definition from
+			regular definitions of the form: </p>
+			<p class=MsoBodyText style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>d<sub>1</sub></b>   <b style='mso-bidi-font-weight:normal'>:</b>     <b style='mso-bidi-font-weight:normal'>r<sub>1</sub>  ||  c<sub>1  </sub>|| :: a<sub>1 </sub>::</b></p>
+			<p class=MsoBodyText style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>d<sub>2</sub></b>   <b style='mso-bidi-font-weight:normal'>:</b>     <b style='mso-bidi-font-weight:normal'>r<sub>2</sub>  ||  c<sub>2  </sub>|| :: a<sub>2</sub> ::</b></p>
+			<p class=MsoBodyText style='margin-left:.5in'><b style='mso-bidi-font-weight:normal'>
+			.  .  . </b></p>
+			<p class=MsoBodyText style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>d<sub>n</sub></b>   <b style='mso-bidi-font-weight:normal'>:</b>    <b style='mso-bidi-font-weight:normal'>r<sub>n</sub>  ||  c<sub>n  </sub>|| :: a<sub>1</sub> ::</b></p>
+			<p class=MsoBodyText>Where each <b style='mso-bidi-font-weight:normal'>d<sub>i</sub></b> is a rule name, each <b style='mso-bidi-font-weight:normal'>r<sub>i</sub></b> is a rule expression,
+			each <b style='mso-bidi-font-weight:normal'>c<sub>i</sub></b> is a Lisp
+			conditional expression, and each <b style='mso-bidi-font-weight:normal'>a<sub>i</sub></b>
+			is a Lisp action expression. The syntax for rule definition is as follows:</p>     
+			<blockquote>
+			<p class=code><b style='mso-bidi-font-weight:normal'>#SyntaxRules#</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>REXPR: + Term || (= $2.Term true) || :: $2
+			::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>REXPR: - Term || (= $2.Number true) || ::
+			(setq $2.Value (- 0 $2.Value))</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>REXPR=: - Term :: (setq $2.Value (list |-|:
+			0 $2.Value))</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>REXPR=: Term :: $1</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>REXPR=: REXPR RelationalOperator REXPR::
+			(setq $0.Value (list $2.Lisp $1 $3))</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>REXPR=: LeftParen REXPR RightParen :: $2</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>SEXPR: + Term || (= $2.Term true) || :: $2
+			::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>SEXPR: - Term || (= $2.Number true) || ::
+			(setq $2.Value (- 0 $2.Value))</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>SEXPR: - Term :: (setq $2.Value (list |-|:
+			0 $2.Value))</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>SEXPR: Term :: $1</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>SEXPR: SEXPR Operator SEXPR:: (setq
+			$0.Value (list $2.Lisp $1 $3))</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>SEXPR: LeftParen SEXPR RightParen :: $2</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>&nbsp;</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>#End#</b></p>
+			</blockquote>
+			<p class=MsoBodyText>The Lisp
+			condition rule is optional. If present, it must be enclosed by the <b style='mso-bidi-font-weight:normal'>||</b> symbol. The Lisp action rule is
+			mandatory. It must be enclosed by the <b style='mso-bidi-font-weight:normal'>::</b>
+			symbol. The rule variable <b style='mso-bidi-font-weight:normal'>$0</b> is the
+			default structure initialized by the rule. The <b style='mso-bidi-font-weight:
+			normal'>$0</b> variable always has the attribute of the named rule set to true.
+			The rule variables <b style='mso-bidi-font-weight:normal'>$1</b> through <b style='mso-bidi-font-weight:normal'>$9</b> correspond to the respective token
+			expressions in the rule body.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note1</b>:  All
+			rule names must contain only uppercase characters and must contain no non
+			uppercase characters, numerals, or underscores.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note2</b>:  The
+			<b style='mso-bidi-font-weight:normal'>$</b> symbol must not be used in an
+			argument phrase, action, or condition rule anywhere except as a rule variable
+			identifier <b style='mso-bidi-font-weight:normal'>$0</b> through <b style='mso-bidi-font-weight:normal'>$9</b>. If the condition or action rule
+			requires a <b style='mso-bidi-font-weight:normal'>$</b> symbol, for instance
+			inside a string constant, place the <b style='mso-bidi-font-weight:normal'>$</b>
+			symbol in a user defined function which is called by the argument phrase,
+			action, or condition rule.</p>  
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBNF Notation  "></A>BNF Notation  </H2></P> 
+            <div class="h2section" id="BNF Notation">
+			<p class=MsoBodyText>Syntax rule
+			names, syntax feature names, but not constants, may have trailing BNF operators
+			of <b style='mso-bidi-font-weight:normal'>"*"</b> or <b style='mso-bidi-font-weight:
+			normal'>"+"</b> or <b style='mso-bidi-font-weight:normal'>"?"</b>. For example:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>SEQUENCE: Number+ ::
+			(setq $0.Value $1) ::</b></p>
+			<p class=MsoBodyText>Any syntax rule
+			name and any syntax feature name (other than the special <b style='mso-bidi-font-weight:
+			normal'>Eof</b> and <b style='mso-bidi-font-weight:normal'>Nop</b> features)
+			may have trailing BNF operators. The user is required to make sure that the
+			resulting rule does not cause the new compiler to loop endlessly on the input
+			string. The BNF operators have the following meanings:</p>
+			<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo5;
+			tab-stops:list .5in'>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The <b style='mso-bidi-font-weight:normal'>"*"</b>
+			operator signifies none or more (<i style='mso-bidi-font-style:normal'>may
+			cause endless looping if specified inappropriately</i>). </p>
+			<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo5;
+			tab-stops:list .5in'>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The <b style='mso-bidi-font-weight:normal'>"+"</b>
+			operator signifies one or more. </p>
+			<p class=MsoBodyText style='margin-left:.5in;text-indent:-.25in;mso-list:l1 level1 lfo5;
+			tab-stops:list .5in'>??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The <b style='mso-bidi-font-weight:normal'>"?"</b>
+			operator signifies none or one.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note1</b>:  For
+			syntax features, the BNF operators a vector of each repetition result. </p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note2</b>:  For
+			syntax rules, the BNF operators return a vector of each repetition result.</p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="S$this"></A>$this</H2></P> 
+            <div class="h2section" id="$this">
+			 <p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>$this</b> variable contains the current
+			input token, at each invocation of a semantic rule with the <b style='mso-bidi-font-weight:normal'>+</b> and <b style='mso-bidi-font-weight:
+			normal'>*</b> BNF command modifiers, during semantic analysis. The <b style='mso-bidi-font-weight:normal'>$this</b> variable can be used in
+			connection with user defined condition rules, for example:</p>
+			<p class=code>            <b style='mso-bidi-font-weight:normal'>MAIN|
+			Any{(isNumber $this)}*</b></p>		      
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SArgument Passing"></A>Argument Passing</H2></P> 
+            <div class="h2section" id="Argument Passing">
+			<p class=MsoBodyText>User defined
+			rules may be passed arguments. A Lisp argument phrase, enclosed with the <b style='mso-bidi-font-weight:normal'>( )</b>
+			symbol pair, will cause the user defined rule to receive the specified
+			argument. Within a user defined rule definition, the <b style='mso-bidi-font-weight:
+			normal'>%0</b> thru <b style='mso-bidi-font-weight:normal'>%9</b> variables
+			represent any arguments which may have been passed to the rule as follows:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>QUALIFY:  DotOperator
+			Name  QUALIFY(  (setq $0.Value (append |ref|: %0.Value
+			$2.Value)) )</b></p>
+			<p class=code style='margin-left:2.0in;text-indent:.5in'><b style='mso-bidi-font-weight:normal'>::
+			$3.Value ::</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>QUALIFY:  DotOperator
+			Name  :: (setq $.0.Value (append
+			|ref|: %0.Value $2.Value)) ::</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>TERM: Name QUALIFY($1) ::
+			$2 ::</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>TERM: Name :: $1 ::</b></p>
+			<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>TERM</b> rule will recognize all syntax of
+			the form <b style='mso-bidi-font-weight:normal'>Name.Name.Name ...</b>  The rule returns when a Dot Operator no
+			longer qualifies the name. The result is a structure with the attribute <b style='mso-bidi-font-weight:normal'>TERM = true</b>, and the <b style='mso-bidi-font-weight:normal'>Value</b> attribute containing the complete
+			expression already reformed into a nested <b style='mso-bidi-font-weight:normal'>ref</b>  notation list.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    The
+			<b style='mso-bidi-font-weight:normal'>%</b> symbol must not be used in an
+			argument phrase, action, or condition rule anywhere except as a rule variable
+			identifier <b style='mso-bidi-font-weight:normal'>%0</b> through <b style='mso-bidi-font-weight:normal'>%9</b>. If the argument phrase, action, or
+			condition rule requires a <b style='mso-bidi-font-weight:normal'>%</b> symbol,
+			for instance inside a string constant, place the <b style='mso-bidi-font-weight:
+			normal'>%</b> symbol in a user defined function which is called by the argument
+			phrase, action, or condition rule.</p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SIterative Rules "></A>Iterative Rules </H2></P> 
+            <div class="h2section" id="Iterative Rules ">
+			<p class=MsoBodyText>User defined
+			rules may be repeated interatively. A Lisp action rule, enclosed with the <b style='mso-bidi-font-weight:normal'>&lt;&lt;
+			&gt;&gt;</b>  symbol pair, will
+			cause the user defined rule to repeat. The contents of the $0 variable remain
+			intact. The builtin <b style='mso-bidi-font-weight:normal'>Eof</b> attribute
+			name allows a rule to test for <u>End Of File</u> in the following rule:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>SEXPR: Term Operator Term
+			</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>                        &lt;&lt; (setq $.0.Value
+			(appendList $0.Value (list (list $2.Value $1.Value $3.Value)))) &gt;&gt;</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>SEXPR: Operator Term
+			&lt;&lt; (setq $.0.Value (list $1.Value $0.Value $2.Value)) &gt;&gt;</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>SEXPR: Eof :: $0 ::</b></p>
+			<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>SEXPR</b> rule will recognize all syntax of
+			the form <b style='mso-bidi-font-weight:normal'>Term Operator Term Operator
+			Term Operator ...</b>  The rule returns
+			when the End Of File is reached. The result is a structure with the attribute <b style='mso-bidi-font-weight:normal'>SEXPR = true</b>, and the <b style='mso-bidi-font-weight:normal'>Value</b> attribute containing the complete
+			expression already reformed into a prefix notation list.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    The
+			<b style='mso-bidi-font-weight:normal'>$n</b> symbol contains the repetition
+			count for the rule. During the first iteration through the rule, the $n
+			variable is set to 1.</p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="STerm Conditions "></A>Term Conditions </H2></P> 
+            <div class="h2section" id="Term Conditions">
+			 <p class=MsoBodyText>User defined
+			rules may be also have user defined conditions attached. A Lisp condition
+			phrase, enclosed with the <b style='mso-bidi-font-weight:normal'>{ }</b>  symbol pair, will cause the user defined
+			rule to receive the specified condition. Within a user defined rule condition,
+			the <b style='mso-bidi-font-weight:normal'>%0</b> thru <b style='mso-bidi-font-weight:
+			normal'>%9</b> variables represent any arguments which may have been passed to
+			the rule, while the <b style='mso-bidi-font-weight:normal'>$0</b> thru <b style='mso-bidi-font-weight:normal'>$9</b> variables represent any terms which
+			may have been recognized by the rule.</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>STRING:  Quote{(= $n 1)}  &lt;&lt;  true  &gt;&gt;</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>STRING:  Any
+			&lt;&lt;  (setq $0.Value
+			(appendList $0.Value $1.Value)  &gt;&gt;</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>STRING:  Quote{(&gt; $n 1)}  ::  $0  ::</b></p>
+			<p class=MsoBodyText>The <b style='mso-bidi-font-weight:normal'>STRING</b> rule will recognize all syntax
+			tokens inclosed within two quotes  The
+			rule returns only when the second quote is recognized. User defined rules may
+			have both argument passing and user defined conditions attached. The suer
+			defined condition is always last, as follows.</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>TERM:  NAME(%0){(= $1.Term true)}  ::
+			$1  ::</b></p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    The
+			<b style='mso-bidi-font-weight:normal'>%</b> symbol must not be used in an
+			argument phrase, action, or condition rule anywhere except as a rule variable
+			identifier <b style='mso-bidi-font-weight:normal'>%0</b> through <b style='mso-bidi-font-weight:normal'>%9</b>. If the argument phrase, action, or
+			condition rule requires a <b style='mso-bidi-font-weight:normal'>%</b> symbol,
+			for instance inside a string constant, place the <b style='mso-bidi-font-weight:
+			normal'>%</b> symbol in a user defined function which is called by the argument
+			phrase, action, or condition rule.</p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSpecial Rule Syntax"></A>Special Rule Syntax</H2></P> 
+            <div class="h2section" id="Special Rule Syntax">
+			<h4> Any </h4>
+			<p class=MsoBodyText>In direct mode,
+			if a rule is to accept any token, use the
+			<b style='mso-bidi-font-weight:normal'>Any</b>  attribute. This special test works because <b style='mso-bidi-font-weight:
+			normal'>Any</b> tests the token directly and does not assume that it is feature
+			based. For example:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            ;;  This rule recognizes a
+			plus sign between anything</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+			Any{(= $2 &quot;+&quot;)}  Any ::
+			(setq $0.Value (list '+   $1  $3)) ::</b></p>
+			<h4> Eof </h4>
+			<p class=MsoBodyText>If a rule is to
+			test for end of file, use the  <b style='mso-bidi-font-weight:normal'>Eof</b>
+			attribute. For example:</p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>
+			;;  This rule recognizes an end
+			of file condition</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Eof  :: $0 ::</b></p>
+			<h4> Nop </h4>
+			<p class=MsoBodyText>The special <b style='mso-bidi-font-weight:normal'>Nop</b> attribute always returns a constant
+			token of #void. The <b style='mso-bidi-font-weight:normal'>Nop</b> attribute is
+			designed to provide a test which always is true, but does not promote the token
+			pointer (i.e. a no-operation rule). </p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>MAIN: STATEMENT Semicolon
+			&lt;&lt; (setq $.0.Value (appendList $0.Value $1.Value)) &gt;&gt;</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>MAIN: Eof
+			:: $LIST   ::</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>MAIN: Nop :: (error "If
+			we get here we have an invalid token") ::</b></p>
+			<p class=MsoBodyText>This sample <b style='mso-bidi-font-weight:normal'>MAIN</b> rule will recognize all syntax of
+			the form <b style='mso-bidi-font-weight:normal'>statement; statement;
+			statement; ...</b>  However, if the MAIN
+			rule encounters anything else (other than <b style='mso-bidi-font-weight:normal'>statement;</b>),
+			then an error message will be returned. The rule returns when the End Of File
+			is reached, or an error is generated.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>: If the <b style='mso-bidi-font-weight:
+			normal'>Nop</b> test is used, <u>user ordering</u> of the specified rule is
+			almost always required.</p>
+			<h4> $N </h4>
+			<p class=MsoBodyText>We may use a
+			previously recognized parser variable to indicate a test for equality. For
+			example:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            ;;  These two rules are equivalent</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Any  $1 :: $0 ::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+			Any{(= $2 $1)}  :: $0 ::</b></p>
+			<h4> $X </h4>
+			<p class=MsoBodyText>We may use a user
+			named parser variable to indicate a test for equality. For example:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            ;;  These three rules are equivalent</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Any  $1 :: $0 ::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  $X
+			$X  :: $0 ::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+			Any{(= $2 $1)}  :: $0 ::</b></p>
+			<h4> %N </h4>
+			<p class=MsoBodyText>We may use a
+			previously passed parser argument variable to indicate a test for equality. For
+			example:</p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            ;;  These two rules are equivalent</b></p>
+			<p class=code style='mso-outline-level:1'><b style='mso-bidi-font-weight:normal'>            RULE:  Any  %0
+			:: $0 ::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+			Any{(= $2 %0)}  :: $0 ::</b></p>
+			<h4> Direct Mode </h4>
+			<p class=MsoBodyText>Using the
+			vertical bar symbol (<b style='mso-bidi-font-weight:normal'>|</b>) after a rule
+			name indicates direct mode. In direct mode the rule does not assume that the
+			tokens are feature based. All constants result in Any tests. For example:</p>
+			<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>;;
+			These two rules are equivalent</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE|  Any
+			+  Any  :: (setq $0.Value (list '+
+			$1  $3)) ::</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE:  Any
+			+  Any  :: (setq $0.Value (list '+
+			$1.Value  $3.Value)) ::</b></p>
+			<h4> [ &amp; ] </h4>
+			<p class=MsoBodyText>During the
+			semantic rule passes, we may test for a sublist, including pushing the
+			recognition pointer down into the sublist, with the special  <b style='mso-bidi-font-weight:normal'>[  </b>test. To test of the sublist close and
+			to pop the recognition pointer back out of the sublist, use the  <b style='mso-bidi-font-weight:normal'>]</b>  test. This works, in both feature based and
+			direct mode. For example:</p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>
+			;;  This semantic rule recognizes
+			an expression containing a sublist</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>
+			  ;;    like the following:
+			x  (+  x  x ), and returns this substitution
+			(* 3 x)</b></p>
+			<p class=code><b style='mso-bidi-font-weight:normal'>            RULE|  Any  [
+			+ $1 $1 ] Eof   :: (list |*|: 3 $1) ::</b></p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAppend List Function "></A>Append List Function </H2></P> 
+            <div class="h2section" id="Append List Function">
+			 <p class=MsoBodyText>The builtin
+			appendList function allows multiple arguments to be append together to form a
+			list as follows:</p>
+			<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>(define
+			X  '(5 6 7))</b></p>
+			<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>(define
+			Y  '(10 20))</b></p>
+			<p class=code style='text-indent:.5in'><b style='mso-bidi-font-weight:normal'>(appendList '+  X  Y)    ==&gt;      (+
+			5 6 7 10 20)</b></p>
+            </div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SRule Precedence"></A>Rule Precedence</H2></P> 
+            <div class="h2section" id="Rule Precedence">
+			<p class=MsoBodyText>This Lambda
+			supports multiple rule definitions up to the limits of available memory. The
+			rule precedence, within a rule, is determined by the parseLib, to maximize
+			search speed, and is unpredictable by the user. However any RULE may have
+			automatic rule ordering turned off by specifying the following special rule
+			statement as the first statement of the rule.</p>
+			<p class=code style='mso-outline-level:1'>            <b style='mso-bidi-font-weight:normal'>RULENAME:
+			user ordering  ::  true
+			::</b></p>
+			<p class=MsoBodyText>If automatic rule
+			ordering is turned off, the parseLib will attempt to use the rule ordering
+			supplied by the programmer in the DEFINITIONS file. <u>If at all possible, the
+			rule ordering, specified by the developer, will be closely followed by the
+			parseLib in generating the compiler code</u>.</p>
+			<p class=MsoBodyText><b style='mso-bidi-font-weight:normal'>Note</b>:    If
+			the <b style='mso-bidi-font-weight:normal'><u>Eof</u></b> and/or <b style='mso-bidi-font-weight:normal'><u>Nop</u></b> special feature test are
+			used in a rule, user ordering is advisable, because these tend to make it hard
+			for parseLib to gues the correct ordering on its own.</p>
+			</div>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

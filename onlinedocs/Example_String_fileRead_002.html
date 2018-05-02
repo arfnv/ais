@@ -1,0 +1,436 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example String fileRead 002</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> This example uses the <b>fileRead</b> function to read a
+					previously written file using the file  <b>length</b> to specify what portion of 
+					the file to write  and a pointer to a new Byte Vector  where the portion of the file read is to be written.
+					
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>This Lambda saves the first 20 characters of the file in a Byte Vector.</Note> </p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> 
+(defun fileLambda()    <br>
+regs:((CharPointer:fp) cc)  <br>
+vars:(fileRecord)        <br>
+
+(setq fileID (fileOpen "testReadRecord.txt" 1 0)) <br>
+(fileWrite fileID {abcdefghijklmnopqrstuvwxyz} )  <br>
+(fileClose fileID 1)                   <br>
+(setq fileID (fileOpen "testReadRecord.txt" 0 0))   <br>
+(setq fileRecord (new Vector: Byte: 30))   <br>
+(setq fp fileRecord)     <br>
+(fileRead fileID fp 20)	    <br>
+(setq cc fp[0])                  <br>
+(writeln "First character in the file is: " (char cc))     <br>
+(fileClose fileID 0)     <br>
+) </sc></Expression> </td>
+<td width=30% align=left> Returns: <b><Returns>abcdefghijklmnopqrst</Returns></b></td></tr>
+</table></font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>fileRead</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_String_fileRead_001.html">String fileRead 001</A></td>
+<td><A HREF="Example_String_fileRead_002.html">String fileRead 002</A></td>
+<td><A HREF="Example_String_fileWrite_001.html">String fileWrite 001</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_fileRead_Builtin.html">fileRead</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_fileReadRecord_Builtin.html">fileReadRecord(Builtin)</A></td>
+<td><A HREF="Function_fileClose_Builtin.html">fileClose(Builtin)</A></td>
+<td><A HREF="Function_fileOpen_Builtin.html">fileOpen(Builtin)</A></td>
+<td><A HREF="Function_fileWrite_Builtin.html">fileWrite(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Character.html">Character</A></td>
+<td><A HREF="String.html">String</A></td>
+<td><A HREF="ByteVector.html">ByteVector</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_BitVector_isType_020.html">BitVector isType 020</A></td>
+<td><A HREF="Example_BitVector_ref_027.html">BitVector ref 027</A></td>
+<td><A HREF="Example_Boolean_isType_011.html">Boolean isType 011</A></td>
+<td><A HREF="Example_ByteVector_compress_001.html">ByteVector compress 001</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isByteVector_001.html">ByteVector isByteVector 001</A></td>
+<td><A HREF="Example_ByteVector_isCharAlphabetic_003.html">ByteVector isCharAlphabetic 003</A></td>
+<td><A HREF="Example_ByteVector_isCharAlphanumeric_003.html">ByteVector isCharAlphanumeric 003</A></td>
+<td><A HREF="Example_ByteVector_isCharLowercase_003.html">ByteVector isCharLowercase 003</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isCharName_003.html">ByteVector isCharName 003</A></td>
+<td><A HREF="Example_ByteVector_isCharNumeric__003.html">ByteVector isCharNumeric  003</A></td>
+<td><A HREF="Example_ByteVector_isCharUppercase_003.html">ByteVector isCharUppercase 003</A></td>
+<td><A HREF="Example_ByteVector_isCharWhitespace_003.html">ByteVector isCharWhitespace 003</A></td>
+</tr><tr>
+<td><A HREF="Example_ByteVector_isObject_013.html">ByteVector isObject 013</A></td>
+<td><A HREF="Example_ByteVector_sizeof_020.html">ByteVector sizeof 020</A></td>
+<td><A HREF="Example_ByteVector_type_022.html">ByteVector type 022</A></td>
+<td><A HREF="Example_Character_cadd_001.html">Character cadd 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_ccompareEQ_001.html">Character ccompareEQ 001</A></td>
+<td><A HREF="Example_Character_ccompareGE_001.html">Character ccompareGE 001</A></td>
+<td><A HREF="Example_Character_ccompareGT_001.html">Character ccompareGT 001</A></td>
+<td><A HREF="Example_Character_ccompareLE_001.html">Character ccompareLE 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_ccompareLT_001.html">Character ccompareLT 001</A></td>
+<td><A HREF="Example_Character_ccompareNE_001.html">Character ccompareNE 001</A></td>
+<td><A HREF="Example_Character_cdiv_001.html">Character cdiv 001</A></td>
+<td><A HREF="Example_Character_character_001.html">Character character 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_cmod_001.html">Character cmod 001</A></td>
+<td><A HREF="Example_Character_cmul_001.html">Character cmul 001</A></td>
+<td><A HREF="Example_Character_compare_010.html">Character compare 010</A></td>
+<td><A HREF="Example_Character_compareEQ_010.html">Character compareEQ 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_compareGE_010.html">Character compareGE 010</A></td>
+<td><A HREF="Example_Character_compareGT_010.html">Character compareGT 010</A></td>
+<td><A HREF="Example_Character_compareLE_010.html">Character compareLE 010</A></td>
+<td><A HREF="Example_Character_compareLT_010.html">Character compareLT 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_compareNE_010.html">Character compareNE 010</A></td>
+<td><A HREF="Example_Character_comparison_010.html">Character comparison 010</A></td>
+<td><A HREF="Example_Character_csub_001.html">Character csub 001</A></td>
+<td><A HREF="Example_Character_isEqual_008.html">Character isEqual 008</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_isIdentical_008.html">Character isIdentical 008</A></td>
+<td><A HREF="Example_Character_isType_012.html">Character isType 012</A></td>
+<td><A HREF="Example_Character_setq_017.html">Character setq 017</A></td>
+<td><A HREF="Example_Character_sizeof_010.html">Character sizeof 010</A></td>
+</tr><tr>
+<td><A HREF="Example_Character_type_012.html">Character type 012</A></td>
+<td><A HREF="Example_Context_debugBrowsableProcs_001.html">Context debugBrowsableProcs 001</A></td>
+<td><A HREF="Example_Context_disassemble_001.html">Context disassemble 001</A></td>
+<td><A HREF="Example_Date_hour_001.html">Date hour 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_isDate_001.html">Date isDate 001</A></td>
+<td><A HREF="Example_Date_isType_014.html">Date isType 014</A></td>
+<td><A HREF="Example_Date_julian_001.html">Date julian 001</A></td>
+<td><A HREF="Example_Date_minute_001.html">Date minute 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_month_001.html">Date month 001</A></td>
+<td><A HREF="Example_Date_second_001.html">Date second 001</A></td>
+<td><A HREF="Example_Date_time_001.html">Date time 001</A></td>
+<td><A HREF="Example_Date_time_002.html">Date time 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Date_year_001.html">Date year 001</A></td>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+<td><A HREF="Example_Dictionary_isType_006.html">Dictionary isType 006</A></td>
+<td><A HREF="Example_Dictionary_new_004.html">Dictionary new 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_isType_007.html">Directory isType 007</A></td>
+<td><A HREF="Example_Directory_new_005.html">Directory new 005</A></td>
+<td><A HREF="Example_Directory_ref_010.html">Directory ref 010</A></td>
+<td><A HREF="Example_Directory_ref_012.html">Directory ref 012</A></td>
+</tr><tr>
+<td><A HREF="Example_Error_error_001.html">Error error 001</A></td>
+<td><A HREF="Example_Error_errorTrap_001.html">Error errorTrap 001</A></td>
+<td><A HREF="Example_Error_isError_001.html">Error isError 001</A></td>
+<td><A HREF="Example_Error_onError_001.html">Error onError 001</A></td>
+</tr><tr>
+<td><A HREF="Example_FileIO_closeLog_001.html">FileIO closeLog 001</A></td>
+<td><A HREF="Example_FltVector_isType_016.html">FltVector isType 016</A></td>
+<td><A HREF="Example_FltVector_ref_022.html">FltVector ref 022</A></td>
+<td><A HREF="Example_Function_isType_015.html">Function isType 015</A></td>
+</tr><tr>
+<td><A HREF="Example_IntVector_isType_017.html">IntVector isType 017</A></td>
+<td><A HREF="Example_IntVector_ref_023.html">IntVector ref 023</A></td>
+<td><A HREF="Example_Lambda_balance_001.html">Lambda balance 001</A></td>
+<td><A HREF="Example_Lambda_debugBrowsableProcs_001.html">Lambda debugBrowsableProcs 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_defchild_001.html">Lambda defchild 001</A></td>
+<td><A HREF="Example_Lambda_define_001.html">Lambda define 001</A></td>
+<td><A HREF="Example_Lambda_deforphan_001.html">Lambda deforphan 001</A></td>
+<td><A HREF="Example_Lambda_defriend_001.html">Lambda defriend 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Lambda_defun_001.html">Lambda defun 001</A></td>
+<td><A HREF="Example_Lambda_defun_002.html">Lambda defun 002</A></td>
+<td><A HREF="Example_Lambda_disassemble_001.html">Lambda disassemble 001</A></td>
+<td><A HREF="Example_Lambda_ref_017.html">Lambda ref 017</A></td>
+</tr><tr>
+<td><A HREF="Example_Matrix_isType_009.html">Matrix isType 009</A></td>
+<td><A HREF="Example_Matrix_ref_015.html">Matrix ref 015</A></td>
+<td><A HREF="Example_Matrix_ref_016.html">Matrix ref 016</A></td>
+<td><A HREF="Example_NumMatrix_isType_022.html">NumMatrix isType 022</A></td>
+</tr><tr>
+<td><A HREF="Example_NumMatrix_ref_035.html">NumMatrix ref 035</A></td>
+<td><A HREF="Example_NumVector_isType_018.html">NumVector isType 018</A></td>
+<td><A HREF="Example_NumVector_ref_024.html">NumVector ref 024</A></td>
+<td><A HREF="Example_Number_isType_013.html">Number isType 013</A></td>
+</tr><tr>
+<td><A HREF="Example_ObjVector_isType_019.html">ObjVector isType 019</A></td>
+<td><A HREF="Example_ObjVector_ref_025.html">ObjVector ref 025</A></td>
+<td><A HREF="Example_PcodeVector_ref_026.html">PcodeVector ref 026</A></td>
+<td><A HREF="Example_ShortVector_isType_018.html">ShortVector isType 018</A></td>
+</tr><tr>
+<td><A HREF="Example_ShortVector_ref_024.html">ShortVector ref 024</A></td>
+<td><A HREF="Example_String_append_001.html">String append 001</A></td>
+<td><A HREF="Example_String_append_002.html">String append 002</A></td>
+<td><A HREF="Example_String_clean_001.html">String clean 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_code_001.html">String code 001</A></td>
+<td><A HREF="Example_String_compare_001.html">String compare 001</A></td>
+<td><A HREF="Example_String_compareEQ_001.html">String compareEQ 001</A></td>
+<td><A HREF="Example_String_compareGE_001.html">String compareGE 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_compareGT_001.html">String compareGT 001</A></td>
+<td><A HREF="Example_String_compareLE_001.html">String compareLE 001</A></td>
+<td><A HREF="Example_String_compareLT_001.html">String compareLT 001</A></td>
+<td><A HREF="Example_String_compareNE_001.html">String compareNE 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_comparison_functions_001.html">String comparison functions 001</A></td>
+<td><A HREF="Example_String_downcase_001.html">String downcase 001</A></td>
+<td><A HREF="Example_String_fileRead_001.html">String fileRead 001</A></td>
+<td><A HREF="Example_String_fileRead_002.html">String fileRead 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_fileReadRecord_001.html">String fileReadRecord 001</A></td>
+<td><A HREF="Example_String_fileWrite_001.html">String fileWrite 001</A></td>
+<td><A HREF="Example_String_find_001.html">String find 001</A></td>
+<td><A HREF="Example_String_find_002.html">String find 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_hashString_001.html">String hashString 001</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_left_001.html">String left 001</A></td>
+<td><A HREF="Example_String_length_001.html">String length 001</A></td>
+<td><A HREF="Example_String_length_002.html">String length 002</A></td>
+</tr><tr>
+<td><A HREF="Example_String_mid_001.html">String mid 001</A></td>
+<td><A HREF="Example_String_new_001.html">String new 001</A></td>
+<td><A HREF="Example_String_parse_001.html">String parse 001</A></td>
+<td><A HREF="Example_String_ref_001.html">String ref 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_ref_002.html">String ref 002</A></td>
+<td><A HREF="Example_String_replace_001.html">String replace 001</A></td>
+<td><A HREF="Example_String_rept_001.html">String rept 001</A></td>
+<td><A HREF="Example_String_right_001.html">String right 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+</tr><tr>
+<td><A HREF="Example_String_stringCiEQ_001.html">String stringCiEQ 001</A></td>
+<td><A HREF="Example_String_stringCiGE_001.html">String stringCiGE 001</A></td>
+<td><A HREF="Example_String_stringCiGT_001.html">String stringCiGT 001</A></td>
+<td><A HREF="Example_String_stringCiLE_001.html">String stringCiLE 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_stringCiLT_001.html">String stringCiLT 001</A></td>
+<td><A HREF="Example_String_stringCiNE_001.html">String stringCiNE 001</A></td>
+<td><A HREF="Example_String_stringFill_001.html">String stringFill 001</A></td>
+<td><A HREF="Example_String_substitute_001.html">String substitute 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_substitute_002.html">String substitute 002</A></td>
+<td><A HREF="Example_String_substring_001.html">String substring 001</A></td>
+<td><A HREF="Example_String_substring_002.html">String substring 002</A></td>
+<td><A HREF="Example_String_substringCiEQ_001.html">String substringCiEQ 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_substringCiGE_001.html">String substringCiGE 001</A></td>
+<td><A HREF="Example_String_substringCiGT_001.html">String substringCiGT 001</A></td>
+<td><A HREF="Example_String_substringCiLE_001.html">String substringCiLE 001</A></td>
+<td><A HREF="Example_String_substringCiLT_001.html">String substringCiLT 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_substringCiNE_001.html">String substringCiNE 001</A></td>
+<td><A HREF="Example_String_text_001.html">String text 001</A></td>
+<td><A HREF="Example_String_trim_001.html">String trim 001</A></td>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_upcase_001.html">String upcase 001</A></td>
+<td><A HREF="Example_String_upcase_002.html">String upcase 002</A></td>
+<td><A HREF="Example_String_upcase_003.html">String upcase 003</A></td>
+<td><A HREF="Example_Structure_apply_002.html">Structure apply 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_ref_004.html">Structure ref 004</A></td>
+<td><A HREF="Example_Structure_setq_003.html">Structure setq 003</A></td>
+<td><A HREF="Example_Structure_setq_004.html">Structure setq 004</A></td>
+<td><A HREF="Example_Structure_setq_005.html">Structure setq 005</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setq_006.html">Structure setq 006</A></td>
+<td><A HREF="Example_Symbol_&#42;&#60;_001.html">Symbol &#42;&#60; 001</A></td>
+<td><A HREF="Example_Symbol_&#43;&#60;_001.html">Symbol &#43;&#60; 001</A></td>
+<td><A HREF="Example_Symbol_&#45;&#60;_001.html">Symbol &#45;&#60; 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_&#47;&#60;_001.html">Symbol &#47;&#60; 001</A></td>
+<td><A HREF="Example_Symbol_downcase_002.html">Symbol downcase 002</A></td>
+<td><A HREF="Example_Symbol_isCharAlphabetic_002.html">Symbol isCharAlphabetic 002</A></td>
+<td><A HREF="Example_Symbol_isCharAlphanumeric_002.html">Symbol isCharAlphanumeric 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharLowercase_002.html">Symbol isCharLowercase 002</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isCharUppercase_002.html">Symbol isCharUppercase 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isCharWhitespace__002.html">Symbol isCharWhitespace  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_length_003.html">Symbol length 003</A></td>
+<td><A HREF="Example_Symbol_makeQuotedSymbol_001.html">Symbol makeQuotedSymbol 001</A></td>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_symbol_001.html">Symbol symbol 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_symbol_002.html">Symbol symbol 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+<td><A HREF="Example_Vector_isType_008.html">Vector isType 008</A></td>
+<td><A HREF="Example_Vector_ref_013.html">Vector ref 013</A></td>
+</tr><tr>
+<td><A HREF="Example_Vector_ref_014.html">Vector ref 014</A></td>
+<td><A HREF="Example_Void_isType_010.html">Void isType 010</A></td>
+<td><A HREF="Example_Void_ref_017.html">Void ref 017</A></td>
+<td><A HREF="Example_substringEQ_001.html">substringEQ 001</A></td>
+</tr><tr>
+<td><A HREF="Example_substringFill_001.html">substringFill 001</A></td>
+<td><A HREF="Example_substringGE_001.html">substringGE 001</A></td>
+<td><A HREF="Example_substringGT_001.html">substringGT 001</A></td>
+<td><A HREF="Example_substringLE_001.html">substringLE 001</A></td>
+</tr><tr>
+<td><A HREF="Example_substringLT_001.html">substringLT 001</A></td>
+<td><A HREF="Example_substringNE_001.html">substringNE 001</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

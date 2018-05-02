@@ -1,0 +1,315 @@
+
+<HTML>
+<HEAD><TITLE>AIS Function Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Example Dictionary mapc 002</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<LI><A HREF="#INTRO"><FONT SIZE=2>Description</FONT></A></LI>
+<LI><A HREF="#DETAILS"><FONT SIZE=2>Details</FONT></A></LI>
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Related Examples</FONT></A></LI>
+<LI><A HREF="#FUNCTIONS"><FONT SIZE=2>Function Links</FONT></A></LI>
+<LI><A HREF="#ARGTYPE"><FONT SIZE=2>Argument Types</FONT></A></LI>
+<LI><A HREF="#AIS"><FONT SIZE=2>AIS Component Systems</FONT></A></LI>
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="INTRO"></A>Description</H4></FONT>
+<P>
+<font color=black>
+<Description> The following example will define a user function, <b>total</b>, 
+
+                  that will take an argument (which is a dictionary field) and add the 
+
+                  argument to a <b>pvar</b> container (persistent variable).  
+
+                  The input to the <b>total</b> function is a dictionary containing monthly 
+
+                  sales figures. The <b>mapc</b> function then applies each Dictionary element
+
+                  as argument to the function <b>total</b>.            
+
+
+	</Description>
+
+</font>
+ 
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="DETAILS"></A>Details</H4></FONT>
+<P>
+<font color=black><p><Note>Defines the Dictionary Monthly Sales. </Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(define MonthlySales  #{dic|Jan: 1000  Feb: 2300  Mar: 3200  Apr: 4500})</sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Dictionary 123456&#62 </Returns></b></td></tr>
+</table><p><Note>Defines the function total.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(defun total(x) pvars: (n) (setq n (+ n x)))  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Lambda 123456&#62</Returns></b></td></tr>
+</table><p><Note>The result is saved in the persistent variable, n.</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>(display total.n)  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>11000</Returns></b></td></tr>
+</table><p><Note>The following code sample using a loop, produces the same result as mapc:</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (define MonthlySales  #{dic| Jan: 1000  Feb: 2300  Mar: 3200  Apr: 4500})    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Dictionary 34567&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (defun total(x) pvars: (n) (setq n (+ n x)))    </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>#&#60Dictionary 45678&#62</Returns></b></td></tr>
+</table><table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc> (loop for  n  from 0  until (length MonthlySales)  do <br>
+                            (total MonthlySales[i]) )   </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>4</Returns></b></td></tr>
+</table><p><Note>The result is saved in the the persistent variable, n</Note></p>
+<table border=0 cellspacing=5 cellpadding=5 width=100%>
+<tr><td width=70% align=left><Expression> <sc>  (display total.n)  </sc></Expression></td>
+<td width=30% align=left> Returns: <b><Returns>11000</Returns></b></td></tr>
+</table><p><FONT COLOR="#0000ff"><u><b> Notes and Hints </b></u></FONT></p><Hints><p>Note, the return value from the loop is the number of iterations performed.  
+
+                  In this case, it is the number 4, whereas the return value from the <b>mapc</b>
+                  function is the value of the function as it is applied to the last member of 
+
+                  the dictionary, 11000.  </p>
+               <p>The <b>mapc</b> function does not produce a duplicate dictionary as in the <b>map</b> function.</p>
+ </Hints>
+</font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Related Examples</H4></FONT>
+ 
+<P>
+<p>Here are examples of the <b>mapc</b> function at work. </p><table width="100%"><tr>
+<td><A HREF="Example_Dictionary_mapc_002.html">Dictionary mapc 002</A></td>
+<td><A HREF="Example_Directory_mapc_003.html">Directory mapc 003</A></td>
+<td><A HREF="Example_FltVector_mapc_005.html">FltVector mapc 005</A></td>
+<td><A HREF="Example_IntVector_mapc_006.html">IntVector mapc 006</A></td>
+</tr><tr>
+<td><A HREF="Example_List_mapc_009.html">List mapc 009</A></td>
+<td><A HREF="Example_Matrix_mapc_005.html">Matrix mapc 005</A></td>
+<td><A HREF="Example_NumMatrix_mapc_009.html">NumMatrix mapc 009</A></td>
+<td><A HREF="Example_NumVector_mapc_007.html">NumVector mapc 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Pair_mapc_008.html">Pair mapc 008</A></td>
+<td><A HREF="Example_ShortVector_mapc_007.html">ShortVector mapc 007</A></td>
+<td><A HREF="Example_Structure_mapc_001.html">Structure mapc 001</A></td>
+<td><A HREF="Example_Vector_mapc_004.html">Vector mapc 004</A></td>
+</tr>
+</table>
+
+</P>
+
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="FUNCTIONS"></A>Function Links</H4></FONT>
+
+<P>
+Here is the link to the <b>current function</b> used in this example. <br><p><A HREF="Function_mapc_Builtin.html">mapc</A></p>
+<p>Here are a number of links to other <b>related functions</b>.</p>
+<table width="100%"><tr>
+<td><A HREF="Function_map_Builtin.html">map(Builtin)</A></td>
+<td><A HREF="Function_makeDictionary_Builtin.html">makeDictionary(Builtin)</A></td>
+</tr>
+</table>
+
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="ARGTYPE"></A>Argument Types</H4></FONT>
+<P>
+<font color=black> 
+<p> Here are the links to the <b> data types </b> of the arguments used in this example.  </p>
+<table width="100%"><tr>
+<td><A HREF="Dictionary.html">Dictionary</A></td>
+</tr>
+</table>
+<p> Here are a number of links to examples having <b>similar argument types</b>. 
+  </p>
+<table width="100%"><tr>
+<td><A HREF="Example_Dictionary_binarySearch_002.html">Dictionary binarySearch 002</A></td>
+<td><A HREF="Example_Dictionary_cdr_003.html">Dictionary cdr 003</A></td>
+<td><A HREF="Example_Dictionary_compare_004.html">Dictionary compare 004</A></td>
+<td><A HREF="Example_Dictionary_compareEQ_004.html">Dictionary compareEQ 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_compareGE_004.html">Dictionary compareGE 004</A></td>
+<td><A HREF="Example_Dictionary_compareGT_004.html">Dictionary compareGT 004</A></td>
+<td><A HREF="Example_Dictionary_compareLE_004.html">Dictionary compareLE 004</A></td>
+<td><A HREF="Example_Dictionary_compareLT_004.html">Dictionary compareLT 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_compareNE_004.html">Dictionary compareNE 004</A></td>
+<td><A HREF="Example_Dictionary_comparison_functions_004.html">Dictionary comparison functions 004</A></td>
+<td><A HREF="Example_Dictionary_copy_002.html">Dictionary copy 002</A></td>
+<td><A HREF="Example_Dictionary_count_002.html">Dictionary count 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_delete_003.html">Dictionary delete 003</A></td>
+<td><A HREF="Example_Dictionary_delete_004.html">Dictionary delete 004</A></td>
+<td><A HREF="Example_Dictionary_insert_002.html">Dictionary insert 002</A></td>
+<td><A HREF="Example_Dictionary_inside_002.html">Dictionary inside 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_isAtom_002.html">Dictionary isAtom 002</A></td>
+<td><A HREF="Example_Dictionary_isBound_002.html">Dictionary isBound 002</A></td>
+<td><A HREF="Example_Dictionary_isDictionary_001.html">Dictionary isDictionary 001</A></td>
+<td><A HREF="Example_Dictionary_isEqual_002.html">Dictionary isEqual 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_isIdentical_002.html">Dictionary isIdentical 002</A></td>
+<td><A HREF="Example_Dictionary_isInside_002.html">Dictionary isInside 002</A></td>
+<td><A HREF="Example_Dictionary_isMember_002.html">Dictionary isMember 002</A></td>
+<td><A HREF="Example_Dictionary_isObject_004.html">Dictionary isObject 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_isType_006.html">Dictionary isType 006</A></td>
+<td><A HREF="Example_Dictionary_length_005.html">Dictionary length 005</A></td>
+<td><A HREF="Example_Dictionary_makeDictionary_001.html">Dictionary makeDictionary 001</A></td>
+<td><A HREF="Example_Dictionary_map_002.html">Dictionary map 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_mapc_002.html">Dictionary mapc 002</A></td>
+<td><A HREF="Example_Dictionary_member_002.html">Dictionary member 002</A></td>
+<td><A HREF="Example_Dictionary_new_004.html">Dictionary new 004</A></td>
+<td><A HREF="Example_Dictionary_objectToDictionary_001.html">Dictionary objectToDictionary 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_objectToDictionary_002.html">Dictionary objectToDictionary 002</A></td>
+<td><A HREF="Example_Dictionary_objectToDictionary_003.html">Dictionary objectToDictionary 003</A></td>
+<td><A HREF="Example_Dictionary_objectToDictionary_004.html">Dictionary objectToDictionary 004</A></td>
+<td><A HREF="Example_Dictionary_ref_007.html">Dictionary ref 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_ref_008.html">Dictionary ref 008</A></td>
+<td><A HREF="Example_Dictionary_ref_009.html">Dictionary ref 009</A></td>
+<td><A HREF="Example_Dictionary_refAttributes_002.html">Dictionary refAttributes 002</A></td>
+<td><A HREF="Example_Dictionary_refValues_002.html">Dictionary refValues 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_remove_002.html">Dictionary remove 002</A></td>
+<td><A HREF="Example_Dictionary_resize_002.html">Dictionary resize 002</A></td>
+<td><A HREF="Example_Dictionary_setAttributes_002.html">Dictionary setAttributes 002</A></td>
+<td><A HREF="Example_Dictionary_setCdr_001.html">Dictionary setCdr 001</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_setCdr_002.html">Dictionary setCdr 002</A></td>
+<td><A HREF="Example_Dictionary_setq_007.html">Dictionary setq 007</A></td>
+<td><A HREF="Example_Dictionary_setq_009.html">Dictionary setq 009</A></td>
+<td><A HREF="Example_Dictionary_sizeof_004.html">Dictionary sizeof 004</A></td>
+</tr><tr>
+<td><A HREF="Example_Dictionary_sort_003.html">Dictionary sort 003</A></td>
+<td><A HREF="Example_Dictionary_sort_004.html">Dictionary sort 004</A></td>
+<td><A HREF="Example_Dictionary_sort_005.html">Dictionary sort 005</A></td>
+<td><A HREF="Example_Dictionary_type_007.html">Dictionary type 007</A></td>
+</tr><tr>
+<td><A HREF="Example_Directory_isDirectory_001.html">Directory isDirectory 001</A></td>
+<td><A HREF="Example_Directory_new_006.html">Directory new 006</A></td>
+<td><A HREF="Example_Lambda_compareLE_008.html">Lambda compareLE 008</A></td>
+<td><A HREF="Example_String_isChar_001.html">String isChar 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharAlphabetic_001.html">String isCharAlphabetic 001</A></td>
+<td><A HREF="Example_String_isCharAlphanumeric_001.html">String isCharAlphanumeric 001</A></td>
+<td><A HREF="Example_String_isCharLowercase_001.html">String isCharLowercase 001</A></td>
+<td><A HREF="Example_String_isCharName_001.html">String isCharName 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isCharNumeric__001.html">String isCharNumeric  001</A></td>
+<td><A HREF="Example_String_isCharUppercase_001.html">String isCharUppercase 001</A></td>
+<td><A HREF="Example_String_isCharWhitespace__001.html">String isCharWhitespace  001</A></td>
+<td><A HREF="Example_String_isEqual_001.html">String isEqual 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isEqual_002.html">String isEqual 002</A></td>
+<td><A HREF="Example_String_isObject_001.html">String isObject 001</A></td>
+<td><A HREF="Example_String_isString_001.html">String isString 001</A></td>
+<td><A HREF="Example_String_isText_001.html">String isText 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_isType_001.html">String isType 001</A></td>
+<td><A HREF="Example_String_isType_002.html">String isType 002</A></td>
+<td><A HREF="Example_String_isType_003.html">String isType 003</A></td>
+<td><A HREF="Example_String_parse_001.html">String parse 001</A></td>
+</tr><tr>
+<td><A HREF="Example_String_sizeof_001.html">String sizeof 001</A></td>
+<td><A HREF="Example_String_string_001.html">String string 001</A></td>
+<td><A HREF="Example_String_string_002.html">String string 002</A></td>
+<td><A HREF="Example_String_string_003.html">String string 003</A></td>
+</tr><tr>
+<td><A HREF="Example_String_type_001.html">String type 001</A></td>
+<td><A HREF="Example_Symbol_isCharName_002.html">Symbol isCharName 002</A></td>
+<td><A HREF="Example_Symbol_isCharNumeric__002.html">Symbol isCharNumeric  002</A></td>
+<td><A HREF="Example_Symbol_isObject_002.html">Symbol isObject 002</A></td>
+</tr><tr>
+<td><A HREF="Example_Symbol_isSymbol_001.html">Symbol isSymbol 001</A></td>
+<td><A HREF="Example_Symbol_isType_004.html">Symbol isType 004</A></td>
+<td><A HREF="Example_Symbol_sizeof_002.html">Symbol sizeof 002</A></td>
+<td><A HREF="Example_Symbol_type_002.html">Symbol type 002</A></td>
+</tr>
+</table>
+
+ </font>
+</P>
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "NewHelpHome.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<FONT COLOR="#0000ff"><H4><A NAME="AIS"></A>Analytic Information Server (AIS)</H4></FONT>
+<P><B>AIS Component Systems</B?</P>
+<UL>
+  <LI>Smartbase Engine</LI>
+  <LI>QT C++ Libraries</LI>
+  <LI>MySQL Relational Database</LI>
+  <LI>AIS Lisp Libraries</LI>
+  <LI>Rapid Analytic Demo IDE</LI>
+</UL>
+
+</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

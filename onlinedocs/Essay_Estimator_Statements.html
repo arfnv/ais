@@ -1,0 +1,2361 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Estimator Statements</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SStatements Overview"><FONT SIZE=2>Statements Overview</font></a></li><li><a href="#SBinary Arithmetic Operators"><FONT SIZE=2>Binary Arithmetic Operators</font></a></li><li><a href="#SUnary Arithmetic Operators"><FONT SIZE=2>Unary Arithmetic Operators</font></a></li><li><a href="#SAssigment Operators"><FONT SIZE=2>Assigment Operators</font></a></li><li><a href="#Schild"><FONT SIZE=2>child</font></a></li><li><a href="#Sclass"><FONT SIZE=2>class</font></a></li><li><a href="#SComparison Operators"><FONT SIZE=2>Comparison Operators</font></a></li><li><a href="#SConditional Expression"><FONT SIZE=2>Conditional Expression</font></a></li><li><a href="#Scvar"><FONT SIZE=2>cvar</font></a></li><li><a href="#Sfor"><FONT SIZE=2>for</font></a></li><li><a href="#Sfriend"><FONT SIZE=2>friend</font></a></li><li><a href="#Sfrmregress"><FONT SIZE=2>frmregress</font></a></li><li><a href="#Sfunction"><FONT SIZE=2>function</font></a></li><li><a href="#SFunction Invocation"><FONT SIZE=2>Function Invocation</font></a></li><li><a href="#Sif"><FONT SIZE=2>if</font></a></li><li><a href="#SLogical Operators"><FONT SIZE=2>Logical Operators</font></a></li><li><a href="#Smethod"><FONT SIZE=2>method</font></a></li><li><a href="#Smvlregress"><FONT SIZE=2>mvlregress</font></a></li><li><a href="#Snew"><FONT SIZE=2>new</font></a></li><li><a href="#Sorphan"><FONT SIZE=2>orphan</font></a></li><li><a href="#Spvar"><FONT SIZE=2>pvar</font></a></li><li><a href="#Sreg"><FONT SIZE=2>reg</font></a></li><li><a href="#Sregress"><FONT SIZE=2>regress</font></a></li><li><a href="#Sreturn"><FONT SIZE=2>return</font></a></li><li><a href="#Sscore"><FONT SIZE=2>score</font></a></li><li><a href="#SScore Command: average"><FONT SIZE=2>Score Command: average</font></a></li><li><a href="#SScore Command: averageForAll"><FONT SIZE=2>Score Command: averageForAll</font></a></li><li><a href="#SScore Command: extract"><FONT SIZE=2>Score Command: extract</font></a></li><li><a href="#SScore Command: total"><FONT SIZE=2>Score Command: total</font></a></li><li><a href="#SScore Command: totalForAll"><FONT SIZE=2>Score Command: totalForAll</font></a></li><li><a href="#SSelect"><FONT SIZE=2>Select</font></a></li><li><a href="#SSelect Command: all"><FONT SIZE=2>Select Command: all</font></a></li><li><a href="#SSelect Command: bottom"><FONT SIZE=2>Select Command: bottom</font></a></li><li><a href="#SSelect Command: highest"><FONT SIZE=2>Select Command: highest</font></a></li><li><a href="#SSelect Command: restore"><FONT SIZE=2>Select Command: restore</font></a></li><li><a href="#SSelect Command: run"><FONT SIZE=2>Select Command: run</font></a></li><li><a href="#SSelect Command: slice"><FONT SIZE=2>Select Command: slice</font></a></li><li><a href="#SSelect Command: sort"><FONT SIZE=2>Select Command: sort</font></a></li><li><a href="#SSelect Command: top"><FONT SIZE=2>Select Command: top</font></a></li><li><a href="#SStatement Blocks"><FONT SIZE=2>Statement Blocks</font></a></li><li><a href="#Ssvmregress"><FONT SIZE=2>svmregress</font></a></li><li><a href="#Svar"><FONT SIZE=2>var</font></a></li><li><a href="#Swhile"><FONT SIZE=2>while</font></a></li>
+</UL>
+
+<P><H2><A NAME="SStatements Overview"></A>Statements Overview</H2></P>
+			<p>This chapter is a reference guide to the Estimator statements. These
+		    statements contain the basic control flow operators for the Estimator
+		    language. All of the basic building blocks of Estimator are contained in
+		    its statements. Estimator is case sensitive.</p>
+
+		    <p>All Estimator statements are lexical structures, which are understood
+		    only by the Estimator parser. They are not understood by the system outside
+		    of the Estimator parser, and they are not available nor are they understood
+		    by Lisp. All Estimator statements have meaning only at parse time.</p>
+
+		    <p>All Estimator special forms are structures, which are understood only by
+		    the Estimator compiler. Unlike Function objects, the Estimator special
+		    forms are invalid outside of compilation, at run time.</p>
+
+		    <p>Estimator supports user defined global symbols, allowing the user to
+		    assign any valid Estimator object to the newly created global symbol. User
+		    defined global symbols behave just like their built-in cousins; however,
+		    Estimator even allows the user to redefine any of the built-in Estimator
+		    special form symbols.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SBinary Arithmetic Operators"></A>Binary Arithmetic Operators</H2></P>
+			<h3>Overview</h3>
+		    <p>Estimator supports the basic binary and unary arithmetic operations:
+		    addition (+), subtraction (-), multiplication (*), division (/), protected division (#), and modulus
+		    (%).</p>
+		    <h3>Type</h3>
+		    <p><b>Statement</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>operand1 binaryOperator operand2</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>Operand1</b></th>
+		        <td>The first operand.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>binaryOperator</b></th>
+		        <td>The binary operator. Must be one of: &nbsp; <b>+, -, *, /, #, %.</b></td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>Operand2</b></th>
+		        <td>The second operand.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The result of the binary operation.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>binary operator</b>
+		    statement to perform basic arithmetic operations on two numeric values, or
+		    to concatenate two string values.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>These simple examples demonstrates the effect of the
+		    various binary operators.</p>
+		    <p><b>a = 1 + 20;
+		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns
+		    21<br>
+		    <br>
+		    b = 30 - 5;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    //Returns 25<br>
+		    <br>
+		    c = 2 * 2.1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    //Returns 4.2<br>
+		    <br>
+		    d = 100 / 10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    //Returns 10<br>
+		    <br>
+		    e = 10 % 4;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    //Returns 2&nbsp; (the remainder)</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>binary operator</b> statement
+		    performs basic arithmetic operations on two numeric values, or concatenates
+		    two string values.</p>
+			<p>On a divsion by zero, the protected divide operator returns the highest possible number in the system if 
+			the sign of the numerator is negative or the lowest possible number in the system if the sign of the numerator is positive.</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SUnary Arithmetic Operators"></A>Unary Arithmetic Operators</H2></P>
+			<h3>Overview</h3>
+		    <p>Estimator supports the basic unary arithmetic operations: increment (++), decrement (--), and negation (-).</p><br>
+		    <p><b>Syntax</b>: unaryOperator operand1</p>
+		    <h3>Type</h3>
+		    <p><b>Statement</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>unaryOperator operand1</b></p>
+		    <p><b>operand1</b> <b>incrementOperator</b></p>
+		    <p><b>operand1</b> <b>decrementOperator</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">unaryOperator</th>
+		        <td>The unary operator. Must be one of: &nbsp; <b>++, --, -.</b></td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">Operand</th>
+		        <td>The first operand.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>The result of the unary operation.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>unary operator</b>
+		    statement to perform basic arithmetic operations on a single numeric value.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>These simple examples demonstrates the effect of the
+		    various unary operators.</p>
+		    <p><b>var a = 100;<br>
+		    <br>
+		    var b&nbsp; = 100;<br>
+		    <br>
+		    var c = 10;<br>
+		    <br>
+		    var d = 10;<br>
+		    <br>
+		    ++a; &nbsp;&nbsp;&nbsp; //Returns 101<br>
+		    <br>
+		    --b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns 99<br>
+		    <br>
+		    c++;&nbsp;&nbsp;&nbsp; //Returns 11<br>
+		    <br>
+		    d--;&nbsp;&nbsp;&nbsp;&nbsp; //Returns 9<br>
+		    <br>
+		    -a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns -101</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>unary operator</b> statement
+		    performs basic arithmetic operations on a single numeric value.</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAssigment Operators"></A>Assigment Operators</H2></P>
+			<h3>Overview</h3>
+		    <p>Estimator assigns a value to a variable with the <b>=</b> (equal)
+		    operator. Another class of assignment operators perform math operations on
+		    the variable and saves the result in the same variable. They are <b>+=, -=,
+		    *=, /=and %=</b>. The <b>+=</b> operator is shorthand for a=a + exp.</p>
+		    <h3>Type</h3>
+		    <p><b>Statement</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>variable assignmentOperator expression</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">variable</th>
+		        <td>The variable to be assigned a new value.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>assignmentOperator</b></th>
+		        <td>The assignment Operator. Must be one of:&nbsp;<b>=, +=, -=, *=, /=, %=.</b></td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%"><b>expression</b></th>
+		        <td>If the <b>assignmentOperator</b> is (=),
+		          the expression may return any value. If the <b>assignmentOperator</b>
+		          is (+=, -=, *=, /=, or %=), then the expression must return a numeric
+		          value.</td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>If the <b>assignmentOperator</b> is (=),
+		          the variable is set to the value of expression. If the <b>assignmentOperator</b>
+		          is (+=, -=, *=, /=, or %=), then the arithmetic operation is performed
+		          on the original variable and the expression.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>assignment operator</b> statement to assign a new value to a Estimator variable.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>This simple example demonstrates the effect of the simple assignment operator.</p>
+		    <p><b>a = 3.14;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns 3.14</b></p>
+		    <h3><u>Example2</u></h3>
+		    <p>This examples demonstrate the effects of the arithmetic assignment operators.</p>
+		    <p><b>var a = 100;<br>
+		    <br>
+		    var b&nbsp; = 100;<br>
+		    <br>
+		    var c = 10;<br>
+		    <br>
+		    var d = 10;<br>
+		    <br>
+		    a += 10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns 110<br>
+		    <br>
+		    b -= 10;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Returns 90<br>
+		    <br>
+		    c *= 10;&nbsp;&nbsp;&nbsp;&nbsp; //Returns 100</b></p>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>assignment operator</b> statement assigns a new value to a Estimator variable.</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Schild"></A>child</H2></P>
+			<h3>Overview</h3>
+		    <p>The <b>child</b> function declaration creates a new Lambda object and
+		    assigns it to the specified persistent variable name <b>childName</b> of the
+		    parent Lambda <b>parent</b>. The <b>child</b> function declaration always
+		    returns the newly created object identifier of the new Lambda. The child
+		    Lambda is invoked using the <b>parent.childName()</b> syntax form.</p>
+		    <h3>Type</h3>
+		    <p><b>Statement</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>child parent childName ([type] arg..) { cvardec pvardec vardec exp }</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <td><b>child</b></td>
+		        <td>
+		          <p>Mandatory keyword.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>parent</b></td>
+		        <td>
+		          <p>Name of the parent class</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>childName</b></td>
+		        <td>
+		          <p>The name of the child Lambda (function)</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>([type] arg...)</b></td>
+		        <td>
+		          <p>A list of type hints (optional) and arguments separated by commas.
+		          If there are no arguments the parenthesis are still required. <b>Note</b>:
+		          The optional type hints can be one of the following: <b>char</b>,<b>
+		          bool</b>,<b> int</b>,<b> float</b>,<b> </b>or<b> obj</b></p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>cvardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a persistent
+		          class variable declaration. See <b>cvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>pvardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a persistent
+		          variable declaration. See <b>pvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>vardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a local
+		          variable declaration. See <b>var</b>.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>exp</b></td>
+		        <td>
+		          <p>The Estimator statements that form the Lambda</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>An Lambda object.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>child</b> statement to create a new Estimator Lambda with a child relationship to a parent Lambda.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>This simple example demonstrates the effect of the simple assignment operator.</p>
+		    <blockquote>
+		      <pre><b>function  foo(x)  {
+		
+		               pvar y;
+		
+		               y = x
+		
+		               return (y);
+		
+		               }
+		
+		
+		
+		               child foo sum (x)  {
+		
+		               var temp ;
+		
+		               temp = x +  y;
+		
+		               return ( temp );
+		
+		    }</b></pre>
+		    </blockquote>
+		    <p>We can invoke the parent and the child Lambda as follows:</p>
+		    <blockquote>
+		      <pre><b>foo(10);                          //Returns 10
+		
+		              foo.sum(3);                       //Returns 13
+		
+		              compareEQ(foo.Cv, foo.sum.Cv); &nbsp;&nbsp; //Returns true
+		
+		              compareEQ(foo.Pv, foo.sum.Pv); &nbsp;&nbsp;&nbsp;//Returns true</b></pre>
+		    </blockquote>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>child</b> statement creates a
+		    new Estimator Lambda with a child relationship to a parent Lambda. A Child
+		    Lambda inherits <b>pvar</b> and <b>cvar</b> structures from its parent Lambda.</p>
+           
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sclass"></A>class</H2></P>
+			<h3>Overview</h3>
+		    <p>The <b>class</b> statement declares a class and names all of its members.
+		    The <b>class</b> statement can also use to sub-class, i.e., create a class
+		    that inherits from another class and extend it.</p>
+		    <h3>Type</h3>
+		    <p><b>Statement</b></p>
+		    <h3>Syntax</h3>
+		    <p><b>class className {member1 ; member2 ... }</b></p>
+		    <p><b>class className extends parentClass {member1 ; member2 ... }</b></p>
+		    <h3>Arguments</h3>
+		    <hr>
+		    <table>
+		      <tr>
+		        <th align="CENTER" width="20%">Arguments</th>
+		        <th align="LEFT" width="80%">Explanation</th>
+		      </tr>
+		      <tr>
+		        <td><b>class</b></td>
+		        <td>
+		          <p>Mandatory Keyword</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>className</b></td>
+		        <td>
+		          <p>The name of this class</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>extends</b></td>
+		        <td>
+		          <p>Optional Keyword. If present, it must be followed by an existing
+		          parent class.</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td><b>{member1; member2; ...}</b></td>
+		        <td>
+		          <p>The names of the class members, where each name is separated by a
+		          semicolon</p>
+		        </td>
+		      </tr>
+		      <tr>
+		        <th align="CENTER" width="20%">RETURN</th>
+		        <td>An class name.</td>
+		      </tr>
+		    </table>
+		    <hr>
+		    <h3><u>When To Use</u></h3>
+		    <p>Use the <b>class</b> statement to
+		    create a new class or to extend and existing class through in heritance.</p>
+		    <h3><u>Example1</u></h3>
+		    <p>This simple example demonstrates the effect of the
+		    simple assignment operator.</p>
+		    <blockquote>
+		      <pre><b>class employee {Name; Address; Salary }
+		
+		              emp = new ('employee' , 'Name' ,&quot;Tom Jones&quot; , 'Address',  &quot;200 Main Street, Small Town,  USA&quot; )
+		
+		              display(emp.Name)</b></pre>
+		    </blockquote>
+		    <h3><u>Example2</u></h3>
+		    <p>This simple example demonstrates the effect of the simple assignment operator.</p>
+		    <blockquote>
+		      <pre><b>class employee {Name; Address; Salary }
+		
+		              class manager extends 'employee' {Perks }
+		
+		              emp = new ('employee' , 'Name' ,&quot;Tom Jones&quot; , 'Address',  &quot;200 Main Street, Small Town,  USA&quot; )
+		
+		              mgr = new('manager', 'Name', &quot;John Smith&quot;, 'Perks', &quot;Special Parking Space&quot;)</b></pre>
+		    </blockquote>
+		    <h3><u>Notes &amp; Hints</u></h3>
+		    <p>The <b>class</b> statement creates a new class or to extend and existing class through in heritance.</p>
+             
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SComparison Operators"></A>Comparison Operators</H2></P>
+			<p>The comparison operators are <b>==(equal) , !=(not equal) ,&lt; (less
+		    than) , &lt;=(less than or equal) , &gt; (greater than), &gt;=(greater than
+		    or equal)</b> . The resulting value is a Boolean value of <b>true</b> if the
+		    relational operator results in a true comparison otherwise the resulting
+		    value is <b>false. </b>Estimator performs type checking and type
+		    conversions, therefore the operands need not be the same type.</p>
+            <h3>Syntax</h3>		    
+            <p>(obj1 operator obj2)</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>obj1</b></td>
+		        <td><p>First object to be compared</p></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>operator</b></td>
+		        <td>Must be <b>==(equal), !=(not equal) ,&lt; (less than) , &lt;=(less than or equal) , &gt; (greater than), &gt;=(greater than or equal)</b>.</td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>obj2</b></td>
+		        <td>Second object to be compared</td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>Returns true if the comparison is true, false if the comparison is false</td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <pre>
+                 var a = true; //Returns True
+		
+                 (a == true ); //Returns  True  
+		
+                 ( 2 &lt; 3);  //Returns  True
+		
+                 ( 2 &gt; 3);  //Returns  False
+            </pre>
+             
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SConditional Expression"></A>Conditional Expression</H2></P>
+			<p>A conditional expression is a shorthand version of the if-else statement.
+		    Besides having a shorter syntax, conditional expression always return a
+		    value, unlike the if statement.</p>
+            <h3>Syntax</h3>		    
+            <p>condition ? val1 : val2</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>condition</b></td>
+		        <td>A Boolean expression</td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>?</b></td>
+		        <td>
+		          <p>Mandatory operator</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>val1</b></td>
+		        <td>
+		          <p>The value to be returned if condition is true.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>:</b></td>
+		        <td>
+		          <p>Mandatory operator</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>val2</b></td>
+		        <td>
+		          <p>The value to be returned if condition is false.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>
+		          <p>If the condition is true, val1 is returned, otherwise val2 is
+		          returned</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <pre>a = 1;
+		
+		         X = (a &gt;= 1) ? 1 : -1  ); // X will be set to 1</pre>
+           
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scvar"></A>cvar</H2></P>
+			<p>The <b>cvar</b> statement declares a persistent class variable within an
+		    Lambda. This means that the persistent class variable will have a scope for
+		    the life of the Lambda object. The class variable is created and initialized
+		    when the Lambda is instantiated and re-initialized each time the Lambda is
+		    invoked. Although Estimator is a dynamically typed language, the cvar
+		    allows the programmer to optionally provide hints to the compiler by
+		    specifying a type for variable declarations. The supported types are: char,
+		    bool, int, float, and obj. Specifying a type of obj is equivalent to
+		    specifying no type information.</p><br>
+            <h3>Syntax</h3>		    
+		    <p>cvar varName<br>
+		    cvar varName=init<br>
+		    cvar type varName<br>
+		    cvar type varName=init</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>cvar</b></td>
+		        <td>
+		          <p>Mandatory keyword</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>type</b></td>
+		        <td>obj char bool int float obj text string symbol bitvec fltvec pcdvec
+		          stc dir dic matrix nummat vec bitvec numvec intvec objvec</td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>cvarName</b></td>
+		        <td>
+		          <p>The name of the persistent class variable</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>=init</b></td>
+		        <td>
+		          <p>Optional argument. If present, the compiler will assign the <b>cvarName</b>
+		          to the value in <b>init</b>.</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <b>Note</b>: If type hints are supplied, the programmer must assure that no
+		    other types are saved in the variable. <b>Note</b>: Multiple variable
+		    declarations may be separated by commas as in: <b>cvar x, int y, z;</b>.
+		    <p>When To Use</p>
+		    <p>Unlike a temporary variable <b>(var)</b> that is declared inside a
+		    function and which is only &quot;alive&quot; while the function is currently
+		    active, a <b>cvar </b>(persistent variable) is accessible, as long the Lambda
+		    object instance is active. The contents of the entire <b>cvar</b> structure
+		    is in <b>LambdaName.Cv</b>, where <b>LambdaName</b> is the name of the
+		    instance of the Lambda. The contents of a single <b>cvar </b>variable is <b>LambdaName.Cv.memberName;</b></p>
+		    <p>A persistent class variable <b>(cvar)</b> is analogous to a static
+		    variable in a C or C++ programming environment. It is created and
+		    initialized when the Lambda is instantiated and it is persistent, meaning the
+		    memory is not released as long as the Lambda is in memory. However, the <b>cvar</b>
+		    differs from the <b>pvar</b> in that it is always re-initialized on entry to
+		    the Lambda that encapsulates it.</p>
+		    <p>Example1</p>
+		    <pre>function squareIt(x)  {
+		
+		    cvar float xx;
+		
+		    var y;
+		
+		    xx = x * x;
+		
+		    y = xx;
+		
+		    return (xx);
+		
+		    }
+		
+		
+		
+		    var result, int;
+		
+		    result = squareIt(10);
+		
+		    writeln(result); //displays &quot;100&quot;
+		
+		    writeln(squareIt.Cv.xx); //displays &quot;100&quot;		
+		
+		    writeln(squareIt.y); //error !Cannot find name: y in the PV structure of Lambda squareIt!</pre>
+		    <p>Example2</p>
+		    <pre>function foo  (x)  {
+		
+		         cvar z;
+		
+		         z = x;
+		
+		         return(z);
+		
+		         }
+		
+		
+		
+		         var z;
+		
+		         result = foo(7);
+		
+		         display(result);  //displays &quot;7&quot;
+		
+		         display(z);  //displays #void  (accesses the contents of the global variable)
+		
+		         display(foo.Cv.z);  //displays &quot;7&quot;</pre>
+		    <p>Notes and Hints</p>
+		    <p>The scope of variables in nested Lambdas depends upon the following
+		    compilation rules: Nested Lambdas do not share either their arguments or
+		    their temporary variables. The argument and the temporary variables are
+		    always limited in scope to the immediate Lambda object. A nested Lambda shares
+		    the persistent variables <b>(pvar)</b> and the persistent class variables <b>(cvar)</b>
+		    of its parents. When a variable reference is encountered, the Estimator
+		    compiler first searches the local Lambda's temporary variables<b> (var)</b>,
+		    then the persistent variable structure <b>(pvar)</b>, then the persistent
+		    class structure <b>(cvar)</b>, and finally the global variables.</p>
+		    <p>Also note: Any variable that is used without explicit declaration is
+		    automatically declared as a global variable. (This is true even if it is
+		    used inside a function definition).</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sfor"></A>for</H2></P>
+			<p>The <b>for</b> statement repeats a set of Estimator statements until the
+		    specified condition is false.</p>
+            <h3>Syntax</h3>		    
+		    <p>for ( initexp; cond; increxp ) { exp ... }</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>for</b></td>
+		        <td>
+		          <p>Mandatory keyword</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Initexp;</b></td>
+		        <td>
+		          <p>Initializer expression. Usually resets an index to be used to
+		          determine loop control</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>cond;</b></td>
+		        <td>
+		          <p>An expression that returns a Boolean value. Usually tests the loop
+		          index to see if has reached a max number.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Increxp</b></td>
+		        <td>
+		          <p>Increment expression. Usually increments (or decrements) the loop
+		          index.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>{expr...}</b></td>
+		        <td>
+		          <p>A set of Estimator statements</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <pre>var int a;
+		
+		         for (a = 1; a &lt; 10; ++a ) { display(&quot; &quot;, a)}</pre>
+		    <p>This will display the following line in the console screen:</p>
+		    <pre>1  2  3  4  5  6  7  8  9  </pre>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sfriend"></A>friend</H2></P>
+			<p>The <b>friend </b>statement creates a new Lambda object and assigns it to
+		    the specified persistent variable name <b>friendName</b> of the parent Lambda
+		    <b>parent</b>. The <b>friend </b>function<b> </b>declaration always returns
+		    the newly created Lambda object. The new friend Lambda is invoked by using the
+		    <b>parent.friendName ()</b></p>
+            <h3>Syntax</h3>		    
+		    <p>friend parent friendName ([type] arg..) { cvardec pvardec vardec exp}</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>friend</b></td>
+		        <td>
+		          <p>Mandatory keyword.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>parent</b></td>
+		        <td>
+		          <p>Name of the parent class</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>friendName</b></td>
+		        <td>
+		          <p>The name of the friend Lambda (function)</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>([type] arg...)</b></td>
+		        <td>
+		          <p>A list of type hints (optional) and arguments separated by commas.
+		          If there are no arguments the parenthesis are still required. <b>Note</b>:
+		          The optional type hints can be one of the following: <b>char</b>,<b>
+		          bool</b>,<b> int</b>,<b> float</b>,<b> </b>or<b> obj</b></p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>cvardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a persistent
+		          class variable declaration. See <b>cvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>pvardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a persistent
+		          variable declaration. See <b>pvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>vardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a local
+		          variable declaration. See <b>var</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>exp</b></td>
+		        <td>
+		          <p>The Estimator statements that form the Lambda</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>
+		          <p>Lambda object identifier</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <b>function foo(x) {<br>
+		    pvar y=5, d;<br>
+		    d=x<br>
+		    return (d);<br>
+		    }<br>
+		    <br>
+		    friend foo sum (x) {<br>
+		    pvar d=20 ;<br>
+		    var temp ;<br>
+		    temp=x + d + y;<br>
+		    return ( temp );<br>
+		    }</b>
+		    <p>We can invoke the parent and friend Lambdas as follows:</p>
+		    <pre>foo(10); //Returns 10
+		
+	           	 foo.sum(3); //Returns 28
+		
+		         compareEQ(foo.Pv,  foo.sum.Cv); //Returns true
+		
+		         compareEQ(foo.Pv,  foo.sum.Pv); //Returns false</pre>
+		    <p>Notes and Hints</p>
+		    <p>A friend Lambda has a different <b>pvar</b> structure than its parent
+		    Lambda, but the <b>cvar</b> structure of a friend Lambda is the <b>pvar</b>
+		    structure of its parent Lambda.</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sfrmregress"></A>frmregress</H2></P>
+			<p>The <b>frmregress</b> command trains a multivariate factor regression on the specified numeric expression list.
+            The frmregress statement should be the ONLY statement in the Estimator program, and returns the trained
+            multivariate factor regression Lambda.</p> 
+            <br>
+            <h3>Syntax</h3>		    
+		    <p>frmregress(numericExpression1,numericExpression2,,...,numericExpressionN);</p>
+		    <table>
+		      <tr>
+		        <td><b>frmregress</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpression1</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpressionN</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>frmregress(exp(x4),x10);</pre>
+		    <p>This will train a multivariate factor regression model on the numeric expressions: exp(x4) and x10.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>numericExpressions</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sfunction"></A>function</H2></P>
+			<p>A Estimator function compiles into a first class Lambda object. It has
+		    the same footprint and is treated like any Lambda Object created by any
+		    compiler in the LambdaClient development environment.</p>
+            <h3>Syntax</h3>		    
+		    <p>function name ([type] arg..) { cvardec pvardec vardec exp }<br>
+		    function ([type] arg..) { cvardec pvardec vardec exp }</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>function</b></td>
+		        <td>
+		          <p>Mandatory keyword.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>name</b></td>
+		        <td>
+		          <p>(Optional) The name of the Lambda (function)</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>([type] arg...)</b></td>
+		        <td>
+		          <p>A list of type hints (optional) and arguments separated by commas.
+		          If there are no arguments the parenthesis are still required. <b>Note</b>:
+		          The optional type hints can be one of the following: <b>char</b>,<b>
+		          bool</b>,<b> int</b>,<b> float</b>,<b> </b>or<b> obj</b></p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>cvardec</b></td>
+		        <td>
+		          <p>Optional Argument. If present, must be followed by a persistent
+		          variable declaration. See <b>cvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>pvardec</b></td>
+		        <td>
+		          <p>Optional Argument. If present, must be followed by a persistent
+		          variable declaration. See <b>pvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>vardec</b></td>
+		        <td>
+		          <p>Optional Argument. If present, must be followed by a local variable
+		          declaration. See <b>var</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>exp</b></td>
+		        <td>
+		          <p>The Estimator statements that form the Lambda</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>
+		          <p>Lambda object identifier</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Note: A function with no name will generate an unnamed function.</p>
+		    <p>When To Use</p>
+		    <p>The <b>function </b>statement defines the name of an Lambda, its
+		    arguments, and the statements that comprise the Lambda.</p>
+		    <p>Example1</p>
+		    <pre>function foo (x) {
+		
+		         writeln( &quot;The value of x is &quot; , x);
+		
+		         }</pre>
+		    <p>To invoke:</p>
+		    <pre>foo(29);</pre>
+		    <p>Example2</p>
+		    <pre>function sayHello  ( ) {
+		
+		         writeln( &quot;Hello World&quot;);
+		
+		          }</pre>
+		    <p>To invoke:</p>
+		    <pre>sayHello();</pre>
+             
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SFunction Invocation"></A>Function Invocation</H2></P>
+				<p>Estimator functions may be called by name or by Object Identifier. The
+			    function to be invoked must always have a set of parenthesis following the
+			    function name. If the function requires arguments, the arguments are passed
+			    as a comma separated list inside the parenthesis.</p>
+                <h3>Syntax</h3>		    
+			     <p>name ()<br>
+			     name (arg ...)<br>
+			     Lambda.child ()<br>
+			     Lambda.friend ( arg ...)<br>
+			     class.method ()<br>
+			     class.method ( arg ...)</p>
+			    <table>
+				  <tr align="top">
+			        <td><b>name</b></td>
+			        <td>
+			          <p>The name of the function to be invoked.</p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>class.method</b></td>
+			        <td>
+			          <p>Alternate form of function name. Must be a method of a specified
+			          class</p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>(arg...)</b></td>
+			        <td>
+			          <p>A list of arguments separated by commas. If there are no arguments
+			          the parenthesis are still required.</p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>Returns</b></td>
+			        <td>
+			          <p>Lambda object identifier</p>
+			        </td>
+			      </tr>
+			    </table>
+			    <p>Example1</p>
+			    <pre>foo (x) {
+			
+			         display( &quot;The value of x is &quot; , x);
+			
+			          }</pre>
+			    <p>To invoke:</p>
+			    <pre>foo (1998);</pre>
+			    <p>Example2</p>
+			    <pre>function  foo(x) {
+			
+			         pvar y;
+			
+			         y = x;
+			
+			         return (y);
+			
+			         }
+			
+			
+			
+		           	child foo sum (x) {
+			
+			        var temp;
+			
+			        temp = x +  y;
+			
+			        return ( temp );
+			
+			        }</pre>
+			    <p>We can invoke the parent and the child Lambda as follows:</p>
+			    <pre>foo(10);  //Returns 10
+			
+			         foo.sum(3);  //Returns 13</pre>
+                 
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sif"></A>if</H2></P>
+			<p>The <b>if </b>statement selects one of two expressions to evaluate based
+		    upon the value of a <b>{test}</b> expression. If the <b>{cond}</b> evaluates
+		    to True, then the expressions in the <b>{thenClause}</b> is evaluated.</p>
+		    <p>If the <b>else</b> keyword is present and the <b>{test} </b>evaluates to <b>false</b>,
+		    then the expressions in the <b>{elseClause}</b> is evaluated.</p>
+		    <p>The <b>{test}</b> and <b>{thenClause}</b> expressions are mandatory. The <b>{else}</b>
+		    expression is optional. The braces <b>{} </b>are also mandatory.</p>
+		    <p>The <b>{elseClause} </b>may also be an <b>if </b>statement therefore
+		    creating a limitless number of conditions and conditional paths.</p>
+            <h3>Syntax</h3>		    
+		    <p>if (test) { trueClause... }<br>
+		     if (test) { trueClause... } else { elseClause... }<br>
+		     if (test) { trueClause... } else if (test2) { exp ... }</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>test</b></td>
+		        <td>
+		          <p>An expression that returns a Boolean value. Must be enclosed in
+		          parenthesis.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>thenClause</b></td>
+		        <td>
+		          <p>The expression to be executed if the cond clause returned True</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>else</b></td>
+		        <td>
+		          <p>Optional Keyword</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>elseClause</b></td>
+		        <td>
+		          <p>Optional expression. If the else keyword is present the elseClause
+		          must be present. The expression to be executed if the cond clause
+		          returned False</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>else if</b></td>
+		        <td>
+		          <p>If present, must be a valid if statement.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>
+		          <p>Returns the value of the expression evaluated. If no else clause is
+		          specified, the returned value is the result of the condition
+		          expression.</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>When To Use</p>
+		    <p>The <b>if </b>statement is used whenever it is necessary to perform
+		    actions based on a condition</p>
+		    <p>Example1</p>
+		    <b>j=1</b>
+		    <pre>if ( j &lt; 10 ) { k = 100;} else { k = -100;} //sets k to 100</pre>
+		    <p>Example2</p>
+		    <pre>	j = 2;
+		
+	  				if ( j &lt; 10 )  { k = 100;} 
+		
+					else if ( j == 0)  {k = 10;}
+		
+					else if ( j == 1 ) {k = 100;} 
+		
+					else if ( j == 2 ) {k = 1000;} //sets k to 1000</pre>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SLogical Operators"></A>Logical Operators</H2></P>
+				<p>The logical operators are <b>&amp;&amp; (and) , || (or) , </b>and<b> !
+			    (not) </b>. The resulting value from a logical operation is a Boolean value.
+			    The <b>&amp;&amp;</b> operator returns <b>true</b> if <i><u>both</u></i><u></u>
+			    operands are <b>true</b>, the <b>|| </b>operator<b> </b>returns <b>true</b>
+			    if <i><u>one</u></i><u></u> or <i><u>both</u></i> operands are <b>true</b>,
+			    and the <b>!</b> operator returns <b>true</b> if the operand is <b>false</b>,
+			    otherwise the <b>!</b> operator returns <b>false</b>. Estimator performs
+			    type checking and type conversions, therefore if the operands are not
+			    Boolean, the operands are converted to Boolean.</p>
+                <h3>Syntax</h3>		    
+			    <p> (obj1 &amp;&amp; obj2 )<br>
+			    (obj1 || obj2 )</p>
+		        <table>
+			      <tr align="top">
+			        <td><b>obj1</b></td>
+			        <td>
+			          <p>First object to be compared</p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>operator</b></td>
+			        <td>
+			          <p>Must be <b>&amp;&amp; (and) , || (or)</b></p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>obj2</b></td>
+			        <td>
+			          <p>Second object to be compared</p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>Returns</b></td>
+			        <td>
+			          <p>The <b>&amp;&amp;</b> operator returns <b>true</b> if <i><u>both</u></i><u></u>
+			          operands are <b>true</b>, otherwise it returns <b>false</b>. The <b>||
+			          </b>operator<b> </b>returns <b>true</b> if <i><u>one</u></i><u></u> or
+			          <i><u>both</u></i><u></u> operands are <b>true</b> otherwise it
+			          returns <b>false</b>.</p>
+			        </td>
+			      </tr>
+			    </table>
+			    <br>
+                <h3>Syntax</h3>		    
+			    <p>(!obj1)</p>
+		        <table>
+			      <tr align="top">
+			        <td><b>!</b></td>
+			        <td>
+			          <p>Logical not operator<b></b></p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>obj1</b></td>
+			        <td>
+			          <p>Object to be negated</p>
+			        </td>
+			      </tr>
+			      <tr align="top">
+			        <td><b>Returns</b></td>
+			        <td>
+			          <p>Returns <b>true</b> if the operand is <b>false</b>, otherwise the <b>!</b>
+			          operator returns <b>false</b>.</p>
+			        </td>
+			      </tr>
+			    </table>
+			    <p>Example1</p>
+			    <pre>	var a = true, k;
+			
+						if ( 2 &lt; 3) &amp;&amp; (a == true) {k = 1;} else {k = 2;} // sets k to 1   
+			
+						if ( 2 &gt; 3) || (a == true) {k = 1;} else {k = 2;} // sets k to 1   
+			
+						if ( 2 &gt; 3) &amp;&amp; (!a) {k = 1;} else {k = 2;}// sets k to 2</pre>
+              
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smethod"></A>method</H2></P>
+			<p>The <b>method</b> statement defines a method to Estimator class.</p>
+            <h3>Syntax</h3>		    
+		    <p>method className methodName([type] arg...) { expr }</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>method</b></td>
+		        <td>
+		          <p>Mandatory keyword</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>className</b></td>
+		        <td>
+		          <p>Name of the parent class of the method</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>methodName</b></td>
+		        <td>
+		          <p>Name of this method.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>([type] arg...)</b></td>
+		        <td>
+		          <p>A list of type hints (optional) and arguments separated by commas.
+		          If there are no arguments the parenthesis are still required. <b>Note</b>:
+		          The optional type hints can be one of the following: <b>char</b>,<b>
+		          bool</b>,<b> int</b>,<b> float</b>,<b> </b>or<b> obj</b></p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>{expr}</b></td>
+		        <td>
+		          <p>A set of Estimator statements</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <pre>	class employee {Name; Address; Salary }
+		
+					method employee updateSalary( this, newSalary) {
+		
+					this.Salary = newSalary;
+		
+					}
+		
+					emp = new ('employee', 'Name', &quot;Tom Jones&quot;,  'Address',  &quot;200 Main Street, Small Town,  USA&quot; )
+		
+					emp.updateSalary(45000);
+		
+					writeln (emp.Name, &quot;'s new salary is &quot;, emp.Salary);</pre>
+		    <b>Note: </b>In a method declaration the receiving object (this) is
+		    declared, but is not passed in the function invocation.
+		    <pre>emp.updateSalary(45000); // This is correct
+		
+				emp.updateSalary(emp,45000); // This is incorrect</pre>
+             
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Smvlregress"></A>mvlregress</H2></P>
+			<p>The <b>mvlregress</b> command trains a multivariate linear regression on the specified numeric expression list.
+            The mvlregress statement should be the ONLY statement in the Estimator program, and returns the trained
+            multivariate linear regression Lambda.</p> 
+            <br>
+            <h3>Syntax</h3>		    
+		    <p>mvlregress(numericExpression1,numericExpression2,,...,numericExpressionN);</p>
+		    <table>
+		      <tr>
+		        <td><b>mvlregress</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpression1</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpressionN</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>mvlregress(exp(x4),x10);</pre>
+		    <p>This will train a multivariate linear regression model on the numeric expressions: exp(x4) and x10.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>numericExpressions</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Snew"></A>new</H2></P>
+					<p>The <b>new</b> function creates an instance of an object. The Lambda
+		    Information Server definition of an object is very specific. It is a memory
+		    resident container to store data, which is of variable length or is too
+		    large to fit in small fixed containers. The Analytic Information Server object
+		    Heap manager supports automated object resizing, garbage collection, and
+		    anti-fragmentation algorithms so that the user may concentrate on the
+		    analysis and modeling of data rather than on memory management.</p>
+		    <p>The Estimator compiler supports all of the Analytic Information Server
+		    objects. Each object is covered in detail in its own chapter in the <b>Lambda
+		    Information Server Programmer's Guide.</b></p>
+            <h3>Syntax</h3>		    
+		    <p>new ('objectType' )<br>
+		
+   new ('String' , value)<br>
+		
+   new ('Symbol' , value)<br>
+		
+   new  ('Vector' , vecSubType,  size)<br>
+		
+   new  ('Vector',  vecSubType,  size,  value)<br>
+		
+   new  ('Structure',  key,  value)<br>
+		
+   new  ('Structure',  key,  value ... . cdr )<br>
+		
+   new  ('Dictionary',  key,  value)<br>
+		
+   new  ('Directory',  key,  value)<br>
+		
+   new  ('ObjectRepository',  filename,  'key',  code, 'buffer', count)</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>new</b></td>
+		        <td>
+		          <p>Mandatory keyword</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>objectType</b></td>
+		        <td>
+		          <p>Must be 'String', 'Symbol', 'Vector', 'Structure' , 'Dictionary',
+		          'Directory', 'ObjectRepository'</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>value</b></td>
+		        <td>
+		          <p>Optional Argument. If present, must be a constant of type
+		          objectType.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>vecSubType</b></td>
+		        <td>
+		          <p>Optional argument, but if present must only be used with objectType,
+		          Vector. Valid vecSubtypes are</p>
+		          <p>'normal'</p>
+		          <p>'bit'</p>
+		          <p>'integer'</p>
+		          <p>'float'</p>
+		          <p>'number'</p>
+		          <p>'small'</p>
+		          <p>'object'</p>
+		          <p>'pcode'.</p>
+		          <p>If omitted, the default is normal vector.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>size</b></td>
+		        <td>
+		          <p>Optional argument, but if present must only be used with objectType,
+		          Vector. It must be an integer representing the number of items the
+		          Vector will store.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>key, value</b></td>
+		        <td>
+		          <p>Optional arguments to Structure, Dictionary, and Directory, but
+		          must appear in pairs. There may be an arbitrary number of key, value
+		          pairs.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>. cdr</b></td>
+		        <td>
+		          <p>Optional Argument to Structure only. If present, it must be a
+		          constant that will be assigned to the cdr (tail) of a structure.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>filename</b></td>
+		        <td>
+		          <p>If objectType is ObjectRepository, filename is a mandatory field
+		          which names the database archive file to be associated with the
+		          ObjectRepository. If no such file exists, a new database archive file
+		          will be created.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>'clear'</b></td>
+		        <td>
+		          <p>If objectType is ObjectRepository, 'clear' is an optional keyword.
+		          If present, the database archive file will be cleared immediately
+		          before any further processing. If no such file exists, a new database
+		          archive file will be created.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>'key', code</b></td>
+		        <td>
+		          <p>If objectType is ObjectRepository, 'key' is an optional keyword. If
+		          present and it must followed by a number. See ObjectRepository in the
+		          Programmer's Guide for more detail.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>'buffer',count</b></td>
+		        <td>
+		          <p>If objectType is ObjectRepository, 'buffer' is an optional keyword.
+		          If the key word 'buffer' is present, the numeric buffered object count
+		          must follow. See ObjectRepository in the Programmer's Guide for more
+		          detail.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>
+		          <p>The <b>new</b> function will return an object identifier for the
+		          type specified in objectType .</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>Estimator Syntax</b></td>
+		        <td><b>Lisp Syntax</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('String', &quot;John&quot;)</b></td>
+		        <td><b>(new String: &quot;John&quot;)</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('Symbol' , &quot;Donald&quot;)</b></td>
+		        <td><b>(new Symbol: &quot;Donald&quot;)</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('Vector', 3, 11, 12, 99)</b></td>
+		        <td><b>(new Vector: 3 11 12 99)</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('Vector' , 'bit', 5, 1 )</b></td>
+		        <td><b>(new Vector: bit: 5 1)</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('Structure', 'X', 22, 'Y', 34, ' .', 3)</b></td>
+		        <td><b>(new Structure: X: 22 Y: 34 . 3)</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('Dictionary' , 'Name', &quot;John Doe&quot;, 'Age', 30)</b></td>
+		        <td><b>(new Dictionary: Name: &quot;John Doe&quot; Age: 30)</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ('Directory' , 1, &quot;New Year's Day&quot;, 2,
+		          &quot;Valentine's Day&quot; )</b></td>
+		        <td><b>(new Directory: 1 &quot;New Year's Day&quot; 2 &quot;Valentine's
+		          Day&quot; )</b></td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>new ( 'ObjectRepository', &quot;myarchive.odb&quot;)</b></td>
+		        <td><b>(new ObjectRepository: &quot;myarchive.odb&quot;)</b></td>
+		      </tr>
+		    </table>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sorphan"></A>orphan</H2></P>
+			<p>The <b>orphan </b>statement creates a new Lambda object and assigns it to
+		    the specified persistent variable name <b>orphanName</b> of the parent Lambda
+		    <b>parent</b>. The <b>orphan </b>function<b> </b>declaration always returns
+		    the newly created Lambda object. The new orphan Lambda is invoked by using the
+		    <b>parent.orphanName ()</b> syntax form.</p>
+            <h3>Syntax</h3>		    
+		    <p>orphan parent orphanName ([type] arg..) { cvardec pvardec vardec exp}</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>orphan</b></td>
+		        <td>
+		          <p>Mandatory keyword.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>parent</b></td>
+		        <td>
+		          <p>Name of the parent class</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>orphanName</b></td>
+		        <td>
+		          <p>The name of the orphan Lambda (function)</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>([type] arg...)</b></td>
+		        <td>
+		          <p>A list of type hints (optional) and arguments separated by commas.
+		          If there are no arguments the parenthesis are still required. <b>Note</b>:
+		          The optional type hints can be one of the following: <b>char</b>,<b>
+		          bool</b>,<b> int</b>,<b> float</b>,<b> </b>or<b> obj</b></p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>cvardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a persistent
+		          class variable declaration. See <b>cvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>pvardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a persistent
+		          variable declaration. See <b>pvar</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>vardec</b></td>
+		        <td>
+		          <p>Optional declaration. If present, must be followed by a local
+		          variable declaration. See <b>var</b>.</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>exp</b></td>
+		        <td>
+		          <p>The Estimator statements that form the Lambda</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>Returns</b></td>
+		        <td>
+		          <p>Lambda object identifier</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>Example1</p>
+		    <pre>  	 function  foo(x) {
+		
+		   			 pvar y = 5; pvar d =30;
+		
+		   			 var temp ;
+		
+		   			 temp = x + d + y;
+		
+		   			 return ( temp );
+		
+		   			 }
+		
+		
+		
+					orphan foo  sum (x) {
+		
+		   		    pvar d = 20 ; 
+		
+		  		    cvar e = 100 ; 
+		
+		   			var temp ;
+		
+		   		    temp = x + d + y;
+		
+		   		   return ( temp );
+		
+		    		}</pre>
+		    <p>We can invoke the parent and orphan Lambdas as follows:</p>
+		    <pre> 	y = 10; //declare a global variable
+		
+				 	foo(10); //Returns 45
+		
+					foo.sum(10); //Returns 40 (uses the value of global  y)
+		
+					compareEQ(foo.Cv,  foo.sum.Cv); //Returns false
+		
+					compareEQ(foo.Pv,  foo.sum.Pv); //Returns false</pre>
+		    <p>Notes and Hints</p>
+		    <p>An orphan<b> </b>Lambda is a member of its parent's <b>pvar</b> structure.
+		    Therefore, the parent knows about the orphan. However, the orphan Lambda has
+		    a different <b>pvar</b> structure than its parent Lambda, and a different <b>cvar</b>
+		    structure than its parent Lambda. Therefore, an orphan Lambda knows nothing of
+		    its parent Lambda.</p>
+             
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Spvar"></A>pvar</H2></P>
+		  <p>The <b>pvar</b> statement declares a persistent variable within an Lambda.
+		    This means that the persistent class variable will have a scope for the life
+		    of the Lambda object. The persistent variable is created and initialized when
+		    the Lambda is instantiated and <u>not</u> re-initialized each time the Lambda
+		    is invoked. Although Estimator is a dynamically typed language, the pvar
+		    allows the programmer to optionally provide hints to the compiler by
+		    specifying a type for variable declarations. The supported types are: char,
+		    bool, int, float, and obj. Specifying a type of obj is equivalent to
+		    specifying no type information.</p>
+		    <b>Note</b>: If type hints are supplied, the programmer must assure that no
+		    other types are saved in the variable.
+            <h3>Syntax</h3>		    
+		    <p>pvar varName<br> 
+		
+   pvar varName = init<br>
+		
+   pvar type varName<br> 
+		
+   pvar type varName = init</p>
+		    <table>
+		      <tr align="top">
+		        <td><b>pvar</b></td>
+		        <td>
+		          <p>Mandatory keyword</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>type</b></td>
+		        <td>obj char bool int float obj text string symbol bitvec fltvec pcdvec
+		          stc dir dic matrix nummat vec bitvec numvec intvec objvec</td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>pvarName</b></td>
+		        <td>
+		          <p>The name of the persistent variable</p>
+		        </td>
+		      </tr>
+		      <tr align="top">
+		        <td><b>=init</b></td>
+		        <td>
+		          <p>Optional argument. If present, the compiler will assign the <b>pvarName</b>
+		          to the value in <b>init</b>.</p>
+		        </td>
+		      </tr>
+		    </table>
+		    <p>When To Use</p>
+		    <p>Unlike a <b>var </b>statement that is declared inside a function, the
+		    variables are only &quot;alive&quot; while the function is currently active.
+		    A <b>pvar </b>(persistent variable) is accessible, as long the Lambda object
+		    instance is active. The contents of the <b>pvar</b> structure is in <b>LambdaName.Pv</b>,
+		    where <b>LambdaName</b> is the name of the instance of the Lambda.</p>
+		    <p>A persistent variable <b>(pvar)</b> is analogous to a static variable in
+		    a C or C++ programming environment. . It created and initialized when the
+		    Lambda is instantiated.</p>
+		    <p>Unlike temporary variables <b>(var),</b> which are always allocated and
+		    initialized upon entry to a function and released upon exit, a <b>pvar</b>
+		    is initialized once and the memory allocated is fixed until the application
+		    ends.</p>
+		    <p>Example1</p>
+		    <pre>	function squareIt  (x)  {
+		
+		    		pvar xx;
+		
+		    		var y;
+		
+		   			xx = x * x;
+		
+		    		y = xx;
+		
+		    		return (xx);
+		
+		    		}
+		
+		
+		
+					var result;
+		
+					result = squareIt (10);
+		
+					writeln(result);  //displays &quot;100&quot;
+		
+					writeln(squareIt.xx);  //displays &quot;100&quot;
+		
+					writeln(squareIt.y); //error !Cannot find name: y in the PV structure of Lambda squareIt!</pre>
+		    <p>Notes and Hints</p>
+		    <p>The scope of variables in nested Lambdas depends upon the following
+		    compilation rules: Nested Lambdas do not share either their arguments or
+		    their temporary variables. The argument and the temporary variables are
+		    always limited in scope to the immediate Lambda object. A nested Lambda shares
+		    the persistent variables <b>(pvar)</b> and the persistent class variables <b>(cvar)</b>
+		    of its parents. When a variable reference is encountered, the Estimator
+		    compiler first searches the local Lambda's temporary variables<b> (var)</b>,
+		    then the persistent variable structure <b>(pvar)</b>, then the persistent
+		    class structure <b>(cvar)</b>, and finally the global variables.</p>
+		    <p>Also note: Any variable that is used without explicit declaration is
+		    automatically declared as a global variable. (This is true even if it is
+		    used inside a function definition).</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sreg"></A>reg</H2></P>
+			   <p>The <b>reg</b> statement declares a register variable inside a
+		        Estimator program. If a <b>reg</b> statement appears outside a
+		        function definition, the variable declaration generates an error
+		        message.</p>
+		        <p>The <b>reg</b> statement declares a register variable within an
+		        Lambda. This means that the register variable will have a scope for this
+		        invocation of the Lambda object. The register variable is created and
+		        initialized each time the Lambda is invoked. Although Estimator is a
+		        dynamically typed language, the reg allows the programmer to optionally
+		        provide hints to the compiler by specifying a type for register
+		        declarations. The supported types are: int and float.
+		        Specifying a type of int is equivalent to specifying no type
+		        information.</p>
+		        <p><b>Note</b>: If type hints are supplied, the programmer must assure that
+		        no other types are saved in the variable.</p>
+                <h3>Syntax</h3>		    
+  		        <p>reg varName<br>
+		         reg varName=init|<br>
+		         reg type varName<br>
+		         reg type varName=init</p>
+		        <table>
+		          <tr align="top">
+		            <td><b>reg</b></td>
+		            <td>
+		              <p>Mandatory keyword</p>
+		            </td>
+		          </tr>
+		          <tr align="top">
+		            <td><b>type</b></td>
+		            <td>int float</td>
+		          </tr>
+		          <tr align="top">
+		            <td><b>varName</b></td>
+		            <td>
+		              <p>The name of the register variable</p>
+		            </td>
+		          </tr>
+		          <tr align="top">
+		            <td><b>=init</b></td>
+		            <td>
+		              <p>Optional argument. If present, the compiler will assign the <b>varName</b>
+		              to the value in <b>init</b>.</p>
+		            </td>
+		          </tr>
+		        </table>
+		        <p>When To Use</p>
+		        <p>It is necessary to explicitly declare register variables inside a function
+		        using the <b>reg</b> statement. The register variable structure, <b>LambdaName.Rv,
+		        </b>(where <b>LambdaName</b> is the name of the instance of the Lambda) is
+		        accessible.</p>
+		        <p>Register variables are always allocated and initialized upon entry
+		        to a function and released upon exit.</p>
+		        <p>Example1</p>
+		        <pre>	function zoo  (x)  {
+		
+		    			reg int m;
+		
+		    			m = x;
+		
+		    			writeln(m);
+		
+		    			return (m);
+		
+		    			}
+		
+		
+		
+						var m = 99;
+		
+						result = zoo(7); //displays &quot;7&quot;  (accesses the contents of the local variable)
+		
+						writeln(m);  //displays &quot;99&quot;  (accesses the contents of the global variable)
+		
+						writeln(zoo.m); //error--!Cannot find name: m in the PV structure of Lambda zoo!</pre>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sregress"></A>regress</H2></P>
+			<p>The <b>regress</b> command trains a simple linear regression on the specified numeric expression.
+            The regress statement should be the ONLY statement in the Estimator program, and returns the trained
+            simple linear regression Lambda.</p> 
+            <br>
+            <h3>Syntax</h3>		    
+		    <p>regress numericExpression;</p>
+		    <table>
+		      <tr>
+		        <td><b>regress</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpression</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>regress exp(x4)*x10;</pre>
+		    <p>This will train a simple linear regression model on the numeric expression: exp(x4)*x10.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>numericExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sreturn"></A>return</H2></P>
+		<p>The <b>return</b> statement exits the current function passes a
+        single value to the caller.</p>
+        <h3>Syntax</h3>		    
+        <p>return ( value )</p>
+		    <table>
+          <tr align="top">
+            <td><b>value</b></td>
+            <td>
+              <p>Any expression that returns a value. May be embedded in
+              parenthesis</p>
+            </td>
+          </tr>
+          <tr align="top">
+            <td><b>Returns</b></td>
+            <td>
+              <p>Immediately evaluates the expression, returns the value, and
+              resume execution of the caller function</p>
+            </td>
+          </tr>
+        </table>
+        <p>When To Use</p>
+        <p>The <b>return</b> statement is used to leave the current function and
+        return to the caller with a return value.</p>
+        <p>Example1</p>
+        <pre>	
+                function foo  (x)  {
+
+                var m;
+
+                m = x * 2;
+
+                return (m); // the value of m is returned to the caller
+
+                }
+
+
+
+                result = foo(7); //result will receive the value of 14
+        </pre>
+         
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sscore"></A>score</H2></P>
+			<p>The <b>score</b> statement performs a set of scoring operations on the current row manager.
+		    The score statement must be followed by a single command. The score
+		    statement supports commands for averaging and totalling rows from the
+		    The score statement does not alter the current record view.
+		    </p>
+            <h3>Syntax</h3>		    
+		    <p>score command;</p>
+		    <table>
+		      <tr>
+		        <td><b>score</b></td>
+		        <td>Keyword (optional)</td>
+		      </tr>
+		      <tr>
+		        <td><b>command</b></td>
+		        <td>score statement command (mandatory).</td>
+		      </tr>
+		    </table>
+            <h3>Syntax</h3>		    
+		    <p>score expression;</p>
+		    <table>
+		      <tr>
+		        <td><b>score</b></td>
+		        <td>Keyword (mandatory)</td>
+		      </tr>
+		      <tr>
+		        <td><b>expression</b></td>
+		        <td>Any valid javaFilter expression including
+		          imbedded score statement commands (mandatory).</td>
+		      </tr>
+		    </table>
+            <h3>Syntax</h3>		    
+		    <p>score variable=command;</p>
+		    <table>
+		      <tr>
+		        <td><b>score</b></td>
+		        <td>Keyword (optional)</td>
+		      </tr>
+		      <tr>
+		        <td><b>variable</b></td>
+		        <td>A variable name to receive the finished
+		          score.</td>
+		      </tr>
+		      <tr>
+		        <td><b>=</b></td>
+		        <td>The javaFilter assignment operator.</td>
+		      </tr>
+		      <tr>
+		        <td><b>command</b></td>
+		        <td>score statement command (mandatory).</td>
+		      </tr>
+		    </table>
+		    <h3>Notes and Hints</h3>
+		    <p><b>Note1</b>: The <b>score</b> statement generates code which assumes
+		    that the variable named, <b>XT</b>, contains the GSM row manager
+		    which is to be operated upon.</p>
+		    <p><b>Note2</b>: The <b>score</b> statement may be used as a stand alone
+		    statement in a global declaration or inside an existing function. A stand
+		    alone select statement is automatically enclosed in the following universal
+		    parse tree lambda:</p>
+		    <p>(lambda (XT) (begin ...score statement block...))</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SScore Command: average"></A>Score Command: average</H2></P>
+			<p>The <b>average</b> command averages a numeric expression over each row in
+		    the current row manager.</p>
+            <h3>Syntax</h3>		    
+		    <p>average expression</p>
+		    <table>
+		      <tr>
+		        <td><b>average</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>expression</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>score average x3;</p>
+		    <p>This will return the average of x3 for the current record view.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>score expression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SScore Command: averageForAll"></A>Score Command: averageForAll</H2></P>
+			<p>The <b>averageForAll</b> command averages a numeric expression over ALL
+		    rows in the current row manager.</p>
+            <h3>Syntax</h3>		    
+		    <p>averageForAll expression</p>
+		    <table>
+		      <tr>
+		        <td><b>averageForAll</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>expression</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>score averageForAll x10;</p>
+		    <p>This will return the average of x10 for all rows in the current row manager.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>score expression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SScore Command: extract"></A>Score Command: extract</H2></P>
+			<p>The <b>extract</b> command extracts single or multiple columns of data from the current record view.
+		    </p>
+            <h3>Syntax</h3>		    
+		    <p>extract extractExpression</p>
+		    <table>
+		      <tr>
+		        <td><b>extract</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>extractExpression</b></td>
+		        <td>Single or multiple column extraction expression.</td>
+		      </tr>
+		    </table>
+		    <p>extract : spineVectorType : extractExpression</p>
+		    <table>
+		      <tr>
+		        <td><b>extract</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>spineVectorType</b></td>
+		        <td>The type of the spine vector for this extraction: Integer, Number, Object, or Word (defaults to Object:).</td>
+		      </tr>
+		      <tr>
+		        <td><b>extractExpression</b></td>
+		        <td>Single or multiple column extraction expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>score extract new('Vector','Number',2,(x1/x2),sin(x4));</p>
+		    <p>This will extract two columns of data, as specified, from all rows in the current record view.
+            The results will be returned as an Object Vector (the missing <i>spineVectorType</i> argument defaults to Object) 
+            with exactly as many entries as there are rows in the current record view.</p>
+		    <h3>Example2</h3>
+		    <p>score extract : Number : sin(x4);</p>
+		    <p>This will extract one columns of data, as specified, from all rows in the current record view.
+            The results will be returned as a Number Vector with exactly as many entries as there are rows in the current record view.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>extractExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+                        
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SScore Command: total"></A>Score Command: total</H2></P>
+			  <p>The <b>total</b> command totals a numeric expression over each row in
+		      the current record view.</p>
+              <h3>Syntax</h3>		    
+		      <p>total expression<b></b></p>
+		    <table>
+		        <tr>
+		          <td><b>total</b></td>
+		          <td>Mandatory keyword</td>
+		        </tr>
+		        <tr>
+		          <td><b>expression</b></td>
+		          <td>Numeric expression.</td>
+		        </tr>
+		      </table>
+		      <h3>Example1</h3>
+		      <p>score total x5;</p>
+		      <p>This will return the total of x5 for the current record view.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>score expression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SScore Command: totalForAll"></A>Score Command: totalForAll</H2></P>
+	    <p>The <b>totalForAll</b> command totals a numeric expression over ALL
+        rows in the current row manager.</p><br>
+        <h3>Syntax</h3>		    
+        <p>totalForAll expression</p>
+		    <table>
+          <tr>
+            <td><b>totalForAll</b></td>
+            <td>Mandatory keyword</td>
+          </tr>
+          <tr>
+            <td><b>expression</b></td>
+            <td>Numeric expression.</td>
+          </tr>
+        </table>
+        <h3>Example1</h3>
+        <p>score totalForAll (x4 / x2);</p>
+        <p>This will return the total of (x4 / x2) for all records in the current row manager.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>score expression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect"></A>Select</H2></P>
+			<p>The <b>select</b> statement performs a set of selection operations on the <b>XT</b> argument
+            (the row manager Lambda containing the set of Number Vectors for the current time period).   
+            The select statement may be followed by a single command or by
+		    multiple commands. The select statement supports commands for sorting and
+		    selecting rows from the current record view (the currently selected rows). 
+            The select command only alters the current record view.
+            </p>
+            <h3>Syntax</h3>		    
+		    <p>select command1; ... commandN;</p>
+		    <table>
+		      <tr>
+		        <td><b>select</b></td>
+		        <td>Keyword (optional)</td>
+		      </tr>
+		      <tr>
+		        <td><b>Command1;</b></td>
+		        <td>select statement command (mandatory).</td>
+		      </tr>
+		      <tr>
+		        <td><b>CommandN;</b></td>
+		        <td>select statement command (optional).</td>
+		      </tr>
+		    </table>
+		    <h3>Notes and Hints</h3>
+		    <p><b>Note1</b>: All the commands of a single <b>select</b> statement are
+		    grouped together into a single block. This is true regardless of whether or
+		    not the <u>select</u> keyword is present, and regardless of whether or not
+		    the multiple select commands are enclosed in braces.</p>
+		    <p><b>Note2</b>: The <b>select</b> statement generates code which assumes
+		    that the variable named, <b>XT</b>, contains the GSM row manager Lambda
+		    which is to be operated upon.</p>
+		    <p><b>Note3</b>: The <b>select</b> statement may be used as a stand alone
+		    statement in a global declaration or inside an existing function. A stand
+		    alone select statement is automatically enclosed in the following universal
+		    parse tree lambda:
+            <br>
+		    (lambda (XT) (begin ...select statement block...) XT)</p>
+		    <p><b>Note4</b>: The <b>select</b> statement always automatically converts
+		    any element name symbol into a row index reference.</p>
+           
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: all"></A>Select Command: all</H2></P>
+			<p>The <b>all</b> command performs a selection operation on the current recordview.
+		    </p>
+            <h3>Syntax</h3>		    
+		    <p>all selectExpression</p>
+		    <table>
+		      <tr>
+		        <td><b>all</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>selectExpression</b></td>
+		        <td>Select expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>select all x4 &gt; 10000;</p>
+		    <p>This will delete all rows from the current record view where x4 is not
+		    greater than 10000.</p>
+		    <h3>Example2</h3>
+		    <p>select all (x4/sin(x2)) &gt; .54;</p>
+		    <p>This will delete all rows from the current record view where (x4/sin(x2)) is not
+		    greater than .54.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>selectExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+                        
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: bottom"></A>Select Command: bottom</H2></P>
+			<p>The <b>bottom</b> command performs a sort on the current row manager,
+		    followed by a deletion operation on the current row manager.</p>
+            <h3>Syntax</h3>		    
+		    <p>bottom sortExpression cutoff</p>
+		    <table>
+		      <tr>
+		        <td><b>bottom</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>sortExpression</b></td>
+		        <td>Sort expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>cutoff</b></td>
+		        <td>Cut off absolute number or percent.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>select bottom (x10 * x1) 100;</p>
+		    <p>This will delete all rows from the current record view which are not in
+		    the top 100 rows of all (x10 * x1).</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>selectExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: highest"></A>Select Command: highest</H2></P>
+			<p>The <b>highest</b> command performs a sort on the current row manager,
+		    followed by a deletion operation on the current row manager.</p><br>
+            <h3>Syntax</h3>		    
+		    <p>highest sortExpression cutoff</p>
+		    <table>
+		      <tr>
+		        <td><b>highest</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>sortExpression</b></td>
+		        <td>Sort expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>cutoff</b></td>
+		        <td>Cut off absolute number or percent.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>select highest x4 10%;</pre>
+		    <p>This will delete all rows from the current record view which are not in
+		    the top 10% of all x4.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>selectExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: restore"></A>Select Command: restore</H2></P>
+			<p>The <b>restore</b> command restores the backup view of the current table
+		    cursor.</p>
+            <h3>Syntax</h3>		    
+		    <p>restore</p>
+		    <table>
+		      <tr>
+		        <td><b>restore</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>select restore;</p>
+		    <p>This will restore the all rows view of the current row manager.</p>            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: run"></A>Select Command: run</H2></P>
+			<p>The <b>run</b> command performs a select on the current row manager.</p><br>
+            <h3>Syntax</h3>		    
+		    <p>run functionCall</p>
+		    <table>
+		      <tr>
+		        <td><b>run</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>functionCall</b></td>
+		        <td>A Estimator function call expression to a
+		          specified select Lambda.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>select run &quot;myEstimator&quot;;</pre>
+		    <p>This will run the &quot;myEstimator&quot; Estimator Lambda, in the current
+		    project, on the current record view.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: slice"></A>Select Command: slice</H2></P>
+			<p>The <b>slice</b> command performs an ascending sort on the current row
+		    manager, followed by a tile operation on the current row manager.</p><br>
+            <h3>Syntax</h3>		    
+		    <p>slice sortExpression tileIndex of tileCount</p>
+		    <table>
+		      <tr>
+		        <td><b>slice</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>sortExpression</b></td>
+		        <td>Sort expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>tileIndex</b></td>
+		        <td>The index of the tile to show.</td>
+		      </tr>
+		      <tr>
+		        <td><b>of</b></td>
+		        <td>Mandatory keyword.</td>
+		      </tr>
+		      <tr>
+		        <td><b>tileCount</b></td>
+		        <td>The number of tiles.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>select slice (x21 * x2) 42 of 100;</p>
+		    <p>This will retain all rows from the current record view which are in the 42
+		    percentile of (x21 * x2).</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>selectExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: sort"></A>Select Command: sort</H2></P>
+			<p>The <b>sort</b> command performs a sort on the current row manager.</p><br>
+            <h3>Syntax</h3>		    
+		    <p>sort [direction] sortExpression</p>
+		    <table>
+		      <tr>
+		        <td><b>sort</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>direction</b></td>
+		        <td>Optional Sort direction: <b>up</b> or <b>down</b>
+		          (optional). If sort direction is omitted, the direction is assumed to
+		          be up.</td>
+		      </tr>
+		      <tr>
+		        <td><b>sortExpression</b></td>
+		        <td>Mandatory Sort expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <p>select sort down x3;</p>
+		    <p>This will sort all rows in the current record view in descending order by
+		    x3.</p>	
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>selectExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+            
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SSelect Command: top"></A>Select Command: top</H2></P>
+			<p>The <b>top</b> command performs a sort on the current row manager,
+		    followed by a deletion operation on the current row manager.</p><br>
+            <h3>Syntax</h3>		    
+		    <p>top sortExpression cutoff</p>
+		    <table>
+		      <tr>
+		        <td><b>top</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>sortExpression</b></td>
+		        <td>Sort expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>cutoff</b></td>
+		        <td>Cut off absolute number or percent.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>select top x4 10%;</pre>
+		    <p>This will delete all rows from the current record view which are not in
+		    the top 10% of all x4.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>selectExpression</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SStatement Blocks"></A>Statement Blocks</H2></P>
+ 		<p>An arbitrary number of Estimator statements may be grouped logically
+        by embedding the statements in braces <b>{ exp</b> ...<b>}</b>. A
+        statement block such as this may be placed in any position where a
+        single statement is required. Multiple statements in Estimator may be
+        written on a single line as long as a semicolon terminates each
+        statement.</p>
+            <h3>Syntax</h3>		    
+            <p>{exp ...}</p>
+		    <table>
+          <tr align="top">
+            <td><b>exp ...</b></td>
+            <td>
+              <p>Any number of expressions to be evaluated</p>
+            </td>
+          </tr>
+        </table>
+        <p>When To Use</p>
+        <p>A statement block may be placed in any position where a single
+        statement is required.</p>
+        <p>Example1</p>
+        <pre>	j = 1;
+
+				if ( j &lt; 10 ) { k = 100; writeln(k);} else { k = -100; writeln(k);} </pre>
+         
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Ssvmregress"></A>svmregress</H2></P>
+			<p>The <b>svmregress</b> command trains a support vector regression, with a cubic kernel, on the specified numeric expression list.
+            The svmregress statement should be the ONLY statement in the Estimator program, and returns the trained
+            support vector regression Lambda.</p> 
+            <br>
+            <h3>Syntax</h3>		    
+		    <p>svmregress;</p>
+		    <table>
+		      <tr>
+		        <td><b>svmregress</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		    </table>
+            This form of the svmregress statement is equivalent to regressing on a list of all column names.
+            <br>
+		    <p>svmregress(numericExpression1,numericExpression2,,...,numericExpressionN);</p>
+		    <table>
+		      <tr>
+		        <td><b>svmregress</b></td>
+		        <td>Mandatory keyword</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpression1</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		      <tr>
+		        <td><b>numericExpressionN</b></td>
+		        <td>Numeric expression.</td>
+		      </tr>
+		    </table>
+		    <h3>Example1</h3>
+		    <pre>svmregress(exp(x4),x10);</pre>
+		    <p>This will train a support vector regression model, with a cubic kernel, on the numeric expressions: exp(x4) and x10.</p>
+            <p><font color=red><B>Note:</b></font> 
+            Inside the <i>numericExpressions</i>, the name <b>XT</b> refers to the GSM row manager Lambda input argument.
+            The name <b>xv</b> refers to the currently focused record.
+            The names <b>xtime</b>, <b>y</b>, and <b>x1</b> thru <b>xm</b>, refer to elements within the currently focused record.</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Svar"></A>var</H2></P>
+		<p>The <b>var</b> statement declares a temporary variable inside a
+        Estimator program. The location of the <b>var</b> statement determines
+        the scope the variable. If a <b>var</b> statement appears inside a
+        function definition, the variable is considered local to that function
+        only. If a <b>var</b> statement appears outside a function definition,
+        the variable has global scope.</p>
+        <p>The <b>var</b> statement declares a temporary variable within an
+        Lambda. This means that the temporary variable will have a scope for this
+        invocation of the Lambda object. The temporary variable is created and
+        initialized each time the Lambda is invoked. Although Estimator is a
+        dynamically typed language, the var allows the programmer to optionally
+        provide hints to the compiler by specifying a type for variable
+        declarations. The supported types are: char, bool, int, float, and obj.
+        Specifying a type of obj is equivalent to specifying no type
+        information.</p>
+        <p><b>Note</b>: If type hints are supplied, the programmer must assure that
+        no other types are saved in the variable.</p><br>
+        <h3>Syntax</h3>		    
+        <p>var varName<br>
+        var varName=init|<br>
+        var type varName<br>
+        var type varName=init</p>
+		    <table>
+          <tr align="top">
+            <td><b>var</b></td>
+            <td>
+              <p>Mandatory keyword</p>
+            </td>
+          </tr>
+          <tr align="top">
+            <td><b>type</b></td>
+            <td>obj char bool int float obj text string symbol bitvec fltvec
+              pcdvec stc dir dic matrix nummat vec bitvec numvec intvec objvec</td>
+          </tr>
+          <tr align="top">
+            <td><b>varName</b></td>
+            <td>
+              <p>The name of the temporary variable</p>
+            </td>
+          </tr>
+          <tr align="top">
+            <td><b>=init</b></td>
+            <td>
+              <p>Optional argument. If present, the compiler will assign the <b>varName</b>
+              to the value in <b>init</b>.</p>
+            </td>
+          </tr>
+        </table>
+        <p>When To Use</p>
+        <p>Since global variables are automatically declared in the LambdaClient
+        environment, it is unnecessary declare global variables. However, it is
+        necessary to explicitly declare temporary variables inside a function
+        using the <b>var</b> statement. The temporary variable structure, <b>LambdaName.Tv,
+        </b>(where <b>LambdaName</b> is the name of the instance of the Lambda) is
+        accessible, as long the Lambda object instance is active.</p>
+        <p>Temporary variables are always allocated and initialized upon entry
+        to a function and released upon exit.</p>
+        <p>Example1</p>
+        <pre>	function zoo  (x)  {
+
+    			var m;
+
+    			m = x;
+
+    			writeln(m);
+
+    			return (m);
+
+    			}
+
+
+
+				var m = 99;
+
+				result = zoo(7); //displays &quot;7&quot;  (accesses the contents of the local variable)
+
+				writeln(m);  //displays &quot;99&quot;  (accesses the contents of the global variable)
+
+				writeln(zoo.m); //error--!Cannot find name: m in the PV structure of Lambda zoo!</pre>
+        <p>Notes and Hints</p>
+        <p>The scope of variables in nested Lambdas depends upon the following
+        compilation rules: Nested Lambdas do not share either their arguments or
+        their temporary variables. The argument and the temporary variables are
+        always limited in scope to the immediate Lambda object. A nested Lambda
+        shares the persistent variables <b>(pvar)</b> and the persistent class
+        variables <b>(cvar)</b> of its parents. When a variable reference is
+        encountered, the Estimator compiler first searches the local Lambda's
+        temporary variables<b> (var)</b>, then the persistent variable structure
+        <b>(pvar)</b>, then the persistent class structure <b>(cvar)</b>, and
+        finally the global variables.</p>
+        <p>Also note: Any variable that is used without explicit declaration is
+        automatically declared as a global variable. (This is true even if it is
+        used inside a function definition).</p>
+        
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Swhile"></A>while</H2></P>
+		<p>The <b>while</b> statement repeats a set of Estimator statements
+        until its condition is false.</p><br>
+        <h3>Syntax</h3>		    
+        <p>while (test) { expr }</p>
+		    <table>
+          <tr align="top">
+            <td><b>while</b></td>
+            <td>
+              <p>Mandatory keyword</p>
+            </td>
+          </tr>
+          <tr align="top">
+            <td><b>(test)</b></td>
+            <td>
+              <p>An expression that returns a Boolean value</p>
+            </td>
+          </tr>
+          <tr align="top">
+            <td><b>{expr}</b></td>
+            <td>
+              <p>A set of Estimator statements</p>
+            </td>
+          </tr>
+        </table>
+        <p>Example1</p>
+        <pre>	var int a = 1;
+
+				while (a &lt; 10)   { display (&quot; &quot;, a)  ++a }		</pre>
+        <p>This will display the following line in the console screen:</p>
+        <pre>1  2  3  4  5  6  7  8  9  </pre>
+        
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

@@ -1,0 +1,240 @@
+
+<HTML>
+<HEAD><TITLE>AIS Datatype Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<TABLE CELLSPACING=0 CELLPADDING=6 BORDER=0 WIDTH=600>
+<TR>
+<TD  BGCOLOR="#406000" WIDTH="22%" VALIGN="TOP">
+<IMG SRC="Image_Math002.gif" WIDTH=128 HEIGHT=203>
+<!--- Button which links to Home page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Home' onClick='location = "Page_Help_Home.html"'>
+</P>
+
+<TD WIDTH="78%" VALIGN="TOP">
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Structure</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#S1"><FONT SIZE=2>Structure Overview</font></a></li><li><a href="#S2"><FONT SIZE=2>Structure Illustration</font></a></li><li><a href="#S3"><FONT SIZE=2>When to Use</font></a></li><li><a href="#S4"><FONT SIZE=2>Visual Basic Comparison</font></a></li><li><a href="#S5"><FONT SIZE=2>Constant Form</font></a></li><li><a href="#S6"><FONT SIZE=2>Object Data Types</font></a></li> 
+<LI><A HREF="#EXAMPLES"><FONT SIZE=2>Examples</FONT></A></LI> 
+</UL>
+</TD>
+</TR>
+</TABLE> 
+
+<P><FONT COLOR="#0000ff"><H4><A NAME="S1"></A>Structure Overview</H4></FONT></P>
+         <p class=MsoBodyText>A Structure is a table with two columns. The
+          left column contains symbolic keys, and the right column contains the value
+           associated with its respective symbolic key.</p>
+			<p class=MsoBodyText>A Structure has a variable number of rows;
+			however, a Structure always has exactly two columns (the symbolic keys and the
+			values associated with those symbolic keys). Both the keys and values are
+			available at run time, and the Structure can be sorted by keys or values, can
+			have keys added, altered, or deleted dynamically. </p>        
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S2"></A>Structure Illustration</H4></FONT></P>
+        <p> A Structure Object is analogous to a table containing exactly two columns and an 
+
+            arbitrary number of rows.  The left column contains a key (must be an Object type:
+
+            Symbol, List, Pair , any Vector type, Structure, Dictionary, Repository, or  Lambda ) 
+
+            , and the right column contains the value associated with its key. Any given row 
+
+            in a table is analogous to a Structure binding of a Key/Value pair.</p>
+               <table align="center" border=4 cellspacing=5 cellpadding=5>
+               <tr><td>Name</td> <td>John Doe</td> </tr>
+               <tr><td>Salary</td> <td>$55000</td>  </tr>            
+               <tr><td>Address</td> <td> 184 Anywhere St.</td>  </tr>      
+               <tr><td>City</td> <td>Los Angeles</td> </tr>   
+               <tr><td>State</td> <td>California</td> </tr>               
+           </table>    
+          <p>We can sort the structure by key in descending order. Using the Structure above,
+              the resulting sorted structure is: </p>
+              <table align="center" border=4 cellspacing=5 cellpadding=5>    
+               <tr><td>State</td> <td>California</td> </tr>     
+               <tr><td>Salary</td> <td>$55000</td>  </tr>   
+               <tr><td>Name</td> <td>John Doe</td> </tr>
+               <tr><td>City</td> <td>Los Angeles</td> </tr>           
+               <tr><td>Address</td> <td> 184 Anywhere St.</td>  </tr>                                        
+           </table>    
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S3"></A>When to Use</H4></FONT></P>
+          <p>Structures  are convenient for storing 
+
+             Key/ Value pairs in unsorted order. They have a relatively small overhead  compared to 
+             Dictionaries or Directories which sorts these key value pairs automatically.   </p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S4"></A>Visual Basic Comparison</H4></FONT></P>
+          <p>An Analytic Information Server Structures are similar to the user-defined type of 
+
+           Visual Basic. The Visual Basic user defined type is created at compile time, 
+
+           whereas the Analytic Information Server structure is created, expanded, or contracted 
+
+           dynamically at run time. The main difference is that the Visual Basic user defined 
+
+           type is static and the Analytic Information Server structure is dynamic, and the object keys offer a 
+
+           wider range of values.</p>
+          <p><b>Type Employee</b></p>
+          <p><b>Name  As Variant   <blockquote>' Name of the employee.  </blockquote>  </b></p>
+          <p><b> Salary As Variant    <blockquote>' Salary  of the employee.  </blockquote>  </b></p>
+           <p><b>Address   As Variant   <blockquote>' Address  of the employee.  </blockquote>  </b></p>
+           <p><b>City   As Variant   <blockquote>' City  of the employee.  </blockquote>  </b></p>
+           <p><b>State   As Variant   <blockquote>' State  of the employee.  </blockquote>  </b></p>
+         <p><b>End Type</b></p>
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S5"></A>Constant Form</H4></FONT></P>
+          <p>The Structure data type supports a simple constant form. 
+             The whole Structure constant is enclosed in braces and preceded by the sharp symbol and a left-brace (<b>#{ ... }</b>) and terminated with a right-brace. 
+             Some Structure constant examples: 
+             </p>
+          <p><b>#{Name: "John Doe"  Address: "184 Anywhere Street" City: "Los Angeles" State: "California"}</b></p>
+    
+          <p>The constant form for Structures allows embedded Analytic Information Server objects for the values or keys as follows:
+             </p>
+
+          <p><b>#{X:  5  Y:  #{Mike: "father"  Sally: "mother"}  Z:  "Hello"}</b></p>
+          <p><b>#{Date: #Jan,1 ,1972  Manager: #{Name: "Joe Smith" Age: "45"}  Employee: #{Name: Jan Brown Address: "28"}}</b></p>
+
+          <p>The Structure data type also supports a strongly-typed declarative form. 
+             The declarative Structure constant is enclosed in braces and preceded by the sharp symbol, a left-brace, and the decl notation (<b>#{decl| ... }</b>), and terminated with a right-brace. 
+             Some declarative Structure constant examples: 
+             </p>
+
+          <p><b>#{decl| (String:Name "John Doe") Number:Salary}</b></p>
+    
+          <p><B>Note:</b> The declarative constant form, shown above, supports the same variable declaration and initialization syntax as in 
+             the <b>args:()</b>, <b>vars:()</b>, <b>svars:()</b>, <b>pvars:()</b>, and <b>cvars:()</b> sections of the <b>lambda</b> special form.
+             See the <b>lambda</b> special form for additional information on variable declaration.
+             </p>
+
+
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><FONT COLOR="#0000ff"><H4><A NAME="S6"></A>Object Data Types</H4></FONT></P>
+          <p>The <b>Structure</b> is a Heap Object or an Object Data Type. The Analytic Information Server Object Types 
+            are stored in the Heap and are managed by the Heap manager.  The Analytic Information 
+            Server Heap manager supports object resizing, garbage collection, and anti-fragmentation algorithms 
+            so that the user may concentrate on the analysis and modeling of data rather than on
+            memory management. Without exception, all of the Object types are identified by an 
+            object id.  The object id identifies a block of memory, managed by the Lambda 
+             Information Server memory manager, in which the Object's data is stored.</p>
+         <p>The Analytic Information Server Heap Object and Native Data types can be saved and loaded to and from persistent
+            (disk file) storage at any time. Containers with immediate data are saved on disk 
+            in fixed length records equal to the size of the container. Containers with Heap 
+            object references are saved in fixed length records, which are automatically expanded 
+            to include the contents of the Heap object, and any objects referenced by the Heap 
+            object, etc. This feature is called Object Closure Management and is automatic with 
+            every Analytic Information Server container database save.</p>
+         <p>Analytic Information Server containers may be loaded from any database repository record 
+            at any time. If the data in the record is immediate, the database load fills the 
+            container with the immediate data. If the data in the record is an object closure, 
+            the database load fills the container with a Heap object reference, and all of the 
+            objects in the record are loaded back into the Heap with the same referential 
+            relationships they had when they were saved in the repository.</p>    
+
+         <p><b><font color="red">NOTE:</font></b> The <b>Structure</b> is a special type in AIS Lisp. 
+            Structures are used to store the strongly-typed templates for all class variables,
+            persistant variables, constant variables, and temporary variables.
+            In addition, strongly-typed user-defined Structure templates can be declared using the declarative constant form of the Structure.
+            </p>
+
+        <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P> 
+
+<P>&nbsp;</P>
+<FONT COLOR="#0000ff"><H4><A NAME="EXAMPLES"></A>Data Type Examples</H4></FONT>
+
+<P>
+<P>The Structure object can be demonstrated by the following examples.</p><table width="100%"><tr>
+<td><A HREF="Example_Structure_append_004.html">Example_Structure_append_004</A></td>
+<td><A HREF="Example_Structure_append_005.html">Example_Structure_append_005</A></td>
+<td><A HREF="Example_Structure_apply_001.html">Example_Structure_apply_001</A></td>
+<td><A HREF="Example_Structure_apply_002.html">Example_Structure_apply_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_binaryInsert_001.html">Example_Structure_binaryInsert_001</A></td>
+<td><A HREF="Example_Structure_binarySearch_001.html">Example_Structure_binarySearch_001</A></td>
+<td><A HREF="Example_Structure_cdr_001.html">Example_Structure_cdr_001</A></td>
+<td><A HREF="Example_Structure_cdr_002.html">Example_Structure_cdr_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_compareEQ_003.html">Example_Structure_compareEQ_003</A></td>
+<td><A HREF="Example_Structure_compareGE_003.html">Example_Structure_compareGE_003</A></td>
+<td><A HREF="Example_Structure_compareGT_003.html">Example_Structure_compareGT_003</A></td>
+<td><A HREF="Example_Structure_compareLE_003.html">Example_Structure_compareLE_003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_compareLT_003.html">Example_Structure_compareLT_003</A></td>
+<td><A HREF="Example_Structure_compareNE_003.html">Example_Structure_compareNE_003</A></td>
+<td><A HREF="Example_Structure_compare_003.html">Example_Structure_compare_003</A></td>
+<td><A HREF="Example_Structure_comparison_003.html">Example_Structure_comparison_003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_copy_001.html">Example_Structure_copy_001</A></td>
+<td><A HREF="Example_Structure_count_001.html">Example_Structure_count_001</A></td>
+<td><A HREF="Example_Structure_delete_001.html">Example_Structure_delete_001</A></td>
+<td><A HREF="Example_Structure_delete_002.html">Example_Structure_delete_002</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_insert_001.html">Example_Structure_insert_001</A></td>
+<td><A HREF="Example_Structure_inside_001.html">Example_Structure_inside_001</A></td>
+<td><A HREF="Example_Structure_isAtom_001.html">Example_Structure_isAtom_001</A></td>
+<td><A HREF="Example_Structure_isBound_001.html">Example_Structure_isBound_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_isEqual_001.html">Example_Structure_isEqual_001</A></td>
+<td><A HREF="Example_Structure_isIdentical_001.html">Example_Structure_isIdentical_001</A></td>
+<td><A HREF="Example_Structure_isInside_001.html">Example_Structure_isInside_001</A></td>
+<td><A HREF="Example_Structure_isMember_001.html">Example_Structure_isMember_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_isObject_003.html">Example_Structure_isObject_003</A></td>
+<td><A HREF="Example_Structure_isStructure_001.html">Example_Structure_isStructure_001</A></td>
+<td><A HREF="Example_Structure_length_004.html">Example_Structure_length_004</A></td>
+<td><A HREF="Example_Structure_makeStructure_001.html">Example_Structure_makeStructure_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_makeStructure_002.html">Example_Structure_makeStructure_002</A></td>
+<td><A HREF="Example_Structure_map_001.html">Example_Structure_map_001</A></td>
+<td><A HREF="Example_Structure_mapc_001.html">Example_Structure_mapc_001</A></td>
+<td><A HREF="Example_Structure_member_001.html">Example_Structure_member_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_new_003.html">Example_Structure_new_003</A></td>
+<td><A HREF="Example_Structure_objectToStructure_001.html">Example_Structure_objectToStructure_001</A></td>
+<td><A HREF="Example_Structure_objectToStructure_002.html">Example_Structure_objectToStructure_002</A></td>
+<td><A HREF="Example_Structure_objectToStructure_003.html">Example_Structure_objectToStructure_003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_objectToStructure_004.html">Example_Structure_objectToStructure_004</A></td>
+<td><A HREF="Example_Structure_refAttributes_001.html">Example_Structure_refAttributes_001</A></td>
+<td><A HREF="Example_Structure_refValues_001.html">Example_Structure_refValues_001</A></td>
+<td><A HREF="Example_Structure_ref_004.html">Example_Structure_ref_004</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_ref_005.html">Example_Structure_ref_005</A></td>
+<td><A HREF="Example_Structure_ref_006.html">Example_Structure_ref_006</A></td>
+<td><A HREF="Example_Structure_remove_001.html">Example_Structure_remove_001</A></td>
+<td><A HREF="Example_Structure_resize_001.html">Example_Structure_resize_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setAttributes_001.html">Example_Structure_setAttributes_001</A></td>
+<td><A HREF="Example_Structure_setCdr_001.html">Example_Structure_setCdr_001</A></td>
+<td><A HREF="Example_Structure_setCdr_002.html">Example_Structure_setCdr_002</A></td>
+<td><A HREF="Example_Structure_setLastCdr_001.html">Example_Structure_setLastCdr_001</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_setq_003.html">Example_Structure_setq_003</A></td>
+<td><A HREF="Example_Structure_setq_004.html">Example_Structure_setq_004</A></td>
+<td><A HREF="Example_Structure_setq_005.html">Example_Structure_setq_005</A></td>
+<td><A HREF="Example_Structure_setq_006.html">Example_Structure_setq_006</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_sizeof_003.html">Example_Structure_sizeof_003</A></td>
+<td><A HREF="Example_Structure_sort_001.html">Example_Structure_sort_001</A></td>
+<td><A HREF="Example_Structure_sort_002.html">Example_Structure_sort_002</A></td>
+<td><A HREF="Example_Structure_sort_003.html">Example_Structure_sort_003</A></td>
+</tr><tr>
+<td><A HREF="Example_Structure_uniqueInsert_001.html">Example_Structure_uniqueInsert_001</A></td>
+<td><A HREF="Example_Structure_uniqueInsert_002.html">Example_Structure_uniqueInsert_002</A></td>
+</tr>
+</table>
+ 
+</P> 
+ 
+<!--- Button which links to top of page --->
+<P ALIGN="CENTER">
+<INPUT TYPE='button' VALUE='Top of Page' onClick='scroll(0,0)'>
+</P>
+
+ 
+</BODY>
+</HTML>

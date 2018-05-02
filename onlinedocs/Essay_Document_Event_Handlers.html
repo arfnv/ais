@@ -1,0 +1,320 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Document Event Handlers</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SDocument Events Overview"><FONT SIZE=2>Document Events Overview</font></a></li><li><a href="#Scharacters"><FONT SIZE=2>characters</font></a></li><li><a href="#Scomments"><FONT SIZE=2>comments</font></a></li><li><a href="#Sdoctype Definition"><FONT SIZE=2>doctype Definition</font></a></li><li><a href="#SerrorMessage"><FONT SIZE=2>errorMessage</font></a></li><li><a href="#SendDocument"><FONT SIZE=2>endDocument</font></a></li><li><a href="#SendElement"><FONT SIZE=2>endElement</font></a></li><li><a href="#SignorableWhitespace"><FONT SIZE=2>ignorableWhitespace</font></a></li><li><a href="#SprocessingInstruction"><FONT SIZE=2>processingInstruction</font></a></li><li><a href="#SstartDocument"><FONT SIZE=2>startDocument</font></a></li><li><a href="#SstartElement"><FONT SIZE=2>startElement</font></a></li>
+</UL>
+
+<P><H2><A NAME="SDocument Events Overview"></A>Document Events Overview</H2></P>
+            <div class="h2section" id="Document Events Overview">		
+		<P>This section is a reference guide to the standards for creating and using Document Event Handlers with the <B>xml</B> compiler function.  Document Event Handlers allow the user to avoid creating a document tree model in memory; but instead, to have the compiler pass each parse event to a document event handler Lambda.  This allows complete user tailoring of the XML compilation process. All of the basic methods required of document event handlers are contained in this section.</P>
+		<P>This is the main interface that most SAX applications implement: if the application needs to be informed of basic parsing events, it implements this interface and passes an instance to the xml. The xml compiler uses the instance to report basic document-related events like the start and end of elements and character data.</P>
+		<P>The order of events in this interface is very important, and mirrors the order of information in the document itself. For example, all of an element's content (character data, processing instructions, and/or subelements) will appear, in order, between the startElement event and the corresponding endElement event. For example the following XML input string:</P>
+		<p>&lt;?xml version="1.0"?&gt;<br>
+		&lt;poem&gt;<br>
+		&lt;line&gt;Roses are red,&lt;/line&gt;<br>
+		&lt;line&gt;Violets are blue.&lt;/line&gt;<br>
+		&lt;line&gt;Sugar is sweet,&lt;/line&gt;<br>
+		&lt;line&gt;and I love you.&lt;/line&gt;<br>
+		&lt;/poem&gt;</p>
+		<P>Initiates the following XML document event chain:</P>
+		<p>(eventHandler.startDocument)<br>
+		(eventHandler.startElement &quot;xml&quot; #{version: &quot;1.0&quot;})<br>
+		(eventHandler.startElement &quot;poem&quot; #void)<br>
+		(eventHandler.startElement &quot;line&quot; #void)<br>
+		(eventHandler.characters &quot;Roses are red,&quot;)<br>
+		(eventHandler.endElement &quot;line&quot;)<br>
+		(eventHandler.startElement &quot;line&quot; #void)<br>
+		(eventHandler.characters &quot;Violets are blue.&quot;)<br>
+		(eventHandler.endElement &quot;line&quot;)<br>
+		(eventHandler.startElement &quot;line&quot; #void)<br>
+		(eventHandler.characters &quot;Sugar is sweet,&quot;)<br>
+		(eventHandler.endElement &quot;line&quot;)<br>
+		(eventHandler.startElement &quot;line&quot; #void)<br>
+		(eventHandler.characters &quot;and I love you.&quot;)<br>
+		(eventHandler.endElement &quot;line&quot;)<br>
+		(eventHandler.endElement &quot;poem&quot;)<br>
+		(eventHandler.endElement &quot;xml&quot;)<br>
+		(eventHandler.endDocument)</p>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scharacters"></A>characters</H2></P>
+           <div class="h2section" id="characters">
+			<P>The document event handler receives notification of a stream of content character 
+            data. This method is invoked whenever character data is encountered in an element 
+            content section.</P>
+			<p>Syntax: (eventHandler.characters aString)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD><B>aString</B></TD><TD>A string containing the content character data.</TD></TR>
+			<TR VALIGN="TOP"><TD><B>Returns</B></TD><TD>True if there were no errors; otherwise, an error.</TD></TR>
+			</TABLE>
+			<H3>Example1</H3>			
+			<p>XML Input: &lt;Name&gt;John&lt;/Name&gt;</p>
+			<p><b>Event Chain:</b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #void)<br>
+			(eventHandler.characters &quot;John&quot;)<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note: The character event notifies the document event handler some content character data has been encountered. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Scomments"></A>comments</H2></P>
+			<div class="h2section" id="comments">
+			<P>The document event handler receives notification of a stream of comment character data. 
+			   This method is invoked whenever comment data is encountered in an element content section.</P>
+			<p>Syntax:  (eventHandler.comments aString)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD> <B>aString</B></TD><TD>A string containing the comment character data.</TD></TR>
+			<TR VALIGN="TOP"><TD><B>Returns</B></TD><TD>True if there were no errors; otherwise, an error.</TD></TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p>XML Input: &lt;Name&gt;&lt;!--This is a comment--&gt;John&lt;/Name&gt;</p>
+			<p><b>Event Chain:</b></p>
+			<p>(eventHandler.startElement &quot;Name&quot; #void)<br>
+			(eventHandler.characters &quot;John&quot;)<br>
+			(eventHandler.comments &quot;This is a comment&quot;)<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note:The character event notifies the document event handler some content character data has been encountered. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="Sdoctype Definition"></A>doctype Definition</H2></P>
+			<div class="h2section" id="doctypeDefinition">
+			<P>The document event handler receives notification of a stream of document type definition character data. This method is invoked whenever a document type definition is encountered.</P>
+			<p>Syntax: (eventHandler.doctypeDefinition name aString)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>name</B></TD>
+			<TD>The tag name of the document type definition: <B>DOCTYPE</B>, <B>ELEMENT</B>, <B>ENTITY</B>, <B>ATTLIST</B>, or <B>NOTATION</B>.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>aString</B></TD>
+			<TD>A string containing the content character data of the document type definition.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>True if there were no errors; otherwise, an error.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p>XML Input: &lt;!DOCTYPE MyDoc SYSTEM "MYDOC.DTD"&gt;</p>
+			<p><b>Event Chain: </b></p>
+			<p>(eventHandler.doctypeDefinition "DOCTYPE" { MyDoc SYSTEM "MYDOC.DTD"})</p>
+			<P>Note: The doctype definition event notifies the document event handler when a document type has been encountered. </P>
+			<H3>Example2</H3>
+			<p>XML Input: <br>
+			&lt;!DOCTYPE list [ <br>
+			&lt;!ELEMENT list (item+)&gt;<br>
+			&lt;!ELEMENT item (#PCDATA)&gt;<br>
+			&lt;!ATTLIST item topic CDATA #IMPLIED&gt;<br>
+			] &gt;</p>
+			<p><b>Event Chain:</b></p>
+			<p> (eventHandler.doctypeDefinition "DOCTYPE" "list")<br>
+			(eventHandler.doctypeDefinition "ELEMENT" "list (item+)")<br>
+			(eventHandler.doctypeDefinition "ELEMENT" "item (#PCDATA)")<br>
+			(eventHandler.doctypeDefinition "ATTLIST" "item topic CDATA #IMPLIED")</p>
+			<P>Note: The doctype definition event notifies the document event handler when a document type has been encountered. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SerrorMessage"></A>errorMessage</H2></P>
+			<div class="h2section" id="errorMessage">
+			<P>The document event handler receives notification of a parse error. This method is invoked whenever the <B>xml</B> compiler encounters a parse error.</p>
+			<p>Syntax: (eventHandler.errorMessage aString)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>aString</B></TD>
+			<TD>A string containing the error message.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>True if there were no errors; otherwise, an error.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p> XML Input:<br>
+			&lt;Name&gt;John&lt;/Mike&gt;</p>
+			<p><b>Event Chain:</b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #void)<br>
+			(eventHandler.characters &quot;John&quot;)<br>
+			(eventHandler.errorMessage &quot;Element end had tag of Mike, expected Name&quot;)<br>
+			(eventHandler.endElement &quot;Mike&quot;)</p>
+			<P>Note: The errorMessage event notifies the document event handler when a parse error has been encountered. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SendDocument"></A>endDocument</H2></P>
+			<div class="h2section" id="endDocument">
+			<P>The document event handler receives notification of the end of a document. This method is 
+			invoked after all other method of the document event handler.</P>
+			<p>Syntax: (eventHandler.endDocument)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>True if there were no errors; otherwise, an error.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p> XML Input: &lt;?xml?&gt;</p>
+			<p><b>Event Chain: </b></p>
+			<p> (eventHandler.startDocument)<br>
+			...<br>
+			(eventHandler.endDocument)</p>
+			<P>Note: The endDocument event notifies the document event handler that the current document parse is ending. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SendElement"></A>endElement</H2></P>
+            <div class="h2section" id="endElement">
+			<P>The document event handler receives notification of the end of an element. This method is 
+			invoked at the end of every element, even if the element is empty.</P>
+			<p>Syntax: (eventHandler.endElement name)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>name</B></TD>
+			<TD>The Tag name of the element.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>True if there were no errors; otherwise, an error.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p> XML Input: &lt;Name/&gt;</p>
+			<p><b>Event Chain:</b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #void)<br>
+			...<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note: The endElement event notifies the document event handler that the current
+			 element parse is ending. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SignorableWhitespace"></A>ignorableWhitespace</H2></P>
+            <div class="h2section" id="ignorableWhitespace">
+			<P>The document event handler receives notification of a stream of content whitespace data. 
+			This method is invoked whenever whitespace data is encountered in an element content section.</P>
+			<p>Syntax: (eventHandler.ignoreableWhitespace aString)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>aString</B></TD>
+			<TD>A string containing the content whitespace data.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>True if there were no errors; otherwise, an error.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p> XML Input: <br>
+			&lt;Name&gt;&lt;First&gt;John&lt;/First&gt;   <br>
+			&lt;Last&gt;Doe&lt;/Last&gt;&lt;/Name&gt;</p>
+			<p><b>Event Chain:</b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #void)<br>
+			(eventHandler.startElement &quot;First&quot; #void)<br>
+			(eventHandler.characters &quot;John&quot;)<br>
+			(eventHandler.endElement &quot;First&quot;)<br>
+			(eventHandler.ignorableWhitespace &quot;   &quot;)<br>
+			(eventHandler.startElement &quot;Last&quot; #void)<br>
+			(eventHandler.characters &quot;Doe&quot;)<br>
+			(eventHandler.endElement &quot;Last&quot;)<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note: The ignorable whitespace event notifies the document event handler that some content white space data has been encountered. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SprocessingInstruction"></A>processingInstruction</H2></P>
+        <div class="h2section" id="processingInstruction">
+		<P>The document event handler receives notification of a stream of processing instruction
+		 character data. This method is invoked whenever a process instruction is encountered.</P>
+		<p>Syntax: (eventHandler.processingInstruction name aString)</p>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>name</B></TD>
+		<TD>The target name of the processing instruction.</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>aString</B></TD>
+		<TD>A string containing the content character data for processing.</TD>
+		</TR>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>True if there were no errors; otherwise, an error.</TD>
+		</TR>
+		</TABLE>
+		<H3>Example1</H3>
+		<p> XML Input: &lt;"javaScript writeln("Hello world");"&gt;</p>
+		<p><b>Event Chain:</b></p>
+		<p> (eventHandler.processingInstruction &quot;javaScript&quot;<br>
+		&quot;writeln(:"Hello world");&quot;)
+		Note: The processing instruction event notifies the document event handler when a processing instruction has been encountered. </p>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SstartDocument"></A>startDocument</H2></P>
+		<div class="h2section" id="startDocument"> 
+		<P>The document event handler receives notification of the start of a document. This method 
+		is invoked before any other method of the document event handler.</P>
+		<p>Syntax: (eventHandler.startDocument)</p>
+		<TABLE>
+		<TR VALIGN="TOP"><TD>
+		<B>Returns</B></TD>
+		<TD>True if there were no errors; otherwise, an error.</TD>
+		</TR>
+		</TABLE>
+		<H3>Example1</H3>
+		<p> XML Input: &lt;?xml?&gt;</p>
+		<p><b>Event Chain: </b></p>
+		<p> (eventHandler.startDocument)<BR>
+		...<BR>
+		(eventHandler.endDocument)</p>
+		<P>Note: The startDocument event notifies the document event handler that a new document is
+		 being parsed. </P>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SstartElement"></A>startElement</H2></P>
+           <div class="h2section" id="startElement">
+			<P>The document event handler receives notification of the start of an element. This method
+			 is invoked at the start of every element, even if the element is empty.</P>
+			<p>Syntax: (eventHandler.startElement name attlist)</p>
+			<TABLE>
+			<TR VALIGN="TOP"><TD>
+			<B>name</B></TD>
+			<TD>The tag name of the element.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>attlist</B></TD>
+			<TD>The attribute list Structure, or #void if there are no attributes.</TD>
+			</TR>
+			<TR VALIGN="TOP"><TD>
+			<B>Returns</B></TD>
+			<TD>True if there were no errors; otherwise, an error.</TD>
+			</TR>
+			</TABLE>
+			<H3>Example1</H3>
+			<p> XML Input:<br>
+			 &lt;Name/&gt; </p>
+			<p><b>Event Chain: </b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #void)<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note: The endElement event notifies the document event handler that the current 
+			element parse is ending. </P>
+			<H3>Example2</H3>
+			<p> XML Input: &lt;Name&gt;John&lt;/Name&gt;</p>
+			<p><b>Event Chain: </b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #void)<br>
+			(eventHandler.characters &quot;John&quot;)<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note: The startElement event notifies the document event handler that a new element
+			 parse is starting. </P>
+			<H3>Example3</H3>
+			<p> XML Input: &lt;Name firstonly=&quot;yes&quot;&gt;John&lt;/Name&gt;</p>
+			<p><b>Event Chain: </b></p>
+			<p> (eventHandler.startElement &quot;Name&quot; #{firstonly: &quot;yes&quot;})<br>
+			(eventHandler.characters &quot;John&quot;)<br>
+			(eventHandler.endElement &quot;Name&quot;)</p>
+			<P>Note: The startElement event notifies the document event handler that a new element parse is starting. </P>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

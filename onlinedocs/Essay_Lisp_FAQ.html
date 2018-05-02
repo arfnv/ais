@@ -1,0 +1,129 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Lisp FAQs</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SOverview"><FONT SIZE=2>Overview</font></a></li><li><a href="#SAccessing Elements of a Foreign Class"><FONT SIZE=2>Accessing Elements of a Foreign Class</font></a></li><li><a href="#SEmbedding macros in a defmacro"><FONT SIZE=2>Embedding macros in a defmacro</font></a></li>
+</UL>
+
+<P><H2><A NAME="SOverview"></A>Overview</H2></P>     
+		  <p>This chapter contains Frequently Asked Questions (FAQs) about AIS Lisp and supplied by its user community.
+             Each FAQ is signed by its author.
+             Any AIS Lisp user may add FAQs to this chapter and all AIS Lisp users are encouraged to contribute.
+             </p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAccessing Elements of a Foreign Class"></A>Accessing Elements of a Foreign Class</H2></P>     
+		  <p><b><font color="blue">Author:</font>&nbsp;&nbsp;&nbsp;<i>anonymous</i></b></p>
+
+		  <p>How do we access elements of a foreign class Lambda in AIS Lisp?
+             From the example below, if we have a foreign class Lambda 'foo' and we would like to access
+             it's class variable 'x' declared in foo's svars. 
+             Unfortunately, we are not a method of foo (in which case we inherit foo'as svars).
+             We can  access 'x' by defining a template that will hold the format of the <b>svar</b> structure of class 'foo' which is 'foo.Sv'.
+             Then declare a register pointer 'pr' to be used to offset the class element 'x' thru the template. 
+             (This is similar to C/C++'s arrow notation pr->x).
+             The pointer holds the address of the foreign object while the template holds the format.
+             </p>
+
+			 <p><u><b><font color="blue">Example</font></b></u></p>
+			 <p>&nbsp;</p>
+			 <p>&nbsp;&nbsp;&nbsp; 
+			 (defclass foo() svars:((Number:x 2.0)) true)</p>
+			 <p>&nbsp;&nbsp;&nbsp; 
+			 (defun test(self Number:y)</p>
+			 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			 regs:(WordPointer:pr)</p>
+			 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			 (define template foo.Sv)</p>
+			 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			 (setq pr self)</p>
+			 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			 (+= pr[template(x)] y))</p>
+			 <p>&nbsp;&nbsp;&nbsp; 
+			 (setq self (new foo))</p>
+			 <p>&nbsp;&nbsp;&nbsp; 
+			 (test self 3.0)&nbsp;&nbsp;&nbsp;<i>Returns</i>&nbsp;&nbsp;&nbsp;5.0</p>
+ 
+		  <h3>Hints & Notes</h3>
+          <ul>
+            <li>Load a template with the format of the foreign object.</li>
+            <li>Load a pointer with the address of the foreign object.</li>
+            <li>Use the pointer and template to create a direct offset address of the foreign variable.</li>
+          </ul>
+
+
+		  <h3><font color="red">Warning</font></h3>
+		  <p>Don't forget to load the address of the foreign class object into the pointer!</p>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SEmbedding macros in a defmacro"></A>Embedding macros in a defmacro</H2></P>     
+		  <p><b><font color="blue">Author:</font>&nbsp;&nbsp;&nbsp;<i>Loryfel Nunez</i></b></p>
+
+		  <p>Can we embed macros inside a defmacro?   </p>  
+		  <p> Yes, we can as long as we use macroReplace to generate a new List everytime the macro is called in any Lambda.  
+		  Using macroReplace  will eliminate the chance of the compiler to mess up the original macro. </p>
+          <p>  Aside from macros created using the defmacro Lambda, there are several other buil-in macros in LISP, to wit:
+             &#43&#43 <br>
+             &#43&#61 <br>
+              &#47&#61 <br>
+               &#42&#61 <br>
+              &#45&#61 <br>
+              &#45&#45 </p>  
+          
+          <p> <b> To illustrate: </b></p>
+          <p> We have a parent Lambda and two child Lambdas with each child Lambda calling a macro
+          	  with the macro inside a list constant : </p>
+          <p> ;; Parent Lambda <br>
+          (defun parent() pvars:(child MacroTest parentVar) true)  </p>
+ 
+	     
+          <p> <font color="red"> ;; Macro &#43&#43 is embedded inside a defmacro using a list constant, for instance, <br> 
+          (defmacro MacroTest()  <br>
+				'(&#43&#43 x)   <br>
+			   ) ;; end defmacro   <br>   
+		   </font></p>    
+		  
+		  <p> ;; Define the first child Lambda   <br>
+		  (defchild parent:child1() (parent@MacroTest))  <br>
+		  </p>
+ 
+          <p>  ;; Define the first child Lambda   <br>
+ 			(defchild parent:child2() (parent@MacroTest))   <br>
+ 		  </p>
+ 
+           <p>When at least two child Lambdas call the MacroTest, the List constant is destroyed with 
+           macros passing back a List constant.  Therefore, <br>
+           '(begin  (setq x 10) (&#43&#43 x))  <br>
+           generates  (&#43&#43 x) in child1  but it generates (setq &#43&#43 x)  in child2 which is an error. </p>
+          
+           <p> To solve this problem, we use <b>macroReplace</b> to create a new List each time  MacroTest is replaced in
+           every Lambda.  The new MacroTest looks like this: </p>
+           
+           <p><b>(defmacro parent:MacroTest() <br>
+           (macroReplace   '(&#43&#43 parentVar))) </b> </p>
+ 
+		  <h3>Hints & Notes</h3>
+          <ul>
+            <li>Use macroReplace when you have embedded macros in your defmacro.</li>
+            <li>Use the begin keyword inside the List when the List contains more than one command, for instance, <br>
+                '(begin (setq x 10) (&#43&#43 x))</li>
+          </ul>
+
+
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>

@@ -1,0 +1,335 @@
+
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="../CoreContent/help.css">
+<TITLE>AIS Essay Template</TITLE></HEAD>
+<!--Page Parameters -->
+<BODY BGCOLOR="#FFFFF0" TEXT="#000000" LINK="#0000ff">
+
+<A NAME="topage"></A>
+<A HREF="TOP"></A>
+
+
+
+<P>&nbsp;</P>
+
+<FONT COLOR="#000080"><H1>Document Tree Model</H1></FONT>
+<P>&nbsp;</P>
+
+<UL>
+<li><a href="#SDocTree Overview"><FONT SIZE=2>DocTree Overview</font></a></li><li><a href="#SElements"><FONT SIZE=2>Elements</font></a></li><li><a href="#SAttribute Lists"><FONT SIZE=2>Attribute Lists</font></a></li><li><a href="#SDocument Type Definitions"><FONT SIZE=2>Document Type Definitions</font></a></li><li><a href="#SProcessing Instructions"><FONT SIZE=2>Processing Instructions</font></a></li><li><a href="#SCharacter Data"><FONT SIZE=2>Character Data</font></a></li><li><a href="#SCDATA Section"><FONT SIZE=2>CDATA Section</font></a></li><li><a href="#SComment Data"><FONT SIZE=2>Comment Data</font></a></li>
+</UL>
+
+<P><H2><A NAME="SDocTree Overview"></A>DocTree Overview</H2></P>	
+        <div class="h2section" id="DocTree Overview">	
+			<P>This chapter is a reference guide to the XML document tree model.  The document tree model contains all the information in the XML string, but compiled into a structured form.  All of the basic building blocks of XML are contained in the document tree model.</P>
+			<P>The document tree model serves as the default output from the <B>xml</B> function, and may be used as a foundation for the implementation of a DOM compliant model. For its use as a default compiler output completeness and easy addressability are key design ingredients.</P>
+			<P>The XML document tree model is a recursive Structure with the data inside the XML document addressable by attribute as well as by numeric index. For example the following XML input string:</P>
+           <blockquote>
+			<pre>&lt;?xml version = '1.0' standalone='yes' encoding = 'hello' ?&gt;
+			&lt;!-- This is a dynamic name and address example --&gt;
+			&lt;Address FirstName = "yes" LastName = 'yes'&gt; 
+			   This is just general content for the Address element.
+			   &lt;FirstName&gt;Michael&lt;/FirstName&gt;
+			   &lt;LastName&gt;Korns&lt;/LastName&gt;
+			   &lt;Street&gt;214 Shorebreaker&lt;/Street&gt;
+			   &lt;City&gt;Laguna Niguel&lt;/City&gt;
+			   &lt;State&gt;California&lt;/State&gt;
+			   This is more content for the Address element.
+			&lt;/Address&gt;</pre></blockquote>
+			<P>Returns the following XML document tree model:</P>
+            <blockquote>
+			<pre>#{
+			  __attlist: #{version: '1.0' standalone: 'yes' encoding: 'hello'}
+			  Address: #{
+			        __attlist: #{FirstName: "yes" LastName: 'yes'}
+			        __content: "This is just general content for the Address element."
+			        FirstName: "Michael"
+			        LastName:  "Korns"
+			        Street: "214 Shorebreaker"
+			        City: "Laguna Niguel"
+			        State: "California"
+			        __content: "This is more content for the Address element."
+			         }
+			}</pre></blockquote>
+			<P>Notice how the terminal nodes of the document tree model are all singletons, while the intermediate nodes of document tree model are recursive element Structures with attributes and values. Finally, notice how the various parts of the document tree model can be referenced either by attribute or by element index number:</P>
+			<p>document.Address.FirstName == "Michael"<BR>
+			and<BR>
+			document[4][2] == "Michael"</p>
+			<P>The XML document tree model also handles multiple elements with the same tag using the simple expedient that only the first (of non-unique) element can be referenced by its tag, all others must be referenced by numeric index. For example the following XML input string:</P>
+			<blockquote>
+            <pre>&lt;?xml version="1.0"?&gt;
+			&lt;poem&gt;
+			&lt;line&gt;Roses are red,&lt;/line&gt;
+			&lt;line&gt;Violets are blue.&lt;/line&gt;
+			&lt;line&gt;Sugar is sweet,&lt;/line&gt;
+			&lt;line&gt;and I love you.&lt;/line&gt;
+			&lt;/poem&gt;</pre>
+            </blockquote>
+			<P>Returns the following XML document tree model:</P>
+             <blockquote>
+			<pre>#{
+			  __attlist: #{version: "1.0"}
+			  poem: #{
+			      line: "Roses are red,"
+			      line: "Violets are blue."
+			      line: "Sugar is sweet,"
+			      line: "and I love you."
+			      }
+			 }</pre>
+            </blockquote>
+			<P>Notice how the terminal nodes of the document tree model are all singletons, while the intermediate nodes of document Structure are recursive element Structures with attributes and values. Finally, notice how the first "line" element can be referenced either by name or by index and all other "line" elements can only be referenced by index number:</P>
+			<p>document.poem.line == "Roses are red,"<BR>
+			and<BR>
+			document.poem[0] == "Roses are red,"<BR>
+			and<BR>
+			document.poem[2] == "Sugar is sweet,"</p>
+			</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SElements"></A>Elements</H2></P>
+        <div class="h2section" id="Elements">
+		<P>The xml document tree model supports elements as the basic node of the model. 
+		   Each element is a binding in the parent Structure. The Name of the binding is the Tag name of the element. 
+		   The value of the binding may be a singleton or a recursive Structure depending upon which interpretation maintains completeness and saves the most real estate.</P>
+		<H3><FONT COLOR="#0000ff">Example1</FONT></H3>
+        <blockquote>
+		<p>
+        XML Input: &lt;?xml?&gt; <br>
+		Tree Model: #{xml: true}</p>
+        </blockquote>
+		<P>Note:This is the most ergonomic tree model for the document shown. </P>
+		<H3><FONT COLOR="#0000ff">Example2</FONT></H3>
+        <blockquote>
+		<p>
+		XML Input: &lt;Name/&gt; <br>
+		Tree Model: #{Name: true}</p>
+         </blockquote>
+		<P>Note: This is the most ergonomic tree model for the document shown. </P>
+		<H3><FONT COLOR="#0000ff">Example3</FONT></H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;&lt;Name&gt;John&lt;/Name&gt;<BR>
+		Tree Model: #{xml: true  Name: &quot;John&quot;}</p>
+        </blockquote>
+		<P>Note: An embedded element is compiled as a simple attribute binding of the parent Structure. 
+		   The value is always a singleton, iff it can be compiled as such without loss of information.</P>
+		<H3><FONT COLOR="#0000ff">Example4</FONT></H3>
+        <blockquote>
+		<p>
+		XML Input: &lt;?xml?&gt;&lt;Name&gt;&lt;First&gt;John&lt;/First&gt;&lt;Last&gt;Doe&lt;/Last&gt;&lt;/Name&gt;<BR>
+		Tree Model: #{xml: true  Name: #{First: &quot;John&quot; Last: &quot;Doe&quot;}}</p>
+        </blockquote>
+		<P>Note:An embedded element is compiled as a simple attribute binding of the parent Structure. 
+		   The value is always a child Structure, iff it must be compiled as such to avoid loss of information.</P>
+		</div>
+ 		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SAttribute Lists"></A>Attribute Lists</H2></P>
+        <div class="h2section" id="Attribute Lists">
+			<P>The xml document tree model supports element attribute lists in the basic nodes of the model. Each element attribute list is a binding in the element Structure. The Name of the binding is &quot;<B>__attlist</B>. The value of the binding is always a Structure containing the name value binds for the attribute list. If there is no attribute list, the binding will not be present to save real estate.</P>
+			<H3>Example1</H3>
+            <blockquote>
+			<p>XML Input: &lt;?xml version=?1? standalone=&quot;yes&quot;?&gt;<br>
+			Tree Model: #{xml: true  __attlist: #{version: 1  standalone: &quot;yes&quot;}}</p>
+            </blockquote>
+			<P>Note: This is the most ergonomic tree model for the document shown. </P>
+			<H3>Example2</H3>
+            <blockquote>
+			<p>XML Input: &lt;Name/&gt; <br>
+			Tree Model: #{Name: true}</p>
+            </blockquote>
+			<P>Note: This are no attributes, so the binding is not present. </P>
+			<H3>Example3</H3>
+            <blockquote>
+			<p>XML Input: &lt;?xml?&gt;&lt;Name firstonly=&quot;yes&quot;&gt;John&lt;/Name&gt;<BR>
+			Tree Model: #{xml: true  __attlist: #{firstonly: &quot;yes&quot;} Name: &quot;John&quot;} </p>
+            </blockquote>
+			<P>Note:An embedded element is compiled as a simple attribute binding of the parent Structure. The value is always a singleton, if it can be compiled as such without loss of information.</P>
+			</div>	
+		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SDocument Type Definitions"></A>Document Type Definitions</H2></P>
+        <div class="h2section" id="Document Type Definitions">
+		<P>The xml document tree model supports document type definitions in the basic node of the model. 
+		Each document type definition is a binding in the parent Structure. The Name of the binding is 
+		&quot;<B>__dtd</B>. The value of the binding is always a Structure containing the name value 
+		binds for the document type definition list. For each binding within the <B>__dtd</B> Structure, 
+		the Name of the binding is the tag name of the document type definition (<B>DOCTYPE</B>, 
+		<B>ELEMENT</B>, <B>ENTITY</B>, <B>ATTLIST</B>, or <B>NOTATION)</B>. The value of the binding 
+		will be the character data ready for processing. If there are no document type definitions, 
+		the binding will not be present to save real estate.</P>
+		<P>Note: The binding for <B>javaScript</B> expects the required four parameters. 
+		The javaScript is compiled so that the key words <B>document</B>, <B>this</B>, and 
+		<B>piStructure</B> will be bound properly.</P>
+		<H3>Example1</H3>
+        <blockquote> 
+		<p>XML Input: &lt;?xml?&gt;&lt;!DOCTYPE MyDoc SYSTEM "MYDOC.DTD"&gt; <br>
+		Tree Model: #{xml: true  __dtd: #{DOCTYPE: {MyDoc SYSTEM "MYDOC.DTD"}}}</p>
+       </blockquote>
+		<P>Note:<B> </B>A document type definition is compiled as a simple attribute binding of 
+		the parent Structure. The value is always a singleton character data stream. The name is
+		 always the document type definition tag name.</P>
+		<H3>Example2</H3>
+        <blockquote>
+		<p>XML Input: <br>
+		&lt;?xml?&gt;<br>
+		    &lt;!DOCTYPE list [ <br>
+		        &lt;!ELEMENT list (item+)&gt;<br>
+		        &lt;!ELEMENT item (#PCDATA)&gt;<br>
+		        &lt;!ATTLIST item topic CDATA #IMPLIED&gt;<br>
+		        ]&gt;<br>
+		Tree Model: <br>
+		    #{xml: true  __dtd: #{DOCTYPE: "list"}<br>
+		      ELEMENT: "list (item+)")<br>
+		      ELEMENT: "item (#PCDATA)")<br>
+		      ATTLIST: "item topic CDATA #IMPLIED")<br>
+		     }</p>
+        </blockquote>
+		<P>Note: A document type definition is compiled as a simple attribute binding of the parent 
+		Structure. The value is always a singleton character data stream. The name is always the 
+		document type definition tag name. Nested document type definitions appear at the top level
+		 of the <B>__dtd</B> Structure.</P>
+		</div>	    		
+		<P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SProcessing Instructions"></A>Processing Instructions</H2></P>
+        <div class="h2section" id="Processing Instructions">
+			<P>The xml document tree model supports processing instructions in the basic node of the model.
+			 Each processing instruction is a binding in the parent Structure. The Name of the binding is 
+			&quot;<B>__pi</B>. The value of the binding is always a Structure containing the name value 
+			binds for the processing instruction list. For each binding within the <B>__pi</B> Structure, 
+			the Name of the binding is the Target name of the processing instruction. The value of the
+			 binding will be the character data ready for processing. If there are no processing 
+			instructions, the binding will not be present to save real estate.</P>
+			<P>The processing instruction will be performed depending upon whether the 
+			<B>piStructure</B> is present, as an argument to the xml function, and if the
+			 <B>piStructure</B> contains a binding for the target name. Each processing instruction 
+			target name, in the <B>piStructure</B>, must be bound to a lambda value expecting four 
+			arguments: (<B>piStructure</B>) the piStructure itself so that scripts can add to the 
+			available processing instruction targets, (<B>document</B>) the xml document in progress, 
+			(<B>this</B>) the current xml element, and (<B>source</B>) the processing instruction content. For the purpose of the examples in this section, let us assume that the piStructure, passed as an argument to the xml function, appears as follows.</P>
+			<blockquote>
+            <PRE>(define PiStructure 
+			(new Structure:
+			   javaScript: (lambda(piStructure document this source) 
+			               (eval (compile (morph (javaScript source))
+			                     (new Lambda: 
+			                          Pv: (new structure: 
+			                               document: document 
+			                               this: this 
+			                               piStructure: piStructure)); end new Lambda
+			                )))) ; end define</PRE>
+              </blockquote>
+			<P>Note: The binding for <B>javaScript</B> expects the required four parameters. The 
+			javaScript is compiled so that the key words <B>document</B>, <B>this</B>, and 
+			<B>piStructure</B> will be bound properly.</P>
+			<H3>Example1</H3>
+            <blockquote>
+			<p>XML Input: &lt;?xml?&gt;&lt;?doNothing writeln(?Hello World?);?&gt; <br>
+			Tree Model: #{xml: true  __pi: #{doNothing: &quot;writeln(?Hello World?);&quot;}}</p>
+             </blockquote>
+			<P>Note: A processing instruction is compiled as a simple attribute binding of the parent 
+			Structure. The value is always a singleton character data stream. The name is always the 
+			target name. No processing takes place because there is no <B>piStructure</B> binding for
+			 the target name <B>doNothing</B>.</P>
+			<H3>Example2</H3>
+            <blockquote>
+			<p>XML Input: &lt;?xml?&gt;&lt;?javaScript writeln(?Hello World?);?&gt;<br>
+			Tree Model: #{xml: true  __pi: #{javaScript: &quot;writeln(?Hello World?);&quot;}}
+			Console:&quot;Hello World&quot;</p>
+            </blockquote>
+			<P>Note1: A processing instruction is compiled as a simple attribute binding of the parent 
+			Structure. Processing takes place because there is a <B>piStructure</B> binding for the 
+			target name <B>javaScript</B>.</P>
+			<H3>Example3</H3>
+            <blockquote>
+			<p>XML Input: &lt;?xml?&gt; &lt;?noScript x+1?&gt; &lt;?noScript y-1?&gt; <br>
+			Tree Model: #{xml: true  __pi: #{ noScript: &quot;x+1&quot; noScript: &quot;y-1&quot;}}
+			Console:&quot;Hello World&quot;</p>
+            </blockquote>
+			<P>Note:<B> </B>A processing instruction is compiled as a simple attribute binding of 
+			the parent Structure. No processing takes place because there is no <B>piStructure</B> 
+			binding for the target name <B>noScript</B>.</P>
+			</div>		
+     <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCharacter Data"></A>Character Data</H2></P>
+        <div class="h2section" id="Character Data">
+		<P>The xml document tree model supports character data binding values in the basic nodes of 
+		the model. Each character data field is a binding in the parent Structure. The Name of the 
+		binding is either the Tag name of the inclosing element, Target name of the inclosing 
+		processing instruction, or the special Name &quot;<B>__content</B>&quot; depending upon 
+		which is the most ergonomic form with no loss of data. The value of the binding will be the 
+		character data.</P>
+		<H3>Example1</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;These are just characters <br>
+		Tree Model: #{xml: true  __content: &quot;These are just characters&quot;}</p>
+         </blockquote>
+		<P>Note: A character data is compiled as a simple attribute binding of the parent Structure.
+		 The value is always a singleton character data stream. </P>
+		<H3>Example2</H3>
+         <blockquote>
+		<p>XML Input: &lt;?xml?&gt;&lt;Name&gt;John Doe&lt;/Name&gt;<br>
+		Tree Model: #{xml: true  Name: &quot;John Doe&quot;}</p>
+       </blockquote>
+		<P>Note: A character data is compiled as a simple attribute binding of the parent Structure. 
+		The value is always a singleton character data stream. The name may be the Tag name of the 
+		inclosing element.</P>
+		<H3>Example3</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;My first name&lt;First&gt;John&lt;/First&gt;and my last name&lt;Last&gt;Doe&lt;/Last&gt; <br>
+		Tree Model: #{xml: true  __content: &quot;My first name&quot; First: John  __content: &quot;and my last name&quot;  Last: &quot;Doe&quot;}</p>
+        </blockquote>
+		<P>Note: A character data is compiled as a simple attribute binding of the parent Structure. 
+		The value is always a singleton character data stream. The name may be the special name 
+		&quot;<B>__content</B>&quot; iff require to prevent loss of data..</P>
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SCDATA Section"></A>CDATA Section</H2></P> 
+        <div class="h2section" id="Character Data">
+		<P>Data inside an XML Document is normally parsed by the XML parser. There are some characters that are
+		illegal in XML and have to be replaced by entity references. These characters include &lt; and &gt; among others.  
+		To avoid replacing illegal characters with entity references for brevity and convenience, the CDATA Section is used.   </P>
+		 <P>Data inside a CDATA Section is 
+		 ignored by the parser.  The text inside the CDATA Section is treated as character data. The character data values are bound in the basic nodes of 
+		the model. Each character data field is a binding in the parent Structure. The Name of the 
+		binding is  the special Name &quot;<B>__content</B>&quot; The value of the binding will be the 
+		unparsed character data.</P>
+		<H3>Example1</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;&lt![CDATA[ any data at all can be in here ]]&gt<br>
+		Tree Model: #{xml: true  __content: any data at all can be in here }</p>
+         </blockquote>
+		<P>Note: A cdata is  compiled like a character data, that is, as a simple attribute binding of the parent Structure.
+		 The value is always a singleton character data stream. </P>
+		<H3>Example2</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;&lt![CDATA[&lt;Name&gt;John Doe&lt;/Name&gt;]]&gt<br>
+		Tree Model: #{__pi: #{xml: true} __content: &lt;Name&gt;John Doe&lt;/Name&gt;}</p>
+       </blockquote>
+		<P>Note: The Characters enclosed in the CDATA tag are not parsed by the XML parser. The
+		   characters are displayed as it is in the Document Tree Model.</P>   
+		<P> Compare this example with the example of parsed data below. </P>
+		 <H3>Example3</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt; &lt;Name&gt;John Doe&lt;/Name&gt; <br>
+		Tree Model: #{__pi: #{xml: true} Name: John Doe}</p>
+       </blockquote>		 
+		</div>
+	    <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P><P><H2><A NAME="SComment Data"></A>Comment Data</H2></P>
+        <div class="h2section" id="Comment Data">
+		<P>The xml document tree model supports comment data binding values in the basic nodes of the 
+		model. Each comment data field is a binding in the parent Structure. The Name of the binding 
+		is the special Name &quot;<B>__comment</B>&quot;. The value of the binding will be the comment
+		 data.</P>
+        <H3>Example1</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;&lt;!?This is a comment --&gt;<br>
+		Tree Model: #{xml: true  __comment: &quot;This is a comment&quot;}</p>
+        </blockquote>
+		<P>Note: Comment data is compiled as a simple attribute binding of the parent Structure.
+		 The value is always a singleton character data stream. </P>
+		<H3>Example2</H3>
+        <blockquote>
+		<p>XML Input: &lt;?xml?&gt;&lt;Name&gt;John Doe&lt;/Name&gt;&lt;!?This is a comment --&gt; <br>
+		Tree Model: #{xml: true  Name: &quot;John Doe&quot; __comment: &quot;This is a comment&quot;}</p>
+        </blockquote>
+		<P>Note: Comment data is compiled as a simple attribute binding of the parent Structure. The 
+		value is always a singleton character data stream. </P>
+		</div>	    
+     <P ALIGN="CENTER"><INPUT TYPE='button' VALUE='Top of Page' onClick='navigate("#TOP");'></P>
+
+ 
+
+</BODY>
+</HTML>
